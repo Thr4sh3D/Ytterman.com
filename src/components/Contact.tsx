@@ -6,6 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
 import { sendEmail } from '@/integrations/core';
+import { GoogleMap } from './GoogleMap';
 
 export const Contact = () => {
   const [formData, setFormData] = useState({
@@ -92,7 +93,7 @@ Datum: ${new Date().toLocaleString('sv-SE')}
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-2 gap-12 mb-16">
           {/* Contact Information */}
           <div className="space-y-8">
             <Card className="shadow-earth">
@@ -243,6 +244,39 @@ Datum: ${new Date().toLocaleString('sv-SE')}
                   )}
                 </Button>
               </form>
+            </CardContent>
+          </Card>
+        </div>
+
+        <div className="mb-8">
+          <Card className="shadow-earth">
+            <CardHeader>
+              <CardTitle className="text-2xl text-center">Mitt Verksamhetsområde</CardTitle>
+              <p className="text-muted-foreground text-center">
+                Jag arbetar i hela Västernorrland med bas i Viksjö
+              </p>
+            </CardHeader>
+            <CardContent>
+              <GoogleMap />
+              <div className="mt-6 grid md:grid-cols-2 gap-6">
+                <div>
+                  <h4 className="font-semibold mb-3">Huvudorter:</h4>
+                  <ul className="space-y-2 text-sm text-muted-foreground">
+                    <li>• Sundsvall</li>
+                    <li>• Härnösand</li>
+                    <li>• Sollefteå</li>
+                    <li>• Kramfors</li>
+                    <li>• Timrå</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-3">Övriga områden:</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Jag tar även uppdrag i andra delar av Västernorrland. 
+                    Kontakta mig för att diskutera ditt projekt oavsett var det ligger.
+                  </p>
+                </div>
+              </div>
             </CardContent>
           </Card>
         </div>
