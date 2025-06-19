@@ -5,9 +5,10 @@ interface SEOProps {
   description: string;
   keywords?: string;
   canonicalUrl?: string;
+  ogImage?: string;
 }
 
-export const SEO = ({ title, description, keywords, canonicalUrl }: SEOProps) => {
+export const SEO = ({ title, description, keywords, canonicalUrl, ogImage }: SEOProps) => {
   return (
     <Helmet>
       <title>{title}</title>
@@ -20,11 +21,13 @@ export const SEO = ({ title, description, keywords, canonicalUrl }: SEOProps) =>
       <meta property="og:description" content={description} />
       <meta property="og:type" content="website" />
       {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
+      {ogImage && <meta property="og:image" content={ogImage} />}
       
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
+      {ogImage && <meta name="twitter:image" content={ogImage} />}
     </Helmet>
   );
 };

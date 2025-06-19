@@ -4,7 +4,7 @@ import { Footer } from '@/components/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Phone, Mail, MapPin, CheckCircle } from 'lucide-react';
+import { CheckCircle, Phone, Mail, MapPin, Building } from 'lucide-react';
 
 const KAHarnosand = () => {
   const callPhone = () => {
@@ -19,8 +19,8 @@ const KAHarnosand = () => {
     <div className="min-h-screen">
       <SEO 
         title="Kontrollansvarig Härnösand | KA & BAS-tjänster | Tobias Ytterman"
-        description="Kontrollansvarig och BAS-tjänster i Härnösand. Lokalt baserad i Viksjö med djup kunskap om Härnösands byggbestämmelser."
-        keywords="kontrollansvarig härnösand, KA härnösand, BAS härnösand, bygglov härnösand"
+        description="Kontrollansvarig och BAS-tjänster i Härnösand. Baserad i Viksjö med lokal kännedom. Över 20 års erfarenhet inom bygg och projektledning."
+        keywords="kontrollansvarig härnösand, KA härnösand, BAS-P härnösand, bygglov härnösand, kontrollplan härnösand"
         canonicalUrl="https://ytterman.com/ka-harnosand"
       />
       <Header />
@@ -29,15 +29,18 @@ const KAHarnosand = () => {
         <section className="py-16 bg-gradient-to-br from-background via-secondary/20 to-accent/10">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
-                Kontrollansvarig i <span className="text-gradient">Härnösand</span>
-              </h1>
-              <p className="text-xl text-muted-foreground mb-8">
-                Lokalt baserad i Viksjö med djup kunskap om Härnösands kommun och byggbestämmelser. 
-                Snabb service och personlig kontakt.
+              <div className="flex items-center justify-center mb-6">
+                <Building className="w-12 h-12 text-accent mr-4" />
+                <h1 className="text-4xl lg:text-5xl font-bold text-foreground">
+                  Kontrollansvarig i <span className="text-gradient">Härnösand</span>
+                </h1>
+              </div>
+              <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+                Lokalt baserad i Viksjö med djup kännedom om Härnösands kommun. 
+                Professionella KA och BAS-tjänster med över 20 års erfarenhet.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
                 <Button 
                   onClick={callPhone}
                   size="lg"
@@ -74,15 +77,15 @@ const KAHarnosand = () => {
                     <div className="space-y-3">
                       <div className="flex items-center space-x-3">
                         <CheckCircle className="w-5 h-5 text-accent flex-shrink-0" />
-                        <span>Kontrollplaner för Härnösands kommun</span>
+                        <span>Kontrollplaner för alla byggprojekt</span>
                       </div>
                       <div className="flex items-center space-x-3">
                         <CheckCircle className="w-5 h-5 text-accent flex-shrink-0" />
-                        <span>Tekniskt samråd med byggnadsnämnden</span>
+                        <span>Tekniskt samråd med Härnösands kommun</span>
                       </div>
                       <div className="flex items-center space-x-3">
                         <CheckCircle className="w-5 h-5 text-accent flex-shrink-0" />
-                        <span>Kontroller och slutbesked</span>
+                        <span>Slutbesked och kvalitetssäkring</span>
                       </div>
                     </div>
                   </CardContent>
@@ -104,7 +107,7 @@ const KAHarnosand = () => {
                       </div>
                       <div className="flex items-center space-x-3">
                         <CheckCircle className="w-5 h-5 text-accent flex-shrink-0" />
-                        <span>Arbetsmiljöplaner</span>
+                        <span>Rådgivning bygglov och bygganmälan</span>
                       </div>
                     </div>
                   </CardContent>
@@ -116,9 +119,8 @@ const KAHarnosand = () => {
                   <MapPin className="w-5 h-5 text-accent" />
                   <span>Baserad i Viksjö, Härnösand</span>
                 </div>
-                <p className="text-lg text-muted-foreground mb-8">
-                  Som lokalt baserad kontrollansvarig har jag djup kunskap om Härnösands kommun, 
-                  lokala förhållanden och byggbestämmelser.
+                <p className="text-muted-foreground">
+                  Lokal kännedom och snabb service i hela Härnösands kommun
                 </p>
               </div>
             </div>

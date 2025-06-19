@@ -4,7 +4,7 @@ import { Footer } from '@/components/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Phone, Mail, MapPin, CheckCircle } from 'lucide-react';
+import { CheckCircle, Phone, Mail, MapPin, Building } from 'lucide-react';
 
 const KAKramfors = () => {
   const callPhone = () => {
@@ -19,8 +19,8 @@ const KAKramfors = () => {
     <div className="min-h-screen">
       <SEO 
         title="Kontrollansvarig Kramfors | KA & BAS-tjänster | Tobias Ytterman"
-        description="Kontrollansvarig och BAS-tjänster i Kramfors. Erfaren KA med kunskap om Kramfors kommuns byggbestämmelser och processer."
-        keywords="kontrollansvarig kramfors, KA kramfors, BAS kramfors, bygglov kramfors"
+        description="Kontrollansvarig och BAS-tjänster i Kramfors. Över 20 års erfarenhet inom bygg och projektledning. Kontakta Tobias Ytterman för professionella KA-tjänster."
+        keywords="kontrollansvarig kramfors, KA kramfors, BAS-P kramfors, bygglov kramfors, kontrollplan kramfors"
         canonicalUrl="https://ytterman.com/ka-kramfors"
       />
       <Header />
@@ -29,15 +29,18 @@ const KAKramfors = () => {
         <section className="py-16 bg-gradient-to-br from-background via-secondary/20 to-accent/10">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
-                Kontrollansvarig i <span className="text-gradient">Kramfors</span>
-              </h1>
-              <p className="text-xl text-muted-foreground mb-8">
-                Professionella KA och BAS-tjänster för byggprojekt i Kramfors kommun. 
-                Erfaren kontrollansvarig med kunskap om lokala förhållanden.
+              <div className="flex items-center justify-center mb-6">
+                <Building className="w-12 h-12 text-accent mr-4" />
+                <h1 className="text-4xl lg:text-5xl font-bold text-foreground">
+                  Kontrollansvarig i <span className="text-gradient">Kramfors</span>
+                </h1>
+              </div>
+              <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+                Professionella KA och BAS-tjänster i Kramfors och omgivande områden. 
+                Över 20 års erfarenhet inom bygg och projektledning.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
                 <Button 
                   onClick={callPhone}
                   size="lg"
@@ -74,15 +77,15 @@ const KAKramfors = () => {
                     <div className="space-y-3">
                       <div className="flex items-center space-x-3">
                         <CheckCircle className="w-5 h-5 text-accent flex-shrink-0" />
-                        <span>Kontrollplaner för Kramfors kommun</span>
+                        <span>Kontrollplaner för alla byggprojekt</span>
                       </div>
                       <div className="flex items-center space-x-3">
                         <CheckCircle className="w-5 h-5 text-accent flex-shrink-0" />
-                        <span>Tekniskt samråd med byggnadsnämnden</span>
+                        <span>Tekniskt samråd med Kramfors kommun</span>
                       </div>
                       <div className="flex items-center space-x-3">
                         <CheckCircle className="w-5 h-5 text-accent flex-shrink-0" />
-                        <span>Kontroller och slutbesked</span>
+                        <span>Slutbesked och kvalitetssäkring</span>
                       </div>
                     </div>
                   </CardContent>
@@ -104,7 +107,7 @@ const KAKramfors = () => {
                       </div>
                       <div className="flex items-center space-x-3">
                         <CheckCircle className="w-5 h-5 text-accent flex-shrink-0" />
-                        <span>Arbetsmiljöplaner</span>
+                        <span>Rådgivning bygglov och bygganmälan</span>
                       </div>
                     </div>
                   </CardContent>
@@ -114,11 +117,10 @@ const KAKramfors = () => {
               <div className="text-center">
                 <div className="flex items-center justify-center space-x-2 text-muted-foreground mb-4">
                   <MapPin className="w-5 h-5 text-accent" />
-                  <span>Serviceområde: Kramfors och omnejd</span>
+                  <span>Serviceområde: Kramfors och närliggande kommuner</span>
                 </div>
-                <p className="text-lg text-muted-foreground mb-8">
-                  Baserad i Viksjö (Härnösand), ca 45 minuter från Kramfors. 
-                  Erfaren av arbete i Kramfors kommun med kunskap om lokala byggprocesser.
+                <p className="text-muted-foreground">
+                  Baserad i Viksjö (Härnösand) med regelbundna besök i Kramfors
                 </p>
               </div>
             </div>

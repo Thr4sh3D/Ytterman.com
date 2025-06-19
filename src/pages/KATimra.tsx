@@ -4,7 +4,7 @@ import { Footer } from '@/components/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Phone, Mail, MapPin, CheckCircle } from 'lucide-react';
+import { CheckCircle, Phone, Mail, MapPin, Building } from 'lucide-react';
 
 const KATimra = () => {
   const callPhone = () => {
@@ -19,8 +19,8 @@ const KATimra = () => {
     <div className="min-h-screen">
       <SEO 
         title="Kontrollansvarig Timrå | KA & BAS-tjänster | Tobias Ytterman"
-        description="Kontrollansvarig och BAS-tjänster i Timrå. Professionell KA med erfarenhet av Timrå kommuns byggprocesser och bestämmelser."
-        keywords="kontrollansvarig timrå, KA timrå, BAS timrå, bygglov timrå"
+        description="Kontrollansvarig och BAS-tjänster i Timrå. Över 20 års erfarenhet inom bygg och projektledning. Kontakta Tobias Ytterman för professionella KA-tjänster."
+        keywords="kontrollansvarig timrå, KA timrå, BAS-P timrå, bygglov timrå, kontrollplan timrå"
         canonicalUrl="https://ytterman.com/ka-timra"
       />
       <Header />
@@ -29,15 +29,18 @@ const KATimra = () => {
         <section className="py-16 bg-gradient-to-br from-background via-secondary/20 to-accent/10">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
-                Kontrollansvarig i <span className="text-gradient">Timrå</span>
-              </h1>
-              <p className="text-xl text-muted-foreground mb-8">
-                Professionella KA och BAS-tjänster för byggprojekt i Timrå kommun. 
-                Erfaren kontrollansvarig med kunskap om lokala byggprocesser.
+              <div className="flex items-center justify-center mb-6">
+                <Building className="w-12 h-12 text-accent mr-4" />
+                <h1 className="text-4xl lg:text-5xl font-bold text-foreground">
+                  Kontrollansvarig i <span className="text-gradient">Timrå</span>
+                </h1>
+              </div>
+              <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+                Professionella KA och BAS-tjänster i Timrå och omgivande områden. 
+                Över 20 års erfarenhet inom bygg och projektledning.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
                 <Button 
                   onClick={callPhone}
                   size="lg"
@@ -74,15 +77,15 @@ const KATimra = () => {
                     <div className="space-y-3">
                       <div className="flex items-center space-x-3">
                         <CheckCircle className="w-5 h-5 text-accent flex-shrink-0" />
-                        <span>Kontrollplaner för Timrå kommun</span>
+                        <span>Kontrollplaner för alla byggprojekt</span>
                       </div>
                       <div className="flex items-center space-x-3">
                         <CheckCircle className="w-5 h-5 text-accent flex-shrink-0" />
-                        <span>Tekniskt samråd med byggnadsnämnden</span>
+                        <span>Tekniskt samråd med Timrå kommun</span>
                       </div>
                       <div className="flex items-center space-x-3">
                         <CheckCircle className="w-5 h-5 text-accent flex-shrink-0" />
-                        <span>Kontroller och slutbesked</span>
+                        <span>Slutbesked och kvalitetssäkring</span>
                       </div>
                     </div>
                   </CardContent>
@@ -104,7 +107,7 @@ const KATimra = () => {
                       </div>
                       <div className="flex items-center space-x-3">
                         <CheckCircle className="w-5 h-5 text-accent flex-shrink-0" />
-                        <span>Arbetsmiljöplaner</span>
+                        <span>Rådgivning bygglov och bygganmälan</span>
                       </div>
                     </div>
                   </CardContent>
@@ -114,11 +117,10 @@ const KATimra = () => {
               <div className="text-center">
                 <div className="flex items-center justify-center space-x-2 text-muted-foreground mb-4">
                   <MapPin className="w-5 h-5 text-accent" />
-                  <span>Serviceområde: Timrå och omnejd</span>
+                  <span>Serviceområde: Timrå och närliggande kommuner</span>
                 </div>
-                <p className="text-lg text-muted-foreground mb-8">
-                  Baserad i Viksjö (Härnösand), ca 30 minuter från Timrå. 
-                  Snabb service och god kunskap om Timrå kommuns byggbestämmelser.
+                <p className="text-muted-foreground">
+                  Baserad i Viksjö (Härnösand) med regelbundna besök i Timrå
                 </p>
               </div>
             </div>
