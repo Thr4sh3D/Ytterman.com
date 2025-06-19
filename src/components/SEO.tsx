@@ -11,7 +11,7 @@ export const SEO = ({
   title = "Kontrollansvarig & BAS-P/BAS-U - Trygg Byggprocess med Ytterman | Västernorrland",
   description = "Erfaren kontrollansvarig och byggarbetsmiljösamordnare (BAS-P/BAS-U) i Sundsvall, Härnösand, Sollefteå, Kramfors, Timrå och hela Västernorrland. Tobias Ytterman - 20+ års erfarenhet inom bygg och projektledning. Fast pris, digital hantering och kostnadsfri konsultation.",
   keywords = "kontrollansvarig, BAS-P, BAS-U, byggarbetsmiljösamordnare, Sundsvall, Härnösand, Sollefteå, Kramfors, Timrå, Västernorrland, bygglov, slutbesked, kontrollplan, arbetsmiljöplan, byggprojekt, Tobias Ytterman, trygg byggprocess, byggledning, PBL",
-  canonicalUrl = "https://ytterman.se"
+  canonicalUrl = "https://ytterman.com"
 }: SEOProps) => {
   const structuredData = {
     "@context": "https://schema.org",
