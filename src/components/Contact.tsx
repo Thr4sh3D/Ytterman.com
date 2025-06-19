@@ -37,7 +37,7 @@ MEDDELANDE:
 ${formData.message}
 
 ---
-Skickat från kontaktformuläret på ytterman.se
+Skickat från kontaktformuläret på ytterman.com
 Datum: ${new Date().toLocaleString('sv-SE')}
         `,
         from_name: 'Ytterman Webbplats'
