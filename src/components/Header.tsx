@@ -1,94 +1,68 @@
 import { useState } from 'react';
-import { Menu, X, Phone, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
+import { Menu, X, Phone, Mail } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsMenuOpen(false);
-    }
-  };
+  const location = useLocation();
 
   const callPhone = () => {
     window.location.href = 'tel:+46761118447';
   };
 
+  const sendEmail = () => {
+    window.location.href = 'mailto:tobias@ytterman.com';
+  };
+
+  const isActive = (path: string) => {
+    return location.pathname === path;
+  };
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border shadow-earth">
-      <div className="container mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <div className="w-10 h-10 earth-gradient rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-lg">TY</span>
+            <div className="w-8 h-8 earth-gradient rounded-lg flex items-center justify-center">
+              <span className="text-white font-bold">TY</span>
             </div>
             <div>
-              <h1 className="text-xl font-bold text-primary">Ytterman</h1>
-              <p className="text-xs text-muted-foreground">Trygg Byggprocess</p>
+              <div className="font-bold text-foreground">Ytterman</div>
+              <div className="text-xs text-muted-foreground">Trygg Byggprocess</div>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <button 
-              onClick={() => scrollToSection('hem')}
-              className="text-foreground hover:text-primary transition-colors"
+            <Link 
+              to="/" 
+              className={`text-sm font-medium transition-colors hover:text-primary ${
+                isActive('/') ? 'text-primary' : 'text-muted-foreground'
+              }`}
             >
               Hem
-            </button>
-            <button 
-              onClick={() => scrollToSection('tjanster')}
-              className="text-foreground hover:text-primary transition-colors"
-            >
-              Tjänster
-            </button>
-            <button 
-              onClick={() => scrollToSection('priser')}
-              className="text-foreground hover:text-primary transition-colors"
-            >
-              Priser
-            </button>
-            <button 
-              onClick={() => scrollToSection('om-mig')}
-              className="text-foreground hover:text-primary transition-colors"
-            >
-              Om mig
-            </button>
+            </Link>
             <Link 
-              to="/blogg"
-              className="text-foreground hover:text-primary transition-colors"
+              to="/blogg" 
+              className={`text-sm font-medium transition-colors hover:text-primary ${
+                isActive('/blogg') ? 'text-primary' : 'text-muted-foreground'
+              }`}
             >
               Blogg
             </Link>
-            <button 
-              onClick={() => scrollToSection('kontakt')}
-              className="text-foreground hover:text-primary transition-colors"
-            >
-              Kontakt
-            </button>
+            <div className="flex items-center space-x-2">
+              <Button 
+                onClick={callPhone}
+                size="sm"
+                className="earth-gradient text-white hover:opacity-90"
+              >
+                <Phone className="w-4 h-4 mr-2" />
+                076-111 84 47
+              </Button>
+            </div>
           </nav>
-
-          {/* Contact Info & CTA */}
-          <div className="hidden lg:flex items-center space-x-4">
-            <button 
-              onClick={callPhone}
-              className="flex items-center space-x-2 text-sm text-muted-foreground hover:text-primary transition-colors"
-            >
-              <Phone className="w-4 h-4" />
-              <span>076-111 84 47</span>
-            </button>
-            <Button 
-              onClick={() => scrollToSection('kontakt')}
-              className="earth-gradient text-white hover:opacity-90"
-            >
-              Kontakta mig
-            </Button>
-          </div>
 
           {/* Mobile Menu Button */}
           <button
@@ -99,60 +73,44 @@ export const Header = () => {
           </button>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden mt-4 py-4 border-t border-border">
+          <div className="md:hidden py-4 border-t border-border">
             <nav className="flex flex-col space-y-4">
-              <button 
-                onClick={() => scrollToSection('hem')}
-                className="text-left text-foreground hover:text-primary transition-colors"
+              <Link 
+                to="/" 
+                className={`text-sm font-medium transition-colors hover:text-primary ${
+                  isActive('/') ? 'text-primary' : 'text-muted-foreground'
+                }`}
+                onClick={() => setIsMenuOpen(false)}
               >
                 Hem
-              </button>
-              <button 
-                onClick={() => scrollToSection('tjanster')}
-                className="text-left text-foreground hover:text-primary transition-colors"
-              >
-                Tjänster
-              </button>
-              <button 
-                onClick={() => scrollToSection('priser')}
-                className="text-left text-foreground hover:text-primary transition-colors"
-              >
-                Priser
-              </button>
-              <button 
-                onClick={() => scrollToSection('om-mig')}
-                className="text-left text-foreground hover:text-primary transition-colors"
-              >
-                Om mig
-              </button>
+              </Link>
               <Link 
-                to="/blogg"
-                className="text-left text-foreground hover:text-primary transition-colors"
+                to="/blogg" 
+                className={`text-sm font-medium transition-colors hover:text-primary ${
+                  isActive('/blogg') ? 'text-primary' : 'text-muted-foreground'
+                }`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Blogg
               </Link>
-              <button 
-                onClick={() => scrollToSection('kontakt')}
-                className="text-left text-foreground hover:text-primary transition-colors"
-              >
-                Kontakt
-              </button>
-              <div className="pt-4 border-t border-border">
-                <button 
-                  onClick={callPhone}
-                  className="flex items-center space-x-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-4"
-                >
-                  <Phone className="w-4 h-4" />
-                  <span>076-111 84 47</span>
-                </button>
+              <div className="flex flex-col space-y-2 pt-4">
                 <Button 
-                  onClick={() => scrollToSection('kontakt')}
-                  className="earth-gradient text-white hover:opacity-90 w-full"
+                  onClick={callPhone}
+                  size="sm"
+                  className="earth-gradient text-white hover:opacity-90"
                 >
-                  Kontakta mig
+                  <Phone className="w-4 h-4 mr-2" />
+                  076-111 84 47
+                </Button>
+                <Button 
+                  onClick={sendEmail}
+                  variant="outline"
+                  size="sm"
+                >
+                  <Mail className="w-4 h-4 mr-2" />
+                  E-post
                 </Button>
               </div>
             </nav>
