@@ -1,4 +1,4 @@
-import { Euro, Clock, Package, Building } from 'lucide-react';
+import { Clock, Package, Building } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 
@@ -140,7 +140,6 @@ export const Pricing = () => {
               size="lg"
               className="earth-gradient text-white hover:opacity-90"
             >
-              <Euro className="w-5 h-5 mr-2" />
               Begär offert
             </Button>
           </div>

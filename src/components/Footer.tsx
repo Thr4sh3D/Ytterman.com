@@ -40,7 +40,7 @@ export const Footer = () => {
             <div className="space-y-3 text-sm">
               <div className="flex items-center space-x-2 opacity-80">
                 <Mail className="w-4 h-4" />
-                <span>tobias@ytterman.se</span>
+                <span>tobias@ytterman.com</span>
               </div>
               <div className="flex items-start space-x-2 opacity-80">
                 <MapPin className="w-4 h-4 mt-0.5" />

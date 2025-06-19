@@ -5,7 +5,7 @@ export const About = () => {
   const certifications = [
     'Kontrollansvarig enligt PBL (KA)',
     'Byggarbetsmiljösamordnare BAS‑P & BAS‑U',
-    'Ställningsutbildning 2–9 meter (AFS 2013:4)',
+    'Ställningsutbildning 2–9 meter (AFS 2013:4) - Instruktör',
     'Fallskydd & HLR‑instruktör',
     'Motorsåg & Röjsåg – Säker Skog',
     'ESA instruerad person – elnära arbeten',

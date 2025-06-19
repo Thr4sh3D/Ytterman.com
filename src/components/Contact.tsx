@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
+import { sendEmail } from '@/integrations/core';
 
 export const Contact = () => {
   const [formData, setFormData] = useState({
@@ -19,15 +20,40 @@ export const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      await sendEmail({
+        to: 'tobias@ytterman.com',
+        subject: `Ny förfrågan från ${formData.name}`,
+        body: `
+Ny kontaktförfrågan från webbplatsen:
+
+Namn: ${formData.name}
+E-post: ${formData.email}
+
+Meddelande:
+${formData.message}
+
+---
+Skickat från kontaktformuläret på ytterman.se
+        `,
+        from_name: 'Ytterman Webbplats'
+      });
+
       toast({
         title: "Meddelande skickat!",
         description: "Tack för ditt meddelande. Jag återkommer så snart som möjligt.",
       });
       setFormData({ name: '', email: '', message: '' });
+    } catch (error) {
+      console.error('Error sending email:', error);
+      toast({
+        title: "Fel vid skickning",
+        description: "Det uppstod ett fel. Försök igen eller kontakta mig direkt på tobias@ytterman.com",
+        variant: "destructive"
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -83,7 +109,7 @@ export const Contact = () => {
                     </div>
                     <div>
                       <div className="font-medium">E-post</div>
-                      <div className="text-muted-foreground">tobias@ytterman.se</div>
+                      <div className="text-muted-foreground">tobias@ytterman.com</div>
                     </div>
                   </div>
 
@@ -110,8 +136,6 @@ export const Contact = () => {
                 </div>
               </CardContent>
             </Card>
-
-            {/* ... keep existing code (rest of the component) */}
           </div>
 
           {/* Contact Form */}
