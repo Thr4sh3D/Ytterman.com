@@ -11,8 +11,7 @@ export const Hero = () => {
   };
 
   const openWhatsApp = () => {
-    const message = encodeURIComponent('Hej Tobias! Jag är intresserad av dina tjänster som kontrollansvarig och BAS-P/BAS-U. Kan vi boka ett förutsättningslöst samtal?');
-    window.open(`https://wa.me/46761118447?text=${message}`, '_blank');
+    window.open('https://wa.me/46761118447?text=Hej! Jag är intresserad av dina tjänster som kontrollansvarig och BAS.', '_blank');
   };
 
   return (

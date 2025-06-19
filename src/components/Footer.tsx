@@ -1,14 +1,6 @@
-import { Mail, MapPin, Award, Shield, Phone } from 'lucide-react';
+import { Mail, MapPin, Award, Shield } from 'lucide-react';
 
 export const Footer = () => {
-  const sendEmail = () => {
-    window.location.href = 'mailto:tobias@ytterman.com?subject=Förfrågan om kontrollansvarig och BAS-tjänster';
-  };
-
-  const callPhone = () => {
-    window.location.href = 'tel:+46761118447';
-  };
-
   return (
     <footer className="bg-primary text-primary-foreground py-16">
       <div className="container mx-auto px-4">
@@ -36,7 +28,7 @@ export const Footer = () => {
             <ul className="space-y-2 text-sm opacity-80">
               <li>Kontrollansvarig (KA)</li>
               <li>BAS-P / BAS-U</li>
-              <li>Komplett paket KA + BAS</li>
+              <li>Komplett paket</li>
               <li>BRF-projekt</li>
               <li>Konsultation</li>
             </ul>
@@ -46,27 +38,16 @@ export const Footer = () => {
           <div className="space-y-4">
             <h4 className="text-lg font-semibold">Kontakt</h4>
             <div className="space-y-3 text-sm">
-              <button 
-                onClick={callPhone}
-                className="flex items-center space-x-2 opacity-80 hover:opacity-100 transition-opacity"
-              >
-                <Phone className="w-4 h-4" />
-                <span>076-111 84 47</span>
-              </button>
-              <button 
-                onClick={sendEmail}
-                className="flex items-center space-x-2 opacity-80 hover:opacity-100 transition-opacity"
-              >
+              <div className="flex items-center space-x-2 opacity-80">
                 <Mail className="w-4 h-4" />
                 <span>tobias@ytterman.com</span>
-              </button>
+              </div>
               <div className="flex items-start space-x-2 opacity-80">
                 <MapPin className="w-4 h-4 mt-0.5" />
                 <div>
-                  <div>Bor i Viksjö</div>
-                  <div>Verksam i hela Västernorrland:</div>
-                  <div>Sundsvall, Härnösand, Sollefteå,</div>
-                  <div>Kramfors, Timrå m.fl.</div>
+                  <div>Viksjö</div>
+                  <div>Sundsvall, Härnösand, Sollefteå</div>
+                  <div>Kramfors, Timrå & Västernorrland</div>
                 </div>
               </div>
             </div>
@@ -85,7 +66,7 @@ export const Footer = () => {
                 <span className="text-sm opacity-80">BAS-P & BAS-U</span>
               </div>
               <div className="text-xs opacity-60">
-                + Flera specialistcertifieringar inom säkerhet och byggledning
+                + Flera specialistcertifieringar
               </div>
             </div>
           </div>
@@ -97,7 +78,7 @@ export const Footer = () => {
               © 2025 Tobias Ytterman. Alla rättigheter förbehållna.
             </div>
             <div className="text-sm opacity-80">
-              Trygg Byggprocess med Ytterman - Västernorrland
+              Trygg Byggprocess med Ytterman
             </div>
           </div>
         </div>

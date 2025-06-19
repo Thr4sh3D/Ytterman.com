@@ -13,10 +13,6 @@ export const Header = () => {
     }
   };
 
-  const callPhone = () => {
-    window.location.href = 'tel:+46761118447';
-  };
-
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border shadow-earth">
       <div className="container mx-auto px-4 py-4">
@@ -68,13 +64,10 @@ export const Header = () => {
 
           {/* Contact Info & CTA */}
           <div className="hidden lg:flex items-center space-x-4">
-            <button 
-              onClick={callPhone}
-              className="flex items-center space-x-2 text-sm text-muted-foreground hover:text-primary transition-colors"
-            >
+            <div className="flex items-center space-x-2 text-sm text-muted-foreground">
               <Phone className="w-4 h-4" />
-              <span>076-111 84 47</span>
-            </button>
+              <span>Ring för rådgivning</span>
+            </div>
             <Button 
               onClick={() => scrollToSection('kontakt')}
               className="earth-gradient text-white hover:opacity-90"
@@ -126,21 +119,12 @@ export const Header = () => {
               >
                 Kontakt
               </button>
-              <div className="pt-4 border-t border-border">
-                <button 
-                  onClick={callPhone}
-                  className="flex items-center space-x-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-4"
-                >
-                  <Phone className="w-4 h-4" />
-                  <span>076-111 84 47</span>
-                </button>
-                <Button 
-                  onClick={() => scrollToSection('kontakt')}
-                  className="earth-gradient text-white hover:opacity-90 w-full"
-                >
-                  Kontakta mig
-                </Button>
-              </div>
+              <Button 
+                onClick={() => scrollToSection('kontakt')}
+                className="earth-gradient text-white hover:opacity-90 w-full mt-4"
+              >
+                Kontakta mig
+              </Button>
             </nav>
           </div>
         )}

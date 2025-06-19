@@ -11,7 +11,6 @@ export const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    phone: '',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -24,35 +23,32 @@ export const Contact = () => {
     try {
       await sendEmail({
         to: 'tobias@ytterman.com',
-        subject: `Ny förfrågan från ${formData.name} - Kontrollansvarig & BAS`,
+        subject: `Ny förfrågan från ${formData.name}`,
         body: `
-Ny kontaktförfrågan från webbplatsen Trygg Byggprocess med Ytterman:
+Ny kontaktförfrågan från webbplatsen:
 
-KONTAKTUPPGIFTER:
 Namn: ${formData.name}
 E-post: ${formData.email}
-Telefon: ${formData.phone || 'Ej angiven'}
 
-MEDDELANDE:
+Meddelande:
 ${formData.message}
 
 ---
-Skickat från kontaktformuläret på ytterman.com
-Datum: ${new Date().toLocaleString('sv-SE')}
+Skickat från kontaktformuläret på ytterman.se
         `,
         from_name: 'Ytterman Webbplats'
       });
 
       toast({
         title: "Meddelande skickat!",
-        description: "Tack för ditt meddelande. Jag återkommer så snart som möjligt, oftast inom 24 timmar.",
+        description: "Tack för ditt meddelande. Jag återkommer så snart som möjligt.",
       });
-      setFormData({ name: '', email: '', phone: '', message: '' });
+      setFormData({ name: '', email: '', message: '' });
     } catch (error) {
       console.error('Error sending email:', error);
       toast({
         title: "Fel vid skickning",
-        description: "Det uppstod ett fel. Försök igen eller kontakta mig direkt på tobias@ytterman.com eller 076-111 84 47",
+        description: "Det uppstod ett fel. Försök igen eller kontakta mig direkt på tobias@ytterman.com",
         variant: "destructive"
       });
     } finally {
@@ -68,16 +64,7 @@ Datum: ${new Date().toLocaleString('sv-SE')}
   };
 
   const openWhatsApp = () => {
-    const message = encodeURIComponent('Hej Tobias! Jag är intresserad av dina tjänster som kontrollansvarig och BAS-P/BAS-U. Kan vi boka ett förutsättningslöst samtal?');
-    window.open(`https://wa.me/46761118447?text=${message}`, '_blank');
-  };
-
-  const callPhone = () => {
-    window.location.href = 'tel:+46761118447';
-  };
-
-  const sendDirectEmail = () => {
-    window.location.href = 'mailto:tobias@ytterman.com?subject=Förfrågan om kontrollansvarig och BAS-tjänster&body=Hej Tobias,%0D%0A%0D%0AJag är intresserad av dina tjänster som kontrollansvarig och BAS-P/BAS-U.%0D%0A%0D%0AMed vänliga hälsningar';
+    window.open('https://wa.me/46761118447?text=Hej! Jag är intresserad av dina tjänster som kontrollansvarig och BAS.', '_blank');
   };
 
   return (
@@ -106,33 +93,27 @@ Datum: ${new Date().toLocaleString('sv-SE')}
                 </p>
 
                 <div className="space-y-4">
-                  <button 
-                    onClick={callPhone}
-                    className="flex items-center space-x-4 w-full p-3 rounded-lg hover:bg-secondary/50 transition-colors"
-                  >
+                  <div className="flex items-center space-x-4">
                     <div className="w-10 h-10 earth-gradient rounded-lg flex items-center justify-center">
                       <Phone className="w-5 h-5 text-white" />
                     </div>
-                    <div className="text-left">
-                      <div className="font-medium">Ring mig direkt</div>
+                    <div>
+                      <div className="font-medium">Ring mig</div>
                       <div className="text-muted-foreground">076-111 84 47</div>
                     </div>
-                  </button>
+                  </div>
 
-                  <button 
-                    onClick={sendDirectEmail}
-                    className="flex items-center space-x-4 w-full p-3 rounded-lg hover:bg-secondary/50 transition-colors"
-                  >
+                  <div className="flex items-center space-x-4">
                     <div className="w-10 h-10 earth-gradient rounded-lg flex items-center justify-center">
                       <Mail className="w-5 h-5 text-white" />
                     </div>
-                    <div className="text-left">
+                    <div>
                       <div className="font-medium">E-post</div>
                       <div className="text-muted-foreground">tobias@ytterman.com</div>
                     </div>
-                  </button>
+                  </div>
 
-                  <div className="flex items-center space-x-4 p-3">
+                  <div className="flex items-center space-x-4">
                     <div className="w-10 h-10 earth-gradient rounded-lg flex items-center justify-center">
                       <MapPin className="w-5 h-5 text-white" />
                     </div>
@@ -197,21 +178,6 @@ Datum: ${new Date().toLocaleString('sv-SE')}
                 </div>
 
                 <div>
-                  <label htmlFor="phone" className="block text-sm font-medium mb-2">
-                    Telefonnummer
-                  </label>
-                  <Input
-                    id="phone"
-                    name="phone"
-                    type="tel"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    placeholder="070-123 45 67"
-                    className="w-full"
-                  />
-                </div>
-
-                <div>
                   <label htmlFor="message" className="block text-sm font-medium mb-2">
                     Meddelande *
                   </label>
@@ -221,7 +187,7 @@ Datum: ${new Date().toLocaleString('sv-SE')}
                     required
                     value={formData.message}
                     onChange={handleChange}
-                    placeholder="Berätta om ditt projekt: typ av byggnad, omfattning, tidsplan, var projektet ligger, etc."
+                    placeholder="Berätta om ditt projekt: typ av byggnad, omfattning, tidsplan, etc."
                     rows={6}
                     className="w-full"
                   />

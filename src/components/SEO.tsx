@@ -8,10 +8,10 @@ interface SEOProps {
 }
 
 export const SEO = ({ 
-  title = "Kontrollansvarig & BAS-P/BAS-U - Trygg Byggprocess med Ytterman | Västernorrland",
-  description = "Erfaren kontrollansvarig och byggarbetsmiljösamordnare (BAS-P/BAS-U) i Sundsvall, Härnösand, Sollefteå, Kramfors, Timrå och hela Västernorrland. Tobias Ytterman - 20+ års erfarenhet inom bygg och projektledning. Fast pris, digital hantering och kostnadsfri konsultation.",
-  keywords = "kontrollansvarig, BAS-P, BAS-U, byggarbetsmiljösamordnare, Sundsvall, Härnösand, Sollefteå, Kramfors, Timrå, Västernorrland, bygglov, slutbesked, kontrollplan, arbetsmiljöplan, byggprojekt, Tobias Ytterman, trygg byggprocess, byggledning, PBL",
-  canonicalUrl = "https://ytterman.com"
+  title = "Kontrollansvarig & BAS-P/BAS-U - Trygg Byggprocess med Ytterman",
+  description = "Erfaren kontrollansvarig och byggarbetsmiljösamordnare (BAS-P/BAS-U) i Sundsvall, Härnösand, Sollefteå, Kramfors, Timrå och hela Västernorrland. 20+ års erfarenhet inom bygg och projektledning. Fast pris och digital hantering.",
+  keywords = "kontrollansvarig, BAS-P, BAS-U, byggarbetsmiljösamordnare, Sundsvall, Härnösand, Sollefteå, Kramfors, Timrå, Västernorrland, bygglov, slutbesked, kontrollplan, arbetsmiljöplan, byggprojekt, Tobias Ytterman",
+  canonicalUrl = "https://ytterman.se"
 }: SEOProps) => {
   const structuredData = {
     "@context": "https://schema.org",
@@ -24,40 +24,33 @@ export const SEO = ({
     "founder": {
       "@type": "Person",
       "name": "Tobias Ytterman",
-      "jobTitle": "Kontrollansvarig & Byggarbetsmiljösamordnare",
-      "telephone": "+46761118447",
-      "email": "tobias@ytterman.com"
+      "jobTitle": "Kontrollansvarig & Byggarbetsmiljösamordnare"
     },
     "areaServed": [
       {
         "@type": "City",
         "name": "Sundsvall",
-        "addressRegion": "Västernorrland",
-        "addressCountry": "SE"
+        "addressRegion": "Västernorrland"
       },
       {
         "@type": "City", 
         "name": "Härnösand",
-        "addressRegion": "Västernorrland",
-        "addressCountry": "SE"
+        "addressRegion": "Västernorrland"
       },
       {
         "@type": "City",
         "name": "Sollefteå", 
-        "addressRegion": "Västernorrland",
-        "addressCountry": "SE"
+        "addressRegion": "Västernorrland"
       },
       {
         "@type": "City",
         "name": "Kramfors",
-        "addressRegion": "Västernorrland",
-        "addressCountry": "SE"
+        "addressRegion": "Västernorrland"
       },
       {
         "@type": "City",
         "name": "Timrå",
-        "addressRegion": "Västernorrland",
-        "addressCountry": "SE"
+        "addressRegion": "Västernorrland"
       }
     ],
     "serviceType": [
@@ -66,18 +59,14 @@ export const SEO = ({
       "Byggarbetsmiljösamordnare BAS-U",
       "Kontrollplan",
       "Arbetsmiljöplan",
-      "Byggprojektledning",
-      "Byggkonsultation"
+      "Byggprojektledning"
     ],
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Viksjö",
       "addressRegion": "Västernorrland",
       "addressCountry": "SE"
-    },
-    "priceRange": "18000-60000 SEK",
-    "paymentAccepted": "Faktura, Banköverföring",
-    "currenciesAccepted": "SEK"
+    }
   };
 
   return (
@@ -93,7 +82,6 @@ export const SEO = ({
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:type" content="website" />
       <meta property="og:locale" content="sv_SE" />
-      <meta property="og:site_name" content="Trygg Byggprocess med Ytterman" />
       
       {/* Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />
@@ -111,8 +99,6 @@ export const SEO = ({
       <meta name="geo.region" content="SE-Y" />
       <meta name="geo.placename" content="Västernorrland" />
       <meta name="ICBM" content="62.3908,17.3069" />
-      <meta name="language" content="Swedish" />
-      <meta name="revisit-after" content="7 days" />
     </Helmet>
   );
 };
