@@ -1,6 +1,7 @@
 import { CheckCircle, MessageCircle, Shield, Award } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { HeroBanner } from './HeroBanner';
+import { Link } from 'react-router-dom';
 
 export const Hero = () => {
   const scrollToContact = () => {
@@ -35,8 +36,13 @@ export const Hero = () => {
               Kontrollansvarig & Byggarbetsmiljösamordnare BAS-P / BAS-U
             </p>
             
+            <h2 className="text-lg font-semibold text-foreground mb-4">
+              Kontrollansvarig i Västernorrland – från Sundsvall till Sollefteå
+            </h2>
+            
             <p className="text-lg text-muted-foreground mb-8">
-              Verksam i Sundsvall, Härnösand, Sollefteå, Kramfors, Timrå och hela Västernorrland
+              Jag erbjuder tjänster som kontrollansvarig och BAS U/P i Sundsvall, Härnösand, 
+              Sollefteå, Timrå, Kramfors och övriga delar av Västernorrland.
             </p>
             
             <div className="space-y-4 mb-8">
@@ -62,7 +68,7 @@ export const Hero = () => {
               </div>
             </div>
             
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 mb-8">
               <Button 
                 onClick={scrollToContact}
                 size="lg"
@@ -79,6 +85,46 @@ export const Hero = () => {
                 <MessageCircle className="w-5 h-5 mr-2" />
                 WhatsApp
               </Button>
+            </div>
+
+            {/* Local Pages Links */}
+            <div className="bg-card p-6 rounded-xl shadow-earth">
+              <h3 className="font-semibold mb-4 text-center">Lokala tjänster:</h3>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3 text-sm">
+                <Link 
+                  to="/ka-sundsvall" 
+                  className="text-accent hover:text-accent/80 hover:underline text-center"
+                >
+                  KA Sundsvall
+                </Link>
+                <Link 
+                  to="/ka-harnosand" 
+                  className="text-accent hover:text-accent/80 hover:underline text-center"
+                >
+                  KA Härnösand
+                </Link>
+                <Link 
+                  to="/ka-solleftea" 
+                  className="text-accent hover:text-accent/80 hover:underline text-center"
+                >
+                  KA Sollefteå
+                </Link>
+                <Link 
+                  to="/ka-timra" 
+                  className="text-accent hover:text-accent/80 hover:underline text-center"
+                >
+                  KA Timrå
+                </Link>
+                <Link 
+                  to="/ka-kramfors" 
+                  className="text-accent hover:text-accent/80 hover:underline text-center"
+                >
+                  KA Kramfors
+                </Link>
+                <div className="text-muted-foreground text-center">
+                  + hela Västernorrland
+                </div>
+              </div>
             </div>
           </div>
 
