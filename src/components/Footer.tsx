@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin } from 'lucide-react';
 
 export const Footer = () => {
@@ -13,62 +14,73 @@ export const Footer = () => {
     <footer className="bg-secondary/20 border-t border-border">
       <div className="container mx-auto px-4 py-12">
         <div className="grid md:grid-cols-3 gap-8">
-          {/* Company Info */}
+          {/* Kontaktinfo */}
           <div>
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 earth-gradient rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold">TY</span>
-              </div>
-              <div>
-                <div className="font-bold text-foreground">Ytterman</div>
-                <div className="text-xs text-muted-foreground">Trygg Byggprocess</div>
-              </div>
-            </div>
-            <p className="text-sm text-muted-foreground">
-              Kontrollansvarig och BAS-tjänster i Västernorrland. 
-              Över 20 års erfarenhet inom bygg och projektledning.
-            </p>
-          </div>
-
-          {/* Contact Info */}
-          <div>
-            <h3 className="font-semibold mb-4">Kontakt</h3>
+            <h3 className="font-bold text-lg mb-4">Kontakt</h3>
             <div className="space-y-3">
-              <button 
-                onClick={callPhone}
-                className="flex items-center space-x-2 text-sm text-muted-foreground hover:text-accent transition-colors"
-              >
-                <Phone className="w-4 h-4" />
-                <span>076-111 84 47</span>
-              </button>
-              <button 
-                onClick={sendEmail}
-                className="flex items-center space-x-2 text-sm text-muted-foreground hover:text-accent transition-colors"
-              >
-                <Mail className="w-4 h-4" />
-                <span>tobias@ytterman.com</span>
-              </button>
-              <div className="flex items-center space-x-2 text-sm text-muted-foreground">
-                <MapPin className="w-4 h-4" />
-                <span>Viksjö, Härnösand</span>
+              <div className="flex items-center space-x-3">
+                <Phone className="w-5 h-5 text-accent" />
+                <button 
+                  onClick={callPhone}
+                  className="text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  076-111 84 47
+                </button>
+              </div>
+              <div className="flex items-center space-x-3">
+                <Mail className="w-5 h-5 text-accent" />
+                <button 
+                  onClick={sendEmail}
+                  className="text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  tobias@ytterman.com
+                </button>
+              </div>
+              <div className="flex items-center space-x-3">
+                <MapPin className="w-5 h-5 text-accent" />
+                <span className="text-muted-foreground">Viksjö, Härnösand</span>
               </div>
             </div>
           </div>
 
-          {/* Services */}
+          {/* Serviceområden */}
           <div>
-            <h3 className="font-semibold mb-4">Tjänster</h3>
-            <div className="space-y-2 text-sm text-muted-foreground">
-              <div>Kontrollansvarig enligt PBL</div>
-              <div>BAS-P (Planering)</div>
-              <div>BAS-U (Utförande)</div>
-              <div>Rådgivning bygglov</div>
+            <h3 className="font-bold text-lg mb-4">Serviceområden</h3>
+            <div className="space-y-2">
+              <Link to="/ka-sundsvall" className="block text-muted-foreground hover:text-foreground transition-colors">
+                Sundsvall
+              </Link>
+              <Link to="/ka-harnosand" className="block text-muted-foreground hover:text-foreground transition-colors">
+                Härnösand
+              </Link>
+              <Link to="/ka-solleftea" className="block text-muted-foreground hover:text-foreground transition-colors">
+                Sollefteå
+              </Link>
+              <Link to="/ka-timra" className="block text-muted-foreground hover:text-foreground transition-colors">
+                Timrå
+              </Link>
+              <Link to="/ka-kramfors" className="block text-muted-foreground hover:text-foreground transition-colors">
+                Kramfors
+              </Link>
+            </div>
+          </div>
+
+          {/* Tjänster */}
+          <div>
+            <h3 className="font-bold text-lg mb-4">Tjänster</h3>
+            <div className="space-y-2">
+              <span className="block text-muted-foreground">Kontrollansvarig enligt PBL</span>
+              <span className="block text-muted-foreground">BAS-P (Planering)</span>
+              <span className="block text-muted-foreground">BAS-U (Utförande)</span>
+              <span className="block text-muted-foreground">Rådgivning bygglov</span>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-border mt-8 pt-8 text-center text-sm text-muted-foreground">
-          <p>&copy; 2024 Tobias Ytterman. Alla rättigheter förbehållna.</p>
+        <div className="border-t border-border mt-8 pt-8 text-center">
+          <p className="text-muted-foreground">
+            © 2024 Tobias Ytterman. Kontrollansvarig och BAS-tjänster i Västernorrland.
+          </p>
         </div>
       </div>
     </footer>
