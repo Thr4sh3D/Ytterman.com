@@ -17,8 +17,8 @@
     --secondary-foreground: 222.2 84% 4.9%;
     --muted: 210 40% 96%;
     --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 98%;
-    --accent-foreground: 222.2 84% 4.9%;
+    --accent: 37 99% 50%;
+    --accent-foreground: 210 40% 98%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
     --border: 214.3 31.8% 91.4%;
@@ -45,8 +45,8 @@
     --secondary-foreground: 210 40% 98%;
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 37 99% 60%;
+    --accent-foreground: 222.2 47.4% 11.2%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
     --border: 217.2 32.6% 17.5%;
@@ -70,7 +70,7 @@
   }
 }
 
-/* Custom styles */
+/* Custom gradient styles */
 .earth-gradient {
   background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 50%, #1e40af 100%);
 }
@@ -86,13 +86,7 @@
   box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.1), 0 2px 4px -1px rgba(37, 99, 235, 0.06);
 }
 
-/* Custom accent color */
-:root {
-  --accent: 210 100% 50%;
-  --accent-foreground: 210 40% 98%;
-}
-
-.dark {
-  --accent: 210 100% 60%;
-  --accent-foreground: 222.2 47.4% 11.2%;
+/* Smooth transitions */
+* {
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
 }
