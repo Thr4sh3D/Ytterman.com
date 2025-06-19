@@ -1,12 +1,21 @@
 import React from 'react';
+import Navigation from '../components/Navigation';
 
 const KASundsvall = () => {
-  console.log('🏙️ KASundsvall page is rendering');
-  
   return (
-    <div style={{ padding: '20px', backgroundColor: 'lightsteelblue' }}>
-      <h1>🏙️ KA Sundsvall</h1>
-      <p>Sundsvall sidan fungerar!</p>
+    <div style={{ 
+      padding: '20px', 
+      backgroundColor: '#f8f9fa', 
+      minHeight: '100vh',
+      fontFamily: 'system-ui, -apple-system, sans-serif'
+    }}>
+      <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+        <Navigation />
+        <h1 style={{ color: '#2c3e50', textAlign: 'center' }}>KA Sundsvall</h1>
+        <p style={{ textAlign: 'center', color: '#6c757d' }}>
+          KA Sundsvall content will be added here.
+        </p>
+      </div>
     </div>
   );
 };

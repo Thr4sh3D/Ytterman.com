@@ -1,12 +1,21 @@
 import React from 'react';
+import Navigation from '../components/Navigation';
 
 const KAHarnosand = () => {
-  console.log('🏘️ KAHarnosand page is rendering');
-  
   return (
-    <div style={{ padding: '20px', backgroundColor: 'lightpink' }}>
-      <h1>🏘️ KA Härnösand</h1>
-      <p>Härnösand sidan fungerar!</p>
+    <div style={{ 
+      padding: '20px', 
+      backgroundColor: '#f8f9fa', 
+      minHeight: '100vh',
+      fontFamily: 'system-ui, -apple-system, sans-serif'
+    }}>
+      <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+        <Navigation />
+        <h1 style={{ color: '#2c3e50', textAlign: 'center' }}>KA Härnösand</h1>
+        <p style={{ textAlign: 'center', color: '#6c757d' }}>
+          KA Härnösand content will be added here.
+        </p>
+      </div>
     </div>
   );
 };
