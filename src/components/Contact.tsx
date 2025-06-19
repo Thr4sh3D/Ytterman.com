@@ -93,7 +93,7 @@ export const Contact = () => {
                     </div>
                     <div>
                       <div className="font-medium">Verksamhetsområde</div>
-                      <div className="text-muted-foreground">Sundsvall med omnejd, hela Ångermanland</div>
+                      <div className="text-muted-foreground">Sundsvall med omnejd, hela Västernorrland</div>
                     </div>
                   </div>
                 </div>
@@ -111,29 +111,7 @@ export const Contact = () => {
               </CardContent>
             </Card>
 
-            <Card className="shadow-earth earth-gradient-light">
-              <CardContent className="p-6">
-                <h3 className="font-bold text-lg mb-4">Vad händer efter du kontaktar mig?</h3>
-                <div className="space-y-3 text-sm">
-                  <div className="flex items-start space-x-3">
-                    <div className="w-6 h-6 bg-accent text-white rounded-full flex items-center justify-center text-xs font-bold">1</div>
-                    <span>Jag återkommer inom 24 timmar</span>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <div className="w-6 h-6 bg-accent text-white rounded-full flex items-center justify-center text-xs font-bold">2</div>
-                    <span>Vi bokar en kostnadsfri konsultation</span>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <div className="w-6 h-6 bg-accent text-white rounded-full flex items-center justify-center text-xs font-bold">3</div>
-                    <span>Du får en tydlig offert med fast pris</span>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <div className="w-6 h-6 bg-accent text-white rounded-full flex items-center justify-center text-xs font-bold">4</div>
-                    <span>Vi startar ditt trygga byggprojekt</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+            {/* ... keep existing code (rest of the component) */}
           </div>
 
           {/* Contact Form */}

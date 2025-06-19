@@ -74,7 +74,7 @@ export const Footer = () => {
         <div className="border-t border-white/20 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-sm opacity-80">
-              © 2024 Tobias Ytterman. Alla rättigheter förbehållna.
+              © 2025 Tobias Ytterman. Alla rättigheter förbehållna.
             </div>
             <div className="text-sm opacity-80">
               Trygg Byggprocess med Ytterman

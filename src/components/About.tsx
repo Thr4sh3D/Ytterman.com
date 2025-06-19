@@ -52,43 +52,12 @@ export const About = () => {
                 </div>
                 <div className="flex items-center space-x-3 text-muted-foreground mt-2">
                   <Briefcase className="w-5 h-5 text-accent" />
-                  <span>Erbjuder platsbesök i hela Ångermanland</span>
+                  <span>Erbjuder platsbesök i hela Västernorrland</span>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="shadow-earth">
-              <CardHeader>
-                <CardTitle className="flex items-center space-x-3">
-                  <Award className="w-6 h-6 text-accent" />
-                  <span>Varför välja mig?</span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-3">
-                  <li className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></div>
-                    <span>20+ års bred erfarenhet från olika byggprojekt</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Praktisk bakgrund som snickare och projektledare</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Erfarenhet från småhus till stora industriprojekt</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Digital hantering för effektiv kommunikation</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Snabb återkoppling och personlig service</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
+            {/* ... keep existing code (rest of the component) */}
           </div>
 
           {/* Right Column - Certifications */}
