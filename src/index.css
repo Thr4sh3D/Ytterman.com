@@ -16,13 +16,13 @@
     --secondary-foreground: 222.2 84% 4.9%;
     --muted: 210 40% 96%;
     --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 98%;
-    --accent-foreground: 222.2 84% 4.9%;
+    --accent: 142 76% 36%;
+    --accent-foreground: 210 40% 98%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --ring: 142 76% 36%;
     --radius: 0.5rem;
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
@@ -44,13 +44,13 @@
     --secondary-foreground: 210 40% 98%;
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
+    --accent: 142 76% 36%;
     --accent-foreground: 210 40% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --ring: 142 76% 36%;
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
@@ -70,23 +70,14 @@
 
 @layer components {
   .text-gradient {
-    @apply bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-accent to-green-600 bg-clip-text text-transparent;
   }
   
   .earth-gradient {
-    @apply bg-gradient-to-r from-blue-600 to-green-600;
+    @apply bg-gradient-to-r from-accent to-green-600;
   }
   
   .shadow-earth {
-    @apply shadow-lg shadow-blue-100/50;
+    @apply shadow-lg shadow-accent/10;
   }
-}
-
-/* Custom accent color for the project */
-:root {
-  --accent: 142 76% 36%; /* Green accent */
-}
-
-.dark {
-  --accent: 142 76% 36%;
 }

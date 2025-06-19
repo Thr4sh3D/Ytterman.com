@@ -4,18 +4,20 @@ import { Button } from '@/components/ui/button';
 export const WhatsAppButton = () => {
   const openWhatsApp = () => {
     const phoneNumber = '46761118447';
-    const message = 'Hej! Jag är intresserad av dina KA/BAS-tjänster.';
-    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-    window.open(url, '_blank');
+    const message = encodeURIComponent('Hej! Jag är intresserad av dina KA och BAS-tjänster.');
+    window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
   };
 
   return (
-    <Button
-      onClick={openWhatsApp}
-      className="fixed bottom-6 right-6 z-50 rounded-full w-14 h-14 bg-green-500 hover:bg-green-600 text-white shadow-lg"
-      size="icon"
-    >
-      <MessageCircle className="w-6 h-6" />
-    </Button>
+    <div className="fixed bottom-6 right-6 z-50">
+      <Button
+        onClick={openWhatsApp}
+        size="lg"
+        className="rounded-full bg-green-500 hover:bg-green-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 animate-pulse"
+      >
+        <MessageCircle className="w-6 h-6" />
+        <span className="sr-only">Kontakta via WhatsApp</span>
+      </Button>
+    </div>
   );
 };
