@@ -64,7 +64,7 @@ Skickat från kontaktformuläret på ytterman.se
   };
 
   const openWhatsApp = () => {
-    window.open('https://wa.me/46700000000?text=Hej! Jag är intresserad av dina tjänster som kontrollansvarig och BAS.', '_blank');
+    window.open('https://wa.me/46761118447?text=Hej! Jag är intresserad av dina tjänster som kontrollansvarig och BAS.', '_blank');
   };
 
   return (
@@ -99,7 +99,7 @@ Skickat från kontaktformuläret på ytterman.se
                     </div>
                     <div>
                       <div className="font-medium">Ring mig</div>
-                      <div className="text-muted-foreground">För snabb rådgivning</div>
+                      <div className="text-muted-foreground">076-111 84 47</div>
                     </div>
                   </div>
 

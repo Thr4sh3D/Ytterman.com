@@ -47,7 +47,7 @@ export const About = () => {
               <CardContent>
                 <p className="text-muted-foreground leading-relaxed mb-6">
                   Jag heter Tobias Ytterman och har över 20 års erfarenhet inom bygg, räddningstjänst och projektledning. 
-                  Jag har arbetat som snickare, insatsledare, BAS‑U/BAS‑P och kontrollansvarig i allt från småhus till 
+                  Jag har arbetat som snickare, arbetsledare, BAS‑U/BAS‑P och kontrollansvarig i allt från småhus till 
                   vindkraftsprojekt och industribyggnation.
                 </p>
                 

@@ -2,7 +2,7 @@ import { MessageCircle } from 'lucide-react';
 
 export const WhatsAppButton = () => {
   const openWhatsApp = () => {
-    window.open('https://wa.me/46700000000?text=Hej! Jag är intresserad av dina tjänster som kontrollansvarig och BAS.', '_blank');
+    window.open('https://wa.me/46761118447?text=Hej! Jag är intresserad av dina tjänster som kontrollansvarig och BAS.', '_blank');
   };
 
   return (
