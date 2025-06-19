@@ -18,7 +18,7 @@ export const Footer = () => {
             </div>
             <p className="text-sm opacity-80 leading-relaxed">
               Kontrollansvarig & Byggarbetsmiljösamordnare med över 20 års erfarenhet. 
-              Din partner för säkra och lagliga byggprojekt.
+              Din partner för säkra och lagliga byggprojekt i Västernorrland.
             </p>
           </div>
 
@@ -46,7 +46,8 @@ export const Footer = () => {
                 <MapPin className="w-4 h-4 mt-0.5" />
                 <div>
                   <div>Viksjö</div>
-                  <div>Arbetar i Sundsvall med omnejd</div>
+                  <div>Sundsvall, Härnösand, Sollefteå</div>
+                  <div>Kramfors, Timrå & Västernorrland</div>
                 </div>
               </div>
             </div>

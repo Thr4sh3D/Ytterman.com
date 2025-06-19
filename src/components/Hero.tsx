@@ -29,8 +29,12 @@ export const Hero = () => {
               <span className="text-gradient">Ytterman</span>
             </h1>
             
-            <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+            <p className="text-xl text-muted-foreground mb-4 leading-relaxed">
               Kontrollansvarig & Byggarbetsmiljösamordnare BAS-P / BAS-U
+            </p>
+            
+            <p className="text-lg text-muted-foreground mb-8">
+              Verksam i Sundsvall, Härnösand, Sollefteå, Kramfors, Timrå och hela Västernorrland
             </p>
             
             <div className="space-y-4 mb-8">

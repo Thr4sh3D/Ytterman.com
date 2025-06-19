@@ -119,7 +119,7 @@ Skickat från kontaktformuläret på ytterman.se
                     </div>
                     <div>
                       <div className="font-medium">Verksamhetsområde</div>
-                      <div className="text-muted-foreground">Sundsvall med omnejd, hela Västernorrland</div>
+                      <div className="text-muted-foreground">Sundsvall, Härnösand, Sollefteå, Kramfors, Timrå och hela Västernorrland</div>
                     </div>
                   </div>
                 </div>

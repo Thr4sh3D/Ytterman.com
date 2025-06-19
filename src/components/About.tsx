@@ -54,7 +54,7 @@ export const About = () => {
                 <div className="space-y-3">
                   <div className="flex items-center space-x-3 text-muted-foreground">
                     <MapPin className="w-5 h-5 text-accent" />
-                    <span>Bor i Viksjö, arbetar främst i Sundsvall med omnejd</span>
+                    <span>Bor i Viksjö, arbetar i Sundsvall, Härnösand, Sollefteå, Kramfors, Timrå</span>
                   </div>
                   <div className="flex items-center space-x-3 text-muted-foreground">
                     <Briefcase className="w-5 h-5 text-accent" />
@@ -92,6 +92,10 @@ export const About = () => {
                   <li className="flex items-start space-x-3">
                     <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></div>
                     <span>Snabb återkoppling och personlig service</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Lokalkännedom i hela Västernorrlands kustland</span>
                   </li>
                 </ul>
               </CardContent>
