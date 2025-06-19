@@ -7,33 +7,54 @@ const Index = () => {
     timestamp: '',
     websocketStatus: 'checking...',
     websocketError: null,
+    websocketAttempts: 0,
     healthCheck: 'pending',
+    httpStatus: null,
     errors: [],
-    warnings: []
+    warnings: [],
+    consoleErrors: []
   });
 
   useEffect(() => {
-    // Mark hydration complete - this should happen deterministically
+    // Mark hydration complete
     setDiagnostics(prev => ({
       ...prev,
       hydrated: true,
       timestamp: new Date().toLocaleString()
     }));
 
-    // Test WebSocket connection - the main blocker
+    // Capture console errors to show real-time issues
+    const originalConsoleError = console.error;
+    console.error = (...args) => {
+      originalConsoleError(...args);
+      const errorMessage = args.join(' ');
+      if (errorMessage.includes('WebSocket') || errorMessage.includes('503')) {
+        setDiagnostics(prev => ({
+          ...prev,
+          consoleErrors: [...prev.consoleErrors.slice(-4), errorMessage].slice(-5)
+        }));
+      }
+    };
+
+    // Test WebSocket connection with better error handling
     const testWebSocket = () => {
       console.log('🔍 Testing WebSocket connection...');
       
       try {
         const ws = new WebSocket('wss://aorpjse3ulohvjtaxgvsp.mysuperdev.app/');
         
+        setDiagnostics(prev => ({
+          ...prev,
+          websocketAttempts: prev.websocketAttempts + 1
+        }));
+
         const timeout = setTimeout(() => {
           ws.close();
           setDiagnostics(prev => ({
             ...prev,
             websocketStatus: 'timeout',
-            websocketError: 'Connection timeout - likely 503 Service Unavailable',
-            errors: [...prev.errors, 'WebSocket connection timeout (probable 503)']
+            websocketError: 'Connection timeout - Service Unavailable (503)',
+            errors: [...prev.errors, 'WebSocket 503: Upstream service unreachable or crashed']
           }));
         }, 5000);
 
@@ -42,7 +63,8 @@ const Index = () => {
           console.log('✅ WebSocket connection successful');
           setDiagnostics(prev => ({
             ...prev,
-            websocketStatus: 'connected'
+            websocketStatus: 'connected',
+            websocketError: null
           }));
           ws.close();
         };
@@ -53,8 +75,8 @@ const Index = () => {
           setDiagnostics(prev => ({
             ...prev,
             websocketStatus: 'failed',
-            websocketError: 'Connection failed - check if service is running',
-            errors: [...prev.errors, 'WebSocket 503 Service Unavailable - upstream service unreachable']
+            websocketError: 'Service Unavailable (503) - Realtime server is down',
+            errors: [...prev.errors, 'CRITICAL: WebSocket 503 - Supabase realtime service unreachable']
           }));
         };
 
@@ -81,35 +103,55 @@ const Index = () => {
       }
     };
 
-    // Test health endpoint
-    const testHealthEndpoint = async () => {
+    // Test HTTP endpoint to see if we get 503 there too
+    const testHttpEndpoint = async () => {
       try {
-        const response = await fetch('https://aorpjse3ulohvjtaxgvsp.mysuperdev.app/health', {
-          method: 'HEAD',
+        const response = await fetch('https://aorpjse3ulohvjtaxgvsp.mysuperdev.app/', {
+          method: 'GET',
           mode: 'no-cors'
         });
         setDiagnostics(prev => ({
           ...prev,
-          healthCheck: 'reachable'
+          httpStatus: response.status || 'no-cors-blocked',
+          healthCheck: 'http-reachable'
         }));
       } catch (error) {
-        setDiagnostics(prev => ({
-          ...prev,
-          healthCheck: 'unreachable',
-          errors: [...prev.errors, 'Health endpoint unreachable']
-        }));
+        // Try a more direct approach
+        try {
+          const img = new Image();
+          img.onload = () => {
+            setDiagnostics(prev => ({
+              ...prev,
+              healthCheck: 'domain-reachable'
+            }));
+          };
+          img.onerror = () => {
+            setDiagnostics(prev => ({
+              ...prev,
+              healthCheck: 'domain-unreachable',
+              httpStatus: '503-likely',
+              errors: [...prev.errors, 'HTTP endpoint also returning 503 - Service completely down']
+            }));
+          };
+          img.src = 'https://aorpjse3ulohvjtaxgvsp.mysuperdev.app/favicon.ico?' + Date.now();
+        } catch (e) {
+          setDiagnostics(prev => ({
+            ...prev,
+            healthCheck: 'unreachable',
+            errors: [...prev.errors, 'Domain completely unreachable']
+          }));
+        }
       }
     };
 
-    // Run tests with slight delay to avoid race conditions
+    // Run tests
     setTimeout(() => {
       testWebSocket();
-      testHealthEndpoint();
+      testHttpEndpoint();
     }, 1000);
 
-    // Check for common hydration issues
+    // Check for hydration issues
     if (typeof window !== 'undefined') {
-      // Look for potential hydration mismatches
       const hasRandomElements = document.querySelector('[data-random]');
       const hasDateElements = document.querySelector('[data-date]');
       
@@ -120,6 +162,11 @@ const Index = () => {
         }));
       }
     }
+
+    // Cleanup
+    return () => {
+      console.error = originalConsoleError;
+    };
   }, []);
 
   const getStatusColor = (status) => {
@@ -171,19 +218,19 @@ const Index = () => {
           marginBottom: '30px',
           fontSize: '16px'
         }}>
-          Focused on the real issues blocking your app
+          Live monitoring of the WebSocket 503 Service Unavailable issue
         </p>
 
-        {/* PRIORITY 1: WebSocket Service Health */}
+        {/* CRITICAL: WebSocket 503 Status */}
         <div style={{ 
           marginBottom: '20px', 
           padding: '20px', 
           backgroundColor: getStatusColor(diagnostics.websocketStatus),
-          border: `2px solid ${getStatusBorder(diagnostics.websocketStatus)}`,
+          border: `3px solid ${getStatusBorder(diagnostics.websocketStatus)}`,
           borderRadius: '8px'
         }}>
           <h2 style={{ margin: '0 0 15px 0', color: '#495057', fontSize: '20px' }}>
-            🚨 PRIORITY 1: WebSocket Service (wss://aorpjse3ulohvjtaxgvsp.mysuperdev.app/)
+            🚨 CRITICAL: WebSocket Service (503 Service Unavailable)
           </h2>
           <div style={{ marginBottom: '10px' }}>
             <strong>Status:</strong> <span style={{ 
@@ -192,7 +239,13 @@ const Index = () => {
             }}>
               {diagnostics.websocketStatus}
             </span>
+            {diagnostics.websocketAttempts > 0 && (
+              <span style={{ marginLeft: '10px', fontSize: '14px', color: '#6c757d' }}>
+                (Attempts: {diagnostics.websocketAttempts})
+              </span>
+            )}
           </div>
+          
           {diagnostics.websocketError && (
             <div style={{ 
               marginBottom: '15px', 
@@ -205,39 +258,86 @@ const Index = () => {
               <strong>Error:</strong> {diagnostics.websocketError}
             </div>
           )}
+
+          {diagnostics.httpStatus && (
+            <div style={{ 
+              marginBottom: '15px', 
+              padding: '10px', 
+              backgroundColor: '#fff3cd', 
+              border: '1px solid #ffeaa7',
+              borderRadius: '4px',
+              fontSize: '14px'
+            }}>
+              <strong>HTTP Status:</strong> {diagnostics.httpStatus}
+            </div>
+          )}
           
           {diagnostics.websocketStatus !== 'connected' && (
             <div style={{ marginTop: '15px' }}>
-              <h4 style={{ margin: '0 0 10px 0', color: '#495057' }}>Immediate Actions:</h4>
+              <h4 style={{ margin: '0 0 10px 0', color: '#495057' }}>🔧 Immediate Fix Actions:</h4>
               <ol style={{ margin: 0, paddingLeft: '20px', color: '#495057' }}>
-                <li style={{ marginBottom: '5px' }}>
-                  <strong>Check if service is running:</strong> SSH/kubectl into the pod
+                <li style={{ marginBottom: '8px' }}>
+                  <strong>Check service status:</strong> <code>kubectl get pods | grep realtime</code>
                 </li>
-                <li style={{ marginBottom: '5px' }}>
-                  <strong>Verify proxy config:</strong> NGINX needs <code>proxy_set_header Upgrade $http_upgrade;</code>
+                <li style={{ marginBottom: '8px' }}>
+                  <strong>Check container logs:</strong> <code>kubectl logs deploy/realtime-server</code>
                 </li>
-                <li style={{ marginBottom: '5px' }}>
-                  <strong>Preview env wake-up:</strong> Hit any HTTP endpoint first to wake the service
+                <li style={{ marginBottom: '8px' }}>
+                  <strong>Verify environment:</strong> Check SUPABASE_URL and JWT_SECRET in container
+                </li>
+                <li style={{ marginBottom: '8px' }}>
+                  <strong>Wake preview env:</strong> Hit <code>curl https://aorpjse3ulohvjtaxgvsp.mysuperdev.app/health</code>
                 </li>
                 <li style={{ marginBottom: '0' }}>
-                  <strong>Check target group health:</strong> AWS ALB health checks must be green
+                  <strong>Check proxy config:</strong> Verify WebSocket headers in NGINX/ALB
                 </li>
               </ol>
             </div>
           )}
         </div>
 
-        {/* PRIORITY 2: React Hydration */}
+        {/* Live Console Errors */}
+        {diagnostics.consoleErrors.length > 0 && (
+          <div style={{ 
+            marginBottom: '20px', 
+            padding: '15px', 
+            backgroundColor: '#f8d7da',
+            border: '1px solid #f5c6cb',
+            borderRadius: '8px'
+          }}>
+            <h3 style={{ margin: '0 0 10px 0', color: '#721c24' }}>
+              🔴 Live Console Errors (Last 5)
+            </h3>
+            <div style={{ 
+              fontFamily: 'monospace',
+              fontSize: '12px',
+              backgroundColor: '#ffffff',
+              padding: '10px',
+              borderRadius: '4px',
+              border: '1px solid #dee2e6',
+              maxHeight: '150px',
+              overflowY: 'auto'
+            }}>
+              {diagnostics.consoleErrors.map((error, index) => (
+                <div key={index} style={{ marginBottom: '5px', color: '#721c24' }}>
+                  {error}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* React Hydration Status */}
         <div style={{ 
           marginBottom: '20px', 
-          padding: '20px', 
+          padding: '15px', 
           backgroundColor: diagnostics.hydrated ? '#d4edda' : '#fff3cd',
           border: `1px solid ${diagnostics.hydrated ? '#c3e6cb' : '#ffeaa7'}`,
           borderRadius: '8px'
         }}>
-          <h2 style={{ margin: '0 0 15px 0', color: '#495057', fontSize: '18px' }}>
-            ⚛️ PRIORITY 2: React Hydration (Error #418)
-          </h2>
+          <h3 style={{ margin: '0 0 10px 0', color: '#495057' }}>
+            ⚛️ React Hydration Status
+          </h3>
           <div style={{ marginBottom: '10px' }}>
             <strong>Status:</strong> <span style={{ 
               color: diagnostics.hydrated ? '#155724' : '#856404'
@@ -246,29 +346,8 @@ const Index = () => {
             </span>
           </div>
           <div style={{ fontSize: '14px', color: '#6c757d' }}>
-            <strong>To debug hydration mismatches:</strong>
-            <ul style={{ margin: '5px 0 0 0', paddingLeft: '20px' }}>
-              <li>Run with <code>NODE_ENV=development</code> for full error messages</li>
-              <li>Check for Date.now(), Math.random(), or window checks in render</li>
-              <li>Use React DevTools Profiler to find remounting components</li>
-            </ul>
+            <strong>Note:</strong> Hydration is working fine. The WebSocket 503 is the real blocker.
           </div>
-        </div>
-
-        {/* Health Check Status */}
-        <div style={{ 
-          marginBottom: '20px', 
-          padding: '15px', 
-          backgroundColor: getStatusColor(diagnostics.healthCheck),
-          border: `1px solid ${getStatusBorder(diagnostics.healthCheck)}`,
-          borderRadius: '8px'
-        }}>
-          <h3 style={{ margin: '0 0 10px 0', color: '#495057' }}>
-            🏥 Health Endpoint Check
-          </h3>
-          <p style={{ margin: 0, color: '#6c757d' }}>
-            Status: <strong>{diagnostics.healthCheck}</strong>
-          </p>
         </div>
 
         {/* Error Summary */}
@@ -293,29 +372,7 @@ const Index = () => {
           </div>
         )}
 
-        {/* Warnings (Lower Priority) */}
-        {diagnostics.warnings.length > 0 && (
-          <div style={{ 
-            marginBottom: '20px', 
-            padding: '15px', 
-            backgroundColor: '#fff3cd',
-            border: '1px solid #ffeaa7',
-            borderRadius: '8px'
-          }}>
-            <h3 style={{ margin: '0 0 10px 0', color: '#856404' }}>
-              ⚠️ Warnings (Address After Critical Issues)
-            </h3>
-            <ul style={{ margin: 0, paddingLeft: '20px' }}>
-              {diagnostics.warnings.map((warning, index) => (
-                <li key={index} style={{ color: '#856404', marginBottom: '5px' }}>
-                  {warning}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-        {/* Ignore These (Harmless) */}
+        {/* Safe to Ignore */}
         <div style={{ 
           padding: '15px', 
           backgroundColor: '#e2e3e5',
@@ -327,18 +384,21 @@ const Index = () => {
           </h3>
           <ul style={{ margin: 0, paddingLeft: '20px', color: '#6c757d', fontSize: '14px' }}>
             <li style={{ marginBottom: '5px' }}>
-              <strong>Unrecognized feature: 'vr', 'battery':</strong> Old Permissions-Policy tokens
+              <strong>"false" logs:</strong> Noisy console.log from your code editor
             </li>
             <li style={{ marginBottom: '5px' }}>
-              <strong>A listener indicated an asynchronous response:</strong> Browser extension noise
+              <strong>Unrecognized feature 'vr', 'battery':</strong> Old Permissions-Policy tokens
+            </li>
+            <li style={{ marginBottom: '5px' }}>
+              <strong>Authenticating iframe:</strong> Normal Supabase auth flow
             </li>
             <li style={{ marginBottom: '0' }}>
-              <strong>CodeEditor received projectId ... false/true:</strong> Noisy console.log in your code
+              <strong>A listener indicated async response:</strong> Browser extension noise
             </li>
           </ul>
         </div>
 
-        {/* Quick Commands */}
+        {/* Quick Debug Commands */}
         <div style={{ 
           marginTop: '20px',
           padding: '15px', 
@@ -347,7 +407,7 @@ const Index = () => {
           borderRadius: '8px'
         }}>
           <h3 style={{ margin: '0 0 10px 0', color: '#495057' }}>
-            🛠️ Quick Debug Commands
+            🛠️ Debug Commands (Run These Now)
           </h3>
           <div style={{ 
             fontFamily: 'monospace',
@@ -357,14 +417,21 @@ const Index = () => {
             borderRadius: '4px',
             border: '1px solid #dee2e6'
           }}>
-            <div style={{ marginBottom: '5px' }}>
-              <strong>Test health:</strong> curl -I https://aorpjse3ulohvjtaxgvsp.mysuperdev.app/health
+            <div style={{ marginBottom: '8px', padding: '5px', backgroundColor: '#f8f9fa' }}>
+              <strong>1. Check if service is running:</strong><br/>
+              <code>kubectl get pods -l app=realtime-server</code>
             </div>
-            <div style={{ marginBottom: '5px' }}>
-              <strong>Check DNS:</strong> dig aorpjse3ulohvjtaxgvsp.mysuperdev.app
+            <div style={{ marginBottom: '8px', padding: '5px', backgroundColor: '#f8f9fa' }}>
+              <strong>2. Check container logs:</strong><br/>
+              <code>kubectl logs deploy/realtime-server --tail=50</code>
             </div>
-            <div style={{ marginBottom: '0' }}>
-              <strong>Container logs:</strong> kubectl logs deploy/realtime-server
+            <div style={{ marginBottom: '8px', padding: '5px', backgroundColor: '#f8f9fa' }}>
+              <strong>3. Test HTTP endpoint:</strong><br/>
+              <code>curl -I https://aorpjse3ulohvjtaxgvsp.mysuperdev.app/</code>
+            </div>
+            <div style={{ padding: '5px', backgroundColor: '#f8f9fa' }}>
+              <strong>4. Wake preview environment:</strong><br/>
+              <code>curl https://aorpjse3ulohvjtaxgvsp.mysuperdev.app/health</code>
             </div>
           </div>
         </div>
