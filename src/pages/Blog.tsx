@@ -17,7 +17,7 @@ const Blog = () => {
     },
     {
       title: "KA eller BAS-P - Vad är skillnaden?",
-      excerpt: "Förstå skillnaderna mellan kontrollansvarig (KA) och byggarbetsmiljösamordnare (BAS-P). Lär dig när du behöver vilken tjänst för ditt byggprojekt.",
+      excerpt: "Många som planerar ett byggprojekt undrar över skillnaderna mellan kontrollansvarig (KA) och byggarbetsmiljösamordnare (BAS-P/BAS-U).",
       date: "10 januari 2024",
       readTime: "4 min",
       slug: "ka-eller-bas-p"
@@ -28,8 +28,8 @@ const Blog = () => {
     <div className="min-h-screen">
       <SEO 
         title="Blogg | Tobias Ytterman - KA & BAS-tjänster"
-        description="Läs artiklar om kontrollansvarig, BAS-tjänster och byggprocesser. Tips och råd från en erfaren KA och BAS-samordnare i Västernorrland."
-        keywords="blogg, kontrollansvarig, BAS-P, BAS-U, bygglov, kontrollplan, byggprocess"
+        description="Läs artiklar om kontrollansvarig, BAS-tjänster och byggbestämmelser. Tips och råd för ditt byggprojekt i Västernorrland."
+        keywords="kontrollansvarig blogg, KA artiklar, BAS-P guide, byggbestämmelser, PBL"
         canonicalUrl="https://ytterman.com/blogg"
       />
       <Header />
@@ -39,10 +39,11 @@ const Blog = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
-                Blogg
+                Blogg om <span className="text-gradient">KA & BAS-tjänster</span>
               </h1>
-              <p className="text-xl text-muted-foreground leading-relaxed">
-                Tips, råd och insikter om kontrollansvarig och BAS-tjänster
+              <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+                Läs artiklar och guider om kontrollansvarig, BAS-tjänster och byggbestämmelser. 
+                Tips och råd för ditt byggprojekt.
               </p>
             </div>
           </div>
@@ -55,7 +56,7 @@ const Blog = () => {
                 {blogPosts.map((post, index) => (
                   <Card key={index} className="shadow-earth hover:shadow-lg transition-shadow">
                     <CardHeader>
-                      <div className="flex items-center space-x-4 text-sm text-muted-foreground mb-2">
+                      <div className="flex items-center space-x-4 text-muted-foreground text-sm mb-2">
                         <div className="flex items-center space-x-1">
                           <Calendar className="w-4 h-4" />
                           <span>{post.date}</span>

@@ -37,7 +37,6 @@ const App = () => {
               <Route path="/ka-solleftea" element={<KASolleftea />} />
               <Route path="/ka-timra" element={<KATimra />} />
               <Route path="/ka-kramfors" element={<KAKramfors />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>

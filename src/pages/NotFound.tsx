@@ -41,16 +41,13 @@ const NotFound = () => {
                   </Link>
                 </Button>
                 <Button 
-                  asChild
                   variant="outline"
                   size="lg"
                   className="border-accent text-accent hover:bg-accent hover:text-white"
                   onClick={() => window.history.back()}
                 >
-                  <button>
-                    <ArrowLeft className="w-5 h-5 mr-2" />
-                    Gå tillbaka
-                  </button>
+                  <ArrowLeft className="w-5 h-5 mr-2" />
+                  Gå tillbaka
                 </Button>
               </div>
             </div>
