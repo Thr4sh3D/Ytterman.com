@@ -1,5 +1,6 @@
 import { CheckCircle, MessageCircle, Shield, Award } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { HeroBanner } from './HeroBanner';
 
 export const Hero = () => {
   const scrollToContact = () => {
@@ -80,31 +81,33 @@ export const Hero = () => {
             </div>
           </div>
 
-          {/* Right Column - Image/Visual */}
+          {/* Right Column - Banner and Visual Elements */}
           <div className="animate-slide-up">
-            <div className="relative">
-              <div className="earth-gradient-light rounded-2xl p-8 shadow-earth">
-                <div className="grid grid-cols-2 gap-6">
-                  <div className="bg-white rounded-xl p-6 shadow-lg">
-                    <Award className="w-8 h-8 text-accent mb-4" />
-                    <h3 className="font-bold text-lg mb-2">20+ År</h3>
-                    <p className="text-sm text-muted-foreground">Erfarenhet inom bygg och projektledning</p>
-                  </div>
-                  <div className="bg-white rounded-xl p-6 shadow-lg">
-                    <Shield className="w-8 h-8 text-accent mb-4" />
-                    <h3 className="font-bold text-lg mb-2">Certifierad</h3>
-                    <p className="text-sm text-muted-foreground">KA, BAS-P & BAS-U enligt gällande regler</p>
-                  </div>
-                  <div className="bg-white rounded-xl p-6 shadow-lg">
-                    <CheckCircle className="w-8 h-8 text-accent mb-4" />
-                    <h3 className="font-bold text-lg mb-2">Fast Pris</h3>
-                    <p className="text-sm text-muted-foreground">Tydliga kostnader utan dolda avgifter</p>
-                  </div>
-                  <div className="bg-white rounded-xl p-6 shadow-lg">
-                    <MessageCircle className="w-8 h-8 text-accent mb-4" />
-                    <h3 className="font-bold text-lg mb-2">Snabb Kontakt</h3>
-                    <p className="text-sm text-muted-foreground">Digital hantering och snabb återkoppling</p>
-                  </div>
+            <div className="space-y-8">
+              {/* Hero Banner */}
+              <HeroBanner />
+              
+              {/* Stats Cards */}
+              <div className="grid grid-cols-2 gap-4">
+                <div className="bg-white rounded-xl p-4 shadow-lg">
+                  <Award className="w-6 h-6 text-accent mb-2" />
+                  <h3 className="font-bold text-lg mb-1">20+ År</h3>
+                  <p className="text-xs text-muted-foreground">Erfarenhet inom bygg</p>
+                </div>
+                <div className="bg-white rounded-xl p-4 shadow-lg">
+                  <Shield className="w-6 h-6 text-accent mb-2" />
+                  <h3 className="font-bold text-lg mb-1">Certifierad</h3>
+                  <p className="text-xs text-muted-foreground">KA, BAS-P & BAS-U</p>
+                </div>
+                <div className="bg-white rounded-xl p-4 shadow-lg">
+                  <CheckCircle className="w-6 h-6 text-accent mb-2" />
+                  <h3 className="font-bold text-lg mb-1">Fast Pris</h3>
+                  <p className="text-xs text-muted-foreground">Tydliga kostnader</p>
+                </div>
+                <div className="bg-white rounded-xl p-4 shadow-lg">
+                  <MessageCircle className="w-6 h-6 text-accent mb-2" />
+                  <h3 className="font-bold text-lg mb-1">Snabb Kontakt</h3>
+                  <p className="text-xs text-muted-foreground">Digital hantering</p>
                 </div>
               </div>
             </div>
