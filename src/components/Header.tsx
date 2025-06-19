@@ -1,98 +1,144 @@
 import { useState } from 'react';
-import { Button } from '@/components/ui/button';
 import { Menu, X, Phone, Mail } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      setIsMenuOpen(false);
+    }
+  };
 
   const callPhone = () => {
     window.location.href = 'tel:+46761118447';
   };
 
-  const sendEmail = () => {
-    window.location.href = 'mailto:tobias@ytterman.com';
-  };
-
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border shadow-earth">
+      <div className="container mx-auto px-4 py-4">
+        <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="font-bold text-xl text-foreground">
-            Tobias Ytterman
-          </Link>
+          <div className="flex items-center space-x-2">
+            <div className="w-10 h-10 earth-gradient rounded-lg flex items-center justify-center">
+              <span className="text-white font-bold text-lg">TY</span>
+            </div>
+            <div>
+              <h1 className="text-xl font-bold text-primary">Ytterman</h1>
+              <p className="text-xs text-muted-foreground">Trygg Byggprocess</p>
+            </div>
+          </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <Link to="/" className="text-muted-foreground hover:text-foreground transition-colors">
+            <button 
+              onClick={() => scrollToSection('hem')}
+              className="text-foreground hover:text-primary transition-colors"
+            >
               Hem
-            </Link>
-            <Link to="/blogg" className="text-muted-foreground hover:text-foreground transition-colors">
-              Blogg
-            </Link>
-            <div className="flex items-center space-x-4">
-              <Button
-                onClick={callPhone}
-                size="sm"
-                className="earth-gradient text-white hover:opacity-90"
-              >
-                <Phone className="w-4 h-4 mr-2" />
-                076-111 84 47
-              </Button>
-            </div>
+            </button>
+            <button 
+              onClick={() => scrollToSection('tjanster')}
+              className="text-foreground hover:text-primary transition-colors"
+            >
+              Tjänster
+            </button>
+            <button 
+              onClick={() => scrollToSection('priser')}
+              className="text-foreground hover:text-primary transition-colors"
+            >
+              Priser
+            </button>
+            <button 
+              onClick={() => scrollToSection('om-mig')}
+              className="text-foreground hover:text-primary transition-colors"
+            >
+              Om mig
+            </button>
+            <button 
+              onClick={() => scrollToSection('kontakt')}
+              className="text-foreground hover:text-primary transition-colors"
+            >
+              Kontakt
+            </button>
           </nav>
+
+          {/* Contact Info & CTA */}
+          <div className="hidden lg:flex items-center space-x-4">
+            <button 
+              onClick={callPhone}
+              className="flex items-center space-x-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+            >
+              <Phone className="w-4 h-4" />
+              <span>076-111 84 47</span>
+            </button>
+            <Button 
+              onClick={() => scrollToSection('kontakt')}
+              className="earth-gradient text-white hover:opacity-90"
+            >
+              Kontakta mig
+            </Button>
+          </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 text-muted-foreground hover:text-foreground"
+            className="md:hidden p-2"
           >
             {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 border-t border-border">
+          <div className="md:hidden mt-4 py-4 border-t border-border">
             <nav className="flex flex-col space-y-4">
-              <Link 
-                to="/" 
-                className="text-muted-foreground hover:text-foreground transition-colors"
-                onClick={() => setIsMenuOpen(false)}
+              <button 
+                onClick={() => scrollToSection('hem')}
+                className="text-left text-foreground hover:text-primary transition-colors"
               >
                 Hem
-              </Link>
-              <Link 
-                to="/blogg" 
-                className="text-muted-foreground hover:text-foreground transition-colors"
-                onClick={() => setIsMenuOpen(false)}
+              </button>
+              <button 
+                onClick={() => scrollToSection('tjanster')}
+                className="text-left text-foreground hover:text-primary transition-colors"
               >
-                Blogg
-              </Link>
-              <div className="flex flex-col space-y-2 pt-4">
-                <Button
-                  onClick={() => {
-                    callPhone();
-                    setIsMenuOpen(false);
-                  }}
-                  size="sm"
-                  className="earth-gradient text-white hover:opacity-90"
+                Tjänster
+              </button>
+              <button 
+                onClick={() => scrollToSection('priser')}
+                className="text-left text-foreground hover:text-primary transition-colors"
+              >
+                Priser
+              </button>
+              <button 
+                onClick={() => scrollToSection('om-mig')}
+                className="text-left text-foreground hover:text-primary transition-colors"
+              >
+                Om mig
+              </button>
+              <button 
+                onClick={() => scrollToSection('kontakt')}
+                className="text-left text-foreground hover:text-primary transition-colors"
+              >
+                Kontakt
+              </button>
+              <div className="pt-4 border-t border-border">
+                <button 
+                  onClick={callPhone}
+                  className="flex items-center space-x-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-4"
                 >
-                  <Phone className="w-4 h-4 mr-2" />
-                  Ring 076-111 84 47
-                </Button>
-                <Button
-                  onClick={() => {
-                    sendEmail();
-                    setIsMenuOpen(false);
-                  }}
-                  variant="outline"
-                  size="sm"
-                  className="border-accent text-accent hover:bg-accent hover:text-white"
+                  <Phone className="w-4 h-4" />
+                  <span>076-111 84 47</span>
+                </button>
+                <Button 
+                  onClick={() => scrollToSection('kontakt')}
+                  className="earth-gradient text-white hover:opacity-90 w-full"
                 >
-                  <Mail className="w-4 h-4 mr-2" />
-                  Skicka e-post
+                  Kontakta mig
                 </Button>
               </div>
             </nav>

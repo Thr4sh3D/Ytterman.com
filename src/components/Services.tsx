@@ -1,4 +1,4 @@
-import { FileCheck, HardHat, Package, Users, FileText, Ruler, Droplets } from 'lucide-react';
+import { FileCheck, HardHat, Package, Users } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
 export const Services = () => {
@@ -90,103 +90,7 @@ export const Services = () => {
           </Card>
         </div>
 
-        {/* New Services Section */}
-        <div className="mb-16">
-          <h3 className="text-3xl font-bold text-center mb-12">
-            Ytterligare <span className="text-gradient">Tjänster</span>
-          </h3>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Bygglovshandlingar */}
-            <Card className="shadow-earth hover:shadow-lg transition-shadow duration-300">
-              <CardHeader>
-                <div className="w-12 h-12 earth-gradient rounded-lg flex items-center justify-center mb-4">
-                  <FileText className="w-6 h-6 text-white" />
-                </div>
-                <CardTitle className="text-xl">Bygglovshandlingar</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground mb-4">
-                  Komplett framtagning av alla handlingar som krävs för bygglovsansökan.
-                </p>
-                <ul className="space-y-2 text-sm">
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-accent rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Ansökningshandlingar</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-accent rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Tekniska beskrivningar</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-accent rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Kontrollplan</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            {/* Ritningar */}
-            <Card className="shadow-earth hover:shadow-lg transition-shadow duration-300">
-              <CardHeader>
-                <div className="w-12 h-12 earth-gradient rounded-lg flex items-center justify-center mb-4">
-                  <Ruler className="w-6 h-6 text-white" />
-                </div>
-                <CardTitle className="text-xl">Ritningar</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground mb-4">
-                  Professionella ritningar för ditt byggprojekt.
-                </p>
-                <ul className="space-y-2 text-sm">
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-accent rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Planritningar</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-accent rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Situationsplan</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-accent rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Sektionsritningar</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            {/* Enskilt Avlopp */}
-            <Card className="shadow-earth hover:shadow-lg transition-shadow duration-300">
-              <CardHeader>
-                <div className="w-12 h-12 earth-gradient rounded-lg flex items-center justify-center mb-4">
-                  <Droplets className="w-6 h-6 text-white" />
-                </div>
-                <CardTitle className="text-xl">Enskilt Avlopp</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground mb-4">
-                  Ansökan och handläggning av enskilda avloppssystem.
-                </p>
-                <ul className="space-y-2 text-sm">
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-accent rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Ansökan till kommunen</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-accent rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Teknisk dokumentation</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-accent rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Handläggning och uppföljning</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-
-        {/* Existing Additional Services */}
+        {/* Additional Services */}
         <div className="grid md:grid-cols-2 gap-8">
           <Card className="shadow-earth hover:shadow-lg transition-shadow duration-300">
             <CardHeader>
