@@ -1,3 +1,4 @@
+import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
 interface SEOProps {
@@ -8,6 +9,8 @@ interface SEOProps {
 }
 
 export const SEO = ({ title, description, keywords, canonicalUrl }: SEOProps) => {
+  console.log('🔍 SEO component rendering for:', title);
+  
   return (
     <Helmet>
       <title>{title}</title>
