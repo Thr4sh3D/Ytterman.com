@@ -7,13 +7,6 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle, Phone, Mail, MapPin, Award, Shield } from 'lucide-react';
 
 const KASundsvall = () => {
-  const scrollToContact = () => {
-    const element = document.getElementById('kontakt');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   const callPhone = () => {
     window.location.href = 'tel:+46761118447';
   };
@@ -25,9 +18,9 @@ const KASundsvall = () => {
   return (
     <div className="min-h-screen">
       <SEO 
-        title="Kontrollansvarig i Sundsvall – KA och BAS-U enligt PBL | Tobias Ytterman"
-        description="Certifierad kontrollansvarig i Sundsvall med över 20 års erfarenhet. Hjälper med bygglov, kontrollplaner och BAS-U/BAS-P. Utgår från Viksjö, arbetar regelbundet i Sundsvall. Kontakta för kostnadsfri konsultation."
-        keywords="kontrollansvarig sundsvall, KA sundsvall, BAS-U sundsvall, bygglov sundsvall, kontrollplan sundsvall, certifierad ka sundsvall, byggarbetsmiljösamordnare sundsvall"
+        title="Kontrollansvarig i Sundsvall – certifierad KA & BAS-U | Tobias Ytterman"
+        description="Anlita certifierad Kontrollansvarig i Sundsvall för bygglov, kontrollplaner och BAS-tjänster. Erfaren, lokal och tillgänglig."
+        keywords="kontrollansvarig sundsvall, KA sundsvall, BAS-U sundsvall, bygglov sundsvall, kontrollplan sundsvall, certifierad ka sundsvall"
         canonicalUrl="https://ytterman.com/ka-sundsvall"
       />
       <Header />
@@ -38,11 +31,8 @@ const KASundsvall = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
-                Kontrollansvarig i <span className="text-gradient">Sundsvall</span>
+                Behöver du en <span className="text-gradient">kontrollansvarig i Sundsvall?</span>
               </h1>
-              <p className="text-xl text-muted-foreground mb-8">
-                KA och BAS-U enligt PBL – Certifierad och erfaren med över 20 års branschkunskap
-              </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
                 <Button 
@@ -51,7 +41,7 @@ const KASundsvall = () => {
                   className="earth-gradient text-white hover:opacity-90"
                 >
                   <Phone className="w-5 h-5 mr-2" />
-                  Ring 076-111 84 47
+                  📞 Snabb offert i Sundsvall
                 </Button>
                 <Button 
                   onClick={sendEmail}
@@ -60,7 +50,7 @@ const KASundsvall = () => {
                   className="border-accent text-accent hover:bg-accent hover:text-white"
                 >
                   <Mail className="w-5 h-5 mr-2" />
-                  Skicka e-post
+                  💬 Förutsättningslöst samtal
                 </Button>
               </div>
 
@@ -75,7 +65,7 @@ const KASundsvall = () => {
                 </div>
                 <div className="flex items-center justify-center space-x-2 text-muted-foreground">
                   <MapPin className="w-5 h-5 text-accent" />
-                  <span>Lokalkännedom Sundsvall</span>
+                  <span>Lokal närvaro Västernorrland</span>
                 </div>
               </div>
             </div>
@@ -90,41 +80,47 @@ const KASundsvall = () => {
                 {/* Left Column */}
                 <div>
                   <h2 className="text-3xl font-bold mb-6">
-                    Kontrollansvarig i Sundsvall – Din partner för trygg byggprocess
+                    KA & BAS-tjänster i Sundsvall med lokal närvaro
                   </h2>
                   
-                  <p className="text-lg text-muted-foreground mb-6">
-                    Som certifierad Kontrollansvarig enligt PBL erbjuder jag tjänster i Sundsvall med omnejd. 
-                    Jag utgår från Viksjö i Härnösand och tar regelbundet uppdrag i Sundsvall, både för 
-                    privatpersoner och byggföretag.
-                  </p>
+                  <div className="prose prose-lg max-w-none">
+                    <p className="text-lg text-muted-foreground mb-6">
+                      Som certifierad <strong>kontrollansvarig enligt PBL</strong> hjälper jag privatpersoner, 
+                      entreprenörer och fastighetsägare i Sundsvall med bygglov, tekniskt samråd, kontrollplaner 
+                      och byggarbetsmiljö. Jag är också tillgänglig som <strong>BAS-P och BAS-U</strong> för projekt 
+                      som kräver samordning enligt arbetsmiljölagen.
+                    </p>
 
-                  <p className="text-muted-foreground mb-8">
-                    Jag hjälper dig som byggherre att uppfylla lagkraven för bygglov, bygganmälan och 
-                    arbetsmiljöansvar. Med över 20 års erfarenhet från olika byggprojekt i Sundsvall 
-                    och Västernorrland känner jag till lokala förutsättningar och krav.
-                  </p>
+                    <p className="text-muted-foreground mb-8">
+                      Med lokal närvaro i Västernorrland och lång erfarenhet inom byggbranschen erbjuder jag 
+                      trygghet och kvalitet i ditt byggprojekt – oavsett om det gäller nybyggnation, tillbyggnad, 
+                      attefallshus eller ombyggnad.
+                    </p>
 
-                  <div className="space-y-4 mb-8">
-                    <div className="flex items-center space-x-3">
-                      <CheckCircle className="w-6 h-6 text-accent flex-shrink-0" />
-                      <span>Kontrollplaner enligt PBL</span>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <CheckCircle className="w-6 h-6 text-accent flex-shrink-0" />
-                      <span>Närvaro vid tekniska samråd och arbetsplatsbesök</span>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <CheckCircle className="w-6 h-6 text-accent flex-shrink-0" />
-                      <span>BAS-U och BAS-P vid byggarbetsmiljö</span>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <CheckCircle className="w-6 h-6 text-accent flex-shrink-0" />
-                      <span>Kommunikation med Sundsvalls kommun</span>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <CheckCircle className="w-6 h-6 text-accent flex-shrink-0" />
-                      <span>Slutkontroll och slutbesked</span>
+                    <div className="bg-card p-6 rounded-xl shadow-earth">
+                      <h3 className="font-semibold mb-4">📋 Exempel på vad jag hjälper till med:</h3>
+                      <div className="space-y-3">
+                        <div className="flex items-center space-x-3">
+                          <CheckCircle className="w-5 h-5 text-accent flex-shrink-0" />
+                          <span>Kontrollplan för bygglov</span>
+                        </div>
+                        <div className="flex items-center space-x-3">
+                          <CheckCircle className="w-5 h-5 text-accent flex-shrink-0" />
+                          <span>Stöd vid tekniskt samråd</span>
+                        </div>
+                        <div className="flex items-center space-x-3">
+                          <CheckCircle className="w-5 h-5 text-accent flex-shrink-0" />
+                          <span>Närvaro på byggmöten</span>
+                        </div>
+                        <div className="flex items-center space-x-3">
+                          <CheckCircle className="w-5 h-5 text-accent flex-shrink-0" />
+                          <span>Slutbesked & dokumentation</span>
+                        </div>
+                        <div className="flex items-center space-x-3">
+                          <CheckCircle className="w-5 h-5 text-accent flex-shrink-0" />
+                          <span>BAS-P och BAS-U</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -199,12 +195,8 @@ const KASundsvall = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-2xl mx-auto text-center">
               <h2 className="text-3xl font-bold mb-6">
-                Kontakta mig för ditt byggprojekt i Sundsvall
+                📞 Kontakta mig för en snabb offert i Sundsvall med omnejd
               </h2>
-              <p className="text-lg text-muted-foreground mb-8">
-                Kontakta mig idag för en kostnadsfri offert – eller boka ett 15 min rådgivande samtal 
-                om ditt bygge i Sundsvall.
-              </p>
               
               <div className="grid md:grid-cols-2 gap-6 mb-8">
                 <Card className="shadow-earth">
@@ -236,10 +228,6 @@ const KASundsvall = () => {
                   </CardContent>
                 </Card>
               </div>
-
-              <p className="text-sm text-muted-foreground">
-                Jag svarar oftast inom 24 timmar och erbjuder alltid en kostnadsfri första konsultation.
-              </p>
             </div>
           </div>
         </section>

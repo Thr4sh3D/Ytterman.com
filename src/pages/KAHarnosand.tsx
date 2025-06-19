@@ -7,13 +7,6 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle, Phone, Mail, MapPin, Award, Shield } from 'lucide-react';
 
 const KAHarnosand = () => {
-  const scrollToContact = () => {
-    const element = document.getElementById('kontakt');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   const callPhone = () => {
     window.location.href = 'tel:+46761118447';
   };
@@ -25,9 +18,9 @@ const KAHarnosand = () => {
   return (
     <div className="min-h-screen">
       <SEO 
-        title="Kontrollansvarig i Härnösand – Erfaren KA enligt PBL | Tobias Ytterman"
-        description="Erfaren kontrollansvarig i Härnösand med bas i Viksjö. Certifierad KA och BAS-U/BAS-P med över 20 års erfarenhet. Hjälper med bygglov, kontrollplaner och arbetsmiljöansvar. Kostnadsfri konsultation."
-        keywords="kontrollansvarig härnösand, KA härnösand, BAS-U härnösand, bygglov härnösand, kontrollplan härnösand, certifierad ka härnösand, byggarbetsmiljösamordnare härnösand"
+        title="Kontrollansvarig i Härnösand – KA och BAS enligt PBL | Tobias Ytterman"
+        description="Kontrollansvarig i Härnösand med bas i Viksjö. Certifierad KA och BAS-U/BAS-P med lokal närvaro. Hjälper med bygglov, kontrollplaner och arbetsmiljöansvar."
+        keywords="kontrollansvarig härnösand, KA härnösand, BAS-U härnösand, bygglov härnösand, kontrollplan härnösand, certifierad ka härnösand"
         canonicalUrl="https://ytterman.com/ka-harnosand"
       />
       <Header />
@@ -38,11 +31,8 @@ const KAHarnosand = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
-                Kontrollansvarig i <span className="text-gradient">Härnösand</span>
+                Kontrollansvarig i <span className="text-gradient">Härnösand</span> – lokal och certifierad hjälp
               </h1>
-              <p className="text-xl text-muted-foreground mb-8">
-                Erfaren KA enligt PBL – Med bas i Viksjö och djup lokalkännedom
-              </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
                 <Button 
@@ -51,7 +41,7 @@ const KAHarnosand = () => {
                   className="earth-gradient text-white hover:opacity-90"
                 >
                   <Phone className="w-5 h-5 mr-2" />
-                  Ring 076-111 84 47
+                  📞 Kontakta mig idag
                 </Button>
                 <Button 
                   onClick={sendEmail}
@@ -60,7 +50,7 @@ const KAHarnosand = () => {
                   className="border-accent text-accent hover:bg-accent hover:text-white"
                 >
                   <Mail className="w-5 h-5 mr-2" />
-                  Skicka e-post
+                  Kostnadsfri rådgivning
                 </Button>
               </div>
 
@@ -75,7 +65,7 @@ const KAHarnosand = () => {
                 </div>
                 <div className="flex items-center justify-center space-x-2 text-muted-foreground">
                   <MapPin className="w-5 h-5 text-accent" />
-                  <span>Bor i Viksjö, Härnösand</span>
+                  <span>Bas i Viksjö, Härnösand</span>
                 </div>
               </div>
             </div>
@@ -89,43 +79,32 @@ const KAHarnosand = () => {
               <div className="grid lg:grid-cols-2 gap-12">
                 {/* Left Column */}
                 <div>
-                  <h2 className="text-3xl font-bold mb-6">
-                    Din lokala kontrollansvarig i Härnösand
-                  </h2>
-                  
-                  <p className="text-lg text-muted-foreground mb-6">
-                    Som kontrollansvarig enligt PBL med bas i Viksjö, Härnösand, erbjuder jag 
-                    närhet och djup lokalkännedom för ditt byggprojekt. Med över 20 års erfarenhet 
-                    från byggbranschen hjälper jag både privatpersoner och företag.
-                  </p>
+                  <div className="prose prose-lg max-w-none">
+                    <p className="text-lg text-muted-foreground mb-6">
+                      Jag erbjuder tjänster som <strong>Kontrollansvarig (KA)</strong> enligt plan- och bygglagen 
+                      samt <strong>BAS-U/P</strong> i Härnösand. Med bas i Viksjö har jag god lokalkännedom och 
+                      hjälper privatpersoner, företag och föreningar med:
+                    </p>
 
-                  <p className="text-muted-foreground mb-8">
-                    Jag känner Härnösands kommun väl och har arbetat med många projekt i området. 
-                    Detta ger mig fördelar när det gäller att navigera lokala byggbestämmelser 
-                    och kommunala processer.
-                  </p>
+                    <div className="space-y-4 mb-8">
+                      <div className="flex items-center space-x-3">
+                        <CheckCircle className="w-6 h-6 text-accent flex-shrink-0" />
+                        <span>Kontrollplaner och bygglovshandlingar</span>
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <CheckCircle className="w-6 h-6 text-accent flex-shrink-0" />
+                        <span>Tekniska samråd, arbetsplatsbesök och slutbesked</span>
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <CheckCircle className="w-6 h-6 text-accent flex-shrink-0" />
+                        <span>BAS-U (utförande) & BAS-P (projektering)</span>
+                      </div>
+                    </div>
 
-                  <div className="space-y-4 mb-8">
-                    <div className="flex items-center space-x-3">
-                      <CheckCircle className="w-6 h-6 text-accent flex-shrink-0" />
-                      <span>Kontrollplaner enligt PBL</span>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <CheckCircle className="w-6 h-6 text-accent flex-shrink-0" />
-                      <span>Tekniska samråd med Härnösands kommun</span>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <CheckCircle className="w-6 h-6 text-accent flex-shrink-0" />
-                      <span>BAS-U och BAS-P för arbetsmiljö</span>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <CheckCircle className="w-6 h-6 text-accent flex-shrink-0" />
-                      <span>Snabba platsbesök tack vare närhet</span>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <CheckCircle className="w-6 h-6 text-accent flex-shrink-0" />
-                      <span>Slutkontroll och slutbesked</span>
-                    </div>
+                    <p className="text-muted-foreground mb-8">
+                      Oavsett om du bygger nytt hus, attefallare, tillbyggnad eller omvandlar lokal – 
+                      jag ser till att ditt projekt följer regelverket och blir godkänt.
+                    </p>
                   </div>
                 </div>
 
@@ -170,19 +149,19 @@ const KAHarnosand = () => {
                         <div>
                           <div className="font-medium mb-2">Bostäder:</div>
                           <ul className="space-y-1 text-muted-foreground">
-                            <li>• Villor och radhus</li>
+                            <li>• Enbostadshus</li>
+                            <li>• Attefallshus</li>
                             <li>• Tillbyggnader</li>
-                            <li>• Fritidshus</li>
-                            <li>• Renoveringar</li>
+                            <li>• Ombyggnader</li>
                           </ul>
                         </div>
                         <div>
                           <div className="font-medium mb-2">Övrigt:</div>
                           <ul className="space-y-1 text-muted-foreground">
-                            <li>• Garage och carport</li>
+                            <li>• Altaner</li>
+                            <li>• Föreningslokaler</li>
+                            <li>• Lantbruksbyggnader</li>
                             <li>• Komplementbyggnader</li>
-                            <li>• Attefallshus</li>
-                            <li>• Poolhus</li>
                           </ul>
                         </div>
                       </div>
@@ -199,12 +178,8 @@ const KAHarnosand = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-2xl mx-auto text-center">
               <h2 className="text-3xl font-bold mb-6">
-                Kontakta din lokala KA i Härnösand
+                📞 Kontakta mig idag för kostnadsfri rådgivning i Härnösand med omnejd
               </h2>
-              <p className="text-lg text-muted-foreground mb-8">
-                Som din granne i Viksjö erbjuder jag personlig service och snabb respons. 
-                Kontakta mig för en kostnadsfri konsultation om ditt byggprojekt.
-              </p>
               
               <div className="grid md:grid-cols-2 gap-6 mb-8">
                 <Card className="shadow-earth">
@@ -236,10 +211,6 @@ const KAHarnosand = () => {
                   </CardContent>
                 </Card>
               </div>
-
-              <p className="text-sm text-muted-foreground">
-                Som din lokala kontrollansvarig svarar jag snabbt och erbjuder alltid en kostnadsfri första konsultation.
-              </p>
             </div>
           </div>
         </section>

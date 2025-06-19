@@ -1,149 +1,114 @@
-import { Award, MapPin, GraduationCap, Briefcase } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Award, Users, Clock, Shield } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
 
 export const About = () => {
-  const certifications = [
-    'Kontrollansvarig enligt PBL (KA)',
-    'Byggarbetsmiljösamordnare BAS‑P & BAS‑U',
-    'Ställningsutbildning 2–9 meter (AFS 2013:4) - Instruktör',
-    'Fallskydd & HLR‑instruktör',
-    'Motorsåg & Röjsåg – Säker Skog',
-    'ESA instruerad person – elnära arbeten',
-    'Drönarkort A1/A2/A3 (EASA)'
-  ];
-
   return (
-    <section id="om-mig" className="py-20 bg-background">
+    <section id="om-mig" className="py-16 bg-secondary/20">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-foreground mb-4">
-            Om <span className="text-gradient">Mig</span>
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Över 20 års erfarenhet inom bygg, räddningstjänst och projektledning
-          </p>
-        </div>
-
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* Left Column - Personal Info */}
-          <div className="space-y-8">
-            <Card className="shadow-earth">
-              <CardHeader>
-                <div className="flex items-center space-x-6">
-                  <div className="w-24 h-24 rounded-full overflow-hidden shadow-lg flex-shrink-0">
-                    <img 
-                      src="https://ellprnxjjzatijdxcogk.supabase.co/storage/v1/object/public/superdev-project-images/1a9c4603-3de4-4ce7-b4df-b42fb67a7f27/aorpjse3ulohvjtaxgvsp/1750350948620-profile_pic_color_square.png"
-                      alt="Tobias Ytterman - Kontrollansvarig & BAS-P/BAS-U"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div>
-                    <CardTitle className="text-2xl">Tobias Ytterman</CardTitle>
-                    <p className="text-muted-foreground text-lg">Kontrollansvarig & BAS-P/BAS-U</p>
-                    <p className="text-sm text-accent font-medium mt-1">20+ års erfarenhet</p>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground leading-relaxed mb-6">
-                  Jag heter Tobias Ytterman och har över 20 års erfarenhet inom bygg, räddningstjänst och projektledning. 
-                  Jag har arbetat som snickare, arbetsledare, BAS‑U/BAS‑P och kontrollansvarig i allt från småhus till 
-                  vindkraftsprojekt och industribyggnation.
-                </p>
-                
-                <div className="space-y-3">
-                  <div className="flex items-center space-x-3 text-muted-foreground">
-                    <MapPin className="w-5 h-5 text-accent" />
-                    <span>Bor i Viksjö, arbetar i Sundsvall, Härnösand, Sollefteå, Kramfors, Timrå</span>
-                  </div>
-                  <div className="flex items-center space-x-3 text-muted-foreground">
-                    <Briefcase className="w-5 h-5 text-accent" />
-                    <span>Erbjuder platsbesök i hela Västernorrland</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="shadow-earth">
-              <CardHeader>
-                <CardTitle className="flex items-center space-x-3">
-                  <Award className="w-6 h-6 text-accent" />
-                  <span>Varför välja mig?</span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-3">
-                  <li className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></div>
-                    <span>20+ års bred erfarenhet från olika byggprojekt</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Praktisk bakgrund som snickare och projektledare</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Erfarenhet från småhus till stora industriprojekt</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Digital hantering för effektiv kommunikation</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Snabb återkoppling och personlig service</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Lokalkännedom i hela Västernorrlands kustland</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-6">
+              Om mig – Tobias Ytterman
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Jag heter Tobias Ytterman och har över 20 års erfarenhet inom bygg, räddningstjänst och projektledning. 
+              Jag har arbetat som snickare, arbetsledare, BAS‑U/BAS‑P och kontrollansvarig i allt från småhus till 
+              vindkraftsprojekt och industribyggnation.
+            </p>
           </div>
 
-          {/* Right Column - Certifications */}
-          <div>
-            <Card className="shadow-earth">
-              <CardHeader>
-                <CardTitle className="flex items-center space-x-3">
-                  <GraduationCap className="w-6 h-6 text-accent" />
-                  <span>Utbildningar & Certifikat</span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {certifications.map((cert, index) => (
-                    <div key={index} className="flex items-start space-x-3 p-3 bg-secondary/30 rounded-lg">
-                      <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="font-medium">{cert}</span>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+          <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+            {/* Left Column - Text */}
+            <div className="space-y-6">
+              <div className="prose prose-lg max-w-none">
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  Min bakgrund som snickare och arbetsledare ger mig en unik förståelse för byggprocessen 
+                  från grunden. Jag vet vad som krävs på byggarbetsplatsen och kan därför erbjuda praktiska 
+                  och genomförbara lösningar som kontrollansvarig.
+                </p>
+                
+                <p className="text-muted-foreground">
+                  Genom åren har jag arbetat med allt från småhusprojekt till stora industribyggnationer 
+                  och vindkraftsprojekt. Denna breda erfarenhet gör att jag kan hantera projekt av olika 
+                  storlekar och komplexitet med trygghet och professionalitet.
+                </p>
 
-            <div className="mt-8 p-6 earth-gradient-light rounded-2xl">
-              <h3 className="text-xl font-bold mb-4 text-center">Projekttyper jag arbetat med</h3>
-              <div className="grid grid-cols-2 gap-4 text-sm">
-                <div className="space-y-2">
-                  <div className="font-medium">Bostäder:</div>
-                  <ul className="space-y-1 text-muted-foreground">
-                    <li>• Småhus</li>
-                    <li>• Tillbyggnader</li>
-                    <li>• BRF-projekt</li>
-                    <li>• Renoveringar</li>
-                  </ul>
+                <p className="text-muted-foreground">
+                  Som kontrollansvarig och BAS-U/BAS-P fokuserar jag på tydlig kommunikation, digital 
+                  hantering och att vara tillgänglig för mina kunder. Jag tror på att bygga långsiktiga 
+                  relationer baserade på förtroende och kvalitet.
+                </p>
+              </div>
+            </div>
+
+            {/* Right Column - Stats */}
+            <div className="grid grid-cols-2 gap-6">
+              <Card className="shadow-earth">
+                <CardContent className="p-6 text-center">
+                  <Award className="w-12 h-12 text-accent mx-auto mb-4" />
+                  <h3 className="text-2xl font-bold text-foreground mb-2">20+</h3>
+                  <p className="text-muted-foreground">År inom byggbranschen</p>
+                </CardContent>
+              </Card>
+
+              <Card className="shadow-earth">
+                <CardContent className="p-6 text-center">
+                  <Users className="w-12 h-12 text-accent mx-auto mb-4" />
+                  <h3 className="text-2xl font-bold text-foreground mb-2">100+</h3>
+                  <p className="text-muted-foreground">Genomförda projekt</p>
+                </CardContent>
+              </Card>
+
+              <Card className="shadow-earth">
+                <CardContent className="p-6 text-center">
+                  <Clock className="w-12 h-12 text-accent mx-auto mb-4" />
+                  <h3 className="text-2xl font-bold text-foreground mb-2">24h</h3>
+                  <p className="text-muted-foreground">Svarstid på förfrågningar</p>
+                </CardContent>
+              </Card>
+
+              <Card className="shadow-earth">
+                <CardContent className="p-6 text-center">
+                  <Shield className="w-12 h-12 text-accent mx-auto mb-4" />
+                  <h3 className="text-2xl font-bold text-foreground mb-2">100%</h3>
+                  <p className="text-muted-foreground">Certifierad och försäkrad</p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+
+          {/* Experience Timeline */}
+          <div className="bg-card p-8 rounded-xl shadow-earth">
+            <h3 className="text-2xl font-bold text-center mb-8">Min bakgrund</h3>
+            <div className="grid md:grid-cols-3 gap-8">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl font-bold text-accent">1</span>
                 </div>
-                <div className="space-y-2">
-                  <div className="font-medium">Industri & Övrigt:</div>
-                  <ul className="space-y-1 text-muted-foreground">
-                    <li>• Vindkraftsprojekt</li>
-                    <li>• Industribyggnation</li>
-                    <li>• Kommersiella lokaler</li>
-                    <li>• Infrastruktur</li>
-                  </ul>
+                <h4 className="font-bold mb-2">Snickare & Arbetsledare</h4>
+                <p className="text-sm text-muted-foreground">
+                  Började som snickare och utvecklades till arbetsledare. Praktisk erfarenhet från byggarbetsplatsen.
+                </p>
+              </div>
+              
+              <div className="text-center">
+                <div className="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl font-bold text-accent">2</span>
                 </div>
+                <h4 className="font-bold mb-2">BAS-U & BAS-P</h4>
+                <p className="text-sm text-muted-foreground">
+                  Certifiering inom byggarbetsmiljö. Arbetat med projekt från småhus till vindkraft.
+                </p>
+              </div>
+              
+              <div className="text-center">
+                <div className="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl font-bold text-accent">3</span>
+                </div>
+                <h4 className="font-bold mb-2">Kontrollansvarig</h4>
+                <p className="text-sm text-muted-foreground">
+                  Certifierad KA enligt PBL. Kombinerar praktisk erfarenhet med regelkunskap.
+                </p>
               </div>
             </div>
           </div>
