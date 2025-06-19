@@ -1,7 +1,8 @@
 import React from 'react';
+import ClientOnlyTimestamp from './components/ClientOnlyTimestamp';
 
 const App = () => {
-  console.log('🚀 App starting - minimal version');
+  console.log('🚀 App starting - hydration-safe version');
   
   return (
     <div style={{ 
@@ -15,14 +16,14 @@ const App = () => {
         fontSize: '32px', 
         marginBottom: '20px' 
       }}>
-        ✅ MINIMAL SUCCESS: Appen fungerar!
+        ✅ HYDRATION-SAFE SUCCESS
       </h1>
       <p style={{ 
         fontSize: '18px', 
         marginBottom: '10px',
         color: 'darkgreen'
       }}>
-        🎉 Detta är en minimal version utan React Router
+        🎉 Denna version undviker alla hydration-problem
       </p>
       <div style={{ 
         marginTop: '20px', 
@@ -35,21 +36,31 @@ const App = () => {
           Debug Status:
         </h2>
         <ul style={{ listStyle: 'none', padding: 0 }}>
-          <li style={{ marginBottom: '5px' }}>✅ React rendering fungerar</li>
-          <li style={{ marginBottom: '5px' }}>✅ Grundläggande styling fungerar</li>
-          <li style={{ marginBottom: '5px' }}>✅ Ingen React Router (för nu)</li>
-          <li style={{ marginBottom: '5px' }}>✅ Inga externa dependencies</li>
+          <li style={{ marginBottom: '5px' }}>✅ Ingen Date.now() i render</li>
+          <li style={{ marginBottom: '5px' }}>✅ Inga Math.random() värden</li>
+          <li style={{ marginBottom: '5px' }}>✅ Inga window-checks i render</li>
+          <li style={{ marginBottom: '5px' }}>✅ Deterministisk rendering</li>
+          <li style={{ marginBottom: '5px' }}>✅ Client-only komponenter för dynamiska värden</li>
         </ul>
       </div>
+      
+      <ClientOnlyTimestamp />
+      
       <div style={{
         marginTop: '20px',
         padding: '10px',
-        backgroundColor: '#f0f0f0',
+        backgroundColor: '#fff3cd',
+        border: '1px solid #ffeaa7',
         borderRadius: '5px'
       }}>
-        <p style={{ margin: 0, fontSize: '14px', color: '#666' }}>
-          Timestamp: {new Date().toLocaleString()}
-        </p>
+        <h3 style={{ margin: '0 0 10px 0', color: '#856404' }}>
+          Nästa steg för att fixa WebSocket-problemet:
+        </h3>
+        <ol style={{ margin: 0, paddingLeft: '20px', color: '#856404' }}>
+          <li>Kontrollera att WebSocket-servern körs</li>
+          <li>Verifiera att URL:en är korrekt</li>
+          <li>Kolla reverse-proxy konfiguration</li>
+        </ol>
       </div>
     </div>
   );
