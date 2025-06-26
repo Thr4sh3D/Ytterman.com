@@ -1,9 +1,9 @@
 import emailjs from 'emailjs-com';
 
-// EmailJS konfiguration - ersätt med dina värden från EmailJS dashboard
-const SERVICE_ID = 'service_xxxxxxx'; // Ditt Service ID från EmailJS
-const TEMPLATE_ID = 'template_xxxxxxx'; // Ditt Template ID från EmailJS  
-const PUBLIC_KEY = 'xxxxxxxxxxxxxxx'; // Din Public Key från EmailJS
+// EmailJS konfiguration - klistra in dina värden från EmailJS dashboard
+const SERVICE_ID = 'KLISTRA_IN_DITT_SERVICE_ID_HÄR'; // Ditt Service ID från EmailJS
+const TEMPLATE_ID = 'KLISTRA_IN_DITT_TEMPLATE_ID_HÄR'; // Ditt Template ID från EmailJS  
+const PUBLIC_KEY = 'KLISTRA_IN_DIN_PUBLIC_KEY_HÄR'; // Din Public Key från EmailJS
 
 export const sendContactEmail = async (formData: {
   name: string;
