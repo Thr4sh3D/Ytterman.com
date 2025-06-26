@@ -1,9 +1,9 @@
 import emailjs from 'emailjs-com';
 
-// EmailJS konfiguration
-const SERVICE_ID = 'service_ytterman';
-const TEMPLATE_ID = 'template_contact';
-const USER_ID = 'your_emailjs_user_id'; // Detta behöver du konfigurera
+// EmailJS konfiguration - ersätt med dina värden från EmailJS dashboard
+const SERVICE_ID = 'service_xxxxxxx'; // Ditt Service ID från EmailJS
+const TEMPLATE_ID = 'template_xxxxxxx'; // Ditt Template ID från EmailJS  
+const PUBLIC_KEY = 'xxxxxxxxxxxxxxx'; // Din Public Key från EmailJS
 
 export const sendContactEmail = async (formData: {
   name: string;
@@ -26,7 +26,7 @@ export const sendContactEmail = async (formData: {
       SERVICE_ID,
       TEMPLATE_ID,
       templateParams,
-      USER_ID
+      PUBLIC_KEY
     );
 
     return { success: true, response };
