@@ -1,10 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Phone, Mail, MapPin, Clock, Send, MessageCircle, Package } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 import { sendEmail } from '@/integrations/core';
 
-export const Contact = () => {
+interface ContactProps {
+  selectedPackage?: string;
+}
+
+export const Contact = ({ selectedPackage }: ContactProps) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -15,6 +19,16 @@ export const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+
+  // Update form when selectedPackage changes
+  useEffect(() => {
+    if (selectedPackage !== undefined) {
+      setFormData(prev => ({
+        ...prev,
+        package: selectedPackage
+      }));
+    }
+  }, [selectedPackage]);
 
   // Package options from pricing
   const packages = [
@@ -52,8 +66,8 @@ export const Contact = () => {
 
     try {
       // Find selected package details
-      const selectedPackage = packages.find(pkg => pkg.id === formData.package);
-      const packageInfo = selectedPackage ? `${selectedPackage.name} - ${selectedPackage.description}` : 'Ej angivet';
+      const selectedPackageDetails = packages.find(pkg => pkg.id === formData.package);
+      const packageInfo = selectedPackageDetails ? `${selectedPackageDetails.name} - ${selectedPackageDetails.description}` : 'Ej angivet';
 
       // Create email content
       const emailBody = `
@@ -74,7 +88,7 @@ Skickat från kontaktformuläret på ytterman.com
 
       await sendEmail({
         to: 'tobias@ytterman.com',
-        subject: `Ny förfrågan från ${formData.name}${selectedPackage ? ` - ${selectedPackage.name}` : ''}`,
+        subject: `Ny förfrågan från ${formData.name}${selectedPackageDetails ? ` - ${selectedPackageDetails.name}` : ''}`,
         body: emailBody
       });
       
@@ -157,6 +171,7 @@ Skickat från kontaktformuläret på ytterman.com
             </h3>
             
             <form onSubmit={handleSubmit} className="space-y-6">
+              {/* ... keep existing code (name, email, phone, project fields) */}
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">

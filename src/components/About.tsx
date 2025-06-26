@@ -1,127 +1,104 @@
-import { Award, Users, Clock, MapPin } from 'lucide-react';
+import { Award, Clock, MapPin, Users } from 'lucide-react';
 
 export const About = () => {
   const stats = [
     {
       icon: Clock,
       number: "20+",
-      label: "År inom bygg"
-    },
-    {
-      icon: Award,
-      number: "100+",
-      label: "Genomförda projekt"
+      label: "År i branschen"
     },
     {
       icon: Users,
-      number: "50+",
+      number: "200+",
       label: "Nöjda kunder"
     },
     {
+      icon: Award,
+      number: "100%",
+      label: "Certifierad KA & BAS"
+    },
+    {
       icon: MapPin,
-      number: "5",
-      label: "Kommuner i Västernorrland"
+      number: "24h",
+      label: "Svarstid"
     }
   ];
 
+  const certifications = [
+    "Certifierad Kontrollansvarig",
+    "BAS-P (Byggarbetsmiljösamordnare Projektering)",
+    "BAS-U (Byggarbetsmiljösamordnare Utförande)",
+    "Kontinuerlig vidareutbildning"
+  ];
+
   return (
-    <section id="om-mig" className="py-20 bg-secondary/30">
+    <section id="om-mig" className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left Column - Content */}
+          {/* Content */}
           <div>
             <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-6">
               Om Tobias Ytterman
             </h2>
             
-            <div className="space-y-6 text-lg text-muted-foreground">
-              <p>
-                Jag heter Tobias Ytterman och har över 20 års erfarenhet inom bygg, 
-                räddningstjänst och projektledning. Jag har arbetat som snickare, 
-                arbetsledare, BAS‑U/BAS‑P och kontrollansvarig i allt från småhus 
-                till vindkraftsprojekt och industribyggnation.
-              </p>
-              
-              <p>
-                Som certifierad kontrollansvarig och byggarbetsmiljösamordnare enligt 
-                det nya regelverket 2025 hjälper jag dig att säkerställa en trygg och 
-                regelrätt byggprocess. Jag tror på tydlig kommunikation, digital hantering 
-                och att vara tillgänglig när mina kunder behöver mig.
-              </p>
-              
-              <p>
-                Baserad i Viksjö men verksam i hela Västernorrland. Jag arbetar både med 
-                privatpersoner, företag och bostadsrättsföreningar. Som medlem i SBR 
-                (Svenska Byggingenjörers Riksförbund) håller jag mig uppdaterad med 
-                branschens senaste utveckling.
-              </p>
-            </div>
+            <p className="text-lg text-muted-foreground mb-6">
+              Med över 20 års erfarenhet inom byggbranschen hjälper jag dig navigera 
+              genom den komplexa byggprocessen. Som certifierad kontrollansvarig och 
+              byggarbetsmiljösamordnare säkerställer jag att ditt projekt följer alla 
+              regler och föreskrifter.
+            </p>
+            
+            <p className="text-lg text-muted-foreground mb-8">
+              Jag tror på personlig service och transparens. Därför erbjuder jag fast pris 
+              utan dolda kostnader och är alltid tillgänglig för mina kunder. Mitt mål är 
+              att göra din byggprocess så smidig och trygg som möjligt.
+            </p>
 
-            <div className="mt-8 p-6 bg-background rounded-xl shadow-lg">
+            {/* Certifications */}
+            <div className="mb-8">
               <h3 className="text-xl font-bold text-foreground mb-4">
-                Certifieringar & Utbildningar
+                Certifieringar & Kompetens
               </h3>
-              <ul className="space-y-2 text-muted-foreground">
-                <li>• Kontrollansvarig enligt PBL</li>
-                <li>• BAS-P (Byggarbetsmiljösamordnare projektering)</li>
-                <li>• BAS-U (Byggarbetsmiljösamordnare utförande)</li>
-                <li>• Certifierad enligt nya regelverket 2025</li>
-                <li>• Medlem i SBR – Svenska Byggingenjörers Riksförbund</li>
-                <li>• Byggingenjör</li>
-                <li>• Kontinuerlig vidareutbildning inom byggrätt och arbetsmiljö</li>
+              <ul className="space-y-2">
+                {certifications.map((cert, index) => (
+                  <li key={index} className="flex items-center space-x-3">
+                    <div className="w-2 h-2 bg-accent rounded-full"></div>
+                    <span className="text-muted-foreground">{cert}</span>
+                  </li>
+                ))}
               </ul>
             </div>
-          </div>
 
-          {/* Right Column - Stats */}
-          <div>
-            <div className="grid grid-cols-2 gap-8">
+            {/* Stats */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {stats.map((stat, index) => (
-                <div key={index} className="text-center bg-background rounded-xl p-8 shadow-lg">
-                  <div className="w-12 h-12 earth-gradient rounded-lg flex items-center justify-center mx-auto mb-4">
+                <div key={index} className="text-center">
+                  <div className="w-12 h-12 earth-gradient rounded-lg flex items-center justify-center mx-auto mb-2">
                     <stat.icon className="w-6 h-6 text-white" />
                   </div>
-                  <div className="text-3xl font-bold text-accent mb-2">
-                    {stat.number}
-                  </div>
-                  <div className="text-muted-foreground font-medium">
-                    {stat.label}
-                  </div>
+                  <div className="text-2xl font-bold text-foreground">{stat.number}</div>
+                  <div className="text-sm text-muted-foreground">{stat.label}</div>
                 </div>
               ))}
             </div>
+          </div>
 
-            <div className="mt-8 bg-background rounded-xl p-8 shadow-lg">
-              <h3 className="text-xl font-bold text-foreground mb-4">
-                Varför välja mig?
-              </h3>
-              <ul className="space-y-3 text-muted-foreground">
-                <li className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></div>
-                  <span>Certifierad enligt senaste regelverket 2025</span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></div>
-                  <span>Medlem i SBR för kontinuerlig kompetensutveckling</span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></div>
-                  <span>Lokal kunskap om Västernorrlands byggmarknad</span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></div>
-                  <span>Digital hantering för effektiv kommunikation</span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></div>
-                  <span>Flexibel och anpassar mig efter ditt projekt</span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></div>
-                  <span>Tydliga priser och inga dolda kostnader</span>
-                </li>
-              </ul>
+          {/* Image placeholder */}
+          <div className="bg-secondary/30 rounded-2xl p-8 text-center">
+            <div className="w-48 h-48 bg-accent/20 rounded-full mx-auto mb-6 flex items-center justify-center">
+              <Users className="w-24 h-24 text-accent" />
             </div>
+            <h3 className="text-xl font-bold text-foreground mb-4">
+              Tobias Ytterman
+            </h3>
+            <p className="text-muted-foreground mb-4">
+              Kontrollansvarig & BAS
+            </p>
+            <p className="text-sm text-muted-foreground">
+              "Jag brinner för att hjälpa mina kunder att genomföra sina byggprojekt 
+              på ett säkert och regelrätt sätt. Varje projekt är unikt och förtjänar 
+              personlig uppmärksamhet."
+            </p>
           </div>
         </div>
       </div>
