@@ -9,7 +9,6 @@ import { Contact } from '@/components/Contact';
 import { ServiceQuickMessages } from '@/components/ServiceQuickMessages';
 import { Footer } from '@/components/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
-import { TestRunner } from '@/components/TestRunner';
 
 const Index = () => {
   const [selectedPackage, setSelectedPackage] = useState<string>('');
@@ -79,7 +78,6 @@ const Index = () => {
         </main>
         <Footer />
         <WhatsAppButton />
-        <TestRunner />
       </div>
     </>
   );
