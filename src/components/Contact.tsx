@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Phone, Mail, MapPin, Clock, Send, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
+import { sendEmail } from '@/integrations/core';
 
 export const Contact = () => {
   const [formData, setFormData] = useState({
@@ -27,8 +28,27 @@ export const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      // Simulate form submission
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Create email content
+      const emailBody = `
+Nytt meddelande från webbplatsen:
+
+Namn: ${formData.name}
+E-post: ${formData.email}
+Telefon: ${formData.phone || 'Ej angivet'}
+Projekttyp: ${formData.project || 'Ej angivet'}
+
+Meddelande:
+${formData.message}
+
+---
+Skickat från kontaktformuläret på ytterman.com
+      `.trim();
+
+      await sendEmail({
+        to: 'tobias@ytterman.com',
+        subject: `Ny förfrågan från ${formData.name}`,
+        body: emailBody
+      });
       
       toast({
         title: "Meddelande skickat!",
@@ -43,6 +63,7 @@ export const Contact = () => {
         message: ''
       });
     } catch (error) {
+      console.error('Error sending email:', error);
       toast({
         title: "Något gick fel",
         description: "Försök igen eller ring mig direkt på 076-111 84 47.",
