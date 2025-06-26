@@ -1,9 +1,14 @@
 import { Check, Star, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-export const Pricing = () => {
+interface PricingProps {
+  onPackageSelect: (packageId: string) => void;
+}
+
+export const Pricing = ({ onPackageSelect }: PricingProps) => {
   const packages = [
     {
+      id: 'kontrollansvarig',
       name: "Kontrollansvarig",
       subtitle: "För mindre projekt",
       price: "15 000",
@@ -19,6 +24,7 @@ export const Pricing = () => {
       ]
     },
     {
+      id: 'ka-bas-paket',
       name: "KA + BAS Paket",
       subtitle: "Mest populära",
       price: "25 000",
@@ -36,6 +42,7 @@ export const Pricing = () => {
       ]
     },
     {
+      id: 'brf-stora-projekt',
       name: "BRF & Större Projekt",
       subtitle: "För komplexa projekt",
       price: "Offert",
@@ -59,6 +66,10 @@ export const Pricing = () => {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const handlePackageSelect = (packageId: string) => {
+    onPackageSelect(packageId);
   };
 
   const openWhatsApp = () => {
@@ -120,7 +131,7 @@ export const Pricing = () => {
               </ul>
               
               <Button 
-                onClick={scrollToContact}
+                onClick={() => handlePackageSelect(pkg.id)}
                 className={`w-full ${
                   pkg.popular 
                     ? 'earth-gradient text-white hover:opacity-90' 
@@ -134,33 +145,7 @@ export const Pricing = () => {
           ))}
         </div>
 
-        <div className="bg-background rounded-2xl p-8 text-center">
-          <Phone className="w-12 h-12 text-accent mx-auto mb-4" />
-          <h3 className="text-2xl font-bold text-foreground mb-4">
-            Osäker på vilket paket som passar?
-          </h3>
-          <p className="text-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
-            Ring mig för en kostnadsfri konsultation så hjälper jag dig att hitta 
-            den bästa lösningen för ditt projekt.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              onClick={openWhatsApp}
-              size="lg"
-              className="earth-gradient text-white hover:opacity-90"
-            >
-              Ring 076-111 84 47
-            </Button>
-            <Button 
-              onClick={scrollToContact}
-              size="lg"
-              variant="outline"
-              className="border-accent text-accent hover:bg-accent hover:text-white"
-            >
-              Skicka meddelande
-            </Button>
-          </div>
-        </div>
+        {/* ... keep existing code (bottom section with phone call to action) */}
       </div>
     </section>
   );
