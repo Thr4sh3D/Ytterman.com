@@ -8,15 +8,15 @@ interface SEOProps {
 }
 
 export const SEO = ({ 
-  title = "Kontrollansvarig & BAS-P/BAS-U - Trygg Byggprocess med Ytterman",
-  description = "Erfaren kontrollansvarig och byggarbetsmiljösamordnare (BAS-P/BAS-U) i Sundsvall, Härnösand, Sollefteå, Kramfors, Timrå och hela Västernorrland. 20+ års erfarenhet inom bygg och projektledning. Fast pris och digital hantering.",
-  keywords = "kontrollansvarig, BAS-P, BAS-U, byggarbetsmiljösamordnare, Sundsvall, Härnösand, Sollefteå, Kramfors, Timrå, Västernorrland, bygglov, slutbesked, kontrollplan, arbetsmiljöplan, byggprojekt, Tobias Ytterman",
-  canonicalUrl = "https://ytterman.se"
+  title = "Kontrollansvarig och BAS-U i Västernorrland – Sundsvall, Härnösand m.fl.",
+  description = "Certifierad Kontrollansvarig och BAS U/P – Västernorrland. Tobias Ytterman erbjuder professionella tjänster inom byggkontroll och arbetsmiljösamordning.",
+  keywords = "kontrollansvarig, BAS-U, BAS-P, byggkontroll, arbetsmiljösamordnare, Västernorrland, Sundsvall, Härnösand, Sollefteå, Kramfors, Timrå",
+  canonicalUrl = "https://ytterman.com"
 }: SEOProps) => {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "name": "Trygg Byggprocess med Ytterman",
+    "name": "Ytterman - Kontrollansvarig & BAS",
     "description": description,
     "url": canonicalUrl,
     "telephone": "+46761118447",
@@ -54,7 +54,7 @@ export const SEO = ({
       }
     ],
     "serviceType": [
-      "Kontrollansvarig enligt PBL",
+      "Kontrollansvarig",
       "Byggarbetsmiljösamordnare BAS-P",
       "Byggarbetsmiljösamordnare BAS-U",
       "Kontrollplan",
@@ -88,17 +88,17 @@ export const SEO = ({
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       
-      {/* Structured Data */}
-      <script type="application/ld+json">
-        {JSON.stringify(structuredData)}
-      </script>
-      
-      {/* Additional SEO meta tags */}
+      {/* Additional SEO */}
       <meta name="robots" content="index, follow" />
       <meta name="author" content="Tobias Ytterman" />
       <meta name="geo.region" content="SE-Y" />
       <meta name="geo.placename" content="Västernorrland" />
       <meta name="ICBM" content="62.3908,17.3069" />
+      
+      {/* Structured Data */}
+      <script type="application/ld+json">
+        {JSON.stringify(structuredData)}
+      </script>
     </Helmet>
   );
 };

@@ -26,8 +26,8 @@ export const Hero = () => {
             </div>
             
             <h1 className="text-4xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
-              Trygg Byggprocess med{' '}
-              <span className="text-gradient">Ytterman</span>
+              Certifierad Kontrollansvarig och{' '}
+              <span className="text-gradient">BAS U/P – Västernorrland</span>
             </h1>
             
             <p className="text-xl text-muted-foreground mb-4 leading-relaxed">

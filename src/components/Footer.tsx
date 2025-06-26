@@ -4,21 +4,20 @@ export const Footer = () => {
   return (
     <footer className="bg-primary text-primary-foreground py-16">
       <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">TY</span>
+              <div className="w-8 h-8 earth-gradient rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-sm">TY</span>
               </div>
               <div>
-                <h3 className="text-xl font-bold">Ytterman</h3>
-                <p className="text-sm opacity-80">Trygg Byggprocess</p>
+                <h3 className="text-lg font-bold">Ytterman</h3>
+                <p className="text-xs opacity-80">Trygg Byggprocess</p>
               </div>
             </div>
-            <p className="text-sm opacity-80 leading-relaxed">
-              Kontrollansvarig & Byggarbetsmiljösamordnare med över 20 års erfarenhet. 
-              Din partner för säkra och lagliga byggprojekt i Västernorrland.
+            <p className="text-sm opacity-80">
+              Professionell kontrollansvarig och byggarbetsmiljösamordnare i Västernorrland.
             </p>
           </div>
 
@@ -58,11 +57,11 @@ export const Footer = () => {
             <h4 className="text-lg font-semibold">Certifieringar</h4>
             <div className="space-y-3">
               <div className="flex items-center space-x-2">
-                <Award className="w-5 h-5 opacity-80" />
-                <span className="text-sm opacity-80">Kontrollansvarig PBL</span>
+                <Shield className="w-4 h-4 text-accent" />
+                <span className="text-sm opacity-80">Kontrollansvarig</span>
               </div>
               <div className="flex items-center space-x-2">
-                <Shield className="w-5 h-5 opacity-80" />
+                <Award className="w-4 h-4 text-accent" />
                 <span className="text-sm opacity-80">BAS-P & BAS-U</span>
               </div>
               <div className="text-xs opacity-60">
@@ -72,9 +71,9 @@ export const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-white/20 mt-12 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="text-sm opacity-80">
+        <div className="border-t border-primary-foreground/20 pt-8">
+          <div className="text-center text-sm opacity-80">
+            <div className="mb-2">
               © 2025 Tobias Ytterman. Alla rättigheter förbehållna.
             </div>
             <div className="text-sm opacity-80">
