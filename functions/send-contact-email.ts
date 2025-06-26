@@ -1,5 +1,3 @@
-import { sendEmail } from "@/integrations/core";
-
 Deno.serve(async (req) => {
   try {
     const { name, email, phone, project, message } = await req.json();
@@ -29,13 +27,27 @@ ${message}
 Skickat från kontaktformuläret på ytterman.com
     `;
 
-    // Send email using the built-in sendEmail integration
-    await sendEmail({
-      to: 'tobias@ytterman.com',
-      subject: emailSubject,
-      body: emailBody,
-      from_name: 'Ytterman Webbplats'
+    // Send email using Superdev's email API
+    const response = await fetch('https://api.superdev.app/integrations/core/sendEmail', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${Deno.env.get('SUPERDEV_API_KEY')}`,
+        'X-App-ID': Deno.env.get('SUPERDEV_APP_ID') || '',
+      },
+      body: JSON.stringify({
+        to: 'tobias@ytterman.com',
+        subject: emailSubject,
+        body: emailBody,
+        from_name: 'Ytterman Webbplats'
+      })
     });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error('Email API error:', errorText);
+      throw new Error(`Email API returned ${response.status}: ${errorText}`);
+    }
 
     return new Response(JSON.stringify({ 
       success: true, 
