@@ -1,4 +1,4 @@
-import { sendEmail } from "https://deno.land/x/superdev@0.1.51/integrations/core.ts";
+import { sendEmail } from '@/integrations/core';
 
 Deno.serve(async (req) => {
   try {
