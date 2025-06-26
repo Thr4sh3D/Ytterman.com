@@ -1,10 +1,11 @@
-import { Copy, FileText, PenTool, Map, Building2 } from 'lucide-react';
+import { FileText, PenTool, Map, Building2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useToast } from '@/hooks/use-toast';
 
-export const ServiceQuickMessages = () => {
-  const { toast } = useToast();
+interface ServiceQuickMessagesProps {
+  onServiceSelect: (serviceId: string) => void;
+}
 
+export const ServiceQuickMessages = ({ onServiceSelect }: ServiceQuickMessagesProps) => {
   const quickServices = [
     {
       id: 'bygglovshandlingar',
@@ -36,15 +37,6 @@ export const ServiceQuickMessages = () => {
     }
   ];
 
-  const copyToClipboard = (message: string, title: string) => {
-    navigator.clipboard.writeText(message).then(() => {
-      toast({
-        title: "Meddelande kopierat!",
-        description: `Texten för ${title} har kopierats till urklipp.`,
-      });
-    });
-  };
-
   return (
     <section className="py-12 bg-secondary/20 border-t border-border/50">
       <div className="container mx-auto px-4">
@@ -53,7 +45,7 @@ export const ServiceQuickMessages = () => {
             Snabbmeddelanden för andra tjänster
           </h3>
           <p className="text-sm text-muted-foreground">
-            Klicka för att kopiera färdiga meddelanden för specifika tjänster
+            Klicka för att fylla i kontaktformuläret automatiskt
           </p>
         </div>
 
@@ -73,18 +65,17 @@ export const ServiceQuickMessages = () => {
                 </div>
               </div>
               
-              <p className="text-xs text-muted-foreground mb-3 line-clamp-3">
+              <p className="text-xs text-muted-foreground mb-3">
                 {service.message}
               </p>
               
               <Button
-                onClick={() => copyToClipboard(service.message, service.title)}
+                onClick={() => onServiceSelect(service.id)}
                 variant="outline"
                 size="sm"
                 className="w-full text-xs"
               >
-                <Copy className="w-3 h-3 mr-1" />
-                Kopiera text
+                Begär offert
               </Button>
             </div>
           ))}

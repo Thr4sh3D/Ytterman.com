@@ -26,7 +26,11 @@ const Index = () => {
     'kontrollansvarig-service': 'Hej! Jag behöver en Kontrollansvarig (KA) för mitt byggprojekt. Kan du hjälpa mig med kontrollplan, besiktningar och slutbevis? Jag skulle vilja boka en kostnadsfri konsultation.',
     'bas-p-service': 'Hej! Jag behöver BAS-P (Byggarbetsmiljösamordnare under projektering) för mitt projekt. Kan du hjälpa mig med arbetsmiljöplan och riskbedömning? Låt oss boka ett möte.',
     'bas-u-service': 'Hej! Jag behöver BAS-U (Byggarbetsmiljösamordnare under utförande) för mitt byggprojekt. Kan du hjälpa mig med arbetsmiljösamordning under byggfasen? Jag skulle vilja diskutera detta vidare.',
-    'kombinerade-paket-service': 'Hej! Jag är intresserad av ett kombinerat paket med KA + BAS-P/U för mitt projekt. Kan vi diskutera en kostnadseffektiv lösning för hela byggprocessen?'
+    'kombinerade-paket-service': 'Hej! Jag är intresserad av ett kombinerat paket med KA + BAS-P/U för mitt projekt. Kan vi diskutera en kostnadseffektiv lösning för hela byggprocessen?',
+    'bygglovshandlingar': 'Hej! Jag behöver hjälp med att ta fram bygglovshandlingar för mitt projekt. Kan du hjälpa mig med ansökan och alla nödvändiga dokument?',
+    'planritning': 'Hej! Jag behöver professionella planritningar för mitt byggprojekt. Kan vi diskutera omfattning och tidsplan för ritningsarbetet?',
+    'situationsplan': 'Hej! Jag behöver en situationsplan för mitt projekt. Kan du hjälpa mig med uppmätning och framtagning av situationsplanen?',
+    'sektionsritningar': 'Hej! Jag behöver sektionsritningar för mitt byggprojekt. Kan vi boka ett möte för att diskutera de tekniska kraven och detaljerna?'
   };
 
   const handlePackageSelect = (packageId: string) => {
@@ -70,7 +74,7 @@ const Index = () => {
             selectedPackage={selectedPackage} 
             prefilledMessage={prefilledMessage}
           />
-          <ServiceQuickMessages />
+          <ServiceQuickMessages onServiceSelect={handleServiceSelect} />
         </main>
         <Footer />
         <WhatsAppButton />
