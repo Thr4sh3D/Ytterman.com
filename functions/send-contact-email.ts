@@ -1,23 +1,5 @@
-import { createSuperdevClient } from 'npm:@superdevhq/client@0.1.51';
-
-const superdev = createSuperdevClient({ 
-  appId: Deno.env.get('SUPERDEV_APP_ID'), 
-});
-
 Deno.serve(async (req) => {
   try {
-    // Get auth token from request headers
-    const authHeader = req.headers.get('Authorization');
-    if (!authHeader) {
-      return new Response(JSON.stringify({ error: 'Unauthorized' }), { 
-        status: 401,
-        headers: { "Content-Type": "application/json" }
-      });
-    }
-    
-    const token = authHeader.split(' ')[1];
-    superdev.auth.setToken(token);
-
     const { name, email, phone, project, message } = await req.json();
     
     // Validate required fields
@@ -50,7 +32,6 @@ Skickat från kontaktformuläret på ytterman.com
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
         'X-App-ID': Deno.env.get('SUPERDEV_APP_ID') || '',
       },
       body: JSON.stringify({
