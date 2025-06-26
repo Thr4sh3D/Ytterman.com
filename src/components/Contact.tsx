@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Phone, Mail, MapPin, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
+import { sendContactEmail } from '@/functions';
 
 interface ContactProps {
   selectedPackage: string;
@@ -16,6 +17,7 @@ export const Contact = ({ selectedPackage, prefilledMessage }: ContactProps) => 
     project: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
   // Mapping från paket-ID och tjänst-ID till projekttyp för select-fältet
@@ -42,23 +44,40 @@ export const Contact = ({ selectedPackage, prefilledMessage }: ContactProps) => 
     }
   }, [selectedPackage, prefilledMessage]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
     
-    // Simulate form submission
-    toast({
-      title: "Meddelande skickat!",
-      description: "Tack för ditt meddelande. Jag återkommer inom 24 timmar.",
-    });
-    
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      project: '',
-      message: ''
-    });
+    try {
+      const response = await sendContactEmail(formData);
+      
+      if (response.success) {
+        toast({
+          title: "Meddelande skickat!",
+          description: "Tack för ditt meddelande. Jag återkommer inom 24 timmar.",
+        });
+        
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          project: '',
+          message: ''
+        });
+      } else {
+        throw new Error(response.error || 'Okänt fel');
+      }
+    } catch (error) {
+      console.error('Error sending message:', error);
+      toast({
+        title: "Fel vid skickning",
+        description: "Ett fel uppstod. Försök igen eller ring direkt på 076-111 84 47.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -236,9 +255,10 @@ export const Contact = ({ selectedPackage, prefilledMessage }: ContactProps) => 
 
               <Button
                 type="submit"
+                disabled={isSubmitting}
                 className="w-full earth-gradient text-white hover:opacity-90 py-3"
               >
-                Skicka meddelande
+                {isSubmitting ? 'Skickar...' : 'Skicka meddelande'}
               </Button>
             </form>
           </div>
