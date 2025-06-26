@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Header } from '@/components/Header';
 import { Hero } from '@/components/Hero';
@@ -9,6 +10,17 @@ import { Footer } from '@/components/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 
 const Index = () => {
+  const [selectedPackage, setSelectedPackage] = useState<string>('');
+
+  const handlePackageSelect = (packageId: string) => {
+    setSelectedPackage(packageId);
+    // Scroll to contact section when package is selected
+    const element = document.getElementById('kontakt');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <>
       <Helmet>
@@ -22,9 +34,9 @@ const Index = () => {
         <main>
           <Hero />
           <Services />
-          <Pricing />
+          <Pricing onPackageSelect={handlePackageSelect} />
           <About />
-          <Contact />
+          <Contact selectedPackage={selectedPackage} />
         </main>
         <Footer />
         <WhatsAppButton />
