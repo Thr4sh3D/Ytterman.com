@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Phone, Mail, MapPin, Clock, Send, MessageCircle } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, Send, MessageCircle, Package } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 import { sendEmail } from '@/integrations/core';
@@ -10,10 +10,33 @@ export const Contact = () => {
     email: '',
     phone: '',
     project: '',
+    package: '',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+
+  // Package options from pricing
+  const packages = [
+    {
+      id: 'kontrollansvarig',
+      name: 'Kontrollansvarig',
+      description: 'För mindre projekt (från 15 000 kr)',
+      features: ['Kontrollplan', 'Kontrollbesiktningar', 'Slutbesiktning', 'Slutbevis']
+    },
+    {
+      id: 'ka-bas-paket',
+      name: 'KA + BAS Paket',
+      description: 'Mest populära (från 25 000 kr)',
+      features: ['Kontrollansvarig', 'BAS-P (Projektering)', 'BAS-U (Utförande)', 'Arbetsmiljöplan']
+    },
+    {
+      id: 'brf-stora-projekt',
+      name: 'BRF & Större Projekt',
+      description: 'För komplexa projekt (Offert efter behov)',
+      features: ['Skräddarsydd lösning', 'Projektledning', 'Flera kontrollansvariga', 'Utökad BAS-funktion']
+    }
+  ];
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -28,6 +51,10 @@ export const Contact = () => {
     setIsSubmitting(true);
 
     try {
+      // Find selected package details
+      const selectedPackage = packages.find(pkg => pkg.id === formData.package);
+      const packageInfo = selectedPackage ? `${selectedPackage.name} - ${selectedPackage.description}` : 'Ej angivet';
+
       // Create email content
       const emailBody = `
 Nytt meddelande från webbplatsen:
@@ -36,6 +63,7 @@ Namn: ${formData.name}
 E-post: ${formData.email}
 Telefon: ${formData.phone || 'Ej angivet'}
 Projekttyp: ${formData.project || 'Ej angivet'}
+Intresserad av paket: ${packageInfo}
 
 Meddelande:
 ${formData.message}
@@ -46,7 +74,7 @@ Skickat från kontaktformuläret på ytterman.com
 
       await sendEmail({
         to: 'tobias@ytterman.com',
-        subject: `Ny förfrågan från ${formData.name}`,
+        subject: `Ny förfrågan från ${formData.name}${selectedPackage ? ` - ${selectedPackage.name}` : ''}`,
         body: emailBody
       });
       
@@ -60,6 +88,7 @@ Skickat från kontaktformuläret på ytterman.com
         email: '',
         phone: '',
         project: '',
+        package: '',
         message: ''
       });
     } catch (error) {
@@ -104,6 +133,8 @@ Skickat från kontaktformuläret på ytterman.com
       action: null
     }
   ];
+
+  const selectedPackageDetails = packages.find(pkg => pkg.id === formData.package);
 
   return (
     <section id="kontakt" className="py-20 bg-background">
@@ -195,6 +226,63 @@ Skickat från kontaktformuläret på ytterman.com
                   </select>
                 </div>
               </div>
+
+              {/* Package Selection */}
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-3">
+                  <Package className="w-4 h-4 inline mr-2" />
+                  Intresserad av paket
+                </label>
+                <div className="space-y-3">
+                  {packages.map((pkg) => (
+                    <label key={pkg.id} className="flex items-start space-x-3 cursor-pointer">
+                      <input
+                        type="radio"
+                        name="package"
+                        value={pkg.id}
+                        checked={formData.package === pkg.id}
+                        onChange={handleInputChange}
+                        className="mt-1 w-4 h-4 text-accent border-gray-300 focus:ring-accent"
+                      />
+                      <div className="flex-1">
+                        <div className="font-medium text-foreground">{pkg.name}</div>
+                        <div className="text-sm text-muted-foreground">{pkg.description}</div>
+                      </div>
+                    </label>
+                  ))}
+                  <label className="flex items-start space-x-3 cursor-pointer">
+                    <input
+                      type="radio"
+                      name="package"
+                      value=""
+                      checked={formData.package === ''}
+                      onChange={handleInputChange}
+                      className="mt-1 w-4 h-4 text-accent border-gray-300 focus:ring-accent"
+                    />
+                    <div className="flex-1">
+                      <div className="font-medium text-foreground">Osäker/Annan förfrågan</div>
+                      <div className="text-sm text-muted-foreground">Jag hjälper dig hitta rätt lösning</div>
+                    </div>
+                  </label>
+                </div>
+              </div>
+
+              {/* Package Details */}
+              {selectedPackageDetails && (
+                <div className="bg-accent/5 rounded-lg p-4 border border-accent/20">
+                  <h4 className="font-medium text-foreground mb-2">
+                    {selectedPackageDetails.name} inkluderar:
+                  </h4>
+                  <ul className="text-sm text-muted-foreground space-y-1">
+                    {selectedPackageDetails.features.map((feature, index) => (
+                      <li key={index} className="flex items-center space-x-2">
+                        <div className="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
               
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
