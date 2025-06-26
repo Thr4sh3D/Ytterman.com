@@ -1,28 +1,35 @@
-import { SEO } from '@/components/SEO';
+import { Helmet } from 'react-helmet-async';
 import { Header } from '@/components/Header';
 import { Hero } from '@/components/Hero';
 import { Services } from '@/components/Services';
 import { Pricing } from '@/components/Pricing';
 import { About } from '@/components/About';
 import { Contact } from '@/components/Contact';
-import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { Footer } from '@/components/Footer';
+import { WhatsAppButton } from '@/components/WhatsAppButton';
 
 const Index = () => {
   return (
-    <div className="min-h-screen">
-      <SEO />
-      <Header />
-      <main>
-        <Hero />
-        <Services />
-        <Pricing />
-        <About />
-        <Contact />
-      </main>
-      <Footer />
-      <WhatsAppButton />
-    </div>
+    <>
+      <Helmet>
+        <title>Ytterman - Kontrollansvarig & BAS i Västernorrland</title>
+        <meta name="description" content="Certifierad Kontrollansvarig och Byggarbetsmiljösamordnare (BAS-P/BAS-U) i Västernorrland. Över 20 års erfarenhet. Trygg byggprocess med fast pris." />
+        <meta name="keywords" content="kontrollansvarig, BAS-P, BAS-U, byggkontroll, Västernorrland, Sundsvall, Härnösand, bygglov" />
+      </Helmet>
+      
+      <div className="min-h-screen">
+        <Header />
+        <main>
+          <Hero />
+          <Services />
+          <Pricing />
+          <About />
+          <Contact />
+        </main>
+        <Footer />
+        <WhatsAppButton />
+      </div>
+    </>
   );
 };
 
