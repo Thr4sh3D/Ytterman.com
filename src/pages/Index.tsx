@@ -6,6 +6,7 @@ import { Services } from '@/components/Services';
 import { Pricing } from '@/components/Pricing';
 import { About } from '@/components/About';
 import { Contact } from '@/components/Contact';
+import { ServiceQuickMessages } from '@/components/ServiceQuickMessages';
 import { Footer } from '@/components/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 
@@ -69,6 +70,7 @@ const Index = () => {
             selectedPackage={selectedPackage} 
             prefilledMessage={prefilledMessage}
           />
+          <ServiceQuickMessages />
         </main>
         <Footer />
         <WhatsAppButton />
