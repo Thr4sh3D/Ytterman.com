@@ -1,9 +1,14 @@
 import { Shield, Users, FileCheck, Building, CheckCircle, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-export const Services = () => {
+interface ServicesProps {
+  onServiceSelect: (serviceId: string) => void;
+}
+
+export const Services = ({ onServiceSelect }: ServicesProps) => {
   const services = [
     {
+      id: 'kontrollansvarig-service',
       icon: Shield,
       title: "Kontrollansvarig (KA)",
       description: "Säkerställer att byggnationen följer gällande lagar och föreskrifter",
@@ -16,6 +21,7 @@ export const Services = () => {
       price: "Från 15 000 kr"
     },
     {
+      id: 'bas-p-service',
       icon: Users,
       title: "BAS-P (Projektering)",
       description: "Arbetsmiljösamordning under projekteringsfasen",
@@ -28,6 +34,7 @@ export const Services = () => {
       price: "Från 8 000 kr"
     },
     {
+      id: 'bas-u-service',
       icon: Building,
       title: "BAS-U (Utförande)",
       description: "Arbetsmiljösamordning under byggfasen",
@@ -40,6 +47,7 @@ export const Services = () => {
       price: "Från 12 000 kr"
     },
     {
+      id: 'kombinerade-paket-service',
       icon: FileCheck,
       title: "Kombinerade Paket",
       description: "Kostnadseffektiva lösningar för hela byggprocessen",
@@ -58,6 +66,11 @@ export const Services = () => {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const handleServiceClick = (serviceId: string) => {
+    onServiceSelect(serviceId);
+    scrollToContact();
   };
 
   return (
@@ -102,7 +115,7 @@ export const Services = () => {
                   {service.price}
                 </div>
                 <Button 
-                  onClick={scrollToContact}
+                  onClick={() => handleServiceClick(service.id)}
                   className="w-full earth-gradient text-white hover:opacity-90"
                 >
                   Begär offert

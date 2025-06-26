@@ -20,11 +20,30 @@ const Index = () => {
     'brf-stora-projekt': 'Hej! Jag har ett större/komplext projekt och skulle vilja få en offert för "BRF & Större Projekt"-paketet. Kan vi boka en konsultation för att diskutera projektets omfattning?'
   };
 
+  // Färdiga meddelandetexter för varje tjänst
+  const serviceMessages = {
+    'kontrollansvarig-service': 'Hej! Jag behöver en Kontrollansvarig (KA) för mitt byggprojekt. Kan du hjälpa mig med kontrollplan, besiktningar och slutbevis? Jag skulle vilja boka en kostnadsfri konsultation.',
+    'bas-p-service': 'Hej! Jag behöver BAS-P (Byggarbetsmiljösamordnare under projektering) för mitt projekt. Kan du hjälpa mig med arbetsmiljöplan och riskbedömning? Låt oss boka ett möte.',
+    'bas-u-service': 'Hej! Jag behöver BAS-U (Byggarbetsmiljösamordnare under utförande) för mitt byggprojekt. Kan du hjälpa mig med arbetsmiljösamordning under byggfasen? Jag skulle vilja diskutera detta vidare.',
+    'kombinerade-paket-service': 'Hej! Jag är intresserad av ett kombinerat paket med KA + BAS-P/U för mitt projekt. Kan vi diskutera en kostnadseffektiv lösning för hela byggprocessen?'
+  };
+
   const handlePackageSelect = (packageId: string) => {
     setSelectedPackage(packageId);
     setPrefilledMessage(packageMessages[packageId as keyof typeof packageMessages] || '');
     
     // Scroll to contact section when package is selected
+    const element = document.getElementById('kontakt');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleServiceSelect = (serviceId: string) => {
+    setSelectedPackage(serviceId);
+    setPrefilledMessage(serviceMessages[serviceId as keyof typeof serviceMessages] || '');
+    
+    // Scroll to contact section when service is selected
     const element = document.getElementById('kontakt');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -43,7 +62,7 @@ const Index = () => {
         <Header />
         <main>
           <Hero />
-          <Services />
+          <Services onServiceSelect={handleServiceSelect} />
           <Pricing onPackageSelect={handlePackageSelect} />
           <About />
           <Contact 

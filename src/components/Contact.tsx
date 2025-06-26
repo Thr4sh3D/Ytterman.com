@@ -18,11 +18,17 @@ export const Contact = ({ selectedPackage, prefilledMessage }: ContactProps) => 
   });
   const { toast } = useToast();
 
-  // Mapping från paket-ID till projekttyp för select-fältet
+  // Mapping från paket-ID och tjänst-ID till projekttyp för select-fältet
   const packageToProjectType = {
+    // Paket från Pricing
     'kontrollansvarig': 'villa',
     'ka-bas-paket': 'villa',
-    'brf-stora-projekt': 'flerfamilj'
+    'brf-stora-projekt': 'flerfamilj',
+    // Tjänster från Services
+    'kontrollansvarig-service': 'villa',
+    'bas-p-service': 'villa',
+    'bas-u-service': 'villa',
+    'kombinerade-paket-service': 'flerfamilj'
   };
 
   // Update form when selectedPackage or prefilledMessage changes
