@@ -1,7 +1,7 @@
 import emailjs from 'emailjs-com';
 
 // EmailJS konfiguration - klistra in dina värden från EmailJS dashboard
-const SERVICE_ID = 'KLISTRA_IN_DITT_SERVICE_ID_HÄR'; // Ditt Service ID från EmailJS
+const SERVICE_ID = 'service_zowa51j'; // Ditt Service ID från EmailJS
 const TEMPLATE_ID = 'KLISTRA_IN_DITT_TEMPLATE_ID_HÄR'; // Ditt Template ID från EmailJS  
 const PUBLIC_KEY = 'KLISTRA_IN_DIN_PUBLIC_KEY_HÄR'; // Din Public Key från EmailJS
 
