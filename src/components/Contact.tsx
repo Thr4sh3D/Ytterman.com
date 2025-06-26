@@ -30,7 +30,7 @@ export const Contact = ({ selectedPackage }: ContactProps) => {
     }
   }, [selectedPackage]);
 
-  // Package options from pricing
+  // ... keep existing code (packages array, handleInputChange, handleSubmit, openWhatsApp, contactInfo)
   const packages = [
     {
       id: 'kontrollansvarig',
