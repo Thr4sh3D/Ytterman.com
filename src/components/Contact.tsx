@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Phone, Mail, MapPin, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
-import { sendContactEmail } from '@/functions';
+import { sendContactEmail } from '@/lib/emailjs';
 
 interface ContactProps {
   selectedPackage: string;
