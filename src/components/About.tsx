@@ -38,8 +38,8 @@ export const About = () => {
               <p>
                 Med över 20 års erfarenhet inom byggbranschen har jag arbetat med allt från 
                 småhus till stora kommersiella projekt. Som certifierad kontrollansvarig och 
-                byggarbetsmiljösamordnare hjälper jag dig att säkerställa en trygg och 
-                regelrätt byggprocess.
+                byggarbetsmiljösamordnare enligt det nya regelverket 2025 hjälper jag dig att 
+                säkerställa en trygg och regelrätt byggprocess.
               </p>
               
               <p>
@@ -50,7 +50,9 @@ export const About = () => {
               
               <p>
                 Baserad i Viksjö men verksam i hela Västernorrland. Jag arbetar både med 
-                privatpersoner, företag och bostadsrättsföreningar.
+                privatpersoner, företag och bostadsrättsföreningar. Som medlem i SBR 
+                (Svenska Byggingenjörers Riksförbund) håller jag mig uppdaterad med 
+                branschens senaste utveckling.
               </p>
             </div>
 
@@ -62,6 +64,8 @@ export const About = () => {
                 <li>• Kontrollansvarig enligt PBL</li>
                 <li>• BAS-P (Byggarbetsmiljösamordnare projektering)</li>
                 <li>• BAS-U (Byggarbetsmiljösamordnare utförande)</li>
+                <li>• Certifierad enligt nya regelverket 2025</li>
+                <li>• Medlem i SBR – Svenska Byggingenjörers Riksförbund</li>
                 <li>• Byggingenjör</li>
                 <li>• Kontinuerlig vidareutbildning inom byggrätt och arbetsmiljö</li>
               </ul>
@@ -91,6 +95,14 @@ export const About = () => {
                 Varför välja mig?
               </h3>
               <ul className="space-y-3 text-muted-foreground">
+                <li className="flex items-start space-x-3">
+                  <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></div>
+                  <span>Certifierad enligt senaste regelverket 2025</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></div>
+                  <span>Medlem i SBR för kontinuerlig kompetensutveckling</span>
+                </li>
                 <li className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></div>
                   <span>Lokal kunskap om Västernorrlands byggmarknad</span>
