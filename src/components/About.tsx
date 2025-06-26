@@ -36,16 +36,17 @@ export const About = () => {
             
             <div className="space-y-6 text-lg text-muted-foreground">
               <p>
-                Med över 20 års erfarenhet inom byggbranschen har jag arbetat med allt från 
-                småhus till stora kommersiella projekt. Som certifierad kontrollansvarig och 
-                byggarbetsmiljösamordnare enligt det nya regelverket 2025 hjälper jag dig att 
-                säkerställa en trygg och regelrätt byggprocess.
+                Jag heter Tobias Ytterman och har över 20 års erfarenhet inom bygg, 
+                räddningstjänst och projektledning. Jag har arbetat som snickare, 
+                arbetsledare, BAS‑U/BAS‑P och kontrollansvarig i allt från småhus 
+                till vindkraftsprojekt och industribyggnation.
               </p>
               
               <p>
-                Jag tror på tydlig kommunikation, digital hantering och att vara tillgänglig 
-                när mina kunder behöver mig. Varje projekt är unikt, och jag anpassar mina 
-                tjänster efter dina specifika behov och förutsättningar.
+                Som certifierad kontrollansvarig och byggarbetsmiljösamordnare enligt 
+                det nya regelverket 2025 hjälper jag dig att säkerställa en trygg och 
+                regelrätt byggprocess. Jag tror på tydlig kommunikation, digital hantering 
+                och att vara tillgänglig när mina kunder behöver mig.
               </p>
               
               <p>

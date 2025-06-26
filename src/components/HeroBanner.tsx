@@ -1,47 +1,39 @@
-import { Building2, Shield, Award } from 'lucide-react';
+import { Building, Shield, Award } from 'lucide-react';
 
 export const HeroBanner = () => {
   return (
-    <div className="relative w-full h-64 lg:h-80 rounded-2xl overflow-hidden shadow-lg">
-      {/* Beautiful gradient background */}
-      <div className="w-full h-full bg-gradient-to-br from-amber-100 via-orange-50 to-yellow-100 relative">
-        {/* Overlay pattern */}
-        <div className="absolute inset-0 bg-gradient-to-r from-amber-900/20 via-transparent to-orange-900/20"></div>
-        
-        {/* Construction themed decorative elements */}
-        <div className="absolute top-6 right-6 opacity-20">
-          <Building2 className="w-16 h-16 text-amber-800" />
+    <div className="relative bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl p-8 overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-4 left-4">
+          <Building className="w-8 h-8 text-primary" />
         </div>
-        <div className="absolute top-12 left-8 opacity-15">
-          <Shield className="w-12 h-12 text-orange-800" />
+        <div className="absolute top-4 right-4">
+          <Shield className="w-8 h-8 text-accent" />
         </div>
-        <div className="absolute bottom-8 right-12 opacity-15">
-          <Award className="w-14 h-14 text-amber-700" />
+        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
+          <Award className="w-8 h-8 text-primary" />
         </div>
-        
-        {/* Main content */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-center text-amber-900 px-6">
-            <h3 className="text-3xl lg:text-4xl font-bold mb-3 drop-shadow-sm">
-              Trygg Byggprocess
-            </h3>
-            <p className="text-lg lg:text-xl font-medium opacity-90">
-              Professionell kontrollansvarig & BAS
-            </p>
-          </div>
+      </div>
+      
+      {/* Content */}
+      <div className="relative z-10 text-center">
+        <div className="w-20 h-20 earth-gradient rounded-full flex items-center justify-center mx-auto mb-4">
+          <span className="text-white font-bold text-2xl">TY</span>
         </div>
-        
-        {/* Bottom overlay with credentials */}
-        <div className="absolute bottom-6 left-6 right-6">
-          <div className="bg-white/80 backdrop-blur-sm px-4 py-3 rounded-lg shadow-sm">
-            <div className="flex items-center justify-between text-sm font-medium text-amber-900">
-              <span>20+ års erfarenhet</span>
-              <span className="hidden sm:inline">•</span>
-              <span>Certifierad & Erfaren</span>
-              <span className="hidden sm:inline">•</span>
-              <span className="hidden sm:inline">Västernorrland</span>
-            </div>
-          </div>
+        <h3 className="text-xl font-bold text-foreground mb-2">
+          Certifierad Kontrollansvarig
+        </h3>
+        <p className="text-muted-foreground mb-4">
+          BAS-P & BAS-U enligt nya regelverket 2025
+        </p>
+        <div className="flex justify-center space-x-4 text-sm">
+          <span className="bg-accent/20 text-accent px-3 py-1 rounded-full">
+            Västernorrland
+          </span>
+          <span className="bg-primary/20 text-primary px-3 py-1 rounded-full">
+            20+ År
+          </span>
         </div>
       </div>
     </div>
