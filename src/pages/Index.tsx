@@ -11,9 +11,19 @@ import { WhatsAppButton } from '@/components/WhatsAppButton';
 
 const Index = () => {
   const [selectedPackage, setSelectedPackage] = useState<string>('');
+  const [prefilledMessage, setPrefilledMessage] = useState<string>('');
+
+  // Färdiga meddelandetexter för varje paket
+  const packageMessages = {
+    'kontrollansvarig': 'Hej! Jag är intresserad av paketet "Kontrollansvarig" och skulle vilja veta mer om hur du kan hjälpa mig med mitt byggprojekt. Kan vi boka en kostnadsfri konsultation?',
+    'ka-bas-paket': 'Hej! Jag är intresserad av det populära "KA + BAS Paketet" och skulle vilja diskutera hur detta passar mitt projekt. Kan vi boka ett möte för att gå igenom detaljerna?',
+    'brf-stora-projekt': 'Hej! Jag har ett större/komplext projekt och skulle vilja få en offert för "BRF & Större Projekt"-paketet. Kan vi boka en konsultation för att diskutera projektets omfattning?'
+  };
 
   const handlePackageSelect = (packageId: string) => {
     setSelectedPackage(packageId);
+    setPrefilledMessage(packageMessages[packageId as keyof typeof packageMessages] || '');
+    
     // Scroll to contact section when package is selected
     const element = document.getElementById('kontakt');
     if (element) {
@@ -36,7 +46,10 @@ const Index = () => {
           <Services />
           <Pricing onPackageSelect={handlePackageSelect} />
           <About />
-          <Contact selectedPackage={selectedPackage} />
+          <Contact 
+            selectedPackage={selectedPackage} 
+            prefilledMessage={prefilledMessage}
+          />
         </main>
         <Footer />
         <WhatsAppButton />

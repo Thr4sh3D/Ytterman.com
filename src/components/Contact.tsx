@@ -5,9 +5,10 @@ import { useToast } from '@/hooks/use-toast';
 
 interface ContactProps {
   selectedPackage: string;
+  prefilledMessage: string;
 }
 
-export const Contact = ({ selectedPackage }: ContactProps) => {
+export const Contact = ({ selectedPackage, prefilledMessage }: ContactProps) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -17,15 +18,23 @@ export const Contact = ({ selectedPackage }: ContactProps) => {
   });
   const { toast } = useToast();
 
-  // Update form when selectedPackage changes
+  // Mapping från paket-ID till projekttyp för select-fältet
+  const packageToProjectType = {
+    'kontrollansvarig': 'villa',
+    'ka-bas-paket': 'villa',
+    'brf-stora-projekt': 'flerfamilj'
+  };
+
+  // Update form when selectedPackage or prefilledMessage changes
   useEffect(() => {
-    if (selectedPackage) {
+    if (selectedPackage && prefilledMessage) {
       setFormData(prev => ({
         ...prev,
-        project: selectedPackage
+        project: packageToProjectType[selectedPackage as keyof typeof packageToProjectType] || '',
+        message: prefilledMessage
       }));
     }
-  }, [selectedPackage]);
+  }, [selectedPackage, prefilledMessage]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
