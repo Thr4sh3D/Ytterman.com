@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin } from 'lucide-react';
+import { Phone, Mail, MapPin, Building } from 'lucide-react';
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -11,36 +11,45 @@ export const Footer = () => {
   };
 
   return (
-    <footer className="bg-foreground text-white py-16">
+    <footer className="bg-slate-900 text-white py-16">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="md:col-span-2">
-            <h3 className="text-2xl font-bold mb-4">Ytterman</h3>
+            <div className="flex items-center space-x-2 mb-4">
+              <div className="w-10 h-10 earth-gradient rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-lg">TY</span>
+              </div>
+              <div>
+                <h3 className="text-xl font-bold">Ytterman</h3>
+                <p className="text-sm text-gray-400">Trygg Byggprocess</p>
+              </div>
+            </div>
+            
             <p className="text-gray-300 mb-6 max-w-md">
               Certifierad Kontrollansvarig och Byggarbetsmiljösamordnare med över 20 års 
-              erfarenhet. Trygg byggprocess med personlig service i Västernorrland.
+              erfarenhet. Verksam i hela Västernorrland med fokus på trygg och regelrätt byggprocess.
             </p>
             
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <Phone className="w-5 h-5 text-accent" />
-                <span>+46 76 111 84 47</span>
+                <span>076-111 84 47</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="w-5 h-5 text-accent" />
-                <span>info@ytterman.se</span>
+                <span>tobias@ytterman.com</span>
               </div>
               <div className="flex items-center space-x-3">
                 <MapPin className="w-5 h-5 text-accent" />
-                <span>Västernorrland</span>
+                <span>Viksjö, Västernorrland</span>
               </div>
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Snabblänkar</h4>
+            <h4 className="text-lg font-bold mb-4">Snabblänkar</h4>
             <ul className="space-y-2">
               <li>
                 <button 
@@ -87,21 +96,42 @@ export const Footer = () => {
 
           {/* Services */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Tjänster</h4>
+            <h4 className="text-lg font-bold mb-4">Tjänster</h4>
             <ul className="space-y-2 text-gray-300">
-              <li>Kontrollansvarig (KA)</li>
-              <li>BAS-P (Projektering)</li>
-              <li>BAS-U (Utförande)</li>
-              <li>Bygglovsprocess</li>
-              <li>Konsultation</li>
+              <li className="flex items-center space-x-2">
+                <Building className="w-4 h-4 text-accent" />
+                <span>Kontrollansvarig</span>
+              </li>
+              <li className="flex items-center space-x-2">
+                <Building className="w-4 h-4 text-accent" />
+                <span>BAS-P</span>
+              </li>
+              <li className="flex items-center space-x-2">
+                <Building className="w-4 h-4 text-accent" />
+                <span>BAS-U</span>
+              </li>
+              <li className="flex items-center space-x-2">
+                <Building className="w-4 h-4 text-accent" />
+                <span>Kombinerade paket</span>
+              </li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-gray-700 mt-12 pt-8 text-center">
-          <p className="text-gray-300">
-            © {currentYear} Ytterman. Alla rättigheter förbehållna.
-          </p>
+        <div className="border-t border-gray-700 mt-12 pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <p className="text-gray-400 text-sm">
+              © {currentYear} Ytterman. Alla rättigheter förbehållna.
+            </p>
+            <div className="flex space-x-6 mt-4 md:mt-0">
+              <span className="text-gray-400 text-sm">
+                Certifierad enligt nya regelverket 2025
+              </span>
+              <span className="text-gray-400 text-sm">
+                Medlem i SBR
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </footer>
