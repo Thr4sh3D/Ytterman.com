@@ -64,10 +64,13 @@ export const Header = () => {
 
           {/* Contact Info & CTA */}
           <div className="hidden lg:flex items-center space-x-4">
-            <div className="flex items-center space-x-2 text-sm text-muted-foreground">
+            <a 
+              href="tel:+46761118447"
+              className="flex items-center space-x-2 text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer"
+            >
               <Phone className="w-4 h-4" />
               <span>Ring för rådgivning</span>
-            </div>
+            </a>
             <Button 
               onClick={() => scrollToSection('kontakt')}
               className="earth-gradient text-white hover:opacity-90"
@@ -119,6 +122,13 @@ export const Header = () => {
               >
                 Kontakt
               </button>
+              <a 
+                href="tel:+46761118447"
+                className="flex items-center space-x-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+              >
+                <Phone className="w-4 h-4" />
+                <span>Ring för rådgivning</span>
+              </a>
               <Button 
                 onClick={() => scrollToSection('kontakt')}
                 className="earth-gradient text-white hover:opacity-90 w-full mt-4"
