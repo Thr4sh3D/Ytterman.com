@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import { Header } from '@/components/Header';
 import { Hero } from '@/components/Hero';
 import { Services } from '@/components/Services';
@@ -9,6 +8,7 @@ import { Contact } from '@/components/Contact';
 import { ServiceQuickMessages } from '@/components/ServiceQuickMessages';
 import { Footer } from '@/components/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
+import { SEO } from '@/components/SEO';
 
 const Index = () => {
   const [selectedPackage, setSelectedPackage] = useState<string>('');
@@ -57,11 +57,11 @@ const Index = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Ytterman - Kontrollansvarig & BAS i Västernorrland</title>
-        <meta name="description" content="Certifierad Kontrollansvarig och Byggarbetsmiljösamordnare (BAS-P/BAS-U) i Västernorrland. Över 20 års erfarenhet. Trygg byggprocess med fast pris." />
-        <meta name="keywords" content="kontrollansvarig, BAS-P, BAS-U, byggkontroll, Västernorrland, Sundsvall, Härnösand, bygglov" />
-      </Helmet>
+      <SEO 
+        title="Ytterman - Kontrollansvarig & BAS i Västernorrland | Certifierad Byggkontroll"
+        description="Certifierad Kontrollansvarig och Byggarbetsmiljösamordnare (BAS-P/BAS-U) i Västernorrland. Över 20 års erfarenhet. Trygg byggprocess med fast pris. Verksam i Sundsvall, Härnösand, Sollefteå, Timrå, Kramfors."
+        keywords="kontrollansvarig Västernorrland, BAS-P Sundsvall, BAS-U Härnösand, byggkontroll Sollefteå, kontrollplan Timrå, slutbevis Kramfors, bygglov Västernorrland, byggarbetsmiljösamordnare"
+      />
       
       <div className="min-h-screen">
         <Header />

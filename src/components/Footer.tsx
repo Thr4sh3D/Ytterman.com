@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin, Building } from 'lucide-react';
+import { Phone, Mail, MapPin, Building, Clock, Award } from 'lucide-react';
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -34,16 +34,32 @@ export const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <Phone className="w-5 h-5 text-accent" />
-                <span>076-111 84 47</span>
+                <a href="tel:+46761118447" className="hover:text-accent transition-colors">
+                  076-111 84 47
+                </a>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="w-5 h-5 text-accent" />
-                <span>tobias@ytterman.com</span>
+                <a href="mailto:tobias@ytterman.com" className="hover:text-accent transition-colors">
+                  tobias@ytterman.com
+                </a>
               </div>
               <div className="flex items-center space-x-3">
                 <MapPin className="w-5 h-5 text-accent" />
                 <span>Viksjö, Västernorrland</span>
               </div>
+              <div className="flex items-center space-x-3">
+                <Clock className="w-5 h-5 text-accent" />
+                <span>Måndag-Fredag 08:00-17:00</span>
+              </div>
+            </div>
+
+            {/* Verksamhetsområden */}
+            <div className="mt-6">
+              <h4 className="text-lg font-bold mb-2">Verksamhetsområden</h4>
+              <p className="text-gray-300 text-sm">
+                Sundsvall, Härnösand, Sollefteå, Timrå, Kramfors och övriga Västernorrland
+              </p>
             </div>
           </div>
 
@@ -94,25 +110,33 @@ export const Footer = () => {
             </ul>
           </div>
 
-          {/* Services */}
+          {/* Services & Certifications */}
           <div>
-            <h4 className="text-lg font-bold mb-4">Tjänster</h4>
+            <h4 className="text-lg font-bold mb-4">Tjänster & Certifieringar</h4>
             <ul className="space-y-2 text-gray-300">
               <li className="flex items-center space-x-2">
                 <Building className="w-4 h-4 text-accent" />
-                <span>Kontrollansvarig</span>
+                <span>Kontrollansvarig (KA)</span>
               </li>
               <li className="flex items-center space-x-2">
                 <Building className="w-4 h-4 text-accent" />
-                <span>BAS-P</span>
+                <span>BAS-P (Projektering)</span>
               </li>
               <li className="flex items-center space-x-2">
                 <Building className="w-4 h-4 text-accent" />
-                <span>BAS-U</span>
+                <span>BAS-U (Utförande)</span>
               </li>
               <li className="flex items-center space-x-2">
                 <Building className="w-4 h-4 text-accent" />
                 <span>Kombinerade paket</span>
+              </li>
+              <li className="flex items-center space-x-2 mt-4">
+                <Award className="w-4 h-4 text-accent" />
+                <span className="text-sm">Certifierad enligt nya regelverket 2025</span>
+              </li>
+              <li className="flex items-center space-x-2">
+                <Award className="w-4 h-4 text-accent" />
+                <span className="text-sm">Medlem i SBR</span>
               </li>
             </ul>
           </div>
@@ -123,12 +147,12 @@ export const Footer = () => {
             <p className="text-gray-400 text-sm">
               © {currentYear} Ytterman. Alla rättigheter förbehållna.
             </p>
-            <div className="flex space-x-6 mt-4 md:mt-0">
+            <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6 mt-4 md:mt-0">
               <span className="text-gray-400 text-sm">
-                Certifierad enligt nya regelverket 2025
+                Org.nr: [Organisationsnummer]
               </span>
               <span className="text-gray-400 text-sm">
-                Medlem i SBR
+                F-skatt: Godkänd
               </span>
             </div>
           </div>
