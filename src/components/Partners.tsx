@@ -29,9 +29,9 @@ const partners: Partner[] = [
   },
   {
     id: 'sbr',
-    name: 'Sveriges Byggindustrier (SBR)',
-    description: 'Sveriges Byggindustrier är branschorganisationen för byggföretag. Som medlem följer vi branschens högsta standarder och etiska riktlinjer.',
-    website: 'https://www.sverigesbyggindustrier.se/',
+    name: 'Svenska Byggingenjörers Riksförbund (SBR)',
+    description: 'Svenska Byggingenjörers Riksförbund är branschorganisationen för byggingenjörer. Som medlem följer vi branschens högsta standarder och etiska riktlinjer.',
+    website: 'https://www.sbr.se/',
     type: 'organization',
     benefits: [
       'Branschens etiska riktlinjer',
