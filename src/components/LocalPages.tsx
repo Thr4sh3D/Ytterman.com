@@ -23,7 +23,7 @@ const localAreas: LocalArea[] = [
       'Renoveringar av äldre byggnader'
     ],
     projects: [
-      'Över 150 genomförda projekt i Sundsvall',
+      'Flertalet genomförda projekt i Sundsvall',
       'Specialisering på centrumbyggnader',
       'Erfaren av lokala byggbestämmelser',
       'Snabb handläggning med kommunen'
@@ -47,7 +47,7 @@ const localAreas: LocalArea[] = [
       'Kustnaära konstruktioner'
     ],
     projects: [
-      'Över 80 projekt i Härnösands kommun',
+      'Flera projekt i Härnösands kommun',
       'Expertis inom kulturhistoriska byggnader',
       'Samarbete med Länsstyrelsen',
       'Specialisering på kustmiljöer'
@@ -71,7 +71,7 @@ const localAreas: LocalArea[] = [
       'Jordbruksbyggnader'
     ],
     projects: [
-      'Över 60 projekt i Sollefteå kommun',
+      'Flera projekt i Sollefteå kommun',
       'Specialisering på lantliga miljöer',
       'Expertis inom jordbruksbyggnader',
       'Industriell byggkontroll'
@@ -95,7 +95,7 @@ const localAreas: LocalArea[] = [
       'Infrastrukturprojekt'
     ],
     projects: [
-      'Över 45 projekt i Timrå kommun',
+      'Flera projekt i Timrå kommun',
       'Fokus på modern bostadsutveckling',
       'Industriell expertis',
       'Infrastrukturprojekt'
@@ -119,7 +119,7 @@ const localAreas: LocalArea[] = [
       'Renoveringar'
     ],
     projects: [
-      'Över 35 projekt i Kramfors kommun',
+      'Flera projekt i Kramfors kommun',
       'Specialisering på kustmiljöer',
       'Renovering av äldre byggnader',
       'Moderna bostadslösningar'
