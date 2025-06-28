@@ -2,7 +2,7 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { SEO } from '@/components/SEO';
-import { HeroSection } from '@/components/HeroSection';
+import { Hero } from '@/components/Hero';
 import { ServicesSection } from '@/components/ServicesSection';
 import { AboutSection } from '@/components/AboutSection';
 import { LocalPages } from '@/components/LocalPages';
@@ -20,7 +20,7 @@ const Index = () => {
       <div className="min-h-screen">
         <Header />
         <main>
-          <HeroSection />
+          <Hero />
           <ServicesSection />
           <AboutSection />
           <LocalPages />
