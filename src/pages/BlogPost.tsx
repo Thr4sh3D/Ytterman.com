@@ -8,7 +8,7 @@ import { Calendar, Clock, ArrowLeft, Phone, Mail, CheckCircle, AlertTriangle, Fi
 const blogContent: Record<string, any> = {
   "vad-ar-kontrollansvarig": {
     title: "Vad är en Kontrollansvarig och varför behöver du en?",
-    date: "2025-06-15",
+    date: "2024-01-15",
     readTime: "5 min",
     category: "Byggkontroll",
     content: `
@@ -139,7 +139,7 @@ const blogContent: Record<string, any> = {
   },
   "bas-p-vs-bas-u-skillnader": {
     title: "BAS-P vs BAS-U - Skillnader och när du behöver dem",
-    date: "2025-06-10",
+    date: "2024-01-12",
     readTime: "4 min",
     category: "Arbetsmiljö",
     content: `
@@ -302,7 +302,173 @@ const BlogPost = () => {
         keywords={`${post.category.toLowerCase()}, kontrollansvarig, BAS, byggkontroll, Västernorrland`}
       />
       
-      {/* ... keep existing code (style jsx and main content) */}
+      <style jsx>{`
+        .prose-content {
+          line-height: 1.7;
+        }
+        
+        .lead {
+          font-size: 1.25rem;
+          font-weight: 400;
+          color: #475569;
+          margin-bottom: 2rem;
+          line-height: 1.6;
+        }
+        
+        .info-box, .highlight-box {
+          background: #f8fafc;
+          border: 1px solid #e2e8f0;
+          border-radius: 12px;
+          padding: 1.5rem;
+          margin: 2rem 0;
+        }
+        
+        .highlight-box.warning {
+          background: #fefce8;
+          border-color: #fbbf24;
+        }
+        
+        .info-box-header, .highlight-box-header {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          margin-bottom: 1rem;
+        }
+        
+        .info-box-header h3, .highlight-box-header h3 {
+          margin: 0;
+          font-size: 1.125rem;
+          font-weight: 600;
+          color: #1e293b;
+        }
+        
+        .checklist {
+          display: flex;
+          flex-direction: column;
+          gap: 0.75rem;
+          margin: 1.5rem 0;
+        }
+        
+        .checklist-item {
+          display: flex;
+          align-items: flex-start;
+          gap: 0.75rem;
+        }
+        
+        .checklist-item svg {
+          margin-top: 0.125rem;
+          flex-shrink: 0;
+        }
+        
+        .benefits-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 1.5rem;
+          margin: 2rem 0;
+        }
+        
+        .benefit-card {
+          background: white;
+          border: 1px solid #e2e8f0;
+          border-radius: 8px;
+          padding: 1.5rem;
+          text-align: center;
+        }
+        
+        .benefit-icon {
+          display: flex;
+          justify-content: center;
+          margin-bottom: 1rem;
+        }
+        
+        .benefit-card h4 {
+          font-size: 1.125rem;
+          font-weight: 600;
+          color: #1e293b;
+          margin-bottom: 0.5rem;
+        }
+        
+        .benefit-card p {
+          color: #64748b;
+          margin: 0;
+        }
+        
+        .comparison-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: 2rem;
+          margin: 2rem 0;
+        }
+        
+        .comparison-card {
+          background: white;
+          border: 1px solid #e2e8f0;
+          border-radius: 12px;
+          padding: 1.5rem;
+        }
+        
+        .comparison-card.bas-p {
+          border-left: 4px solid #10b981;
+        }
+        
+        .comparison-card.bas-u {
+          border-left: 4px solid #f59e0b;
+        }
+        
+        .comparison-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 1rem;
+        }
+        
+        .comparison-header h3 {
+          margin: 0;
+          font-size: 1.25rem;
+          font-weight: 600;
+          color: #1e293b;
+        }
+        
+        .phase-badge {
+          background: #e2e8f0;
+          color: #475569;
+          padding: 0.25rem 0.75rem;
+          border-radius: 9999px;
+          font-size: 0.875rem;
+          font-weight: 500;
+        }
+        
+        .experience-highlight {
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          color: white;
+          padding: 2rem;
+          border-radius: 12px;
+          text-align: center;
+          margin: 2rem 0;
+        }
+        
+        .experience-highlight h3 {
+          margin: 0 0 1rem 0;
+          font-size: 1.5rem;
+          font-weight: 700;
+        }
+        
+        .experience-highlight p {
+          margin: 0;
+          font-size: 1.125rem;
+          opacity: 0.9;
+        }
+        
+        @media (max-width: 768px) {
+          .benefits-grid {
+            grid-template-columns: 1fr;
+          }
+          
+          .comparison-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+      `}</style>
       
       <div className="min-h-screen">
         <Header />
@@ -369,11 +535,6 @@ const BlogPost = () => {
                   </a>
                 </div>
               </div>
-
-              {/* Footer with updated year */}
-              <footer className="mt-16 pt-8 border-t border-slate-200 text-center text-sm text-slate-500">
-                <p>© 2025 Ytterman. Alla rättigheter förbehållna.</p>
-              </footer>
             </div>
           </article>
         </main>

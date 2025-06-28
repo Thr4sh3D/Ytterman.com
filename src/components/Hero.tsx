@@ -1,121 +1,116 @@
-import { Phone, Mail, CheckCircle } from 'lucide-react';
+import { CheckCircle, MessageCircle, Shield, Award } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { HeroBanner } from './HeroBanner';
 
 export const Hero = () => {
   const scrollToContact = () => {
-    const contactSection = document.getElementById('kontakt');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
+    const element = document.getElementById('kontakt');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
-  const handleServiceClick = (service: string) => {
-    scrollToContact();
-    // Fyll i formuläret med fördefinierad text
-    setTimeout(() => {
-      const projectTypeSelect = document.querySelector('select[name="projectType"]') as HTMLSelectElement;
-      const messageTextarea = document.querySelector('textarea[name="message"]') as HTMLTextAreaElement;
-      
-      if (projectTypeSelect) {
-        projectTypeSelect.value = service;
-      }
-      
-      if (messageTextarea) {
-        let message = '';
-        switch (service) {
-          case 'Kontrollansvarig':
-            message = 'Hej! Jag är intresserad av kontrollansvarig för mitt byggprojekt. Kan ni kontakta mig för en kostnadsfri konsultation?';
-            break;
-          case 'BAS-P':
-            message = 'Hej! Jag behöver BAS-P (byggarbetsmiljösamordnare under projektering) för mitt projekt. Kan ni hjälpa mig?';
-            break;
-          case 'BAS-U':
-            message = 'Hej! Jag söker BAS-U (byggarbetsmiljösamordnare under utförande) för mitt byggprojekt. Kan ni kontakta mig?';
-            break;
-          case 'Villor & Småhus':
-            message = 'Hej! Jag planerar att bygga villa/småhus och behöver hjälp med kontrollansvarig och BAS. Kan ni kontakta mig?';
-            break;
-        }
-        messageTextarea.value = message;
-      }
-    }, 500);
+  const openWhatsApp = () => {
+    window.open('https://wa.me/46761118447?text=Hej! Jag är intresserad av dina tjänster som kontrollansvarig och BAS.', '_blank');
   };
 
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-50">
+    <section id="hem" className="pt-24 pb-16 bg-gradient-to-br from-background via-secondary/20 to-accent/10">
       <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h1 className="text-5xl md:text-6xl font-bold text-slate-900 mb-6">
-              Kontrollansvarig & BAS i{' '}
-              <span className="text-transparent bg-clip-text earth-gradient">
-                Västernorrland
-              </span>
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Left Column - Content */}
+          <div className="animate-fade-in">
+            <div className="inline-flex items-center space-x-2 bg-accent/20 px-4 py-2 rounded-full mb-6">
+              <Shield className="w-5 h-5 text-accent" />
+              <span className="text-sm font-medium text-accent">Certifierad & Erfaren</span>
+            </div>
+            
+            <h1 className="text-4xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
+              Certifierad Kontrollansvarig och{' '}
+              <span className="text-gradient">BAS U/P – Västernorrland</span>
             </h1>
-            <p className="text-xl text-slate-600 mb-8 max-w-3xl mx-auto">
-              Professionell kontrollansvarig och byggarbetsmiljösamordnare med över 20 års 
-              erfarenhet. Säkerställer att ditt byggprojekt följer alla regelverk från start till mål.
+            
+            <p className="text-xl text-muted-foreground mb-4 leading-relaxed">
+              Kontrollansvarig & Byggarbetsmiljösamordnare BAS-P / BAS-U
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a 
-                href="tel:+46761118447"
-                className="inline-flex items-center px-8 py-4 earth-gradient text-white rounded-lg hover:opacity-90 transition-opacity text-lg font-semibold"
-              >
-                <Phone className="w-5 h-5 mr-2" />
-                Ring direkt: 076-111 84 47
-              </a>
-              <button 
+            
+            <p className="text-lg text-muted-foreground mb-8">
+              Verksam i Sundsvall, Härnösand, Sollefteå, Kramfors, Timrå och hela Västernorrland
+            </p>
+            
+            <div className="space-y-4 mb-8">
+              <div className="flex items-center space-x-3">
+                <CheckCircle className="w-6 h-6 text-accent flex-shrink-0" />
+                <span className="text-lg">Certifierad och erfaren – med bred och praktisk kompetens</span>
+              </div>
+              <div className="flex items-center space-x-3">
+                <CheckCircle className="w-6 h-6 text-accent flex-shrink-0" />
+                <span className="text-lg">Fast pris eller tydlig timdebitering</span>
+              </div>
+              <div className="flex items-center space-x-3">
+                <CheckCircle className="w-6 h-6 text-accent flex-shrink-0" />
+                <span className="text-lg">Digital hantering, platsbesök och snabb återkoppling</span>
+              </div>
+              <div className="flex items-center space-x-3">
+                <CheckCircle className="w-6 h-6 text-accent flex-shrink-0" />
+                <span className="text-lg">Trygga paket för nybyggnation, ombyggnad eller BRF‑projekt</span>
+              </div>
+              <div className="flex items-center space-x-3">
+                <CheckCircle className="w-6 h-6 text-accent flex-shrink-0" />
+                <span className="text-lg">Möjlighet att kombinera KA + BAS‑P/U i ett komplett paket</span>
+              </div>
+            </div>
+            
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button 
                 onClick={scrollToContact}
-                className="inline-flex items-center px-8 py-4 border-2 border-accent text-accent rounded-lg hover:bg-accent hover:text-white transition-colors text-lg font-semibold"
+                size="lg"
+                className="earth-gradient text-white hover:opacity-90 text-lg px-8 py-6"
               >
-                <Mail className="w-5 h-5 mr-2" />
-                Begär offert
-              </button>
+                Kontakta mig
+              </Button>
+              <Button 
+                onClick={openWhatsApp}
+                variant="outline"
+                size="lg"
+                className="border-accent text-accent hover:bg-accent hover:text-white text-lg px-8 py-6"
+              >
+                <MessageCircle className="w-5 h-5 mr-2" />
+                WhatsApp
+              </Button>
             </div>
           </div>
 
-          {/* Service Cards */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              {
-                title: "Kontrollansvarig",
-                description: "Certifierad KA för alla byggprojekt",
-                features: ["Kontrollplan", "Teknisk kontroll", "Slutbevis"]
-              },
-              {
-                title: "BAS-P",
-                description: "Arbetsmiljösamordning under projektering",
-                features: ["Arbetsmiljöplan", "Riskbedömning", "Samordning"]
-              },
-              {
-                title: "BAS-U", 
-                description: "Arbetsmiljösamordning under utförande",
-                features: ["Säkerhetsronder", "Avvikelsehantering", "Dokumentation"]
-              },
-              {
-                title: "Villor & Småhus",
-                description: "Specialiserade tjänster för småhusbyggare",
-                features: ["Villapaket", "Personlig service", "Lokalkännedom"]
-              }
-            ].map((service, index) => (
-              <div key={index} className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                <h3 className="text-xl font-bold text-slate-900 mb-3">{service.title}</h3>
-                <p className="text-slate-600 mb-4">{service.description}</p>
-                <ul className="space-y-2 mb-6">
-                  {service.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center text-sm text-slate-700">
-                      <CheckCircle className="w-4 h-4 text-green-500 mr-2 flex-shrink-0" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                <button 
-                  onClick={() => handleServiceClick(service.title)}
-                  className="w-full px-4 py-2 earth-gradient text-white rounded-lg hover:opacity-90 transition-opacity font-semibold"
-                >
-                  Begär offert
-                </button>
+          {/* Right Column - Banner and Visual Elements */}
+          <div className="animate-slide-up">
+            <div className="space-y-8">
+              {/* Hero Banner */}
+              <HeroBanner />
+              
+              {/* Stats Cards */}
+              <div className="grid grid-cols-2 gap-4">
+                <div className="bg-white rounded-xl p-4 shadow-lg">
+                  <Award className="w-6 h-6 text-accent mb-2" />
+                  <h3 className="font-bold text-lg mb-1">20+ År</h3>
+                  <p className="text-xs text-muted-foreground">Erfarenhet inom bygg</p>
+                </div>
+                <div className="bg-white rounded-xl p-4 shadow-lg">
+                  <Shield className="w-6 h-6 text-accent mb-2" />
+                  <h3 className="font-bold text-lg mb-1">Certifierad</h3>
+                  <p className="text-xs text-muted-foreground">KA, BAS-P & BAS-U</p>
+                </div>
+                <div className="bg-white rounded-xl p-4 shadow-lg">
+                  <CheckCircle className="w-6 h-6 text-accent mb-2" />
+                  <h3 className="font-bold text-lg mb-1">Fast Pris</h3>
+                  <p className="text-xs text-muted-foreground">Tydliga kostnader</p>
+                </div>
+                <div className="bg-white rounded-xl p-4 shadow-lg">
+                  <MessageCircle className="w-6 h-6 text-accent mb-2" />
+                  <h3 className="font-bold text-lg mb-1">Snabb Kontakt</h3>
+                  <p className="text-xs text-muted-foreground">Digital hantering</p>
+                </div>
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </div>
