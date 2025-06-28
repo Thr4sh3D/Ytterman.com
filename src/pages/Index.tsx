@@ -8,7 +8,7 @@ import { Contact } from '@/components/Contact';
 import { ServiceQuickMessages } from '@/components/ServiceQuickMessages';
 import { Footer } from '@/components/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
-import { SEO } from '@/components/SEO';
+import { AdvancedSEO } from '@/components/AdvancedSEO';
 
 const Index = () => {
   const [selectedPackage, setSelectedPackage] = useState<string>('');
@@ -57,10 +57,11 @@ const Index = () => {
 
   return (
     <>
-      <SEO 
+      <AdvancedSEO 
         title="Ytterman - Kontrollansvarig & BAS i Västernorrland | Certifierad Byggkontroll"
         description="Certifierad Kontrollansvarig och Byggarbetsmiljösamordnare (BAS-P/BAS-U) i Västernorrland. Över 20 års erfarenhet. Trygg byggprocess med fast pris. Verksam i Sundsvall, Härnösand, Sollefteå, Timrå, Kramfors."
         keywords="kontrollansvarig Västernorrland, BAS-P Sundsvall, BAS-U Härnösand, byggkontroll Sollefteå, kontrollplan Timrå, slutbevis Kramfors, bygglov Västernorrland, byggarbetsmiljösamordnare"
+        url="https://ytterman.com"
       />
       
       <div className="min-h-screen">

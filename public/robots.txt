@@ -4,5 +4,16 @@ Allow: /
 # Sitemap
 Sitemap: https://ytterman.com/sitemap.xml
 
-# Crawl-delay
+# Disallow admin areas (if any in future)
+Disallow: /admin/
+Disallow: /private/
+
+# Allow all important pages
+Allow: /
+Allow: /tjanster
+Allow: /kontrollansvarig
+Allow: /bas-p
+Allow: /bas-u
+
+# Crawl-delay for respectful crawling
 Crawl-delay: 1
