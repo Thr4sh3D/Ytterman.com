@@ -6,6 +6,7 @@ import { Pricing } from '@/components/Pricing';
 import { About } from '@/components/About';
 import { Contact } from '@/components/Contact';
 import { ServiceQuickMessages } from '@/components/ServiceQuickMessages';
+import { FAQ } from '@/components/FAQ';
 import { Footer } from '@/components/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { SEO } from '@/components/SEO';
@@ -70,6 +71,7 @@ const Index = () => {
           <Services onServiceSelect={handleServiceSelect} />
           <Pricing onPackageSelect={handlePackageSelect} />
           <About />
+          <FAQ />
           <Contact 
             selectedPackage={selectedPackage} 
             prefilledMessage={prefilledMessage}

@@ -12,6 +12,20 @@
   </url>
   
   <url>
+    <loc>https://ytterman.com/tjanster</loc>
+    <lastmod>2024-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <url>
+    <loc>https://ytterman.com/blogg</loc>
+    <lastmod>2024-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>https://ytterman.com/#tjanster</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>monthly</changefreq>
@@ -37,6 +51,85 @@
     <lastmod>2024-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+  </url>
+
+  <!-- Lokala landningssidor -->
+  <url>
+    <loc>https://ytterman.com/kontrollansvarig-sundsvall</loc>
+    <lastmod>2024-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://ytterman.com/bas-p-harnosand</loc>
+    <lastmod>2024-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://ytterman.com/byggkontroll-solleftea</loc>
+    <lastmod>2024-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://ytterman.com/kontrollansvarig-timra</loc>
+    <lastmod>2024-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://ytterman.com/bas-u-kramfors</loc>
+    <lastmod>2024-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Bloggartiklar -->
+  <url>
+    <loc>https://ytterman.com/blogg/vad-ar-kontrollansvarig</loc>
+    <lastmod>2024-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://ytterman.com/blogg/bas-p-vs-bas-u-skillnader</loc>
+    <lastmod>2024-01-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://ytterman.com/blogg/bygglovsprocessen-vasternorrland</loc>
+    <lastmod>2024-01-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://ytterman.com/blogg/nya-byggregelverket-2025</loc>
+    <lastmod>2024-01-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://ytterman.com/blogg/vanliga-misstag-byggprojekt</loc>
+    <lastmod>2024-01-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://ytterman.com/blogg/kontrollplan-guide</loc>
+    <lastmod>2024-01-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 
 </urlset>
