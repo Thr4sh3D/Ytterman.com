@@ -7,6 +7,7 @@ import { Pricing } from '@/components/Pricing';
 import { PriceCalculator } from '@/components/PriceCalculator';
 import { About } from '@/components/About';
 import { Testimonials } from '@/components/Testimonials';
+import { Partners } from '@/components/Partners';
 import { Blog } from '@/components/Blog';
 import { FAQ } from '@/components/FAQ';
 import { LocalPages } from '@/components/LocalPages';
@@ -80,6 +81,7 @@ const Index = () => {
           <PriceCalculator />
           <About />
           <Testimonials />
+          <Partners />
           <LocalPages />
           <Blog />
           <DownloadableGuides />
