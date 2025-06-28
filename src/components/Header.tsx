@@ -1,87 +1,139 @@
 import { useState } from 'react';
-import { Menu, X, Phone, Mail } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Menu, X, Phone, Mail, ChevronDown } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [isBranchOpen, setIsBranchOpen] = useState(false);
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-    setIsMenuOpen(false);
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
   };
 
-  const navigationItems = [
-    { id: 'hem', label: 'Hem' },
-    { id: 'tjanster', label: 'Tjänster' },
-    { id: 'priser', label: 'Priser' },
-    { id: 'om-mig', label: 'Om mig' },
-    { id: 'recensioner', label: 'Recensioner' },
-    { id: 'blogg', label: 'Kunskap' },
-    { id: 'faq', label: 'FAQ' },
-    { id: 'kontakt', label: 'Kontakt' }
-  ];
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+    setIsServicesOpen(false);
+    setIsBranchOpen(false);
+  };
 
   return (
-    <header className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm border-b border-slate-200 z-50">
+    <header className="bg-white shadow-sm sticky top-0 z-50">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <div className="flex items-center space-x-2">
-            <div className="w-10 h-10 earth-gradient rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-lg">TY</span>
-            </div>
-            <div>
-              <h1 className="text-xl font-bold text-slate-900">Ytterman</h1>
-              <p className="text-xs text-slate-600">Trygg Byggprocess</p>
-            </div>
+        {/* Top bar */}
+        <div className="hidden md:flex justify-between items-center py-2 text-sm border-b border-slate-100">
+          <div className="flex items-center space-x-6">
+            <a href="tel:+46761118447" className="flex items-center text-slate-600 hover:text-accent transition-colors">
+              <Phone className="w-4 h-4 mr-2" />
+              076-111 84 47
+            </a>
+            <a href="mailto:tobias@ytterman.com" className="flex items-center text-slate-600 hover:text-accent transition-colors">
+              <Mail className="w-4 h-4 mr-2" />
+              tobias@ytterman.com
+            </a>
           </div>
+          <div className="text-slate-600">
+            Certifierad Kontrollansvarig & BAS i Västernorrland
+          </div>
+        </div>
+
+        {/* Main navigation */}
+        <div className="flex justify-between items-center py-4">
+          <Link to="/" className="text-2xl font-bold text-slate-900" onClick={closeMenu}>
+            Ytterman
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
-            {navigationItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className="text-slate-700 hover:text-primary transition-colors font-medium"
+            <Link to="/" className="text-slate-700 hover:text-accent transition-colors">
+              Hem
+            </Link>
+            
+            {/* Services Dropdown */}
+            <div className="relative group">
+              <button 
+                className="flex items-center text-slate-700 hover:text-accent transition-colors"
+                onMouseEnter={() => setIsServicesOpen(true)}
+                onMouseLeave={() => setIsServicesOpen(false)}
               >
-                {item.label}
+                Tjänster
+                <ChevronDown className="w-4 h-4 ml-1" />
               </button>
-            ))}
+              
+              {isServicesOpen && (
+                <div 
+                  className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-slate-200 py-2 z-50"
+                  onMouseEnter={() => setIsServicesOpen(true)}
+                  onMouseLeave={() => setIsServicesOpen(false)}
+                >
+                  <Link to="/tjanster" className="block px-4 py-2 text-slate-700 hover:bg-slate-50 hover:text-accent transition-colors">
+                    Alla tjänster
+                  </Link>
+                  <div className="border-t border-slate-100 my-2"></div>
+                  <Link to="/kontrollansvarig" className="block px-4 py-2 text-slate-700 hover:bg-slate-50 hover:text-accent transition-colors">
+                    Kontrollansvarig (KA)
+                  </Link>
+                  <Link to="/bas-p" className="block px-4 py-2 text-slate-700 hover:bg-slate-50 hover:text-accent transition-colors">
+                    BAS-P (Projektering)
+                  </Link>
+                  <Link to="/bas-u" className="block px-4 py-2 text-slate-700 hover:bg-slate-50 hover:text-accent transition-colors">
+                    BAS-U (Utförande)
+                  </Link>
+                </div>
+              )}
+            </div>
+
+            {/* Branch Dropdown */}
+            <div className="relative group">
+              <button 
+                className="flex items-center text-slate-700 hover:text-accent transition-colors"
+                onMouseEnter={() => setIsBranchOpen(true)}
+                onMouseLeave={() => setIsBranchOpen(false)}
+              >
+                Branscher
+                <ChevronDown className="w-4 h-4 ml-1" />
+              </button>
+              
+              {isBranchOpen && (
+                <div 
+                  className="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-slate-200 py-2 z-50"
+                  onMouseEnter={() => setIsBranchOpen(true)}
+                  onMouseLeave={() => setIsBranchOpen(false)}
+                >
+                  <Link to="/villor-smahus" className="block px-4 py-2 text-slate-700 hover:bg-slate-50 hover:text-accent transition-colors">
+                    Villor & Småhus
+                  </Link>
+                  <Link to="/tjanster" className="block px-4 py-2 text-slate-700 hover:bg-slate-50 hover:text-accent transition-colors">
+                    Flerfamiljshus & BRF
+                  </Link>
+                  <Link to="/tjanster" className="block px-4 py-2 text-slate-700 hover:bg-slate-50 hover:text-accent transition-colors">
+                    Kommersiella byggnader
+                  </Link>
+                </div>
+              )}
+            </div>
+
+            <Link to="/blogg" className="text-slate-700 hover:text-accent transition-colors">
+              Blogg
+            </Link>
+            
+            <a href="#kontakt" className="text-slate-700 hover:text-accent transition-colors">
+              Kontakt
+            </a>
+            
+            <a 
+              href="tel:+46761118447" 
+              className="px-6 py-2 earth-gradient text-white rounded-lg hover:opacity-90 transition-opacity font-semibold"
+            >
+              Ring nu
+            </a>
           </nav>
 
-          {/* Contact Info & CTA */}
-          <div className="hidden md:flex items-center space-x-4">
-            <div className="flex items-center space-x-4 text-sm">
-              <a 
-                href="tel:+46761118447" 
-                className="flex items-center space-x-1 text-slate-600 hover:text-primary transition-colors"
-              >
-                <Phone className="w-4 h-4" />
-                <span>076-111 84 47</span>
-              </a>
-              <a 
-                href="mailto:tobias@ytterman.com" 
-                className="flex items-center space-x-1 text-slate-600 hover:text-primary transition-colors"
-              >
-                <Mail className="w-4 h-4" />
-                <span className="hidden xl:inline">tobias@ytterman.com</span>
-              </a>
-            </div>
-            <Button 
-              onClick={() => scrollToSection('kontakt')}
-              className="earth-gradient text-white hover:opacity-90"
-            >
-              Kostnadsfri konsultation
-            </Button>
-          </div>
-
-          {/* Mobile Menu Button */}
+          {/* Mobile menu button */}
           <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="lg:hidden p-2"
+            onClick={toggleMenu}
+            aria-label="Toggle menu"
           >
             {isMenuOpen ? (
               <X className="w-6 h-6 text-slate-700" />
@@ -91,43 +143,59 @@ export const Header = () => {
           </button>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="lg:hidden py-4 border-t border-slate-200">
+          <div className="lg:hidden border-t border-slate-100 py-4">
             <nav className="flex flex-col space-y-4">
-              {navigationItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className="text-left text-slate-700 hover:text-primary transition-colors font-medium"
-                >
-                  {item.label}
-                </button>
-              ))}
-              <div className="pt-4 border-t border-slate-200">
-                <div className="flex flex-col space-y-2 text-sm">
-                  <a 
-                    href="tel:+46761118447" 
-                    className="flex items-center space-x-2 text-slate-600"
-                  >
-                    <Phone className="w-4 h-4" />
-                    <span>076-111 84 47</span>
-                  </a>
-                  <a 
-                    href="mailto:tobias@ytterman.com" 
-                    className="flex items-center space-x-2 text-slate-600"
-                  >
-                    <Mail className="w-4 h-4" />
-                    <span>tobias@ytterman.com</span>
-                  </a>
-                </div>
-                <Button 
-                  onClick={() => scrollToSection('kontakt')}
-                  className="w-full mt-4 earth-gradient text-white hover:opacity-90"
-                >
-                  Kostnadsfri konsultation
-                </Button>
+              <Link to="/" className="text-slate-700 hover:text-accent transition-colors" onClick={closeMenu}>
+                Hem
+              </Link>
+              
+              <div className="border-l-2 border-accent pl-4">
+                <div className="font-semibold text-slate-900 mb-2">Tjänster</div>
+                <Link to="/tjanster" className="block text-slate-700 hover:text-accent transition-colors mb-2" onClick={closeMenu}>
+                  Alla tjänster
+                </Link>
+                <Link to="/kontrollansvarig" className="block text-slate-700 hover:text-accent transition-colors mb-2" onClick={closeMenu}>
+                  Kontrollansvarig (KA)
+                </Link>
+                <Link to="/bas-p" className="block text-slate-700 hover:text-accent transition-colors mb-2" onClick={closeMenu}>
+                  BAS-P (Projektering)
+                </Link>
+                <Link to="/bas-u" className="block text-slate-700 hover:text-accent transition-colors" onClick={closeMenu}>
+                  BAS-U (Utförande)
+                </Link>
               </div>
+
+              <div className="border-l-2 border-accent pl-4">
+                <div className="font-semibold text-slate-900 mb-2">Branscher</div>
+                <Link to="/villor-smahus" className="block text-slate-700 hover:text-accent transition-colors mb-2" onClick={closeMenu}>
+                  Villor & Småhus
+                </Link>
+                <Link to="/tjanster" className="block text-slate-700 hover:text-accent transition-colors mb-2" onClick={closeMenu}>
+                  Flerfamiljshus & BRF
+                </Link>
+                <Link to="/tjanster" className="block text-slate-700 hover:text-accent transition-colors" onClick={closeMenu}>
+                  Kommersiella byggnader
+                </Link>
+              </div>
+              
+              <Link to="/blogg" className="text-slate-700 hover:text-accent transition-colors" onClick={closeMenu}>
+                Blogg
+              </Link>
+              
+              <a href="#kontakt" className="text-slate-700 hover:text-accent transition-colors" onClick={closeMenu}>
+                Kontakt
+              </a>
+              
+              <a 
+                href="tel:+46761118447" 
+                className="inline-flex items-center justify-center px-6 py-3 earth-gradient text-white rounded-lg hover:opacity-90 transition-opacity font-semibold"
+                onClick={closeMenu}
+              >
+                <Phone className="w-4 h-4 mr-2" />
+                076-111 84 47
+              </a>
             </nav>
           </div>
         )}
