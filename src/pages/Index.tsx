@@ -2,11 +2,17 @@ import { useState } from 'react';
 import { Header } from '@/components/Header';
 import { Hero } from '@/components/Hero';
 import { Services } from '@/components/Services';
+import { DetailedServices } from '@/components/DetailedServices';
 import { Pricing } from '@/components/Pricing';
+import { PriceCalculator } from '@/components/PriceCalculator';
 import { About } from '@/components/About';
+import { Testimonials } from '@/components/Testimonials';
+import { Blog } from '@/components/Blog';
+import { FAQ } from '@/components/FAQ';
+import { LocalPages } from '@/components/LocalPages';
+import { DownloadableGuides } from '@/components/DownloadableGuides';
 import { Contact } from '@/components/Contact';
 import { ServiceQuickMessages } from '@/components/ServiceQuickMessages';
-import { FAQ } from '@/components/FAQ';
 import { Footer } from '@/components/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { SEO } from '@/components/SEO';
@@ -69,8 +75,14 @@ const Index = () => {
         <main>
           <Hero />
           <Services onServiceSelect={handleServiceSelect} />
+          <DetailedServices />
           <Pricing onPackageSelect={handlePackageSelect} />
+          <PriceCalculator />
           <About />
+          <Testimonials />
+          <LocalPages />
+          <Blog />
+          <DownloadableGuides />
           <FAQ />
           <Contact 
             selectedPackage={selectedPackage} 
