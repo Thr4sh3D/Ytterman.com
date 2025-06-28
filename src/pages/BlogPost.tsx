@@ -8,7 +8,7 @@ import { Calendar, Clock, ArrowLeft, Phone, Mail, CheckCircle, AlertTriangle, Fi
 const blogContent: Record<string, any> = {
   "vad-ar-kontrollansvarig": {
     title: "Vad är en Kontrollansvarig och varför behöver du en?",
-    date: "2024-12-15",
+    date: "2025-06-15",
     readTime: "5 min",
     category: "Byggkontroll",
     content: `
@@ -139,7 +139,7 @@ const blogContent: Record<string, any> = {
   },
   "bas-p-vs-bas-u-skillnader": {
     title: "BAS-P vs BAS-U - Skillnader och när du behöver dem",
-    date: "2024-12-10",
+    date: "2025-06-10",
     readTime: "4 min",
     category: "Arbetsmiljö",
     content: `

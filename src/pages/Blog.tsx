@@ -11,7 +11,7 @@ const Blog = () => {
       slug: "vad-ar-kontrollansvarig",
       title: "Vad är en Kontrollansvarig och varför behöver du en?",
       excerpt: "En komplett guide till kontrollansvarigs roll, uppgifter och när du behöver anlita en för ditt byggprojekt.",
-      date: "2024-12-15",
+      date: "2025-06-15",
       readTime: "5 min",
       category: "Byggkontroll",
       featured: true
@@ -20,7 +20,7 @@ const Blog = () => {
       slug: "bas-p-vs-bas-u-skillnader",
       title: "BAS-P vs BAS-U - Skillnader och när du behöver dem",
       excerpt: "Lär dig skillnaderna mellan BAS-P och BAS-U, och förstå när varje typ av byggarbetsmiljösamordnare behövs.",
-      date: "2024-12-10",
+      date: "2025-06-10",
       readTime: "4 min",
       category: "Arbetsmiljö",
       featured: false
