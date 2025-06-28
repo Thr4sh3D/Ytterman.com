@@ -120,13 +120,13 @@ const KontrollansvarigTjanst = () => {
                   </div>
                   <div className="text-center">
                     <Clock className="w-12 h-12 text-accent mx-auto mb-3" />
-                    <h3 className="font-semibold text-slate-900">20+ År</h3>
-                    <p className="text-sm text-slate-600">Erfarenhet av KA-uppdrag</p>
+                    <h3 className="font-semibold text-slate-900">Lång Erfarenhet</h3>
+                    <p className="text-sm text-slate-600">Över 20 års KA-uppdrag</p>
                   </div>
                   <div className="text-center">
                     <CheckCircle className="w-12 h-12 text-accent mx-auto mb-3" />
-                    <h3 className="font-semibold text-slate-900">100% Godkänt</h3>
-                    <p className="text-sm text-slate-600">Alla projekt får slutbevis</p>
+                    <h3 className="font-semibold text-slate-900">Trygg Process</h3>
+                    <p className="text-sm text-slate-600">Professionell hantering</p>
                   </div>
                   <div className="text-center">
                     <Shield className="w-12 h-12 text-accent mx-auto mb-3" />

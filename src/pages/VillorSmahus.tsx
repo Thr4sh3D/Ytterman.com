@@ -134,7 +134,7 @@ const VillorSmahus = () => {
                   <div className="text-center">
                     <Home className="w-12 h-12 text-accent mx-auto mb-3" />
                     <h3 className="font-semibold text-slate-900">Villa-specialist</h3>
-                    <p className="text-sm text-slate-600">Över 200 villprojekt</p>
+                    <p className="text-sm text-slate-600">Flertalet villprojekt</p>
                   </div>
                   <div className="text-center">
                     <Award className="w-12 h-12 text-accent mx-auto mb-3" />
@@ -148,8 +148,8 @@ const VillorSmahus = () => {
                   </div>
                   <div className="text-center">
                     <CheckCircle className="w-12 h-12 text-accent mx-auto mb-3" />
-                    <h3 className="font-semibold text-slate-900">100% Godkänt</h3>
-                    <p className="text-sm text-slate-600">Alla projekt får slutbevis</p>
+                    <h3 className="font-semibold text-slate-900">Trygg Process</h3>
+                    <p className="text-sm text-slate-600">Professionell hantering</p>
                   </div>
                 </div>
               </div>
@@ -281,27 +281,27 @@ const VillorSmahus = () => {
                   <div className="text-center">
                     <Building className="w-8 h-8 text-accent mx-auto mb-2" />
                     <h4 className="font-semibold text-slate-900">Sundsvall</h4>
-                    <p className="text-sm text-slate-600">50+ projekt</p>
+                    <p className="text-sm text-slate-600">Flera projekt</p>
                   </div>
                   <div className="text-center">
                     <Building className="w-8 h-8 text-accent mx-auto mb-2" />
                     <h4 className="font-semibold text-slate-900">Härnösand</h4>
-                    <p className="text-sm text-slate-600">30+ projekt</p>
+                    <p className="text-sm text-slate-600">Flera projekt</p>
                   </div>
                   <div className="text-center">
                     <Building className="w-8 h-8 text-accent mx-auto mb-2" />
                     <h4 className="font-semibold text-slate-900">Sollefteå</h4>
-                    <p className="text-sm text-slate-600">25+ projekt</p>
+                    <p className="text-sm text-slate-600">Flera projekt</p>
                   </div>
                   <div className="text-center">
                     <Building className="w-8 h-8 text-accent mx-auto mb-2" />
                     <h4 className="font-semibold text-slate-900">Timrå</h4>
-                    <p className="text-sm text-slate-600">40+ projekt</p>
+                    <p className="text-sm text-slate-600">Flera projekt</p>
                   </div>
                   <div className="text-center">
                     <Building className="w-8 h-8 text-accent mx-auto mb-2" />
                     <h4 className="font-semibold text-slate-900">Kramfors</h4>
-                    <p className="text-sm text-slate-600">20+ projekt</p>
+                    <p className="text-sm text-slate-600">Flera projekt</p>
                   </div>
                 </div>
                 
