@@ -25,7 +25,7 @@ const partners: Partner[] = [
       'Mobil app för fältarbete',
       'Säker molnlagring'
     ],
-    relationship: 'Certifierad användare sedan 2018'
+    relationship: 'Certifierad användare'
   },
   {
     id: 'sbr',
@@ -40,7 +40,7 @@ const partners: Partner[] = [
       'Kvalitetssäkrade processer',
       'Branschens bästa praxis'
     ],
-    relationship: 'Medlem sedan 2015'
+    relationship: 'Aktiv medlem'
   }
 ];
 
@@ -58,10 +58,10 @@ const certifications = [
     description: 'Byggarbetsmiljösamordnare'
   },
   {
-    title: 'Kplan Certifierad Användare',
+    title: 'Kplan Användare',
     issuer: 'Kplan AB',
-    year: '2023',
-    description: 'Avancerad användare av Kplan-systemet'
+    year: '',
+    description: 'Professionell användare av Kplan-systemet'
   }
 ];
 
