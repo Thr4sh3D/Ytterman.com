@@ -1,46 +1,35 @@
-import { CheckCircle, ArrowRight, Shield, Users, FileCheck } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Shield, Users, FileText, Home, ArrowRight } from 'lucide-react';
 
 export const ServicesSection = () => {
   const services = [
     {
-      icon: <FileCheck className="w-8 h-8" />,
-      title: 'Kontrollansvarig',
-      description: 'Professionell kontrollansvarig för alla typer av byggprojekt',
-      features: [
-        'Kontrollplan och dokumentation',
-        'Kontroller under byggprocessen',
-        'Kommunikation med myndigheter',
-        'Slutbesiktning och slutbevis'
-      ],
-      link: '/kontrollansvarig',
-      price: 'Från 15,000 kr'
+      icon: Shield,
+      title: "Kontrollansvarig",
+      description: "Certifierad kontrollansvarig för alla typer av byggprojekt. Säkerställer regelefterlevnad och kvalitet.",
+      link: "/kontrollansvarig",
+      color: "from-blue-500 to-blue-600"
     },
     {
-      icon: <Shield className="w-8 h-8" />,
-      title: 'BAS-P (Projektering)',
-      description: 'Byggarbetsmiljösamordnare under projekteringsfasen',
-      features: [
-        'Arbetsmiljöplan',
-        'Riskbedömningar',
-        'Samordning av säkerhetsaspekter',
-        'Dokumentation av åtgärder'
-      ],
-      link: '/bas-p',
-      price: 'Från 8,000 kr'
+      icon: Users,
+      title: "BAS-P (Projektering)",
+      description: "Byggarbetsmiljösamordnare under projekteringsfasen. Säkerställer säkra arbetsförhållanden från start.",
+      link: "/bas-p",
+      color: "from-green-500 to-green-600"
     },
     {
-      icon: <Users className="w-8 h-8" />,
-      title: 'BAS-U (Utförande)',
-      description: 'Byggarbetsmiljösamordnare under utförandefasen',
-      features: [
-        'Säkerhetsronder på arbetsplatsen',
-        'Övervakning av arbetsmiljöplan',
-        'Hantering av avvikelser',
-        'Samordning mellan entreprenörer'
-      ],
-      link: '/bas-u',
-      price: 'Från 12,000 kr'
+      icon: FileText,
+      title: "BAS-U (Utförande)",
+      description: "Byggarbetsmiljösamordnare under byggfasen. Kontinuerlig säkerhetsövervakning på arbetsplatsen.",
+      link: "/bas-u",
+      color: "from-orange-500 to-orange-600"
+    },
+    {
+      icon: Home,
+      title: "Villor & Småhus",
+      description: "Specialiserade tjänster för villabyggare. Personlig service och lokalkännedom för ditt drömhus.",
+      link: "/villor-smahus",
+      color: "from-purple-500 to-purple-600"
     }
   ];
 
@@ -48,56 +37,54 @@ export const ServicesSection = () => {
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-slate-900 mb-4">
-            Våra Tjänster
+          <h2 className="text-4xl font-bold text-slate-900 mb-6">
+            Våra tjänster
           </h2>
           <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-            Kompletta lösningar för byggkontroll och arbetsmiljösamordning. 
-            Vi erbjuder professionella tjänster för alla typer av byggprojekt.
+            Professionella tjänster inom kontrollansvarig och BAS för alla typer av byggprojekt. 
+            Certifierad kompetens med över 20 års erfarenhet.
           </p>
         </div>
-        
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <div key={index} className="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow border border-slate-100">
-              <div className="earth-gradient w-16 h-16 rounded-lg flex items-center justify-center text-white mb-6">
-                {service.icon}
-              </div>
-              
-              <h3 className="text-2xl font-bold text-slate-900 mb-4">
-                {service.title}
-              </h3>
-              
-              <p className="text-slate-600 mb-6">
-                {service.description}
-              </p>
-              
-              <div className="space-y-3 mb-6">
-                {service.features.map((feature, idx) => (
-                  <div key={idx} className="flex items-start space-x-3">
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                    <span className="text-slate-700 text-sm">{feature}</span>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {services.map((service, index) => {
+            const IconComponent = service.icon;
+            return (
+              <div key={index} className="group">
+                <div className="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                  <div className={`w-16 h-16 bg-gradient-to-r ${service.color} rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
+                    <IconComponent className="w-8 h-8 text-white" />
                   </div>
-                ))}
-              </div>
-              
-              <div className="border-t border-slate-200 pt-6">
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-lg font-semibold text-slate-900">
-                    {service.price}
-                  </span>
+                  
+                  <h3 className="text-xl font-bold text-slate-900 mb-4">
+                    {service.title}
+                  </h3>
+                  
+                  <p className="text-slate-600 mb-6 leading-relaxed">
+                    {service.description}
+                  </p>
+                  
+                  <Link 
+                    to={service.link}
+                    className="inline-flex items-center text-accent hover:text-accent/80 font-semibold transition-colors group"
+                  >
+                    Läs mer
+                    <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                  </Link>
                 </div>
-                
-                <Link 
-                  to={service.link}
-                  className="inline-flex items-center w-full justify-center px-6 py-3 earth-gradient text-white rounded-lg hover:opacity-90 transition-opacity"
-                >
-                  Läs mer
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </Link>
               </div>
-            </div>
-          ))}
+            );
+          })}
+        </div>
+
+        <div className="text-center mt-12">
+          <Link 
+            to="/tjanster"
+            className="inline-flex items-center px-8 py-4 earth-gradient text-white rounded-lg hover:opacity-90 transition-opacity text-lg font-semibold"
+          >
+            Se alla tjänster
+            <ArrowRight className="w-5 h-5 ml-2" />
+          </Link>
         </div>
       </div>
     </section>
