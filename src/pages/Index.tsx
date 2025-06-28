@@ -1,30 +1,80 @@
+import { useState } from 'react';
 import { Header } from '@/components/Header';
+import { Hero } from '@/components/Hero';
+import { Services } from '@/components/Services';
+import { Pricing } from '@/components/Pricing';
+import { About } from '@/components/About';
+import { Contact } from '@/components/Contact';
+import { ServiceQuickMessages } from '@/components/ServiceQuickMessages';
 import { Footer } from '@/components/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { SEO } from '@/components/SEO';
-import { Hero } from '@/components/Hero';
-import { ServicesSection } from '@/components/ServicesSection';
-import { AboutSection } from '@/components/AboutSection';
-import { LocalPages } from '@/components/LocalPages';
-import { ContactSection } from '@/components/ContactSection';
 
 const Index = () => {
+  const [selectedPackage, setSelectedPackage] = useState<string>('');
+  const [prefilledMessage, setPrefilledMessage] = useState<string>('');
+
+  // Färdiga meddelandetexter för varje paket
+  const packageMessages = {
+    'kontrollansvarig': 'Hej! Jag är intresserad av paketet "Kontrollansvarig" och skulle vilja veta mer om hur du kan hjälpa mig med mitt byggprojekt. Kan vi boka en kostnadsfri konsultation?',
+    'ka-bas-paket': 'Hej! Jag är intresserad av det populära "KA + BAS Paketet" och skulle vilja diskutera hur detta passar mitt projekt. Kan vi boka ett möte för att gå igenom detaljerna?',
+    'brf-stora-projekt': 'Hej! Jag har ett större/komplext projekt och skulle vilja få en offert för "BRF & Större Projekt"-paketet. Kan vi boka en konsultation för att diskutera projektets omfattning?'
+  };
+
+  // Färdiga meddelandetexter för varje tjänst
+  const serviceMessages = {
+    'kontrollansvarig-service': 'Hej! Jag behöver en Kontrollansvarig (KA) för mitt byggprojekt. Kan du hjälpa mig med kontrollplan, besiktningar och slutbevis? Jag skulle vilja boka en kostnadsfri konsultation.',
+    'bas-p-service': 'Hej! Jag behöver BAS-P (Byggarbetsmiljösamordnare under projektering) för mitt projekt. Kan du hjälpa mig med arbetsmiljöplan och riskbedömning? Låt oss boka ett möte.',
+    'bas-u-service': 'Hej! Jag behöver BAS-U (Byggarbetsmiljösamordnare under utförande) för mitt byggprojekt. Kan du hjälpa mig med arbetsmiljösamordning under byggfasen? Jag skulle vilja diskutera detta vidare.',
+    'kombinerade-paket-service': 'Hej! Jag är intresserad av ett kombinerat paket med KA + BAS-P/U för mitt projekt. Kan vi diskutera en kostnadseffektiv lösning för hela byggprocessen?',
+    'bygglovshandlingar': 'Hej! Jag behöver hjälp med att ta fram bygglovshandlingar för mitt projekt. Kan du hjälpa mig med ansökan och alla nödvändiga dokument?',
+    'planritning': 'Hej! Jag behöver professionella planritningar för mitt byggprojekt. Kan vi diskutera omfattning och tidsplan för ritningsarbetet?',
+    'situationsplan': 'Hej! Jag behöver en situationsplan för mitt projekt. Kan du hjälpa mig med uppmätning och framtagning av situationsplanen?',
+    'sektionsritningar': 'Hej! Jag behöver sektionsritningar för mitt byggprojekt. Kan vi boka ett möte för att diskutera de tekniska kraven och detaljerna?'
+  };
+
+  const handlePackageSelect = (packageId: string) => {
+    setSelectedPackage(packageId);
+    setPrefilledMessage(packageMessages[packageId as keyof typeof packageMessages] || '');
+    
+    // Scroll to contact section when package is selected
+    const element = document.getElementById('kontakt');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleServiceSelect = (serviceId: string) => {
+    setSelectedPackage(serviceId);
+    setPrefilledMessage(serviceMessages[serviceId as keyof typeof serviceMessages] || '');
+    
+    // Scroll to contact section when service is selected
+    const element = document.getElementById('kontakt');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <>
       <SEO 
-        title="Ytterman - Kontrollansvarig & BAS i Västernorrland | Byggkontroll"
-        description="Professionell kontrollansvarig och BAS-tjänster i Västernorrland. Över 20 års erfarenhet av byggkontroll, arbetsmiljösamordning och bygglovsprocesser."
-        keywords="kontrollansvarig, BAS-P, BAS-U, byggkontroll, Västernorrland, Sundsvall, Härnösand, bygglov, arbetsmiljösamordnare"
+        title="Ytterman - Kontrollansvarig & BAS i Västernorrland | Certifierad Byggkontroll"
+        description="Certifierad Kontrollansvarig och Byggarbetsmiljösamordnare (BAS-P/BAS-U) i Västernorrland. Över 20 års erfarenhet. Trygg byggprocess med fast pris. Verksam i Sundsvall, Härnösand, Sollefteå, Timrå, Kramfors."
+        keywords="kontrollansvarig Västernorrland, BAS-P Sundsvall, BAS-U Härnösand, byggkontroll Sollefteå, kontrollplan Timrå, slutbevis Kramfors, bygglov Västernorrland, byggarbetsmiljösamordnare"
       />
       
       <div className="min-h-screen">
         <Header />
         <main>
           <Hero />
-          <ServicesSection />
-          <AboutSection />
-          <LocalPages />
-          <ContactSection />
+          <Services onServiceSelect={handleServiceSelect} />
+          <Pricing onPackageSelect={handlePackageSelect} />
+          <About />
+          <Contact 
+            selectedPackage={selectedPackage} 
+            prefilledMessage={prefilledMessage}
+          />
+          <ServiceQuickMessages onServiceSelect={handleServiceSelect} />
         </main>
         <Footer />
         <WhatsAppButton />

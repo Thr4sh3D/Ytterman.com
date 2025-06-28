@@ -4,23 +4,23 @@ export const About = () => {
   const stats = [
     {
       icon: Clock,
-      number: "Mångårig",
-      label: "Erfarenhet inom bygg"
+      number: "20+",
+      label: "År inom bygg"
     },
     {
       icon: Award,
-      number: "Flertalet",
+      number: "100+",
       label: "Genomförda projekt"
     },
     {
       icon: Users,
-      number: "Många",
+      number: "50+",
       label: "Nöjda kunder"
     },
     {
       icon: MapPin,
-      number: "Hela",
-      label: "Västernorrland"
+      number: "5",
+      label: "Kommuner i Västernorrland"
     }
   ];
 
@@ -36,9 +36,9 @@ export const About = () => {
             
             <div className="space-y-6 text-lg text-muted-foreground">
               <p>
-                Jag heter Tobias Ytterman och har mångårig erfarenhet inom bygg, 
+                Jag heter Tobias Ytterman och har över 20 års erfarenhet inom bygg, 
                 räddningstjänst och projektledning. Jag har arbetat som snickare, 
-                arbetsledare, BAS U/BAS P och kontrollansvarig i allt från småhus 
+                arbetsledare, BAS‑U/BAS‑P och kontrollansvarig i allt från småhus 
                 till vindkraftsprojekt och industribyggnation.
               </p>
               
