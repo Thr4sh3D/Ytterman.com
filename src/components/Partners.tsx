@@ -193,10 +193,10 @@ export const Partners = () => {
             <div className="text-center">
               <CheckCircle className="w-8 h-8 text-primary mx-auto mb-3" />
               <h4 className="font-semibold text-slate-900 mb-2">
-                100% Godkända projekt
+                Kvalitetssäkrade projekt
               </h4>
               <p className="text-sm text-slate-600">
-                Alla projekt har fått slutbevis
+                Professionell hantering av alla uppdrag
               </p>
             </div>
             

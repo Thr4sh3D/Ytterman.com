@@ -107,7 +107,7 @@ export const Testimonials = () => {
             Vad våra kunder säger
           </h2>
           <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-            Över 300 nöjda kunder i Västernorrland. Läs vad de säger om våra tjänster 
+            Nöjda kunder i Västernorrland. Läs vad de säger om våra tjänster 
             och hur vi hjälpt deras byggprojekt att lyckas.
           </p>
         </div>
@@ -166,24 +166,24 @@ export const Testimonials = () => {
         <div className="text-center">
           <div className="bg-slate-50 rounded-xl p-8 max-w-4xl mx-auto">
             <h3 className="text-2xl font-bold text-slate-900 mb-4">
-              Projektstatistik
+              Vår erfarenhet
             </h3>
             <div className="grid md:grid-cols-4 gap-6">
               <div className="text-center">
-                <div className="text-3xl font-bold text-primary mb-2">300+</div>
+                <div className="text-3xl font-bold text-primary mb-2">Flertalet</div>
                 <div className="text-slate-600">Genomförda projekt</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-primary mb-2">20+</div>
-                <div className="text-slate-600">År av erfarenhet</div>
+                <div className="text-3xl font-bold text-primary mb-2">Mångårig</div>
+                <div className="text-slate-600">Branschexpertis</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-primary mb-2">100%</div>
-                <div className="text-slate-600">Godkända projekt</div>
+                <div className="text-3xl font-bold text-primary mb-2">Professionell</div>
+                <div className="text-slate-600">Projekthantering</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-primary mb-2">5.0</div>
-                <div className="text-slate-600">Genomsnittligt betyg</div>
+                <div className="text-3xl font-bold text-primary mb-2">Hög</div>
+                <div className="text-slate-600">Kundnöjdhet</div>
               </div>
             </div>
           </div>
