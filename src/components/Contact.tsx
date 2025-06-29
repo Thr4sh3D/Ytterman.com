@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Phone, Mail, MapPin, Clock } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 import { sendContactEmail } from '@/lib/emailjs';
@@ -30,7 +30,11 @@ export const Contact = ({ selectedPackage, prefilledMessage }: ContactProps) => 
     'kontrollansvarig-service': 'villa',
     'bas-p-service': 'villa',
     'bas-u-service': 'villa',
-    'kombinerade-paket-service': 'flerfamilj'
+    'kombinerade-paket-service': 'flerfamilj',
+    'bygglovshandlingar': 'villa',
+    'planritning': 'villa',
+    'situationsplan': 'villa',
+    'sektionsritningar': 'kommersiell'
   };
 
   // Update form when selectedPackage or prefilledMessage changes
@@ -44,8 +48,55 @@ export const Contact = ({ selectedPackage, prefilledMessage }: ContactProps) => 
     }
   }, [selectedPackage, prefilledMessage]);
 
+  const validateForm = () => {
+    if (!formData.name.trim()) {
+      toast({
+        title: "Namn krävs",
+        description: "Vänligen ange ditt namn.",
+        variant: "destructive"
+      });
+      return false;
+    }
+
+    if (!formData.email.trim()) {
+      toast({
+        title: "E-post krävs",
+        description: "Vänligen ange din e-postadress.",
+        variant: "destructive"
+      });
+      return false;
+    }
+
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      toast({
+        title: "Ogiltig e-post",
+        description: "Vänligen ange en giltig e-postadress.",
+        variant: "destructive"
+      });
+      return false;
+    }
+
+    if (!formData.message.trim()) {
+      toast({
+        title: "Meddelande krävs",
+        description: "Vänligen skriv ett meddelande.",
+        variant: "destructive"
+      });
+      return false;
+    }
+
+    return true;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!validateForm()) {
+      return;
+    }
+
     setIsSubmitting(true);
     
     try {
@@ -92,25 +143,29 @@ export const Contact = ({ selectedPackage, prefilledMessage }: ContactProps) => 
       icon: Phone,
       title: "Telefon",
       value: "076-111 84 47",
-      action: () => window.open('tel:+46761118447')
+      action: () => window.open('tel:+46761118447'),
+      href: "tel:+46761118447"
     },
     {
       icon: Mail,
       title: "E-post",
       value: "tobias@ytterman.com",
-      action: () => window.open('mailto:tobias@ytterman.com')
+      action: () => window.open('mailto:tobias@ytterman.com'),
+      href: "mailto:tobias@ytterman.com"
     },
     {
       icon: MapPin,
       title: "Verksam i",
       value: "Västernorrland",
-      action: null
+      action: null,
+      href: null
     },
     {
       icon: Clock,
       title: "Svarstid",
       value: "Inom 24 timmar",
-      action: null
+      action: null,
+      href: null
     }
   ];
 
@@ -138,10 +193,18 @@ export const Contact = ({ selectedPackage, prefilledMessage }: ContactProps) => 
               {contactInfo.map((info, index) => (
                 <div
                   key={index}
-                  className={`flex items-center space-x-4 p-4 bg-white rounded-lg ${
-                    info.action ? 'cursor-pointer hover:shadow-md transition-shadow' : ''
+                  className={`flex items-center space-x-4 p-4 bg-white rounded-lg transition-all duration-200 ${
+                    info.action ? 'cursor-pointer hover:shadow-md hover:scale-105' : ''
                   }`}
                   onClick={info.action || undefined}
+                  role={info.action ? "button" : undefined}
+                  tabIndex={info.action ? 0 : undefined}
+                  onKeyDown={(e) => {
+                    if (info.action && (e.key === 'Enter' || e.key === ' ')) {
+                      e.preventDefault();
+                      info.action();
+                    }
+                  }}
                 >
                   <div className="w-12 h-12 earth-gradient rounded-lg flex items-center justify-center">
                     <info.icon className="w-6 h-6 text-white" />
@@ -155,7 +218,10 @@ export const Contact = ({ selectedPackage, prefilledMessage }: ContactProps) => 
             </div>
 
             <div className="mt-8 p-6 bg-white rounded-lg">
-              <h4 className="font-semibold text-foreground mb-4">Kostnadsfri konsultation</h4>
+              <h4 className="font-semibold text-foreground mb-4 flex items-center">
+                <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
+                Kostnadsfri konsultation
+              </h4>
               <p className="text-muted-foreground">
                 Jag erbjuder alltid en kostnadsfri första konsultation där vi går igenom 
                 ditt projekt och diskuterar vilka tjänster som behövs. Ring eller skicka 
@@ -183,7 +249,8 @@ export const Contact = ({ selectedPackage, prefilledMessage }: ContactProps) => 
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
+                    className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent transition-colors"
+                    placeholder="Ditt fullständiga namn"
                   />
                 </div>
                 
@@ -198,7 +265,8 @@ export const Contact = ({ selectedPackage, prefilledMessage }: ContactProps) => 
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
+                    className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent transition-colors"
+                    placeholder="din@email.se"
                   />
                 </div>
               </div>
@@ -213,7 +281,8 @@ export const Contact = ({ selectedPackage, prefilledMessage }: ContactProps) => 
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
+                  className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent transition-colors"
+                  placeholder="070-123 45 67"
                 />
               </div>
 
@@ -226,7 +295,7 @@ export const Contact = ({ selectedPackage, prefilledMessage }: ContactProps) => 
                   name="project"
                   value={formData.project}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
+                  className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent transition-colors"
                 >
                   <option value="">Välj projekttyp</option>
                   <option value="villa">Villa/Småhus</option>
@@ -248,7 +317,7 @@ export const Contact = ({ selectedPackage, prefilledMessage }: ContactProps) => 
                   onChange={handleChange}
                   required
                   rows={5}
-                  className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
+                  className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent transition-colors resize-vertical"
                   placeholder="Berätta om ditt projekt..."
                 />
               </div>
@@ -256,9 +325,16 @@ export const Contact = ({ selectedPackage, prefilledMessage }: ContactProps) => 
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full earth-gradient text-white hover:opacity-90 py-3"
+                className="w-full earth-gradient text-white hover:opacity-90 py-3 transition-opacity disabled:opacity-50"
               >
-                {isSubmitting ? 'Skickar...' : 'Skicka meddelande'}
+                {isSubmitting ? (
+                  <>
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                    Skickar...
+                  </>
+                ) : (
+                  'Skicka meddelande'
+                )}
               </Button>
             </form>
           </div>

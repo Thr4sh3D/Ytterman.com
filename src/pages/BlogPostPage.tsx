@@ -8,21 +8,80 @@ import { BlogPost } from '@/entities';
 import { RelatedPosts } from '@/components/RelatedPosts';
 import { Calendar, Clock, User, ArrowLeft, Share2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useToast } from '@/hooks/use-toast';
 
 const BlogPostPage = () => {
   const { slug } = useParams();
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const { toast } = useToast();
 
   useEffect(() => {
     const fetchPost = async () => {
       try {
+        if (!slug) {
+          setError(true);
+          return;
+        }
+
         const posts = await BlogPost.filter({ slug, published: true });
         if (posts.length > 0) {
           setPost(posts[0]);
         } else {
-          setError(true);
+          // Fallback sample post for demo
+          const samplePost = {
+            id: 'sample-1',
+            title: 'Kontrollansvarig - Din guide till en säker byggprocess',
+            slug: 'kontrollansvarig-guide-saker-byggprocess',
+            excerpt: 'Lär dig allt om kontrollansvarigs roll i byggprocessen. Från kontrollplan till slutbesiktning - vi guidar dig genom hela processen.',
+            content: `
+              <h2>Vad är en kontrollansvarig?</h2>
+              <p>En kontrollansvarig (KA) är en certifierad person som enligt Plan- och bygglagen (PBL) ansvarar för att utföra teknisk kontroll under byggprocessen. Rollen är avgörande för att säkerställa att byggprojektet följer gällande regelverk och bygglovsvillkor.</p>
+              
+              <h2>Kontrollansvarigs huvuduppgifter</h2>
+              <ul>
+                <li>Upprätta kontrollplan innan byggstart</li>
+                <li>Utföra teknisk kontroll enligt kontrollplanen</li>
+                <li>Dokumentera alla kontroller och avvikelser</li>
+                <li>Utfärda slutbevis när projektet är klart</li>
+              </ul>
+              
+              <h2>När behövs en kontrollansvarig?</h2>
+              <p>Kontrollansvarig krävs för de flesta byggprojekt som:</p>
+              <ul>
+                <li>Kräver bygglov</li>
+                <li>Omfattas av anmälningsplikt</li>
+                <li>Är större än 50 kvm</li>
+                <li>Påverkar bärande konstruktioner</li>
+              </ul>
+              
+              <h2>Kontrollplanen - grunden för allt</h2>
+              <p>Kontrollplanen är det dokument som styr hela kontrollprocessen. Den innehåller:</p>
+              <ul>
+                <li>Vilka kontroller som ska utföras</li>
+                <li>När kontrollerna ska genomföras</li>
+                <li>Vem som ansvarar för varje kontroll</li>
+                <li>Dokumentationskrav</li>
+              </ul>
+            `,
+            featured_image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&h=400&fit=crop',
+            category: 'Kontrollansvarig',
+            author: 'Tobias Ytterman',
+            reading_time: 8,
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString(),
+            tags: ['kontrollansvarig', 'byggprocess', 'PBL'],
+            published: true,
+            meta_description: 'Komplett guide om kontrollansvarigs roll i byggprocessen. Lär dig om kontrollplan, teknisk kontroll och slutbevis.',
+            keywords: 'kontrollansvarig, KA, byggprocess, kontrollplan, teknisk kontroll, PBL'
+          };
+          
+          if (samplePost.slug === slug) {
+            setPost(samplePost);
+          } else {
+            setError(true);
+          }
         }
       } catch (error) {
         console.error('Error fetching blog post:', error);
@@ -32,9 +91,7 @@ const BlogPostPage = () => {
       }
     };
 
-    if (slug) {
-      fetchPost();
-    }
+    fetchPost();
   }, [slug]);
 
   const formatDate = (dateString: string) => {
@@ -45,16 +102,39 @@ const BlogPostPage = () => {
     });
   };
 
-  const sharePost = () => {
-    if (navigator.share) {
-      navigator.share({
-        title: post.title,
-        text: post.excerpt,
-        url: window.location.href,
-      });
-    } else {
-      navigator.clipboard.writeText(window.location.href);
-      // Could add a toast notification here
+  const sharePost = async () => {
+    const shareData = {
+      title: post.title,
+      text: post.excerpt,
+      url: window.location.href,
+    };
+
+    try {
+      if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+        await navigator.share(shareData);
+      } else {
+        await navigator.clipboard.writeText(window.location.href);
+        toast({
+          title: "Länk kopierad!",
+          description: "Länken har kopierats till urklipp.",
+        });
+      }
+    } catch (error) {
+      console.error('Error sharing:', error);
+      // Fallback to copying URL
+      try {
+        await navigator.clipboard.writeText(window.location.href);
+        toast({
+          title: "Länk kopierad!",
+          description: "Länken har kopierats till urklipp.",
+        });
+      } catch (clipboardError) {
+        toast({
+          title: "Kunde inte dela",
+          description: "Försök kopiera länken manuellt.",
+          variant: "destructive"
+        });
+      }
     }
   };
 
@@ -109,7 +189,7 @@ const BlogPostPage = () => {
         type="article"
         article={{
           publishedTime: post.created_at,
-          modifiedTime: post.updated_at,
+          modifiedTime: post.updated_at || post.created_at,
           author: post.author,
           section: post.category,
           tags: post.tags
@@ -128,7 +208,7 @@ const BlogPostPage = () => {
                 <Button 
                   variant="ghost" 
                   onClick={() => window.location.href = '/blogg'}
-                  className="mb-8"
+                  className="mb-8 hover:bg-slate-100"
                 >
                   <ArrowLeft className="w-4 h-4 mr-2" />
                   Tillbaka till guiderna
@@ -178,6 +258,7 @@ const BlogPostPage = () => {
                       src={post.featured_image} 
                       alt={post.title}
                       className="w-full h-auto"
+                      loading="lazy"
                     />
                   </div>
                 )}
@@ -195,7 +276,7 @@ const BlogPostPage = () => {
                       {post.tags.map((tag, index) => (
                         <span 
                           key={index}
-                          className="bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-sm"
+                          className="bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-sm hover:bg-slate-200 transition-colors"
                         >
                           {tag}
                         </span>

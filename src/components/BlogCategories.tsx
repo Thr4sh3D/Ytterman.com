@@ -7,6 +7,10 @@ interface BlogCategoriesProps {
 }
 
 export const BlogCategories = ({ categories, selectedCategory, onCategorySelect }: BlogCategoriesProps) => {
+  if (!categories || categories.length === 0) {
+    return null;
+  }
+
   return (
     <div className="flex flex-wrap gap-2 justify-center">
       {categories.map((category) => (
@@ -15,10 +19,10 @@ export const BlogCategories = ({ categories, selectedCategory, onCategorySelect 
           variant={selectedCategory === category ? "default" : "outline"}
           size="sm"
           onClick={() => onCategorySelect(category)}
-          className={`capitalize ${
+          className={`capitalize transition-all duration-200 ${
             selectedCategory === category 
-              ? "earth-gradient text-white" 
-              : "hover:bg-slate-100"
+              ? "earth-gradient text-white shadow-md" 
+              : "hover:bg-slate-100 hover:border-primary/50"
           }`}
         >
           {category === 'alla' ? 'Alla kategorier' : category}

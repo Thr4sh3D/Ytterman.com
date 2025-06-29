@@ -25,14 +25,19 @@ export const BlogCard = ({ post }: BlogCardProps) => {
     });
   };
 
+  const handleClick = () => {
+    window.location.href = `/blogg/${post.slug}`;
+  };
+
   return (
-    <article className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-md transition-shadow">
+    <article className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-md transition-shadow cursor-pointer" onClick={handleClick}>
       {post.featured_image && (
         <div className="aspect-video overflow-hidden">
           <img 
             src={post.featured_image} 
             alt={post.title}
             className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+            loading="lazy"
           />
         </div>
       )}
@@ -52,7 +57,7 @@ export const BlogCard = ({ post }: BlogCardProps) => {
           </div>
         </div>
         
-        <h3 className="text-xl font-bold text-slate-900 mb-3 line-clamp-2">
+        <h3 className="text-xl font-bold text-slate-900 mb-3 line-clamp-2 hover:text-primary transition-colors">
           {post.title}
         </h3>
         
@@ -69,8 +74,11 @@ export const BlogCard = ({ post }: BlogCardProps) => {
           <Button 
             variant="ghost" 
             size="sm"
-            onClick={() => window.location.href = `/blogg/${post.slug}`}
-            className="text-primary hover:text-primary/80"
+            className="text-primary hover:text-primary/80 hover:bg-primary/10"
+            onClick={(e) => {
+              e.stopPropagation();
+              handleClick();
+            }}
           >
             Läs mer
             <ArrowRight className="w-4 h-4 ml-1" />
@@ -83,11 +91,14 @@ export const BlogCard = ({ post }: BlogCardProps) => {
               {post.tags.slice(0, 3).map((tag, index) => (
                 <span 
                   key={index}
-                  className="bg-slate-100 text-slate-600 px-2 py-1 rounded text-xs"
+                  className="bg-slate-100 text-slate-600 px-2 py-1 rounded text-xs hover:bg-slate-200 transition-colors"
                 >
                   {tag}
                 </span>
               ))}
+              {post.tags.length > 3 && (
+                <span className="text-xs text-slate-500">+{post.tags.length - 3} mer</span>
+              )}
             </div>
           </div>
         )}
