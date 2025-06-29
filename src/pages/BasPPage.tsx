@@ -2,7 +2,7 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { AdvancedSEO } from '@/components/AdvancedSEO';
-import { CheckCircle, Phone, Mail, FileText, Users, Shield, AlertTriangle } from 'lucide-react';
+import { CheckCircle, Phone, Mail, Shield, FileText, Clock, Award, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const BasPPage = () => {
@@ -12,16 +12,16 @@ const BasPPage = () => {
 
   const faqData = [
     {
-      question: "Vad är skillnaden mellan BAS-P och BAS-U?",
-      answer: "BAS-P arbetar under planeringsfasen och tar fram arbetsmiljöplaner. BAS-U övervakar arbetsmiljön under byggfasen och genomför säkerhetsronder."
+      question: "Vad är BAS-P och när behöver jag en?",
+      answer: "BAS-P (Byggarbetsmiljösamordnare under projektering) behövs när flera entreprenörer ska arbeta på samma projekt eller när projektet innebär särskilda arbetsmiljörisker. BAS-P arbetar under planeringsfasen."
     },
     {
-      question: "När behöver jag BAS-P för mitt projekt?",
-      answer: "BAS-P krävs när flera entreprenörer ska arbeta samtidigt, projektet innebär särskilda risker, eller när byggarbetet pågår längre än 30 arbetsdagar med mer än 20 personer."
+      question: "Vad kostar BAS-P tjänster?",
+      answer: "Våra BAS-P tjänster börjar från 12,000 SEK beroende på projektets storlek och komplexitet. Vi erbjuder alltid en kostnadsfri konsultation för att ge dig en exakt offert."
     },
     {
-      question: "Hur mycket kostar BAS-P tjänster?",
-      answer: "Våra BAS-P priser börjar från 12,000 SEK beroende på projektets omfattning. Vi erbjuder kostnadsfri konsultation för exakt prisuppgift."
+      question: "Hur tidigt ska jag anlita BAS-P?",
+      answer: "BAS-P ska anlitas så tidigt som möjligt i projekteringsfasen, helst redan när projektet planeras. Detta säkerställer att arbetsmiljöaspekter beaktas från början."
     }
   ];
 
@@ -33,7 +33,7 @@ const BasPPage = () => {
 
   const serviceData = {
     name: "BAS-P (Byggarbetsmiljösamordnare under projektering)",
-    description: "Arbetsmiljösamordning under projekteringsfasen för säker byggprocess",
+    description: "Professionell arbetsmiljösamordning under projekteringsfasen",
     provider: "Ytterman",
     areaServed: ["Sundsvall", "Härnösand", "Sollefteå", "Timrå", "Kramfors"],
     priceRange: "Från 12,000 SEK"
@@ -43,8 +43,8 @@ const BasPPage = () => {
     <>
       <AdvancedSEO 
         title="BAS-P - Byggarbetsmiljösamordnare Projektering | Ytterman"
-        description="Professionell BAS-P tjänst för säker projektering i Västernorrland. Arbetsmiljöplan, riskbedömning och samordning under planeringsfasen. Fast pris från 12,000 kr."
-        keywords="BAS-P, byggarbetsmiljösamordnare, projektering, arbetsmiljöplan, riskbedömning, säkerhetsplan, Västernorrland, Sundsvall, Härnösand"
+        description="Professionell BAS-P (Byggarbetsmiljösamordnare under projektering) i Västernorrland. Arbetsmiljöplan, riskbedömning och säkerhetssamordning. Från 12,000 kr."
+        keywords="BAS-P, byggarbetsmiljösamordnare, projektering, arbetsmiljöplan, riskbedömning, säkerhetssamordning, Västernorrland, Sundsvall, Härnösand"
         url="https://ytterman.com/bas-p"
         breadcrumbs={breadcrumbs}
         faq={faqData}
@@ -56,16 +56,15 @@ const BasPPage = () => {
         
         <main>
           {/* Hero Section */}
-          <section className="py-20 bg-gradient-to-br from-slate-50 via-green-50/30 to-slate-50">
+          <section className="py-20 bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-50">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto text-center">
                 <h1 className="text-5xl font-bold text-slate-900 mb-6">
-                  BAS-P (Projektering)
+                  BAS-P - Byggarbetsmiljösamordnare
                 </h1>
                 <p className="text-xl text-slate-600 mb-8">
-                  Byggarbetsmiljösamordnare under projekteringsskedet. Vi säkerställer att 
-                  säkerhetsaspekter beaktas redan från början och skapar förutsättningar för 
-                  en säker byggprocess.
+                  Professionell arbetsmiljösamordning under projekteringsfasen. Vi säkerställer att 
+                  arbetsmiljöaspekter beaktas från projektets början för en säker byggprocess.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button 
@@ -96,20 +95,19 @@ const BasPPage = () => {
                 </h2>
                 <div className="prose prose-lg max-w-none text-slate-700">
                   <p className="text-xl mb-6">
-                    BAS-P (Byggarbetsmiljösamordnare under projektering) ansvarar för att samordna 
-                    arbetsmiljöarbetet under planeringsfasen av ett byggprojekt. Rollen är avgörande 
-                    för att säkerställa att säkerhetsaspekter beaktas redan från början.
+                    BAS-P (Byggarbetsmiljösamordnare under projektering) är en certifierad person som 
+                    ansvarar för arbetsmiljösamordning under planeringsfasen av byggprojekt.
                   </p>
                   <p className="mb-8">
-                    Genom att identifiera och hantera risker tidigt i processen kan vi förhindra 
-                    olyckor, minska kostnader och säkerställa en smidigare byggprocess.
+                    Rollen är avgörande för att säkerställa att arbetsmiljörisker identifieras och 
+                    hanteras redan under projekteringen, vilket leder till säkrare och effektivare byggprocesser.
                   </p>
                 </div>
               </div>
             </div>
           </section>
 
-          {/* Uppgifter */}
+          {/* BAS-P Uppgifter */}
           <section className="py-20 bg-slate-50">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto">
@@ -120,11 +118,11 @@ const BasPPage = () => {
                   {[
                     "Upprätta arbetsmiljöplan för projektet",
                     "Genomföra riskbedömning och säkerhetsanalys",
-                    "Samordna arbetsmiljöarbetet mellan projektörer",
-                    "Säkerställa att säkerhetsaspekter beaktas i ritningar",
-                    "Dokumentera arbetsmiljöåtgärder och risker",
-                    "Förbereda för säker byggfas",
-                    "Överlämning till BAS-U vid byggstart"
+                    "Samordna arbetsmiljöaspekter mellan projektörer",
+                    "Dokumentera arbetsmiljöåtgärder och rutiner",
+                    "Planera för säker materialhantering",
+                    "Koordinera med BAS-U för utförandefasen",
+                    "Säkerställa regelefterlevnad enligt AML"
                   ].map((responsibility, index) => (
                     <div key={index} className="flex items-start space-x-4 p-6 bg-white rounded-lg shadow-sm">
                       <CheckCircle className="w-6 h-6 text-green-500 mt-1 flex-shrink-0" />
@@ -136,47 +134,47 @@ const BasPPage = () => {
             </div>
           </section>
 
-          {/* Fördelar */}
+          {/* När behöver du BAS-P */}
           <section className="py-20 bg-white">
             <div className="container mx-auto px-4">
               <div className="max-w-6xl mx-auto">
                 <h2 className="text-4xl font-bold text-slate-900 mb-12 text-center">
-                  Fördelar med BAS-P
+                  När behöver du BAS-P?
                 </h2>
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                   {[
                     {
-                      icon: Shield,
-                      title: "Förebygger olyckor",
-                      description: "Identifierar och eliminerar risker redan i planeringsfasen"
-                    },
-                    {
-                      icon: FileText,
-                      title: "Regelefterlevnad",
-                      description: "Säkerställer att projektet följer Arbetsmiljöverkets föreskrifter"
-                    },
-                    {
                       icon: Users,
-                      title: "Bättre samordning",
-                      description: "Koordinerar säkerhetsarbetet mellan alla projektörer"
+                      title: "Flera entreprenörer",
+                      description: "När flera entreprenörer ska arbeta samtidigt på projektet"
                     },
                     {
-                      icon: AlertTriangle,
-                      title: "Minskar kostnader",
-                      description: "Förhindrar dyra ändringar och stopp under byggfasen"
+                      icon: Clock,
+                      title: "Längre projekt",
+                      description: "Projekt som pågår längre än 30 arbetsdagar med mer än 20 personer"
+                    },
+                    {
+                      icon: Shield,
+                      title: "Särskilda risker",
+                      description: "Projekt som innebär särskilda arbetsmiljörisker"
+                    },
+                    {
+                      icon: Award,
+                      title: "Stora projekt",
+                      description: "Byggarbeten som omfattar mer än 500 persondagar"
                     }
-                  ].map((benefit, index) => {
-                    const IconComponent = benefit.icon;
+                  ].map((item, index) => {
+                    const IconComponent = item.icon;
                     return (
                       <div key={index} className="text-center p-6 bg-slate-50 rounded-xl">
-                        <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <div className="w-16 h-16 earth-gradient rounded-full flex items-center justify-center mx-auto mb-6">
                           <IconComponent className="w-8 h-8 text-white" />
                         </div>
                         <h3 className="text-xl font-bold text-slate-900 mb-4">
-                          {benefit.title}
+                          {item.title}
                         </h3>
                         <p className="text-slate-600">
-                          {benefit.description}
+                          {item.description}
                         </p>
                       </div>
                     );
@@ -186,31 +184,48 @@ const BasPPage = () => {
             </div>
           </section>
 
-          {/* När behövs BAS-P */}
+          {/* Process */}
           <section className="py-20 bg-slate-50">
             <div className="container mx-auto px-4">
-              <div className="max-w-4xl mx-auto">
+              <div className="max-w-6xl mx-auto">
                 <h2 className="text-4xl font-bold text-slate-900 mb-12 text-center">
-                  När behöver du BAS-P?
+                  BAS-P Processen
                 </h2>
-                <div className="bg-white rounded-xl p-8 shadow-lg">
-                  <p className="text-lg text-slate-700 mb-8">
-                    Enligt Arbetsmiljöverkets föreskrifter krävs BAS-P när:
-                  </p>
-                  <div className="space-y-4">
-                    {[
-                      "Flera entreprenörer ska arbeta samtidigt",
-                      "Projektet innebär särskilda risker",
-                      "Byggarbetet pågår längre än 30 arbetsdagar med mer än 20 personer",
-                      "Byggarbetet omfattar mer än 500 persondagar",
-                      "Komplexa eller riskfyllda byggprojekt"
-                    ].map((item, index) => (
-                      <div key={index} className="flex items-start space-x-4">
-                        <CheckCircle className="w-6 h-6 text-green-500 mt-1 flex-shrink-0" />
-                        <span className="text-slate-700 text-lg">{item}</span>
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                  {[
+                    {
+                      step: "1",
+                      title: "Projektanalys",
+                      description: "Vi analyserar projektet och identifierar arbetsmiljörisker"
+                    },
+                    {
+                      step: "2", 
+                      title: "Arbetsmiljöplan",
+                      description: "Upprättande av detaljerad arbetsmiljöplan"
+                    },
+                    {
+                      step: "3",
+                      title: "Samordning",
+                      description: "Koordinering med projektörer och andra aktörer"
+                    },
+                    {
+                      step: "4",
+                      title: "Dokumentation",
+                      description: "Fullständig dokumentation för utförandefasen"
+                    }
+                  ].map((item, index) => (
+                    <div key={index} className="text-center">
+                      <div className="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-bold">
+                        {item.step}
                       </div>
-                    ))}
-                  </div>
+                      <h3 className="text-xl font-bold text-slate-900 mb-4">
+                        {item.title}
+                      </h3>
+                      <p className="text-slate-600">
+                        {item.description}
+                      </p>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -224,7 +239,7 @@ const BasPPage = () => {
               </h2>
               <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
                 Kontakta oss för en kostnadsfri konsultation. Vi hjälper dig med 
-                BAS-P tjänster för säker projektering i Västernorrland.
+                professionell arbetsmiljösamordning under projekteringsfasen.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button 
