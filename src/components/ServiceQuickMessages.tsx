@@ -1,5 +1,6 @@
-import { FileText, PenTool, Map, Building2 } from 'lucide-react';
+import { MessageCircle, Shield, FileText, Users, Building } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 
 interface ServiceQuickMessagesProps {
   onServiceSelect: (serviceId: string) => void;
@@ -8,76 +9,63 @@ interface ServiceQuickMessagesProps {
 export const ServiceQuickMessages = ({ onServiceSelect }: ServiceQuickMessagesProps) => {
   const quickServices = [
     {
-      id: 'bygglovshandlingar',
+      id: 'kontrollansvarig-service',
+      icon: Shield,
+      title: 'Kontrollansvarig',
+      description: 'Behöver du en KA för ditt projekt?'
+    },
+    {
+      id: 'bas-p-service',
       icon: FileText,
-      title: "Bygglovshandlingar",
-      projectType: "Villa/Småhus",
-      message: "Hej! Jag behöver hjälp med att ta fram bygglovshandlingar för mitt projekt. Kan du hjälpa mig med ansökan och alla nödvändiga dokument?"
+      title: 'BAS-P',
+      description: 'Arbetsmiljösamordning under projektering'
     },
     {
-      id: 'planritning',
-      icon: PenTool,
-      title: "Planritning",
-      projectType: "Flerfamiljshus",
-      message: "Hej! Jag behöver professionella planritningar för mitt byggprojekt. Kan vi diskutera omfattning och tidsplan för ritningsarbetet?"
+      id: 'bas-u-service',
+      icon: Users,
+      title: 'BAS-U',
+      description: 'Arbetsmiljösamordning under utförande'
     },
     {
-      id: 'situationsplan',
-      icon: Map,
-      title: "Situationsplan",
-      projectType: "Villa/Småhus",
-      message: "Hej! Jag behöver en situationsplan för mitt projekt. Kan du hjälpa mig med uppmätning och framtagning av situationsplanen?"
-    },
-    {
-      id: 'sektionsritningar',
-      icon: Building2,
-      title: "Sektionsritningar",
-      projectType: "Kommersiell",
-      message: "Hej! Jag behöver sektionsritningar för mitt byggprojekt. Kan vi boka ett möte för att diskutera de tekniska kraven och detaljerna?"
+      id: 'kombinerade-paket-service',
+      icon: Building,
+      title: 'Kombinerat paket',
+      description: 'KA + BAS för hela byggprocessen'
     }
   ];
 
   return (
-    <section className="py-12 bg-secondary/20 border-t border-border/50">
+    <section className="py-16 bg-white border-t border-slate-200">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-8">
-          <h3 className="text-xl font-semibold text-foreground mb-2">
-            Snabbmeddelanden för andra tjänster
-          </h3>
-          <p className="text-sm text-muted-foreground">
-            Klicka för att fylla i kontaktformuläret automatiskt
+        <div className="text-center mb-12">
+          <h2 className="text-2xl font-bold text-slate-900 mb-4">
+            Snabbkontakt för specifika tjänster
+          </h2>
+          <p className="text-slate-600">
+            Klicka på den tjänst du behöver för att få ett förberett meddelande
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
           {quickServices.map((service) => (
-            <div
-              key={service.id}
-              className="bg-white rounded-lg p-4 shadow-sm border border-border/50 hover:shadow-md transition-shadow"
-            >
-              <div className="flex items-center space-x-3 mb-3">
-                <div className="w-8 h-8 earth-gradient rounded-lg flex items-center justify-center">
-                  <service.icon className="w-4 h-4 text-white" />
+            <Card key={service.id} className="hover:shadow-md transition-shadow cursor-pointer">
+              <CardContent className="p-4 text-center">
+                <div className="mx-auto w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-3">
+                  <service.icon className="w-6 h-6 text-primary" />
                 </div>
-                <div>
-                  <h4 className="font-medium text-foreground text-sm">{service.title}</h4>
-                  <span className="text-xs text-muted-foreground">{service.projectType}</span>
-                </div>
-              </div>
-              
-              <p className="text-xs text-muted-foreground mb-3">
-                {service.message}
-              </p>
-              
-              <Button
-                onClick={() => onServiceSelect(service.id)}
-                variant="outline"
-                size="sm"
-                className="w-full text-xs"
-              >
-                Begär offert
-              </Button>
-            </div>
+                <h3 className="font-semibold text-slate-900 mb-2">{service.title}</h3>
+                <p className="text-sm text-slate-600 mb-4">{service.description}</p>
+                <Button 
+                  onClick={() => onServiceSelect(service.id)}
+                  variant="outline" 
+                  size="sm"
+                  className="w-full"
+                >
+                  <MessageCircle className="w-4 h-4 mr-2" />
+                  Kontakta
+                </Button>
+              </CardContent>
+            </Card>
           ))}
         </div>
       </div>

@@ -1,138 +1,160 @@
-import { Check } from 'lucide-react';
+import { CheckCircle, Star, ArrowRight } from 'lucide-react';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { useNavigate } from 'react-router-dom';
+import { Badge } from '@/components/ui/badge';
 
 interface PricingProps {
   onPackageSelect: (packageId: string) => void;
 }
 
 export const Pricing = ({ onPackageSelect }: PricingProps) => {
-  const navigate = useNavigate();
-
   const packages = [
     {
       id: 'kontrollansvarig',
       name: 'Kontrollansvarig',
-      price: 'Från 15,000 SEK',
-      description: 'Perfekt för mindre projekt och villabyggare',
+      price: '15,000',
+      description: 'Perfekt för mindre byggprojekt som kräver teknisk kontroll',
       features: [
-        'Kontrollplan enligt PBL',
-        'Teknisk kontroll under byggprocessen',
-        'Besiktningar och dokumentation',
-        'Slutbevis och överlämning',
-        'Rådgivning under hela projektet'
+        'Kontrollplan och kontrollprogram',
+        'Teknisk kontroll under byggandet',
+        'Besiktningar enligt kontrollplan',
+        'Slutbevis och dokumentation',
+        'Telefonsupport under projektet'
       ],
       popular: false
     },
     {
       id: 'ka-bas-paket',
       name: 'KA + BAS Paket',
-      price: 'Från 25,000 SEK',
-      description: 'Vårt populäraste paket - komplett lösning',
+      price: '28,000',
+      description: 'Mest populära paketet - komplett lösning för hela byggprocessen',
       features: [
-        'Kontrollansvarig (KA)',
-        'BAS-P (Projektering)',
-        'BAS-U (Utförande)',
+        'Allt från Kontrollansvarig-paketet',
+        'BAS-P (projekteringssamordning)',
+        'BAS-U (utförandesamordning)',
         'Arbetsmiljöplan och riskbedömning',
-        'Kontinuerlig uppföljning',
-        'Alla nödvändiga besiktningar',
-        'Slutbevis och dokumentation'
+        'Säkerhetsronder och kontroller',
+        'Prioriterad support'
       ],
-      popular: true
+      popular: true,
+      savings: 'Spara 5,000 SEK'
     },
     {
       id: 'brf-stora-projekt',
       name: 'BRF & Större Projekt',
-      price: 'Offert på förfrågan',
-      description: 'Skräddarsydda lösningar för komplexa projekt',
+      price: 'Offert',
+      description: 'Skräddarsydda lösningar för komplexa och större byggprojekt',
       features: [
-        'Fullständig projektledning',
-        'Specialistkompetens',
-        'Koordinering med myndigheter',
-        'Omfattande dokumentation',
-        'Dedikerad projektansvarig',
-        'Regelbundna statusrapporter'
+        'Anpassad projektplan',
+        'Dedikerad projektledare',
+        'Utökad dokumentation',
+        'Regelbundna statusmöten',
+        'Specialistkonsultation',
+        '24/7 support vid behov'
       ],
       popular: false
     }
   ];
 
-  const handleGetQuote = (packageId: string) => {
-    navigate(`/kontakt?paket=${packageId}`);
-  };
-
   return (
-    <section id="priser" className="py-20 bg-background">
+    <section id="priser" className="py-20 bg-slate-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-6">
-            Transparenta Priser
+          <h2 className="text-4xl font-bold text-slate-900 mb-4">
+            Transparenta priser
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Välj det paket som passar ditt projekt bäst. Alla priser är fasta och 
-            inkluderar allt du behöver för en trygg byggprocess.
+          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+            Fasta priser utan dolda kostnader. Välj det paket som passar ditt projekt bäst.
           </p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {packages.map((pkg) => (
-            <div
-              key={pkg.id}
-              className={`relative bg-white rounded-2xl p-8 shadow-lg border-2 transition-all duration-300 hover:shadow-xl ${
-                pkg.popular 
-                  ? 'border-accent scale-105' 
-                  : 'border-border hover:border-accent/50'
-              }`}
+            <Card 
+              key={pkg.id} 
+              className={`relative h-full ${pkg.popular ? 'ring-2 ring-primary shadow-xl scale-105' : 'hover:shadow-lg'} transition-all duration-300`}
             >
               {pkg.popular && (
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <span className="earth-gradient text-white px-6 py-2 rounded-full text-sm font-semibold">
-                    Populärast
-                  </span>
+                  <Badge className="bg-primary text-white px-4 py-1 flex items-center">
+                    <Star className="w-4 h-4 mr-1" />
+                    Mest populär
+                  </Badge>
                 </div>
               )}
 
-              <div className="text-center mb-8">
-                <h3 className="text-2xl font-bold text-foreground mb-2">
+              <CardHeader className="text-center pb-4">
+                <CardTitle className="text-2xl text-slate-900 mb-2">
                   {pkg.name}
-                </h3>
-                <div className="text-3xl font-bold text-accent mb-4">
-                  {pkg.price}
+                </CardTitle>
+                <div className="mb-4">
+                  <span className="text-4xl font-bold text-slate-900">
+                    {pkg.price === 'Offert' ? 'Offert' : `${pkg.price} SEK`}
+                  </span>
+                  {pkg.price !== 'Offert' && (
+                    <span className="text-slate-600 ml-2">per projekt</span>
+                  )}
                 </div>
-                <p className="text-muted-foreground">
+                {pkg.savings && (
+                  <Badge variant="secondary" className="text-green-700 bg-green-100">
+                    {pkg.savings}
+                  </Badge>
+                )}
+                <CardDescription className="text-slate-600 mt-4">
                   {pkg.description}
-                </p>
-              </div>
+                </CardDescription>
+              </CardHeader>
 
-              <ul className="space-y-4 mb-8">
-                {pkg.features.map((feature, index) => (
-                  <li key={index} className="flex items-start space-x-3">
-                    <Check className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
-                    <span className="text-foreground">{feature}</span>
-                  </li>
-                ))}
-              </ul>
+              <CardContent className="flex-grow">
+                <ul className="space-y-3 mb-8">
+                  {pkg.features.map((feature, index) => (
+                    <li key={index} className="flex items-start">
+                      <CheckCircle className="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
+                      <span className="text-slate-700">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
 
-              <Button
-                onClick={() => handleGetQuote(pkg.id)}
-                className={`w-full py-3 ${
-                  pkg.popular
-                    ? 'earth-gradient text-white hover:opacity-90'
-                    : 'border-2 border-accent text-accent hover:bg-accent hover:text-white'
-                }`}
-                variant={pkg.popular ? 'default' : 'outline'}
-              >
-                Få en offert
-              </Button>
-            </div>
+                <Button 
+                  onClick={() => onPackageSelect(pkg.id)}
+                  className={`w-full group ${pkg.popular 
+                    ? 'earth-gradient text-white hover:opacity-90' 
+                    : 'border-2 border-primary text-primary hover:bg-primary hover:text-white'
+                  }`}
+                  variant={pkg.popular ? 'default' : 'outline'}
+                  size="lg"
+                >
+                  {pkg.price === 'Offert' ? 'Begär offert' : 'Välj paket'}
+                  <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </CardContent>
+            </Card>
           ))}
         </div>
 
-        <div className="text-center mt-12">
-          <p className="text-muted-foreground">
-            Alla priser är exklusive moms. Kontakta oss för en kostnadsfri konsultation 
-            och skräddarsydd offert för ditt specifika projekt.
-          </p>
+        {/* Additional info */}
+        <div className="text-center mt-12 p-6 bg-white rounded-lg shadow-sm max-w-4xl mx-auto">
+          <h3 className="text-lg font-semibold text-slate-900 mb-2">
+            Alla paket inkluderar
+          </h3>
+          <div className="flex flex-wrap justify-center gap-6 text-sm text-slate-600">
+            <div className="flex items-center">
+              <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
+              Kostnadsfri konsultation
+            </div>
+            <div className="flex items-center">
+              <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
+              Fast pris utan överraskningar
+            </div>
+            <div className="flex items-center">
+              <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
+              Snabb hantering
+            </div>
+            <div className="flex items-center">
+              <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
+              Personlig service
+            </div>
+          </div>
         </div>
       </div>
     </section>

@@ -2,53 +2,68 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { AdvancedSEO } from '@/components/AdvancedSEO';
-import { CheckCircle, Phone, Mail, Shield, FileText, Clock, Award, AlertTriangle } from 'lucide-react';
+import { CheckCircle, Users, Shield, Eye, AlertTriangle, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
 const BasUPage = () => {
-  const scrollToContact = () => {
-    window.location.href = '/#kontakt';
-  };
-
-  const faqData = [
+  const responsibilities = [
     {
-      question: "Vad är BAS-U och när behöver jag en?",
-      answer: "BAS-U (Byggarbetsmiljösamordnare under utförande) behövs under byggfasen när flera entreprenörer arbetar samtidigt eller när projektet innebär särskilda arbetsmiljörisker."
+      icon: Users,
+      title: 'Samordning på plats',
+      description: 'Samordnar arbetsmiljöarbetet mellan entreprenörer'
     },
     {
-      question: "Vad kostar BAS-U tjänster?",
-      answer: "Våra BAS-U tjänster börjar från 18,000 SEK beroende på projektets längd och komplexitet. Vi erbjuder alltid en kostnadsfri konsultation för att ge dig en exakt offert."
+      icon: Eye,
+      title: 'Säkerhetsronder',
+      description: 'Genomför regelbundna säkerhetsronder på arbetsplatsen'
     },
     {
-      question: "Hur ofta gör BAS-U säkerhetsronder?",
-      answer: "Frekvensen beror på projektets art och risknivå, men vanligtvis genomförs säkerhetsronder minst en gång per vecka, oftare vid högrisksituationer."
+      icon: AlertTriangle,
+      title: 'Incidenthantering',
+      description: 'Hanterar och rapporterar arbetsmiljöincidenter'
+    },
+    {
+      icon: Shield,
+      title: 'Slutdokumentation',
+      description: 'Dokumenterar arbetsmiljöarbetet för framtiden'
     }
   ];
 
-  const breadcrumbs = [
-    { name: "Hem", url: "https://ytterman.com" },
-    { name: "Tjänster", url: "https://ytterman.com/tjanster" },
-    { name: "BAS-U", url: "https://ytterman.com/bas-u" }
+  const processSteps = [
+    {
+      step: '1',
+      title: 'Uppstart',
+      description: 'Tar över från BAS-P och planerar arbetsmiljöarbetet'
+    },
+    {
+      step: '2',
+      title: 'Löpande samordning',
+      description: 'Samordnar arbetsmiljöarbetet under hela byggfasen'
+    },
+    {
+      step: '3',
+      title: 'Kontroller',
+      description: 'Genomför säkerhetsronder och kontroller'
+    },
+    {
+      step: '4',
+      title: 'Avslut',
+      description: 'Slutdokumenterar och överlämnar till beställare'
+    }
   ];
 
-  const serviceData = {
-    name: "BAS-U (Byggarbetsmiljösamordnare under utförande)",
-    description: "Professionell arbetsmiljösamordning under byggfasen",
-    provider: "Ytterman",
-    areaServed: ["Sundsvall", "Härnösand", "Sollefteå", "Timrå", "Kramfors"],
-    priceRange: "Från 18,000 SEK"
+  const scrollToContact = () => {
+    window.location.href = '/#kontakt';
   };
 
   return (
     <>
       <AdvancedSEO 
         title="BAS-U - Byggarbetsmiljösamordnare Utförande | Ytterman"
-        description="Professionell BAS-U (Byggarbetsmiljösamordnare under utförande) i Västernorrland. Säkerhetsronder, arbetsmiljöuppföljning och samordning. Från 18,000 kr."
-        keywords="BAS-U, byggarbetsmiljösamordnare, utförande, säkerhetsronder, arbetsmiljöuppföljning, byggarbetsplats, Västernorrland, Sundsvall, Härnösand"
+        description="Certifierad BAS-U för arbetsmiljösamordning under utförandefasen. Säkerhetsronder, incidenthantering och samordning på byggarbetsplatsen. Från 18,000 SEK."
+        keywords="BAS-U, byggarbetsmiljösamordnare, utförande, säkerhetsronder, arbetsmiljö, byggarbetsplats, Västernorrland"
         url="https://ytterman.com/bas-u"
-        breadcrumbs={breadcrumbs}
-        faq={faqData}
-        service={serviceData}
       />
       
       <div className="min-h-screen">
@@ -59,203 +74,315 @@ const BasUPage = () => {
           <section className="py-20 bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-50">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto text-center">
-                <h1 className="text-5xl font-bold text-slate-900 mb-6">
-                  BAS-U - Byggarbetsmiljösamordnare
+                <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-slate-200 mb-8">
+                  <Users className="w-4 h-4 text-primary mr-2" />
+                  <span className="text-sm font-medium text-slate-700">
+                    Certifierad BAS-U
+                  </span>
+                </div>
+
+                <h1 className="text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-tight">
+                  BAS-U
+                  <span className="earth-gradient bg-clip-text text-transparent block">
+                    Utförandesamordning
+                  </span>
                 </h1>
-                <p className="text-xl text-slate-600 mb-8">
-                  Professionell arbetsmiljösamordning under byggfasen. Vi säkerställer en trygg 
-                  och säker arbetsmiljö genom hela byggprocessen med regelbundna kontroller.
+
+                <p className="text-xl lg:text-2xl text-slate-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+                  Säker byggarbetsplats varje dag. Som BAS-U säkerställer vi att arbetsmiljöarbetet 
+                  fungerar optimalt under hela byggfasen med regelbundna kontroller och samordning.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
                   <Button 
                     onClick={scrollToContact}
-                    className="earth-gradient text-white hover:opacity-90 px-8 py-4 text-lg"
+                    size="lg" 
+                    className="earth-gradient text-white hover:opacity-90 px-8 py-4 text-lg font-semibold group"
                   >
-                    <Phone className="w-5 h-5 mr-2" />
-                    Få kostnadsfri offert
+                    Få offert på BAS-U
+                    <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </Button>
-                  <a 
-                    href="tel:+46761118447"
-                    className="inline-flex items-center px-8 py-4 border-2 border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-colors text-lg font-semibold"
+                  
+                  <Button 
+                    variant="outline" 
+                    size="lg"
+                    asChild
+                    className="px-8 py-4 text-lg font-semibold border-2 hover:bg-slate-50"
                   >
-                    <Phone className="w-5 h-5 mr-2" />
-                    076-111 84 47
-                  </a>
+                    <a href="tel:+46761118447">
+                      Ring 076-111 84 47
+                    </a>
+                  </Button>
                 </div>
-              </div>
-            </div>
-          </section>
 
-          {/* Vad är BAS-U */}
-          <section className="py-20 bg-white">
-            <div className="container mx-auto px-4">
-              <div className="max-w-4xl mx-auto">
-                <h2 className="text-4xl font-bold text-slate-900 mb-8 text-center">
-                  Vad är BAS-U?
-                </h2>
-                <div className="prose prose-lg max-w-none text-slate-700">
-                  <p className="text-xl mb-6">
-                    BAS-U (Byggarbetsmiljösamordnare under utförande) är en certifierad person som 
-                    ansvarar för arbetsmiljösamordning under byggfasen av byggprojekt.
-                  </p>
-                  <p className="mb-8">
-                    BAS-U säkerställer att arbetsmiljöplanen följs, genomför säkerhetsronder och 
-                    koordinerar säkerhetsarbetet mellan olika entreprenörer på byggarbetsplatsen.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* BAS-U Uppgifter */}
-          <section className="py-20 bg-slate-50">
-            <div className="container mx-auto px-4">
-              <div className="max-w-4xl mx-auto">
-                <h2 className="text-4xl font-bold text-slate-900 mb-12 text-center">
-                  BAS-U:s Uppgifter
-                </h2>
-                <div className="grid md:grid-cols-2 gap-6">
-                  {[
-                    "Genomföra regelbundna säkerhetsronder",
-                    "Samordna arbetsmiljöarbetet mellan entreprenörer",
-                    "Övervaka att arbetsmiljöplanen följs",
-                    "Hantera och dokumentera avvikelser",
-                    "Kontrollera säkerhetsutrustning och skydd",
-                    "Rapportera incidenter och olyckor",
-                    "Hålla säkerhetsmöten med entreprenörer"
-                  ].map((responsibility, index) => (
-                    <div key={index} className="flex items-start space-x-4 p-6 bg-white rounded-lg shadow-sm">
-                      <CheckCircle className="w-6 h-6 text-green-500 mt-1 flex-shrink-0" />
-                      <span className="text-slate-700 text-lg">{responsibility}</span>
+                <div className="text-center">
+                  <p className="text-sm text-slate-500 mb-2">Från 18,000 SEK per projekt</p>
+                  <div className="flex justify-center items-center space-x-4 text-sm text-slate-600">
+                    <div className="flex items-center">
+                      <CheckCircle className="w-4 h-4 text-green-600 mr-1" />
+                      Fast pris
                     </div>
-                  ))}
+                    <div className="flex items-center">
+                      <CheckCircle className="w-4 h-4 text-green-600 mr-1" />
+                      Närvarande på plats
+                    </div>
+                    <div className="flex items-center">
+                      <CheckCircle className="w-4 h-4 text-green-600 mr-1" />
+                      Certifierad expert
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </section>
 
-          {/* Säkerhetsområden */}
+          {/* What is BAS-U Section */}
           <section className="py-20 bg-white">
             <div className="container mx-auto px-4">
               <div className="max-w-6xl mx-auto">
-                <h2 className="text-4xl font-bold text-slate-900 mb-12 text-center">
-                  Viktiga säkerhetsområden
-                </h2>
+                <div className="text-center mb-16">
+                  <h2 className="text-4xl font-bold text-slate-900 mb-4">
+                    Vad är BAS-U?
+                  </h2>
+                  <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+                    BAS-U (Byggarbetsmiljösamordnare under Utförande) ansvarar för att 
+                    samordna arbetsmiljöarbetet på byggarbetsplatsen enligt AML.
+                  </p>
+                </div>
+
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                  {[
-                    {
-                      icon: AlertTriangle,
-                      title: "Fallskydd",
-                      description: "Kontroll av räcken, nät och personlig skyddsutrustning"
-                    },
-                    {
-                      icon: Shield,
-                      title: "Maskinsäkerhet",
-                      description: "Säker användning av maskiner och verktyg"
-                    },
-                    {
-                      icon: FileText,
-                      title: "Kemiska risker",
-                      description: "Hantering av farliga ämnen och kemikalier"
-                    },
-                    {
-                      icon: Clock,
-                      title: "Arbetsmiljö",
-                      description: "Ergonomi, buller och allmän arbetsmiljö"
-                    }
-                  ].map((item, index) => {
-                    const IconComponent = item.icon;
-                    return (
-                      <div key={index} className="text-center p-6 bg-slate-50 rounded-xl">
-                        <div className="w-16 h-16 earth-gradient rounded-full flex items-center justify-center mx-auto mb-6">
-                          <IconComponent className="w-8 h-8 text-white" />
+                  {responsibilities.map((item, index) => (
+                    <Card key={index} className="text-center hover:shadow-lg transition-shadow">
+                      <CardHeader>
+                        <div className="mx-auto w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                          <item.icon className="w-8 h-8 text-primary" />
                         </div>
-                        <h3 className="text-xl font-bold text-slate-900 mb-4">
-                          {item.title}
-                        </h3>
-                        <p className="text-slate-600">
+                        <CardTitle className="text-xl text-slate-900">{item.title}</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <CardDescription className="text-slate-600">
                           {item.description}
-                        </p>
-                      </div>
-                    );
-                  })}
+                        </CardDescription>
+                      </CardContent>
+                    </Card>
+                  ))}
                 </div>
               </div>
             </div>
           </section>
 
-          {/* Process */}
+          {/* Process Section */}
           <section className="py-20 bg-slate-50">
             <div className="container mx-auto px-4">
               <div className="max-w-6xl mx-auto">
-                <h2 className="text-4xl font-bold text-slate-900 mb-12 text-center">
-                  BAS-U Processen
-                </h2>
+                <div className="text-center mb-16">
+                  <h2 className="text-4xl font-bold text-slate-900 mb-4">
+                    BAS-U processen
+                  </h2>
+                  <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+                    Vi följer en strukturerad process för att säkerställa säker arbetsmiljö 
+                    under hela byggfasen.
+                  </p>
+                </div>
+
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                  {[
-                    {
-                      step: "1",
-                      title: "Projektstart",
-                      description: "Genomgång av arbetsmiljöplan och säkerhetsrutiner"
-                    },
-                    {
-                      step: "2", 
-                      title: "Löpande kontroll",
-                      description: "Regelbundna säkerhetsronder och dokumentation"
-                    },
-                    {
-                      step: "3",
-                      title: "Samordning",
-                      description: "Koordinering mellan entreprenörer och säkerhetsmöten"
-                    },
-                    {
-                      step: "4",
-                      title: "Avslut",
-                      description: "Slutrapport och överlämning av dokumentation"
-                    }
-                  ].map((item, index) => (
-                    <div key={index} className="text-center">
-                      <div className="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-bold">
-                        {item.step}
-                      </div>
-                      <h3 className="text-xl font-bold text-slate-900 mb-4">
-                        {item.title}
-                      </h3>
-                      <p className="text-slate-600">
-                        {item.description}
-                      </p>
+                  {processSteps.map((step, index) => (
+                    <div key={index} className="relative">
+                      <Card className="h-full">
+                        <CardHeader className="text-center">
+                          <div className="mx-auto w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center text-xl font-bold mb-4">
+                            {step.step}
+                          </div>
+                          <CardTitle className="text-xl text-slate-900">{step.title}</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          <CardDescription className="text-slate-600 text-center">
+                            {step.description}
+                          </CardDescription>
+                        </CardContent>
+                      </Card>
+                      
+                      {index < processSteps.length - 1 && (
+                        <div className="hidden lg:block absolute top-1/2 -right-4 transform -translate-y-1/2">
+                          <ArrowRight className="w-6 h-6 text-slate-400" />
+                        </div>
+                      )}
                     </div>
                   ))}
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Daily Activities Section */}
+          <section className="py-20 bg-white">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto">
+                <div className="text-center mb-12">
+                  <h2 className="text-4xl font-bold text-slate-900 mb-4">
+                    Dagliga aktiviteter som BAS-U
+                  </h2>
+                  <p className="text-xl text-slate-600">
+                    Vi är aktiva på byggarbetsplatsen och säkerställer säker arbetsmiljö varje dag
+                  </p>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-8">
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="text-xl text-slate-900">Säkerhetsronder</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <ul className="space-y-2">
+                        <li className="flex items-start">
+                          <CheckCircle className="w-5 h-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
+                          <span className="text-slate-700">Dagliga säkerhetsinspektioner</span>
+                        </li>
+                        <li className="flex items-start">
+                          <CheckCircle className="w-5 h-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
+                          <span className="text-slate-700">Kontroll av skyddsutrustning</span>
+                        </li>
+                        <li className="flex items-start">
+                          <CheckCircle className="w-5 h-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
+                          <span className="text-slate-700">Riskbedömning av arbetsmoment</span>
+                        </li>
+                        <li className="flex items-start">
+                          <CheckCircle className="w-5 h-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
+                          <span className="text-slate-700">Dokumentation av avvikelser</span>
+                        </li>
+                      </ul>
+                    </CardContent>
+                  </Card>
+
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="text-xl text-slate-900">Samordning & Kommunikation</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <ul className="space-y-2">
+                        <li className="flex items-start">
+                          <CheckCircle className="w-5 h-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
+                          <span className="text-slate-700">Arbetsmiljömöten</span>
+                        </li>
+                        <li className="flex items-start">
+                          <CheckCircle className="w-5 h-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
+                          <span className="text-slate-700">Samordning mellan entreprenörer</span>
+                        </li>
+                        <li className="flex items-start">
+                          <CheckCircle className="w-5 h-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
+                          <span className="text-slate-700">Rapportering till beställare</span>
+                        </li>
+                        <li className="flex items-start">
+                          <CheckCircle className="w-5 h-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
+                          <span className="text-slate-700">Incidentutredningar</span>
+                        </li>
+                      </ul>
+                    </CardContent>
+                  </Card>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* When do you need BAS-U Section */}
+          <section className="py-20 bg-slate-50">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto">
+                <div className="text-center mb-12">
+                  <h2 className="text-4xl font-bold text-slate-900 mb-4">
+                    När behöver du BAS-U?
+                  </h2>
+                  <p className="text-xl text-slate-600">
+                    BAS-U krävs enligt Arbetsmiljölagen för samma projekt som BAS-P
+                  </p>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-8">
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="text-xl text-slate-900">Obligatoriskt för</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <ul className="space-y-2">
+                        <li className="flex items-start">
+                          <CheckCircle className="w-5 h-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
+                          <span className="text-slate-700">Projekt med flera entreprenörer</span>
+                        </li>
+                        <li className="flex items-start">
+                          <CheckCircle className="w-5 h-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
+                          <span className="text-slate-700">Byggtid över 30 arbetsdagar</span>
+                        </li>
+                        <li className="flex items-start">
+                          <CheckCircle className="w-5 h-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
+                          <span className="text-slate-700">Över 500 personarbetsdagar</span>
+                        </li>
+                        <li className="flex items-start">
+                          <CheckCircle className="w-5 h-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
+                          <span className="text-slate-700">Särskilt riskfyllda arbeten</span>
+                        </li>
+                      </ul>
+                    </CardContent>
+                  </Card>
+
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="text-xl text-slate-900">Fördelar med BAS-U</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <ul className="space-y-2">
+                        <li className="flex items-start">
+                          <CheckCircle className="w-5 h-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
+                          <span className="text-slate-700">Minskar risken för olyckor</span>
+                        </li>
+                        <li className="flex items-start">
+                          <CheckCircle className="w-5 h-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
+                          <span className="text-slate-700">Förbättrar arbetsmiljön</span>
+                        </li>
+                        <li className="flex items-start">
+                          <CheckCircle className="w-5 h-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
+                          <span className="text-slate-700">Regelefterlevnad</span>
+                        </li>
+                        <li className="flex items-start">
+                          <CheckCircle className="w-5 h-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
+                          <span className="text-slate-700">Kostnadsbesparingar</span>
+                        </li>
+                      </ul>
+                    </CardContent>
+                  </Card>
                 </div>
               </div>
             </div>
           </section>
 
           {/* CTA Section */}
-          <section className="py-20 bg-slate-900 text-white">
-            <div className="container mx-auto px-4 text-center">
-              <h2 className="text-4xl font-bold mb-6">
-                Behöver du BAS-U för ditt projekt?
-              </h2>
-              <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-                Kontakta oss för en kostnadsfri konsultation. Vi hjälper dig med 
-                professionell arbetsmiljösamordning under byggfasen.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button 
-                  onClick={scrollToContact}
-                  className="earth-gradient text-white hover:opacity-90 px-8 py-4 text-lg"
-                >
-                  <Phone className="w-5 h-5 mr-2" />
-                  Få kostnadsfri offert
-                </Button>
-                <a 
-                  href="mailto:tobias@ytterman.com"
-                  className="inline-flex items-center px-8 py-4 border-2 border-white text-white rounded-lg hover:bg-white hover:text-slate-900 transition-colors text-lg font-semibold"
-                >
-                  <Mail className="w-5 h-5 mr-2" />
-                  tobias@ytterman.com
-                </a>
+          <section className="py-20 bg-primary/5">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto text-center">
+                <h2 className="text-4xl font-bold text-slate-900 mb-4">
+                  Behöver du BAS-U för ditt projekt?
+                </h2>
+                <p className="text-xl text-slate-600 mb-8">
+                  Kontakta oss för en kostnadsfri konsultation. Vi hjälper dig att säkerställa 
+                  en trygg och säker byggarbetsplats under hela byggfasen.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Button 
+                    onClick={scrollToContact}
+                    size="lg" 
+                    className="earth-gradient text-white hover:opacity-90"
+                  >
+                    Få kostnadsfri konsultation
+                  </Button>
+                  <Button 
+                    variant="outline" 
+                    size="lg"
+                    asChild
+                  >
+                    <a href="tel:+46761118447">
+                      Ring 076-111 84 47
+                    </a>
+                  </Button>
+                </div>
               </div>
             </div>
           </section>

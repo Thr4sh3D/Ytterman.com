@@ -1,6 +1,5 @@
-import { CheckCircle, MessageCircle, Shield, Award } from 'lucide-react';
+import { ArrowRight, CheckCircle, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { HeroBanner } from './HeroBanner';
 
 export const Hero = () => {
   const scrollToContact = () => {
@@ -10,106 +9,91 @@ export const Hero = () => {
     }
   };
 
-  const openWhatsApp = () => {
-    window.open('https://wa.me/46761118447?text=Hej! Jag är intresserad av dina tjänster som kontrollansvarig och BAS.', '_blank');
-  };
-
   return (
-    <section id="hem" className="pt-24 pb-16 bg-gradient-to-br from-background via-secondary/20 to-accent/10">
-      <div className="container mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Column - Content */}
-          <div className="animate-fade-in">
-            <div className="inline-flex items-center space-x-2 bg-accent/20 px-4 py-2 rounded-full mb-6">
-              <Shield className="w-5 h-5 text-accent" />
-              <span className="text-sm font-medium text-accent">Certifierad & Erfaren</span>
+    <section className="relative py-20 lg:py-32 bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-50 overflow-hidden">
+      {/* Background decorative elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-blue-100/40 to-transparent rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-green-100/40 to-transparent rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="container mx-auto px-4 relative">
+        <div className="max-w-4xl mx-auto text-center">
+          {/* Badge */}
+          <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-slate-200 mb-8">
+            <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
+            <span className="text-sm font-medium text-slate-700">
+              Certifierad Kontrollansvarig & BAS
+            </span>
+          </div>
+
+          {/* Main heading */}
+          <h1 className="text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-tight">
+            Trygg byggprocess med
+            <span className="earth-gradient bg-clip-text text-transparent block">
+              Ytterman
+            </span>
+          </h1>
+
+          {/* Subheading */}
+          <p className="text-xl lg:text-2xl text-slate-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+            Certifierad Kontrollansvarig och Byggarbetsmiljösamordnare med över 20 års 
+            erfarenhet. Vi guidar dig genom hela byggprocessen i Västernorrland.
+          </p>
+
+          {/* Key benefits */}
+          <div className="flex flex-wrap justify-center gap-6 mb-10 text-slate-700">
+            <div className="flex items-center">
+              <CheckCircle className="w-5 h-5 text-green-600 mr-2" />
+              <span>Fast pris</span>
             </div>
-            
-            <h1 className="text-4xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
-              Certifierad Kontrollansvarig och{' '}
-              <span className="text-gradient">BAS U/P – Västernorrland</span>
-            </h1>
-            
-            <p className="text-xl text-muted-foreground mb-4 leading-relaxed">
-              Kontrollansvarig & Byggarbetsmiljösamordnare BAS-P / BAS-U
-            </p>
-            
-            <p className="text-lg text-muted-foreground mb-8">
-              Verksam i Sundsvall, Härnösand, Sollefteå, Kramfors, Timrå och hela Västernorrland
-            </p>
-            
-            <div className="space-y-4 mb-8">
-              <div className="flex items-center space-x-3">
-                <CheckCircle className="w-6 h-6 text-accent flex-shrink-0" />
-                <span className="text-lg">Certifierad och erfaren – med bred och praktisk kompetens</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <CheckCircle className="w-6 h-6 text-accent flex-shrink-0" />
-                <span className="text-lg">Fast pris eller tydlig timdebitering</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <CheckCircle className="w-6 h-6 text-accent flex-shrink-0" />
-                <span className="text-lg">Digital hantering, platsbesök och snabb återkoppling</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <CheckCircle className="w-6 h-6 text-accent flex-shrink-0" />
-                <span className="text-lg">Trygga paket för nybyggnation, ombyggnad eller BRF‑projekt</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <CheckCircle className="w-6 h-6 text-accent flex-shrink-0" />
-                <span className="text-lg">Möjlighet att kombinera KA + BAS‑P/U i ett komplett paket</span>
-              </div>
+            <div className="flex items-center">
+              <CheckCircle className="w-5 h-5 text-green-600 mr-2" />
+              <span>Snabb hantering</span>
             </div>
-            
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button 
-                onClick={scrollToContact}
-                size="lg"
-                className="earth-gradient text-white hover:opacity-90 text-lg px-8 py-6"
-              >
-                Kontakta mig
-              </Button>
-              <Button 
-                onClick={openWhatsApp}
-                variant="outline"
-                size="lg"
-                className="border-accent text-accent hover:bg-accent hover:text-white text-lg px-8 py-6"
-              >
-                <MessageCircle className="w-5 h-5 mr-2" />
-                WhatsApp
-              </Button>
+            <div className="flex items-center">
+              <CheckCircle className="w-5 h-5 text-green-600 mr-2" />
+              <span>Personlig service</span>
             </div>
           </div>
 
-          {/* Right Column - Banner and Visual Elements */}
-          <div className="animate-slide-up">
-            <div className="space-y-8">
-              {/* Hero Banner */}
-              <HeroBanner />
-              
-              {/* Stats Cards */}
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-white rounded-xl p-4 shadow-lg">
-                  <Award className="w-6 h-6 text-accent mb-2" />
-                  <h3 className="font-bold text-lg mb-1">20+ År</h3>
-                  <p className="text-xs text-muted-foreground">Erfarenhet inom bygg</p>
-                </div>
-                <div className="bg-white rounded-xl p-4 shadow-lg">
-                  <Shield className="w-6 h-6 text-accent mb-2" />
-                  <h3 className="font-bold text-lg mb-1">Certifierad</h3>
-                  <p className="text-xs text-muted-foreground">KA, BAS-P & BAS-U</p>
-                </div>
-                <div className="bg-white rounded-xl p-4 shadow-lg">
-                  <CheckCircle className="w-6 h-6 text-accent mb-2" />
-                  <h3 className="font-bold text-lg mb-1">Fast Pris</h3>
-                  <p className="text-xs text-muted-foreground">Tydliga kostnader</p>
-                </div>
-                <div className="bg-white rounded-xl p-4 shadow-lg">
-                  <MessageCircle className="w-6 h-6 text-accent mb-2" />
-                  <h3 className="font-bold text-lg mb-1">Snabb Kontakt</h3>
-                  <p className="text-xs text-muted-foreground">Digital hantering</p>
-                </div>
-              </div>
+          {/* CTA buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Button 
+              onClick={scrollToContact}
+              size="lg" 
+              className="earth-gradient text-white hover:opacity-90 px-8 py-4 text-lg font-semibold group"
+            >
+              Få kostnadsfri konsultation
+              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Button>
+            
+            <Button 
+              variant="outline" 
+              size="lg"
+              asChild
+              className="px-8 py-4 text-lg font-semibold border-2 hover:bg-slate-50"
+            >
+              <a href="tel:+46761118447" className="flex items-center">
+                <Phone className="mr-2 w-5 h-5" />
+                076-111 84 47
+              </a>
+            </Button>
+          </div>
+
+          {/* Trust indicators */}
+          <div className="mt-12 pt-8 border-t border-slate-200">
+            <p className="text-sm text-slate-500 mb-4">Verksam i hela Västernorrland</p>
+            <div className="flex flex-wrap justify-center gap-4 text-sm text-slate-600">
+              <span>Sundsvall</span>
+              <span>•</span>
+              <span>Härnösand</span>
+              <span>•</span>
+              <span>Sollefteå</span>
+              <span>•</span>
+              <span>Timrå</span>
+              <span>•</span>
+              <span>Kramfors</span>
             </div>
           </div>
         </div>
