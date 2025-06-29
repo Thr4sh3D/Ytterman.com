@@ -2,7 +2,7 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { AdvancedSEO } from '@/components/AdvancedSEO';
-import { CheckCircle, Phone, Mail, FileText, Users, Shield, Building, ArrowRight } from 'lucide-react';
+import { CheckCircle, Phone, Mail, FileText, PenTool, Map, Layers } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const TjansterPage = () => {
@@ -12,71 +12,52 @@ const TjansterPage = () => {
 
   const services = [
     {
-      title: "Kontrollansvarig (KA)",
-      description: "Certifierad kontrollansvarig enligt PBL för teknisk kontroll och slutbesiktning",
-      price: "Från 15,000 SEK",
-      features: [
-        "Kontrollplan och teknisk kontroll",
-        "Slutbesiktning och slutbevis",
-        "Dokumentation enligt PBL",
-        "Samordning med byggkontroll"
-      ],
-      icon: Shield,
-      link: "/kontrollansvarig"
-    },
-    {
-      title: "BAS-P (Projektering)",
-      description: "Byggarbetsmiljösamordnare under projekteringsfasen",
-      price: "Från 12,000 SEK",
-      features: [
-        "Arbetsmiljöplan för projektet",
-        "Riskbedömning och säkerhetsanalys",
-        "Samordning mellan projektörer",
-        "Dokumentation enligt AML"
-      ],
       icon: FileText,
-      link: "/bas-p"
-    },
-    {
-      title: "BAS-U (Utförande)",
-      description: "Byggarbetsmiljösamordnare under byggfasen",
-      price: "Från 18,000 SEK",
-      features: [
-        "Säkerhetsronder på byggarbetsplats",
-        "Samordning mellan entreprenörer",
-        "Arbetsmiljöuppföljning",
-        "Incidentrapportering"
-      ],
-      icon: Users,
-      link: "/bas-u"
-    },
-    {
       title: "Bygglovshandlingar",
       description: "Kompletta bygglovshandlingar för ditt projekt",
-      price: "Från 8,000 SEK",
       features: [
-        "Planritningar och sektioner",
-        "Situationsplan",
-        "Teknisk beskrivning",
-        "Energiberäkningar"
+        "Ansökan om bygglov",
+        "Tekniska beskrivningar",
+        "Konstruktionsritningar",
+        "Brandskyddsdokumentation"
       ],
-      icon: Building,
-      link: "/#kontakt"
-    }
-  ];
-
-  const faqData = [
-    {
-      question: "Vilka tjänster erbjuder Ytterman?",
-      answer: "Vi erbjuder kontrollansvarig (KA), BAS-P, BAS-U och bygglovshandlingar för byggprojekt i Västernorrland."
+      price: "Från 8,000 SEK"
     },
     {
-      question: "Vad kostar era tjänster?",
-      answer: "Priserna varierar beroende på projektets omfattning. KA från 15,000 kr, BAS-P från 12,000 kr, BAS-U från 18,000 kr och bygglovshandlingar från 8,000 kr."
+      icon: PenTool,
+      title: "Planritningar",
+      description: "Professionella planritningar enligt gällande standard",
+      features: [
+        "Befintliga planer",
+        "Nya planritningar",
+        "Ändringsritningar",
+        "CAD-ritningar"
+      ],
+      price: "Från 5,000 SEK"
     },
     {
-      question: "Vilka områden täcker ni?",
-      answer: "Vi verkar i hela Västernorrland med fokus på Sundsvall, Härnösand, Sollefteå, Timrå och Kramfors."
+      icon: Map,
+      title: "Situationsplan",
+      description: "Detaljerad situationsplan för ditt byggprojekt",
+      features: [
+        "Uppmätning av fastighet",
+        "Situationsplan",
+        "Höjdsättning",
+        "Avståndsmått"
+      ],
+      price: "Från 3,000 SEK"
+    },
+    {
+      icon: Layers,
+      title: "Sektionsritningar",
+      description: "Tekniska sektionsritningar och detaljer",
+      features: [
+        "Byggsektioner",
+        "Konstruktionsdetaljer",
+        "Installationssektioner",
+        "Tekniska specifikationer"
+      ],
+      price: "Från 4,000 SEK"
     }
   ];
 
@@ -85,16 +66,30 @@ const TjansterPage = () => {
     { name: "Tjänster", url: "https://ytterman.com/tjanster" }
   ];
 
+  const faqData = [
+    {
+      question: "Vilka handlingar behövs för bygglov?",
+      answer: "För bygglov behövs vanligtvis situationsplan, planritningar, sektionsritningar och teknisk beskrivning. Vi hjälper dig med alla nödvändiga handlingar."
+    },
+    {
+      question: "Hur lång tid tar det att få bygglovshandlingar?",
+      answer: "Beroende på projektets omfattning tar det vanligtvis 2-4 veckor att färdigställa kompletta bygglovshandlingar."
+    },
+    {
+      question: "Kan ni hjälpa med bygglovsansökan?",
+      answer: "Ja, vi hjälper dig genom hela processen från framtagning av handlingar till inlämning av bygglovsansökan."
+    }
+  ];
+
   return (
     <>
       <AdvancedSEO 
-        title="Tjänster - Kontrollansvarig, BAS-P, BAS-U | Ytterman"
-        description="Kompletta byggtjänster i Västernorrland. Kontrollansvarig, BAS-P, BAS-U och bygglovshandlingar. Över 20 års erfarenhet. Fast pris och trygg process."
-        keywords="kontrollansvarig tjänster, BAS-P, BAS-U, bygglovshandlingar, byggtjänster Västernorrland, Sundsvall, Härnösand, byggkontroll"
+        title="Bygglovshandlingar & Ritningar | Ytterman Västernorrland"
+        description="Professionella bygglovshandlingar, planritningar och tekniska ritningar i Västernorrland. Snabb leverans och konkurrenskraftiga priser."
+        keywords="bygglovshandlingar, planritningar, situationsplan, sektionsritningar, bygglov, tekniska ritningar, Västernorrland"
         url="https://ytterman.com/tjanster"
         breadcrumbs={breadcrumbs}
         faq={faqData}
-        organization={true}
       />
       
       <div className="min-h-screen">
@@ -106,65 +101,83 @@ const TjansterPage = () => {
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto text-center">
                 <h1 className="text-5xl font-bold text-slate-900 mb-6">
-                  Våra Tjänster
+                  Bygglovshandlingar & Ritningar
                 </h1>
                 <p className="text-xl text-slate-600 mb-8">
-                  Kompletta byggtjänster för ditt projekt. Från kontrollansvarig till 
-                  arbetsmiljösamordning - vi hjälper dig genom hela byggprocessen.
+                  Professionella bygglovshandlingar och tekniska ritningar för ditt projekt. 
+                  Vi hjälper dig genom hela processen från idé till färdiga handlingar.
                 </p>
-                <Button 
-                  onClick={scrollToContact}
-                  className="earth-gradient text-white hover:opacity-90 px-8 py-4 text-lg"
-                >
-                  <Phone className="w-5 h-5 mr-2" />
-                  Få kostnadsfri offert
-                </Button>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Button 
+                    onClick={scrollToContact}
+                    className="earth-gradient text-white hover:opacity-90 px-8 py-4 text-lg"
+                  >
+                    <Phone className="w-5 h-5 mr-2" />
+                    Få kostnadsfri offert
+                  </Button>
+                  <a 
+                    href="tel:+46761118447"
+                    className="inline-flex items-center px-8 py-4 border-2 border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-colors text-lg font-semibold"
+                  >
+                    <Phone className="w-5 h-5 mr-2" />
+                    076-111 84 47
+                  </a>
+                </div>
               </div>
             </div>
           </section>
 
-          {/* Services Grid */}
+          {/* Services Section */}
           <section className="py-20 bg-white">
             <div className="container mx-auto px-4">
-              <div className="max-w-6xl mx-auto">
-                <div className="grid md:grid-cols-2 gap-8">
-                  {services.map((service, index) => {
-                    const IconComponent = service.icon;
-                    return (
-                      <div key={index} className="bg-slate-50 rounded-xl p-8 hover:shadow-lg transition-shadow">
-                        <div className="flex items-center mb-6">
-                          <div className="w-12 h-12 earth-gradient rounded-lg flex items-center justify-center mr-4">
-                            <IconComponent className="w-6 h-6 text-white" />
-                          </div>
-                          <div>
-                            <h3 className="text-2xl font-bold text-slate-900">{service.title}</h3>
-                            <p className="text-primary font-semibold">{service.price}</p>
-                          </div>
-                        </div>
-                        
-                        <p className="text-slate-600 mb-6">{service.description}</p>
-                        
-                        <ul className="space-y-3 mb-8">
-                          {service.features.map((feature, featureIndex) => (
-                            <li key={featureIndex} className="flex items-start space-x-3">
-                              <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                              <span className="text-slate-700">{feature}</span>
-                            </li>
-                          ))}
-                        </ul>
-                        
-                        <Button 
-                          onClick={() => window.location.href = service.link}
-                          variant="outline"
-                          className="w-full hover:bg-primary hover:text-white"
-                        >
-                          Läs mer
-                          <ArrowRight className="w-4 h-4 ml-2" />
-                        </Button>
+              <div className="text-center mb-16">
+                <h2 className="text-4xl font-bold text-slate-900 mb-6">
+                  Våra Tjänster
+                </h2>
+                <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+                  Kompletta lösningar för alla dina ritnings- och dokumentationsbehov.
+                </p>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                {services.map((service, index) => {
+                  const IconComponent = service.icon;
+                  return (
+                    <div key={index} className="bg-slate-50 rounded-xl p-8">
+                      <div className="w-16 h-16 earth-gradient rounded-lg flex items-center justify-center mb-6">
+                        <IconComponent className="w-8 h-8 text-white" />
                       </div>
-                    );
-                  })}
-                </div>
+                      
+                      <h3 className="text-2xl font-bold text-slate-900 mb-4">
+                        {service.title}
+                      </h3>
+                      
+                      <p className="text-slate-600 mb-6">
+                        {service.description}
+                      </p>
+                      
+                      <ul className="space-y-3 mb-6">
+                        {service.features.map((feature, featureIndex) => (
+                          <li key={featureIndex} className="flex items-start space-x-3">
+                            <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
+                            <span className="text-slate-700">{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      
+                      <div className="text-2xl font-bold text-primary mb-6">
+                        {service.price}
+                      </div>
+                      
+                      <Button 
+                        onClick={scrollToContact}
+                        className="w-full earth-gradient text-white hover:opacity-90"
+                      >
+                        Få offert
+                      </Button>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </section>
@@ -174,29 +187,29 @@ const TjansterPage = () => {
             <div className="container mx-auto px-4">
               <div className="max-w-6xl mx-auto">
                 <h2 className="text-4xl font-bold text-slate-900 mb-12 text-center">
-                  Så fungerar det
+                  Så fungerar processen
                 </h2>
-                <div className="grid md:grid-cols-4 gap-8">
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                   {[
                     {
                       step: "1",
-                      title: "Kontakt",
-                      description: "Du kontaktar oss för en kostnadsfri konsultation"
+                      title: "Konsultation",
+                      description: "Vi diskuterar ditt projekt och behov"
                     },
                     {
-                      step: "2",
+                      step: "2", 
                       title: "Offert",
-                      description: "Vi ger dig en fast offert baserat på ditt projekt"
+                      description: "Du får en detaljerad offert med fast pris"
                     },
                     {
                       step: "3",
-                      title: "Genomförande",
-                      description: "Vi utför tjänsten professionellt och enligt tidsplan"
+                      title: "Framtagning",
+                      description: "Vi tar fram alla nödvändiga handlingar"
                     },
                     {
                       step: "4",
                       title: "Leverans",
-                      description: "Du får all dokumentation och kan fortsätta ditt projekt"
+                      description: "Färdiga handlingar levereras digitalt"
                     }
                   ].map((item, index) => (
                     <div key={index} className="text-center">
@@ -220,11 +233,11 @@ const TjansterPage = () => {
           <section className="py-20 bg-slate-900 text-white">
             <div className="container mx-auto px-4 text-center">
               <h2 className="text-4xl font-bold mb-6">
-                Redo att starta ditt projekt?
+                Behöver du bygglovshandlingar?
               </h2>
               <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-                Kontakta oss idag för en kostnadsfri konsultation. Vi hjälper dig 
-                att välja rätt tjänster för ditt byggprojekt.
+                Kontakta oss för en kostnadsfri konsultation. Vi hjälper dig med 
+                professionella handlingar för ditt byggprojekt.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button 

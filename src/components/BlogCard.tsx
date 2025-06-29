@@ -38,17 +38,19 @@ export const BlogCard = ({ post }: BlogCardProps) => {
       )}
       
       <div className="p-6">
-        <div className="flex items-center space-x-4 text-sm text-slate-500 mb-3">
-          <span className="bg-primary/10 text-primary px-3 py-1 rounded-full font-medium">
+        <div className="flex items-center justify-between mb-4">
+          <span className="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">
             {post.category}
           </span>
-          <div className="flex items-center space-x-1">
-            <Calendar className="w-4 h-4" />
-            <span>{formatDate(post.created_at)}</span>
-          </div>
-          <div className="flex items-center space-x-1">
-            <Clock className="w-4 h-4" />
-            <span>{post.reading_time} min</span>
+          <div className="flex items-center space-x-4 text-sm text-slate-500">
+            <div className="flex items-center space-x-1">
+              <Calendar className="w-4 h-4" />
+              <span>{formatDate(post.created_at)}</span>
+            </div>
+            <div className="flex items-center space-x-1">
+              <Clock className="w-4 h-4" />
+              <span>{post.reading_time} min</span>
+            </div>
           </div>
         </div>
         
@@ -61,9 +63,9 @@ export const BlogCard = ({ post }: BlogCardProps) => {
         </p>
         
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2 text-slate-600">
+          <div className="flex items-center space-x-2 text-sm text-slate-500">
             <User className="w-4 h-4" />
-            <span className="text-sm">{post.author}</span>
+            <span>{post.author}</span>
           </div>
           
           <Button 
@@ -78,7 +80,7 @@ export const BlogCard = ({ post }: BlogCardProps) => {
         </div>
         
         {post.tags && post.tags.length > 0 && (
-          <div className="mt-4 pt-4 border-t border-slate-100">
+          <div className="mt-4 pt-4 border-t border-slate-200">
             <div className="flex flex-wrap gap-2">
               {post.tags.slice(0, 3).map((tag, index) => (
                 <span 

@@ -1,164 +1,129 @@
-import { Shield, Users, FileText, Building, PenTool, Map, Layers } from 'lucide-react';
+import { Shield, FileText, Users, CheckCircle, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useNavigate } from 'react-router-dom';
 
 interface ServicesProps {
   onServiceSelect: (serviceId: string) => void;
 }
 
 export const Services = ({ onServiceSelect }: ServicesProps) => {
-  const navigate = useNavigate();
-
   const services = [
     {
-      id: 'kontrollansvarig-service',
       icon: Shield,
-      title: 'Kontrollansvarig (KA)',
-      description: 'Teknisk kontroll enligt Plan- och bygglagen (PBL). Säkerställer att ditt byggprojekt följer gällande regler och föreskrifter.',
-      features: ['Kontrollplan', 'Besiktningar', 'Slutbevis', 'Teknisk rådgivning']
+      title: "Kontrollansvarig (KA)",
+      description: "Certifierad kontrollansvarig enligt PBL för teknisk kontroll och slutbesiktning",
+      features: ["Kontrollplan", "Teknisk kontroll", "Slutbesiktning", "Slutbevis"],
+      price: "Från 15,000 SEK",
+      link: "/kontrollansvarig",
+      serviceId: "kontrollansvarig-service"
     },
     {
-      id: 'bas-p-service',
-      icon: Users,
-      title: 'BAS-P (Projektering)',
-      description: 'Byggarbetsmiljösamordnare under projekteringsfasen. Planerar för en säker arbetsmiljö redan från början.',
-      features: ['Arbetsmiljöplan', 'Riskbedömning', 'Säkerhetsspecifikation', 'Samordning']
-    },
-    {
-      id: 'bas-u-service',
-      icon: Building,
-      title: 'BAS-U (Utförande)',
-      description: 'Byggarbetsmiljösamordnare under utförandefasen. Övervakar och säkerställer arbetsmiljön på byggarbetsplatsen.',
-      features: ['Arbetsmiljöuppföljning', 'Säkerhetsinspektioner', 'Incidenthantering', 'Utbildning']
-    },
-    {
-      id: 'kombinerade-paket-service',
-      title: 'Kombinerade Paket',
-      description: 'Kostnadseffektiva paket som kombinerar flera tjänster för en smidig och ekonomisk lösning.',
-      features: ['KA + BAS-P', 'KA + BAS-U', 'Fullständiga paket', 'Projektledning']
-    }
-  ];
-
-  const additionalServices = [
-    {
-      id: 'bygglovshandlingar',
       icon: FileText,
-      title: 'Bygglovshandlingar',
-      description: 'Professionell framtagning av alla handlingar som krävs för bygglovsansökan.'
+      title: "BAS-P (Projektering)",
+      description: "Byggarbetsmiljösamordnare under projekteringsfasen",
+      features: ["Arbetsmiljöplan", "Riskbedömning", "Samordning", "Dokumentation"],
+      price: "Från 12,000 SEK",
+      link: "/bas-p",
+      serviceId: "bas-p-service"
     },
     {
-      id: 'planritning',
-      icon: PenTool,
-      title: 'Planritning',
-      description: 'Detaljerade planritningar som uppfyller alla tekniska krav och standarder.'
-    },
-    {
-      id: 'situationsplan',
-      icon: Map,
-      title: 'Situationsplan',
-      description: 'Exakt situationsplan som visar byggnadens placering på tomten.'
-    },
-    {
-      id: 'sektionsritningar',
-      icon: Layers,
-      title: 'Sektionsritningar',
-      description: 'Tekniska sektionsritningar för komplex byggnadskonstruktion.'
+      icon: Users,
+      title: "BAS-U (Utförande)",
+      description: "Byggarbetsmiljösamordnare under byggfasen",
+      features: ["Säkerhetsronder", "Samordning", "Uppföljning", "Rapportering"],
+      price: "Från 18,000 SEK",
+      link: "/bas-u",
+      serviceId: "bas-u-service"
     }
   ];
 
-  const handleGetQuote = (serviceId: string) => {
-    navigate(`/kontakt?tjanst=${serviceId}`);
-  };
+  const stats = [
+    { number: "20+", label: "År av erfarenhet" },
+    { number: "500+", label: "Genomförda projekt" },
+    { number: "100%", label: "Nöjda kunder" },
+    { number: "24h", label: "Svarstid" }
+  ];
 
   return (
-    <section id="tjanster" className="py-20 bg-secondary/30">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-6">
-            Mina Tjänster
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Jag erbjuder kompletta lösningar för ditt byggprojekt - från planering 
-            till slutbesiktning. Med över 20 års erfarenhet säkerställer jag att 
-            ditt projekt genomförs enligt alla regler och med högsta kvalitet.
-          </p>
-        </div>
-
-        {/* Huvudtjänster */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-          {services.map((service) => (
-            <div
-              key={service.id}
-              className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-            >
-              <div className="w-16 h-16 earth-gradient rounded-xl flex items-center justify-center mb-6">
-                {service.icon && <service.icon className="w-8 h-8 text-white" />}
-              </div>
-              
-              <h3 className="text-xl font-bold text-foreground mb-4">
-                {service.title}
-              </h3>
-              
-              <p className="text-muted-foreground mb-6">
-                {service.description}
-              </p>
-
-              <ul className="space-y-2 mb-6">
-                {service.features.map((feature, index) => (
-                  <li key={index} className="text-sm text-muted-foreground flex items-center">
-                    <div className="w-1.5 h-1.5 bg-accent rounded-full mr-2"></div>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-
-              <Button
-                onClick={() => handleGetQuote(service.id)}
-                className="w-full earth-gradient text-white hover:opacity-90"
-              >
-                Få en offert
-              </Button>
-            </div>
-          ))}
-        </div>
-
-        {/* Ytterligare tjänster */}
-        <div className="bg-white rounded-2xl p-8 shadow-lg">
-          <h3 className="text-2xl font-bold text-foreground mb-8 text-center">
-            Ytterligare Tjänster
-          </h3>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {additionalServices.map((service) => (
-              <div
-                key={service.id}
-                className="text-center p-6 rounded-xl border border-border hover:border-accent transition-colors"
-              >
-                <div className="w-12 h-12 earth-gradient rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <service.icon className="w-6 h-6 text-white" />
-                </div>
-                
-                <h4 className="font-semibold text-foreground mb-2">
-                  {service.title}
-                </h4>
-                
-                <p className="text-sm text-muted-foreground mb-4">
-                  {service.description}
-                </p>
-
-                <Button
-                  onClick={() => handleGetQuote(service.id)}
-                  variant="outline"
-                  size="sm"
-                  className="border-accent text-accent hover:bg-accent hover:text-white"
-                >
-                  Få offert
-                </Button>
+    <>
+      {/* Stats Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {stats.map((stat, index) => (
+              <div key={index} className="text-center">
+                <div className="text-4xl font-bold text-primary mb-2">{stat.number}</div>
+                <div className="text-slate-600">{stat.label}</div>
               </div>
             ))}
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* Services Section */}
+      <section className="py-20 bg-slate-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-slate-900 mb-6">
+              Våra Tjänster
+            </h2>
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+              Kompletta byggtjänster för ditt projekt. Från kontrollansvarig till 
+              arbetsmiljösamordning - vi hjälper dig genom hela byggprocessen.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {services.map((service, index) => {
+              const IconComponent = service.icon;
+              return (
+                <div key={index} className="bg-white rounded-xl p-8 shadow-sm hover:shadow-lg transition-shadow">
+                  <div className="w-16 h-16 earth-gradient rounded-lg flex items-center justify-center mb-6">
+                    <IconComponent className="w-8 h-8 text-white" />
+                  </div>
+                  
+                  <h3 className="text-2xl font-bold text-slate-900 mb-4">
+                    {service.title}
+                  </h3>
+                  
+                  <p className="text-slate-600 mb-6">
+                    {service.description}
+                  </p>
+                  
+                  <ul className="space-y-2 mb-6">
+                    {service.features.map((feature, featureIndex) => (
+                      <li key={featureIndex} className="flex items-center space-x-3">
+                        <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
+                        <span className="text-slate-700">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  
+                  <div className="text-2xl font-bold text-primary mb-6">
+                    {service.price}
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <Button 
+                      onClick={() => window.location.href = service.link}
+                      variant="outline"
+                      className="w-full hover:bg-primary hover:text-white"
+                    >
+                      Läs mer
+                      <ArrowRight className="w-4 h-4 ml-2" />
+                    </Button>
+                    <Button 
+                      onClick={() => onServiceSelect(service.serviceId)}
+                      className="w-full earth-gradient text-white hover:opacity-90"
+                    >
+                      Få offert
+                    </Button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+    </>
   );
 };
