@@ -60,8 +60,29 @@ const Index = () => {
       <AdvancedSEO 
         title="Ytterman - Kontrollansvarig & BAS i Västernorrland | Certifierad Byggkontroll"
         description="Certifierad Kontrollansvarig och Byggarbetsmiljösamordnare (BAS-P/BAS-U) i Västernorrland. Över 20 års erfarenhet. Trygg byggprocess med fast pris. Verksam i Sundsvall, Härnösand, Sollefteå, Timrå, Kramfors."
-        keywords="kontrollansvarig Västernorrland, BAS-P Sundsvall, BAS-U Härnösand, byggkontroll Sollefteå, kontrollplan Timrå, slutbevis Kramfors, bygglov Västernorrland, byggarbetsmiljösamordnare"
+        keywords="kontrollansvarig Västernorrland, BAS-P Sundsvall, BAS-U Härnösand, byggkontroll Sollefteå, kontrollplan Timrå, slutbevis Kramfors, bygglov Västernorrland, byggarbetsmiljösamordnare, PBL, arbetsmiljöverket, teknisk kontroll, slutbesiktning"
         url="https://ytterman.com"
+        organization={true}
+        reviews={[
+          {
+            author: "Anna Andersson",
+            rating: 5,
+            reviewBody: "Professionell och pålitlig kontrollansvarig. Tobias hjälpte oss genom hela byggprocessen med tydlig kommunikation.",
+            datePublished: "2024-01-10"
+          },
+          {
+            author: "Erik Johansson", 
+            rating: 5,
+            reviewBody: "Excellent BAS-U tjänster. Mycket kunnig och alltid tillgänglig när vi behövde hjälp.",
+            datePublished: "2024-01-05"
+          },
+          {
+            author: "Maria Lindström",
+            rating: 5,
+            reviewBody: "Snabb och effektiv hantering av vårt bygglov. Rekommenderar starkt!",
+            datePublished: "2024-01-01"
+          }
+        ]}
       />
       
       <div className="min-h-screen">
