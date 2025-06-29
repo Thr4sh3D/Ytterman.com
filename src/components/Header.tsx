@@ -11,7 +11,7 @@ export const Header = () => {
     { name: 'Kontrollansvarig', href: '/kontrollansvarig' },
     { name: 'BAS-P', href: '/bas-p' },
     { name: 'BAS-U', href: '/bas-u' },
-    { name: 'Blogg', href: '/blogg' },
+    { name: 'Guider', href: '/blogg' },
   ];
 
   const scrollToContact = () => {

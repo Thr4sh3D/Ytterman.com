@@ -82,7 +82,7 @@ export const Footer = () => {
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <a href="/blogg" className="text-gray-400 hover:text-white transition-colors text-sm">
-              Blogg
+              Guider
             </a>
             <a href="/#kontakt" className="text-gray-400 hover:text-white transition-colors text-sm">
               Kontakt
