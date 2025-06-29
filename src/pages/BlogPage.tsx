@@ -6,9 +6,10 @@ import { AdvancedSEO } from '@/components/AdvancedSEO';
 import { BlogPost } from '@/entities';
 import { BlogCard } from '@/components/BlogCard';
 import { BlogCategories } from '@/components/BlogCategories';
-import { Search, Calendar, User, Clock } from 'lucide-react';
+import { Search, Calendar, User, Clock, AlertCircle, RefreshCw } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { Alert, AlertDescription } from '@/components/ui/alert';
 
 const BlogPage = () => {
   const [posts, setPosts] = useState([]);
@@ -16,20 +17,78 @@ const BlogPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('alla');
   const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [retryCount, setRetryCount] = useState(0);
+
+  const fetchPosts = async (isRetry = false) => {
+    try {
+      if (isRetry) {
+        setLoading(true);
+        setError(null);
+      }
+      
+      const publishedPosts = await BlogPost.filter({ published: true }, '-created_at');
+      setPosts(publishedPosts);
+      setFilteredPosts(publishedPosts);
+      setError(null);
+    } catch (error) {
+      console.error('Error fetching blog posts:', error);
+      setError(error);
+      
+      // Provide fallback sample data for demonstration
+      const fallbackPosts = [
+        {
+          id: 'sample-1',
+          title: 'Kontrollansvarig - Din guide till en säker byggprocess',
+          slug: 'kontrollansvarig-guide-saker-byggprocess',
+          excerpt: 'Lär dig allt om kontrollansvarigs roll i byggprocessen. Från kontrollplan till slutbesiktning - vi guidar dig genom hela processen.',
+          content: '',
+          featured_image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&h=400&fit=crop',
+          category: 'Kontrollansvarig',
+          author: 'Tobias Ytterman',
+          reading_time: 8,
+          created_at: new Date().toISOString(),
+          tags: ['kontrollansvarig', 'byggprocess', 'PBL'],
+          published: true
+        },
+        {
+          id: 'sample-2',
+          title: 'BAS-P vs BAS-U - Skillnader och ansvar',
+          slug: 'bas-p-bas-u-skillnader-ansvar',
+          excerpt: 'Förstå skillnaderna mellan BAS-P och BAS-U. Vilka ansvarsområden har respektive roll och när behövs de i ditt byggprojekt?',
+          content: '',
+          featured_image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&h=400&fit=crop',
+          category: 'BAS',
+          author: 'Tobias Ytterman',
+          reading_time: 6,
+          created_at: new Date(Date.now() - 86400000).toISOString(),
+          tags: ['BAS-P', 'BAS-U', 'arbetsmiljö'],
+          published: true
+        },
+        {
+          id: 'sample-3',
+          title: 'Bygglov i Västernorrland - Process och tips',
+          slug: 'bygglov-vasternorrland-process-tips',
+          excerpt: 'Praktiska tips för bygglovsprocessen i Västernorrlands kommuner. Undvik vanliga fallgropar och få ditt bygglov godkänt snabbare.',
+          content: '',
+          featured_image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=400&fit=crop',
+          category: 'Bygglov',
+          author: 'Tobias Ytterman',
+          reading_time: 10,
+          created_at: new Date(Date.now() - 172800000).toISOString(),
+          tags: ['bygglov', 'Västernorrland', 'kommun'],
+          published: true
+        }
+      ];
+      
+      setPosts(fallbackPosts);
+      setFilteredPosts(fallbackPosts);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const publishedPosts = await BlogPost.filter({ published: true }, '-created_at');
-        setPosts(publishedPosts);
-        setFilteredPosts(publishedPosts);
-      } catch (error) {
-        console.error('Error fetching blog posts:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchPosts();
   }, []);
 
@@ -46,7 +105,7 @@ const BlogPage = () => {
       filtered = filtered.filter(post => 
         post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        post.keywords.toLowerCase().includes(searchTerm.toLowerCase())
+        (post.keywords && post.keywords.toLowerCase().includes(searchTerm.toLowerCase()))
       );
     }
 
@@ -54,6 +113,11 @@ const BlogPage = () => {
   }, [posts, selectedCategory, searchTerm]);
 
   const categories = ['alla', ...new Set(posts.map(post => post.category))];
+
+  const handleRetry = () => {
+    setRetryCount(prev => prev + 1);
+    fetchPosts(true);
+  };
 
   const breadcrumbs = [
     { name: "Hem", url: "https://ytterman.com" },
@@ -100,6 +164,32 @@ const BlogPage = () => {
               </div>
             </div>
           </section>
+
+          {/* Error Alert */}
+          {error && (
+            <section className="py-4 bg-white border-b">
+              <div className="container mx-auto px-4">
+                <Alert className="max-w-4xl mx-auto">
+                  <AlertCircle className="h-4 w-4" />
+                  <AlertDescription className="flex items-center justify-between">
+                    <span>
+                      Det uppstod ett problem med att ladda guider från servern. 
+                      Visar exempel-innehåll istället.
+                    </span>
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      onClick={handleRetry}
+                      className="ml-4"
+                    >
+                      <RefreshCw className="w-4 h-4 mr-2" />
+                      Försök igen
+                    </Button>
+                  </AlertDescription>
+                </Alert>
+              </div>
+            </section>
+          )}
 
           {/* Categories */}
           <section className="py-8 bg-white border-b">
