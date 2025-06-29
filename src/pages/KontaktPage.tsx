@@ -1,77 +1,152 @@
 import { Header } from '@/components/Header';
-import { Contact } from '@/components/Contact';
 import { Footer } from '@/components/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { AdvancedSEO } from '@/components/AdvancedSEO';
-import { useSearchParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { Contact } from '@/components/Contact';
+import { Phone, Mail, MapPin, Clock } from 'lucide-react';
+import { useState } from 'react';
 
 const KontaktPage = () => {
-  const [searchParams] = useSearchParams();
-  const [selectedPackage, setSelectedPackage] = useState<string>('');
-  const [prefilledMessage, setPrefilledMessage] = useState<string>('');
+  const [selectedPackage, setSelectedPackage] = useState('');
+  const [prefilledMessage, setPrefilledMessage] = useState('');
 
-  // Färdiga meddelandetexter för varje paket
-  const packageMessages = {
-    'kontrollansvarig': 'Hej! Jag är intresserad av paketet "Kontrollansvarig" och skulle vilja veta mer om hur du kan hjälpa mig med mitt byggprojekt. Kan vi boka en kostnadsfri konsultation?',
-    'ka-bas-paket': 'Hej! Jag är intresserad av det populära "KA + BAS Paketet" och skulle vilja diskutera hur detta passar mitt projekt. Kan vi boka ett möte för att gå igenom detaljerna?',
-    'brf-stora-projekt': 'Hej! Jag har ett större/komplext projekt och skulle vilja få en offert för "BRF & Större Projekt"-paketet. Kan vi boka en konsultation för att diskutera projektets omfattning?'
-  };
-
-  // Färdiga meddelandetexter för varje tjänst
-  const serviceMessages = {
-    'kontrollansvarig-service': 'Hej! Jag behöver en Kontrollansvarig (KA) för mitt byggprojekt. Kan du hjälpa mig med kontrollplan, besiktningar och slutbevis? Jag skulle vilja boka en kostnadsfri konsultation.',
-    'bas-p-service': 'Hej! Jag behöver BAS-P (Byggarbetsmiljösamordnare under projektering) för mitt projekt. Kan du hjälpa mig med arbetsmiljöplan och riskbedömning? Låt oss boka ett möte.',
-    'bas-u-service': 'Hej! Jag behöver BAS-U (Byggarbetsmiljösamordnare under utförande) för mitt byggprojekt. Kan du hjälpa mig med arbetsmiljösamordning under byggfasen? Jag skulle vilja diskutera detta vidare.',
-    'kombinerade-paket-service': 'Hej! Jag är intresserad av ett kombinerat paket med KA + BAS-P/U för mitt projekt. Kan vi diskutera en kostnadseffektiv lösning för hela byggprocessen?',
-    'bygglovshandlingar': 'Hej! Jag behöver hjälp med att ta fram bygglovshandlingar för mitt projekt. Kan du hjälpa mig med ansökan och alla nödvändiga dokument?',
-    'planritning': 'Hej! Jag behöver professionella planritningar för mitt byggprojekt. Kan vi diskutera omfattning och tidsplan för ritningsarbetet?',
-    'situationsplan': 'Hej! Jag behöver en situationsplan för mitt projekt. Kan du hjälpa mig med uppmätning och framtagning av situationsplanen?',
-    'sektionsritningar': 'Hej! Jag behöver sektionsritningar för mitt byggprojekt. Kan vi boka ett möte för att diskutera de tekniska kraven och detaljerna?'
-  };
-
-  useEffect(() => {
-    const packageParam = searchParams.get('paket');
-    const serviceParam = searchParams.get('tjanst');
-    
-    if (packageParam && packageMessages[packageParam as keyof typeof packageMessages]) {
-      setSelectedPackage(packageParam);
-      setPrefilledMessage(packageMessages[packageParam as keyof typeof packageMessages]);
-    } else if (serviceParam && serviceMessages[serviceParam as keyof typeof serviceMessages]) {
-      setSelectedPackage(serviceParam);
-      setPrefilledMessage(serviceMessages[serviceParam as keyof typeof serviceMessages]);
-    }
-  }, [searchParams]);
+  const breadcrumbs = [
+    { name: "Hem", url: "https://ytterman.com" },
+    { name: "Kontakt", url: "https://ytterman.com/kontakt" }
+  ];
 
   return (
     <>
       <AdvancedSEO 
-        title="Kontakta Ytterman - Få Offert på Kontrollansvarig & BAS-tjänster"
-        description="Kontakta Ytterman för kostnadsfri konsultation och offert på kontrollansvarig och BAS-tjänster i Västernorrland. Snabb svarstid och professionell service."
-        keywords="kontakta kontrollansvarig, offert BAS-tjänster, konsultation byggkontroll, Ytterman kontakt"
+        title="Kontakt - Kontrollansvarig & BAS-samordnare | Ytterman"
+        description="Kontakta Ytterman för kontrollansvarig och BAS-tjänster i Västernorrland. Ring 076-111 84 47 eller maila tobias@ytterman.com. Kostnadsfri konsultation."
+        keywords="kontakt, kontrollansvarig, BAS-P, BAS-U, Västernorrland, Sundsvall, Härnösand, byggkontroll, arbetsmiljösamordnare"
         url="https://ytterman.com/kontakt"
+        breadcrumbs={breadcrumbs}
       />
       
       <div className="min-h-screen">
         <Header />
-        <main className="pt-20">
-          <div className="container mx-auto px-4 py-12">
-            <div className="text-center mb-12">
-              <h1 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
-                Kontakta Oss
-              </h1>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                Redo att starta ditt byggprojekt? Fyll i formuläret nedan för en kostnadsfri 
-                konsultation och personlig offert anpassad efter dina behov.
-              </p>
+        
+        <main>
+          {/* Hero Section */}
+          <section className="py-20 bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-50">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto text-center">
+                <h1 className="text-5xl font-bold text-slate-900 mb-6">
+                  Kontakta Oss
+                </h1>
+                <p className="text-xl text-slate-600 mb-8">
+                  Redo att starta ditt byggprojekt? Kontakta mig för en kostnadsfri 
+                  konsultation och låt oss diskutera hur jag kan hjälpa dig.
+                </p>
+              </div>
             </div>
-          </div>
-          
-          <Contact 
-            selectedPackage={selectedPackage} 
-            prefilledMessage={prefilledMessage}
-          />
+          </section>
+
+          {/* Quick Contact Section */}
+          <section className="py-16 bg-white">
+            <div className="container mx-auto px-4">
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+                {[
+                  {
+                    icon: Phone,
+                    title: "Telefon",
+                    value: "076-111 84 47",
+                    description: "Ring för direkt kontakt",
+                    action: () => window.open('tel:+46761118447')
+                  },
+                  {
+                    icon: Mail,
+                    title: "E-post",
+                    value: "tobias@ytterman.com",
+                    description: "Skicka ett meddelande",
+                    action: () => window.open('mailto:tobias@ytterman.com')
+                  },
+                  {
+                    icon: MapPin,
+                    title: "Verksamhetsområde",
+                    value: "Västernorrland",
+                    description: "Sundsvall, Härnösand, Sollefteå m.fl.",
+                    action: null
+                  },
+                  {
+                    icon: Clock,
+                    title: "Svarstid",
+                    value: "Inom 24 timmar",
+                    description: "Snabb återkoppling garanterad",
+                    action: null
+                  }
+                ].map((item, index) => {
+                  const IconComponent = item.icon;
+                  return (
+                    <div
+                      key={index}
+                      className={`text-center p-6 bg-slate-50 rounded-xl transition-all duration-200 ${
+                        item.action ? 'cursor-pointer hover:shadow-lg hover:scale-105' : ''
+                      }`}
+                      onClick={item.action || undefined}
+                    >
+                      <div className="w-16 h-16 earth-gradient rounded-full flex items-center justify-center mx-auto mb-4">
+                        <IconComponent className="w-8 h-8 text-white" />
+                      </div>
+                      <h3 className="text-lg font-bold text-slate-900 mb-2">
+                        {item.title}
+                      </h3>
+                      <p className="text-primary font-semibold mb-2">
+                        {item.value}
+                      </p>
+                      <p className="text-sm text-slate-600">
+                        {item.description}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+
+          {/* Contact Form Section */}
+          <Contact selectedPackage={selectedPackage} prefilledMessage={prefilledMessage} />
+
+          {/* Service Areas Section */}
+          <section className="py-20 bg-slate-50">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto text-center">
+                <h2 className="text-4xl font-bold text-slate-900 mb-8">
+                  Verksamhetsområde
+                </h2>
+                <p className="text-xl text-slate-600 mb-12">
+                  Vi verkar i hela Västernorrland och hjälper kunder i följande kommuner:
+                </p>
+                
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {[
+                    "Sundsvall",
+                    "Härnösand",
+                    "Sollefteå",
+                    "Timrå",
+                    "Kramfors",
+                    "Ånge",
+                    "Örnsköldsvik",
+                    "Ragunda",
+                    "Bräcke"
+                  ].map((city, index) => (
+                    <div key={index} className="bg-white p-4 rounded-lg shadow-sm">
+                      <h3 className="font-semibold text-slate-900">{city}</h3>
+                    </div>
+                  ))}
+                </div>
+                
+                <p className="text-slate-600 mt-8">
+                  Kontakta oss även om din kommun inte finns med i listan - 
+                  vi tar gärna uppdrag i hela Västernorrland!
+                </p>
+              </div>
+            </div>
+          </section>
         </main>
+        
         <Footer />
         <WhatsAppButton />
       </div>
