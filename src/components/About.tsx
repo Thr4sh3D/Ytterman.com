@@ -67,7 +67,6 @@ export const About = () => {
                 <li>• BAS-U (Byggarbetsmiljösamordnare utförande)</li>
                 <li>• Certifierad enligt nya regelverket 2025</li>
                 <li>• Medlem i SBR – Svenska Byggingenjörers Riksförbund</li>
-                <li>• Byggingenjör</li>
                 <li>• Kontinuerlig vidareutbildning inom byggrätt och arbetsmiljö</li>
               </ul>
             </div>
