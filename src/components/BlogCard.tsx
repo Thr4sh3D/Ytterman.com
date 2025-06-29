@@ -1,6 +1,4 @@
 import { Calendar, Clock, User, ArrowRight } from 'lucide-react';
-import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 
 interface BlogCardProps {
@@ -28,9 +26,9 @@ export const BlogCard = ({ post }: BlogCardProps) => {
   };
 
   return (
-    <Card className="h-full flex flex-col hover:shadow-lg transition-shadow duration-300">
+    <article className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-md transition-shadow">
       {post.featured_image && (
-        <div className="aspect-video overflow-hidden rounded-t-lg">
+        <div className="aspect-video overflow-hidden">
           <img 
             src={post.featured_image} 
             alt={post.title}
@@ -39,51 +37,61 @@ export const BlogCard = ({ post }: BlogCardProps) => {
         </div>
       )}
       
-      <CardHeader className="flex-grow">
-        <div className="flex items-center justify-between mb-2">
-          <Badge variant="secondary" className="text-xs">
+      <div className="p-6">
+        <div className="flex items-center space-x-4 text-sm text-slate-500 mb-3">
+          <span className="bg-primary/10 text-primary px-3 py-1 rounded-full font-medium">
             {post.category}
-          </Badge>
-          <div className="flex items-center text-xs text-slate-500">
-            <Clock className="w-3 h-3 mr-1" />
-            {post.reading_time} min
+          </span>
+          <div className="flex items-center space-x-1">
+            <Calendar className="w-4 h-4" />
+            <span>{formatDate(post.created_at)}</span>
+          </div>
+          <div className="flex items-center space-x-1">
+            <Clock className="w-4 h-4" />
+            <span>{post.reading_time} min</span>
           </div>
         </div>
         
-        <h3 className="text-xl font-bold text-slate-900 line-clamp-2 mb-2">
+        <h3 className="text-xl font-bold text-slate-900 mb-3 line-clamp-2">
           {post.title}
         </h3>
         
-        <p className="text-slate-600 line-clamp-3 text-sm">
+        <p className="text-slate-600 mb-4 line-clamp-3">
           {post.excerpt}
         </p>
-      </CardHeader>
-      
-      <CardFooter className="pt-0">
-        <div className="w-full">
-          <div className="flex items-center justify-between text-xs text-slate-500 mb-3">
-            <div className="flex items-center">
-              <User className="w-3 h-3 mr-1" />
-              {post.author}
-            </div>
-            <div className="flex items-center">
-              <Calendar className="w-3 h-3 mr-1" />
-              {formatDate(post.created_at)}
-            </div>
+        
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-2 text-slate-600">
+            <User className="w-4 h-4" />
+            <span className="text-sm">{post.author}</span>
           </div>
           
           <Button 
-            asChild 
-            variant="outline" 
-            className="w-full group"
+            variant="ghost" 
+            size="sm"
+            onClick={() => window.location.href = `/blogg/${post.slug}`}
+            className="text-primary hover:text-primary/80"
           >
-            <a href={`/blogg/${post.slug}`}>
-              Läs mer
-              <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-            </a>
+            Läs mer
+            <ArrowRight className="w-4 h-4 ml-1" />
           </Button>
         </div>
-      </CardFooter>
-    </Card>
+        
+        {post.tags && post.tags.length > 0 && (
+          <div className="mt-4 pt-4 border-t border-slate-100">
+            <div className="flex flex-wrap gap-2">
+              {post.tags.slice(0, 3).map((tag, index) => (
+                <span 
+                  key={index}
+                  className="bg-slate-100 text-slate-600 px-2 py-1 rounded text-xs"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </article>
   );
 };

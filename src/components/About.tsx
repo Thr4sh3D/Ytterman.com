@@ -1,127 +1,125 @@
-import { Award, Clock, MapPin, Users, CheckCircle, Star } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
+import { Award, Users, Clock, MapPin } from 'lucide-react';
 
 export const About = () => {
   const stats = [
     {
       icon: Clock,
-      number: '20+',
-      label: 'År av erfarenhet'
-    },
-    {
-      icon: Users,
-      number: '500+',
-      label: 'Nöjda kunder'
+      number: "20+",
+      label: "År inom bygg"
     },
     {
       icon: Award,
-      number: '100%',
-      label: 'Godkända projekt'
+      number: "100+",
+      label: "Genomförda projekt"
+    },
+    {
+      icon: Users,
+      number: "50+",
+      label: "Nöjda kunder"
     },
     {
       icon: MapPin,
-      number: '5',
-      label: 'Kommuner i Västernorrland'
+      number: "5",
+      label: "Kommuner i Västernorrland"
     }
   ];
 
-  const certifications = [
-    'Certifierad Kontrollansvarig enligt PBL',
-    'Certifierad BAS-P (Byggarbetsmiljösamordnare)',
-    'Certifierad BAS-U (Byggarbetsmiljösamordnare)',
-    'Medlemskap i branschorganisationer'
-  ];
-
   return (
-    <section id="om-oss" className="py-20 bg-white">
+    <section id="om-mig" className="py-20 bg-secondary/30">
       <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Content */}
-            <div>
-              <h2 className="text-4xl font-bold text-slate-900 mb-6">
-                Om Ytterman
-              </h2>
-              <p className="text-lg text-slate-600 mb-6 leading-relaxed">
-                Med över 20 års erfarenhet inom byggbranschen är Ytterman din 
-                pålitliga partner för kontrollansvarig och BAS-tjänster i Västernorrland. 
-                Vi hjälper dig navigera genom byggprocessens alla steg med trygghet och säkerhet.
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          {/* Left Column - Content */}
+          <div>
+            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-6">
+              Om Tobias Ytterman
+            </h2>
+            
+            <div className="space-y-6 text-lg text-muted-foreground">
+              <p>
+                Jag heter Tobias Ytterman och har över 20 års erfarenhet inom bygg, 
+                räddningstjänst och projektledning. Jag har arbetat som snickare, 
+                arbetsledare, BAS‑U/BAS‑P och kontrollansvarig i allt från småhus 
+                till vindkraftsprojekt och industribyggnation.
               </p>
               
-              <p className="text-lg text-slate-600 mb-8 leading-relaxed">
-                Vår djupa kunskap om lokala förhållanden och regelverk, kombinerat med 
-                personlig service, gör att ditt byggprojekt genomförs smidigt och enligt 
-                alla krav och bestämmelser.
+              <p>
+                Som certifierad kontrollansvarig och byggarbetsmiljösamordnare enligt 
+                det nya regelverket 2025 hjälper jag dig att säkerställa en trygg och 
+                regelrätt byggprocess. Jag tror på tydlig kommunikation, digital hantering 
+                och att vara tillgänglig när mina kunder behöver mig.
               </p>
-
-              {/* Certifications */}
-              <div className="mb-8">
-                <h3 className="text-xl font-semibold text-slate-900 mb-4">
-                  Certifieringar & Kompetens
-                </h3>
-                <ul className="space-y-2">
-                  {certifications.map((cert, index) => (
-                    <li key={index} className="flex items-start">
-                      <CheckCircle className="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
-                      <span className="text-slate-700">{cert}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Contact info */}
-              <div className="bg-slate-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold text-slate-900 mb-3">
-                  Tobias Ytterman
-                </h3>
-                <p className="text-slate-600 mb-3">
-                  Certifierad Kontrollansvarig & Byggarbetsmiljösamordnare
-                </p>
-                <div className="flex items-center text-slate-600">
-                  <MapPin className="w-4 h-4 mr-2" />
-                  <span>Verksam i hela Västernorrland</span>
-                </div>
-              </div>
+              
+              <p>
+                Baserad i Viksjö men verksam i hela Västernorrland. Jag arbetar både med 
+                privatpersoner, företag och bostadsrättsföreningar. Som medlem i SBR 
+                (Svenska Byggingenjörers Riksförbund) håller jag mig uppdaterad med 
+                branschens senaste utveckling.
+              </p>
             </div>
 
-            {/* Stats */}
-            <div>
-              <div className="grid grid-cols-2 gap-6 mb-8">
-                {stats.map((stat, index) => (
-                  <Card key={index} className="text-center p-6 hover:shadow-md transition-shadow">
-                    <CardContent className="p-0">
-                      <div className="mx-auto w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                        <stat.icon className="w-6 h-6 text-primary" />
-                      </div>
-                      <div className="text-3xl font-bold text-slate-900 mb-2">
-                        {stat.number}
-                      </div>
-                      <div className="text-sm text-slate-600">
-                        {stat.label}
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
+            <div className="mt-8 p-6 bg-background rounded-xl shadow-lg">
+              <h3 className="text-xl font-bold text-foreground mb-4">
+                Certifieringar & Utbildningar
+              </h3>
+              <ul className="space-y-2 text-muted-foreground">
+                <li>• Kontrollansvarig enligt PBL</li>
+                <li>• BAS-P (Byggarbetsmiljösamordnare projektering)</li>
+                <li>• BAS-U (Byggarbetsmiljösamordnare utförande)</li>
+                <li>• Certifierad enligt nya regelverket 2025</li>
+                <li>• Medlem i SBR – Svenska Byggingenjörers Riksförbund</li>
+                <li>• Kontinuerlig vidareutbildning inom byggrätt och arbetsmiljö</li>
+              </ul>
+            </div>
+          </div>
 
-              {/* Testimonial */}
-              <Card className="bg-slate-50 border-none">
-                <CardContent className="p-6">
-                  <div className="flex items-center mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                    ))}
+          {/* Right Column - Stats */}
+          <div>
+            <div className="grid grid-cols-2 gap-8">
+              {stats.map((stat, index) => (
+                <div key={index} className="text-center bg-background rounded-xl p-8 shadow-lg">
+                  <div className="w-12 h-12 earth-gradient rounded-lg flex items-center justify-center mx-auto mb-4">
+                    <stat.icon className="w-6 h-6 text-white" />
                   </div>
-                  <blockquote className="text-slate-700 italic mb-4">
-                    "Professionell och pålitlig service. Tobias hjälpte oss genom hela 
-                    byggprocessen med tydlig kommunikation och snabb hantering. 
-                    Rekommenderar starkt!"
-                  </blockquote>
-                  <cite className="text-sm text-slate-600 not-italic">
-                    — Anna Andersson, Sundsvall
-                  </cite>
-                </CardContent>
-              </Card>
+                  <div className="text-3xl font-bold text-accent mb-2">
+                    {stat.number}
+                  </div>
+                  <div className="text-muted-foreground font-medium">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-8 bg-background rounded-xl p-8 shadow-lg">
+              <h3 className="text-xl font-bold text-foreground mb-4">
+                Varför välja mig?
+              </h3>
+              <ul className="space-y-3 text-muted-foreground">
+                <li className="flex items-start space-x-3">
+                  <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></div>
+                  <span>Certifierad enligt senaste regelverket 2025</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></div>
+                  <span>Medlem i SBR för kontinuerlig kompetensutveckling</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></div>
+                  <span>Lokal kunskap om Västernorrlands byggmarknad</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></div>
+                  <span>Digital hantering för effektiv kommunikation</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></div>
+                  <span>Flexibel och anpassar mig efter ditt projekt</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></div>
+                  <span>Tydliga priser och inga dolda kostnader</span>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
