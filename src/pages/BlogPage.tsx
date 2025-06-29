@@ -6,6 +6,7 @@ import { AdvancedSEO } from '@/components/AdvancedSEO';
 import { BlogPost } from '@/entities';
 import { BlogCard } from '@/components/BlogCard';
 import { BlogCategories } from '@/components/BlogCategories';
+import { AdminActions } from '@/components/AdminActions';
 import { Search, Calendar, User, Clock } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -74,6 +75,13 @@ const BlogPage = () => {
         <Header />
         
         <main>
+          {/* Admin Actions - Temporary for cleanup */}
+          <section className="py-8 bg-yellow-50 border-b">
+            <div className="container mx-auto px-4">
+              <AdminActions />
+            </div>
+          </section>
+
           {/* Hero Section */}
           <section className="py-20 bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-50">
             <div className="container mx-auto px-4">
