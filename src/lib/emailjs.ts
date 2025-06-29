@@ -1,23 +1,18 @@
 import emailjs from 'emailjs-com';
 
-// EmailJS configuration
-const SERVICE_ID = 'service_ytterman';
-const TEMPLATE_ID = 'template_contact';
-const USER_ID = 'user_ytterman';
+// EmailJS konfiguration - klistra in dina värden från EmailJS dashboard
+const SERVICE_ID = 'service_0g84n99'; // Ditt Service ID från EmailJS
+const TEMPLATE_ID = 'template_r43g9li'; // Ditt Template ID från EmailJS  
+const PUBLIC_KEY = 'HiImRG5AmvO4_ias5'; // Din Public Key från EmailJS
 
-interface ContactFormData {
+export const sendContactEmail = async (formData: {
   name: string;
   email: string;
   phone: string;
   project: string;
   message: string;
-}
-
-export const sendContactEmail = async (formData: ContactFormData) => {
+}) => {
   try {
-    // Initialize EmailJS (this would normally be done with real credentials)
-    emailjs.init(USER_ID);
-    
     const templateParams = {
       from_name: formData.name,
       from_email: formData.email,
@@ -31,23 +26,12 @@ export const sendContactEmail = async (formData: ContactFormData) => {
       SERVICE_ID,
       TEMPLATE_ID,
       templateParams,
-      USER_ID
+      PUBLIC_KEY
     );
 
-    if (response.status === 200) {
-      return { success: true };
-    } else {
-      throw new Error('Failed to send email');
-    }
+    return { success: true, response };
   } catch (error) {
-    console.error('EmailJS Error:', error);
-    
-    // Fallback: simulate successful send for demo purposes
-    // In production, this would be a real email service
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve({ success: true });
-      }, 1000);
-    });
+    console.error('EmailJS error:', error);
+    return { success: false, error: error.message };
   }
 };

@@ -3,44 +3,18 @@ import { Phone, Mail, MapPin, Clock } from 'lucide-react';
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
 
-  const quickLinks = [
-    { name: 'Hem', href: '/' },
-    { name: 'Tjänster', href: '/tjanster' },
-    { name: 'Kontrollansvarig', href: '/kontrollansvarig' },
-    { name: 'BAS-P', href: '/bas-p' },
-    { name: 'BAS-U', href: '/bas-u' },
-    { name: 'Guide', href: '/blogg' },
-    { name: 'Kontakt', href: '/kontakt' }
-  ];
-
-  const services = [
-    'Kontrollansvarig (KA)',
-    'BAS-P (Projektering)',
-    'BAS-U (Utförande)',
-    'Bygglovshandlingar',
-    'Teknisk kontroll',
-    'Slutbesiktning'
-  ];
-
-  const areas = [
-    'Sundsvall',
-    'Härnösand',
-    'Sollefteå',
-    'Timrå',
-    'Kramfors',
-    'Hela Västernorrland'
-  ];
-
   return (
     <footer className="bg-slate-900 text-white">
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="container mx-auto px-4 py-12">
+        <div className="grid md:grid-cols-4 gap-8">
           {/* Company Info */}
-          <div>
-            <h3 className="text-2xl font-bold mb-6">Ytterman</h3>
-            <p className="text-slate-300 mb-6">
-              Certifierad kontrollansvarig och BAS-samordnare med över 20 års erfarenhet 
-              inom bygg och arbetsmiljö i Västernorrland.
+          <div className="md:col-span-2">
+            <h3 className="text-2xl font-bold earth-gradient bg-clip-text text-transparent mb-4">
+              Ytterman
+            </h3>
+            <p className="text-gray-300 mb-6">
+              Certifierad Kontrollansvarig och Byggarbetsmiljösamordnare med över 20 års 
+              erfarenhet. Vi hjälper dig genom hela byggprocessen i Västernorrland.
             </p>
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
@@ -57,70 +31,62 @@ export const Footer = () => {
               </div>
               <div className="flex items-center space-x-3">
                 <MapPin className="w-5 h-5 text-primary" />
-                <span>Västernorrland</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Clock className="w-5 h-5 text-primary" />
-                <span>Svarar inom 24h</span>
+                <span>Västernorrland, Sverige</span>
               </div>
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h4 className="text-lg font-semibold mb-6">Snabblänkar</h4>
-            <ul className="space-y-3">
-              {quickLinks.map((link) => (
-                <li key={link.name}>
-                  <a
-                    href={link.href}
-                    className="text-slate-300 hover:text-primary transition-colors"
-                  >
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
           {/* Services */}
           <div>
-            <h4 className="text-lg font-semibold mb-6">Tjänster</h4>
-            <ul className="space-y-3">
-              {services.map((service) => (
-                <li key={service} className="text-slate-300">
-                  {service}
-                </li>
-              ))}
+            <h4 className="text-lg font-semibold mb-4">Tjänster</h4>
+            <ul className="space-y-2">
+              <li>
+                <a href="/kontrollansvarig" className="text-gray-300 hover:text-white transition-colors">
+                  Kontrollansvarig
+                </a>
+              </li>
+              <li>
+                <a href="/bas-p" className="text-gray-300 hover:text-white transition-colors">
+                  BAS-P
+                </a>
+              </li>
+              <li>
+                <a href="/bas-u" className="text-gray-300 hover:text-white transition-colors">
+                  BAS-U
+                </a>
+              </li>
+              <li>
+                <a href="/tjanster" className="text-gray-300 hover:text-white transition-colors">
+                  Bygglovshandlingar
+                </a>
+              </li>
             </ul>
           </div>
 
           {/* Areas */}
           <div>
-            <h4 className="text-lg font-semibold mb-6">Verksamhetsområde</h4>
-            <ul className="space-y-3">
-              {areas.map((area) => (
-                <li key={area} className="text-slate-300">
-                  {area}
-                </li>
-              ))}
+            <h4 className="text-lg font-semibold mb-4">Verksamhetsområden</h4>
+            <ul className="space-y-2 text-gray-300">
+              <li>Sundsvall</li>
+              <li>Härnösand</li>
+              <li>Sollefteå</li>
+              <li>Timrå</li>
+              <li>Kramfors</li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-slate-700 mt-12 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-slate-400 text-sm">
-              © {currentYear} Ytterman. Alla rättigheter förbehållna.
-            </p>
-            <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="/integritetspolicy" className="text-slate-400 hover:text-primary text-sm transition-colors">
-                Integritetspolicy
-              </a>
-              <a href="/villkor" className="text-slate-400 hover:text-primary text-sm transition-colors">
-                Villkor
-              </a>
-            </div>
+        <div className="border-t border-slate-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-gray-400 text-sm">
+            © {currentYear} Ytterman. Alla rättigheter förbehållna.
+          </p>
+          <div className="flex space-x-6 mt-4 md:mt-0">
+            <a href="/blogg" className="text-gray-400 hover:text-white transition-colors text-sm">
+              Guider
+            </a>
+            <a href="/#kontakt" className="text-gray-400 hover:text-white transition-colors text-sm">
+              Kontakt
+            </a>
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Menu, X, Phone, Mail } from 'lucide-react';
+import { Menu, X, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export const Header = () => {
@@ -11,61 +11,70 @@ export const Header = () => {
     { name: 'Kontrollansvarig', href: '/kontrollansvarig' },
     { name: 'BAS-P', href: '/bas-p' },
     { name: 'BAS-U', href: '/bas-u' },
-    { name: 'Guide', href: '/blogg' },
-    { name: 'Kontakt', href: '/kontakt' }
+    { name: 'Guider', href: '/blogg' },
   ];
+
+  const scrollToContact = () => {
+    if (window.location.pathname === '/') {
+      const element = document.getElementById('kontakt');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      window.location.href = '/#kontakt';
+    }
+    setIsMenuOpen(false);
+  };
 
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex justify-between items-center py-4">
           {/* Logo */}
-          <div className="flex-shrink-0">
-            <a href="/" className="text-2xl font-bold text-primary">
+          <div className="flex items-center">
+            <a href="/" className="text-2xl font-bold earth-gradient bg-clip-text text-transparent">
               Ytterman
             </a>
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8">
+          <nav className="hidden md:flex items-center space-x-8">
             {navigation.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
-                className="text-slate-600 hover:text-primary transition-colors font-medium"
+                className="text-slate-700 hover:text-primary transition-colors font-medium"
               >
                 {item.name}
               </a>
             ))}
           </nav>
 
-          {/* Contact Info */}
-          <div className="hidden lg:flex items-center space-x-4">
-            <a
+          {/* Desktop CTA */}
+          <div className="hidden md:flex items-center space-x-4">
+            <a 
               href="tel:+46761118447"
-              className="flex items-center space-x-2 text-slate-600 hover:text-primary transition-colors"
+              className="flex items-center space-x-2 text-slate-700 hover:text-primary transition-colors"
             >
               <Phone className="w-4 h-4" />
-              <span className="text-sm font-medium">076-111 84 47</span>
+              <span className="font-medium">076-111 84 47</span>
             </a>
-            <a
-              href="mailto:tobias@ytterman.com"
-              className="flex items-center space-x-2 text-slate-600 hover:text-primary transition-colors"
+            <Button 
+              onClick={scrollToContact}
+              className="earth-gradient text-white hover:opacity-90"
             >
-              <Mail className="w-4 h-4" />
-              <span className="text-sm font-medium">tobias@ytterman.com</span>
-            </a>
+              Kontakta oss
+            </Button>
           </div>
 
           {/* Mobile menu button */}
           <div className="md:hidden">
-            <Button
-              variant="ghost"
-              size="sm"
+            <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="text-slate-700 hover:text-primary transition-colors"
             >
               {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </Button>
+            </button>
           </div>
         </div>
 
@@ -77,27 +86,27 @@ export const Header = () => {
                 <a
                   key={item.name}
                   href={item.href}
-                  className="text-slate-600 hover:text-primary transition-colors font-medium"
+                  className="text-slate-700 hover:text-primary transition-colors font-medium"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
                 </a>
               ))}
-              <div className="pt-4 border-t border-slate-200 space-y-2">
-                <a
+              <div className="pt-4 border-t border-slate-200 space-y-3">
+                <a 
                   href="tel:+46761118447"
-                  className="flex items-center space-x-2 text-slate-600 hover:text-primary transition-colors"
+                  className="flex items-center space-x-2 text-slate-700 hover:text-primary transition-colors"
+                  onClick={() => setIsMenuOpen(false)}
                 >
                   <Phone className="w-4 h-4" />
-                  <span className="text-sm font-medium">076-111 84 47</span>
+                  <span className="font-medium">076-111 84 47</span>
                 </a>
-                <a
-                  href="mailto:tobias@ytterman.com"
-                  className="flex items-center space-x-2 text-slate-600 hover:text-primary transition-colors"
+                <Button 
+                  onClick={scrollToContact}
+                  className="earth-gradient text-white hover:opacity-90 w-full"
                 >
-                  <Mail className="w-4 h-4" />
-                  <span className="text-sm font-medium">tobias@ytterman.com</span>
-                </a>
+                  Kontakta oss
+                </Button>
               </div>
             </nav>
           </div>
