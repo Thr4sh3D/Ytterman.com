@@ -7,17 +7,6 @@ interface BlogCategoriesProps {
 }
 
 export const BlogCategories = ({ categories, selectedCategory, onCategorySelect }: BlogCategoriesProps) => {
-  const categoryLabels: { [key: string]: string } = {
-    'alla': 'Alla artiklar',
-    'kontrollansvarig': 'Kontrollansvarig',
-    'bas-p': 'BAS-P',
-    'bas-u': 'BAS-U',
-    'bygglov': 'Bygglov',
-    'arbetsmiljo': 'Arbetsmiljö',
-    'tips': 'Tips & Råd',
-    'nyheter': 'Nyheter'
-  };
-
   return (
     <div className="flex flex-wrap gap-2 justify-center">
       {categories.map((category) => (
@@ -26,9 +15,13 @@ export const BlogCategories = ({ categories, selectedCategory, onCategorySelect 
           variant={selectedCategory === category ? "default" : "outline"}
           size="sm"
           onClick={() => onCategorySelect(category)}
-          className={selectedCategory === category ? "earth-gradient text-white" : ""}
+          className={`capitalize ${
+            selectedCategory === category 
+              ? "earth-gradient text-white" 
+              : "hover:bg-slate-100"
+          }`}
         >
-          {categoryLabels[category] || category}
+          {category === 'alla' ? 'Alla kategorier' : category}
         </Button>
       ))}
     </div>

@@ -21,9 +21,9 @@ export const RelatedPosts = ({ currentPost }: RelatedPostsProps) => {
         const posts = await BlogPost.filter({ 
           category: currentPost.category, 
           published: true 
-        }, '-created_at', 6);
+        }, '-created_at', 3);
         
-        const filtered = posts.filter(post => post.id !== currentPost.id).slice(0, 3);
+        const filtered = posts.filter(post => post.id !== currentPost.id);
         setRelatedPosts(filtered);
       } catch (error) {
         console.error('Error fetching related posts:', error);
@@ -33,7 +33,7 @@ export const RelatedPosts = ({ currentPost }: RelatedPostsProps) => {
     };
 
     fetchRelatedPosts();
-  }, [currentPost]);
+  }, [currentPost.id, currentPost.category]);
 
   if (loading || relatedPosts.length === 0) {
     return null;
@@ -43,7 +43,7 @@ export const RelatedPosts = ({ currentPost }: RelatedPostsProps) => {
     <section className="py-20 bg-slate-50">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-slate-900 mb-8 text-center">
+          <h2 className="text-3xl font-bold text-slate-900 mb-12 text-center">
             Relaterade artiklar
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

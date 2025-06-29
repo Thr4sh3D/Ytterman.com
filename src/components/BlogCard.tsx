@@ -9,9 +9,10 @@ interface BlogCardProps {
     excerpt: string;
     featured_image?: string;
     category: string;
-    reading_time: number;
     author: string;
+    reading_time: number;
     created_at: string;
+    tags?: string[];
   };
 }
 
@@ -25,20 +26,20 @@ export const BlogCard = ({ post }: BlogCardProps) => {
   };
 
   return (
-    <article className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow group">
+    <article className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-md transition-shadow">
       {post.featured_image && (
         <div className="aspect-video overflow-hidden">
           <img 
             src={post.featured_image} 
             alt={post.title}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
           />
         </div>
       )}
       
       <div className="p-6">
         <div className="flex items-center space-x-4 text-sm text-slate-500 mb-3">
-          <span className="bg-primary/10 text-primary px-2 py-1 rounded-full text-xs font-medium">
+          <span className="bg-primary/10 text-primary px-3 py-1 rounded-full font-medium">
             {post.category}
           </span>
           <div className="flex items-center space-x-1">
@@ -51,7 +52,7 @@ export const BlogCard = ({ post }: BlogCardProps) => {
           </div>
         </div>
         
-        <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-primary transition-colors">
+        <h3 className="text-xl font-bold text-slate-900 mb-3 line-clamp-2">
           {post.title}
         </h3>
         
@@ -60,9 +61,9 @@ export const BlogCard = ({ post }: BlogCardProps) => {
         </p>
         
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2 text-sm text-slate-500">
+          <div className="flex items-center space-x-2 text-slate-600">
             <User className="w-4 h-4" />
-            <span>{post.author}</span>
+            <span className="text-sm">{post.author}</span>
           </div>
           
           <Button 
@@ -75,6 +76,21 @@ export const BlogCard = ({ post }: BlogCardProps) => {
             <ArrowRight className="w-4 h-4 ml-1" />
           </Button>
         </div>
+        
+        {post.tags && post.tags.length > 0 && (
+          <div className="mt-4 pt-4 border-t border-slate-100">
+            <div className="flex flex-wrap gap-2">
+              {post.tags.slice(0, 3).map((tag, index) => (
+                <span 
+                  key={index}
+                  className="bg-slate-100 text-slate-600 px-2 py-1 rounded text-xs"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </article>
   );

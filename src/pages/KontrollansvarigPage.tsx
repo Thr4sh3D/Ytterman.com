@@ -2,7 +2,7 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { AdvancedSEO } from '@/components/AdvancedSEO';
-import { CheckCircle, Phone, Mail, Shield, FileText, Clock, Award } from 'lucide-react';
+import { CheckCircle, Phone, Mail, Shield, FileText, Clock, Award, Building, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const KontrollansvarigPage = () => {
@@ -12,16 +12,16 @@ const KontrollansvarigPage = () => {
 
   const faqData = [
     {
-      question: "Vad är en Kontrollansvarig och när behöver jag en?",
-      answer: "En Kontrollansvarig (KA) är en certifierad person som säkerställer att byggprojektet följer alla byggbestämmelser. Du behöver en KA för alla byggprojekt som kräver bygglov eller anmälan, samt för större renoveringar."
+      question: "Vad är en kontrollansvarig och när behöver jag en?",
+      answer: "Kontrollansvarig (KA) krävs enligt PBL för att utföra teknisk kontroll under byggprocessen. KA behövs för de flesta byggprojekt som kräver bygglov eller anmälan."
     },
     {
-      question: "Hur mycket kostar en Kontrollansvarig?",
-      answer: "Våra priser börjar från 15,000 SEK för grundpaket. Priset beror på projektets storlek och komplexitet. Vi erbjuder alltid en kostnadsfri konsultation för att ge dig en exakt offert."
+      question: "Vad kostar kontrollansvarig tjänster?",
+      answer: "Våra KA-tjänster börjar från 15,000 SEK beroende på projektets omfattning och komplexitet. Vi erbjuder alltid en kostnadsfri konsultation för exakt prisuppgift."
     },
     {
-      question: "Hur lång tid tar det att få en kontrollplan?",
-      answer: "En kontrollplan tar vanligtvis 1-2 veckor att färdigställa efter att vi mottagit alla nödvändiga handlingar. För komplexa projekt kan det ta längre tid."
+      question: "När ska kontrollansvarig anlitas?",
+      answer: "Kontrollansvarig ska anlitas tidigt i processen, helst redan vid bygglovsansökan. Detta säkerställer en smidig byggprocess och korrekt dokumentation."
     }
   ];
 
@@ -32,8 +32,8 @@ const KontrollansvarigPage = () => {
   ];
 
   const serviceData = {
-    name: "Kontrollansvarig (KA)",
-    description: "Certifierad kontrollansvarig för byggprojekt enligt Plan- och bygglagen",
+    name: "Kontrollansvarig enligt PBL",
+    description: "Certifierad kontrollansvarig för teknisk kontroll och slutbesiktning",
     provider: "Ytterman",
     areaServed: ["Sundsvall", "Härnösand", "Sollefteå", "Timrå", "Kramfors"],
     priceRange: "Från 15,000 SEK"
@@ -42,9 +42,9 @@ const KontrollansvarigPage = () => {
   return (
     <>
       <AdvancedSEO 
-        title="Kontrollansvarig (KA) - Certifierad Byggkontroll | Ytterman"
-        description="Certifierad Kontrollansvarig för byggprojekt i Västernorrland. Över 20 års erfarenhet av kontrollplaner, teknisk kontroll och slutbevis. Fast pris från 15,000 kr."
-        keywords="kontrollansvarig, KA, byggkontroll, kontrollplan, teknisk kontroll, slutbevis, bygglov, PBL, Västernorrland, Sundsvall, Härnösand"
+        title="Kontrollansvarig (KA) enligt PBL | Ytterman Västernorrland"
+        description="Certifierad kontrollansvarig i Västernorrland. Teknisk kontroll, kontrollplan och slutbesiktning enligt PBL. Över 20 års erfarenhet. Från 15,000 kr."
+        keywords="kontrollansvarig, KA, PBL, teknisk kontroll, slutbesiktning, kontrollplan, byggkontroll, Västernorrland, Sundsvall, Härnösand"
         url="https://ytterman.com/kontrollansvarig"
         breadcrumbs={breadcrumbs}
         faq={faqData}
@@ -60,11 +60,11 @@ const KontrollansvarigPage = () => {
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto text-center">
                 <h1 className="text-5xl font-bold text-slate-900 mb-6">
-                  Kontrollansvarig (KA)
+                  Kontrollansvarig enligt PBL
                 </h1>
                 <p className="text-xl text-slate-600 mb-8">
-                  Certifierad kontrollansvarig med över 20 års erfarenhet. Vi säkerställer att ditt 
-                  byggprojekt följer alla regelverk och får rätt dokumentation från start till mål.
+                  Certifierad kontrollansvarig med över 20 års erfarenhet. Vi säkerställer 
+                  att ditt byggprojekt följer alla krav enligt Plan- och bygglagen (PBL).
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button 
@@ -86,44 +86,44 @@ const KontrollansvarigPage = () => {
             </div>
           </section>
 
-          {/* Vad är KA */}
+          {/* Vad är kontrollansvarig */}
           <section className="py-20 bg-white">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto">
                 <h2 className="text-4xl font-bold text-slate-900 mb-8 text-center">
-                  Vad är en Kontrollansvarig?
+                  Vad är en kontrollansvarig?
                 </h2>
                 <div className="prose prose-lg max-w-none text-slate-700">
                   <p className="text-xl mb-6">
-                    En Kontrollansvarig (KA) är en certifierad person som enligt Plan- och bygglagen (PBL) 
-                    ansvarar för att säkerställa att byggprojekt genomförs enligt gällande byggbestämmelser 
-                    och säkerhetsföreskrifter.
+                    Kontrollansvarig (KA) är en certifierad person som enligt Plan- och bygglagen (PBL) 
+                    ansvarar för att utföra teknisk kontroll under byggprocessen.
                   </p>
                   <p className="mb-8">
-                    Kontrollansvarig krävs för de flesta byggprojekt som kräver bygglov, och rollen är 
-                    avgörande för att säkerställa kvalitet, säkerhet och regelefterlevnad genom hela byggprocessen.
+                    Kontrollansvarig säkerställer att byggandet sker enligt gällande föreskrifter, 
+                    godkända ritningar och bygglov. Rollen är avgörande för att få slutbevis och 
+                    kunna ta byggnaden i bruk.
                   </p>
                 </div>
               </div>
             </div>
           </section>
 
-          {/* Uppgifter */}
+          {/* KA:s uppgifter */}
           <section className="py-20 bg-slate-50">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto">
                 <h2 className="text-4xl font-bold text-slate-900 mb-12 text-center">
-                  Kontrollansvarigs Uppgifter
+                  Kontrollansvarigs uppgifter
                 </h2>
                 <div className="grid md:grid-cols-2 gap-6">
                   {[
                     "Upprätta kontrollplan för projektet",
-                    "Genomföra teknisk kontroll under byggtiden",
-                    "Kontrollera att bygget följer godkända ritningar",
+                    "Utföra teknisk kontroll under byggprocessen",
+                    "Kontrollera att byggandet följer godkända ritningar",
                     "Säkerställa regelefterlevnad enligt PBL",
-                    "Dokumentera alla kontroller och avvikelser",
-                    "Kommunicera med byggnadsnämnden",
-                    "Utfärda slutbevis när projektet är klart"
+                    "Dokumentera alla kontrollmoment",
+                    "Genomföra slutbesiktning",
+                    "Utfärda intyg för slutbevis"
                   ].map((responsibility, index) => (
                     <div key={index} className="flex items-start space-x-4 p-6 bg-white rounded-lg shadow-sm">
                       <CheckCircle className="w-6 h-6 text-green-500 mt-1 flex-shrink-0" />
@@ -135,47 +135,47 @@ const KontrollansvarigPage = () => {
             </div>
           </section>
 
-          {/* Projekttyper */}
+          {/* När behöver du KA */}
           <section className="py-20 bg-white">
             <div className="container mx-auto px-4">
               <div className="max-w-6xl mx-auto">
                 <h2 className="text-4xl font-bold text-slate-900 mb-12 text-center">
-                  Projekttyper vi hanterar
+                  När behöver du kontrollansvarig?
                 </h2>
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                   {[
                     {
-                      icon: Shield,
+                      icon: Building,
                       title: "Nybyggnation",
-                      description: "Bostäder, kommersiella byggnader och industrianläggningar"
+                      description: "Alla nybyggnationer som kräver bygglov behöver kontrollansvarig"
                     },
                     {
-                      icon: FileText,
-                      title: "Tillbyggnader",
-                      description: "Större tillbyggnader som kräver bygglov och kontroll"
+                      icon: Users,
+                      title: "Större ombyggnader",
+                      description: "Omfattande ombyggnader och tillbyggnader enligt PBL"
                     },
                     {
-                      icon: Clock,
-                      title: "Ombyggnationer",
-                      description: "Omfattande ombyggnationer och renoveringar"
+                      icon: Shield,
+                      title: "Komplexa projekt",
+                      description: "Projekt med särskilda tekniska krav eller risker"
                     },
                     {
                       icon: Award,
-                      title: "Specialbyggnader",
-                      description: "Byggnader med särskilda säkerhetskrav"
+                      title: "Slutbevis",
+                      description: "För att få slutbevis och ta byggnaden i bruk"
                     }
-                  ].map((type, index) => {
-                    const IconComponent = type.icon;
+                  ].map((item, index) => {
+                    const IconComponent = item.icon;
                     return (
                       <div key={index} className="text-center p-6 bg-slate-50 rounded-xl">
                         <div className="w-16 h-16 earth-gradient rounded-full flex items-center justify-center mx-auto mb-6">
                           <IconComponent className="w-8 h-8 text-white" />
                         </div>
                         <h3 className="text-xl font-bold text-slate-900 mb-4">
-                          {type.title}
+                          {item.title}
                         </h3>
                         <p className="text-slate-600">
-                          {type.description}
+                          {item.description}
                         </p>
                       </div>
                     );
@@ -190,29 +190,29 @@ const KontrollansvarigPage = () => {
             <div className="container mx-auto px-4">
               <div className="max-w-6xl mx-auto">
                 <h2 className="text-4xl font-bold text-slate-900 mb-12 text-center">
-                  Så fungerar processen
+                  Kontrollprocessen
                 </h2>
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                   {[
                     {
                       step: "1",
-                      title: "Kontakt & Offert",
-                      description: "Vi diskuterar ditt projekt och ger en kostnadsfri offert"
+                      title: "Kontrollplan",
+                      description: "Upprättande av detaljerad kontrollplan för projektet"
                     },
                     {
                       step: "2", 
-                      title: "Kontrollplan",
-                      description: "Vi upprättar en detaljerad kontrollplan för projektet"
+                      title: "Löpande kontroll",
+                      description: "Teknisk kontroll under hela byggprocessen"
                     },
                     {
                       step: "3",
-                      title: "Löpande Kontroll",
-                      description: "Teknisk kontroll och dokumentation under byggtiden"
+                      title: "Dokumentation",
+                      description: "Kontinuerlig dokumentation av alla kontrollmoment"
                     },
                     {
                       step: "4",
                       title: "Slutbesiktning",
-                      description: "Slutkontroll och utfärdande av slutbevis"
+                      description: "Slutbesiktning och intyg för slutbevis"
                     }
                   ].map((item, index) => (
                     <div key={index} className="text-center">
@@ -236,11 +236,11 @@ const KontrollansvarigPage = () => {
           <section className="py-20 bg-slate-900 text-white">
             <div className="container mx-auto px-4 text-center">
               <h2 className="text-4xl font-bold mb-6">
-                Behöver du en Kontrollansvarig?
+                Behöver du kontrollansvarig?
               </h2>
               <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
                 Kontakta oss för en kostnadsfri konsultation. Vi hjälper dig med 
-                kontrollansvarig för ditt byggprojekt i Västernorrland.
+                professionell teknisk kontroll enligt PBL.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button 
