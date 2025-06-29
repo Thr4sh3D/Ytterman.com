@@ -15,6 +15,48 @@ const Index = () => {
   const [selectedPackage, setSelectedPackage] = useState<string>('');
   const [prefilledMessage, setPrefilledMessage] = useState<string>('');
 
+  // FAQ data for SEO
+  const faqData = [
+    {
+      question: "Vad är en kontrollansvarig och när behöver jag en?",
+      answer: "En kontrollansvarig (KA) krävs enligt Plan- och bygglagen (PBL) för att utföra teknisk kontroll under byggprocessen. KA behövs för de flesta byggprojekt som kräver bygglov eller anmälan."
+    },
+    {
+      question: "Vad kostar kontrollansvarig och BAS-tjänster?",
+      answer: "Våra priser börjar från 12,000 SEK för BAS-P, 15,000 SEK för kontrollansvarig och 18,000 SEK för BAS-U. Priset beror på projektets omfattning och komplexitet."
+    },
+    {
+      question: "Vilka områden täcker Ytterman?",
+      answer: "Vi verkar i hela Västernorrland med fokus på Sundsvall, Härnösand, Sollefteå, Timrå och Kramfors. Vi hjälper även kunder i övriga delar av regionen."
+    },
+    {
+      question: "Hur lång tid tar det att få kontrollplan och BAS-dokumentation?",
+      answer: "En kontrollplan tar vanligtvis 1-2 veckor att färdigställa efter att vi mottagit alla nödvändiga handlingar. BAS-dokumentation kan ofta levereras inom samma tidsram."
+    }
+  ];
+
+  // Reviews data for SEO
+  const reviews = [
+    {
+      author: "Anna Andersson",
+      rating: 5,
+      reviewBody: "Professionell och pålitlig kontrollansvarig. Tobias hjälpte oss genom hela byggprocessen med tydlig kommunikation och snabb hantering.",
+      datePublished: "2024-01-15"
+    },
+    {
+      author: "Erik Johansson", 
+      rating: 5,
+      reviewBody: "Excellent BAS-U tjänster för vårt projekt i Sundsvall. Mycket kunnig och alltid tillgänglig när vi behövde hjälp med arbetsmiljöfrågor.",
+      datePublished: "2024-01-10"
+    },
+    {
+      author: "Maria Lindström",
+      rating: 5,
+      reviewBody: "Snabb och effektiv hantering av vårt bygglov och kontrollansvarig-uppdrag. Rekommenderar starkt Ytterman för alla byggprojekt!",
+      datePublished: "2024-01-05"
+    }
+  ];
+
   // Färdiga meddelandetexter för varje paket
   const packageMessages = {
     'kontrollansvarig': 'Hej! Jag är intresserad av paketet "Kontrollansvarig" och skulle vilja veta mer om hur du kan hjälpa mig med mitt byggprojekt. Kan vi boka en kostnadsfri konsultation?',
