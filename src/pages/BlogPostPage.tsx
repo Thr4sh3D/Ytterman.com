@@ -62,16 +62,13 @@ const BlogPostPage = () => {
     return (
       <div className="min-h-screen">
         <Header />
-        <main className="pt-20">
-          <div className="container mx-auto px-4 py-20">
-            <div className="max-w-4xl mx-auto text-center">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-              <p className="text-slate-600">Laddar artikel...</p>
-            </div>
+        <div className="container mx-auto px-4 py-20">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
+            <p className="mt-4 text-slate-600">Laddar guide...</p>
           </div>
-        </main>
+        </div>
         <Footer />
-        <WhatsAppButton />
       </div>
     );
   }
@@ -80,40 +77,33 @@ const BlogPostPage = () => {
     return (
       <div className="min-h-screen">
         <Header />
-        <main className="pt-20">
-          <div className="container mx-auto px-4 py-20">
-            <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-4xl font-bold text-slate-900 mb-6">
-                Artikeln hittades inte
-              </h1>
-              <p className="text-xl text-slate-600 mb-8">
-                Tyvärr kunde vi inte hitta den artikel du söker.
-              </p>
-              <Button onClick={() => window.location.href = '/blogg'}>
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Tillbaka till guiderna
-              </Button>
-            </div>
+        <div className="container mx-auto px-4 py-20">
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="text-3xl font-bold text-slate-900 mb-4">Guide hittades inte</h1>
+            <p className="text-slate-600 mb-8">Den guide du söker finns inte eller har tagits bort.</p>
+            <Button onClick={() => window.location.href = '/blogg'}>
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Tillbaka till guiderna
+            </Button>
           </div>
-        </main>
+        </div>
         <Footer />
-        <WhatsAppButton />
       </div>
     );
   }
 
   const breadcrumbs = [
     { name: "Hem", url: "https://ytterman.com" },
-    { name: "Guider", url: "https://ytterman.com/blogg" },
+    { name: "Guide", url: "https://ytterman.com/blogg" },
     { name: post.title, url: `https://ytterman.com/blogg/${post.slug}` }
   ];
 
   return (
     <>
       <AdvancedSEO 
-        title={`${post.title} | Ytterman`}
+        title={`${post.title} | Ytterman Guide`}
         description={post.meta_description || post.excerpt}
-        keywords={post.keywords || post.tags?.join(', ')}
+        keywords={post.keywords}
         url={`https://ytterman.com/blogg/${post.slug}`}
         image={post.featured_image}
         type="article"
@@ -130,10 +120,11 @@ const BlogPostPage = () => {
       <div className="min-h-screen">
         <Header />
         
-        <main className="pt-20">
-          <article>
-            <div className="container mx-auto px-4 py-12">
+        <main>
+          <article className="py-20">
+            <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto">
+                {/* Back button */}
                 <Button 
                   variant="ghost" 
                   onClick={() => window.location.href = '/blogg'}
@@ -143,63 +134,63 @@ const BlogPostPage = () => {
                   Tillbaka till guiderna
                 </Button>
 
-                <header className="mb-12">
-                  <div className="flex items-center justify-between mb-6">
-                    <span className="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium">
+                {/* Article header */}
+                <header className="mb-8">
+                  <div className="flex items-center space-x-4 text-sm text-slate-500 mb-4">
+                    <span className="bg-primary/10 text-primary px-3 py-1 rounded-full font-medium">
                       {post.category}
                     </span>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={sharePost}
-                    >
+                    <div className="flex items-center space-x-1">
+                      <Calendar className="w-4 h-4" />
+                      <span>{formatDate(post.created_at)}</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <Clock className="w-4 h-4" />
+                      <span>{post.reading_time} min läsning</span>
+                    </div>
+                  </div>
+                  
+                  <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+                    {post.title}
+                  </h1>
+                  
+                  <p className="text-xl text-slate-600 mb-6">
+                    {post.excerpt}
+                  </p>
+                  
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-2 text-slate-600">
+                      <User className="w-5 h-5" />
+                      <span className="font-medium">{post.author}</span>
+                    </div>
+                    
+                    <Button variant="outline" size="sm" onClick={sharePost}>
                       <Share2 className="w-4 h-4 mr-2" />
                       Dela
                     </Button>
                   </div>
-
-                  <h1 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
-                    {post.title}
-                  </h1>
-
-                  <p className="text-xl text-slate-600 mb-8">
-                    {post.excerpt}
-                  </p>
-
-                  <div className="flex items-center space-x-6 text-slate-500 mb-8">
-                    <div className="flex items-center space-x-2">
-                      <User className="w-5 h-5" />
-                      <span>{post.author}</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <Calendar className="w-5 h-5" />
-                      <span>{formatDate(post.created_at)}</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <Clock className="w-5 h-5" />
-                      <span>{post.reading_time} min läsning</span>
-                    </div>
-                  </div>
-
-                  {post.featured_image && (
-                    <div className="mb-8">
-                      <img 
-                        src={post.featured_image} 
-                        alt={post.title}
-                        className="w-full h-auto"
-                      />
-                    </div>
-                  )}
                 </header>
 
-                <div 
-                  className="prose prose-lg max-w-none"
-                  dangerouslySetInnerHTML={{ __html: post.content }}
-                />
+                {/* Featured image */}
+                {post.featured_image && (
+                  <div className="mb-8 rounded-xl overflow-hidden">
+                    <img 
+                      src={post.featured_image} 
+                      alt={post.title}
+                      className="w-full h-auto"
+                    />
+                  </div>
+                )}
 
+                {/* Article content */}
+                <div className="prose prose-lg max-w-none">
+                  <div dangerouslySetInnerHTML={{ __html: post.content }} />
+                </div>
+
+                {/* Tags */}
                 {post.tags && post.tags.length > 0 && (
-                  <footer className="mt-12 pt-8 border-t border-slate-200">
-                    <h3 className="text-lg font-semibold text-slate-900 mb-4">Taggar:</h3>
+                  <div className="mt-8 pt-8 border-t border-slate-200">
+                    <h3 className="text-sm font-medium text-slate-900 mb-3">Taggar:</h3>
                     <div className="flex flex-wrap gap-2">
                       {post.tags.map((tag, index) => (
                         <span 
@@ -210,12 +201,13 @@ const BlogPostPage = () => {
                         </span>
                       ))}
                     </div>
-                  </footer>
+                  </div>
                 )}
               </div>
             </div>
           </article>
 
+          {/* Related posts */}
           <RelatedPosts currentPost={post} />
         </main>
         

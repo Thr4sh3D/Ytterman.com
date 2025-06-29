@@ -17,9 +17,9 @@ export const RelatedPosts = ({ currentPost }: RelatedPostsProps) => {
   useEffect(() => {
     const fetchRelatedPosts = async () => {
       try {
-        // Fetch posts from the same category, excluding current post
+        // Fetch posts from same category, excluding current post
         const posts = await BlogPost.filter({ 
-          category: currentPost.category,
+          category: currentPost.category, 
           published: true 
         }, '-created_at', 3);
         
