@@ -57,13 +57,13 @@ const BlogPage = () => {
 
   const breadcrumbs = [
     { name: "Hem", url: "https://ytterman.com" },
-    { name: "Blogg", url: "https://ytterman.com/blogg" }
+    { name: "Guide", url: "https://ytterman.com/blogg" }
   ];
 
   return (
     <>
       <AdvancedSEO 
-        title="Blogg - Kontrollansvarig & BAS Guide | Ytterman"
+        title="Guide - Kontrollansvarig & BAS Guide | Ytterman"
         description="Läs våra expertguider om kontrollansvarig, BAS-P, BAS-U, bygglov och arbetsmiljö. Praktiska tips och råd för byggprojekt i Västernorrland."
         keywords="kontrollansvarig guide, BAS-P tips, BAS-U råd, bygglov process, arbetsmiljö byggarbetsplats, byggkontroll, PBL guide, Västernorrland byggprojekt"
         url="https://ytterman.com/blogg"
@@ -79,7 +79,7 @@ const BlogPage = () => {
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto text-center">
                 <h1 className="text-5xl font-bold text-slate-900 mb-6">
-                  Blogg & Guider
+                  Guide & Expertråd
                 </h1>
                 <p className="text-xl text-slate-600 mb-8">
                   Expertkunskap om kontrollansvarig, BAS och byggprocesser. 
@@ -91,7 +91,7 @@ const BlogPage = () => {
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5" />
                   <Input
                     type="text"
-                    placeholder="Sök artiklar..."
+                    placeholder="Sök guider..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="pl-10 py-3 text-lg"
@@ -118,7 +118,7 @@ const BlogPage = () => {
               {loading ? (
                 <div className="text-center py-12">
                   <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
-                  <p className="mt-4 text-slate-600">Laddar artiklar...</p>
+                  <p className="mt-4 text-slate-600">Laddar guider...</p>
                 </div>
               ) : filteredPosts.length > 0 ? (
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -130,8 +130,8 @@ const BlogPage = () => {
                 <div className="text-center py-12">
                   <p className="text-xl text-slate-600">
                     {searchTerm || selectedCategory !== 'alla' 
-                      ? 'Inga artiklar hittades för din sökning.' 
-                      : 'Inga artiklar publicerade än.'}
+                      ? 'Inga guider hittades för din sökning.' 
+                      : 'Inga guider publicerade än.'}
                   </p>
                   {(searchTerm || selectedCategory !== 'alla') && (
                     <Button 
@@ -158,7 +158,7 @@ const BlogPage = () => {
                   Expertkunskap för ditt byggprojekt
                 </h2>
                 <p className="text-lg text-slate-600 mb-8">
-                  Våra artiklar täcker allt från grundläggande bygglovsprocesser till 
+                  Våra guider täcker allt från grundläggande bygglovsprocesser till 
                   avancerade arbetsmiljöfrågor. Få den kunskap du behöver för ett 
                   framgångsrikt byggprojekt i Västernorrland.
                 </p>

@@ -65,7 +65,7 @@ const BlogPostPage = () => {
         <div className="container mx-auto px-4 py-20">
           <div className="max-w-4xl mx-auto text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
-            <p className="mt-4 text-slate-600">Laddar artikel...</p>
+            <p className="mt-4 text-slate-600">Laddar guide...</p>
           </div>
         </div>
         <Footer />
@@ -79,11 +79,11 @@ const BlogPostPage = () => {
         <Header />
         <div className="container mx-auto px-4 py-20">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-3xl font-bold text-slate-900 mb-4">Artikel hittades inte</h1>
-            <p className="text-slate-600 mb-8">Den artikel du söker finns inte eller har tagits bort.</p>
+            <h1 className="text-3xl font-bold text-slate-900 mb-4">Guide hittades inte</h1>
+            <p className="text-slate-600 mb-8">Den guide du söker finns inte eller har tagits bort.</p>
             <Button onClick={() => window.location.href = '/blogg'}>
               <ArrowLeft className="w-4 h-4 mr-2" />
-              Tillbaka till bloggen
+              Tillbaka till guiderna
             </Button>
           </div>
         </div>
@@ -94,14 +94,14 @@ const BlogPostPage = () => {
 
   const breadcrumbs = [
     { name: "Hem", url: "https://ytterman.com" },
-    { name: "Blogg", url: "https://ytterman.com/blogg" },
+    { name: "Guide", url: "https://ytterman.com/blogg" },
     { name: post.title, url: `https://ytterman.com/blogg/${post.slug}` }
   ];
 
   return (
     <>
       <AdvancedSEO 
-        title={`${post.title} | Ytterman Blogg`}
+        title={`${post.title} | Ytterman Guide`}
         description={post.meta_description || post.excerpt}
         keywords={post.keywords}
         url={`https://ytterman.com/blogg/${post.slug}`}
@@ -131,7 +131,7 @@ const BlogPostPage = () => {
                   className="mb-8"
                 >
                   <ArrowLeft className="w-4 h-4 mr-2" />
-                  Tillbaka till bloggen
+                  Tillbaka till guiderna
                 </Button>
 
                 {/* Article header */}
