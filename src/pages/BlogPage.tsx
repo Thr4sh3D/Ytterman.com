@@ -6,7 +6,6 @@ import { AdvancedSEO } from '@/components/AdvancedSEO';
 import { BlogPost } from '@/entities';
 import { BlogCard } from '@/components/BlogCard';
 import { BlogCategories } from '@/components/BlogCategories';
-import { UpdatePostImage } from '@/components/UpdatePostImage';
 import { Search, Calendar, User, Clock } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -75,13 +74,6 @@ const BlogPage = () => {
         <Header />
         
         <main>
-          {/* Temporary update section */}
-          <section className="py-8 bg-blue-50 border-b">
-            <div className="container mx-auto px-4">
-              <UpdatePostImage />
-            </div>
-          </section>
-
           {/* Hero Section */}
           <section className="py-20 bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-50">
             <div className="container mx-auto px-4">
