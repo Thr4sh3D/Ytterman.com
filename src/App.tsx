@@ -10,6 +10,8 @@ import TjansterPage from "./pages/TjansterPage";
 import KontrollansvarigPage from "./pages/KontrollansvarigPage";
 import BasPPage from "./pages/BasPPage";
 import BasUPage from "./pages/BasUPage";
+import BlogPage from "./pages/BlogPage";
+import BlogPostPage from "./pages/BlogPostPage";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +28,8 @@ const App = () => (
             <Route path="/kontrollansvarig" element={<KontrollansvarigPage />} />
             <Route path="/bas-p" element={<BasPPage />} />
             <Route path="/bas-u" element={<BasUPage />} />
+            <Route path="/blogg" element={<BlogPage />} />
+            <Route path="/blogg/:slug" element={<BlogPostPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

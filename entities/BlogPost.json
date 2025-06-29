@@ -1,0 +1,57 @@
+{
+  "name": "BlogPost",
+  "description": "Blogginlägg för SEO och innehållsmarknadsföring",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Titel på blogginlägget"
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL-vänlig slug för blogginlägget"
+    },
+    "excerpt": {
+      "type": "string",
+      "description": "Kort sammanfattning av blogginlägget"
+    },
+    "content": {
+      "type": "string",
+      "description": "Fullständigt innehåll i blogginlägget"
+    },
+    "featured_image": {
+      "type": "string",
+      "description": "URL till huvudbild för blogginlägget"
+    },
+    "meta_description": {
+      "type": "string",
+      "description": "SEO meta-beskrivning"
+    },
+    "keywords": {
+      "type": "string",
+      "description": "SEO-nyckelord separerade med komma"
+    },
+    "category": {
+      "type": "string",
+      "description": "Kategori för blogginlägget"
+    },
+    "tags": {
+      "type": "array",
+      "description": "Taggar för blogginlägget",
+      "items": {
+        "type": "string"
+      }
+    },
+    "published": {
+      "type": "boolean",
+      "description": "Om blogginlägget är publicerat"
+    },
+    "reading_time": {
+      "type": "number",
+      "description": "Uppskattad lästid i minuter"
+    },
+    "author": {
+      "type": "string",
+      "description": "Författare till blogginlägget"
+    }
+  }
+}
