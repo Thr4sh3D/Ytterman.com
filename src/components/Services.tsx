@@ -1,146 +1,162 @@
-import { Shield, Users, FileCheck, Building, CheckCircle, Clock } from 'lucide-react';
+import { Shield, Users, FileText, Building, PenTool, Map, Layers } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useNavigate } from 'react-router-dom';
 
 interface ServicesProps {
   onServiceSelect: (serviceId: string) => void;
 }
 
 export const Services = ({ onServiceSelect }: ServicesProps) => {
+  const navigate = useNavigate();
+
   const services = [
     {
       id: 'kontrollansvarig-service',
       icon: Shield,
-      title: "Kontrollansvarig (KA)",
-      description: "Säkerställer att byggnationen följer gällande lagar och föreskrifter",
-      features: [
-        "Kontrollplan och kontrollbesiktningar",
-        "Slutbesiktning och slutbevis",
-        "Teknisk kontroll under byggprocessen",
-        "Dokumentation och rapportering"
-      ],
-      price: "Från 15 000 kr"
+      title: 'Kontrollansvarig (KA)',
+      description: 'Teknisk kontroll enligt Plan- och bygglagen (PBL). Säkerställer att ditt byggprojekt följer gällande regler och föreskrifter.',
+      features: ['Kontrollplan', 'Besiktningar', 'Slutbevis', 'Teknisk rådgivning']
     },
     {
       id: 'bas-p-service',
       icon: Users,
-      title: "BAS-P (Projektering)",
-      description: "Arbetsmiljösamordning under projekteringsfasen",
-      features: [
-        "Arbetsmiljöplan för projektering",
-        "Riskbedömning och säkerhetsanalys",
-        "Samordning mellan projektörer",
-        "Underlag för BAS-U"
-      ],
-      price: "Från 8 000 kr"
+      title: 'BAS-P (Projektering)',
+      description: 'Byggarbetsmiljösamordnare under projekteringsfasen. Planerar för en säker arbetsmiljö redan från början.',
+      features: ['Arbetsmiljöplan', 'Riskbedömning', 'Säkerhetsspecifikation', 'Samordning']
     },
     {
       id: 'bas-u-service',
       icon: Building,
-      title: "BAS-U (Utförande)",
-      description: "Arbetsmiljösamordning under byggfasen",
-      features: [
-        "Arbetsmiljöplan för utförande",
-        "Säkerhetsronder och kontroller",
-        "Samordning mellan entreprenörer",
-        "Incidentrapportering"
-      ],
-      price: "Från 12 000 kr"
+      title: 'BAS-U (Utförande)',
+      description: 'Byggarbetsmiljösamordnare under utförandefasen. Övervakar och säkerställer arbetsmiljön på byggarbetsplatsen.',
+      features: ['Arbetsmiljöuppföljning', 'Säkerhetsinspektioner', 'Incidenthantering', 'Utbildning']
     },
     {
       id: 'kombinerade-paket-service',
-      icon: FileCheck,
-      title: "Kombinerade Paket",
-      description: "Kostnadseffektiva lösningar för hela byggprocessen",
-      features: [
-        "KA + BAS-P/U i ett paket",
-        "Smidig övergång mellan faser",
-        "Enhetlig dokumentation",
-        "Rabatterade priser"
-      ],
-      price: "Från 25 000 kr"
+      title: 'Kombinerade Paket',
+      description: 'Kostnadseffektiva paket som kombinerar flera tjänster för en smidig och ekonomisk lösning.',
+      features: ['KA + BAS-P', 'KA + BAS-U', 'Fullständiga paket', 'Projektledning']
     }
   ];
 
-  const scrollToContact = () => {
-    const element = document.getElementById('kontakt');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+  const additionalServices = [
+    {
+      id: 'bygglovshandlingar',
+      icon: FileText,
+      title: 'Bygglovshandlingar',
+      description: 'Professionell framtagning av alla handlingar som krävs för bygglovsansökan.'
+    },
+    {
+      id: 'planritning',
+      icon: PenTool,
+      title: 'Planritning',
+      description: 'Detaljerade planritningar som uppfyller alla tekniska krav och standarder.'
+    },
+    {
+      id: 'situationsplan',
+      icon: Map,
+      title: 'Situationsplan',
+      description: 'Exakt situationsplan som visar byggnadens placering på tomten.'
+    },
+    {
+      id: 'sektionsritningar',
+      icon: Layers,
+      title: 'Sektionsritningar',
+      description: 'Tekniska sektionsritningar för komplex byggnadskonstruktion.'
     }
-  };
+  ];
 
-  const handleServiceClick = (serviceId: string) => {
-    onServiceSelect(serviceId);
-    scrollToContact();
+  const handleGetQuote = (serviceId: string) => {
+    navigate(`/kontakt?tjanst=${serviceId}`);
   };
 
   return (
-    <section id="tjanster" className="py-20 bg-background">
+    <section id="tjanster" className="py-20 bg-secondary/30">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-6">
             Mina Tjänster
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Professionella tjänster inom byggkontroll och arbetsmiljösamordning. 
-            Certifierad enligt nya regelverket 2025 och anpassat för ditt projekt.
+            Jag erbjuder kompletta lösningar för ditt byggprojekt - från planering 
+            till slutbesiktning. Med över 20 års erfarenhet säkerställer jag att 
+            ditt projekt genomförs enligt alla regler och med högsta kvalitet.
           </p>
         </div>
 
+        {/* Huvudtjänster */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-          {services.map((service, index) => (
-            <div key={index} className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
-              <div className="w-12 h-12 earth-gradient rounded-lg flex items-center justify-center mb-4">
-                <service.icon className="w-6 h-6 text-white" />
+          {services.map((service) => (
+            <div
+              key={service.id}
+              className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+            >
+              <div className="w-16 h-16 earth-gradient rounded-xl flex items-center justify-center mb-6">
+                {service.icon && <service.icon className="w-8 h-8 text-white" />}
               </div>
               
-              <h3 className="text-xl font-bold text-foreground mb-3">
+              <h3 className="text-xl font-bold text-foreground mb-4">
                 {service.title}
               </h3>
               
-              <p className="text-muted-foreground mb-4">
+              <p className="text-muted-foreground mb-6">
                 {service.description}
               </p>
-              
+
               <ul className="space-y-2 mb-6">
-                {service.features.map((feature, featureIndex) => (
-                  <li key={featureIndex} className="flex items-start space-x-2 text-sm">
-                    <CheckCircle className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
-                    <span>{feature}</span>
+                {service.features.map((feature, index) => (
+                  <li key={index} className="text-sm text-muted-foreground flex items-center">
+                    <div className="w-1.5 h-1.5 bg-accent rounded-full mr-2"></div>
+                    {feature}
                   </li>
                 ))}
               </ul>
-              
-              <div className="border-t pt-4">
-                <div className="text-lg font-bold text-accent mb-3">
-                  {service.price}
-                </div>
-                <Button 
-                  onClick={() => handleServiceClick(service.id)}
-                  className="w-full earth-gradient text-white hover:opacity-90"
-                >
-                  Begär offert
-                </Button>
-              </div>
+
+              <Button
+                onClick={() => handleGetQuote(service.id)}
+                className="w-full earth-gradient text-white hover:opacity-90"
+              >
+                Få en offert
+              </Button>
             </div>
           ))}
         </div>
 
-        <div className="bg-secondary/30 rounded-2xl p-8 text-center">
-          <Clock className="w-12 h-12 text-accent mx-auto mb-4" />
-          <h3 className="text-2xl font-bold text-foreground mb-4">
-            Snabb Återkoppling
+        {/* Ytterligare tjänster */}
+        <div className="bg-white rounded-2xl p-8 shadow-lg">
+          <h3 className="text-2xl font-bold text-foreground mb-8 text-center">
+            Ytterligare Tjänster
           </h3>
-          <p className="text-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
-            Jag svarar vanligtvis inom 24 timmar och kan ofta erbjuda snabba 
-            starttider för akuta projekt. Kontakta mig för en kostnadsfri konsultation.
-          </p>
-          <Button 
-            onClick={scrollToContact}
-            size="lg"
-            className="earth-gradient text-white hover:opacity-90"
-          >
-            Kontakta mig idag
-          </Button>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {additionalServices.map((service) => (
+              <div
+                key={service.id}
+                className="text-center p-6 rounded-xl border border-border hover:border-accent transition-colors"
+              >
+                <div className="w-12 h-12 earth-gradient rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <service.icon className="w-6 h-6 text-white" />
+                </div>
+                
+                <h4 className="font-semibold text-foreground mb-2">
+                  {service.title}
+                </h4>
+                
+                <p className="text-sm text-muted-foreground mb-4">
+                  {service.description}
+                </p>
+
+                <Button
+                  onClick={() => handleGetQuote(service.id)}
+                  variant="outline"
+                  size="sm"
+                  className="border-accent text-accent hover:bg-accent hover:text-white"
+                >
+                  Få offert
+                </Button>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

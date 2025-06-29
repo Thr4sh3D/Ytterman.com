@@ -12,6 +12,7 @@ import BasPPage from "./pages/BasPPage";
 import BasUPage from "./pages/BasUPage";
 import BlogPage from "./pages/BlogPage";
 import BlogPostPage from "./pages/BlogPostPage";
+import KontaktPage from "./pages/KontaktPage";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +31,7 @@ const App = () => (
             <Route path="/bas-u" element={<BasUPage />} />
             <Route path="/blogg" element={<BlogPage />} />
             <Route path="/blogg/:slug" element={<BlogPostPage />} />
+            <Route path="/kontakt" element={<KontaktPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
