@@ -1,82 +1,83 @@
 import { Header } from '@/components/Header';
-import { Contact } from '@/components/Contact';
 import { Footer } from '@/components/Footer';
-import { WhatsAppButton } from '@/components/WhatsAppButton';
-import { AdvancedSEO } from '@/components/AdvancedSEO';
-import { useSearchParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { Contact } from '@/components/Contact';
+import { Helmet } from 'react-helmet-async';
+import { MapPin } from 'lucide-react';
 
-const KontaktPage = () => {
-  const [searchParams] = useSearchParams();
-  const [selectedPackage, setSelectedPackage] = useState<string>('');
-  const [prefilledMessage, setPrefilledMessage] = useState<string>('');
-
-  // Färdiga meddelandetexter för varje paket
-  const packageMessages = {
-    'kontrollansvarig': 'Hej! Jag är intresserad av paketet "Kontrollansvarig" och skulle vilja veta mer om hur du kan hjälpa mig med mitt byggprojekt. Kan vi boka en kostnadsfri konsultation?',
-    'ka-bas-paket': 'Hej! Jag är intresserad av det populära "KA + BAS Paketet" och skulle vilja diskutera hur detta passar mitt projekt. Kan vi boka ett möte för att gå igenom detaljerna?',
-    'brf-stora-projekt': 'Hej! Jag har ett större/komplext projekt och skulle vilja få en offert för "BRF & Större Projekt"-paketet. Kan vi boka en konsultation för att diskutera projektets omfattning?'
-  };
-
-  // Färdiga meddelandetexter för varje tjänst
-  const serviceMessages = {
-    'kontrollansvarig-service': 'Hej! Jag behöver en Kontrollansvarig (KA) för mitt byggprojekt. Kan du hjälpa mig med kontrollplan, besiktningar och slutbevis? Jag skulle vilja boka en kostnadsfri konsultation.',
-    'bas-p-service': 'Hej! Jag behöver BAS-P (Byggarbetsmiljösamordnare under projektering) för mitt projekt. Kan du hjälpa mig med arbetsmiljöplan och riskbedömning? Låt oss boka ett möte.',
-    'bas-u-service': 'Hej! Jag behöver BAS-U (Byggarbetsmiljösamordnare under utförande) för mitt byggprojekt. Kan du hjälpa mig med arbetsmiljösamordning under byggfasen? Jag skulle vilja diskutera detta vidare.',
-    'kombinerade-paket-service': 'Hej! Jag är intresserad av ett kombinerat paket med KA + BAS-P/U för mitt projekt. Kan vi diskutera en kostnadseffektiv lösning för hela byggprocessen?',
-    'bygglovshandlingar': 'Hej! Jag behöver hjälp med att ta fram bygglovshandlingar för mitt projekt. Kan du hjälpa mig med ansökan och alla nödvändiga dokument?',
-    'planritning': 'Hej! Jag behöver professionella planritningar för mitt byggprojekt. Kan vi diskutera omfattning och tidsplan för ritningsarbetet?',
-    'situationsplan': 'Hej! Jag behöver en situationsplan för mitt projekt. Kan du hjälpa mig med uppmätning och framtagning av situationsplanen?',
-    'sektionsritningar': 'Hej! Jag behöver sektionsritningar för mitt byggprojekt. Kan vi boka ett möte för att diskutera de tekniska kraven och detaljerna?'
-  };
-
-  useEffect(() => {
-    const packageParam = searchParams.get('paket');
-    const serviceParam = searchParams.get('tjanst');
-    
-    if (packageParam && packageMessages[packageParam as keyof typeof packageMessages]) {
-      setSelectedPackage(packageParam);
-      setPrefilledMessage(packageMessages[packageParam as keyof typeof packageMessages]);
-    } else if (serviceParam && serviceMessages[serviceParam as keyof typeof serviceMessages]) {
-      setSelectedPackage(serviceParam);
-      setPrefilledMessage(serviceMessages[serviceParam as keyof typeof serviceMessages]);
-    }
-  }, [searchParams]);
-
+export default function KontaktPage() {
   return (
     <>
-      <AdvancedSEO 
-        title="Kontakta Ytterman - Få Offert på Kontrollansvarig & BAS-tjänster"
-        description="Kontakta Ytterman för kostnadsfri konsultation och offert på kontrollansvarig och BAS-tjänster i Västernorrland. Snabb svarstid och professionell service."
-        keywords="kontakta kontrollansvarig, offert BAS-tjänster, konsultation byggkontroll, Ytterman kontakt"
-        url="https://ytterman.com/kontakt"
-      />
+      <Helmet>
+        <title>Kontakta oss | Byggkontroll & Teknisk Konsultation</title>
+        <meta name="description" content="Kontakta oss för frågor om kontrollansvarig, BAS-P, BAS-U eller andra byggtekniska tjänster. Vi hjälper dig med ditt byggprojekt." />
+        <meta name="keywords" content="kontakt, byggkontroll, kontrollansvarig, BAS-P, BAS-U, byggprojekt" />
+      </Helmet>
       
-      <div className="min-h-screen">
-        <Header />
-        <main className="pt-20">
-          <div className="container mx-auto px-4 py-12">
-            <div className="text-center mb-12">
-              <h1 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
-                Kontakta Oss
-              </h1>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                Redo att starta ditt byggprojekt? Fyll i formuläret nedan för en kostnadsfri 
-                konsultation och personlig offert anpassad efter dina behov.
-              </p>
+      <Header />
+      
+      <main>
+        <section className="bg-gradient-to-br from-green-600 to-green-800 text-white py-16">
+          <div className="container mx-auto px-6">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">Kontakta oss</h1>
+            <p className="text-xl text-green-50 max-w-2xl">
+              Har du frågor eller vill diskutera ditt projekt? Vi finns här för att hjälpa dig.
+            </p>
+          </div>
+        </section>
+        
+        <section className="py-16 bg-white">
+          <div className="container mx-auto px-6">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div>
+                <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                  Vi finns i Västernorrland
+                </h2>
+                <p className="text-lg text-gray-700 mb-8">
+                  Vi erbjuder våra tjänster i hela Västernorrland, inklusive Sundsvall, Härnösand, Sollefteå, Kramfors, Timrå och omkringliggande områden.
+                </p>
+                
+                <div className="space-y-6">
+                  <div className="flex">
+                    <MapPin className="w-6 h-6 text-green-600 mr-4 flex-shrink-0" />
+                    <div>
+                      <h3 className="font-semibold text-gray-900 mb-1">Huvudkontor</h3>
+                      <p className="text-gray-700">
+                        Storgatan 45<br />
+                        852 30 Sundsvall
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex">
+                    <MapPin className="w-6 h-6 text-green-600 mr-4 flex-shrink-0" />
+                    <div>
+                      <h3 className="font-semibold text-gray-900 mb-1">Filial Härnösand</h3>
+                      <p className="text-gray-700">
+                        Nybrogatan 15<br />
+                        871 31 Härnösand
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="relative">
+                <div className="bg-green-600 absolute -top-4 -left-4 w-24 h-24 rounded-tl-3xl opacity-20"></div>
+                <div className="bg-green-600 absolute -bottom-4 -right-4 w-24 h-24 rounded-br-3xl opacity-20"></div>
+                <img 
+                  src="/api/placeholder/600/400" 
+                  alt="Karta över Västernorrland" 
+                  className="rounded-xl shadow-xl relative z-10 w-full"
+                />
+              </div>
             </div>
           </div>
-          
-          <Contact 
-            selectedPackage={selectedPackage} 
-            prefilledMessage={prefilledMessage}
-          />
-        </main>
-        <Footer />
-        <WhatsAppButton />
-      </div>
+        </section>
+        
+        <Contact />
+      </main>
+      
+      <Footer />
     </>
   );
-};
-
-export default KontaktPage;
+}

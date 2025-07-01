@@ -1,272 +1,153 @@
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { WhatsAppButton } from '@/components/WhatsAppButton';
-import { AdvancedSEO } from '@/components/AdvancedSEO';
-import { CheckCircle, Phone, Mail, Shield, FileText, Clock, Award, Building, Users } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
+import { CheckCircle, FileText, Users, Building, ArrowRight } from 'lucide-react';
 
-const KontrollansvarigPage = () => {
-  const scrollToContact = () => {
-    window.location.href = '/#kontakt';
-  };
-
-  const faqData = [
-    {
-      question: "Vad är en kontrollansvarig och när behöver jag en?",
-      answer: "Kontrollansvarig (KA) krävs enligt PBL för att utföra teknisk kontroll under byggprocessen. KA behövs för de flesta byggprojekt som kräver bygglov eller anmälan."
-    },
-    {
-      question: "Vad kostar kontrollansvarig tjänster?",
-      answer: "Våra KA-tjänster börjar från 15,000 SEK beroende på projektets omfattning och komplexitet. Vi erbjuder alltid en kostnadsfri konsultation för exakt prisuppgift."
-    },
-    {
-      question: "När ska kontrollansvarig anlitas?",
-      answer: "Kontrollansvarig ska anlitas tidigt i processen, helst redan vid bygglovsansökan. Detta säkerställer en smidig byggprocess och korrekt dokumentation."
-    }
-  ];
-
-  const breadcrumbs = [
-    { name: "Hem", url: "https://ytterman.com" },
-    { name: "Tjänster", url: "https://ytterman.com/tjanster" },
-    { name: "Kontrollansvarig", url: "https://ytterman.com/kontrollansvarig" }
-  ];
-
-  const serviceData = {
-    name: "Kontrollansvarig enligt PBL",
-    description: "Certifierad kontrollansvarig för teknisk kontroll och slutbesiktning",
-    provider: "Ytterman",
-    areaServed: ["Sundsvall", "Härnösand", "Sollefteå", "Timrå", "Kramfors"],
-    priceRange: "Från 15,000 SEK"
-  };
-
+export default function KontrollansvarigPage() {
   return (
     <>
-      <AdvancedSEO 
-        title="Kontrollansvarig (KA) enligt PBL | Ytterman Västernorrland"
-        description="Certifierad kontrollansvarig i Västernorrland. Teknisk kontroll, kontrollplan och slutbesiktning enligt PBL. Över 20 års erfarenhet. Från 15,000 kr."
-        keywords="kontrollansvarig, KA, PBL, teknisk kontroll, slutbesiktning, kontrollplan, byggkontroll, Västernorrland, Sundsvall, Härnösand"
-        url="https://ytterman.com/kontrollansvarig"
-        breadcrumbs={breadcrumbs}
-        faq={faqData}
-        service={serviceData}
-      />
+      <Helmet>
+        <title>Kontrollansvarig (KA) | Byggkontroll & Teknisk Konsultation</title>
+        <meta name="description" content="Certifierad kontrollansvarig enligt PBL för alla typer av byggprojekt. Vi hjälper dig med kontrollplan, tekniskt samråd och slutsamråd." />
+        <meta name="keywords" content="kontrollansvarig, KA, PBL, kontrollplan, tekniskt samråd, slutsamråd" />
+      </Helmet>
       
-      <div className="min-h-screen">
-        <Header />
+      <Header />
+      
+      <main>
+        <section className="bg-gradient-to-br from-green-600 to-green-800 text-white py-16">
+          <div className="container mx-auto px-6">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">Kontrollansvarig (KA)</h1>
+            <p className="text-xl text-green-50 max-w-2xl">
+              Certifierad kontrollansvarig enligt Plan- och bygglagen för alla typer av byggprojekt.
+            </p>
+          </div>
+        </section>
         
-        <main>
-          {/* Hero Section */}
-          <section className="py-20 bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-50">
-            <div className="container mx-auto px-4">
-              <div className="max-w-4xl mx-auto text-center">
-                <h1 className="text-5xl font-bold text-slate-900 mb-6">
-                  Kontrollansvarig enligt PBL
-                </h1>
-                <p className="text-xl text-slate-600 mb-8">
-                  Certifierad kontrollansvarig med över 20 års erfarenhet. Vi säkerställer 
-                  att ditt byggprojekt följer alla krav enligt Plan- och bygglagen (PBL).
+        <section className="py-16 bg-white">
+          <div className="container mx-auto px-6">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div>
+                <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                  Vad gör en kontrollansvarig?
+                </h2>
+                <p className="text-lg text-gray-700 mb-6">
+                  En kontrollansvarig (KA) är en certifierad expert som säkerställer att byggprojekt uppfyller alla krav enligt Plan- och bygglagen (PBL). KA är en oberoende part som hjälper byggherren att säkerställa kvalitet och säkerhet i byggprocessen.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button 
-                    onClick={scrollToContact}
-                    className="earth-gradient text-white hover:opacity-90 px-8 py-4 text-lg"
-                  >
-                    <Phone className="w-5 h-5 mr-2" />
-                    Få kostnadsfri offert
-                  </Button>
-                  <a 
-                    href="tel:+46761118447"
-                    className="inline-flex items-center px-8 py-4 border-2 border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-colors text-lg font-semibold"
-                  >
-                    <Phone className="w-5 h-5 mr-2" />
-                    076-111 84 47
-                  </a>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Vad är kontrollansvarig */}
-          <section className="py-20 bg-white">
-            <div className="container mx-auto px-4">
-              <div className="max-w-4xl mx-auto">
-                <h2 className="text-4xl font-bold text-slate-900 mb-8 text-center">
-                  Vad är en kontrollansvarig?
-                </h2>
-                <div className="prose prose-lg max-w-none text-slate-700">
-                  <p className="text-xl mb-6">
-                    Kontrollansvarig (KA) är en certifierad person som enligt Plan- och bygglagen (PBL) 
-                    ansvarar för att utföra teknisk kontroll under byggprocessen.
-                  </p>
-                  <p className="mb-8">
-                    Kontrollansvarig säkerställer att byggandet sker enligt gällande föreskrifter, 
-                    godkända ritningar och bygglov. Rollen är avgörande för att få slutbevis och 
-                    kunna ta byggnaden i bruk.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* KA:s uppgifter */}
-          <section className="py-20 bg-slate-50">
-            <div className="container mx-auto px-4">
-              <div className="max-w-4xl mx-auto">
-                <h2 className="text-4xl font-bold text-slate-900 mb-12 text-center">
-                  Kontrollansvarigs uppgifter
-                </h2>
-                <div className="grid md:grid-cols-2 gap-6">
-                  {[
-                    "Upprätta kontrollplan för projektet",
-                    "Utföra teknisk kontroll under byggprocessen",
-                    "Kontrollera att byggandet följer godkända ritningar",
-                    "Säkerställa regelefterlevnad enligt PBL",
-                    "Dokumentera alla kontrollmoment",
-                    "Genomföra slutbesiktning",
-                    "Utfärda intyg för slutbevis"
-                  ].map((responsibility, index) => (
-                    <div key={index} className="flex items-start space-x-4 p-6 bg-white rounded-lg shadow-sm">
-                      <CheckCircle className="w-6 h-6 text-green-500 mt-1 flex-shrink-0" />
-                      <span className="text-slate-700 text-lg">{responsibility}</span>
+                <p className="text-lg text-gray-700 mb-6">
+                  Enligt PBL krävs en kontrollansvarig för de flesta byggprojekt som kräver bygglov eller anmälan. Kontrollansvarig ska vara certifierad av ett ackrediterat certifieringsorgan.
+                </p>
+                
+                <div className="space-y-4 mt-8">
+                  <div className="flex items-start">
+                    <CheckCircle className="w-6 h-6 text-green-500 mr-3 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <h3 className="font-semibold text-gray-900">Certifierad enligt PBL</h3>
+                      <p className="text-gray-600">Alla våra kontrollansvariga är certifierade enligt Plan- och bygglagen.</p>
                     </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* När behöver du KA */}
-          <section className="py-20 bg-white">
-            <div className="container mx-auto px-4">
-              <div className="max-w-6xl mx-auto">
-                <h2 className="text-4xl font-bold text-slate-900 mb-12 text-center">
-                  När behöver du kontrollansvarig?
-                </h2>
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                  {[
-                    {
-                      icon: Building,
-                      title: "Nybyggnation",
-                      description: "Alla nybyggnationer som kräver bygglov behöver kontrollansvarig"
-                    },
-                    {
-                      icon: Users,
-                      title: "Större ombyggnader",
-                      description: "Omfattande ombyggnader och tillbyggnader enligt PBL"
-                    },
-                    {
-                      icon: Shield,
-                      title: "Komplexa projekt",
-                      description: "Projekt med särskilda tekniska krav eller risker"
-                    },
-                    {
-                      icon: Award,
-                      title: "Slutbevis",
-                      description: "För att få slutbevis och ta byggnaden i bruk"
-                    }
-                  ].map((item, index) => {
-                    const IconComponent = item.icon;
-                    return (
-                      <div key={index} className="text-center p-6 bg-slate-50 rounded-xl">
-                        <div className="w-16 h-16 earth-gradient rounded-full flex items-center justify-center mx-auto mb-6">
-                          <IconComponent className="w-8 h-8 text-white" />
-                        </div>
-                        <h3 className="text-xl font-bold text-slate-900 mb-4">
-                          {item.title}
-                        </h3>
-                        <p className="text-slate-600">
-                          {item.description}
-                        </p>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Process */}
-          <section className="py-20 bg-slate-50">
-            <div className="container mx-auto px-4">
-              <div className="max-w-6xl mx-auto">
-                <h2 className="text-4xl font-bold text-slate-900 mb-12 text-center">
-                  Kontrollprocessen
-                </h2>
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                  {[
-                    {
-                      step: "1",
-                      title: "Kontrollplan",
-                      description: "Upprättande av detaljerad kontrollplan för projektet"
-                    },
-                    {
-                      step: "2", 
-                      title: "Löpande kontroll",
-                      description: "Teknisk kontroll under hela byggprocessen"
-                    },
-                    {
-                      step: "3",
-                      title: "Dokumentation",
-                      description: "Kontinuerlig dokumentation av alla kontrollmoment"
-                    },
-                    {
-                      step: "4",
-                      title: "Slutbesiktning",
-                      description: "Slutbesiktning och intyg för slutbevis"
-                    }
-                  ].map((item, index) => (
-                    <div key={index} className="text-center">
-                      <div className="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-bold">
-                        {item.step}
-                      </div>
-                      <h3 className="text-xl font-bold text-slate-900 mb-4">
-                        {item.title}
-                      </h3>
-                      <p className="text-slate-600">
-                        {item.description}
-                      </p>
+                  </div>
+                  
+                  <div className="flex items-start">
+                    <CheckCircle className="w-6 h-6 text-green-500 mr-3 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <h3 className="font-semibold text-gray-900">Lång erfarenhet</h3>
+                      <p className="text-gray-600">Vi har över 15 års erfarenhet av att vara kontrollansvariga för olika typer av projekt.</p>
                     </div>
-                  ))}
+                  </div>
                 </div>
               </div>
-            </div>
-          </section>
-
-          {/* CTA Section */}
-          <section className="py-20 bg-slate-900 text-white">
-            <div className="container mx-auto px-4 text-center">
-              <h2 className="text-4xl font-bold mb-6">
-                Behöver du kontrollansvarig?
-              </h2>
-              <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-                Kontakta oss för en kostnadsfri konsultation. Vi hjälper dig med 
-                professionell teknisk kontroll enligt PBL.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button 
-                  onClick={scrollToContact}
-                  className="earth-gradient text-white hover:opacity-90 px-8 py-4 text-lg"
-                >
-                  <Phone className="w-5 h-5 mr-2" />
-                  Få kostnadsfri offert
-                </Button>
-                <a 
-                  href="mailto:tobias@ytterman.com"
-                  className="inline-flex items-center px-8 py-4 border-2 border-white text-white rounded-lg hover:bg-white hover:text-slate-900 transition-colors text-lg font-semibold"
-                >
-                  <Mail className="w-5 h-5 mr-2" />
-                  tobias@ytterman.com
-                </a>
+              
+              <div className="relative">
+                <div className="bg-green-600 absolute -top-4 -left-4 w-24 h-24 rounded-tl-3xl opacity-20"></div>
+                <div className="bg-green-600 absolute -bottom-4 -right-4 w-24 h-24 rounded-br-3xl opacity-20"></div>
+                <img 
+                  src="/api/placeholder/600/400" 
+                  alt="Kontrollansvarig på byggarbetsplats" 
+                  className="rounded-xl shadow-xl relative z-10 w-full"
+                />
               </div>
             </div>
-          </section>
-        </main>
+          </div>
+        </section>
         
-        <Footer />
-        <WhatsAppButton />
-      </div>
+        <section className="py-16 bg-gray-50">
+          <div className="container mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+                Våra tjänster som kontrollansvarig
+              </h2>
+              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+                Vi erbjuder kompletta tjänster som kontrollansvarig för alla typer av byggprojekt
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              <div className="bg-white rounded-xl p-8 shadow-lg">
+                <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                  <FileText className="w-8 h-8 text-green-600" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">Kontrollplan</h3>
+                <p className="text-gray-700">
+                  Vi upprättar en kontrollplan som beskriver vilka kontroller som ska utföras under byggprocessen för att säkerställa att byggnaden uppfyller alla krav.
+                </p>
+              </div>
+              
+              <div className="bg-white rounded-xl p-8 shadow-lg">
+                <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                  <Users className="w-8 h-8 text-green-600" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">Tekniskt samråd</h3>
+                <p className="text-gray-700">
+                  Vi deltar i det tekniska samrådet med byggnadsnämnden och hjälper dig att förbereda all nödvändig dokumentation.
+                </p>
+              </div>
+              
+              <div className="bg-white rounded-xl p-8 shadow-lg">
+                <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                  <Building className="w-8 h-8 text-green-600" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">Platsbesök</h3>
+                <p className="text-gray-700">
+                  Vi genomför regelbundna platsbesök för att kontrollera att byggnationen följer kontrollplanen och gällande bestämmelser.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        <section className="py-16 bg-white">
+          <div className="container mx-auto px-6">
+            <div className="bg-gradient-to-br from-green-50 to-white rounded-2xl p-8 md:p-12 shadow-lg">
+              <div className="flex flex-col md:flex-row items-center gap-8">
+                <div className="md:w-2/3">
+                  <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                    Behöver du en kontrollansvarig?
+                  </h2>
+                  <p className="text-lg text-gray-700 mb-6">
+                    Kontakta oss idag för en kostnadsfri konsultation. Vi hjälper dig genom hela byggprocessen.
+                  </p>
+                  <Link 
+                    to="/kontakt" 
+                    className="inline-flex items-center justify-center bg-green-600 text-white hover:bg-green-700 px-6 py-3 rounded-lg font-medium transition-colors"
+                  >
+                    Kontakta oss <ArrowRight className="w-5 h-5 ml-2" />
+                  </Link>
+                </div>
+                <div className="md:w-1/3">
+                  <img 
+                    src="/api/placeholder/400/300" 
+                    alt="Kontrollansvarig" 
+                    className="rounded-xl shadow-md w-full"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      
+      <Footer />
     </>
   );
-};
-
-export default KontrollansvarigPage;
+}
