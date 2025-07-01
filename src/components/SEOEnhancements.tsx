@@ -1,38 +1,67 @@
 import { Helmet } from 'react-helmet-async';
 
 export const SEOEnhancements = () => {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Ytterman - Kontrollansvarig & BAS",
+    "description": "Certifierad Kontrollansvarig och Byggarbetsmiljösamordnare (BAS-P/BAS-U) i Västernorrland. Över 20 års erfarenhet inom byggbranschen.",
+    "url": "https://ytterman.com",
+    "telephone": "+46761118447",
+    "email": "tobias@ytterman.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressRegion": "Västernorrland",
+      "addressCountry": "SE"
+    },
+    "areaServed": [
+      "Sundsvall",
+      "Härnösand", 
+      "Sollefteå",
+      "Timrå",
+      "Kramfors",
+      "Västernorrland"
+    ],
+    "serviceType": [
+      "Kontrollansvarig",
+      "BAS-P",
+      "BAS-U",
+      "Byggkontroll",
+      "Arbetsmiljösamordning"
+    ],
+    "priceRange": "12000-25000 SEK",
+    "founder": {
+      "@type": "Person",
+      "name": "Tobias Ytterman"
+    },
+    "memberOf": {
+      "@type": "Organization",
+      "name": "Svenska Byggingenjörers Riksförbund"
+    }
+  };
+
   return (
     <Helmet>
-      {/* Preconnect to external domains */}
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      <script type="application/ld+json">
+        {JSON.stringify(structuredData)}
+      </script>
       
-      {/* DNS Prefetch */}
-      <link rel="dns-prefetch" href="//www.google-analytics.com" />
-      <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+      {/* Additional meta tags for better SEO */}
+      <meta name="robots" content="index, follow" />
+      <meta name="author" content="Tobias Ytterman" />
+      <meta name="geo.region" content="SE-Y" />
+      <meta name="geo.placename" content="Västernorrland" />
+      <meta name="ICBM" content="62.3908,17.3069" />
       
-      {/* Alternate language versions */}
-      <link rel="alternate" hrefLang="sv" href="https://ytterman.com" />
-      <link rel="alternate" hrefLang="x-default" href="https://ytterman.com" />
+      {/* Open Graph tags */}
+      <meta property="og:type" content="business.business" />
+      <meta property="og:locale" content="sv_SE" />
+      <meta property="business:contact_data:locality" content="Västernorrland" />
+      <meta property="business:contact_data:region" content="Västernorrland" />
+      <meta property="business:contact_data:country_name" content="Sverige" />
       
-      {/* Mobile optimization */}
-      <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-      <meta name="mobile-web-app-capable" content="yes" />
-      <meta name="apple-mobile-web-app-capable" content="yes" />
-      <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-      <meta name="apple-mobile-web-app-title" content="Ytterman" />
-      
-      {/* Theme colors */}
-      <meta name="theme-color" content="#059669" />
-      <meta name="msapplication-TileColor" content="#059669" />
-      
-      {/* Security headers */}
-      <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
-      <meta httpEquiv="X-Frame-Options" content="DENY" />
-      <meta httpEquiv="X-XSS-Protection" content="1; mode=block" />
-      
-      {/* Performance hints */}
-      <link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+      {/* Additional keywords in meta */}
+      <meta name="keywords" content="kontrollansvarig Västernorrland, BAS-P Sundsvall, BAS-U Härnösand, byggkontroll Sollefteå, arbetsmiljösamordnare Timrå, kontrollansvarig Kramfors, bygglov Västernorrland, PBL kontroll, slutbevis, arbetsmiljöplan, riskbedömning bygg, byggarbetsmiljö, kontrollplan, certifierad kontrollansvarig, byggexpert Västernorrland" />
     </Helmet>
   );
 };
