@@ -2,18 +2,19 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://ytterman.com/sitemap.xml
+Sitemap: https://buildcontrol.se/sitemap.xml
 
-# Disallow admin areas (if any in future)
+# Disallow admin and private areas
 Disallow: /admin/
 Disallow: /private/
+Disallow: /api/
 
-# Allow all important pages
+# Allow important pages
 Allow: /
 Allow: /tjanster
 Allow: /kontrollansvarig
 Allow: /bas-p
 Allow: /bas-u
-
-# Crawl-delay for respectful crawling
-Crawl-delay: 1
+Allow: /blogg
+Allow: /kontakt
+Allow: /analys
