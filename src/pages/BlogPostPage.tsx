@@ -1,19 +1,20 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { AdvancedSEO } from '@/components/AdvancedSEO';
 import { BlogPost } from '@/entities';
-import { RelatedPosts } from '@/components/RelatedPosts';
 import { Calendar, Clock, User, ArrowLeft, Share2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { toast } from '@/hooks/use-toast';
 
 const BlogPostPage = () => {
   const { slug } = useParams();
+  const navigate = useNavigate();
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+  const [relatedPosts, setRelatedPosts] = useState([]);
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -21,12 +22,20 @@ const BlogPostPage = () => {
         const posts = await BlogPost.filter({ slug, published: true });
         if (posts.length > 0) {
           setPost(posts[0]);
+          
+          // Fetch related posts from same category
+          const related = await BlogPost.filter({ 
+            category: posts[0].category, 
+            published: true 
+          }, { sort: '-created_at', limit: 3 });
+          
+          setRelatedPosts(related.filter(p => p.id !== posts[0].id));
         } else {
-          setError(true);
+          navigate('/blogg');
         }
       } catch (error) {
         console.error('Error fetching blog post:', error);
-        setError(true);
+        navigate('/blogg');
       } finally {
         setLoading(false);
       }
@@ -35,9 +44,9 @@ const BlogPostPage = () => {
     if (slug) {
       fetchPost();
     }
-  }, [slug]);
+  }, [slug, navigate]);
 
-  const formatDate = (dateString: string) => {
+  const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString('sv-SE', {
       year: 'numeric',
       month: 'long',
@@ -45,16 +54,30 @@ const BlogPostPage = () => {
     });
   };
 
-  const sharePost = () => {
+  const sharePost = async () => {
+    const url = window.location.href;
+    
     if (navigator.share) {
-      navigator.share({
-        title: post.title,
-        text: post.excerpt,
-        url: window.location.href,
-      });
+      try {
+        await navigator.share({
+          title: post.title,
+          text: post.excerpt,
+          url: url,
+        });
+      } catch (error) {
+        console.log('Error sharing:', error);
+      }
     } else {
-      navigator.clipboard.writeText(window.location.href);
-      // Could add a toast notification here
+      // Fallback to copying URL
+      try {
+        await navigator.clipboard.writeText(url);
+        toast({
+          title: "Länk kopierad!",
+          description: "Artikelns länk har kopierats till urklipp.",
+        });
+      } catch (error) {
+        console.log('Error copying to clipboard:', error);
+      }
     }
   };
 
@@ -62,153 +85,181 @@ const BlogPostPage = () => {
     return (
       <div className="min-h-screen">
         <Header />
-        <div className="container mx-auto px-4 py-20">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
-            <p className="mt-4 text-slate-600">Laddar guide...</p>
+        <main className="pt-20">
+          <div className="container mx-auto px-4 py-12">
+            <div className="text-center">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
+              <p className="mt-4 text-slate-600">Laddar artikel...</p>
+            </div>
           </div>
-        </div>
+        </main>
         <Footer />
       </div>
     );
   }
 
-  if (error || !post) {
-    return (
-      <div className="min-h-screen">
-        <Header />
-        <div className="container mx-auto px-4 py-20">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-3xl font-bold text-slate-900 mb-4">Guide hittades inte</h1>
-            <p className="text-slate-600 mb-8">Den guide du söker finns inte eller har tagits bort.</p>
-            <Button onClick={() => window.location.href = '/blogg'}>
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Tillbaka till guiderna
-            </Button>
-          </div>
-        </div>
-        <Footer />
-      </div>
-    );
+  if (!post) {
+    return null;
   }
 
   const breadcrumbs = [
     { name: "Hem", url: "https://ytterman.com" },
-    { name: "Guide", url: "https://ytterman.com/blogg" },
+    { name: "Blogg", url: "https://ytterman.com/blogg" },
     { name: post.title, url: `https://ytterman.com/blogg/${post.slug}` }
   ];
 
   return (
     <>
       <AdvancedSEO 
-        title={`${post.title} | Ytterman Guide`}
+        title={`${post.title} | Ytterman Blogg`}
         description={post.meta_description || post.excerpt}
-        keywords={post.keywords}
+        keywords={post.keywords || `${post.category}, byggexpertis, kontrollansvarig, BAS`}
         url={`https://ytterman.com/blogg/${post.slug}`}
-        image={post.featured_image}
-        type="article"
-        article={{
-          publishedTime: post.created_at,
-          modifiedTime: post.updated_at,
-          author: post.author,
-          section: post.category,
-          tags: post.tags
-        }}
         breadcrumbs={breadcrumbs}
       />
       
       <div className="min-h-screen">
         <Header />
         
-        <main>
-          <article className="py-20">
-            <div className="container mx-auto px-4">
-              <div className="max-w-4xl mx-auto">
-                {/* Back button */}
-                <Button 
-                  variant="ghost" 
-                  onClick={() => window.location.href = '/blogg'}
-                  className="mb-8"
-                >
-                  <ArrowLeft className="w-4 h-4 mr-2" />
-                  Tillbaka till guiderna
-                </Button>
-
-                {/* Article header */}
-                <header className="mb-8">
-                  <div className="flex items-center space-x-4 text-sm text-slate-500 mb-4">
-                    <span className="bg-primary/10 text-primary px-3 py-1 rounded-full font-medium">
+        <main className="pt-20">
+          <article>
+            {/* Hero Section */}
+            <section className="py-12 bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-50">
+              <div className="container mx-auto px-4">
+                <div className="max-w-4xl mx-auto">
+                  <Button 
+                    variant="ghost" 
+                    onClick={() => navigate('/blogg')}
+                    className="mb-6"
+                  >
+                    <ArrowLeft className="w-4 h-4 mr-2" />
+                    Tillbaka till blogg
+                  </Button>
+                  
+                  <div className="mb-6">
+                    <span className="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">
                       {post.category}
                     </span>
-                    <div className="flex items-center space-x-1">
-                      <Calendar className="w-4 h-4" />
-                      <span>{formatDate(post.created_at)}</span>
-                    </div>
-                    <div className="flex items-center space-x-1">
-                      <Clock className="w-4 h-4" />
-                      <span>{post.reading_time} min läsning</span>
-                    </div>
                   </div>
                   
-                  <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+                  <h1 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
                     {post.title}
                   </h1>
                   
-                  <p className="text-xl text-slate-600 mb-6">
-                    {post.excerpt}
-                  </p>
-                  
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-2 text-slate-600">
+                  <div className="flex flex-wrap items-center gap-6 text-slate-600 mb-8">
+                    <div className="flex items-center space-x-2">
                       <User className="w-5 h-5" />
-                      <span className="font-medium">{post.author}</span>
+                      <span>{post.author}</span>
                     </div>
-                    
-                    <Button variant="outline" size="sm" onClick={sharePost}>
+                    <div className="flex items-center space-x-2">
+                      <Calendar className="w-5 h-5" />
+                      <span>{formatDate(post.created_at)}</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <Clock className="w-5 h-5" />
+                      <span>{post.reading_time} min läsning</span>
+                    </div>
+                    <Button 
+                      variant="ghost" 
+                      size="sm"
+                      onClick={sharePost}
+                      className="ml-auto"
+                    >
                       <Share2 className="w-4 h-4 mr-2" />
                       Dela
                     </Button>
                   </div>
-                </header>
+                </div>
+              </div>
+            </section>
 
-                {/* Featured image */}
-                {post.featured_image && (
-                  <div className="mb-8 rounded-xl overflow-hidden">
+            {/* Featured Image */}
+            {post.featured_image && (
+              <section className="py-8">
+                <div className="container mx-auto px-4">
+                  <div className="max-w-4xl mx-auto">
                     <img 
                       src={post.featured_image} 
                       alt={post.title}
-                      className="w-full h-auto"
+                      className="w-full h-64 md:h-96 object-cover rounded-xl shadow-lg"
                     />
                   </div>
-                )}
-
-                {/* Article content */}
-                <div className="prose prose-lg max-w-none">
-                  <div dangerouslySetInnerHTML={{ __html: post.content }} />
                 </div>
+              </section>
+            )}
 
-                {/* Tags */}
-                {post.tags && post.tags.length > 0 && (
-                  <div className="mt-8 pt-8 border-t border-slate-200">
-                    <h3 className="text-sm font-medium text-slate-900 mb-3">Taggar:</h3>
-                    <div className="flex flex-wrap gap-2">
-                      {post.tags.map((tag, index) => (
-                        <span 
-                          key={index}
-                          className="bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-sm"
-                        >
-                          {tag}
-                        </span>
+            {/* Content */}
+            <section className="py-12 bg-white">
+              <div className="container mx-auto px-4">
+                <div className="max-w-4xl mx-auto">
+                  <div className="prose prose-lg max-w-none">
+                    <div dangerouslySetInnerHTML={{ __html: post.content }} />
+                  </div>
+                  
+                  {/* Tags */}
+                  {post.tags && post.tags.length > 0 && (
+                    <div className="mt-12 pt-8 border-t border-slate-200">
+                      <h3 className="text-lg font-semibold text-slate-900 mb-4">Taggar</h3>
+                      <div className="flex flex-wrap gap-2">
+                        {post.tags.map((tag, index) => (
+                          <span 
+                            key={index}
+                            className="bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-sm"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </section>
+
+            {/* Related Posts */}
+            {relatedPosts.length > 0 && (
+              <section className="py-12 bg-slate-50">
+                <div className="container mx-auto px-4">
+                  <div className="max-w-6xl mx-auto">
+                    <h2 className="text-3xl font-bold text-slate-900 mb-8 text-center">
+                      Relaterade artiklar
+                    </h2>
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                      {relatedPosts.map((relatedPost) => (
+                        <div key={relatedPost.id} className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-md transition-shadow">
+                          {relatedPost.featured_image && (
+                            <div className="aspect-video overflow-hidden">
+                              <img 
+                                src={relatedPost.featured_image} 
+                                alt={relatedPost.title}
+                                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                              />
+                            </div>
+                          )}
+                          <div className="p-6">
+                            <h3 className="text-xl font-bold text-slate-900 mb-3 line-clamp-2">
+                              {relatedPost.title}
+                            </h3>
+                            <p className="text-slate-600 mb-4 line-clamp-2">
+                              {relatedPost.excerpt}
+                            </p>
+                            <Button 
+                              variant="outline" 
+                              size="sm"
+                              onClick={() => navigate(`/blogg/${relatedPost.slug}`)}
+                              className="w-full"
+                            >
+                              Läs mer
+                            </Button>
+                          </div>
+                        </div>
                       ))}
                     </div>
                   </div>
-                )}
-              </div>
-            </div>
+                </div>
+              </section>
+            )}
           </article>
-
-          {/* Related posts */}
-          <RelatedPosts currentPost={post} />
         </main>
         
         <Footer />

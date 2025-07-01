@@ -2,26 +2,26 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { AdvancedSEO } from '@/components/AdvancedSEO';
-import { CheckCircle, Phone, Mail, Shield, FileText, Clock, Award, Users } from 'lucide-react';
+import { CheckCircle, Phone, Mail, FileText, Shield, Users, AlertTriangle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const BasPPage = () => {
   const scrollToContact = () => {
-    window.location.href = '/#kontakt';
+    window.location.href = '/kontakt?tjanst=bas-p-service';
   };
 
   const faqData = [
     {
-      question: "Vad är BAS-P och när behöver jag en?",
-      answer: "BAS-P (Byggarbetsmiljösamordnare under projektering) behövs när flera entreprenörer ska arbeta på samma projekt eller när projektet innebär särskilda arbetsmiljörisker. BAS-P arbetar under planeringsfasen."
+      question: "Vad är BAS-P och när behöver jag det?",
+      answer: "BAS-P (Byggarbetsmiljösamordnare under projektering) krävs enligt AML när flera entreprenörer ska arbeta på samma byggarbetsplats. BAS-P ansvarar för arbetsmiljösamordning under projekteringsfasen."
     },
     {
       question: "Vad kostar BAS-P tjänster?",
-      answer: "Våra BAS-P tjänster börjar från 12,000 SEK beroende på projektets storlek och komplexitet. Vi erbjuder alltid en kostnadsfri konsultation för att ge dig en exakt offert."
+      answer: "Våra BAS-P tjänster börjar från 12,000 SEK beroende på projektets omfattning och komplexitet. Vi erbjuder alltid en kostnadsfri konsultation för exakt prisuppgift."
     },
     {
-      question: "Hur tidigt ska jag anlita BAS-P?",
-      answer: "BAS-P ska anlitas så tidigt som möjligt i projekteringsfasen, helst redan när projektet planeras. Detta säkerställer att arbetsmiljöaspekter beaktas från början."
+      question: "Skillnaden mellan BAS-P och BAS-U?",
+      answer: "BAS-P arbetar under projekteringsfasen och upprättar arbetsmiljöplan, medan BAS-U arbetar under utförandefasen och säkerställer att arbetsmiljöplanen följs på byggarbetsplatsen."
     }
   ];
 
@@ -32,8 +32,8 @@ const BasPPage = () => {
   ];
 
   const serviceData = {
-    name: "BAS-P (Byggarbetsmiljösamordnare under projektering)",
-    description: "Professionell arbetsmiljösamordning under projekteringsfasen",
+    name: "BAS-P - Byggarbetsmiljösamordnare Projektering",
+    description: "Certifierad BAS-P för arbetsmiljösamordning under projekteringsfasen",
     provider: "Ytterman",
     areaServed: ["Sundsvall", "Härnösand", "Sollefteå", "Timrå", "Kramfors"],
     priceRange: "Från 12,000 SEK"
@@ -43,8 +43,8 @@ const BasPPage = () => {
     <>
       <AdvancedSEO 
         title="BAS-P - Byggarbetsmiljösamordnare Projektering | Ytterman"
-        description="Professionell BAS-P (Byggarbetsmiljösamordnare under projektering) i Västernorrland. Arbetsmiljöplan, riskbedömning och säkerhetssamordning. Från 12,000 kr."
-        keywords="BAS-P, byggarbetsmiljösamordnare, projektering, arbetsmiljöplan, riskbedömning, säkerhetssamordning, Västernorrland, Sundsvall, Härnösand"
+        description="Certifierad BAS-P i Västernorrland. Arbetsmiljöplan, riskbedömning och säkerhetsanalys under projekteringsfasen. Över 20 års erfarenhet. Från 12,000 kr."
+        keywords="BAS-P, byggarbetsmiljösamordnare projektering, arbetsmiljöplan, riskbedömning bygg, AML, arbetsmiljölag, Västernorrland, Sundsvall, Härnösand"
         url="https://ytterman.com/bas-p"
         breadcrumbs={breadcrumbs}
         faq={faqData}
@@ -63,8 +63,8 @@ const BasPPage = () => {
                   BAS-P - Byggarbetsmiljösamordnare
                 </h1>
                 <p className="text-xl text-slate-600 mb-8">
-                  Professionell arbetsmiljösamordning under projekteringsfasen. Vi säkerställer att 
-                  arbetsmiljöaspekter beaktas från projektets början för en säker byggprocess.
+                  Certifierad BAS-P för arbetsmiljösamordning under projekteringsfasen. 
+                  Vi säkerställer säker arbetsmiljö från projektstart till byggstart.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button 
@@ -95,34 +95,35 @@ const BasPPage = () => {
                 </h2>
                 <div className="prose prose-lg max-w-none text-slate-700">
                   <p className="text-xl mb-6">
-                    BAS-P (Byggarbetsmiljösamordnare under projektering) är en certifierad person som 
-                    ansvarar för arbetsmiljösamordning under planeringsfasen av byggprojekt.
+                    BAS-P (Byggarbetsmiljösamordnare under projektering) är en certifierad person 
+                    som enligt Arbetsmiljölagen (AML) ansvarar för arbetsmiljösamordning under projekteringsfasen.
                   </p>
                   <p className="mb-8">
-                    Rollen är avgörande för att säkerställa att arbetsmiljörisker identifieras och 
-                    hanteras redan under projekteringen, vilket leder till säkrare och effektivare byggprocesser.
+                    BAS-P krävs när flera entreprenörer ska arbeta på samma byggarbetsplats och 
+                    ansvarar för att upprätta arbetsmiljöplan samt genomföra riskbedömningar 
+                    redan under projekteringsfasen.
                   </p>
                 </div>
               </div>
             </div>
           </section>
 
-          {/* BAS-P Uppgifter */}
+          {/* BAS-P:s uppgifter */}
           <section className="py-20 bg-slate-50">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto">
                 <h2 className="text-4xl font-bold text-slate-900 mb-12 text-center">
-                  BAS-P:s Uppgifter
+                  BAS-P:s huvuduppgifter
                 </h2>
                 <div className="grid md:grid-cols-2 gap-6">
                   {[
                     "Upprätta arbetsmiljöplan för projektet",
                     "Genomföra riskbedömning och säkerhetsanalys",
-                    "Samordna arbetsmiljöaspekter mellan projektörer",
-                    "Dokumentera arbetsmiljöåtgärder och rutiner",
-                    "Planera för säker materialhantering",
-                    "Koordinera med BAS-U för utförandefasen",
-                    "Säkerställa regelefterlevnad enligt AML"
+                    "Samordna arbetsmiljöfrågor mellan projektörer",
+                    "Säkerställa att arbetsmiljöhänsyn tas i projekteringen",
+                    "Dokumentera arbetsmiljörisker och åtgärder",
+                    "Förbereda för säker byggstart",
+                    "Samverka med BAS-U inför utförandefasen"
                   ].map((responsibility, index) => (
                     <div key={index} className="flex items-start space-x-4 p-6 bg-white rounded-lg shadow-sm">
                       <CheckCircle className="w-6 h-6 text-green-500 mt-1 flex-shrink-0" />
@@ -146,22 +147,22 @@ const BasPPage = () => {
                     {
                       icon: Users,
                       title: "Flera entreprenörer",
-                      description: "När flera entreprenörer ska arbeta samtidigt på projektet"
+                      description: "När flera entreprenörer ska arbeta på samma byggarbetsplats"
                     },
                     {
-                      icon: Clock,
-                      title: "Längre projekt",
-                      description: "Projekt som pågår längre än 30 arbetsdagar med mer än 20 personer"
+                      icon: AlertTriangle,
+                      title: "Riskfyllda arbeten",
+                      description: "Projekt med särskilda arbetsmiljörisker som kräver planering"
+                    },
+                    {
+                      icon: FileText,
+                      title: "Komplex projektering",
+                      description: "Större projekt som kräver noggrann arbetsmiljöplanering"
                     },
                     {
                       icon: Shield,
-                      title: "Särskilda risker",
-                      description: "Projekt som innebär särskilda arbetsmiljörisker"
-                    },
-                    {
-                      icon: Award,
-                      title: "Stora projekt",
-                      description: "Byggarbeten som omfattar mer än 500 persondagar"
+                      title: "Lagkrav AML",
+                      description: "För att uppfylla kraven enligt Arbetsmiljölagen"
                     }
                   ].map((item, index) => {
                     const IconComponent = item.icon;
@@ -189,29 +190,29 @@ const BasPPage = () => {
             <div className="container mx-auto px-4">
               <div className="max-w-6xl mx-auto">
                 <h2 className="text-4xl font-bold text-slate-900 mb-12 text-center">
-                  BAS-P Processen
+                  BAS-P processen
                 </h2>
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                   {[
                     {
                       step: "1",
                       title: "Projektanalys",
-                      description: "Vi analyserar projektet och identifierar arbetsmiljörisker"
+                      description: "Analys av projektets omfattning och arbetsmiljörisker"
                     },
                     {
                       step: "2", 
+                      title: "Riskbedömning",
+                      description: "Identifiering och bedömning av arbetsmiljörisker"
+                    },
+                    {
+                      step: "3",
                       title: "Arbetsmiljöplan",
                       description: "Upprättande av detaljerad arbetsmiljöplan"
                     },
                     {
-                      step: "3",
-                      title: "Samordning",
-                      description: "Koordinering med projektörer och andra aktörer"
-                    },
-                    {
                       step: "4",
-                      title: "Dokumentation",
-                      description: "Fullständig dokumentation för utförandefasen"
+                      title: "Samordning",
+                      description: "Samordning med projektörer och förberedelse för BAS-U"
                     }
                   ].map((item, index) => (
                     <div key={index} className="text-center">
