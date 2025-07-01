@@ -1,37 +1,48 @@
 import emailjs from 'emailjs-com';
 
-// EmailJS konfiguration - klistra in dina värden från EmailJS dashboard
-const SERVICE_ID = 'service_0g84n99'; // Ditt Service ID från EmailJS
-const TEMPLATE_ID = 'template_r43g9li'; // Ditt Template ID från EmailJS  
-const PUBLIC_KEY = 'HiImRG5AmvO4_ias5'; // Din Public Key från EmailJS
+// EmailJS configuration
+const SERVICE_ID = 'service_ytterman';
+const TEMPLATE_ID = 'template_contact';
+const USER_ID = 'user_ytterman_key';
 
-export const sendContactEmail = async (formData: {
+interface ContactFormData {
   name: string;
   email: string;
   phone: string;
   project: string;
   message: string;
-}) => {
+}
+
+export const sendContactEmail = async (formData: ContactFormData) => {
   try {
+    // Template parameters for EmailJS
     const templateParams = {
       from_name: formData.name,
       from_email: formData.email,
       phone: formData.phone,
       project_type: formData.project,
       message: formData.message,
-      to_email: 'tobias@ytterman.com'
+      to_email: 'tobias@ytterman.com',
+      reply_to: formData.email
     };
 
     const response = await emailjs.send(
       SERVICE_ID,
       TEMPLATE_ID,
       templateParams,
-      PUBLIC_KEY
+      USER_ID
     );
 
-    return { success: true, response };
+    if (response.status === 200) {
+      return { success: true, message: 'Meddelande skickat!' };
+    } else {
+      throw new Error('EmailJS response not OK');
+    }
   } catch (error) {
-    console.error('EmailJS error:', error);
-    return { success: false, error: error.message };
+    console.error('EmailJS Error:', error);
+    return { 
+      success: false, 
+      error: 'Kunde inte skicka meddelandet. Försök igen eller ring direkt.' 
+    };
   }
 };

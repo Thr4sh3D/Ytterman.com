@@ -1,82 +1,38 @@
-import { useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 
 export const SEOEnhancements = () => {
-  useEffect(() => {
-    // Add structured data for website
-    const websiteSchema = {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Ytterman",
-      "url": "https://ytterman.com",
-      "description": "Certifierad Kontrollansvarig och BAS-samordnare i Västernorrland",
-      "publisher": {
-        "@type": "Organization",
-        "name": "Ytterman"
-      },
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://ytterman.com/blogg?search={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
-    };
-
-    // Add local business schema
-    const localBusinessSchema = {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "Ytterman",
-      "description": "Certifierad Kontrollansvarig och Byggarbetsmiljösamordnare",
-      "url": "https://ytterman.com",
-      "telephone": "+46761118447",
-      "email": "tobias@ytterman.com",
-      "address": {
-        "@type": "PostalAddress",
-        "addressRegion": "Västernorrland",
-        "addressCountry": "SE"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 62.3908,
-        "longitude": 17.3069
-      },
-      "areaServed": [
-        "Sundsvall", "Härnösand", "Sollefteå", "Timrå", "Kramfors"
-      ],
-      "serviceType": [
-        "Kontrollansvarig enligt PBL",
-        "BAS-P (Byggarbetsmiljösamordnare under projektering)",
-        "BAS-U (Byggarbetsmiljösamordnare under utförande)",
-        "Bygglovshandlingar"
-      ],
-      "priceRange": "15000-50000 SEK",
-      "openingHours": "Mo-Fr 08:00-17:00"
-    };
-
-    // Add schemas to head
-    const addSchema = (schema: any, id: string) => {
-      const existingScript = document.getElementById(id);
-      if (existingScript) {
-        existingScript.remove();
-      }
+  return (
+    <Helmet>
+      {/* Preconnect to external domains */}
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       
-      const script = document.createElement('script');
-      script.id = id;
-      script.type = 'application/ld+json';
-      script.textContent = JSON.stringify(schema);
-      document.head.appendChild(script);
-    };
-
-    addSchema(websiteSchema, 'website-schema');
-    addSchema(localBusinessSchema, 'local-business-schema');
-
-    // Cleanup function
-    return () => {
-      const websiteScript = document.getElementById('website-schema');
-      const businessScript = document.getElementById('local-business-schema');
-      if (websiteScript) websiteScript.remove();
-      if (businessScript) businessScript.remove();
-    };
-  }, []);
-
-  return null;
+      {/* DNS Prefetch */}
+      <link rel="dns-prefetch" href="//www.google-analytics.com" />
+      <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+      
+      {/* Alternate language versions */}
+      <link rel="alternate" hrefLang="sv" href="https://ytterman.com" />
+      <link rel="alternate" hrefLang="x-default" href="https://ytterman.com" />
+      
+      {/* Mobile optimization */}
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+      <meta name="mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+      <meta name="apple-mobile-web-app-title" content="Ytterman" />
+      
+      {/* Theme colors */}
+      <meta name="theme-color" content="#059669" />
+      <meta name="msapplication-TileColor" content="#059669" />
+      
+      {/* Security headers */}
+      <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
+      <meta httpEquiv="X-Frame-Options" content="DENY" />
+      <meta httpEquiv="X-XSS-Protection" content="1; mode=block" />
+      
+      {/* Performance hints */}
+      <link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+    </Helmet>
+  );
 };
