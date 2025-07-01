@@ -4,6 +4,9 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from 'react-helmet-async';
+import { TechnicalSEO } from '@/components/TechnicalSEO';
+import { SEOOptimizer } from '@/components/SEOOptimizer';
+import { PerformanceMonitor } from '@/components/PerformanceMonitor';
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import TjansterPage from "./pages/TjansterPage";
@@ -16,12 +19,24 @@ import KontaktPage from "./pages/KontaktPage";
 import SiteAnalysisPage from "./pages/SiteAnalysisPage";
 import ResourcesPage from "./pages/ResourcesPage";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 5 * 60 * 1000, // 5 minutes
+      gcTime: 10 * 60 * 1000, // 10 minutes
+      retry: 1,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 const App = () => (
   <HelmetProvider>
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
+        <TechnicalSEO />
+        <SEOOptimizer />
+        <PerformanceMonitor />
         <Toaster />
         <Sonner />
         <BrowserRouter>
