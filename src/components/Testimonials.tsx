@@ -1,68 +1,71 @@
 import { Star } from 'lucide-react';
 
-export const Testimonials = () => {
-  const testimonials = [
-    {
-      name: "Anna Andersson",
-      role: "Projektledare",
-      company: "Byggbolaget AB",
-      content: "Tobias på Ytterman har varit en ovärderlig resurs som kontrollansvarig i vårt projekt. Hans noggrannhet och expertis säkerställde att allt gick enligt plan och uppfyllde alla krav.",
-      rating: 5
-    },
-    {
-      name: "Erik Johansson",
-      role: "Fastighetsägare",
-      company: "Privatkund",
-      content: "Jag anlitade Ytterman för BAS-P och BAS-U tjänster för mitt byggprojekt. Professionellt bemötande, tydlig kommunikation och alltid tillgänglig för frågor. Rekommenderas starkt!",
-      rating: 5
-    },
-    {
-      name: "Maria Lindström",
-      role: "VD",
-      company: "Bostadsrättsföreningen Utsikten",
-      content: "Vi har samarbetat med Ytterman i flera år för våra byggprojekt. Deras kunskap inom kontrollansvarig och arbetsmiljösamordning har varit avgörande för våra framgångsrika projekt.",
-      rating: 5
-    }
-  ];
+const testimonials = [
+  {
+    name: "Anna Andersson",
+    role: "Fastighetsägare",
+    content: "Professionell och noggrann service. Fick hjälp med både BAS P och U-utredningar för min fastighet. Mycket nöjd med resultatet.",
+    rating: 5,
+    image: "/api/placeholder/60/60"
+  },
+  {
+    name: "Erik Johansson", 
+    role: "Byggentreprenör",
+    content: "Snabb och korrekt hantering av alla våra kontrollansvarig-uppdrag. Rekommenderar starkt för alla byggprojekt.",
+    rating: 5,
+    image: "/api/placeholder/60/60"
+  },
+  {
+    name: "Maria Lindström",
+    role: "Projektledare",
+    content: "Excellent support throughout our construction project. Professional expertise and timely delivery of all required documentation.",
+    rating: 5,
+    image: "/api/placeholder/60/60"
+  }
+];
 
+export const Testimonials = () => {
   return (
-    <section id="omdomen" className="py-20 bg-slate-50">
-      <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-slate-900 mb-4 text-center">
+    <section className="py-20 bg-gradient-to-br from-green-50 to-white">
+      <div className="container mx-auto px-6">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">
             Vad våra kunder säger
           </h2>
-          <p className="text-xl text-slate-600 mb-12 text-center max-w-3xl mx-auto">
-            Vi är stolta över att ha hjälpt många nöjda kunder med deras byggprojekt. 
-            Här är vad några av dem har att säga om våra tjänster.
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            Vi är stolta över att leverera högkvalitativa tjänster som våra kunder uppskattar
           </p>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <div 
-                key={index} 
-                className="bg-white p-8 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow"
-              >
-                <div className="flex mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-yellow-400" />
-                  ))}
-                </div>
-                <blockquote className="mb-6">
-                  <p className="text-slate-700 italic">"{testimonial.content}"</p>
-                </blockquote>
-                <div className="flex items-center">
-                  <div className="w-12 h-12 bg-primary/10 text-primary rounded-full flex items-center justify-center font-bold text-lg">
-                    {testimonial.name.charAt(0)}
-                  </div>
-                  <div className="ml-4">
-                    <p className="font-semibold text-slate-900">{testimonial.name}</p>
-                    <p className="text-sm text-slate-500">{testimonial.role}, {testimonial.company}</p>
-                  </div>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {testimonials.map((testimonial, index) => (
+            <div
+              key={index}
+              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300"
+            >
+              <div className="flex items-center mb-4">
+                {[...Array(testimonial.rating)].map((_, i) => (
+                  <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                ))}
+              </div>
+              
+              <p className="text-gray-700 mb-6 leading-relaxed">
+                "{testimonial.content}"
+              </p>
+              
+              <div className="flex items-center">
+                <img
+                  src={testimonial.image}
+                  alt={testimonial.name}
+                  className="w-12 h-12 rounded-full mr-4 object-cover"
+                />
+                <div>
+                  <h4 className="font-semibold text-gray-900">{testimonial.name}</h4>
+                  <p className="text-gray-600 text-sm">{testimonial.role}</p>
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
