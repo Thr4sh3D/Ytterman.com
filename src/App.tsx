@@ -18,6 +18,7 @@ import BlogPostPage from "./pages/BlogPostPage";
 import KontaktPage from "./pages/KontaktPage";
 import SiteAnalysisPage from "./pages/SiteAnalysisPage";
 import ResourcesPage from "./pages/ResourcesPage";
+import BlogAdminPage from "./pages/BlogAdminPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -48,6 +49,7 @@ const App = () => (
             <Route path="/bas-u" element={<BasUPage />} />
             <Route path="/blogg" element={<BlogPage />} />
             <Route path="/blogg/:slug" element={<BlogPostPage />} />
+            <Route path="/admin/blogg" element={<BlogAdminPage />} />
             <Route path="/kontakt" element={<KontaktPage />} />
             <Route path="/analys" element={<SiteAnalysisPage />} />
             <Route path="/resurser" element={<ResourcesPage />} />
