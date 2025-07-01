@@ -76,7 +76,7 @@ export default function BlogPage() {
         title="Blogg - Byggkontroll, BAS och Kontrollansvarig Guide Västernorrland"
         description="Läs våra expertguider om byggkontroll, kontrollansvarig, BAS-P, BAS-U och bygglov. Praktiska tips och råd för ditt byggprojekt i Västernorrland, Sundsvall, Härnösand."
         keywords="byggkontroll blogg, kontrollansvarig guide Västernorrland, BAS-P tips Sundsvall, BAS-U råd Härnösand, bygglov guide Kramfors"
-        url="https://buildcontrol.se/blogg"
+        url="https://ytterman.com/blogg"
         type="website"
       />
       <TechnicalSEO />

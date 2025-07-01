@@ -10,9 +10,9 @@ export default function BlogAdminPage() {
   return (
     <>
       <SEOHead
-        title="Blogg Administration - BuildControl"
+        title="Blogg Administration - Ytterman"
         description="Hantera blogginlägg och content marketing strategi"
-        url="https://buildcontrol.se/admin/blogg"
+        url="https://ytterman.com/admin/blogg"
         robots="noindex, nofollow"
       />
       
