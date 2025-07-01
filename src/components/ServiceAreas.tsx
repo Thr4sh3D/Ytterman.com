@@ -33,7 +33,7 @@ export const ServiceAreas = () => {
     },
     {
       name: 'Sollefteå',
-      population: ~20,000 invånare',
+      population: '~20,000 invånare',
       distance: '85 km från Sundsvall',
       services: ['Kontrollansvarig', 'BAS-P', 'BAS-U'],
       description: 'Serviceområde som inkluderar Sollefteå och närliggande orter.'
