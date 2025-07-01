@@ -6,8 +6,10 @@ import { Contact } from '@/components/Contact';
 import { Footer } from '@/components/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { Header } from '@/components/Header';
-import { SEOHead, organizationSchema, localBusinessSchema, reviewSchema, faqSchema } from '@/components/SEOComponents';
-import { TechnicalSEO } from '@/components/TechnicalSEO';
+import { LocalSEO } from '@/components/LocalSEO';
+import { ServiceAreas } from '@/components/ServiceAreas';
+import { LocalReviews } from '@/components/LocalReviews';
+import { SEOHead, faqSchema } from '@/components/SEOComponents';
 
 export default function Index() {
   // FAQ data för strukturerad data
@@ -26,35 +28,59 @@ export default function Index() {
     }
   ];
 
-  // Recensioner för strukturerad data
-  const reviews = [
-    { author: "Anna Andersson", rating: 5, text: "Professionell och noggrann service. Fick hjälp med både BAS P och U-utredningar för min fastighet." },
-    { author: "Erik Johansson", rating: 5, text: "Snabb och korrekt hantering av alla våra kontrollansvarig-uppdrag. Rekommenderar starkt." },
-    { author: "Maria Lindström", rating: 5, text: "Excellent support throughout our construction project. Professional expertise and timely delivery." }
-  ];
+  // Lokal företagsinformation för strukturerad data
+  const localBusinessData = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "BuildControl",
+    "description": "Certifierad kontrollansvarig, BAS-P och BAS-U i Västernorrland med över 15 års erfarenhet.",
+    "url": "https://buildcontrol.se",
+    "telephone": "+46-XX-XXX-XX-XX",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Byggkontrollsgatan 1",
+      "addressLocality": "Sundsvall",
+      "addressRegion": "Västernorrland",
+      "postalCode": "851 70",
+      "addressCountry": "SE"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "62.3908",
+      "longitude": "17.3069"
+    },
+    "areaServed": [
+      "Sundsvall", "Härnösand", "Kramfors", "Sollefteå", "Örnsköldsvik", "Västernorrland"
+    ],
+    "serviceType": [
+      "Kontrollansvarig enligt PBL",
+      "BAS-P Byggarbetsmiljösamordnare",
+      "BAS-U Byggarbetsmiljösamordnare"
+    ]
+  };
 
   const combinedStructuredData = [
-    organizationSchema,
-    localBusinessSchema,
-    faqSchema(faqs),
-    reviewSchema(reviews)
+    localBusinessData,
+    faqSchema(faqs)
   ];
 
   return (
     <>
       <SEOHead
-        title="BuildControl - Professionell byggkontroll & teknisk konsultation"
-        description="Professionell byggkontroll, kontrollansvarig, BAS-P och BAS-U tjänster i Västernorrland. Vi hjälper dig med ditt byggprojekt från start till mål."
-        keywords="byggkontroll, kontrollansvarig, BAS-P, BAS-U, byggprojekt, Västernorrland, Sundsvall, byggregler, säkerhet, certifierad"
+        title="BuildControl Västernorrland - Kontrollansvarig, BAS-P & BAS-U Sundsvall"
+        description="Certifierad kontrollansvarig, BAS-P och BAS-U i Västernorrland. Vi täcker Sundsvall, Härnösand, Kramfors, Sollefteå. Över 15 års erfarenhet. Kontakta oss idag!"
+        keywords="kontrollansvarig Västernorrland, BAS-P Sundsvall, BAS-U Härnösand, byggkontroll Kramfors, kontrollansvarig Sollefteå, PBL certifierad, AFS 1999:3"
         url="https://buildcontrol.se"
         structuredData={combinedStructuredData}
       />
-      <TechnicalSEO />
+      <LocalSEO />
       
       <Header />
       <Hero />
       <Services />
+      <ServiceAreas />
       <About />
+      <LocalReviews />
       <Testimonials />
       <Contact />
       <Footer />
