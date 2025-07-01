@@ -6,22 +6,22 @@ interface BlogCategoriesProps {
   onCategorySelect: (category: string) => void;
 }
 
-export const BlogCategories = ({ categories, selectedCategory, onCategorySelect }: BlogCategoriesProps) => {
+export const BlogCategories = ({ 
+  categories, 
+  selectedCategory, 
+  onCategorySelect 
+}: BlogCategoriesProps) => {
   return (
-    <div className="flex flex-wrap gap-2 justify-center">
+    <div className="flex flex-wrap gap-2">
       {categories.map((category) => (
         <Button
           key={category}
           variant={selectedCategory === category ? "default" : "outline"}
           size="sm"
           onClick={() => onCategorySelect(category)}
-          className={`capitalize ${
-            selectedCategory === category 
-              ? "earth-gradient text-white" 
-              : "hover:bg-slate-100"
-          }`}
+          className="capitalize"
         >
-          {category === 'alla' ? 'Alla kategorier' : category}
+          {category}
         </Button>
       ))}
     </div>
