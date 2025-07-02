@@ -15,7 +15,8 @@ export default function BlogPage() {
   useEffect(() => {
     const fetchBlogPosts = async () => {
       try {
-        const posts = await BlogPost.filter({ published: true }, { sort: '-created_at' });
+        // Fix the sorting syntax - use string instead of object
+        const posts = await BlogPost.filter({ published: true }, '-created_at');
         setBlogPosts(posts);
       } catch (error) {
         console.error('Error fetching blog posts:', error);
