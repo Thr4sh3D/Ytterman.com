@@ -2,112 +2,121 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { SEOHead } from '@/components/SEOComponents';
 import { TechnicalSEO } from '@/components/TechnicalSEO';
-import { LocalSEO } from '@/components/LocalSEO';
 import { Link } from 'react-router-dom';
 import { Calendar, User, ArrowRight, Search, Tag } from 'lucide-react';
 import { useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { BlogPost } from '@/entities';
-import { blogPosts as staticBlogPosts } from '@/data/blogPosts';
 
 export default function BlogPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
 
-  // Hämta blogginlägg från databasen
-  const { data: dbPosts = [], isLoading } = useQuery({
-    queryKey: ['published-blog-posts'],
-    queryFn: () => BlogPost.filter({ published: true }, '-created_at', 50)
-  });
-
-  // Kombinera databas-inlägg med statiska inlägg för demo
-  const allPosts = [
-    ...dbPosts.map((post: any) => ({
-      id: post.id,
-      title: post.title,
-      slug: post.slug,
-      excerpt: post.excerpt,
-      author: post.author,
-      date: post.created_at,
-      category: post.category,
-      readTime: post.reading_time,
-      image: post.featured_image || "/api/placeholder/400/250",
-      featured: false,
-      keywords: post.keywords?.split(',') || [],
-      metaDescription: post.meta_description
-    })),
-    ...staticBlogPosts.map(post => ({
-      ...post,
-      date: post.date,
-      readTime: post.readTime
-    }))
+  const blogPosts = [
+    {
+      id: 1,
+      title: "Kontrollansvarig - Din guide till en säker byggprocess",
+      slug: "kontrollansvarig-guide-saker-byggprocess",
+      excerpt: "Allt du behöver veta om kontrollansvarig enligt PBL. Från ansvar och krav till hur du väljer rätt KA för ditt projekt.",
+      author: "BuildControl Team",
+      date: "2024-01-15",
+      category: "Kontrollansvarig",
+      readTime: 8,
+      image: "/api/placeholder/400/250",
+      featured: true
+    },
+    {
+      id: 2,
+      title: "BAS-P vs BAS-U - Skillnader och ansvar förklarat",
+      slug: "bas-p-bas-u-skillnader-ansvar",
+      excerpt: "Förstå skillnaderna mellan BAS-P och BAS-U, när de behövs och vilket ansvar de har i byggprocessen.",
+      author: "BuildControl Team",
+      date: "2024-01-10",
+      category: "BAS",
+      readTime: 6,
+      image: "/api/placeholder/400/250",
+      featured: true
+    },
+    {
+      id: 3,
+      title: "Bygglov i Västernorrland - Process och tips",
+      slug: "bygglov-vasternorrland-process-tips",
+      excerpt: "Praktisk guide för bygglovsansökan i Västernorrlands kommuner. Tips för smidig process och vanliga fallgropar.",
+      author: "BuildControl Team",
+      date: "2024-01-05",
+      category: "Bygglov",
+      readTime: 10,
+      image: "/api/placeholder/400/250",
+      featured: false
+    },
+    {
+      id: 4,
+      title: "Vad kostar en kontrollansvarig i Västernorrland 2024?",
+      slug: "kontrollansvarig-kostnad-vasternorrland-2024",
+      excerpt: "Komplett prisguide för kontrollansvarig. Faktorer som påverkar kostnaden och tips för att få bästa värdet för pengarna.",
+      author: "BuildControl Team",
+      date: "2024-01-20",
+      category: "Kontrollansvarig",
+      readTime: 7,
+      image: "/api/placeholder/400/250",
+      featured: false
+    },
+    {
+      id: 5,
+      title: "Tekniskt samråd - Så förbereder du dig optimalt",
+      slug: "tekniskt-samrad-forberedelse-guide",
+      excerpt: "Allt om tekniskt samråd med byggnadsnämnden. Vad som händer, vilka handlingar som krävs och hur du förbereder dig.",
+      author: "BuildControl Team",
+      date: "2024-01-25",
+      category: "Bygglov",
+      readTime: 9,
+      image: "/api/placeholder/400/250",
+      featured: false
+    },
+    {
+      id: 6,
+      title: "Arbetsmiljöplan för BAS-P - Mall och guide",
+      slug: "arbetsmiljoplan-bas-p-mall-guide",
+      excerpt: "Praktisk guide för att skapa en arbetsmiljöplan enligt AFS. Inkluderar mall och checklistor för BAS-P.",
+      author: "BuildControl Team",
+      date: "2024-01-30",
+      category: "BAS",
+      readTime: 12,
+      image: "/api/placeholder/400/250",
+      featured: false
+    }
   ];
 
-  const categories = ['Alla', 'Kontrollansvarig', 'BAS', 'Bygglov', 'Säkerhet', 'Regelverk'];
+  const categories = ['Alla', 'Kontrollansvarig', 'BAS', 'Bygglov'];
 
-  const filteredPosts = allPosts.filter(post => {
+  const filteredPosts = blogPosts.filter(post => {
     const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          post.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = selectedCategory === '' || selectedCategory === 'Alla' || post.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
 
-  const featuredPosts = filteredPosts.filter(post => post.featured);
+  const featuredPosts = blogPosts.filter(post => post.featured);
   const regularPosts = filteredPosts.filter(post => !post.featured);
-
-  if (isLoading) {
-    return (
-      <>
-        <Header />
-        <div className="flex justify-center items-center min-h-screen">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-            <p className="text-gray-600">Laddar blogginlägg...</p>
-          </div>
-        </div>
-        <Footer />
-      </>
-    );
-  }
 
   return (
     <>
       <SEOHead
-        title="Blogg - Byggkontroll, BAS och Kontrollansvarig Guide Västernorrland"
-        description="Läs våra expertguider om byggkontroll, kontrollansvarig, BAS-P, BAS-U och bygglov. Praktiska tips och råd för ditt byggprojekt i Västernorrland, Sundsvall, Härnösand."
-        keywords="byggkontroll blogg, kontrollansvarig guide Västernorrland, BAS-P tips Sundsvall, BAS-U råd Härnösand, bygglov guide Kramfors"
+        title="Blogg - Byggkontroll, BAS och Kontrollansvarig Guide"
+        description="Läs våra expertguider om byggkontroll, kontrollansvarig, BAS-P, BAS-U och bygglov. Praktiska tips och råd för ditt byggprojekt i Västernorrland."
+        keywords="byggkontroll blogg, kontrollansvarig guide, BAS-P tips, BAS-U råd, bygglov Västernorrland, byggprojekt"
         url="https://buildcontrol.se/blogg"
         type="website"
       />
       <TechnicalSEO />
-      <LocalSEO />
       
       <Header />
       
       <main>
         <section className="bg-gradient-to-br from-gray-900 to-gray-700 text-white py-16">
           <div className="container mx-auto px-6">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Blogg & Expertguider
-            </h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">Blogg & Expertguider</h1>
             <p className="text-xl text-gray-300 max-w-2xl">
-              Expertkunskap om byggkontroll, säkerhet och regelverket - direkt från våra specialister 
-              med över 15 års erfarenhet i Västernorrland
+              Expertkunskap om byggkontroll, säkerhet och regelverket - direkt från våra specialister med över 15 års erfarenhet
             </p>
-            <div className="mt-6 flex flex-wrap gap-2">
-              <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm">
-                Kontrollansvarig
-              </span>
-              <span className="bg-green-600 text-white px-3 py-1 rounded-full text-sm">
-                BAS-P & BAS-U
-              </span>
-              <span className="bg-purple-600 text-white px-3 py-1 rounded-full text-sm">
-                Bygglov
-              </span>
-              <span className="bg-orange-600 text-white px-3 py-1 rounded-full text-sm">
-                Västernorrland
-              </span>
-            </div>
           </div>
         </section>
         
@@ -120,7 +129,7 @@ export default function BlogPage() {
               </h2>
               <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
                 {featuredPosts.map((post) => (
-                  <article key={post.id} className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-shadow">
+                  <article key={post.id} className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
                     <img 
                       src={post.image} 
                       alt={post.title}
@@ -182,7 +191,7 @@ export default function BlogPage() {
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                     <input
                       type="text"
-                      placeholder="Sök artiklar om kontrollansvarig, BAS, bygglov..."
+                      placeholder="Sök artiklar..."
                       className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
@@ -213,7 +222,7 @@ export default function BlogPage() {
               {/* All Posts */}
               <div className="space-y-8">
                 {regularPosts.map((post) => (
-                  <article key={post.id} className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-shadow">
+                  <article key={post.id} className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
                     <div className="md:flex">
                       <div className="md:w-1/3">
                         <img 
@@ -271,9 +280,6 @@ export default function BlogPage() {
                   <p className="text-gray-500 text-lg">
                     Inga artiklar hittades för "{searchTerm}"
                   </p>
-                  <p className="text-gray-400 mt-2">
-                    Prova att söka på "kontrollansvarig", "BAS-P", "bygglov" eller "Västernorrland"
-                  </p>
                 </div>
               )}
               
@@ -283,8 +289,7 @@ export default function BlogPage() {
                   Få de senaste artiklarna direkt i din inkorg
                 </h3>
                 <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
-                  Prenumerera på vårt nyhetsbrev och få expertråd om byggkontroll, nya regelverk 
-                  och praktiska tips för ditt byggprojekt i Västernorrland.
+                  Prenumerera på vårt nyhetsbrev och få expertråd om byggkontroll, nya regelverk och praktiska tips för ditt byggprojekt.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
                   <input
@@ -299,45 +304,6 @@ export default function BlogPage() {
                 <p className="text-xs text-blue-200 mt-3">
                   Vi skickar max 2 e-post per månad. Avsluta prenumeration när som helst.
                 </p>
-              </div>
-
-              {/* SEO Content Section */}
-              <div className="mt-16 bg-gray-50 rounded-2xl p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-                  Expertguider för byggprojekt i Västernorrland
-                </h3>
-                <div className="grid md:grid-cols-2 gap-8">
-                  <div>
-                    <h4 className="text-lg font-semibold text-gray-900 mb-3">
-                      Kontrollansvarig & Byggkontroll
-                    </h4>
-                    <p className="text-gray-700 mb-4">
-                      Lär dig allt om kontrollansvarig enligt PBL, kostnader, ansvar och hur du väljer 
-                      rätt KA för ditt byggprojekt i Sundsvall, Härnösand eller andra delar av Västernorrland.
-                    </p>
-                    <ul className="text-sm text-gray-600 space-y-1">
-                      <li>• Kontrollansvarig kostnad och priser</li>
-                      <li>• PBL-krav och certifiering</li>
-                      <li>• Kontrollplan och dokumentation</li>
-                      <li>• Tekniskt samråd och slutsamråd</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-gray-900 mb-3">
-                      BAS-P & BAS-U Arbetsmiljö
-                    </h4>
-                    <p className="text-gray-700 mb-4">
-                      Få expertkunskap om byggarbetsmiljösamordnare för planering och utförande. 
-                      Praktiska guider för AFS 1999:3 och arbetsmiljöplaner.
-                    </p>
-                    <ul className="text-sm text-gray-600 space-y-1">
-                      <li>• BAS-P vs BAS-U skillnader</li>
-                      <li>• Arbetsmiljöplan mallar</li>
-                      <li>• Skyddsronder och kontroller</li>
-                      <li>• AFS 1999:3 krav och tillämpning</li>
-                    </ul>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
