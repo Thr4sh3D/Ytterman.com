@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { generateSitemap } from '@/functions/generate-sitemap';
+import { generateSitemap } from '@/functions';
 
 export const DynamicSitemap = () => {
   useEffect(() => {
