@@ -2,12 +2,14 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { AdvancedSEO } from '@/components/AdvancedSEO';
+import { FAQ, faqData } from '@/components/FAQ';
+import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { CheckCircle, Phone, Mail, FileText, Users, Shield, Building, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const TjansterPage = () => {
   const scrollToContact = () => {
-    window.location.href = '/#kontakt';
+    window.location.href = '/kontakt';
   };
 
   const services = [
@@ -61,22 +63,26 @@ const TjansterPage = () => {
         "Energiberäkningar"
       ],
       icon: Building,
-      link: "/#kontakt"
+      link: "/kontakt"
     }
   ];
 
-  const faqData = [
+  const serviceFaq = [
     {
       question: "Vilka tjänster erbjuder Ytterman?",
-      answer: "Vi erbjuder kontrollansvarig (KA), BAS-P, BAS-U och bygglovshandlingar för byggprojekt i Västernorrland."
+      answer: "Vi erbjuder kontrollansvarig (KA), BAS-P, BAS-U och bygglovshandlingar för byggprojekt i Västernorrland. Alla tjänster utförs av certifierad personal med över 20 års erfarenhet."
     },
     {
       question: "Vad kostar era tjänster?",
-      answer: "Priserna varierar beroende på projektets omfattning. KA från 15,000 kr, BAS-P från 12,000 kr, BAS-U från 18,000 kr och bygglovshandlingar från 8,000 kr."
+      answer: "Priserna varierar beroende på projektets omfattning. KA från 15,000 kr, BAS-P från 12,000 kr, BAS-U från 18,000 kr och bygglovshandlingar från 8,000 kr. Vi ger alltid fast pris efter kostnadsfri konsultation."
     },
     {
       question: "Vilka områden täcker ni?",
-      answer: "Vi verkar i hela Västernorrland med fokus på Sundsvall, Härnösand, Sollefteå, Timrå och Kramfors."
+      answer: "Vi verkar i hela Västernorrland med fokus på Sundsvall, Härnösand, Sollefteå, Timrå och Kramfors. Vi hjälper även kunder i övriga delar av regionen."
+    },
+    {
+      question: "Hur snabbt kan ni starta ett uppdrag?",
+      answer: "Vi strävar efter att kunna starta inom 1-2 veckor efter bekräftad beställning. För akuta ärenden kan vi ofta ordna snabbare start beroende på vår aktuella arbetsbelastning."
     }
   ];
 
@@ -93,7 +99,7 @@ const TjansterPage = () => {
         keywords="kontrollansvarig tjänster, BAS-P, BAS-U, bygglovshandlingar, byggtjänster Västernorrland, Sundsvall, Härnösand, byggkontroll"
         url="https://ytterman.com/tjanster"
         breadcrumbs={breadcrumbs}
-        faq={faqData}
+        faq={serviceFaq}
         organization={true}
       />
       
@@ -101,6 +107,13 @@ const TjansterPage = () => {
         <Header />
         
         <main>
+          {/* Breadcrumbs */}
+          <section className="py-4 bg-white border-b">
+            <div className="container mx-auto px-4">
+              <Breadcrumbs items={breadcrumbs.slice(1)} />
+            </div>
+          </section>
+
           {/* Hero Section */}
           <section className="py-20 bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-50">
             <div className="container mx-auto px-4">
@@ -211,6 +224,65 @@ const TjansterPage = () => {
                       </p>
                     </div>
                   ))}
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* FAQ Section */}
+          <FAQ items={serviceFaq} />
+
+          {/* Internal Links Section */}
+          <section className="py-20 bg-white">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto text-center">
+                <h2 className="text-4xl font-bold text-slate-900 mb-6">
+                  Läs mer om våra tjänster
+                </h2>
+                <p className="text-xl text-slate-600 mb-12">
+                  Utforska våra specialiserade tjänster och få detaljerad information 
+                  om vad som ingår i varje tjänst.
+                </p>
+                
+                <div className="grid md:grid-cols-3 gap-6">
+                  <a 
+                    href="/kontrollansvarig"
+                    className="bg-slate-50 p-6 rounded-lg hover:shadow-lg transition-shadow group"
+                  >
+                    <Shield className="w-8 h-8 text-primary mb-4 mx-auto" />
+                    <h3 className="font-bold text-slate-900 mb-2 group-hover:text-primary transition-colors">
+                      Kontrollansvarig Guide
+                    </h3>
+                    <p className="text-slate-600 text-sm">
+                      Allt om KA-rollen, kontrollplaner och teknisk kontroll
+                    </p>
+                  </a>
+                  
+                  <a 
+                    href="/bas-p"
+                    className="bg-slate-50 p-6 rounded-lg hover:shadow-lg transition-shadow group"
+                  >
+                    <FileText className="w-8 h-8 text-primary mb-4 mx-auto" />
+                    <h3 className="font-bold text-slate-900 mb-2 group-hover:text-primary transition-colors">
+                      BAS-P Information
+                    </h3>
+                    <p className="text-slate-600 text-sm">
+                      Arbetsmiljösamordning under projekteringsfasen
+                    </p>
+                  </a>
+                  
+                  <a 
+                    href="/bas-u"
+                    className="bg-slate-50 p-6 rounded-lg hover:shadow-lg transition-shadow group"
+                  >
+                    <Users className="w-8 h-8 text-primary mb-4 mx-auto" />
+                    <h3 className="font-bold text-slate-900 mb-2 group-hover:text-primary transition-colors">
+                      BAS-U Detaljer
+                    </h3>
+                    <p className="text-slate-600 text-sm">
+                      Säkerhetssamordning under byggfasen
+                    </p>
+                  </a>
                 </div>
               </div>
             </div>
