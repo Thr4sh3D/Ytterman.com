@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Startsida - högsta prioritet -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Homepage -->
   <url>
     <loc>https://ytterman.com/</loc>
     <lastmod>2024-01-20</lastmod>
@@ -8,7 +10,7 @@
     <priority>1.0</priority>
   </url>
   
-  <!-- Tjänster - hög prioritet -->
+  <!-- Services Overview -->
   <url>
     <loc>https://ytterman.com/tjanster</loc>
     <lastmod>2024-01-20</lastmod>
@@ -16,65 +18,74 @@
     <priority>0.9</priority>
   </url>
   
-  <!-- Kontrollansvarig - viktig tjänstesida -->
+  <!-- Kontrollansvarig -->
   <url>
     <loc>https://ytterman.com/kontrollansvarig</loc>
     <lastmod>2024-01-20</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
   
-  <!-- BAS-P - viktig tjänstesida -->
+  <!-- BAS-P -->
   <url>
     <loc>https://ytterman.com/bas-p</loc>
     <lastmod>2024-01-20</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
   
-  <!-- BAS-U - viktig tjänstesida -->
+  <!-- BAS-U -->
   <url>
     <loc>https://ytterman.com/bas-u</loc>
     <lastmod>2024-01-20</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
   
-  <!-- Blogg/Guide - innehållssida -->
+  <!-- Blog -->
   <url>
     <loc>https://ytterman.com/blogg</loc>
     <lastmod>2024-01-20</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   
-  <!-- Kontakt - viktig för konvertering -->
+  <!-- Contact -->
   <url>
     <loc>https://ytterman.com/kontakt</loc>
     <lastmod>2024-01-20</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
   </url>
   
-  <!-- Exempel på blogginlägg - dessa skulle uppdateras dynamiskt -->
+  <!-- Site Analysis -->
+  <url>
+    <loc>https://ytterman.com/analys</loc>
+    <lastmod>2024-01-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Blog Posts (examples) -->
   <url>
     <loc>https://ytterman.com/blogg/kontrollansvarig-guide-saker-byggprocess</loc>
-    <lastmod>2024-01-15</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
+    <lastmod>2024-01-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   
   <url>
     <loc>https://ytterman.com/blogg/bas-p-bas-u-skillnader-ansvar</loc>
-    <lastmod>2024-01-10</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
+    <lastmod>2024-01-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   
   <url>
     <loc>https://ytterman.com/blogg/bygglov-vasternorrland-process-tips</loc>
-    <lastmod>2024-01-05</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
+    <lastmod>2024-01-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
+  
 </urlset>

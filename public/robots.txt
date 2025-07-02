@@ -1,19 +1,30 @@
 User-agent: *
 Allow: /
 
-# Sitemap
+# Sitemap location
 Sitemap: https://ytterman.com/sitemap.xml
 
-# Disallow admin areas (if any in future)
-Disallow: /admin/
-Disallow: /private/
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
 
-# Allow all important pages
+# Allow all major search engines
+User-agent: Googlebot
 Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Disallow admin or private areas (if any)
+# Disallow: /admin/
+# Disallow: /private/
+
+# Allow important pages
 Allow: /tjanster
 Allow: /kontrollansvarig
 Allow: /bas-p
 Allow: /bas-u
-
-# Crawl-delay for respectful crawling
-Crawl-delay: 1
+Allow: /blogg
+Allow: /kontakt
