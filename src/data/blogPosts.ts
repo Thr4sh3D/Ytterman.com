@@ -1,4 +1,20 @@
-export const blogPosts = [
+export interface BlogPost {
+  id: number;
+  title: string;
+  slug: string;
+  excerpt: string;
+  content: string;
+  author: string;
+  date: string;
+  category: string;
+  readTime: number;
+  image: string;
+  featured: boolean;
+  keywords: string[];
+  metaDescription: string;
+}
+
+export const blogPosts: BlogPost[] = [
   {
     id: 1,
     title: "Kontrollansvarig - Din guide till en säker byggprocess",
@@ -39,106 +55,210 @@ export const blogPosts = [
         <li>Konkurrenskraftiga priser</li>
       </ul>
       
-      <p>Vi på Ytterman har över 15 års erfarenhet som kontrollansvariga i Västernorrland och hjälper dig genom hela processen.</p>
+      <p>Vi på BuildControl har över 15 års erfarenhet som kontrollansvariga i Västernorrland och hjälper dig genom hela processen.</p>
     `,
-    author: "Ytterman Team",
+    author: "BuildControl Team",
     date: "2024-01-15",
     category: "Kontrollansvarig",
     readTime: 8,
     image: "/api/placeholder/800/400",
     featured: true,
-    keywords: ["kontrollansvarig", "PBL", "byggkontroll", "Västernorrland"],
+    keywords: ["kontrollansvarig", "KA", "PBL", "byggkontroll", "Västernorrland"],
     metaDescription: "Komplett guide om kontrollansvarig enligt PBL. Lär dig om ansvar, krav och hur du väljer rätt KA för ditt byggprojekt i Västernorrland."
   },
   {
     id: 2,
+    title: "Vad kostar en kontrollansvarig i Västernorrland 2024?",
+    slug: "kontrollansvarig-kostnad-vasternorrland-2024",
+    excerpt: "Komplett prisguide för kontrollansvarig. Faktorer som påverkar kostnaden och tips för att få bästa värdet för pengarna.",
+    content: `
+      <p>En av de vanligaste frågorna vi får är "Vad kostar en kontrollansvarig?". Svaret beror på flera faktorer, och i denna guide går vi igenom allt du behöver veta om kostnader för kontrollansvarig i Västernorrland.</p>
+      
+      <h2>Faktorer som påverkar kostnaden</h2>
+      <p>Kostnaden för en kontrollansvarig varierar beroende på:</p>
+      <ul>
+        <li><strong>Projektets storlek och komplexitet</strong> - Större projekt kräver mer tid och resurser</li>
+        <li><strong>Typ av byggnad</strong> - Villa, flerfamiljshus, kommersiell byggnad etc.</li>
+        <li><strong>Projektets längd</strong> - Längre projekt innebär fler kontroller</li>
+        <li><strong>Geografisk placering</strong> - Reskostnader kan påverka priset</li>
+        <li><strong>Specialkrav</strong> - Unika tekniska lösningar kan kräva extra expertis</li>
+      </ul>
+      
+      <h2>Prisexempel för olika projekttyper</h2>
+      
+      <h3>Villa/Småhus (150-250 kvm)</h3>
+      <ul>
+        <li>Nybyggnation: 25 000 - 45 000 kr</li>
+        <li>Tillbyggnad: 15 000 - 30 000 kr</li>
+        <li>Större renovering: 20 000 - 35 000 kr</li>
+      </ul>
+      
+      <h3>Flerfamiljshus</h3>
+      <ul>
+        <li>4-8 lägenheter: 60 000 - 120 000 kr</li>
+        <li>Större projekt: 100 000 - 300 000 kr</li>
+      </ul>
+      
+      <h3>Kommersiella projekt</h3>
+      <p>Kostnaden varierar kraftigt beroende på projektets omfattning och komplexitet. Kontakta oss för en skräddarsydd offert.</p>
+      
+      <h2>Vad ingår i kostnaden?</h2>
+      <p>När du anlitar en kontrollansvarig ingår normalt:</p>
+      <ul>
+        <li>Upprättande av kontrollplan</li>
+        <li>Deltagande i tekniskt samråd</li>
+        <li>Regelbundna platsbesök och kontroller</li>
+        <li>Dokumentation av alla kontroller</li>
+        <li>Rapportering till byggnadsnämnden</li>
+        <li>Slutsamråd och slutbevis</li>
+      </ul>
+      
+      <h2>Tips för att få bästa värdet</h2>
+      <ul>
+        <li><strong>Jämför offerter</strong> - Men välj inte bara det billigaste alternativet</li>
+        <li><strong>Kontrollera certifieringar</strong> - Se till att KA är certifierad enligt PBL</li>
+        <li><strong>Fråga om erfarenhet</strong> - Välj någon med relevant projektexpertis</li>
+        <li><strong>Lokalkännedom</strong> - En lokal KA känner byggnadsnämndens krav</li>
+        <li><strong>Tydliga avtal</strong> - Se till att alla tjänster är tydligt specificerade</li>
+      </ul>
+      
+      <h2>Varför välja BuildControl?</h2>
+      <p>Vi erbjuder:</p>
+      <ul>
+        <li>Konkurrenskraftiga priser utan dolda kostnader</li>
+        <li>Över 15 års erfarenhet i Västernorrland</li>
+        <li>Certifierade kontrollansvariga enligt PBL</li>
+        <li>Snabb service och tillgänglighet</li>
+        <li>Kostnadsfria offerter</li>
+      </ul>
+      
+      <p>Kontakta oss idag för en kostnadsfri offert anpassad efter ditt specifika projekt.</p>
+    `,
+    author: "BuildControl Team",
+    date: "2024-01-20",
+    category: "Kontrollansvarig",
+    readTime: 7,
+    image: "/api/placeholder/800/400",
+    featured: false,
+    keywords: ["kontrollansvarig kostnad", "KA pris", "byggkontroll kostnad", "Västernorrland", "offert"],
+    metaDescription: "Vad kostar en kontrollansvarig i Västernorrland 2024? Komplett prisguide med exempel för villa, flerfamiljshus och kommersiella projekt."
+  },
+  {
+    id: 3,
     title: "BAS-P vs BAS-U - Skillnader och ansvar förklarat",
     slug: "bas-p-bas-u-skillnader-ansvar",
     excerpt: "Förstå skillnaderna mellan BAS-P och BAS-U, när de behövs och vilket ansvar de har i byggprocessen.",
     content: `
-      <p>Byggarbetsmiljösamordnare (BAS) är en viktig roll för säkerhet på byggarbetsplatser. Det finns två typer av BAS - BAS-P och BAS-U. I denna guide förklarar vi skillnaderna.</p>
+      <p>Många byggherrar är osäkra på skillnaderna mellan BAS-P och BAS-U. I denna guide förklarar vi tydligt vad som skiljer dessa roller åt och när du behöver vilken.</p>
       
-      <h2>Vad är BAS-P?</h2>
-      <p>BAS-P (Byggarbetsmiljösamordnare för Projektering) ansvarar för arbetsmiljöfrågor under projekteringsfasen. BAS-P ska:</p>
+      <h2>Vad betyder BAS-P och BAS-U?</h2>
+      <ul>
+        <li><strong>BAS-P</strong> = Byggarbetsmiljösamordnare för Planering och projektering</li>
+        <li><strong>BAS-U</strong> = Byggarbetsmiljösamordnare för Utförande</li>
+      </ul>
+      
+      <h2>BAS-P - Planering och projektering</h2>
+      
+      <h3>När behövs BAS-P?</h3>
+      <p>BAS-P krävs enligt AFS 1999:3 när:</p>
+      <ul>
+        <li>Mer än ett företag är inblandat i projektet</li>
+        <li>Projektering sker</li>
+        <li>Byggarbeten ska utföras</li>
+      </ul>
+      
+      <h3>BAS-P:s ansvar</h3>
       <ul>
         <li>Upprätta arbetsmiljöplan</li>
-        <li>Samordna arbetsmiljöarbetet mellan olika projektörer</li>
-        <li>Identifiera risker tidigt i processen</li>
-        <li>Dokumentera säkerhetsåtgärder</li>
+        <li>Samordna projekteringen ur arbetsmiljösynpunkt</li>
+        <li>Genomföra riskbedömningar</li>
+        <li>Planera för säkra arbetsmetoder</li>
+        <li>Förbereda för BAS-U:s arbete</li>
       </ul>
       
-      <h2>Vad är BAS-U?</h2>
-      <p>BAS-U (Byggarbetsmiljösamordnare för Utförande) ansvarar för arbetsmiljön under byggfasen. BAS-U ska:</p>
+      <h2>BAS-U - Utförande</h2>
+      
+      <h3>När behövs BAS-U?</h3>
+      <p>BAS-U krävs när:</p>
       <ul>
-        <li>Genomföra arbetsmiljöplanen</li>
-        <li>Samordna säkerhetsarbetet mellan entreprenörer</li>
+        <li>Mer än ett företag arbetar samtidigt på byggarbetsplatsen</li>
+        <li>Byggarbeten pågår</li>
+        <li>Arbetsmiljörisker finns som kräver samordning</li>
+      </ul>
+      
+      <h3>BAS-U:s ansvar</h3>
+      <ul>
+        <li>Samordna arbetsmiljöarbetet på byggarbetsplatsen</li>
         <li>Genomföra skyddsronder</li>
-        <li>Rapportera tillbud och olyckor</li>
+        <li>Övervaka att arbetsmiljöplanen följs</li>
+        <li>Stoppa farliga arbeten</li>
+        <li>Rapportera till byggherren</li>
       </ul>
       
-      <h2>När behövs BAS?</h2>
-      <p>BAS krävs enligt AFS 1999:3 när:</p>
+      <h2>Viktiga skillnader</h2>
+      
+      <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+        <tr style="background-color: #f8f9fa;">
+          <th style="border: 1px solid #dee2e6; padding: 12px; text-align: left;">Aspekt</th>
+          <th style="border: 1px solid #dee2e6; padding: 12px; text-align: left;">BAS-P</th>
+          <th style="border: 1px solid #dee2e6; padding: 12px; text-align: left;">BAS-U</th>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #dee2e6; padding: 12px;"><strong>Fas</strong></td>
+          <td style="border: 1px solid #dee2e6; padding: 12px;">Planering/Projektering</td>
+          <td style="border: 1px solid #dee2e6; padding: 12px;">Utförande</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #dee2e6; padding: 12px;"><strong>Fokus</strong></td>
+          <td style="border: 1px solid #dee2e6; padding: 12px;">Förebyggande</td>
+          <td style="border: 1px solid #dee2e6; padding: 12px;">Övervakande</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #dee2e6; padding: 12px;"><strong>Plats</strong></td>
+          <td style="border: 1px solid #dee2e6; padding: 12px;">Kontor/Ritningar</td>
+          <td style="border: 1px solid #dee2e6; padding: 12px;">Byggarbetsplats</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #dee2e6; padding: 12px;"><strong>Tidpunkt</strong></td>
+          <td style="border: 1px solid #dee2e6; padding: 12px;">Före byggstart</td>
+          <td style="border: 1px solid #dee2e6; padding: 12px;">Under byggandet</td>
+        </tr>
+      </table>
+      
+      <h2>Kan samma person vara både BAS-P och BAS-U?</h2>
+      <p>Ja, samma person kan ha båda rollerna om de:</p>
       <ul>
-        <li>Flera entreprenörer arbetar samtidigt</li>
-        <li>Arbetet beräknas överstiga 500 persondagar</li>
-        <li>Särskilt farliga arbeten utförs</li>
+        <li>Har rätt certifieringar för båda rollerna</li>
+        <li>Har kompetens och erfarenhet för båda områdena</li>
+        <li>Kan hantera båda faserna effektivt</li>
       </ul>
       
-      <p>Kontakta Ytterman för professionell BAS-tjänst i Västernorrland.</p>
+      <h2>Fördelar med att använda samma leverantör</h2>
+      <ul>
+        <li><strong>Kontinuitet</strong> - Samma person följer projektet från start till slut</li>
+        <li><strong>Kostnadseffektivt</strong> - Ofta billigare än att anlita två olika personer</li>
+        <li><strong>Bättre kommunikation</strong> - Ingen informationsförlust mellan faserna</li>
+        <li><strong>Djupare förståelse</strong> - Känner projektet väl från planeringsfasen</li>
+      </ul>
+      
+      <h2>BuildControl erbjuder båda tjänsterna</h2>
+      <p>Vi har certifierade BAS-P och BAS-U som kan:</p>
+      <ul>
+        <li>Hantera båda rollerna för samma projekt</li>
+        <li>Säkerställa smidig övergång mellan faserna</li>
+        <li>Erbjuda konkurrenskraftiga paketpriser</li>
+        <li>Ge dig en kontaktperson genom hela projektet</li>
+      </ul>
+      
+      <p>Kontakta oss för att diskutera hur vi kan hjälpa ditt projekt med både BAS-P och BAS-U tjänster.</p>
     `,
-    author: "Ytterman Team",
+    author: "BuildControl Team",
     date: "2024-01-10",
     category: "BAS",
     readTime: 6,
     image: "/api/placeholder/800/400",
     featured: true,
-    keywords: ["BAS-P", "BAS-U", "arbetsmiljö", "byggarbetsmiljösamordnare"],
-    metaDescription: "Förstå skillnaderna mellan BAS-P och BAS-U, när de behövs och vilket ansvar de har i byggprocessen."
-  },
-  {
-    id: 3,
-    title: "Bygglov i Västernorrland - Process och tips",
-    slug: "bygglov-vasternorrland-process-tips",
-    excerpt: "Praktisk guide för bygglovsansökan i Västernorrlands kommuner. Tips för smidig process och vanliga fallgropar.",
-    content: `
-      <p>Att ansöka om bygglov kan kännas komplext, men med rätt förberedelser blir processen smidigare. Här är din guide för bygglov i Västernorrland.</p>
-      
-      <h2>Bygglovsprocessen steg för steg</h2>
-      <ol>
-        <li>Kontrollera om bygglov krävs</li>
-        <li>Ta fram nödvändiga handlingar</li>
-        <li>Lämna in ansökan</li>
-        <li>Vänta på handläggning</li>
-        <li>Få bygglovsbeslut</li>
-        <li>Påbörja byggnation</li>
-      </ol>
-      
-      <h2>Handlingar som krävs</h2>
-      <ul>
-        <li>Ansökningsblankett</li>
-        <li>Situationsplan</li>
-        <li>Ritningar</li>
-        <li>Teknisk beskrivning</li>
-        <li>Kontrollplan</li>
-      </ul>
-      
-      <h2>Handläggningstider</h2>
-      <p>Normala handläggningstider i Västernorrlands kommuner:</p>
-      <ul>
-        <li>Enklare ärenden: 4-6 veckor</li>
-        <li>Komplexa projekt: 8-12 veckor</li>
-        <li>Detaljplaneärenden: 12-20 veckor</li>
-      </ul>
-      
-      <p>Ytterman hjälper dig genom hela bygglovsprocessen i Västernorrland.</p>
-    `,
-    author: "Ytterman Team",
-    date: "2024-01-05",
-    category: "Bygglov",
-    readTime: 10,
-    image: "/api/placeholder/800/400",
-    featured: false,
-    keywords: ["bygglov", "Västernorrland", "bygglovsansökan", "handläggningstid"],
-    metaDescription: "Praktisk guide för bygglovsansökan i Västernorrlands kommuner. Tips för smidig process och vanliga fallgropar."
+    keywords: ["BAS-P", "BAS-U", "skillnad", "byggarbetsmiljösamordnare", "AFS 1999:3"],
+    metaDescription: "Förstå skillnaderna mellan BAS-P och BAS-U. Komplett guide om ansvar, när de behövs och fördelar med samma leverantör."
   }
 ];

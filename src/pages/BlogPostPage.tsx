@@ -91,21 +91,21 @@ export default function BlogPostPage() {
     "author": {
       "@type": "Organization",
       "name": blogPost.author,
-      "url": "https://ytterman.com"
+      "url": "https://buildcontrol.se"
     },
     "publisher": {
       "@type": "Organization",
-      "name": "Ytterman",
+      "name": "BuildControl",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://ytterman.com/logo.png"
+        "url": "https://buildcontrol.se/logo.png"
       }
     },
     "datePublished": blogPost.date,
     "dateModified": blogPost.date,
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://ytterman.com/blogg/${slug}`
+      "@id": `https://buildcontrol.se/blogg/${slug}`
     },
     "keywords": blogPost.keywords.join(', '),
     "articleSection": blogPost.category,
@@ -118,10 +118,10 @@ export default function BlogPostPage() {
   return (
     <>
       <SEOHead
-        title={`${blogPost.title} | Ytterman Blogg`}
+        title={`${blogPost.title} | BuildControl Blogg`}
         description={blogPost.metaDescription || blogPost.excerpt}
         keywords={blogPost.keywords.join(', ')}
-        url={`https://ytterman.com/blogg/${slug}`}
+        url={`https://buildcontrol.se/blogg/${slug}`}
         type="article"
         image={blogPost.image}
         structuredData={structuredData}
@@ -227,7 +227,7 @@ export default function BlogPostPage() {
                   Behöver du hjälp med ditt byggprojekt?
                 </h3>
                 <p className="text-gray-700 mb-6">
-                  Kontakta Ytterman idag för en kostnadsfri konsultation om kontrollansvarig, 
+                  Kontakta BuildControl idag för en kostnadsfri konsultation om kontrollansvarig, 
                   BAS-P, BAS-U och andra byggkontrolltjänster i Västernorrland.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">

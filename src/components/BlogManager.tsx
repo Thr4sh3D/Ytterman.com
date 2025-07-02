@@ -40,7 +40,7 @@ export const BlogManager = () => {
     tags: [],
     published: false,
     reading_time: 5,
-    author: 'Ytterman Team'
+    author: 'BuildControl Team'
   });
 
   const queryClient = useQueryClient();
@@ -103,7 +103,7 @@ export const BlogManager = () => {
       tags: [],
       published: false,
       reading_time: 5,
-      author: 'Ytterman Team'
+      author: 'BuildControl Team'
     });
     setIsCreating(false);
     setEditingPost(null);
@@ -133,7 +133,7 @@ export const BlogManager = () => {
       tags: post.tags || [],
       published: post.published || false,
       reading_time: post.reading_time || 5,
-      author: post.author || 'Ytterman Team'
+      author: post.author || 'BuildControl Team'
     });
     setIsCreating(true);
   };
