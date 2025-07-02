@@ -8,6 +8,7 @@ import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
+import { BlogDateFixer } from '@/components/BlogDateFixer';
 import { useToast } from '@/components/ui/use-toast';
 
 export default function BlogPage() {
@@ -94,6 +95,8 @@ export default function BlogPage() {
           <BlogHero />
           
           <div className="container mx-auto px-4 py-12">
+            <BlogDateFixer />
+            
             <BlogCategories 
               categories={categories}
               selectedCategory={selectedCategory}
