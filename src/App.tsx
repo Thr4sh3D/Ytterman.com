@@ -36,11 +36,11 @@ const App = () => (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <TechnicalSEO />
+        <SEOOptimizer />
         <PerformanceMonitor />
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <SEOOptimizer />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/tjanster" element={<TjansterPage />} />
