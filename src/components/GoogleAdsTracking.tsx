@@ -6,8 +6,8 @@ interface GoogleAdsTrackingProps {
 }
 
 export const GoogleAdsTracking = ({ 
-  conversionId = "AW-XXXXXXXXX", // Ersätt med ditt Google Ads Conversion ID
-  conversionLabel = "XXXXXXXXX"  // Ersätt med din Conversion Label
+  conversionId = "AW-17296101730", // Uppdaterat med ditt Google Ads Conversion ID
+  conversionLabel = "XXXXXXXXX"  // Ersätt med din Conversion Label när du har den
 }: GoogleAdsTrackingProps) => {
   useEffect(() => {
     // Ladda Google Ads script
@@ -19,7 +19,7 @@ export const GoogleAdsTracking = ({
     // Initiera gtag
     window.dataLayer = window.dataLayer || [];
     function gtag(...args: any[]) {
-      window.dataLayer.push(args);
+      window.dataLayer.push(arguments);
     }
     
     gtag('js', new Date());

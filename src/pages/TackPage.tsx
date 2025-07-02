@@ -16,7 +16,7 @@ const TackPage = () => {
     // Google Ads konverteringsmätning
     if (typeof window !== 'undefined' && (window as any).gtag) {
       (window as any).gtag('event', 'conversion', {
-        'send_to': 'AW-CONVERSION_ID/CONVERSION_LABEL', // Ersätt med ditt Google Ads Conversion ID
+        'send_to': 'AW-17296101730/CONVERSION_LABEL', // Uppdaterat med ditt Google Ads Conversion ID
         'value': 1.0,
         'currency': 'SEK',
         'transaction_id': `${Date.now()}-${service}`,

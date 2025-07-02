@@ -17,7 +17,7 @@ export const ConversionTracking = ({
     // Google Ads konvertering
     if (typeof window !== 'undefined' && (window as any).gtag) {
       (window as any).gtag('event', 'conversion', {
-        'send_to': 'AW-CONVERSION_ID/CONVERSION_LABEL', // Ersätt med dina värden
+        'send_to': 'AW-17296101730/CONVERSION_LABEL', // Uppdaterat med ditt Google Ads Conversion ID
         'value': value,
         'currency': 'SEK',
         'transaction_id': `${Date.now()}-${eventType}-${service}`,
@@ -62,7 +62,7 @@ export const useConversionTracking = () => {
     // Google Ads
     if (typeof window !== 'undefined' && (window as any).gtag) {
       (window as any).gtag('event', 'conversion', {
-        'send_to': 'AW-CONVERSION_ID/CONVERSION_LABEL',
+        'send_to': 'AW-17296101730/CONVERSION_LABEL',
         'value': value || 1.0,
         'currency': 'SEK',
         'transaction_id': `${Date.now()}-${eventType}-${service || 'general'}`,
