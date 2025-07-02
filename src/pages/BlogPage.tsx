@@ -5,28 +5,36 @@ import { BlogList } from '@/components/BlogList';
 import { BlogHero } from '@/components/BlogHero';
 import { BlogCategories } from '@/components/BlogCategories';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
-import { Layout } from '@/components/Layout';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
+import { BlogPostUpdater } from '@/components/BlogPostUpdater';
+import { useToast } from '@/components/ui/use-toast';
 
 export default function BlogPage() {
   const [blogPosts, setBlogPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const { toast } = useToast();
+
+  const fetchBlogPosts = async () => {
+    setLoading(true);
+    try {
+      const posts = await BlogPost.filter({ published: true }, '-created_at');
+      setBlogPosts(posts);
+    } catch (error) {
+      console.error('Error fetching blog posts:', error);
+      toast({
+        title: 'Ett fel uppstod',
+        description: 'Kunde inte hämta blogginlägg',
+        variant: 'destructive',
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchBlogPosts = async () => {
-      try {
-        const posts = await BlogPost.filter({ published: true }, '-created_at');
-        setBlogPosts(posts);
-      } catch (error) {
-        console.error('Error fetching blog posts:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchBlogPosts();
   }, []);
 
@@ -44,11 +52,11 @@ export default function BlogPage() {
   return (
     <>
       <Helmet>
-        <title>Blogg - SEO & Bygglovshjälp | Expertråd och Guider</title>
-        <meta name="description" content="Läs våra expertguider om SEO, bygglov, BAS P, BAS U och kontrollansvar. Få värdefulla tips och råd för din webbplats och byggprojekt." />
-        <meta name="keywords" content="SEO blogg, bygglov guide, BAS P, BAS U, kontrollansvarig, webboptimering, bygglovsprocess" />
-        <meta property="og:title" content="Blogg - SEO & Bygglovshjälp" />
-        <meta property="og:description" content="Expertguider om SEO, bygglov och kontrollansvar. Få värdefulla tips för din webbplats och byggprojekt." />
+        <title>Blogg - Expertråd och Guider om Bygglov & Kontrollansvar</title>
+        <meta name="description" content="Läs våra expertguider om bygglov, BAS P, BAS U och kontrollansvar. Få värdefulla tips och råd för dina byggprojekt." />
+        <meta name="keywords" content="bygglov guide, BAS P, BAS U, kontrollansvarig, bygglovsprocess" />
+        <meta property="og:title" content="Blogg - Bygglovshjälp & Kontrollansvar" />
+        <meta property="og:description" content="Expertguider om bygglov och kontrollansvar. Få värdefulla tips för dina byggprojekt." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://yoursite.com/blogg" />
         <link rel="canonical" href="https://yoursite.com/blogg" />
@@ -56,8 +64,8 @@ export default function BlogPage() {
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Blog",
-            "name": "SEO & Bygglovshjälp Blogg",
-            "description": "Expertguider om SEO, bygglov och kontrollansvar",
+            "name": "Bygglovshjälp & Kontrollansvar Blogg",
+            "description": "Expertguider om bygglov och kontrollansvar",
             "url": "https://yoursite.com/blogg",
             "blogPost": filteredPosts.map(post => ({
               "@type": "BlogPosting",
@@ -87,6 +95,8 @@ export default function BlogPage() {
           <BlogHero />
           
           <div className="container mx-auto px-4 py-12">
+            <BlogPostUpdater />
+            
             <BlogCategories 
               categories={categories}
               selectedCategory={selectedCategory}
