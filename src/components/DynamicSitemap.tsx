@@ -11,6 +11,11 @@ export const DynamicSitemap = () => {
         const response = await generateSitemap();
         console.log('Sitemap generated successfully');
       } catch (error) {
+        // Check if the error is related to no domain found (development environment)
+        if (error?.message?.includes('No domain found for deployment')) {
+          console.log('Sitemap generation skipped - app not yet deployed');
+          return;
+        }
         console.error('Error generating sitemap:', error);
       }
     };
