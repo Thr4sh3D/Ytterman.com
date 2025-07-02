@@ -32,13 +32,13 @@ export default function Index() {
   const localBusinessData = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "name": "BuildControl",
-    "description": "Certifierad kontrollansvarig, BAS-P och BAS-U i Västernorrland med över 15 års erfarenhet.",
-    "url": "https://buildcontrol.se",
+    "name": "Ytterman",
+    "description": "Professionella tjänster inom byggkontroll, miljö och hållbarhet med fokus på naturliga och jordnära lösningar.",
+    "url": "https://ytterman.com",
     "telephone": "+46-XX-XXX-XX-XX",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Byggkontrollsgatan 1",
+      "streetAddress": "Yttermangatan 1",
       "addressLocality": "Sundsvall",
       "addressRegion": "Västernorrland",
       "postalCode": "851 70",
@@ -67,10 +67,10 @@ export default function Index() {
   return (
     <>
       <SEOHead
-        title="BuildControl Västernorrland - Kontrollansvarig, BAS-P & BAS-U Sundsvall"
-        description="Certifierad kontrollansvarig, BAS-P och BAS-U i Västernorrland. Vi täcker Sundsvall, Härnösand, Kramfors, Sollefteå. Över 15 års erfarenhet. Kontakta oss idag!"
-        keywords="kontrollansvarig Västernorrland, BAS-P Sundsvall, BAS-U Härnösand, byggkontroll Kramfors, kontrollansvarig Sollefteå, PBL certifierad, AFS 1999:3"
-        url="https://buildcontrol.se"
+        title="Ytterman - Hållbara lösningar inom byggkontroll och miljö"
+        description="Ytterman erbjuder professionella tjänster inom byggkontroll, miljö och hållbarhet. Kontrollansvarig, BAS-P och BAS-U med fokus på naturliga lösningar."
+        keywords="ytterman, hållbara lösningar, byggkontroll, miljö, kontrollansvarig, BAS-P, BAS-U, naturliga lösningar"
+        url="https://ytterman.com"
         structuredData={combinedStructuredData}
       />
       <LocalSEO />
