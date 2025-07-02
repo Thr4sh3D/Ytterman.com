@@ -2,26 +2,26 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { AdvancedSEO } from '@/components/AdvancedSEO';
-import { CheckCircle, Phone, Mail, HardHat, Shield, Users, AlertTriangle } from 'lucide-react';
+import { CheckCircle, Phone, Mail, Shield, FileText, Clock, Award, AlertTriangle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const BasUPage = () => {
   const scrollToContact = () => {
-    window.location.href = '/kontakt?tjanst=bas-u-service';
+    window.location.href = '/#kontakt';
   };
 
   const faqData = [
     {
-      question: "Vad är BAS-U och när behöver jag det?",
-      answer: "BAS-U (Byggarbetsmiljösamordnare under utförande) krävs enligt AML när flera entreprenörer arbetar på samma byggarbetsplats. BAS-U ansvarar för arbetsmiljösamordning under byggfasen."
+      question: "Vad är BAS-U och när behöver jag en?",
+      answer: "BAS-U (Byggarbetsmiljösamordnare under utförande) behövs under byggfasen när flera entreprenörer arbetar samtidigt eller när projektet innebär särskilda arbetsmiljörisker."
     },
     {
       question: "Vad kostar BAS-U tjänster?",
-      answer: "Våra BAS-U tjänster börjar från 18,000 SEK beroende på projektets omfattning och byggtid. Vi erbjuder alltid en kostnadsfri konsultation för exakt prisuppgift."
+      answer: "Våra BAS-U tjänster börjar från 18,000 SEK beroende på projektets längd och komplexitet. Vi erbjuder alltid en kostnadsfri konsultation för att ge dig en exakt offert."
     },
     {
-      question: "Hur ofta besöker BAS-U byggarbetsplatsen?",
-      answer: "BAS-U besöker byggarbetsplatsen regelbundet enligt överenskommen plan, vanligtvis 1-2 gånger per vecka beroende på projektets omfattning och risknivå."
+      question: "Hur ofta gör BAS-U säkerhetsronder?",
+      answer: "Frekvensen beror på projektets art och risknivå, men vanligtvis genomförs säkerhetsronder minst en gång per vecka, oftare vid högrisksituationer."
     }
   ];
 
@@ -32,8 +32,8 @@ const BasUPage = () => {
   ];
 
   const serviceData = {
-    name: "BAS-U - Byggarbetsmiljösamordnare Utförande",
-    description: "Certifierad BAS-U för arbetsmiljösamordning under byggfasen",
+    name: "BAS-U (Byggarbetsmiljösamordnare under utförande)",
+    description: "Professionell arbetsmiljösamordning under byggfasen",
     provider: "Ytterman",
     areaServed: ["Sundsvall", "Härnösand", "Sollefteå", "Timrå", "Kramfors"],
     priceRange: "Från 18,000 SEK"
@@ -43,8 +43,8 @@ const BasUPage = () => {
     <>
       <AdvancedSEO 
         title="BAS-U - Byggarbetsmiljösamordnare Utförande | Ytterman"
-        description="Certifierad BAS-U i Västernorrland. Säkerhetsronder, arbetsmiljöuppföljning och samordning under byggfasen. Över 20 års erfarenhet. Från 18,000 kr."
-        keywords="BAS-U, byggarbetsmiljösamordnare utförande, säkerhetsronder, arbetsmiljöuppföljning, AML, byggarbetsplats, Västernorrland, Sundsvall, Härnösand"
+        description="Professionell BAS-U (Byggarbetsmiljösamordnare under utförande) i Västernorrland. Säkerhetsronder, arbetsmiljöuppföljning och samordning. Från 18,000 kr."
+        keywords="BAS-U, byggarbetsmiljösamordnare, utförande, säkerhetsronder, arbetsmiljöuppföljning, byggarbetsplats, Västernorrland, Sundsvall, Härnösand"
         url="https://ytterman.com/bas-u"
         breadcrumbs={breadcrumbs}
         faq={faqData}
@@ -63,8 +63,8 @@ const BasUPage = () => {
                   BAS-U - Byggarbetsmiljösamordnare
                 </h1>
                 <p className="text-xl text-slate-600 mb-8">
-                  Certifierad BAS-U för arbetsmiljösamordning under utförandefasen. 
-                  Vi säkerställer säker arbetsmiljö på byggarbetsplatsen.
+                  Professionell arbetsmiljösamordning under byggfasen. Vi säkerställer en trygg 
+                  och säker arbetsmiljö genom hela byggprocessen med regelbundna kontroller.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button 
@@ -95,35 +95,34 @@ const BasUPage = () => {
                 </h2>
                 <div className="prose prose-lg max-w-none text-slate-700">
                   <p className="text-xl mb-6">
-                    BAS-U (Byggarbetsmiljösamordnare under utförande) är en certifierad person 
-                    som enligt Arbetsmiljölagen (AML) ansvarar för arbetsmiljösamordning under byggfasen.
+                    BAS-U (Byggarbetsmiljösamordnare under utförande) är en certifierad person som 
+                    ansvarar för arbetsmiljösamordning under byggfasen av byggprojekt.
                   </p>
                   <p className="mb-8">
-                    BAS-U krävs när flera entreprenörer arbetar på samma byggarbetsplats och 
-                    ansvarar för att säkerställa att arbetsmiljöplanen följs samt att alla 
-                    arbetsmiljörisker hanteras korrekt under byggprocessen.
+                    BAS-U säkerställer att arbetsmiljöplanen följs, genomför säkerhetsronder och 
+                    koordinerar säkerhetsarbetet mellan olika entreprenörer på byggarbetsplatsen.
                   </p>
                 </div>
               </div>
             </div>
           </section>
 
-          {/* BAS-U:s uppgifter */}
+          {/* BAS-U Uppgifter */}
           <section className="py-20 bg-slate-50">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto">
                 <h2 className="text-4xl font-bold text-slate-900 mb-12 text-center">
-                  BAS-U:s huvuduppgifter
+                  BAS-U:s Uppgifter
                 </h2>
                 <div className="grid md:grid-cols-2 gap-6">
                   {[
                     "Genomföra regelbundna säkerhetsronder",
-                    "Samordna arbetsmiljöfrågor mellan entreprenörer",
-                    "Säkerställa att arbetsmiljöplanen följs",
-                    "Övervaka och dokumentera arbetsmiljön",
-                    "Hantera incidenter och tillbud",
-                    "Genomföra arbetsmiljöuppföljning",
-                    "Rapportera avvikelser och föreslå åtgärder"
+                    "Samordna arbetsmiljöarbetet mellan entreprenörer",
+                    "Övervaka att arbetsmiljöplanen följs",
+                    "Hantera och dokumentera avvikelser",
+                    "Kontrollera säkerhetsutrustning och skydd",
+                    "Rapportera incidenter och olyckor",
+                    "Hålla säkerhetsmöten med entreprenörer"
                   ].map((responsibility, index) => (
                     <div key={index} className="flex items-start space-x-4 p-6 bg-white rounded-lg shadow-sm">
                       <CheckCircle className="w-6 h-6 text-green-500 mt-1 flex-shrink-0" />
@@ -135,34 +134,34 @@ const BasUPage = () => {
             </div>
           </section>
 
-          {/* När behöver du BAS-U */}
+          {/* Säkerhetsområden */}
           <section className="py-20 bg-white">
             <div className="container mx-auto px-4">
               <div className="max-w-6xl mx-auto">
                 <h2 className="text-4xl font-bold text-slate-900 mb-12 text-center">
-                  När behöver du BAS-U?
+                  Viktiga säkerhetsområden
                 </h2>
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                   {[
                     {
-                      icon: Users,
-                      title: "Flera entreprenörer",
-                      description: "När flera entreprenörer arbetar samtidigt på byggarbetsplatsen"
-                    },
-                    {
-                      icon: HardHat,
-                      title: "Aktiv byggfas",
-                      description: "Under hela utförandefasen från byggstart till färdigställande"
-                    },
-                    {
                       icon: AlertTriangle,
-                      title: "Högriskarbeten",
-                      description: "Projekt med särskilda arbetsmiljörisker som kräver övervakning"
+                      title: "Fallskydd",
+                      description: "Kontroll av räcken, nät och personlig skyddsutrustning"
                     },
                     {
                       icon: Shield,
-                      title: "Lagkrav AML",
-                      description: "För att uppfylla kraven enligt Arbetsmiljölagen"
+                      title: "Maskinsäkerhet",
+                      description: "Säker användning av maskiner och verktyg"
+                    },
+                    {
+                      icon: FileText,
+                      title: "Kemiska risker",
+                      description: "Hantering av farliga ämnen och kemikalier"
+                    },
+                    {
+                      icon: Clock,
+                      title: "Arbetsmiljö",
+                      description: "Ergonomi, buller och allmän arbetsmiljö"
                     }
                   ].map((item, index) => {
                     const IconComponent = item.icon;
@@ -190,29 +189,29 @@ const BasUPage = () => {
             <div className="container mx-auto px-4">
               <div className="max-w-6xl mx-auto">
                 <h2 className="text-4xl font-bold text-slate-900 mb-12 text-center">
-                  BAS-U processen
+                  BAS-U Processen
                 </h2>
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                   {[
                     {
                       step: "1",
-                      title: "Byggstart",
+                      title: "Projektstart",
                       description: "Genomgång av arbetsmiljöplan och säkerhetsrutiner"
                     },
                     {
                       step: "2", 
                       title: "Löpande kontroll",
-                      description: "Regelbundna säkerhetsronder och arbetsmiljöuppföljning"
+                      description: "Regelbundna säkerhetsronder och dokumentation"
                     },
                     {
                       step: "3",
                       title: "Samordning",
-                      description: "Kontinuerlig samordning mellan alla entreprenörer"
+                      description: "Koordinering mellan entreprenörer och säkerhetsmöten"
                     },
                     {
                       step: "4",
-                      title: "Dokumentation",
-                      description: "Rapportering och dokumentation av arbetsmiljöarbetet"
+                      title: "Avslut",
+                      description: "Slutrapport och överlämning av dokumentation"
                     }
                   ].map((item, index) => (
                     <div key={index} className="text-center">
@@ -240,7 +239,7 @@ const BasUPage = () => {
               </h2>
               <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
                 Kontakta oss för en kostnadsfri konsultation. Vi hjälper dig med 
-                professionell arbetsmiljösamordning under hela byggfasen.
+                professionell arbetsmiljösamordning under byggfasen.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button 
