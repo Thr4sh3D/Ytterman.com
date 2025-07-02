@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from 'react-helmet-async';
 import { PerformanceOptimizer } from "@/components/PerformanceOptimizer";
 import { GoogleTagManager } from "@/components/GoogleTagManager";
+import { DynamicSitemap } from "@/components/DynamicSitemap";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import TjansterPage from "./pages/TjansterPage";
@@ -34,6 +35,7 @@ const App = () => (
       <TooltipProvider>
         <GoogleTagManager />
         <PerformanceOptimizer />
+        <DynamicSitemap />
         <Toaster />
         <Sonner />
         <BrowserRouter>

@@ -11,6 +11,7 @@ import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { OptimizedImage } from '@/components/OptimizedImage';
 import { BlogContent } from '@/components/BlogContent';
 import { RelatedPosts } from '@/components/RelatedPosts';
+import { CanonicalUrl } from '@/components/CanonicalUrl';
 
 export default function BlogPostPage() {
   const { slug } = useParams();
@@ -132,14 +133,13 @@ export default function BlogPostPage() {
         <meta property="og:title" content={post.title} />
         <meta property="og:description" content={post.excerpt} />
         <meta property="og:type" content="article" />
-        <meta property="og:url" content={`https://yoursite.com/blogg/${post.slug}`} />
+        <meta property="og:url" content={`https://ytterman.com/blogg/${post.slug}`} />
         {post.featured_image && (
           <meta property="og:image" content={post.featured_image} />
         )}
         <meta property="article:published_time" content={post.created_at} />
         <meta property="article:author" content={post.author} />
         <meta property="article:section" content={post.category} />
-        <link rel="canonical" href={`https://yoursite.com/blogg/${post.slug}`} />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -159,11 +159,14 @@ export default function BlogPostPage() {
             "dateModified": post.updated_at || post.created_at,
             "mainEntityOfPage": {
               "@type": "WebPage",
-              "@id": `https://yoursite.com/blogg/${post.slug}`
+              "@id": `https://ytterman.com/blogg/${post.slug}`
             }
           })}
         </script>
       </Helmet>
+      
+      {/* Add canonical URL for blog post */}
+      <CanonicalUrl path={`/blogg/${post.slug}`} />
 
       <div className="min-h-screen bg-white">
         <Header />

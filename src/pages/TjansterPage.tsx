@@ -6,6 +6,7 @@ import { FAQ, faqData } from '@/components/FAQ';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { CheckCircle, Phone, Mail, FileText, Users, Shield, Building, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { CanonicalUrl } from '@/components/CanonicalUrl';
 
 const TjansterPage = () => {
   const scrollToContact = () => {
@@ -102,6 +103,9 @@ const TjansterPage = () => {
         faq={serviceFaq}
         organization={true}
       />
+      
+      {/* Add canonical URL */}
+      <CanonicalUrl path="/tjanster" />
       
       <div className="min-h-screen">
         <Header />

@@ -11,6 +11,7 @@ import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { useToast } from '@/components/ui/use-toast';
 import { Button } from '@/components/ui/button';
 import { RefreshCw, AlertCircle } from 'lucide-react';
+import { CanonicalUrl } from '@/components/CanonicalUrl';
 
 export default function BlogPage() {
   const [blogPosts, setBlogPosts] = useState([]);
@@ -75,7 +76,6 @@ export default function BlogPage() {
     { label: 'Blogg', href: '/blogg' }
   ];
 
-  // Error state with retry option
   const ErrorFallback = () => (
     <div className="container mx-auto px-4 py-12">
       <div className="text-center py-20">
@@ -104,20 +104,19 @@ export default function BlogPage() {
         <meta property="og:title" content="Blogg - Bygglovshjälp & Kontrollansvar" />
         <meta property="og:description" content="Expertguider om bygglov och kontrollansvar. Få värdefulla tips för dina byggprojekt." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://yoursite.com/blogg" />
-        <link rel="canonical" href="https://yoursite.com/blogg" />
+        <meta property="og:url" content="https://ytterman.com/blogg" />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Blog",
             "name": "Bygglovshjälp & Kontrollansvar Blogg",
             "description": "Expertguider om bygglov och kontrollansvar",
-            "url": "https://yoursite.com/blogg",
+            "url": "https://ytterman.com/blogg",
             "blogPost": filteredPosts.map(post => ({
               "@type": "BlogPosting",
               "headline": post.title,
               "description": post.excerpt,
-              "url": `https://yoursite.com/blogg/${post.slug}`,
+              "url": `https://ytterman.com/blogg/${post.slug}`,
               "datePublished": post.created_at,
               "author": {
                 "@type": "Person",
@@ -127,6 +126,9 @@ export default function BlogPage() {
           })}
         </script>
       </Helmet>
+      
+      {/* Add canonical URL */}
+      <CanonicalUrl path="/blogg" />
 
       <div className="min-h-screen bg-white">
         <Header />
