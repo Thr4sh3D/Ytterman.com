@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Loader2 } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
-import { updateBlogPosts } from '@/functions/update-blog-posts';
+import { updateBlogPosts } from '@/functions';
 
 export const BlogPostUpdater = () => {
   const [isUpdating, setIsUpdating] = useState(false);
