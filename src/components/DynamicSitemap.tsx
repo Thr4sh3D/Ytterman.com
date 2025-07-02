@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { generateSitemap } from '@/functions';
 
 export const DynamicSitemap = () => {
   useEffect(() => {
@@ -6,8 +7,6 @@ export const DynamicSitemap = () => {
     // It's just a utility to trigger sitemap generation
     const updateSitemap = async () => {
       try {
-        // Call the sitemap generation function directly via fetch
-        // since it returns XML, not JSON
         const response = await fetch('/api/functions/generate-sitemap', {
           method: 'POST',
           headers: {
