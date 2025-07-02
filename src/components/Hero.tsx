@@ -1,77 +1,73 @@
-import { ArrowRight, Shield, CheckCircle } from 'lucide-react';
+import { ArrowRight, CheckCircle, Shield, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export const Hero = () => {
   return (
-    <section className="bg-gradient-to-br from-green-50 to-blue-50 py-20">
+    <section className="relative bg-gradient-to-br from-green-50 via-white to-green-50 py-20 overflow-hidden">
       <div className="container mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <h1 className="text-5xl font-bold text-gray-900 mb-6 leading-tight">
-              Professionell <span className="text-green-600">Byggkontroll</span> för Ditt Projekt
-            </h1>
-            <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-              Vi erbjuder expertis inom byggkontroll, kontrollansvarig och teknisk konsultation. 
-              Säkerställ kvalitet och regelefterlevnad i ditt byggprojekt.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 mb-8">
-              <Link 
-                to="/kontakt" 
-                className="bg-green-600 text-white px-8 py-4 rounded-lg hover:bg-green-700 transition-colors flex items-center justify-center gap-2"
+          <div className="space-y-8">
+            <div className="space-y-4">
+              <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+                Professionell
+                <span className="text-gradient block">Byggkontroll</span>
+              </h1>
+              <p className="text-xl text-gray-600 leading-relaxed">
+                Vi erbjuder certifierade kontrollansvarig-tjänster och BAS P/U-utredningar 
+                för alla typer av byggprojekt. Säkerhet och kvalitet i fokus.
+              </p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link
+                to="/kontakt"
+                className="inline-flex items-center px-8 py-4 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors duration-200 font-semibold"
               >
-                Få Offert <ArrowRight className="w-5 h-5" />
+                Få offert idag
+                <ArrowRight className="ml-2 w-5 h-5" />
               </Link>
-              <Link 
-                to="/tjanster" 
-                className="border-2 border-green-600 text-green-600 px-8 py-4 rounded-lg hover:bg-green-50 transition-colors flex items-center justify-center gap-2"
+              <Link
+                to="/tjanster"
+                className="inline-flex items-center px-8 py-4 border-2 border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-colors duration-200 font-semibold"
               >
-                Våra Tjänster
+                Våra tjänster
               </Link>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-              <div className="flex items-center gap-3">
-                <Shield className="w-8 h-8 text-green-600" />
-                <div>
-                  <h3 className="font-semibold text-gray-900">Certifierad</h3>
-                  <p className="text-gray-600 text-sm">Auktoriserad kontrollansvarig</p>
+            <div className="grid grid-cols-3 gap-6 pt-8">
+              <div className="text-center">
+                <div className="flex justify-center mb-2">
+                  <Shield className="w-8 h-8 text-primary" />
                 </div>
+                <div className="text-2xl font-bold text-gray-900">100%</div>
+                <div className="text-sm text-gray-600">Certifierade</div>
               </div>
-              <div className="flex items-center gap-3">
-                <CheckCircle className="w-8 h-8 text-green-600" />
-                <div>
-                  <h3 className="font-semibold text-gray-900">Kvalitet</h3>
-                  <p className="text-gray-600 text-sm">Högsta standard</p>
+              <div className="text-center">
+                <div className="flex justify-center mb-2">
+                  <Users className="w-8 h-8 text-primary" />
                 </div>
+                <div className="text-2xl font-bold text-gray-900">500+</div>
+                <div className="text-sm text-gray-600">Nöjda kunder</div>
               </div>
-              <div className="flex items-center gap-3">
-                <ArrowRight className="w-8 h-8 text-green-600" />
-                <div>
-                  <h3 className="font-semibold text-gray-900">Snabbt</h3>
-                  <p className="text-gray-600 text-sm">Effektiv hantering</p>
+              <div className="text-center">
+                <div className="flex justify-center mb-2">
+                  <CheckCircle className="w-8 h-8 text-primary" />
                 </div>
+                <div className="text-2xl font-bold text-gray-900">15+</div>
+                <div className="text-sm text-gray-600">År erfarenhet</div>
               </div>
             </div>
           </div>
 
           <div className="relative">
-            <img
-              src="/api/placeholder/600/400"
-              alt="Byggkontroll och teknisk konsultation"
-              className="rounded-2xl shadow-2xl"
-            />
-            <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-lg">
-              <div className="flex items-center gap-4">
-                <div className="bg-green-100 p-3 rounded-full">
-                  <Shield className="w-6 h-6 text-green-600" />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-gray-900">100+ Projekt</h4>
-                  <p className="text-gray-600 text-sm">Genomförda med framgång</p>
-                </div>
-              </div>
+            <div className="relative z-10">
+              <img
+                src="/api/placeholder/600/500"
+                alt="Byggkontroll och säkerhet"
+                className="rounded-2xl shadow-2xl"
+              />
             </div>
+            <div className="absolute -top-4 -right-4 w-full h-full bg-primary/10 rounded-2xl -z-10"></div>
           </div>
         </div>
       </div>
