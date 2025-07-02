@@ -1,31 +1,16 @@
-// This function manages the version number for the website
-// It stores the version in memory and uses a simple counter approach
-// Since serverless functions are stateless, we'll use a simpler approach
-
 Deno.serve(async (req) => {
   try {
-    // For serverless environments, we'll use a timestamp-based approach
-    // This ensures each deployment gets a unique version
-    const now = new Date();
-    const dateString = now.toISOString().split('T')[0]; // YYYY-MM-DD
-    const timeString = now.toTimeString().split(' ')[0].replace(/:/g, ''); // HHMMSS
+    // Du kan anpassa versionsnumret här eller hämta det från en konfigurationsfil
+    const version = "1.0.0";
     
-    // Create a version string with date and time
-    const versionString = `${dateString}-${timeString}`;
-    
-    return new Response(JSON.stringify({ version: versionString }), {
+    return new Response(JSON.stringify({ version }), {
       status: 200,
-      headers: { "Content-Type": "application/json" }
+      headers: { "Content-Type": "application/json" },
     });
   } catch (error) {
-    console.error("Error generating version:", error);
-    
-    // Fallback version if there's any error
-    const fallbackVersion = new Date().toISOString().split('T')[0] + "-1";
-    
-    return new Response(JSON.stringify({ version: fallbackVersion }), {
-      status: 200,
-      headers: { "Content-Type": "application/json" }
+    return new Response(JSON.stringify({ error: error.message }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
     });
   }
 });
