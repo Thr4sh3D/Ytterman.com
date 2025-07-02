@@ -7,18 +7,9 @@ export const DynamicSitemap = () => {
     // It's just a utility to trigger sitemap generation
     const updateSitemap = async () => {
       try {
-        const response = await fetch('/api/functions/generate-sitemap', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
-        
-        if (response.ok) {
-          console.log('Sitemap generated successfully');
-        } else {
-          console.error('Error generating sitemap:', response.statusText);
-        }
+        // Call the generateSitemap function directly
+        const response = await generateSitemap();
+        console.log('Sitemap generated successfully');
       } catch (error) {
         console.error('Error generating sitemap:', error);
       }
