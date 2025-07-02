@@ -11,16 +11,11 @@ interface BreadcrumbsProps {
 }
 
 export const Breadcrumbs = ({ items, className = "" }: BreadcrumbsProps) => {
-  if (items.length === 0) return null;
-
   return (
-    <nav 
-      className={`flex items-center space-x-2 text-sm text-slate-600 ${className}`}
-      aria-label="Breadcrumb"
-    >
+    <nav className={`flex items-center space-x-2 text-sm ${className}`} aria-label="Breadcrumb">
       <a 
-        href="/" 
-        className="flex items-center hover:text-primary transition-colors"
+        href="/"
+        className="flex items-center text-slate-500 hover:text-primary transition-colors"
         aria-label="Hem"
       >
         <Home className="w-4 h-4" />
@@ -36,7 +31,7 @@ export const Breadcrumbs = ({ items, className = "" }: BreadcrumbsProps) => {
           ) : (
             <a 
               href={item.url}
-              className="hover:text-primary transition-colors"
+              className="text-slate-500 hover:text-primary transition-colors"
             >
               {item.name}
             </a>

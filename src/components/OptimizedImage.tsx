@@ -1,46 +1,48 @@
 import { useState } from 'react';
+import { ImageIcon } from 'lucide-react';
 
 interface OptimizedImageProps {
   src: string;
   alt: string;
-  className?: string;
   width?: number;
   height?: number;
-  loading?: 'lazy' | 'eager';
+  className?: string;
   priority?: boolean;
+  loading?: 'lazy' | 'eager';
 }
 
 export const OptimizedImage = ({ 
   src, 
   alt, 
-  className = "", 
   width, 
-  height,
-  loading = 'lazy',
-  priority = false
+  height, 
+  className = "", 
+  priority = false,
+  loading = 'lazy'
 }: OptimizedImageProps) => {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
 
   const handleLoad = () => {
-    setIsLoaded(true);
+    setIsLoading(false);
   };
 
   const handleError = () => {
+    setIsLoading(false);
     setHasError(true);
   };
 
   if (hasError) {
     return (
       <div className={`bg-slate-200 flex items-center justify-center ${className}`}>
-        <span className="text-slate-500 text-sm">Bild kunde inte laddas</span>
+        <ImageIcon className="w-8 h-8 text-slate-400" />
       </div>
     );
   }
 
   return (
     <div className={`relative ${className}`}>
-      {!isLoaded && (
+      {isLoading && (
         <div className="absolute inset-0 bg-slate-200 animate-pulse rounded" />
       )}
       <img
@@ -51,10 +53,7 @@ export const OptimizedImage = ({
         loading={priority ? 'eager' : loading}
         onLoad={handleLoad}
         onError={handleError}
-        className={`transition-opacity duration-300 ${
-          isLoaded ? 'opacity-100' : 'opacity-0'
-        } ${className}`}
-        decoding="async"
+        className={`${isLoading ? 'opacity-0' : 'opacity-100'} transition-opacity duration-300 ${className}`}
       />
     </div>
   );
