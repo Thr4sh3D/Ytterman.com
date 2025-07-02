@@ -9,28 +9,55 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { useToast } from '@/components/ui/use-toast';
+import { Button } from '@/components/ui/button';
+import { RefreshCw, AlertCircle } from 'lucide-react';
 
 export default function BlogPage() {
   const [blogPosts, setBlogPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const [error, setError] = useState(null);
+  const [retryCount, setRetryCount] = useState(0);
   const { toast } = useToast();
 
-  const fetchBlogPosts = async () => {
+  const fetchBlogPosts = async (showToast = true) => {
     setLoading(true);
+    setError(null);
+    
     try {
+      console.log('Attempting to fetch blog posts...');
       const posts = await BlogPost.filter({ published: true }, '-created_at');
+      console.log('Successfully fetched posts:', posts.length);
       setBlogPosts(posts);
+      setRetryCount(0);
     } catch (error) {
       console.error('Error fetching blog posts:', error);
-      toast({
-        title: 'Ett fel uppstod',
-        description: 'Kunde inte hämta blogginlägg',
-        variant: 'destructive',
-      });
+      setError(error);
+      
+      if (showToast) {
+        toast({
+          title: 'Ett fel uppstod',
+          description: 'Kunde inte hämta blogginlägg. Försöker igen...',
+          variant: 'destructive',
+        });
+      }
+      
+      // Auto-retry up to 3 times with exponential backoff
+      if (retryCount < 3) {
+        const delay = Math.pow(2, retryCount) * 1000; // 1s, 2s, 4s
+        setTimeout(() => {
+          setRetryCount(prev => prev + 1);
+          fetchBlogPosts(false);
+        }, delay);
+      }
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleRetry = () => {
+    setRetryCount(0);
+    fetchBlogPosts(true);
   };
 
   useEffect(() => {
@@ -47,6 +74,26 @@ export default function BlogPage() {
     { label: 'Hem', href: '/' },
     { label: 'Blogg', href: '/blogg' }
   ];
+
+  // Error state with retry option
+  const ErrorFallback = () => (
+    <div className="container mx-auto px-4 py-12">
+      <div className="text-center py-20">
+        <AlertCircle className="w-16 h-16 text-red-500 mx-auto mb-4" />
+        <h3 className="text-2xl font-semibold text-slate-700 mb-4">
+          Kunde inte ladda blogginlägg
+        </h3>
+        <p className="text-slate-500 mb-8 max-w-md mx-auto">
+          Det uppstod ett problem när vi försökte hämta blogginläggen. 
+          Kontrollera din internetanslutning och försök igen.
+        </p>
+        <Button onClick={handleRetry} className="bg-primary hover:bg-primary/90">
+          <RefreshCw className="w-4 h-4 mr-2" />
+          Försök igen
+        </Button>
+      </div>
+    </div>
+  );
 
   return (
     <>
@@ -93,18 +140,22 @@ export default function BlogPage() {
           
           <BlogHero />
           
-          <div className="container mx-auto px-4 py-12">
-            <BlogCategories 
-              categories={categories}
-              selectedCategory={selectedCategory}
-              onCategoryChange={setSelectedCategory}
-            />
-            
-            <BlogList 
-              posts={filteredPosts}
-              loading={loading}
-            />
-          </div>
+          {error && retryCount >= 3 ? (
+            <ErrorFallback />
+          ) : (
+            <div className="container mx-auto px-4 py-12">
+              <BlogCategories 
+                categories={categories}
+                selectedCategory={selectedCategory}
+                onCategoryChange={setSelectedCategory}
+              />
+              
+              <BlogList 
+                posts={filteredPosts}
+                loading={loading}
+              />
+            </div>
+          )}
         </main>
         
         <Footer />
