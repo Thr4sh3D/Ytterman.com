@@ -1,47 +1,84 @@
+import { Award, Users, Clock, CheckCircle } from 'lucide-react';
+
+const stats = [
+  { icon: Award, label: "År av Erfarenhet", value: "15+" },
+  { icon: Users, label: "Nöjda Kunder", value: "200+" },
+  { icon: Clock, label: "Genomförda Projekt", value: "500+" },
+  { icon: CheckCircle, label: "Framgångsgrad", value: "99%" }
+];
+
 export const About = () => {
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col md:flex-row gap-12 items-center">
-          <div className="md:w-1/2">
-            <div className="relative">
-              <div className="bg-green-600 absolute -top-4 -left-4 w-24 h-24 rounded-tl-3xl opacity-20"></div>
-              <div className="bg-green-600 absolute -bottom-4 -right-4 w-24 h-24 rounded-br-3xl opacity-20"></div>
-              <img 
-                src="/api/placeholder/600/400" 
-                alt="Byggkontroll team" 
-                className="rounded-xl shadow-xl relative z-10 w-full"
-              />
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div>
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">
+              Expertis Du Kan Lita På
+            </h2>
+            <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+              Med över 15 års erfarenhet inom byggbranschen erbjuder vi professionell 
+              byggkontroll och teknisk konsultation. Vi hjälper dig att säkerställa 
+              kvalitet och regelefterlevnad i ditt byggprojekt.
+            </p>
+            
+            <div className="space-y-4 mb-8">
+              <div className="flex items-start gap-4">
+                <div className="bg-green-100 p-2 rounded-full mt-1">
+                  <CheckCircle className="w-5 h-5 text-green-600" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900 mb-2">Certifierad Kompetens</h3>
+                  <p className="text-gray-600">Auktoriserad kontrollansvarig med gedigen utbildning och certifiering</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-4">
+                <div className="bg-green-100 p-2 rounded-full mt-1">
+                  <CheckCircle className="w-5 h-5 text-green-600" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900 mb-2">Personlig Service</h3>
+                  <p className="text-gray-600">Vi arbetar nära våra kunder för att leverera skräddarsydda lösningar</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-4">
+                <div className="bg-green-100 p-2 rounded-full mt-1">
+                  <CheckCircle className="w-5 h-5 text-green-600" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900 mb-2">Kvalitetsgaranti</h3>
+                  <p className="text-gray-600">Vi står bakom vårt arbete med full kvalitetsgaranti</p>
+                </div>
+              </div>
             </div>
           </div>
-          
-          <div className="md:w-1/2">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              Om oss
-            </h2>
-            <p className="text-lg text-gray-700 mb-6">
-              Vi är ett team av certifierade experter inom byggkontroll och arbetsmiljösamordning med över 15 års erfarenhet i branschen. Vårt fokus ligger på att säkerställa att ditt byggprojekt genomförs enligt gällande lagar och regler.
-            </p>
-            <p className="text-lg text-gray-700 mb-6">
-              Vi arbetar med alla typer av byggprojekt i Västernorrland, från mindre renoveringar till stora kommersiella byggnader. Våra kunder inkluderar privatpersoner, företag och bostadsrättsföreningar.
-            </p>
-            <div className="grid grid-cols-2 gap-6 mt-8">
-              <div>
-                <h4 className="text-2xl font-bold text-green-600">15+</h4>
-                <p className="text-gray-600">Års erfarenhet</p>
-              </div>
-              <div>
-                <h4 className="text-2xl font-bold text-green-600">500+</h4>
-                <p className="text-gray-600">Genomförda projekt</p>
-              </div>
-              <div>
-                <h4 className="text-2xl font-bold text-green-600">100%</h4>
-                <p className="text-gray-600">Nöjda kunder</p>
-              </div>
-              <div>
-                <h4 className="text-2xl font-bold text-green-600">5</h4>
-                <p className="text-gray-600">Certifierade experter</p>
-              </div>
+
+          <div className="relative">
+            <img
+              src="/api/placeholder/500/400"
+              alt="Professionell byggkontroll"
+              className="rounded-2xl shadow-2xl"
+            />
+            
+            <div className="grid grid-cols-2 gap-4 mt-8">
+              {stats.map((stat, index) => (
+                <div
+                  key={index}
+                  className="bg-white p-6 rounded-xl shadow-lg text-center"
+                >
+                  <div className="bg-green-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <stat.icon className="w-6 h-6 text-green-600" />
+                  </div>
+                  <div className="text-2xl font-bold text-gray-900 mb-2">
+                    {stat.value}
+                  </div>
+                  <div className="text-sm text-gray-600">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>

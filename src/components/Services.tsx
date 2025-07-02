@@ -1,91 +1,83 @@
+import { Shield, FileCheck, Users, Building } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { CheckCircle, ArrowRight } from 'lucide-react';
 
 const services = [
   {
-    title: "Kontrollansvarig (KA)",
-    description: "Certifierad kontrollansvarig enligt PBL för alla typer av byggprojekt.",
-    features: ["Upprättande av kontrollplan", "Tekniskt samråd", "Platsbesök", "Slutsamråd"],
-    link: "/kontrollansvarig"
+    icon: Shield,
+    title: "Kontrollansvarig",
+    description: "Professionell kontrollansvarig för ditt byggprojekt enligt PBL",
+    link: "/kontrollansvarig",
+    features: ["Teknisk kontroll", "Dokumentation", "Regelefterlevnad"]
   },
   {
-    title: "BAS-P",
-    description: "Byggarbetsmiljösamordnare för planering och projektering enligt AFS.",
-    features: ["Arbetsmiljöplan", "Riskbedömning", "Förebyggande åtgärder", "Dokumentation"],
-    link: "/bas-p"
+    icon: FileCheck,
+    title: "BAS P & BAS U",
+    description: "Byggarbetsmiljösamordning för planering och utförande",
+    link: "/bas-p",
+    features: ["Riskbedömning", "Säkerhetsplan", "Arbetsmiljökoordination"]
   },
   {
-    title: "BAS-U",
-    description: "Byggarbetsmiljösamordnare för utförande av byggprojekt.",
-    features: ["Samordning på byggarbetsplatsen", "Säkerhetsrutiner", "Skyddsronder", "Uppföljning"],
-    link: "/bas-u"
+    icon: Building,
+    title: "Teknisk Konsultation",
+    description: "Experthjälp inom byggnadsteknik och projektering",
+    link: "/tjanster",
+    features: ["Teknisk rådgivning", "Kvalitetssäkring", "Projektledning"]
+  },
+  {
+    icon: Users,
+    title: "Webbplatsanalys",
+    description: "Analys och optimering av din webbplats",
+    link: "/analys",
+    features: ["SEO-analys", "Prestanda", "Användarupplevelse"]
   }
 ];
 
 export const Services = () => {
-  const scrollToContact = (service: string) => {
-    const contactSection = document.getElementById('contact-section');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
-      
-      // Set form values
-      const projectTypeSelect = document.getElementById('project-type') as HTMLSelectElement;
-      const messageTextarea = document.getElementById('message') as HTMLTextAreaElement;
-      
-      if (projectTypeSelect) {
-        projectTypeSelect.value = service;
-      }
-      
-      if (messageTextarea) {
-        messageTextarea.value = `Jag är intresserad av ${service} tjänsten och skulle vilja veta mer.`;
-      }
-    }
-  };
-
   return (
-    <section id="services" className="py-20 bg-white">
+    <section className="py-20 bg-white">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Våra tjänster
+            Våra Tjänster
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Vi erbjuder professionella tjänster för alla typer av byggprojekt
+            Vi erbjuder omfattande tjänster inom byggkontroll och teknisk konsultation
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {services.map((service, index) => (
-            <div 
+            <div
               key={index}
-              className="bg-white border border-gray-100 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+              className="bg-gradient-to-br from-white to-gray-50 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100"
             >
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">{service.title}</h3>
-              <p className="text-gray-600 mb-6">{service.description}</p>
+              <div className="bg-green-100 w-16 h-16 rounded-2xl flex items-center justify-center mb-6">
+                <service.icon className="w-8 h-8 text-green-600" />
+              </div>
               
-              <ul className="space-y-3 mb-8">
-                {service.features.map((feature, i) => (
-                  <li key={i} className="flex items-start">
-                    <CheckCircle className="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-700">{feature}</span>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                {service.title}
+              </h3>
+              
+              <p className="text-gray-600 mb-6 leading-relaxed">
+                {service.description}
+              </p>
+              
+              <ul className="space-y-2 mb-6">
+                {service.features.map((feature, featureIndex) => (
+                  <li key={featureIndex} className="flex items-center text-sm text-gray-600">
+                    <div className="w-2 h-2 bg-green-600 rounded-full mr-3"></div>
+                    {feature}
                   </li>
                 ))}
               </ul>
               
-              <div className="flex flex-col sm:flex-row gap-3">
-                <Link 
-                  to={service.link}
-                  className="inline-flex items-center justify-center text-green-600 hover:text-green-700 font-medium"
-                >
-                  Läs mer <ArrowRight className="w-4 h-4 ml-1" />
-                </Link>
-                <button
-                  onClick={() => scrollToContact(service.title)}
-                  className="inline-flex items-center justify-center bg-green-600 text-white hover:bg-green-700 px-4 py-2 rounded-lg font-medium transition-colors"
-                >
-                  Begär offert
-                </button>
-              </div>
+              <Link
+                to={service.link}
+                className="text-green-600 font-semibold hover:text-green-700 transition-colors inline-flex items-center gap-2"
+              >
+                Läs mer →
+              </Link>
             </div>
           ))}
         </div>

@@ -1,170 +1,279 @@
 import { useState } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { Helmet } from 'react-helmet-async';
-import { Search, CheckCircle, AlertTriangle, XCircle } from 'lucide-react';
+import { WhatsAppButton } from '@/components/WhatsAppButton';
+import { AdvancedSEO } from '@/components/AdvancedSEO';
+import { Search, Globe, TrendingUp, CheckCircle, AlertCircle, XCircle } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 
-export default function SiteAnalysisPage() {
+const SiteAnalysisPage = () => {
   const [url, setUrl] = useState('');
-  const [isAnalyzing, setIsAnalyzing] = useState(false);
-  const [results, setResults] = useState<null | {
-    score: number;
-    issues: Array<{
-      type: 'error' | 'warning' | 'success';
-      message: string;
-    }>;
-  }>(null);
+  const [analysis, setAnalysis] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const analyzeWebsite = async () => {
     if (!url) return;
     
-    setIsAnalyzing(true);
+    setLoading(true);
     
-    // Simulate analysis with a delay
+    // Simulate analysis - in real implementation, this would call an API
     setTimeout(() => {
-      // Mock results
-      setResults({
-        score: 78,
+      setAnalysis({
+        url: url,
+        score: Math.floor(Math.random() * 40) + 60, // Random score between 60-100
         issues: [
-          { type: 'success', message: 'Sidan har en tydlig titel och meta-beskrivning' },
-          { type: 'success', message: 'Sidan laddar snabbt (under 3 sekunder)' },
-          { type: 'warning', message: 'Några bilder saknar alt-text för tillgänglighet' },
-          { type: 'warning', message: 'Mobilanpassningen kan förbättras' },
-          { type: 'error', message: 'Saknar SSL-certifikat (HTTPS)' },
+          { type: 'error', message: 'Saknar meta-beskrivning på 3 sidor', count: 3 },
+          { type: 'warning', message: 'Långsamma laddningstider', count: 1 },
+          { type: 'info', message: 'Optimeringsmöjligheter för bilder', count: 5 }
+        ],
+        recommendations: [
+          'Lägg till meta-beskrivningar på alla sidor',
+          'Optimera bildstorlekar för snabbare laddning',
+          'Förbättra intern länkstruktur',
+          'Lägg till strukturerad data (Schema.org)',
+          'Optimera för mobila enheter'
+        ],
+        keywords: [
+          { keyword: 'kontrollansvarig', position: 15, volume: 1200 },
+          { keyword: 'BAS-P', position: 8, volume: 800 },
+          { keyword: 'byggkontroll', position: 22, volume: 2100 }
         ]
       });
-      setIsAnalyzing(false);
+      setLoading(false);
     }, 2000);
+  };
+
+  const getScoreColor = (score) => {
+    if (score >= 80) return 'text-green-600';
+    if (score >= 60) return 'text-yellow-600';
+    return 'text-red-600';
+  };
+
+  const getIssueIcon = (type) => {
+    switch (type) {
+      case 'error': return <XCircle className="w-5 h-5 text-red-500" />;
+      case 'warning': return <AlertCircle className="w-5 h-5 text-yellow-500" />;
+      default: return <CheckCircle className="w-5 h-5 text-blue-500" />;
+    }
   };
 
   return (
     <>
-      <Helmet>
-        <title>Webbplatsanalys | Byggkontroll & Teknisk Konsultation</title>
-        <meta name="description" content="Analysera din webbplats för att hitta förbättringsmöjligheter inom SEO, prestanda och användarvänlighet." />
-        <meta name="keywords" content="webbplatsanalys, SEO, prestanda, användarvänlighet" />
-      </Helmet>
+      <AdvancedSEO 
+        title="Gratis SEO-analys för Byggföretag | Ytterman"
+        description="Få en kostnadsfri SEO-analys av din byggföretags webbplats. Upptäck förbättringsmöjligheter och öka din synlighet online. Specialiserat på byggbranschen."
+        keywords="SEO analys byggföretag, webbplatsanalys, SEO audit, byggföretag marknadsföring, online synlighet bygg, SEO konsult byggbransch"
+        url="https://ytterman.com/analys"
+      />
       
-      <Header />
-      
-      <main>
-        <section className="bg-gradient-to-br from-green-600 to-green-800 text-white py-16">
-          <div className="container mx-auto px-6">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">Webbplatsanalys</h1>
-            <p className="text-xl text-green-50 max-w-2xl">
-              Analysera din webbplats för att hitta förbättringsmöjligheter inom SEO, prestanda och användarvänlighet.
-            </p>
-          </div>
-        </section>
+      <div className="min-h-screen">
+        <Header />
         
-        <section className="py-16 bg-white">
-          <div className="container mx-auto px-6">
-            <div className="max-w-3xl mx-auto">
-              <div className="bg-gray-50 rounded-xl p-8 shadow-lg mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                  Analysera din webbplats
-                </h2>
+        <main className="pt-20">
+          {/* Hero Section */}
+          <section className="py-20 bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-50">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto text-center">
+                <h1 className="text-5xl font-bold text-slate-900 mb-6">
+                  Gratis SEO-analys för Byggföretag
+                </h1>
+                <p className="text-xl text-slate-600 mb-8">
+                  Få en kostnadsfri analys av din webbplats och upptäck hur du kan 
+                  förbättra din synlighet online och attrahera fler kunder.
+                </p>
                 
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <label htmlFor="url" className="block text-sm font-medium text-gray-700 mb-1">
-                      Webbplatsens URL
-                    </label>
-                    <div className="flex">
-                      <input
+                <div className="max-w-2xl mx-auto">
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <div className="relative flex-1">
+                      <Globe className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5" />
+                      <Input
                         type="url"
-                        id="url"
-                        placeholder="https://exempel.se"
+                        placeholder="Ange din webbplats URL (t.ex. https://exempel.se)"
                         value={url}
                         onChange={(e) => setUrl(e.target.value)}
-                        required
-                        className="flex-1 px-4 py-2 border border-gray-300 rounded-l-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                        className="pl-10 py-3 text-lg"
                       />
-                      <button
-                        type="submit"
-                        disabled={isAnalyzing}
-                        className={`bg-green-600 text-white px-6 py-2 rounded-r-lg font-medium transition-colors ${isAnalyzing ? 'opacity-70 cursor-not-allowed' : 'hover:bg-green-700'}`}
-                      >
-                        {isAnalyzing ? 'Analyserar...' : 'Analysera'}
-                      </button>
                     </div>
+                    <Button 
+                      onClick={analyzeWebsite}
+                      disabled={!url || loading}
+                      className="earth-gradient text-white hover:opacity-90 px-8 py-3 text-lg"
+                    >
+                      {loading ? (
+                        <>
+                          <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                          Analyserar...
+                        </>
+                      ) : (
+                        <>
+                          <Search className="w-5 h-5 mr-2" />
+                          Analysera
+                        </>
+                      )}
+                    </Button>
                   </div>
-                </form>
-                
-                {isAnalyzing && (
-                  <div className="mt-8 text-center">
-                    <div className="inline-flex items-center justify-center">
-                      <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-green-600 mb-4"></div>
-                    </div>
-                    <p className="text-gray-700">Analyserar webbplatsen...</p>
-                  </div>
-                )}
-                
-                {results && !isAnalyzing && (
-                  <div className="mt-8">
-                    <div className="flex items-center justify-between mb-6">
-                      <h3 className="text-xl font-semibold text-gray-900">Resultat</h3>
-                      <div className="flex items-center">
-                        <div className={`w-16 h-16 rounded-full flex items-center justify-center text-white font-bold text-xl ${
-                          results.score >= 80 ? 'bg-green-500' : 
-                          results.score >= 60 ? 'bg-yellow-500' : 
-                          'bg-red-500'
-                        }`}>
-                          {results.score}
-                        </div>
-                        <span className="ml-2 text-gray-700">poäng</span>
-                      </div>
-                    </div>
-                    
-                    <div className="space-y-4">
-                      {results.issues.map((issue, index) => (
-                        <div 
-                          key={index} 
-                          className={`flex items-start p-4 rounded-lg ${
-                            issue.type === 'success' ? 'bg-green-50' : 
-                            issue.type === 'warning' ? 'bg-yellow-50' : 
-                            'bg-red-50'
-                          }`}
-                        >
-                          {issue.type === 'success' && <CheckCircle className="w-5 h-5 text-green-500 mr-3 flex-shrink-0 mt-0.5" />}
-                          {issue.type === 'warning' && <AlertTriangle className="w-5 h-5 text-yellow-500 mr-3 flex-shrink-0 mt-0.5" />}
-                          {issue.type === 'error' && <XCircle className="w-5 h-5 text-red-500 mr-3 flex-shrink-0 mt-0.5" />}
-                          <span className={`${
-                            issue.type === 'success' ? 'text-green-700' : 
-                            issue.type === 'warning' ? 'text-yellow-700' : 
-                            'text-red-700'
-                          }`}>
-                            {issue.message}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-              
-              <div className="text-center">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                  Vill du förbättra din webbplats?
-                </h2>
-                <p className="text-lg text-gray-700 mb-6">
-                  Kontakta oss för en mer detaljerad analys och förslag på förbättringar.
-                </p>
-                <a 
-                  href="/kontakt" 
-                  className="inline-flex items-center justify-center bg-green-600 text-white hover:bg-green-700 px-6 py-3 rounded-lg font-medium transition-colors"
-                >
-                  <Search className="w-5 h-5 mr-2" />
-                  Få en fullständig analys
-                </a>
+                  <p className="text-sm text-slate-500 mt-4">
+                    Analysen är helt kostnadsfri och tar bara några sekunder
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-        </section>
-      </main>
-      
-      <Footer />
+          </section>
+
+          {/* Analysis Results */}
+          {analysis && (
+            <section className="py-20 bg-white">
+              <div className="container mx-auto px-4">
+                <div className="max-w-6xl mx-auto">
+                  <div className="text-center mb-12">
+                    <h2 className="text-4xl font-bold text-slate-900 mb-4">
+                      Analysresultat för {analysis.url}
+                    </h2>
+                    <div className={`text-6xl font-bold ${getScoreColor(analysis.score)} mb-4`}>
+                      {analysis.score}/100
+                    </div>
+                    <p className="text-slate-600">SEO-poäng</p>
+                  </div>
+
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                    {/* Issues */}
+                    <Card>
+                      <CardHeader>
+                        <CardTitle className="flex items-center">
+                          <AlertCircle className="w-5 h-5 mr-2 text-yellow-500" />
+                          Identifierade problem
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="space-y-3">
+                          {analysis.issues.map((issue, index) => (
+                            <div key={index} className="flex items-start space-x-3">
+                              {getIssueIcon(issue.type)}
+                              <div className="flex-1">
+                                <p className="text-sm text-slate-700">{issue.message}</p>
+                                <Badge variant="outline" className="mt-1">
+                                  {issue.count} st
+                                </Badge>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </CardContent>
+                    </Card>
+
+                    {/* Recommendations */}
+                    <Card>
+                      <CardHeader>
+                        <CardTitle className="flex items-center">
+                          <TrendingUp className="w-5 h-5 mr-2 text-green-500" />
+                          Rekommendationer
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="space-y-3">
+                          {analysis.recommendations.slice(0, 5).map((rec, index) => (
+                            <div key={index} className="flex items-start space-x-3">
+                              <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
+                              <p className="text-sm text-slate-700">{rec}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </CardContent>
+                    </Card>
+
+                    {/* Keywords */}
+                    <Card>
+                      <CardHeader>
+                        <CardTitle className="flex items-center">
+                          <Search className="w-5 h-5 mr-2 text-blue-500" />
+                          Nyckelord
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="space-y-3">
+                          {analysis.keywords.map((kw, index) => (
+                            <div key={index} className="flex justify-between items-center">
+                              <div>
+                                <p className="font-medium text-slate-900">{kw.keyword}</p>
+                                <p className="text-xs text-slate-500">{kw.volume} sökningar/mån</p>
+                              </div>
+                              <Badge variant={kw.position <= 10 ? "default" : "secondary"}>
+                                #{kw.position}
+                              </Badge>
+                            </div>
+                          ))}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+
+                  {/* CTA */}
+                  <div className="text-center bg-slate-50 rounded-xl p-8">
+                    <h3 className="text-2xl font-bold text-slate-900 mb-4">
+                      Vill du förbättra dina resultat?
+                    </h3>
+                    <p className="text-slate-600 mb-6 max-w-2xl mx-auto">
+                      Kontakta oss för en djupare analys och personlig SEO-strategi 
+                      anpassad för byggföretag. Vi hjälper dig att öka din synlighet 
+                      och attrahera fler kvalificerade kunder.
+                    </p>
+                    <Button 
+                      onClick={() => window.location.href = '/kontakt'}
+                      className="earth-gradient text-white hover:opacity-90 px-8 py-4 text-lg"
+                    >
+                      Få personlig SEO-konsultation
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </section>
+          )}
+
+          {/* Benefits Section */}
+          <section className="py-20 bg-slate-50">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto text-center">
+                <h2 className="text-4xl font-bold text-slate-900 mb-12">
+                  Varför SEO är viktigt för byggföretag
+                </h2>
+                <div className="grid md:grid-cols-3 gap-8">
+                  {[
+                    {
+                      title: "Fler kvalificerade leads",
+                      description: "Attrahera kunder som aktivt söker efter dina tjänster"
+                    },
+                    {
+                      title: "Lokal synlighet",
+                      description: "Syns när folk söker efter byggföretag i ditt område"
+                    },
+                    {
+                      title: "Konkurrensfördelar",
+                      description: "Sticka ut från konkurrenterna med bättre online-närvaro"
+                    }
+                  ].map((benefit, index) => (
+                    <div key={index} className="bg-white p-6 rounded-xl shadow-sm">
+                      <h3 className="text-xl font-bold text-slate-900 mb-4">
+                        {benefit.title}
+                      </h3>
+                      <p className="text-slate-600">
+                        {benefit.description}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+        
+        <Footer />
+        <WhatsAppButton />
+      </div>
     </>
   );
-}
+};
+
+export default SiteAnalysisPage;

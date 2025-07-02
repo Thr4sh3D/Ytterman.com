@@ -1,224 +1,92 @@
-import { useState } from 'react';
-import { Send, CheckCircle } from 'lucide-react';
-import emailjs from 'emailjs-com';
+import { Phone, Mail, MapPin, Clock } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    projectType: '',
-    message: ''
-  });
-  
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [error, setError] = useState('');
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setError('');
-    
-    try {
-      // Simulate form submission with a delay
-      // In a real implementation, you would use emailjs or another service
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Example with EmailJS (you would need to set up your own service)
-      // await emailjs.send(
-      //   'YOUR_SERVICE_ID',
-      //   'YOUR_TEMPLATE_ID',
-      //   formData,
-      //   'YOUR_USER_ID'
-      // );
-      
-      setIsSubmitted(true);
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        projectType: '',
-        message: ''
-      });
-    } catch (err) {
-      setError('Det uppstod ett fel vid skickandet av formuläret. Försök igen senare.');
-      console.error('Error submitting form:', err);
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
   return (
-    <section id="contact-section" className="py-20 bg-white">
+    <section className="py-20 bg-gray-900 text-white">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Kontakta oss
+          <h2 className="text-4xl font-bold mb-4">
+            Kontakta Oss Idag
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Har du frågor eller vill diskutera ditt projekt? Fyll i formuläret nedan så återkommer vi inom kort.
+          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+            Redo att starta ditt projekt? Vi hjälper dig med professionell byggkontroll och teknisk konsultation.
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="md:col-span-1 bg-green-50 p-6 rounded-xl">
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Adress</h3>
-                  <p className="text-gray-700">
-                    Storgatan 45<br />
-                    852 30 Sundsvall
-                  </p>
+        <div className="grid lg:grid-cols-2 gap-16">
+          <div>
+            <h3 className="text-2xl font-semibold mb-8">Kom i Kontakt</h3>
+            
+            <div className="space-y-6">
+              <div className="flex items-start gap-4">
+                <div className="bg-green-600 p-3 rounded-full">
+                  <Phone className="w-6 h-6" />
                 </div>
-                
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Telefon</h3>
-                  <p className="text-gray-700">
-                    060-123 45 67
-                  </p>
+                  <h4 className="font-semibold mb-2">Telefon</h4>
+                  <p className="text-gray-300">+46 70 123 45 67</p>
+                  <p className="text-sm text-gray-400">Vardagar 08:00 - 17:00</p>
                 </div>
-                
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">E-post</h3>
-                  <p className="text-gray-700">
-                    info@byggkontroll.se
-                  </p>
+              </div>
+              
+              <div className="flex items-start gap-4">
+                <div className="bg-green-600 p-3 rounded-full">
+                  <Mail className="w-6 h-6" />
                 </div>
-                
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Öppettider</h3>
-                  <p className="text-gray-700">
-                    Måndag-Fredag: 08:00-17:00<br />
-                    Lördag-Söndag: Stängt
-                  </p>
+                  <h4 className="font-semibold mb-2">E-post</h4>
+                  <p className="text-gray-300">info@buildcontrol.se</p>
+                  <p className="text-sm text-gray-400">Vi svarar inom 24 timmar</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-4">
+                <div className="bg-green-600 p-3 rounded-full">
+                  <MapPin className="w-6 h-6" />
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-2">Adress</h4>
+                  <p className="text-gray-300">Byggargatan 123<br />123 45 Stockholm</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-4">
+                <div className="bg-green-600 p-3 rounded-full">
+                  <Clock className="w-6 h-6" />
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-2">Öppettider</h4>
+                  <p className="text-gray-300">Måndag - Fredag: 08:00 - 17:00</p>
+                  <p className="text-gray-300">Helger: Stängt</p>
                 </div>
               </div>
             </div>
+          </div>
+
+          <div className="bg-gray-800 p-8 rounded-2xl">
+            <h3 className="text-2xl font-semibold mb-6">Få en Kostnadsfri Konsultation</h3>
+            <p className="text-gray-300 mb-8">
+              Berätta om ditt projekt så kontaktar vi dig inom 24 timmar med en skräddarsydd lösning.
+            </p>
             
-            <div className="md:col-span-2">
-              {isSubmitted ? (
-                <div className="bg-green-50 p-8 rounded-xl text-center">
-                  <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-6">
-                    <CheckCircle className="w-8 h-8 text-green-600" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Tack för ditt meddelande!</h3>
-                  <p className="text-gray-700">
-                    Vi har mottagit ditt meddelande och återkommer till dig så snart som möjligt.
-                  </p>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-                        Namn *
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
-                      />
-                    </div>
-                    
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                        E-post *
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
-                      />
-                    </div>
-                  </div>
-                  
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
-                        Telefon
-                      </label>
-                      <input
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
-                      />
-                    </div>
-                    
-                    <div>
-                      <label htmlFor="project-type" className="block text-sm font-medium text-gray-700 mb-1">
-                        Typ av projekt
-                      </label>
-                      <select
-                        id="project-type"
-                        name="projectType"
-                        value={formData.projectType}
-                        onChange={handleChange}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
-                      >
-                        <option value="">Välj typ av projekt</option>
-                        <option value="Kontrollansvarig (KA)">Kontrollansvarig (KA)</option>
-                        <option value="BAS-P">BAS-P</option>
-                        <option value="BAS-U">BAS-U</option>
-                        <option value="Annat">Annat</option>
-                      </select>
-                    </div>
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
-                      Meddelande *
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
-                      rows={5}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
-                    ></textarea>
-                  </div>
-                  
-                  {error && (
-                    <div className="text-red-500 text-sm">{error}</div>
-                  )}
-                  
-                  <div>
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className={`inline-flex items-center justify-center bg-green-600 text-white hover:bg-green-700 px-6 py-3 rounded-lg font-medium transition-colors ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
-                    >
-                      {isSubmitting ? (
-                        <>Skickar...</>
-                      ) : (
-                        <>
-                          Skicka meddelande
-                          <Send className="w-4 h-4 ml-2" />
-                        </>
-                      )}
-                    </button>
-                  </div>
-                </form>
-              )}
+            <Link
+              to="/kontakt"
+              className="bg-green-600 text-white px-8 py-4 rounded-lg hover:bg-green-700 transition-colors inline-flex items-center justify-center w-full"
+            >
+              Kontakta Oss Nu
+            </Link>
+            
+            <div className="mt-8 pt-8 border-t border-gray-700">
+              <h4 className="font-semibold mb-4">Våra Specialområden</h4>
+              <div className="grid grid-cols-2 gap-4 text-sm text-gray-300">
+                <div>• Kontrollansvarig</div>
+                <div>• BAS P & BAS U</div>
+                <div>• Teknisk kontroll</div>
+                <div>• Kvalitetssäkring</div>
+                <div>• Projektledning</div>
+                <div>• Rådgivning</div>
+              </div>
             </div>
           </div>
         </div>
