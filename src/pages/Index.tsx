@@ -8,18 +8,22 @@ import { Contact } from '@/components/Contact';
 import { Footer } from '@/components/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 
-export default function Index() {
+const Index = () => {
   return (
     <>
       <SEOEnhancements />
       <Header />
-      <Hero />
-      <Services />
-      <About />
-      <Testimonials />
-      <Contact />
+      <main>
+        <Hero />
+        <Services />
+        <About />
+        <Testimonials />
+        <Contact />
+      </main>
       <Footer />
       <WhatsAppButton />
     </>
   );
-}
+};
+
+export default Index;
