@@ -8,25 +8,13 @@ import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
-import { BlogPostManager } from '@/components/BlogPostManager';
 import { useToast } from '@/components/ui/use-toast';
-import { User } from '@/entities';
 
 export default function BlogPage() {
   const [blogPosts, setBlogPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState('all');
-  const [isAdmin, setIsAdmin] = useState(false);
   const { toast } = useToast();
-
-  const checkAdminStatus = async () => {
-    try {
-      const user = await User.me();
-      setIsAdmin(user?.role === 'administrator');
-    } catch (error) {
-      setIsAdmin(false);
-    }
-  };
 
   const fetchBlogPosts = async () => {
     setLoading(true);
@@ -47,7 +35,6 @@ export default function BlogPage() {
 
   useEffect(() => {
     fetchBlogPosts();
-    checkAdminStatus();
   }, []);
 
   const categories = [...new Set(blogPosts.map(post => post.category).filter(Boolean))];
@@ -107,8 +94,6 @@ export default function BlogPage() {
           <BlogHero />
           
           <div className="container mx-auto px-4 py-12">
-            {isAdmin && <BlogPostManager />}
-            
             <BlogCategories 
               categories={categories}
               selectedCategory={selectedCategory}
