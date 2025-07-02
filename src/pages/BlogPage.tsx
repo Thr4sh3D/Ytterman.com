@@ -8,7 +8,6 @@ import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
-import { BlogPostUpdater } from '@/components/BlogPostUpdater';
 import { useToast } from '@/components/ui/use-toast';
 
 export default function BlogPage() {
@@ -95,8 +94,6 @@ export default function BlogPage() {
           <BlogHero />
           
           <div className="container mx-auto px-4 py-12">
-            <BlogPostUpdater />
-            
             <BlogCategories 
               categories={categories}
               selectedCategory={selectedCategory}
