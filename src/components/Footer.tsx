@@ -1,23 +1,7 @@
 import { Phone, Mail, MapPin } from 'lucide-react';
-import { useEffect, useState } from 'react';
-import { getVersion } from '@/functions';
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
-  const [version, setVersion] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchVersion = async () => {
-      try {
-        const response = await getVersion();
-        setVersion(response.version);
-      } catch (error) {
-        console.error("Failed to fetch version:", error);
-      }
-    };
-
-    fetchVersion();
-  }, []);
 
   return (
     <footer className="bg-slate-900 text-white">
@@ -95,7 +79,6 @@ export const Footer = () => {
         <div className="border-t border-slate-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-400 text-sm">
             © {currentYear} Ytterman. Alla rättigheter förbehållna.
-            {version && <span className="ml-2">Version: {version}</span>}
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <a href="/blogg" className="text-gray-400 hover:text-white transition-colors text-sm">
