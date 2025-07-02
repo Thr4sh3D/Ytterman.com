@@ -16,7 +16,7 @@ export function BlogCategories({ categories, selectedCategory, onCategoryChange 
         <Button
           variant={selectedCategory === 'all' ? 'default' : 'outline'}
           onClick={() => onCategoryChange('all')}
-          className="rounded-full"
+          className="rounded-full bg-gray-100 text-gray-900 hover:bg-gray-200 hover:text-gray-900 border-gray-200"
         >
           Alla artiklar
         </Button>
@@ -25,7 +25,11 @@ export function BlogCategories({ categories, selectedCategory, onCategoryChange 
             key={category}
             variant={selectedCategory === category ? 'default' : 'outline'}
             onClick={() => onCategoryChange(category)}
-            className="rounded-full"
+            className={`rounded-full ${
+              selectedCategory === category 
+                ? 'bg-gray-800 text-white hover:bg-gray-700' 
+                : 'bg-gray-100 text-gray-900 hover:bg-gray-200 hover:text-gray-900 border-gray-200'
+            }`}
           >
             {category}
           </Button>

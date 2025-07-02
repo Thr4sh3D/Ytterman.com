@@ -28,15 +28,15 @@ export function BlogList({ posts, loading }: BlogListProps) {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {[...Array(6)].map((_, i) => (
           <Card key={i} className="animate-pulse">
-            <div className="h-48 bg-gray-200 rounded-t-lg"></div>
+            <div className="h-48 bg-gray-100 rounded-t-lg"></div>
             <CardHeader>
-              <div className="h-4 bg-gray-200 rounded w-3/4"></div>
-              <div className="h-3 bg-gray-200 rounded w-1/2"></div>
+              <div className="h-4 bg-gray-100 rounded w-3/4"></div>
+              <div className="h-3 bg-gray-100 rounded w-1/2"></div>
             </CardHeader>
             <CardContent>
               <div className="space-y-2">
-                <div className="h-3 bg-gray-200 rounded"></div>
-                <div className="h-3 bg-gray-200 rounded w-5/6"></div>
+                <div className="h-3 bg-gray-100 rounded"></div>
+                <div className="h-3 bg-gray-100 rounded w-5/6"></div>
               </div>
             </CardContent>
           </Card>
@@ -65,7 +65,7 @@ export function BlogList({ posts, loading }: BlogListProps) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {posts.map((post) => (
-        <Card key={post.id} className="group hover:shadow-xl transition-all duration-300 border-0 shadow-lg bg-white/80 backdrop-blur-sm">
+        <Card key={post.id} className="group hover:shadow-md transition-all duration-300 border border-gray-200 shadow-sm bg-white">
           <Link to={`/blogg/${post.slug}`} className="block">
             {post.featured_image && (
               <div className="relative h-48 overflow-hidden rounded-t-lg">
@@ -75,14 +75,14 @@ export function BlogList({ posts, loading }: BlogListProps) {
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
               </div>
             )}
             
             <CardHeader className="pb-3">
               <div className="flex items-center gap-2 mb-3">
                 {post.category && (
-                  <Badge variant="secondary" className="text-xs">
+                  <Badge variant="outline" className="text-xs bg-gray-100 text-gray-700 hover:bg-gray-200">
                     {post.category}
                   </Badge>
                 )}
@@ -92,7 +92,7 @@ export function BlogList({ posts, loading }: BlogListProps) {
                 </div>
               </div>
               
-              <h3 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">
+              <h3 className="text-xl font-bold text-gray-900 group-hover:text-gray-700 transition-colors line-clamp-2">
                 {post.title}
               </h3>
             </CardHeader>
@@ -122,12 +122,12 @@ export function BlogList({ posts, loading }: BlogListProps) {
               {post.tags && post.tags.length > 0 && (
                 <div className="flex flex-wrap gap-1 mt-3">
                   {post.tags.slice(0, 3).map((tag, index) => (
-                    <Badge key={index} variant="outline" className="text-xs">
+                    <Badge key={index} variant="outline" className="text-xs bg-gray-50 text-gray-600">
                       {tag}
                     </Badge>
                   ))}
                   {post.tags.length > 3 && (
-                    <Badge variant="outline" className="text-xs">
+                    <Badge variant="outline" className="text-xs bg-gray-50 text-gray-600">
                       +{post.tags.length - 3}
                     </Badge>
                   )}

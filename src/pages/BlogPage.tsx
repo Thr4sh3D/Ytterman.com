@@ -15,7 +15,6 @@ export default function BlogPage() {
   useEffect(() => {
     const fetchBlogPosts = async () => {
       try {
-        // Fix the sorting syntax - use string instead of object
         const posts = await BlogPost.filter({ published: true }, '-created_at');
         setBlogPosts(posts);
       } catch (error) {
@@ -72,7 +71,7 @@ export default function BlogPage() {
         </script>
       </Helmet>
 
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-50">
+      <div className="min-h-screen bg-white">
         <Breadcrumbs items={breadcrumbItems} />
         <BlogHero />
         
