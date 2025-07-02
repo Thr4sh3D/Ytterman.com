@@ -6,6 +6,9 @@ import { BlogHero } from '@/components/BlogHero';
 import { BlogCategories } from '@/components/BlogCategories';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { Layout } from '@/components/Layout';
+import { Header } from '@/components/Header';
+import { Footer } from '@/components/Footer';
+import { WhatsAppButton } from '@/components/WhatsAppButton';
 
 export default function BlogPage() {
   const [blogPosts, setBlogPosts] = useState([]);
@@ -39,7 +42,7 @@ export default function BlogPage() {
   ];
 
   return (
-    <Layout>
+    <>
       <Helmet>
         <title>Blogg - SEO & Bygglovshjälp | Expertråd och Guider</title>
         <meta name="description" content="Läs våra expertguider om SEO, bygglov, BAS P, BAS U och kontrollansvar. Få värdefulla tips och råd för din webbplats och byggprojekt." />
@@ -72,22 +75,34 @@ export default function BlogPage() {
       </Helmet>
 
       <div className="min-h-screen bg-white">
-        <Breadcrumbs items={breadcrumbItems} />
-        <BlogHero />
+        <Header />
         
-        <div className="container mx-auto px-4 py-12">
-          <BlogCategories 
-            categories={categories}
-            selectedCategory={selectedCategory}
-            onCategoryChange={setSelectedCategory}
-          />
+        <main>
+          <section className="py-4 bg-white border-b">
+            <div className="container mx-auto px-4">
+              <Breadcrumbs items={breadcrumbItems} />
+            </div>
+          </section>
           
-          <BlogList 
-            posts={filteredPosts}
-            loading={loading}
-          />
-        </div>
+          <BlogHero />
+          
+          <div className="container mx-auto px-4 py-12">
+            <BlogCategories 
+              categories={categories}
+              selectedCategory={selectedCategory}
+              onCategoryChange={setSelectedCategory}
+            />
+            
+            <BlogList 
+              posts={filteredPosts}
+              loading={loading}
+            />
+          </div>
+        </main>
+        
+        <Footer />
+        <WhatsAppButton />
       </div>
-    </Layout>
+    </>
   );
 }

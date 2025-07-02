@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ImageIcon } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 interface OptimizedImageProps {
   src: string;
@@ -8,53 +8,37 @@ interface OptimizedImageProps {
   height?: number;
   className?: string;
   priority?: boolean;
-  loading?: 'lazy' | 'eager';
 }
 
-export const OptimizedImage = ({ 
-  src, 
-  alt, 
-  width, 
-  height, 
-  className = "", 
+export const OptimizedImage = ({
+  src,
+  alt,
+  width,
+  height,
+  className,
   priority = false,
-  loading = 'lazy'
 }: OptimizedImageProps) => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [hasError, setHasError] = useState(false);
-
-  const handleLoad = () => {
-    setIsLoading(false);
-  };
-
-  const handleError = () => {
-    setIsLoading(false);
-    setHasError(true);
-  };
-
-  if (hasError) {
-    return (
-      <div className={`bg-slate-200 flex items-center justify-center ${className}`}>
-        <ImageIcon className="w-8 h-8 text-slate-400" />
-      </div>
-    );
-  }
+  const [isLoaded, setIsLoaded] = useState(false);
+  
+  // Add query parameters for optimization if the src is a URL
+  const optimizedSrc = src && src.startsWith('http') 
+    ? `${src}${src.includes('?') ? '&' : '?'}w=${width || 800}&q=80` 
+    : src;
 
   return (
-    <div className={`relative ${className}`}>
-      {isLoading && (
-        <div className="absolute inset-0 bg-slate-200 animate-pulse rounded" />
+    <img
+      src={optimizedSrc}
+      alt={alt}
+      width={width}
+      height={height}
+      loading={priority ? 'eager' : 'lazy'}
+      onLoad={() => setIsLoaded(true)}
+      className={cn(
+        'transition-opacity duration-300',
+        !isLoaded && 'opacity-0',
+        isLoaded && 'opacity-100',
+        className
       )}
-      <img
-        src={src}
-        alt={alt}
-        width={width}
-        height={height}
-        loading={priority ? 'eager' : loading}
-        onLoad={handleLoad}
-        onError={handleError}
-        className={`${isLoading ? 'opacity-0' : 'opacity-100'} transition-opacity duration-300 ${className}`}
-      />
-    </div>
+    />
   );
 };
