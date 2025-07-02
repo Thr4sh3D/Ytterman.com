@@ -1,43 +1,45 @@
+import { Link } from 'react-router-dom';
 import { ChevronRight, Home } from 'lucide-react';
 
 interface BreadcrumbItem {
-  name: string;
-  url: string;
+  label: string;
+  href: string;
 }
 
 interface BreadcrumbsProps {
   items: BreadcrumbItem[];
-  className?: string;
 }
 
-export const Breadcrumbs = ({ items, className = "" }: BreadcrumbsProps) => {
+export function Breadcrumbs({ items }: BreadcrumbsProps) {
   return (
-    <nav className={`flex items-center space-x-2 text-sm ${className}`} aria-label="Breadcrumb">
-      <a 
-        href="/"
-        className="flex items-center text-slate-500 hover:text-primary transition-colors"
-        aria-label="Hem"
-      >
-        <Home className="w-4 h-4" />
-      </a>
-      
-      {items.map((item, index) => (
-        <div key={index} className="flex items-center space-x-2">
-          <ChevronRight className="w-4 h-4 text-slate-400" />
-          {index === items.length - 1 ? (
-            <span className="text-slate-900 font-medium" aria-current="page">
-              {item.name}
-            </span>
-          ) : (
-            <a 
-              href={item.url}
-              className="text-slate-500 hover:text-primary transition-colors"
+    <nav className="bg-white/80 backdrop-blur-sm border-b border-gray-200/50 py-3">
+      <div className="container mx-auto px-4">
+        <ol className="flex items-center space-x-2 text-sm">
+          <li>
+            <Link 
+              to="/" 
+              className="flex items-center text-gray-500 hover:text-blue-600 transition-colors"
             >
-              {item.name}
-            </a>
-          )}
-        </div>
-      ))}
+              <Home className="w-4 h-4" />
+            </Link>
+          </li>
+          {items.map((item, index) => (
+            <li key={index} className="flex items-center">
+              <ChevronRight className="w-4 h-4 text-gray-400 mx-2" />
+              {index === items.length - 1 ? (
+                <span className="text-gray-900 font-medium">{item.label}</span>
+              ) : (
+                <Link 
+                  to={item.href}
+                  className="text-gray-500 hover:text-blue-600 transition-colors"
+                >
+                  {item.label}
+                </Link>
+              )}
+            </li>
+          ))}
+        </ol>
+      </div>
     </nav>
   );
-};
+}
