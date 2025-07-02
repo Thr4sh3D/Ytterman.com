@@ -15,6 +15,7 @@ import BlogPage from "./pages/BlogPage";
 import BlogPostPage from "./pages/BlogPostPage";
 import KontaktPage from "./pages/KontaktPage";
 import SiteAnalysisPage from "./pages/SiteAnalysisPage";
+import TackPage from "./pages/TackPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -42,6 +43,7 @@ const App = () => (
             <Route path="/blogg" element={<BlogPage />} />
             <Route path="/blogg/:slug" element={<BlogPostPage />} />
             <Route path="/kontakt" element={<KontaktPage />} />
+            <Route path="/tack" element={<TackPage />} />
             <Route path="/analys" element={<SiteAnalysisPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

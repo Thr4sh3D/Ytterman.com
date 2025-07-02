@@ -30,18 +30,10 @@ const KontaktPage = () => {
       // Simulate form submission
       await new Promise(resolve => setTimeout(resolve, 1000));
       
-      toast({
-        title: "Meddelande skickat!",
-        description: "Vi återkommer inom 24 timmar.",
-      });
+      // Redirect to thank you page with service parameter
+      const serviceParam = formData.project ? `?service=${encodeURIComponent(formData.project)}&source=contact-form` : '?service=kontakt&source=contact-form';
+      window.location.href = `/tack${serviceParam}`;
       
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        project: '',
-        message: ''
-      });
     } catch (error) {
       toast({
         title: "Fel uppstod",
