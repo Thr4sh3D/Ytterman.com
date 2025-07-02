@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from 'react-helmet-async';
 import { PerformanceOptimizer } from "@/components/PerformanceOptimizer";
+import { GoogleTagManager } from "@/components/GoogleTagManager";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import TjansterPage from "./pages/TjansterPage";
@@ -30,6 +31,7 @@ const App = () => (
   <HelmetProvider>
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
+        <GoogleTagManager />
         <PerformanceOptimizer />
         <Toaster />
         <Sonner />
