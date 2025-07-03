@@ -60,11 +60,11 @@ export const Certifications = ({ showTitle = true, compact = false }: Certificat
             </div>
             <div>
               <h4 className="text-lg font-semibold text-slate-900 mb-2">
-                Giltigt till 2025-07-03
+                Giltigt till 2030-07-03
               </h4>
               <p className="text-slate-600">
-                Certifikatet är aktivt och giltigt. Kontinuerlig fortbildning 
-                säkerställer uppdaterad kunskap inom bygglagstiftning.
+                Certifikatet är aktivt och giltigt i fem år från utfärdandedatum. 
+                Kontinuerlig fortbildning säkerställer uppdaterad kunskap inom bygglagstiftning.
               </p>
             </div>
           </div>
