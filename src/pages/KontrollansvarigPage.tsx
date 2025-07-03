@@ -9,8 +9,9 @@ import { OptimizedImage } from '@/components/OptimizedImage';
 import { CheckCircle, Phone, Mail, Shield, FileText, Clock, Users, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Certifications } from '@/components/Certifications';
+import { Link } from 'react-router-dom';
 
-const KontrollansvarigPage = () => {
+export default function KontrollansvarigPage() {
   const scrollToContact = () => {
     window.location.href = '/#kontakt';
   };
@@ -148,6 +149,36 @@ const KontrollansvarigPage = () => {
             </div>
           </section>
 
+          {/* Contact CTA Section */}
+          <section className="py-20 bg-primary text-white">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto text-center">
+                <h2 className="text-4xl font-bold mb-6">
+                  Behöver du en kontrollansvarig?
+                </h2>
+                <p className="text-xl mb-8 text-blue-100">
+                  Kontakta oss idag för en kostnadsfri konsultation och offert
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                  <a
+                    href="tel:+46761118447"
+                    className="inline-flex items-center justify-center px-8 py-4 bg-white text-primary font-semibold rounded-lg hover:bg-blue-50 transition-colors min-w-[240px]"
+                  >
+                    <Phone className="w-5 h-5 mr-3" />
+                    Ring direkt: 076-111 84 47
+                  </a>
+                  <Link
+                    to="/kontakt"
+                    className="inline-flex items-center justify-center px-8 py-4 bg-transparent border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-primary transition-colors min-w-[240px]"
+                  >
+                    <Mail className="w-5 h-5 mr-3" />
+                    Skicka meddelande
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </section>
+
           {/* Certifications Section */}
           <section className="py-20 bg-slate-50">
             <div className="container mx-auto px-4">
@@ -262,4 +293,3 @@ const KontrollansvarigPage = () => {
   );
 };
 
-export default KontrollansvarigPage;
