@@ -79,7 +79,7 @@ export const About = () => {
             
             <div className="relative">
               <OptimizedImage
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=600&fit=crop&crop=face"
+                src="https://ellprnxjjzatijdxcogk.supabase.co/storage/v1/object/public/superdev-project-images/1a9c4603-3de4-4ce7-b4df-b42fb67a7f27/aorpjse3ulohvjtaxgvsp/1751541461385-profile_pic_color_square.png"
                 alt="Tobias Ytterman - Certifierad Kontrollansvarig och Byggarbetsmiljösamordnare i Västernorrland"
                 className="rounded-xl shadow-lg w-full h-auto"
                 width={500}
