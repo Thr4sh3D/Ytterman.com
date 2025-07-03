@@ -1,4 +1,5 @@
 import { Award, Users, Clock, MapPin } from 'lucide-react';
+import { Certification } from './Certification';
 
 export const About = () => {
   const stats = [
@@ -69,6 +70,17 @@ export const About = () => {
                 <li>• Medlem i SBR – Svenska Byggingenjörers Riksförbund</li>
                 <li>• Kontinuerlig vidareutbildning inom byggrätt och arbetsmiljö</li>
               </ul>
+            </div>
+            
+            <div className="mt-8">
+              <Certification 
+                title="Certifierad Kontrollansvarig"
+                description="Certifierad kontrollansvarig enligt Plan- och bygglagen med behörighet N (normal)."
+                imageSrc="https://ellprnxjjzatijdxcogk.supabase.co/storage/v1/object/public/superdev-project-images/1a9c4603-3de4-4ce7-b4df-b42fb67a7f27/aorpjse3ulohvjtaxgvsp/1751536746191-KA_copyright.png"
+                certNumber="KA1198"
+                issueDate="2025-07-03"
+                issuedBy="Kiwa Certification AB"
+              />
             </div>
           </div>
 
