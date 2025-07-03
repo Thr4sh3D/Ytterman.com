@@ -1,6 +1,6 @@
-import { CheckCircle, MessageCircle, Shield, Award } from 'lucide-react';
+import { OptimizedImage } from '@/components/OptimizedImage';
 import { Button } from '@/components/ui/button';
-import { HeroBanner } from './HeroBanner';
+import { Phone, ArrowRight, CheckCircle } from 'lucide-react';
 
 export const Hero = () => {
   const scrollToContact = () => {
@@ -10,106 +10,86 @@ export const Hero = () => {
     }
   };
 
-  const openWhatsApp = () => {
-    window.open('https://wa.me/46761118447?text=Hej! Jag är intresserad av dina tjänster som kontrollansvarig och BAS.', '_blank');
-  };
-
   return (
-    <section id="hem" className="pt-24 pb-16 bg-gradient-to-br from-background via-secondary/20 to-accent/10">
+    <section className="py-20 bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-50">
       <div className="container mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Column - Content */}
-          <div className="animate-fade-in">
-            <div className="inline-flex items-center space-x-2 bg-accent/20 px-4 py-2 rounded-full mb-6">
-              <Shield className="w-5 h-5 text-accent" />
-              <span className="text-sm font-medium text-accent">Certifierad & Erfaren</span>
-            </div>
-            
-            <h1 className="text-4xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
-              Certifierad Kontrollansvarig och{' '}
-              <span className="text-gradient">BAS U/P – Västernorrland</span>
-            </h1>
-            
-            <p className="text-xl text-muted-foreground mb-4 leading-relaxed">
-              Kontrollansvarig & Byggarbetsmiljösamordnare BAS-P / BAS-U
-            </p>
-            
-            <p className="text-lg text-muted-foreground mb-8">
-              Verksam i Sundsvall, Härnösand, Sollefteå, Kramfors, Timrå och hela Västernorrland
-            </p>
-            
-            <div className="space-y-4 mb-8">
-              <div className="flex items-center space-x-3">
-                <CheckCircle className="w-6 h-6 text-accent flex-shrink-0" />
-                <span className="text-lg">Certifierad och erfaren – med bred och praktisk kompetens</span>
+        <div className="max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="inline-flex items-center px-4 py-2 bg-blue-50 text-blue-700 rounded-full mb-6">
+                <span className="text-sm font-medium">Certifierad enligt PBL</span>
               </div>
-              <div className="flex items-center space-x-3">
-                <CheckCircle className="w-6 h-6 text-accent flex-shrink-0" />
-                <span className="text-lg">Fast pris eller tydlig timdebitering</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <CheckCircle className="w-6 h-6 text-accent flex-shrink-0" />
-                <span className="text-lg">Digital hantering, platsbesök och snabb återkoppling</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <CheckCircle className="w-6 h-6 text-accent flex-shrink-0" />
-                <span className="text-lg">Trygga paket för nybyggnation, ombyggnad eller BRF‑projekt</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <CheckCircle className="w-6 h-6 text-accent flex-shrink-0" />
-                <span className="text-lg">Möjlighet att kombinera KA + BAS‑P/U i ett komplett paket</span>
-              </div>
-            </div>
-            
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button 
-                onClick={scrollToContact}
-                size="lg"
-                className="earth-gradient text-white hover:opacity-90 text-lg px-8 py-6"
-              >
-                Kontakta mig
-              </Button>
-              <Button 
-                onClick={openWhatsApp}
-                variant="outline"
-                size="lg"
-                className="border-accent text-accent hover:bg-accent hover:text-white text-lg px-8 py-6"
-              >
-                <MessageCircle className="w-5 h-5 mr-2" />
-                WhatsApp
-              </Button>
-            </div>
-          </div>
-
-          {/* Right Column - Banner and Visual Elements */}
-          <div className="animate-slide-up">
-            <div className="space-y-8">
-              {/* Hero Banner */}
-              <HeroBanner />
               
-              {/* Stats Cards */}
+              <h1 className="text-5xl font-bold text-slate-900 mb-6 leading-tight">
+                Kontrollansvarig & BAS i Västernorrland
+              </h1>
+              
+              <p className="text-xl text-slate-600 mb-8">
+                Professionell hjälp med kontrollansvarig (KA) och byggarbetsmiljösamordnare (BAS-P/BAS-U) 
+                för ditt byggprojekt. Över 20 års erfarenhet och fast pris.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4 mb-8">
+                <Button 
+                  onClick={scrollToContact}
+                  className="earth-gradient text-white hover:opacity-90 px-8 py-4 text-lg"
+                >
+                  <Phone className="w-5 h-5 mr-2" />
+                  Få kostnadsfri offert
+                </Button>
+                <Button 
+                  onClick={() => window.location.href = '/tjanster'}
+                  variant="outline"
+                  className="px-8 py-4 text-lg"
+                >
+                  Se alla tjänster
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </Button>
+              </div>
+              
               <div className="grid grid-cols-2 gap-4">
-                <div className="bg-white rounded-xl p-4 shadow-lg">
-                  <Award className="w-6 h-6 text-accent mb-2" />
-                  <h3 className="font-bold text-lg mb-1">20+ År</h3>
-                  <p className="text-xs text-muted-foreground">Erfarenhet inom bygg</p>
+                <div className="flex items-center space-x-2">
+                  <CheckCircle className="w-5 h-5 text-green-500" />
+                  <span className="text-slate-700">Fast pris</span>
                 </div>
-                <div className="bg-white rounded-xl p-4 shadow-lg">
-                  <Shield className="w-6 h-6 text-accent mb-2" />
-                  <h3 className="font-bold text-lg mb-1">Certifierad</h3>
-                  <p className="text-xs text-muted-foreground">KA, BAS-P & BAS-U</p>
+                <div className="flex items-center space-x-2">
+                  <CheckCircle className="w-5 h-5 text-green-500" />
+                  <span className="text-slate-700">Snabb hantering</span>
                 </div>
-                <div className="bg-white rounded-xl p-4 shadow-lg">
-                  <CheckCircle className="w-6 h-6 text-accent mb-2" />
-                  <h3 className="font-bold text-lg mb-1">Fast Pris</h3>
-                  <p className="text-xs text-muted-foreground">Tydliga kostnader</p>
+                <div className="flex items-center space-x-2">
+                  <CheckCircle className="w-5 h-5 text-green-500" />
+                  <span className="text-slate-700">Över 20 års erfarenhet</span>
                 </div>
-                <div className="bg-white rounded-xl p-4 shadow-lg">
-                  <MessageCircle className="w-6 h-6 text-accent mb-2" />
-                  <h3 className="font-bold text-lg mb-1">Snabb Kontakt</h3>
-                  <p className="text-xs text-muted-foreground">Digital hantering</p>
+                <div className="flex items-center space-x-2">
+                  <CheckCircle className="w-5 h-5 text-green-500" />
+                  <span className="text-slate-700">Hela Västernorrland</span>
                 </div>
               </div>
+            </div>
+            
+            <div className="relative">
+              <div className="relative z-10">
+                <OptimizedImage
+                  src="https://ellprnxjjzatijdxcogk.supabase.co/storage/v1/object/public/superdev-project-images/1a9c4603-3de4-4ce7-b4df-b42fb67a7f27/aorpjse3ulohvjtaxgvsp/1751537468357-profile_pic_color_square.png"
+                  alt="Tobias Ytterman - Certifierad Kontrollansvarig och BAS i Västernorrland"
+                  className="rounded-xl shadow-lg w-full h-auto"
+                  width={540}
+                  height={540}
+                  priority={true}
+                />
+              </div>
+              
+              <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-lg shadow-lg">
+                <div className="flex items-center space-x-2">
+                  <CheckCircle className="w-5 h-5 text-green-500" />
+                  <span className="font-semibold text-slate-900">Certifierad Expert</span>
+                </div>
+              </div>
+              
+              {/* Decorative elements */}
+              <div className="absolute -z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-br from-blue-100/50 via-transparent to-green-100/50 rounded-full blur-3xl"></div>
+              <div className="absolute -z-10 -top-10 -right-10 w-40 h-40 bg-green-100/50 rounded-full blur-3xl"></div>
+              <div className="absolute -z-10 -bottom-10 -left-10 w-40 h-40 bg-blue-100/50 rounded-full blur-3xl"></div>
             </div>
           </div>
         </div>
