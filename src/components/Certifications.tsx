@@ -32,7 +32,7 @@ export const Certifications = ({ showTitle = true, compact = false }: Certificat
                 Certifierad Kontrollansvarig
               </h4>
               <p className="text-slate-600">
-                Certifikatsnummer: KA119 - Behörighet N enligt Plan- och bygglagen. 
+                Certifikatsnummer: KA11926 - Behörighet N enligt Plan- och bygglagen. 
                 Certifierad av Kiwa Certification AB med fullständig behörighet för 
                 kontroll av projekt av normal art.
               </p>
