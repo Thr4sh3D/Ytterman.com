@@ -1,106 +1,104 @@
-import { BlogPost } from "../src/entities";
+import { createSuperdevClient } from 'npm:@superdevhq/client@0.1.51';
+import { BlogPost } from '../entities/BlogPost.json';
+
+const superdev = createSuperdevClient({ 
+  appId: Deno.env.get('SUPERDEV_APP_ID'), 
+});
 
 Deno.serve(async (req) => {
   try {
-    // Get all published blog posts
-    const blogPosts = await BlogPost.filter({ published: true });
+    // Get the domain from the deployment
+    const domain = await getDomain();
     
-    // Base URL of the website
-    const baseUrl = "https://ytterman.com";
-    
-    // Current date in ISO format for lastmod
-    const currentDate = new Date().toISOString().split('T')[0];
-    
-    // Start building the XML sitemap
-    let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Static pages -->
-  <url>
-    <loc>${baseUrl}/</loc>
-    <lastmod>${currentDate}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>${baseUrl}/tjanster</loc>
-    <lastmod>${currentDate}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>${baseUrl}/kontrollansvarig</loc>
-    <lastmod>${currentDate}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>${baseUrl}/bas-p</loc>
-    <lastmod>${currentDate}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>${baseUrl}/bas-u</loc>
-    <lastmod>${currentDate}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>${baseUrl}/blogg</loc>
-    <lastmod>${currentDate}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>${baseUrl}/kontakt</loc>
-    <lastmod>${currentDate}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>${baseUrl}/analys</loc>
-    <lastmod>${currentDate}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>`;
-
-  // Add blog posts to sitemap
-  for (const post of blogPosts) {
-    sitemap += `
-  <url>
-    <loc>${baseUrl}/blogg/${post.slug}</loc>
-    <lastmod>${post.updated_at ? new Date(post.updated_at).toISOString().split('T')[0] : currentDate}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>`;
-  }
-
-  // Close the sitemap
-  sitemap += `
-</urlset>`;
-
-    // Write the sitemap to a file in the public directory
-    try {
-      await Deno.writeTextFile("/tmp/sitemap.xml", sitemap);
-      console.log("Sitemap file written successfully");
-    } catch (writeError) {
-      console.error("Error writing sitemap file:", writeError);
+    if (!domain) {
+      return new Response(JSON.stringify({ error: "No domain found for deployment" }), {
+        status: 404,
+        headers: { "Content-Type": "application/json" },
+      });
     }
-
-    // Return the sitemap as XML
-    return new Response(sitemap, {
+    
+    // Generate sitemap XML
+    const xml = await generateSitemapXml(domain);
+    
+    return new Response(JSON.stringify({ success: true, sitemap: xml }), {
       status: 200,
-      headers: {
-        "Content-Type": "application/xml",
-      },
+      headers: { "Content-Type": "application/json" },
     });
   } catch (error) {
     console.error("Error generating sitemap:", error);
-    return new Response(JSON.stringify({ error: "Failed to generate sitemap" }), {
+    return new Response(JSON.stringify({ error: error.message }), {
       status: 500,
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
     });
   }
 });
+
+async function getDomain() {
+  try {
+    // In a real deployment, you would get the domain from the environment
+    // For development, we'll use a placeholder or detect from request
+    const deploymentInfo = await superdev.app.getDeploymentInfo();
+    return deploymentInfo?.domain || null;
+  } catch (error) {
+    console.error("Error getting domain:", error);
+    return null;
+  }
+}
+
+async function generateSitemapXml(domain: string) {
+  // Define static routes
+  const staticRoutes = [
+    "/",
+    "/tjanster",
+    "/kontrollansvarig",
+    "/bas-p",
+    "/bas-u",
+    "/blogg",
+    "/kontakt",
+    "/tack",
+    "/analys"
+  ];
+  
+  // Get dynamic routes from blog posts
+  let blogPosts = [];
+  try {
+    const authHeader = req.headers.get('Authorization');
+    if (authHeader) {
+      const token = authHeader.split(' ')[1];
+      superdev.auth.setToken(token);
+    }
+    
+    blogPosts = await superdev.entities.BlogPost.filter({ published: true });
+  } catch (error) {
+    console.error("Error fetching blog posts:", error);
+  }
+  
+  // Start building the XML
+  let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
+  xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
+  
+  // Add static routes
+  for (const route of staticRoutes) {
+    xml += '  <url>\n';
+    xml += `    <loc>https://${domain}${route}</loc>\n`;
+    xml += '    <changefreq>weekly</changefreq>\n';
+    xml += '    <priority>0.8</priority>\n';
+    xml += '  </url>\n';
+  }
+  
+  // Add dynamic blog post routes
+  for (const post of blogPosts) {
+    if (post.slug) {
+      xml += '  <url>\n';
+      xml += `    <loc>https://${domain}/blogg/${post.slug}</loc>\n`;
+      xml += '    <changefreq>monthly</changefreq>\n';
+      xml += '    <priority>0.6</priority>\n';
+      xml += '  </url>\n';
+    }
+  }
+  
+  // Close the XML
+  xml += '</urlset>';
+  
+  return xml;
+}
