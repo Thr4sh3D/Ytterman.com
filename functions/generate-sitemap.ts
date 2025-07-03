@@ -1,5 +1,4 @@
 import { createSuperdevClient } from 'npm:@superdevhq/client@0.1.51';
-import { BlogPost } from '../entities/BlogPost.json';
 
 const superdev = createSuperdevClient({ 
   appId: Deno.env.get('SUPERDEV_APP_ID'), 
@@ -8,7 +7,7 @@ const superdev = createSuperdevClient({
 Deno.serve(async (req) => {
   try {
     // Get the domain from the deployment
-    const domain = await getDomain();
+    const domain = await getDomain(req);
     
     if (!domain) {
       return new Response(JSON.stringify({ error: "No domain found for deployment" }), {
@@ -18,7 +17,7 @@ Deno.serve(async (req) => {
     }
     
     // Generate sitemap XML
-    const xml = await generateSitemapXml(domain);
+    const xml = await generateSitemapXml(req, domain);
     
     return new Response(JSON.stringify({ success: true, sitemap: xml }), {
       status: 200,
@@ -33,19 +32,29 @@ Deno.serve(async (req) => {
   }
 });
 
-async function getDomain() {
+async function getDomain(req: Request) {
   try {
-    // In a real deployment, you would get the domain from the environment
-    // For development, we'll use a placeholder or detect from request
-    const deploymentInfo = await superdev.app.getDeploymentInfo();
-    return deploymentInfo?.domain || null;
+    // Try to get domain from request headers first
+    const host = req.headers.get('host');
+    if (host && !host.includes('localhost') && !host.includes('127.0.0.1')) {
+      return host;
+    }
+    
+    // Fallback to deployment info
+    try {
+      const deploymentInfo = await superdev.app.getDeploymentInfo();
+      return deploymentInfo?.domain || null;
+    } catch (deployError) {
+      console.log("Could not get deployment info:", deployError.message);
+      return null;
+    }
   } catch (error) {
     console.error("Error getting domain:", error);
     return null;
   }
 }
 
-async function generateSitemapXml(domain: string) {
+async function generateSitemapXml(req: Request, domain: string) {
   // Define static routes
   const staticRoutes = [
     "/",
@@ -62,15 +71,18 @@ async function generateSitemapXml(domain: string) {
   // Get dynamic routes from blog posts
   let blogPosts = [];
   try {
+    // Set up authentication if available
     const authHeader = req.headers.get('Authorization');
     if (authHeader) {
       const token = authHeader.split(' ')[1];
       superdev.auth.setToken(token);
     }
     
+    // Fetch published blog posts using the entity
     blogPosts = await superdev.entities.BlogPost.filter({ published: true });
   } catch (error) {
     console.error("Error fetching blog posts:", error);
+    // Continue without blog posts if there's an error
   }
   
   // Start building the XML
