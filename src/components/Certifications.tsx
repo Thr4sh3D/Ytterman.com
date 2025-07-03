@@ -51,16 +51,26 @@ export const Certifications = ({ showTitle = true, compact = false }: Certificat
               </div>
             </div>
             
-            <div className="relative">
-              <OptimizedImage
-                src="https://ellprnxjjzatijdxcogk.supabase.co/storage/v1/object/public/superdev-project-images/1a9c4603-3de4-4ce7-b4df-b42fb67a7f27/aorpjse3ulohvjtaxgvsp/1751536744592-KA_copyright.png"
-                alt="Certifikat för Kontrollansvarig enligt Plan- och bygglagen - Tobias Ytterman, Kiwa Certification"
-                className="rounded-lg w-full h-auto border border-slate-200"
-                width={400}
-                height={500}
-              />
-              <div className="absolute top-2 right-2 bg-green-500 text-white px-2 py-1 rounded text-xs font-semibold">
-                Giltigt
+            <div className="flex items-center space-x-4">
+              <div className="relative flex-shrink-0">
+                <OptimizedImage
+                  src="https://ellprnxjjzatijdxcogk.supabase.co/storage/v1/object/public/superdev-project-images/1a9c4603-3de4-4ce7-b4df-b42fb67a7f27/aorpjse3ulohvjtaxgvsp/1751537468357-profile_pic_color_square.png"
+                  alt="Tobias Ytterman - Certifierad Kontrollansvarig"
+                  className="rounded-lg w-24 h-24 object-cover border border-slate-200"
+                  width={96}
+                  height={96}
+                />
+              </div>
+              <div className="flex-1">
+                <div className="bg-green-50 border border-green-200 rounded-lg p-3">
+                  <div className="flex items-center">
+                    <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
+                    <span className="text-sm font-medium text-green-800">Certifierad enligt PBL</span>
+                  </div>
+                  <div className="text-xs text-green-700 mt-1">
+                    Fullständig behörighet för teknisk kontroll
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -97,16 +107,26 @@ export const Certifications = ({ showTitle = true, compact = false }: Certificat
               </div>
             </div>
             
-            <div className="relative">
-              <OptimizedImage
-                src="https://ellprnxjjzatijdxcogk.supabase.co/storage/v1/object/public/superdev-project-images/1a9c4603-3de4-4ce7-b4df-b42fb67a7f27/aorpjse3ulohvjtaxgvsp/1751537157850-BASUP_copyright.png"
-                alt="Kursintyg BAS-P & BAS-U - Tobias Ytterman, UtbildningsKraft"
-                className="rounded-lg w-full h-auto border border-slate-200"
-                width={400}
-                height={500}
-              />
-              <div className="absolute top-2 right-2 bg-green-500 text-white px-2 py-1 rounded text-xs font-semibold">
-                Förnyat 2025
+            <div className="flex items-center space-x-4">
+              <div className="relative flex-shrink-0">
+                <OptimizedImage
+                  src="https://ellprnxjjzatijdxcogk.supabase.co/storage/v1/object/public/superdev-project-images/1a9c4603-3de4-4ce7-b4df-b42fb67a7f27/aorpjse3ulohvjtaxgvsp/1751537468357-profile_pic_color_square.png"
+                  alt="Tobias Ytterman - BAS-P & BAS-U Certifierad"
+                  className="rounded-lg w-24 h-24 object-cover border border-slate-200"
+                  width={96}
+                  height={96}
+                />
+              </div>
+              <div className="flex-1">
+                <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
+                  <div className="flex items-center">
+                    <CheckCircle className="w-4 h-4 text-orange-600 mr-2" />
+                    <span className="text-sm font-medium text-orange-800">Uppdaterad 2025</span>
+                  </div>
+                  <div className="text-xs text-orange-700 mt-1">
+                    Certifierad för både BAS-P och BAS-U
+                  </div>
+                </div>
               </div>
             </div>
           </div>
