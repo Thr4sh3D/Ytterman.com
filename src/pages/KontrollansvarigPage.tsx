@@ -116,8 +116,9 @@ export default function KontrollansvarigPage() {
                       </Button>
                       <a 
                         href="tel:+46761118447"
-                        className="inline-flex items-center px-8 py-4 border-2 border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-colors text-lg font-semibold"
+                        className="inline-flex items-center justify-center px-8 py-4 border-2 border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-colors text-lg font-semibold min-w-[240px]"
                       >
+                        <Phone className="w-5 h-5 mr-3" />
                         Ring direkt: 076-111 84 47
                       </a>
                     </div>
@@ -144,36 +145,6 @@ export default function KontrollansvarigPage() {
                       priority={true}
                     />
                   </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Contact CTA Section */}
-          <section className="py-20 bg-primary text-white">
-            <div className="container mx-auto px-4">
-              <div className="max-w-4xl mx-auto text-center">
-                <h2 className="text-4xl font-bold mb-6">
-                  Behöver du en kontrollansvarig?
-                </h2>
-                <p className="text-xl mb-8 text-blue-100">
-                  Kontakta oss idag för en kostnadsfri konsultation och offert
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                  <a
-                    href="tel:+46761118447"
-                    className="inline-flex items-center justify-center px-8 py-4 bg-white text-primary font-semibold rounded-lg hover:bg-blue-50 transition-colors min-w-[240px]"
-                  >
-                    <Phone className="w-5 h-5 mr-3" />
-                    Ring direkt: 076-111 84 47
-                  </a>
-                  <Link
-                    to="/kontakt"
-                    className="inline-flex items-center justify-center px-8 py-4 bg-transparent border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-primary transition-colors min-w-[240px]"
-                  >
-                    <Mail className="w-5 h-5 mr-3" />
-                    Skicka meddelande
-                  </Link>
                 </div>
               </div>
             </div>
@@ -276,9 +247,9 @@ export default function KontrollansvarigPage() {
                 </Button>
                 <a 
                   href="mailto:tobias@ytterman.com"
-                  className="inline-flex items-center px-8 py-4 border-2 border-white text-white rounded-lg hover:bg-white hover:text-slate-900 transition-colors text-lg font-semibold"
+                  className="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white rounded-lg hover:bg-white hover:text-slate-900 transition-colors text-lg font-semibold min-w-[240px]"
                 >
-                  <Mail className="w-5 h-5 mr-2" />
+                  <Mail className="w-5 h-5 mr-3" />
                   tobias@ytterman.com
                 </a>
               </div>
@@ -292,4 +263,3 @@ export default function KontrollansvarigPage() {
     </>
   );
 };
-
