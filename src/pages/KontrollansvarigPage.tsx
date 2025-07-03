@@ -109,14 +109,14 @@ export default function KontrollansvarigPage() {
                     <div className="flex flex-col sm:flex-row gap-4 mb-8">
                       <Button 
                         onClick={scrollToContact}
-                        className="earth-gradient text-white hover:opacity-90 px-8 py-4 text-lg"
+                        className="earth-gradient text-white hover:opacity-90 px-8 py-4 text-lg h-14"
                       >
                         <Phone className="w-5 h-5 mr-2" />
                         Få kostnadsfri offert
                       </Button>
                       <a 
                         href="tel:+46761118447"
-                        className="inline-flex items-center justify-center px-8 py-4 border-2 border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-colors text-lg font-semibold min-w-[240px]"
+                        className="inline-flex items-center justify-center px-8 py-4 border-2 border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-colors text-lg font-semibold min-w-[240px] h-14"
                       >
                         <Phone className="w-5 h-5 mr-3" />
                         Ring direkt: 076-111 84 47
