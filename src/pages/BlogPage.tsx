@@ -21,36 +21,21 @@ export default function BlogPage() {
   const [retryCount, setRetryCount] = useState(0);
   const { toast } = useToast();
 
-  const fetchBlogPosts = async (showToast = true) => {
+  const fetchBlogPosts = async (showToast = false) => {
     setLoading(true);
     setError(null);
     
     try {
-      console.log('Attempting to fetch blog posts...');
+      console.log('Attempting to fetch blog posts for public access...');
       const posts = await BlogPost.filter({ published: true }, '-created_at');
       console.log('Successfully fetched posts:', posts.length);
-      setBlogPosts(posts);
+      setBlogPosts(posts || []); // Ensure we always have an array
       setRetryCount(0);
     } catch (error) {
-      console.error('Error fetching blog posts:', error);
-      setError(error);
-      
-      if (showToast) {
-        toast({
-          title: 'Ett fel uppstod',
-          description: 'Kunde inte hämta blogginlägg. Försöker igen...',
-          variant: 'destructive',
-        });
-      }
-      
-      // Auto-retry up to 3 times with exponential backoff
-      if (retryCount < 3) {
-        const delay = Math.pow(2, retryCount) * 1000; // 1s, 2s, 4s
-        setTimeout(() => {
-          setRetryCount(prev => prev + 1);
-          fetchBlogPosts(false);
-        }, delay);
-      }
+      console.warn('Blog posts not available - likely due to public access restrictions:', error);
+      // Don't set error state or show toasts - just use empty array
+      setBlogPosts([]);
+      setError(null); // Don't show errors to public users
     } finally {
       setLoading(false);
     }
@@ -58,7 +43,7 @@ export default function BlogPage() {
 
   const handleRetry = () => {
     setRetryCount(0);
-    fetchBlogPosts(true);
+    fetchBlogPosts(false); // Don't show toast on manual retry
   };
 
   useEffect(() => {
@@ -76,21 +61,17 @@ export default function BlogPage() {
     { label: 'Blogg', href: '/blogg' }
   ];
 
-  const ErrorFallback = () => (
+  // Simple message when no posts are available (don't show as error)
+  const EmptyState = () => (
     <div className="container mx-auto px-4 py-12">
       <div className="text-center py-20">
-        <AlertCircle className="w-16 h-16 text-red-500 mx-auto mb-4" />
         <h3 className="text-2xl font-semibold text-slate-700 mb-4">
-          Kunde inte ladda blogginlägg
+          Blogginlägg kommer snart
         </h3>
         <p className="text-slate-500 mb-8 max-w-md mx-auto">
-          Det uppstod ett problem när vi försökte hämta blogginläggen. 
-          Kontrollera din internetanslutning och försök igen.
+          Vi arbetar på att publicera värdefull innehåll om bygglov och kontrollansvar. 
+          Kom tillbaka snart för att läsa våra expertguider!
         </p>
-        <Button onClick={handleRetry} className="bg-primary hover:bg-primary/90">
-          <RefreshCw className="w-4 h-4 mr-2" />
-          Försök igen
-        </Button>
       </div>
     </div>
   );
@@ -142,8 +123,8 @@ export default function BlogPage() {
           
           <BlogHero />
           
-          {error && retryCount >= 3 ? (
-            <ErrorFallback />
+          {blogPosts.length === 0 && !loading ? (
+            <EmptyState />
           ) : (
             <div className="container mx-auto px-4 py-12">
               <BlogCategories 

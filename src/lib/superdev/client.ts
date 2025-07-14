@@ -1,22 +1,30 @@
 import { createSuperdevClient } from '@superdevhq/client';
 
-// Create client with error handling configuration
+// Create client with public-friendly error handling configuration
 export const superdevClient = createSuperdevClient({
-  appId: import.meta.env.VITE_APP_ID, // Using import.meta.env instead of process.env
-  // Add error handling configuration
+  appId: import.meta.env.VITE_APP_ID,
+  // Configure for public access - don't force authentication
+  requireAuth: false, // Allow public access
+  // Add error handling configuration that doesn't interrupt user experience
   onError: (error: any) => {
-    // Suppress common development authentication errors
+    // Suppress ALL authentication-related errors to prevent login prompts
     if (error?.message?.includes('Failed to fetch') || 
         error?.message?.includes('invalid JWT') ||
+        error?.message?.includes('Unauthorized') ||
+        error?.message?.includes('Authentication required') ||
+        error?.message?.includes('Login required') ||
         error?.name === 'TypeError') {
-      // Log only in development, suppress in production
+      
+      // Only log in development, completely silent in production
       if (import.meta.env.MODE === 'development') {
-        console.warn('Superdev auth error (development):', error.message);
+        console.warn('Superdev auth bypassed for public access:', error.message);
       }
-      return; // Don't throw the error
+      return; // Don't throw the error - this prevents login prompts
     }
-    // Re-throw other errors
-    throw error;
+    
+    // For other errors, log but don't throw to avoid disrupting user experience
+    console.warn('Superdev client error:', error);
+    return; // Don't throw any errors that could trigger auth flows
   }
 });
 
