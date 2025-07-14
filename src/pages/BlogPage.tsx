@@ -26,16 +26,16 @@ export default function BlogPage() {
     setError(null);
     
     try {
-      console.log('Attempting to fetch blog posts for public access...');
+      // Add a small delay to prevent rapid-fire requests that might cause fetch errors
+      await new Promise(resolve => setTimeout(resolve, 100));
+      
       const posts = await BlogPost.filter({ published: true }, '-created_at');
-      console.log('Successfully fetched posts:', posts.length);
       setBlogPosts(posts || []); // Ensure we always have an array
       setRetryCount(0);
     } catch (error) {
-      console.warn('Blog posts not available - likely due to public access restrictions:', error);
-      // Don't set error state or show toasts - just use empty array
+      // Completely silent error handling - don't even log for public users
       setBlogPosts([]);
-      setError(null); // Don't show errors to public users
+      setError(null); // Never show errors to public users
     } finally {
       setLoading(false);
     }
@@ -47,7 +47,12 @@ export default function BlogPage() {
   };
 
   useEffect(() => {
-    fetchBlogPosts();
+    // Add a small delay before initial fetch to prevent initialization conflicts
+    const timer = setTimeout(() => {
+      fetchBlogPosts();
+    }, 200);
+    
+    return () => clearTimeout(timer);
   }, []);
 
   const categories = [...new Set(blogPosts.map(post => post.category).filter(Boolean))];
