@@ -1,56 +1,38 @@
-import React, { Component, ErrorInfo, ReactNode } from 'react';
+import React from 'react';
 
 interface Props {
-  children: ReactNode;
-  fallback?: ReactNode;
+  children: React.ReactNode;
 }
 
 interface State {
   hasError: boolean;
-  error?: Error;
 }
 
-export class ErrorBoundary extends Component<Props, State> {
-  public state: State = {
-    hasError: false
-  };
-
-  public static getDerivedStateFromError(error: Error): State {
-    // Update state so the next render will show the fallback UI
-    return { hasError: true, error };
+export class ErrorBoundary extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+    this.state = { hasError: false };
   }
 
-  public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    // Don't log authentication errors in development
-    if (error.message?.includes('Failed to fetch') || 
-        error.message?.includes('invalid JWT') ||
-        error.name === 'TypeError') {
-      return;
-    }
-    
-    console.error('Uncaught error:', error, errorInfo);
+  static getDerivedStateFromError(_: Error): State {
+    return { hasError: true };
   }
 
-  public render() {
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+    // Log error but don't throw to prevent auth disruption
+    console.warn('Error caught by boundary:', error, errorInfo);
+  }
+
+  render() {
     if (this.state.hasError) {
-      // Don't show error UI for authentication errors
-      if (this.state.error?.message?.includes('Failed to fetch') || 
-          this.state.error?.message?.includes('invalid JWT')) {
-        return this.props.children;
-      }
-      
-      return this.props.fallback || (
-        <div className="min-h-screen flex items-center justify-center bg-slate-50">
+      return (
+        <div className="min-h-screen flex items-center justify-center bg-gray-50">
           <div className="text-center">
-            <h2 className="text-2xl font-bold text-slate-900 mb-4">
-              Något gick fel
-            </h2>
-            <p className="text-slate-600 mb-6">
-              Ett oväntat fel har inträffat. Försök att ladda om sidan.
-            </p>
-            <button 
+            <h1 className="text-2xl font-bold text-gray-900 mb-4">Något gick fel</h1>
+            <p className="text-gray-600 mb-6">Ett oväntat fel uppstod. Försök ladda om sidan.</p>
+            <button
               onClick={() => window.location.reload()}
-              className="bg-primary text-white px-6 py-2 rounded-lg hover:bg-primary/90 transition-colors"
+              className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
             >
               Ladda om sidan
             </button>

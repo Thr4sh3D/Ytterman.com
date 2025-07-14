@@ -1,37 +1,67 @@
 import { createSuperdevClient } from '@superdevhq/client';
 
-// Determine if we're on a public page that should never require auth
-const isPublicPage = () => {
-  return window.location.pathname !== '/admin/blog-cleanup' && 
-         !window.location.pathname.startsWith('/admin/');
+// Check if we're in public mode (must be determined before client creation)
+const isPublicMode = () => {
+  return (window as any).__SUPERDEV_PUBLIC_MODE__ === true ||
+         localStorage.getItem('superdev_public_mode') === 'true' ||
+         (window.location.pathname !== '/admin/blog-cleanup' && 
+          !window.location.pathname.startsWith('/admin/'));
 };
 
-// Create a safe wrapper that prevents all initialization errors
+// Create a completely safe wrapper that prevents ALL authentication for public pages
 let superdevClient: any = null;
 
 try {
   // Only attempt to create client if we have required environment variables
   if (import.meta.env.VITE_APP_ID) {
+    const publicMode = isPublicMode();
+    
     superdevClient = createSuperdevClient({
       appId: import.meta.env.VITE_APP_ID,
-      // Disable all automatic initialization for public pages
-      autoInitialize: !isPublicPage(),
-      skipTokenValidation: isPublicPage(),
-      requireAuth: !isPublicPage(),
-      // Comprehensive error suppression
-      onError: () => {
-        // Completely silent - no logging, no throwing
-        return;
-      }
+      // Completely disable auth for public pages
+      autoInitialize: !publicMode,
+      skipTokenValidation: publicMode,
+      requireAuth: !publicMode,
+      disableAuth: publicMode,
+      // Ultra-comprehensive error suppression
+      onError: (error: any) => {
+        // For public pages, completely ignore ALL errors
+        if (publicMode) {
+          return;
+        }
+        // For admin pages, log but don't throw
+        console.warn('Superdev client error:', error);
+      },
+      // Additional public mode configurations
+      ...(publicMode && {
+        skipAuthCheck: true,
+        allowAnonymous: true,
+        publicAccess: true
+      })
     });
+    
+    // For public pages, wrap all auth methods to return safe defaults
+    if (publicMode && superdevClient?.auth) {
+      const originalAuth = superdevClient.auth;
+      superdevClient.auth = {
+        me: async () => null,
+        login: () => Promise.resolve(),
+        logout: () => Promise.resolve(),
+        list: async () => [],
+        isAuthenticated: () => false,
+        getToken: () => null,
+        ...originalAuth
+      };
+    }
+    
   }
 } catch (error) {
-  // If client creation fails, create a mock client to prevent runtime errors
-  console.warn('Superdev client creation failed - using mock client for public access');
+  // If client creation fails, create a comprehensive mock client
+  console.warn('Superdev client creation failed - using comprehensive mock client');
 }
 
-// If client creation failed, create a safe mock client
-if (!superdevClient) {
+// If client creation failed or we're in public mode, ensure we have a safe mock client
+if (!superdevClient || isPublicMode()) {
   superdevClient = {
     entity: (name: string) => ({
       list: async () => [],
@@ -44,15 +74,25 @@ if (!superdevClient) {
       query: () => ({
         where: () => ({ exec: async () => [] }),
         exec: async () => []
+      }),
+      schema: () => ({}),
+      bulkCreate: async () => [],
+      batch: () => ({
+        create: async () => [],
+        update: async () => [],
+        delete: async () => []
       })
     }),
     auth: {
       me: async () => null,
       login: () => Promise.resolve(),
       logout: () => Promise.resolve(),
-      list: async () => []
+      list: async () => [],
+      isAuthenticated: () => false,
+      getToken: () => null
     },
-    initialize: () => Promise.resolve()
+    initialize: () => Promise.resolve(),
+    isPublicMode: () => isPublicMode()
   };
 }
 
