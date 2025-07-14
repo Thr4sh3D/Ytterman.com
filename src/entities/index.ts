@@ -69,34 +69,10 @@ const createSafeEntity = (entityName: string) => {
 // Create completely safe entity managers
 export const BlogPost = createSafeEntity("BlogPost");
 
-// Ultra-safe User entity
+// Simplified User entity - no auth methods needed
 export const User = {
-  me: async () => {
-    try {
-      return await superdevClient?.auth?.me?.() || null;
-    } catch (error) {
-      return null;
-    }
-  },
-  login: () => {
-    try {
-      return superdevClient?.auth?.login?.() || Promise.resolve();
-    } catch (error) {
-      return Promise.resolve();
-    }
-  },
-  logout: () => {
-    try {
-      return superdevClient?.auth?.logout?.() || Promise.resolve();
-    } catch (error) {
-      return Promise.resolve();
-    }
-  },
-  list: async () => {
-    try {
-      return await superdevClient?.auth?.list?.() || [];
-    } catch (error) {
-      return [];
-    }
-  }
+  me: async () => null,
+  login: () => Promise.resolve(),
+  logout: () => Promise.resolve(),
+  list: async () => []
 };

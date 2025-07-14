@@ -8,11 +8,11 @@ try {
   if (import.meta.env.VITE_APP_ID) {
     superdevClient = createSuperdevClient({
       appId: import.meta.env.VITE_APP_ID,
-      // Disable all automatic initialization to prevent errors
+      // Completely disable all authentication
       autoInitialize: false,
       skipTokenValidation: true,
       requireAuth: false,
-      // Comprehensive error suppression
+      // Complete error suppression
       onError: () => {
         // Completely silent - no logging, no throwing
         return;
@@ -20,7 +20,7 @@ try {
     });
   }
 } catch (error) {
-  // If client creation fails, create a mock client to prevent runtime errors
+  // If client creation fails, create a mock client
   console.warn('Superdev client creation failed - using mock client for public access');
 }
 
@@ -40,12 +40,6 @@ if (!superdevClient) {
         exec: async () => []
       })
     }),
-    auth: {
-      me: async () => null,
-      login: () => Promise.resolve(),
-      logout: () => Promise.resolve(),
-      list: async () => []
-    },
     initialize: () => Promise.resolve()
   };
 }
