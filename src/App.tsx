@@ -8,10 +8,6 @@ import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { PerformanceOptimizer } from "@/components/PerformanceOptimizer";
 import { GoogleTagManager } from "@/components/GoogleTagManager";
 import { DynamicSitemap } from "@/components/DynamicSitemap";
-
-// Import public access configuration - this ensures public pages never require auth
-import "@/lib/superdev/public-access";
-
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import TjansterPage from "./pages/TjansterPage";

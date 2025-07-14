@@ -1,26 +1,47 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
+import { generateSitemap } from '@/functions';
 
 export const DynamicSitemap = () => {
   useEffect(() => {
-    // Generate dynamic sitemap data for SEO
-    const generateSitemapData = () => {
-      const routes = [
-        { url: '/', priority: 1.0, changefreq: 'weekly' },
-        { url: '/tjanster', priority: 0.8, changefreq: 'monthly' },
-        { url: '/kontrollansvarig', priority: 0.7, changefreq: 'monthly' },
-        { url: '/bas-p', priority: 0.7, changefreq: 'monthly' },
-        { url: '/bas-u', priority: 0.7, changefreq: 'monthly' },
-        { url: '/blogg', priority: 0.9, changefreq: 'weekly' },
-        { url: '/kontakt', priority: 0.6, changefreq: 'monthly' },
-        { url: '/analys', priority: 0.8, changefreq: 'monthly' },
-      ];
-
-      // Store sitemap data for potential XML generation
-      (window as any).__sitemapData = routes;
+    const updateSitemap = async () => {
+      try {
+        const response = await generateSitemap();
+        
+        // Check if the response indicates no domain (development environment)
+        if (response && typeof response === 'object' && 'error' in response) {
+          if (response.error === 'No domain found for deployment') {
+            console.log('Sitemap generation skipped - app not yet deployed');
+            return;
+          }
+          throw new Error(response.error);
+        }
+        
+        console.log('Sitemap generated successfully');
+      } catch (error) {
+        // Handle network errors and other issues
+        if (error instanceof TypeError && error.message === 'Failed to fetch') {
+          console.log('Sitemap generation skipped - function not available in development');
+          return;
+        }
+        
+        // Check if the error is related to no domain found (development environment)
+        if (error?.message?.includes('No domain found for deployment')) {
+          console.log('Sitemap generation skipped - app not yet deployed');
+          return;
+        }
+        
+        console.error('Error generating sitemap:', error);
+      }
     };
-
-    generateSitemapData();
+    
+    // Generate sitemap when the app loads
+    updateSitemap();
+    
+    // Set up a weekly refresh (7 days)
+    const intervalId = setInterval(updateSitemap, 7 * 24 * 60 * 60 * 1000);
+    
+    return () => clearInterval(intervalId);
   }, []);
-
+  
   return null;
 };

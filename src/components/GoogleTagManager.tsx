@@ -1,30 +1,35 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
 export const GoogleTagManager = () => {
   useEffect(() => {
-    // Only load GTM in production and if GTM ID is available
-    if (import.meta.env.PROD && import.meta.env.VITE_GTM_ID) {
-      const gtmId = import.meta.env.VITE_GTM_ID;
-      
-      // GTM script
-      const script = document.createElement('script');
-      script.innerHTML = `
-        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','${gtmId}');
-      `;
-      document.head.appendChild(script);
-
-      // GTM noscript
-      const noscript = document.createElement('noscript');
-      noscript.innerHTML = `
-        <iframe src="https://www.googletagmanager.com/ns.html?id=${gtmId}"
-        height="0" width="0" style="display:none;visibility:hidden"></iframe>
-      `;
-      document.body.appendChild(noscript);
-    }
+    // Skapa första script-elementet (async src)
+    const scriptSrc = document.createElement('script');
+    scriptSrc.async = true;
+    scriptSrc.src = "https://www.googletagmanager.com/gtag/js?id=AW-17296101730";
+    
+    // Skapa andra script-elementet (inline script)
+    const scriptInline = document.createElement('script');
+    scriptInline.innerHTML = `
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-17296101730');
+    `;
+    
+    // Lägg till scripten direkt efter head-elementet
+    const head = document.getElementsByTagName('head')[0];
+    head.insertBefore(scriptSrc, head.firstChild);
+    head.insertBefore(scriptInline, head.firstChild.nextSibling);
+    
+    return () => {
+      // Rensa upp om komponenten unmountas
+      try {
+        head.removeChild(scriptSrc);
+        head.removeChild(scriptInline);
+      } catch (e) {
+        console.error('Error removing Google tag scripts:', e);
+      }
+    };
   }, []);
 
   return null;
