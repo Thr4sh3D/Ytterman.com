@@ -68,11 +68,3 @@ const createSafeEntity = (entityName: string) => {
 
 // Create completely safe entity managers
 export const BlogPost = createSafeEntity("BlogPost");
-
-// Simplified User entity - no auth methods needed
-export const User = {
-  me: async () => null,
-  login: () => Promise.resolve(),
-  logout: () => Promise.resolve(),
-  list: async () => []
-};
