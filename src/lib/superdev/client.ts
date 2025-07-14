@@ -1,5 +1,11 @@
 import { createSuperdevClient } from '@superdevhq/client';
 
+// Determine if we're on a public page that should never require auth
+const isPublicPage = () => {
+  return window.location.pathname !== '/admin/blog-cleanup' && 
+         !window.location.pathname.startsWith('/admin/');
+};
+
 // Create a safe wrapper that prevents all initialization errors
 let superdevClient: any = null;
 
@@ -8,10 +14,10 @@ try {
   if (import.meta.env.VITE_APP_ID) {
     superdevClient = createSuperdevClient({
       appId: import.meta.env.VITE_APP_ID,
-      // Disable all automatic initialization to prevent errors
-      autoInitialize: false,
-      skipTokenValidation: true,
-      requireAuth: false,
+      // Disable all automatic initialization for public pages
+      autoInitialize: !isPublicPage(),
+      skipTokenValidation: isPublicPage(),
+      requireAuth: !isPublicPage(),
       // Comprehensive error suppression
       onError: () => {
         // Completely silent - no logging, no throwing
