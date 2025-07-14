@@ -2,7 +2,7 @@ import { createSuperdevClient } from '@superdevhq/client';
 
 // Create client with error handling configuration
 export const superdevClient = createSuperdevClient({
-  appId: process.env.SUPERDEV_APP_ID,
+  appId: import.meta.env.VITE_APP_ID, // Using import.meta.env instead of process.env
   // Add error handling configuration
   onError: (error: any) => {
     // Suppress common development authentication errors
@@ -10,7 +10,7 @@ export const superdevClient = createSuperdevClient({
         error?.message?.includes('invalid JWT') ||
         error?.name === 'TypeError') {
       // Log only in development, suppress in production
-      if (process.env.NODE_ENV === 'development') {
+      if (import.meta.env.MODE === 'development') {
         console.warn('Superdev auth error (development):', error.message);
       }
       return; // Don't throw the error
