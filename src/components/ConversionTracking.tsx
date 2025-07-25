@@ -1,79 +1,70 @@
 import { useEffect } from 'react';
 
 interface ConversionTrackingProps {
-  eventType: 'form_submit' | 'phone_click' | 'email_click' | 'quote_request';
-  service?: string;
+  conversionId?: string;
+  conversionLabel?: string;
   value?: number;
-  customData?: Record<string, any>;
+  currency?: string;
 }
 
 export const ConversionTracking = ({ 
-  eventType, 
-  service = 'general',
-  value = 1.0,
-  customData = {}
+  conversionId = 'AW-XXXXXXXXX', // Ersätt med din Google Ads Conversion ID
+  conversionLabel = 'contact-form', // Ersätt med din Conversion Label
+  value = 0,
+  currency = 'SEK'
 }: ConversionTrackingProps) => {
+  
   useEffect(() => {
-    // Google Ads konvertering
-    if (typeof window !== 'undefined' && (window as any).gtag) {
-      (window as any).gtag('event', 'conversion', {
-        'send_to': 'AW-17296101730/CONVERSION_LABEL', // Uppdaterat med ditt Google Ads Conversion ID
-        'value': value,
-        'currency': 'SEK',
-        'transaction_id': `${Date.now()}-${eventType}-${service}`,
-        'custom_parameters': {
-          'event_type': eventType,
-          'service_type': service,
-          ...customData
-        }
-      });
+    // Ladda Google Ads konverteringsskript om det inte redan finns
+    if (!window.gtag) {
+      const script = document.createElement('script');
+      script.async = true;
+      script.src = `https://www.googletagmanager.com/gtag/js?id=${conversionId}`;
+      document.head.appendChild(script);
 
-      // Google Analytics 4 event
-      (window as any).gtag('event', 'generate_lead', {
-        'event_category': 'Contact',
-        'event_label': `${eventType}_${service}`,
-        'value': value,
-        'custom_parameters': customData
-      });
+      // Initiera gtag
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function() {
+        window.dataLayer.push(arguments);
+      };
+      window.gtag('js', new Date());
+      window.gtag('config', conversionId);
     }
+  }, [conversionId]);
 
-    // Facebook Pixel (om du använder det)
-    if (typeof window !== 'undefined' && (window as any).fbq) {
-      (window as any).fbq('track', 'Lead', {
-        content_name: service,
-        content_category: eventType,
-        value: value,
-        currency: 'SEK'
-      });
-    }
-  }, [eventType, service, value, customData]);
-
-  return null;
+  return null; // Denna komponent renderar inget visuellt
 };
 
-// Hook för enkel användning
-export const useConversionTracking = () => {
-  const trackConversion = (
-    eventType: ConversionTrackingProps['eventType'],
-    service?: string,
-    value?: number,
-    customData?: Record<string, any>
-  ) => {
-    // Google Ads
-    if (typeof window !== 'undefined' && (window as any).gtag) {
-      (window as any).gtag('event', 'conversion', {
-        'send_to': 'AW-17296101730/CONVERSION_LABEL',
-        'value': value || 1.0,
-        'currency': 'SEK',
-        'transaction_id': `${Date.now()}-${eventType}-${service || 'general'}`,
-        'custom_parameters': {
-          'event_type': eventType,
-          'service_type': service || 'general',
-          ...customData
-        }
-      });
-    }
-  };
-
-  return { trackConversion };
+// Funktion för att spåra konvertering
+export const trackConversion = (
+  conversionId: string = 'AW-XXXXXXXXX', // Ersätt med din Google Ads Conversion ID
+  conversionLabel: string = 'contact-form', // Ersätt med din Conversion Label
+  value: number = 0,
+  currency: string = 'SEK'
+) => {
+  if (window.gtag) {
+    window.gtag('event', 'conversion', {
+      'send_to': `${conversionId}/${conversionLabel}`,
+      'value': value,
+      'currency': currency,
+      'transaction_id': Date.now().toString() // Unik ID för varje konvertering
+    });
+    
+    console.log('Google Ads konvertering spårad:', {
+      conversionId,
+      conversionLabel,
+      value,
+      currency
+    });
+  } else {
+    console.warn('Google Ads gtag inte tillgängligt för konverteringsspårning');
+  }
 };
+
+// TypeScript deklarationer för gtag
+declare global {
+  interface Window {
+    gtag: (...args: any[]) => void;
+    dataLayer: any[];
+  }
+}

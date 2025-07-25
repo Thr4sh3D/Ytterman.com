@@ -5,6 +5,7 @@ import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { AdvancedSEO } from '@/components/AdvancedSEO';
 import { FAQ, faqData } from '@/components/FAQ';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
+import { ConversionTracking, trackConversion } from '@/components/ConversionTracking';
 import { Phone, Mail, MapPin, Clock, Send, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -29,6 +30,14 @@ const KontaktPage = () => {
     try {
       // Simulate form submission
       await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Spåra Google Ads konvertering
+      trackConversion(
+        'AW-XXXXXXXXX', // Ersätt med din Google Ads Conversion ID
+        'contact-form-submission', // Ersätt med din Conversion Label
+        100, // Värde på konverteringen (valfritt)
+        'SEK'
+      );
       
       // Redirect to thank you page with service parameter
       const serviceParam = formData.project ? `?service=${encodeURIComponent(formData.project)}&source=contact-form` : '?service=kontakt&source=contact-form';
@@ -105,6 +114,9 @@ const KontaktPage = () => {
         faq={faqData.general}
         organization={true}
       />
+      
+      {/* Google Ads Konverteringsspårning */}
+      <ConversionTracking />
       
       <div className="min-h-screen">
         <Header />
