@@ -47,11 +47,11 @@ const App = () => (
           <GoogleTagManager />
           <PerformanceOptimizer />
           <AccessibilityEnhancements />
-          <SEOOptimizer />
           <DynamicSitemap />
           <Toaster />
           <Sonner />
           <BrowserRouter>
+            <SEOOptimizer />
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/tjanster" element={<TjansterPage />} />
