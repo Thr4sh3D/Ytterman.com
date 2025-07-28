@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
@@ -22,6 +22,7 @@ const KontaktPage = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  const formRef = useRef<HTMLDivElement>(null);
 
   // Mapping från paket-ID och tjänst-ID till projekttyp för select-fältet
   const packageToProjectType = {
@@ -84,6 +85,11 @@ const KontaktPage = () => {
         project: projectType,
         message: prefilledMessage
       }));
+
+      // Scrolla till formuläret efter en kort fördröjning för att säkerställa att sidan har laddats
+      setTimeout(() => {
+        formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
     }
   }, []);
 
@@ -285,7 +291,7 @@ const KontaktPage = () => {
                   </div>
 
                   {/* Contact Form */}
-                  <div>
+                  <div ref={formRef}>
                     <h2 className="text-3xl font-bold text-slate-900 mb-8">
                       Skicka meddelande
                     </h2>
