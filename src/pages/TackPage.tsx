@@ -13,17 +13,17 @@ const TackPage = () => {
   const source = searchParams.get('source') || 'website';
 
   useEffect(() => {
-    // Google Ads konverteringsmätning
+    // Google Ads konverteringsmätning med din riktiga konverteringskod
     if (typeof window !== 'undefined' && (window as any).gtag) {
       (window as any).gtag('event', 'conversion', {
-        'send_to': 'AW-17296101730/CONVERSION_LABEL', // Uppdaterat med ditt Google Ads Conversion ID
-        'value': 1.0,
-        'currency': 'SEK',
-        'transaction_id': `${Date.now()}-${service}`,
-        'custom_parameters': {
-          'service_type': service,
-          'traffic_source': source
-        }
+        'send_to': 'AW-17296101730/I1ieCMvrqvoaEOKitrdA'
+      });
+      
+      console.log('Google Ads konvertering spårad:', {
+        conversionId: 'AW-17296101730',
+        conversionLabel: 'I1ieCMvrqvoaEOKitrdA',
+        service: service,
+        source: source
       });
     }
 
@@ -158,7 +158,6 @@ const TackPage = () => {
             </div>
           </section>
 
-          {/* Contact Info */}
           <section className="py-20 bg-white">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto">
@@ -205,7 +204,6 @@ const TackPage = () => {
             </div>
           </section>
 
-          {/* Additional Services */}
           <section className="py-20 bg-slate-50">
             <div className="container mx-auto px-4">
               <div className="max-w-6xl mx-auto">
@@ -269,7 +267,6 @@ const TackPage = () => {
             </div>
           </section>
 
-          {/* Testimonial */}
           <section className="py-20 bg-white">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto text-center">
