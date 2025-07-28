@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
@@ -22,6 +22,70 @@ const KontaktPage = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+
+  // Mapping från paket-ID och tjänst-ID till projekttyp för select-fältet
+  const packageToProjectType = {
+    'kontrollansvarig': 'villa',
+    'ka-bas-paket': 'villa',
+    'brf-stora-projekt': 'flerfamilj',
+    'kontrollansvarig-service': 'villa',
+    'bas-p-service': 'villa',
+    'bas-u-service': 'villa',
+    'kombinerade-paket-service': 'flerfamilj'
+  };
+
+  // Läs URL-parametrar och fyll i formuläret automatiskt
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const service = urlParams.get('service');
+    const source = urlParams.get('source');
+    
+    if (service) {
+      let prefilledMessage = '';
+      let projectType = '';
+      
+      // Skapa meddelande baserat på vald tjänst
+      switch (service) {
+        case 'kontrollansvarig':
+          prefilledMessage = 'Hej! Jag är intresserad av tjänsten Kontrollansvarig (KA) enligt PBL. Kan du kontakta mig för mer information och prisuppgift?';
+          projectType = 'villa';
+          break;
+        case 'ka-bas-paket':
+          prefilledMessage = 'Hej! Jag är intresserad av KA + BAS-paketet för mitt byggprojekt. Kan du kontakta mig för mer information och prisuppgift?';
+          projectType = 'villa';
+          break;
+        case 'brf-stora-projekt':
+          prefilledMessage = 'Hej! Jag är intresserad av era tjänster för BRF och stora projekt. Kan du kontakta mig för mer information och prisuppgift?';
+          projectType = 'flerfamilj';
+          break;
+        case 'kontrollansvarig-service':
+          prefilledMessage = 'Hej! Jag är intresserad av tjänsten Kontrollansvarig (KA). Kan du kontakta mig för mer information?';
+          projectType = 'villa';
+          break;
+        case 'bas-p-service':
+          prefilledMessage = 'Hej! Jag är intresserad av BAS-P tjänsten. Kan du kontakta mig för mer information?';
+          projectType = 'villa';
+          break;
+        case 'bas-u-service':
+          prefilledMessage = 'Hej! Jag är intresserad av BAS-U tjänsten. Kan du kontakta mig för mer information?';
+          projectType = 'villa';
+          break;
+        case 'kombinerade-paket-service':
+          prefilledMessage = 'Hej! Jag är intresserad av era kombinerade paket. Kan du kontakta mig för mer information?';
+          projectType = 'flerfamilj';
+          break;
+        default:
+          prefilledMessage = `Hej! Jag är intresserad av era tjänster inom ${service}. Kan du kontakta mig för mer information?`;
+          projectType = packageToProjectType[service as keyof typeof packageToProjectType] || '';
+      }
+      
+      setFormData(prev => ({
+        ...prev,
+        project: projectType,
+        message: prefilledMessage
+      }));
+    }
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -54,7 +118,7 @@ const KontaktPage = () => {
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData(prev => ({
       ...prev,
       [e.target.name]: e.target.value
@@ -92,7 +156,7 @@ const KontaktPage = () => {
 
   const services = [
     "Kontrollansvarig (KA) enligt PBL",
-    "BAS-P - Byggarbetsmiljösamordnare Projektering", 
+    "BAS-P - Byggarbetsmiljösamordnare Projektering",
     "BAS-U - Byggarbetsmiljösamordnare Utförande",
     "Bygglovshandlingar och ritningar",
     "Konsultation och rådgivning"
@@ -276,14 +340,20 @@ const KontaktPage = () => {
                           <label htmlFor="project" className="block text-sm font-medium text-slate-700 mb-2">
                             Typ av projekt
                           </label>
-                          <Input
+                          <select
                             id="project"
                             name="project"
-                            type="text"
                             value={formData.project}
                             onChange={handleChange}
-                            placeholder="T.ex. Nybyggnation villa"
-                          />
+                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                          >
+                            <option value="">Välj projekttyp</option>
+                            <option value="villa">Villa/Småhus</option>
+                            <option value="flerfamilj">Flerfamiljshus</option>
+                            <option value="kommersiell">Kommersiell byggnad</option>
+                            <option value="renovering">Renovering</option>
+                            <option value="annat">Annat</option>
+                          </select>
                         </div>
                       </div>
                       
