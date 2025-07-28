@@ -20,9 +20,11 @@ export const ContactForm = ({ className = '' }: ContactFormProps) => {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<string>('');
   const { toast } = useToast();
   const { errors, validateForm, clearErrors } = useFormValidation();
   const formRef = useRef<HTMLDivElement>(null);
+  const statusRef = useRef<HTMLDivElement>(null);
 
   // Mapping från paket-ID och tjänst-ID till projekttyp för select-fältet
   const packageToProjectType = {
@@ -95,7 +97,10 @@ export const ContactForm = ({ className = '' }: ContactFormProps) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    setSubmitStatus('Validerar formulär...');
+    
     if (!validateForm(formData)) {
+      setSubmitStatus('Formuläret innehåller fel. Vänligen rätta till dem och försök igen.');
       toast({
         title: "Kontrollera formuläret",
         description: "Vänligen rätta till felen och försök igen.",
@@ -105,6 +110,7 @@ export const ContactForm = ({ className = '' }: ContactFormProps) => {
     }
 
     setIsSubmitting(true);
+    setSubmitStatus('Skickar meddelande...');
 
     try {
       // Formatera telefonnummer
@@ -124,11 +130,14 @@ export const ContactForm = ({ className = '' }: ContactFormProps) => {
         'SEK'
       );
       
+      setSubmitStatus('Meddelandet har skickats! Du omdirigeras nu...');
+      
       // Redirect to thank you page with service parameter
       const serviceParam = formData.project ? `?service=${encodeURIComponent(formData.project)}&source=contact-form` : '?service=kontakt&source=contact-form';
       window.location.href = `/tack${serviceParam}`;
       
     } catch (error) {
+      setSubmitStatus('Ett fel uppstod. Försök igen eller ring oss direkt på 076-111 84 47.');
       toast({
         title: "Fel uppstod",
         description: "Försök igen eller ring oss direkt på 076-111 84 47.",
@@ -150,6 +159,11 @@ export const ContactForm = ({ className = '' }: ContactFormProps) => {
     if (errors[name as keyof typeof errors]) {
       clearErrors();
     }
+    
+    // Rensa status när användaren ändrar något
+    if (submitStatus) {
+      setSubmitStatus('');
+    }
   };
 
   return (
@@ -158,136 +172,185 @@ export const ContactForm = ({ className = '' }: ContactFormProps) => {
         Skicka meddelande
       </h2>
       
-      <form onSubmit={handleSubmit} className="space-y-6" noValidate>
-        <div className="grid md:grid-cols-2 gap-6">
+      {/* Status meddelanden för skärmläsare */}
+      <div 
+        ref={statusRef}
+        aria-live="polite" 
+        aria-atomic="true"
+        className={`${submitStatus ? 'sr-only' : 'sr-only'}`}
+      >
+        {submitStatus}
+      </div>
+      
+      <form 
+        onSubmit={handleSubmit} 
+        className="space-y-6" 
+        noValidate
+        aria-label="Kontaktformulär"
+      >
+        <fieldset className="space-y-6" disabled={isSubmitting}>
+          <legend className="sr-only">Kontaktinformation</legend>
+          
+          <div className="grid md:grid-cols-2 gap-6">
+            <div>
+              <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-2">
+                Namn <span aria-label="obligatoriskt fält">*</span>
+              </label>
+              <Input
+                id="name"
+                name="name"
+                type="text"
+                required
+                autoComplete="name"
+                value={formData.name}
+                onChange={handleChange}
+                placeholder="Ditt namn"
+                className={errors.name ? 'border-red-500 focus:border-red-500' : ''}
+                aria-describedby={errors.name ? 'name-error name-help' : 'name-help'}
+                aria-invalid={errors.name ? 'true' : 'false'}
+              />
+              <div id="name-help" className="sr-only">
+                Ange ditt fullständiga namn
+              </div>
+              {errors.name && (
+                <p id="name-error" className="mt-1 text-sm text-red-600 flex items-center" role="alert">
+                  <AlertCircle className="w-4 h-4 mr-1" aria-hidden="true" />
+                  {errors.name}
+                </p>
+              )}
+            </div>
+            
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-2">
+                E-post <span aria-label="obligatoriskt fält">*</span>
+              </label>
+              <Input
+                id="email"
+                name="email"
+                type="email"
+                required
+                autoComplete="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="din@email.com"
+                className={errors.email ? 'border-red-500 focus:border-red-500' : ''}
+                aria-describedby={errors.email ? 'email-error email-help' : 'email-help'}
+                aria-invalid={errors.email ? 'true' : 'false'}
+              />
+              <div id="email-help" className="sr-only">
+                Ange en giltig e-postadress
+              </div>
+              {errors.email && (
+                <p id="email-error" className="mt-1 text-sm text-red-600 flex items-center" role="alert">
+                  <AlertCircle className="w-4 h-4 mr-1" aria-hidden="true" />
+                  {errors.email}
+                </p>
+              )}
+            </div>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-6">
+            <div>
+              <label htmlFor="phone" className="block text-sm font-medium text-slate-700 mb-2">
+                Telefon
+              </label>
+              <Input
+                id="phone"
+                name="phone"
+                type="tel"
+                autoComplete="tel"
+                value={formData.phone}
+                onChange={handleChange}
+                placeholder="070-123 45 67"
+                className={errors.phone ? 'border-red-500 focus:border-red-500' : ''}
+                aria-describedby={errors.phone ? 'phone-error phone-help' : 'phone-help'}
+                aria-invalid={errors.phone ? 'true' : 'false'}
+              />
+              <div id="phone-help" className="sr-only">
+                Ange ditt telefonnummer (valfritt)
+              </div>
+              {errors.phone && (
+                <p id="phone-error" className="mt-1 text-sm text-red-600 flex items-center" role="alert">
+                  <AlertCircle className="w-4 h-4 mr-1" aria-hidden="true" />
+                  {errors.phone}
+                </p>
+              )}
+            </div>
+            
+            <div>
+              <label htmlFor="project" className="block text-sm font-medium text-slate-700 mb-2">
+                Typ av projekt
+              </label>
+              <select
+                id="project"
+                name="project"
+                value={formData.project}
+                onChange={handleChange}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                aria-describedby="project-help"
+              >
+                <option value="">Välj projekttyp</option>
+                <option value="villa">Villa/Småhus</option>
+                <option value="flerfamilj">Flerfamiljshus</option>
+                <option value="kommersiell">Kommersiell byggnad</option>
+                <option value="renovering">Renovering</option>
+                <option value="annat">Annat</option>
+              </select>
+              <div id="project-help" className="sr-only">
+                Välj vilken typ av byggprojekt du har (valfritt)
+              </div>
+            </div>
+          </div>
+          
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-2">
-              Namn *
+            <label htmlFor="message" className="block text-sm font-medium text-slate-700 mb-2">
+              Meddelande <span aria-label="obligatoriskt fält">*</span>
             </label>
-            <Input
-              id="name"
-              name="name"
-              type="text"
+            <Textarea
+              id="message"
+              name="message"
               required
-              value={formData.name}
+              rows={5}
+              value={formData.message}
               onChange={handleChange}
-              placeholder="Ditt namn"
-              className={errors.name ? 'border-red-500' : ''}
-              aria-describedby={errors.name ? 'name-error' : undefined}
+              placeholder="Beskriv ditt projekt och vilken hjälp du behöver..."
+              className={errors.message ? 'border-red-500 focus:border-red-500' : ''}
+              aria-describedby={errors.message ? 'message-error message-help' : 'message-help'}
+              aria-invalid={errors.message ? 'true' : 'false'}
             />
-            {errors.name && (
-              <p id="name-error" className="mt-1 text-sm text-red-600 flex items-center">
-                <AlertCircle className="w-4 h-4 mr-1" />
-                {errors.name}
+            <div id="message-help" className="sr-only">
+              Beskriv ditt projekt och vilken hjälp du behöver
+            </div>
+            {errors.message && (
+              <p id="message-error" className="mt-1 text-sm text-red-600 flex items-center" role="alert">
+                <AlertCircle className="w-4 h-4 mr-1" aria-hidden="true" />
+                {errors.message}
               </p>
             )}
           </div>
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-2">
-              E-post *
-            </label>
-            <Input
-              id="email"
-              name="email"
-              type="email"
-              required
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="din@email.com"
-              className={errors.email ? 'border-red-500' : ''}
-              aria-describedby={errors.email ? 'email-error' : undefined}
-            />
-            {errors.email && (
-              <p id="email-error" className="mt-1 text-sm text-red-600 flex items-center">
-                <AlertCircle className="w-4 h-4 mr-1" />
-                {errors.email}
-              </p>
-            )}
-          </div>
-        </div>
-        
-        <div className="grid md:grid-cols-2 gap-6">
-          <div>
-            <label htmlFor="phone" className="block text-sm font-medium text-slate-700 mb-2">
-              Telefon
-            </label>
-            <Input
-              id="phone"
-              name="phone"
-              type="tel"
-              value={formData.phone}
-              onChange={handleChange}
-              placeholder="070-123 45 67"
-              className={errors.phone ? 'border-red-500' : ''}
-              aria-describedby={errors.phone ? 'phone-error' : undefined}
-            />
-            {errors.phone && (
-              <p id="phone-error" className="mt-1 text-sm text-red-600 flex items-center">
-                <AlertCircle className="w-4 h-4 mr-1" />
-                {errors.phone}
-              </p>
-            )}
-          </div>
-          <div>
-            <label htmlFor="project" className="block text-sm font-medium text-slate-700 mb-2">
-              Typ av projekt
-            </label>
-            <select
-              id="project"
-              name="project"
-              value={formData.project}
-              onChange={handleChange}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
-              aria-label="Välj typ av projekt"
-            >
-              <option value="">Välj projekttyp</option>
-              <option value="villa">Villa/Småhus</option>
-              <option value="flerfamilj">Flerfamiljshus</option>
-              <option value="kommersiell">Kommersiell byggnad</option>
-              <option value="renovering">Renovering</option>
-              <option value="annat">Annat</option>
-            </select>
-          </div>
-        </div>
-        
-        <div>
-          <label htmlFor="message" className="block text-sm font-medium text-slate-700 mb-2">
-            Meddelande *
-          </label>
-          <Textarea
-            id="message"
-            name="message"
-            required
-            rows={5}
-            value={formData.message}
-            onChange={handleChange}
-            placeholder="Beskriv ditt projekt och vilken hjälp du behöver..."
-            className={errors.message ? 'border-red-500' : ''}
-            aria-describedby={errors.message ? 'message-error' : undefined}
-          />
-          {errors.message && (
-            <p id="message-error" className="mt-1 text-sm text-red-600 flex items-center">
-              <AlertCircle className="w-4 h-4 mr-1" />
-              {errors.message}
-            </p>
-          )}
-        </div>
+        </fieldset>
         
         <Button 
           type="submit"
           disabled={isSubmitting}
-          className="w-full earth-gradient text-white hover:opacity-90 py-4 text-lg"
-          aria-label={isSubmitting ? "Skickar meddelande..." : "Skicka meddelande"}
+          className="w-full earth-gradient text-white hover:opacity-90 py-4 text-lg focus:ring-4 focus:ring-primary/20"
+          aria-describedby="submit-help"
         >
           {isSubmitting ? (
-            "Skickar..."
+            <>
+              <span className="sr-only">Skickar meddelande, vänta...</span>
+              <span aria-hidden="true">Skickar...</span>
+            </>
           ) : (
             <>
-              <Send className="w-5 h-5 mr-2" />
+              <Send className="w-5 h-5 mr-2" aria-hidden="true" />
               Skicka meddelande
             </>
           )}
         </Button>
+        <div id="submit-help" className="sr-only">
+          Klicka för att skicka ditt meddelande till Ytterman
+        </div>
       </form>
     </div>
   );
