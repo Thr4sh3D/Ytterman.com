@@ -10,11 +10,16 @@ import { CanonicalUrl } from '@/components/CanonicalUrl';
 
 const TjansterPage = () => {
   const scrollToContact = () => {
-    window.location.href = '/kontakt';
+    window.location.href = '/kontakt?source=tjanster-page';
+  };
+
+  const handleServiceQuote = (serviceId: string) => {
+    window.location.href = `/kontakt?service=${serviceId}&source=tjanster-page`;
   };
 
   const services = [
     {
+      id: 'kontrollansvarig-service',
       title: "Kontrollansvarig (KA)",
       description: "Certifierad kontrollansvarig enligt PBL för teknisk kontroll och slutbesiktning",
       price: "Från 15,000 SEK",
@@ -28,6 +33,7 @@ const TjansterPage = () => {
       link: "/kontrollansvarig"
     },
     {
+      id: 'bas-p-service',
       title: "BAS-P (Projektering)",
       description: "Byggarbetsmiljösamordnare under projekteringsfasen",
       price: "Från 12,000 SEK",
@@ -41,6 +47,7 @@ const TjansterPage = () => {
       link: "/bas-p"
     },
     {
+      id: 'bas-u-service',
       title: "BAS-U (Utförande)",
       description: "Byggarbetsmiljösamordnare under byggfasen",
       price: "Från 18,000 SEK",
@@ -54,6 +61,7 @@ const TjansterPage = () => {
       link: "/bas-u"
     },
     {
+      id: 'bygglovshandlingar',
       title: "Bygglovshandlingar",
       description: "Kompletta bygglovshandlingar för ditt projekt",
       price: "Från 8,000 SEK",
@@ -104,21 +112,18 @@ const TjansterPage = () => {
         organization={true}
       />
       
-      {/* Add canonical URL */}
       <CanonicalUrl path="/tjanster" />
       
       <div className="min-h-screen">
         <Header />
         
         <main>
-          {/* Breadcrumbs */}
           <section className="py-4 bg-white border-b">
             <div className="container mx-auto px-4">
               <Breadcrumbs items={breadcrumbs.slice(1)} />
             </div>
           </section>
 
-          {/* Hero Section */}
           <section className="py-20 bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-50">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto text-center">
@@ -140,7 +145,6 @@ const TjansterPage = () => {
             </div>
           </section>
 
-          {/* Services Grid */}
           <section className="py-20 bg-white">
             <div className="container mx-auto px-4">
               <div className="max-w-6xl mx-auto">
@@ -170,14 +174,22 @@ const TjansterPage = () => {
                           ))}
                         </ul>
                         
-                        <Button 
-                          onClick={() => window.location.href = service.link}
-                          variant="outline"
-                          className="w-full hover:bg-primary hover:text-white"
-                        >
-                          Läs mer
-                          <ArrowRight className="w-4 h-4 ml-2" />
-                        </Button>
+                        <div className="flex gap-3">
+                          <Button 
+                            onClick={() => handleServiceQuote(service.id)}
+                            className="flex-1 earth-gradient text-white hover:opacity-90"
+                          >
+                            Få offert
+                          </Button>
+                          <Button 
+                            onClick={() => window.location.href = service.link}
+                            variant="outline"
+                            className="hover:bg-primary hover:text-white"
+                          >
+                            Läs mer
+                            <ArrowRight className="w-4 h-4 ml-2" />
+                          </Button>
+                        </div>
                       </div>
                     );
                   })}
@@ -186,7 +198,6 @@ const TjansterPage = () => {
             </div>
           </section>
 
-          {/* Process Section */}
           <section className="py-20 bg-slate-50">
             <div className="container mx-auto px-4">
               <div className="max-w-6xl mx-auto">
@@ -233,10 +244,8 @@ const TjansterPage = () => {
             </div>
           </section>
 
-          {/* FAQ Section */}
           <FAQ items={serviceFaq} />
 
-          {/* Internal Links Section */}
           <section className="py-20 bg-white">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto text-center">
@@ -292,7 +301,6 @@ const TjansterPage = () => {
             </div>
           </section>
 
-          {/* CTA Section */}
           <section className="py-20 bg-slate-900 text-white">
             <div className="container mx-auto px-4 text-center">
               <h2 className="text-4xl font-bold mb-6">

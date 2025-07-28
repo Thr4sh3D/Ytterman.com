@@ -67,7 +67,7 @@ export const Services = ({ onServiceSelect }: ServicesProps) => {
   ];
 
   const handleGetQuote = (serviceId: string) => {
-    navigate(`/kontakt?tjanst=${serviceId}`);
+    navigate(`/kontakt?service=${serviceId}&source=services-page`);
   };
 
   return (

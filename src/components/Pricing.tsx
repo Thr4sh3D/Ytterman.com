@@ -58,7 +58,7 @@ export const Pricing = ({ onPackageSelect }: PricingProps) => {
   ];
 
   const handleGetQuote = (packageId: string) => {
-    navigate(`/kontakt?service=${packageId}`);
+    navigate(`/kontakt?service=${packageId}&source=pricing-section`);
   };
 
   return (
