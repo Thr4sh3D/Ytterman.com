@@ -6,14 +6,15 @@ import { AdvancedSEO } from '@/components/AdvancedSEO';
 import { FAQ, faqData } from '@/components/FAQ';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { ConversionTracking, trackConversion } from '@/components/ConversionTracking';
-import { Phone, Mail, MapPin, Clock, Send, CheckCircle } from 'lucide-react';
+import { useFormValidation, formatPhoneNumber, type FormData } from '@/components/FormValidation';
+import { Phone, Mail, MapPin, Clock, Send, CheckCircle, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 
 const KontaktPage = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
     phone: '',
@@ -22,6 +23,7 @@ const KontaktPage = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  const { errors, validateForm, clearErrors } = useFormValidation();
   const formRef = useRef<HTMLDivElement>(null);
 
   // Mapping från paket-ID och tjänst-ID till projekttyp för select-fältet
@@ -86,7 +88,7 @@ const KontaktPage = () => {
         message: prefilledMessage
       }));
 
-      // Scrolla till formuläret efter en kort fördröjning för att säkerställa att sidan har laddats
+      // Scrolla till formuläret efter en kort fördröjning
       setTimeout(() => {
         formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 100);
@@ -95,10 +97,26 @@ const KontaktPage = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!validateForm(formData)) {
+      toast({
+        title: "Kontrollera formuläret",
+        description: "Vänligen rätta till felen och försök igen.",
+        variant: "destructive"
+      });
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
-      // Simulate form submission
+      // Formatera telefonnummer
+      const formattedData = {
+        ...formData,
+        phone: formData.phone ? formatPhoneNumber(formData.phone) : ''
+      };
+
+      // Simulate form submission - ersätt med riktig EmailJS integration
       await new Promise(resolve => setTimeout(resolve, 1000));
       
       // Spåra Google Ads konvertering
@@ -116,7 +134,7 @@ const KontaktPage = () => {
     } catch (error) {
       toast({
         title: "Fel uppstod",
-        description: "Försök igen eller ring oss direkt.",
+        description: "Försök igen eller ring oss direkt på 076-111 84 47.",
         variant: "destructive"
       });
     } finally {
@@ -125,10 +143,16 @@ const KontaktPage = () => {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [name]: value
     }));
+    
+    // Rensa fel för detta fält när användaren börjar skriva
+    if (errors[name as keyof typeof errors]) {
+      clearErrors();
+    }
   };
 
   const contactInfo = [
@@ -185,13 +209,12 @@ const KontaktPage = () => {
         organization={true}
       />
       
-      {/* Google Ads Konverteringsspårning */}
       <ConversionTracking />
       
       <div className="min-h-screen">
         <Header />
         
-        <main>
+        <main id="main-content">
           {/* Breadcrumbs */}
           <section className="py-4 bg-white border-b">
             <div className="container mx-auto px-4">
@@ -215,6 +238,7 @@ const KontaktPage = () => {
                   <a 
                     href="tel:+46761118447"
                     className="inline-flex items-center px-8 py-4 earth-gradient text-white rounded-lg hover:opacity-90 transition-opacity text-lg font-semibold"
+                    aria-label="Ring direkt till Ytterman"
                   >
                     <Phone className="w-5 h-5 mr-2" />
                     Ring direkt: 076-111 84 47
@@ -222,6 +246,7 @@ const KontaktPage = () => {
                   <a 
                     href="mailto:tobias@ytterman.com"
                     className="inline-flex items-center px-8 py-4 border-2 border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-colors text-lg font-semibold"
+                    aria-label="Skicka e-post till Tobias Ytterman"
                   >
                     <Mail className="w-5 h-5 mr-2" />
                     tobias@ytterman.com
@@ -258,6 +283,7 @@ const KontaktPage = () => {
                                 <a 
                                   href={info.link}
                                   className="text-primary hover:underline font-semibold"
+                                  aria-label={`${info.title}: ${info.value}`}
                                 >
                                   {info.value}
                                 </a>
@@ -296,7 +322,7 @@ const KontaktPage = () => {
                       Skicka meddelande
                     </h2>
                     
-                    <form onSubmit={handleSubmit} className="space-y-6">
+                    <form onSubmit={handleSubmit} className="space-y-6" noValidate>
                       <div className="grid md:grid-cols-2 gap-6">
                         <div>
                           <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-2">
@@ -310,7 +336,15 @@ const KontaktPage = () => {
                             value={formData.name}
                             onChange={handleChange}
                             placeholder="Ditt namn"
+                            className={errors.name ? 'border-red-500' : ''}
+                            aria-describedby={errors.name ? 'name-error' : undefined}
                           />
+                          {errors.name && (
+                            <p id="name-error" className="mt-1 text-sm text-red-600 flex items-center">
+                              <AlertCircle className="w-4 h-4 mr-1" />
+                              {errors.name}
+                            </p>
+                          )}
                         </div>
                         <div>
                           <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-2">
@@ -324,7 +358,15 @@ const KontaktPage = () => {
                             value={formData.email}
                             onChange={handleChange}
                             placeholder="din@email.com"
+                            className={errors.email ? 'border-red-500' : ''}
+                            aria-describedby={errors.email ? 'email-error' : undefined}
                           />
+                          {errors.email && (
+                            <p id="email-error" className="mt-1 text-sm text-red-600 flex items-center">
+                              <AlertCircle className="w-4 h-4 mr-1" />
+                              {errors.email}
+                            </p>
+                          )}
                         </div>
                       </div>
                       
@@ -340,7 +382,15 @@ const KontaktPage = () => {
                             value={formData.phone}
                             onChange={handleChange}
                             placeholder="070-123 45 67"
+                            className={errors.phone ? 'border-red-500' : ''}
+                            aria-describedby={errors.phone ? 'phone-error' : undefined}
                           />
+                          {errors.phone && (
+                            <p id="phone-error" className="mt-1 text-sm text-red-600 flex items-center">
+                              <AlertCircle className="w-4 h-4 mr-1" />
+                              {errors.phone}
+                            </p>
+                          )}
                         </div>
                         <div>
                           <label htmlFor="project" className="block text-sm font-medium text-slate-700 mb-2">
@@ -352,6 +402,7 @@ const KontaktPage = () => {
                             value={formData.project}
                             onChange={handleChange}
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                            aria-label="Välj typ av projekt"
                           >
                             <option value="">Välj projekttyp</option>
                             <option value="villa">Villa/Småhus</option>
@@ -375,13 +426,22 @@ const KontaktPage = () => {
                           value={formData.message}
                           onChange={handleChange}
                           placeholder="Beskriv ditt projekt och vilken hjälp du behöver..."
+                          className={errors.message ? 'border-red-500' : ''}
+                          aria-describedby={errors.message ? 'message-error' : undefined}
                         />
+                        {errors.message && (
+                          <p id="message-error" className="mt-1 text-sm text-red-600 flex items-center">
+                            <AlertCircle className="w-4 h-4 mr-1" />
+                            {errors.message}
+                          </p>
+                        )}
                       </div>
                       
                       <Button 
                         type="submit"
                         disabled={isSubmitting}
                         className="w-full earth-gradient text-white hover:opacity-90 py-4 text-lg"
+                        aria-label={isSubmitting ? "Skickar meddelande..." : "Skicka meddelande"}
                       >
                         {isSubmitting ? (
                           "Skickar..."

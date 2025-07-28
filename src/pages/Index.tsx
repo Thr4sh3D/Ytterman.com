@@ -1,21 +1,24 @@
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { Header } from '@/components/Header';
 import { Hero } from '@/components/Hero';
-import { Services } from '@/components/Services';
-import { Pricing } from '@/components/Pricing';
-import { About } from '@/components/About';
-import { Contact } from '@/components/Contact';
-import { ServiceQuickMessages } from '@/components/ServiceQuickMessages';
 import { Footer } from '@/components/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { AdvancedSEO } from '@/components/AdvancedSEO';
 import { SEOEnhancements } from '@/components/SEOEnhancements';
+import { LazyServices, LazyPricing, LazyAbout, LazyContact, LazyServiceQuickMessages } from '@/components/LazyComponents';
+
+// Loading component för lazy-loaded komponenter
+const LoadingSpinner = () => (
+  <div className="flex justify-center items-center py-20">
+    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+  </div>
+);
 
 const Index = () => {
   const [selectedPackage, setSelectedPackage] = useState<string>('');
   const [prefilledMessage, setPrefilledMessage] = useState<string>('');
 
-  // FAQ data for SEO
+  // FAQ data för SEO
   const faqData = [
     {
       question: "Vad är en kontrollansvarig och när behöver jag en?",
@@ -35,7 +38,7 @@ const Index = () => {
     }
   ];
 
-  // Reviews data for SEO
+  // Reviews data för SEO
   const reviews = [
     {
       author: "Anna Andersson",
@@ -115,14 +118,24 @@ const Index = () => {
         <Header />
         <main>
           <Hero />
-          <Services onServiceSelect={handleServiceSelect} />
-          <Pricing onPackageSelect={handlePackageSelect} />
-          <About />
-          <Contact 
-            selectedPackage={selectedPackage} 
-            prefilledMessage={prefilledMessage}
-          />
-          <ServiceQuickMessages onServiceSelect={handleServiceSelect} />
+          <Suspense fallback={<LoadingSpinner />}>
+            <LazyServices onServiceSelect={handleServiceSelect} />
+          </Suspense>
+          <Suspense fallback={<LoadingSpinner />}>
+            <LazyPricing onPackageSelect={handlePackageSelect} />
+          </Suspense>
+          <Suspense fallback={<LoadingSpinner />}>
+            <LazyAbout />
+          </Suspense>
+          <Suspense fallback={<LoadingSpinner />}>
+            <LazyContact 
+              selectedPackage={selectedPackage} 
+              prefilledMessage={prefilledMessage}
+            />
+          </Suspense>
+          <Suspense fallback={<LoadingSpinner />}>
+            <LazyServiceQuickMessages onServiceSelect={handleServiceSelect} />
+          </Suspense>
         </main>
         <Footer />
         <WhatsAppButton />
