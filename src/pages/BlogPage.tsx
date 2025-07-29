@@ -3,152 +3,88 @@ import { Helmet } from 'react-helmet-async';
 import { BlogPost } from '@/entities';
 import { BlogList } from '@/components/BlogList';
 import { BlogHero } from '@/components/BlogHero';
-import { BlogCategories } from '@/components/BlogCategories';
-import { Breadcrumbs } from '@/components/Breadcrumbs';
+import { BlogSidebar } from '@/components/BlogSidebar';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { WhatsAppButton } from '@/components/WhatsAppButton';
-import { useToast } from '@/components/ui/use-toast';
-import { Button } from '@/components/ui/button';
-import { RefreshCw, AlertCircle } from 'lucide-react';
-import { CanonicalUrl } from '@/components/CanonicalUrl';
 
 export default function BlogPage() {
-  const [blogPosts, setBlogPosts] = useState([]);
+  const [posts, setPosts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  const [selectedCategory, setSelectedCategory] = useState('all');
-  const [error, setError] = useState(null);
-  const [retryCount, setRetryCount] = useState(0);
-  const { toast } = useToast();
-
-  const fetchBlogPosts = async (showToast = false) => {
-    setLoading(true);
-    setError(null);
-    
-    try {
-      // Add a small delay to prevent rapid-fire requests that might cause fetch errors
-      await new Promise(resolve => setTimeout(resolve, 100));
-      
-      const posts = await BlogPost.filter({ published: true }, '-created_at');
-      setBlogPosts(posts || []); // Ensure we always have an array
-      setRetryCount(0);
-    } catch (error) {
-      // Completely silent error handling - don't even log for public users
-      setBlogPosts([]);
-      setError(null); // Never show errors to public users
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleRetry = () => {
-    setRetryCount(0);
-    fetchBlogPosts(false); // Don't show toast on manual retry
-  };
+  const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
   useEffect(() => {
-    // Add a small delay before initial fetch to prevent initialization conflicts
-    const timer = setTimeout(() => {
-      fetchBlogPosts();
-    }, 200);
-    
-    return () => clearTimeout(timer);
-  }, []);
+    const fetchPosts = async () => {
+      try {
+        setLoading(true);
+        let filteredPosts;
+        
+        if (selectedCategory === 'all') {
+          filteredPosts = await BlogPost.filter({ published: true }, '-created_at', 20);
+        } else {
+          filteredPosts = await BlogPost.filter({ 
+            published: true, 
+            category: selectedCategory 
+          }, '-created_at', 20);
+        }
+        
+        setPosts(filteredPosts);
+      } catch (error) {
+        console.error('Error fetching blog posts:', error);
+        setPosts([]);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const categories = [...new Set(blogPosts.map(post => post.category).filter(Boolean))];
-  
-  const filteredPosts = selectedCategory === 'all' 
-    ? blogPosts 
-    : blogPosts.filter(post => post.category === selectedCategory);
+    fetchPosts();
+  }, [selectedCategory]);
 
-  const breadcrumbItems = [
-    { label: 'Hem', href: '/' },
-    { label: 'Blogg', href: '/blogg' }
+  const categories = [
+    { id: 'all', name: 'Alla inlägg' },
+    { id: 'kontrollansvarig', name: 'Kontrollansvarig' },
+    { id: 'bas-p', name: 'BAS-P' },
+    { id: 'bas-u', name: 'BAS-U' },
+    { id: 'byggprocess', name: 'Byggprocess' },
+    { id: 'tips', name: 'Tips & Råd' }
   ];
-
-  // Simple message when no posts are available (don't show as error)
-  const EmptyState = () => (
-    <div className="container mx-auto px-4 py-12">
-      <div className="text-center py-20">
-        <h3 className="text-2xl font-semibold text-slate-700 mb-4">
-          Blogginlägg kommer snart
-        </h3>
-        <p className="text-slate-500 mb-8 max-w-md mx-auto">
-          Vi arbetar på att publicera värdefull innehåll om bygglov och kontrollansvar. 
-          Kom tillbaka snart för att läsa våra expertguider!
-        </p>
-      </div>
-    </div>
-  );
 
   return (
     <>
       <Helmet>
-        <title>Blogg - Expertråd och Guider om Bygglov & Kontrollansvar</title>
-        <meta name="description" content="Läs våra expertguider om bygglov, BAS P, BAS U och kontrollansvar. Få värdefulla tips och råd för dina byggprojekt." />
-        <meta name="keywords" content="bygglov guide, BAS P, BAS U, kontrollansvarig, bygglovsprocess" />
-        <meta property="og:title" content="Blogg - Bygglovshjälp & Kontrollansvar" />
-        <meta property="og:description" content="Expertguider om bygglov och kontrollansvar. Få värdefulla tips för dina byggprojekt." />
-        <meta property="og:type" content="website" />
+        <title>Blogg - Trygg Byggprocess med Ytterman</title>
+        <meta name="description" content="Läs våra expertartiklar om kontrollansvarig, BAS-P, BAS-U och byggprocesser. Få värdefulla tips och råd för din byggprocess i Västernorrland." />
+        <meta name="keywords" content="byggblogg, kontrollansvarig tips, BAS-P guide, BAS-U råd, byggprocess, Västernorrland" />
+        <link rel="canonical" href="https://ytterman.com/blogg" />
+        <meta property="og:title" content="Blogg - Trygg Byggprocess med Ytterman" />
+        <meta property="og:description" content="Läs våra expertartiklar om kontrollansvarig, BAS-P, BAS-U och byggprocesser." />
         <meta property="og:url" content="https://ytterman.com/blogg" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Blog",
-            "name": "Bygglovshjälp & Kontrollansvar Blogg",
-            "description": "Expertguider om bygglov och kontrollansvar",
-            "url": "https://ytterman.com/blogg",
-            "blogPost": filteredPosts.map(post => ({
-              "@type": "BlogPosting",
-              "headline": post.title,
-              "description": post.excerpt,
-              "url": `https://ytterman.com/blogg/${post.slug}`,
-              "datePublished": post.created_at,
-              "author": {
-                "@type": "Person",
-                "name": post.author || "Expert"
-              }
-            }))
-          })}
-        </script>
+        <meta property="og:type" content="website" />
       </Helmet>
-      
-      {/* Add canonical URL */}
-      <CanonicalUrl path="/blogg" />
 
-      <div className="min-h-screen bg-white">
-        <Header />
+      <Header />
+      
+      <main className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-50">
+        <BlogHero />
         
-        <main>
-          <section className="py-4 bg-white border-b">
-            <div className="container mx-auto px-4">
-              <Breadcrumbs items={breadcrumbItems} />
-            </div>
-          </section>
-          
-          <BlogHero />
-          
-          {blogPosts.length === 0 && !loading ? (
-            <EmptyState />
-          ) : (
-            <div className="container mx-auto px-4 py-12">
-              <BlogCategories 
-                categories={categories}
+        <div className="container mx-auto px-4 py-12">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            <div className="lg:col-span-3">
+              <BlogList 
+                posts={posts} 
+                loading={loading}
                 selectedCategory={selectedCategory}
                 onCategoryChange={setSelectedCategory}
-              />
-              
-              <BlogList 
-                posts={filteredPosts}
-                loading={loading}
+                categories={categories}
               />
             </div>
-          )}
-        </main>
-        
-        <Footer />
-        <WhatsAppButton />
-      </div>
+            <div className="lg:col-span-1">
+              <BlogSidebar categories={categories} />
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <Footer />
     </>
   );
 }
