@@ -1,180 +1,215 @@
-import { useState, useEffect } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Link } from 'react-router-dom';
-import { BlogPost } from '@/entities';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Clock, ArrowRight } from 'lucide-react';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Clock, User, BookOpen, CheckCircle } from 'lucide-react';
 
-export default function GuidesPage() {
-  const [guides, setGuides] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
+const GuidesPage = () => {
+  const guides = [
+    {
+      id: 1,
+      title: "Kontrollansvarigs roll i byggprocessen",
+      description: "En komplett guide om vad en kontrollansvarig gör och varför det är viktigt för ditt byggprojekt.",
+      readTime: "8 min",
+      category: "Kontrollansvarig",
+      content: [
+        "Vad är en kontrollansvarig?",
+        "Lagkrav och certifiering",
+        "Kontrollansvarigs ansvar",
+        "När behövs en kontrollansvarig?",
+        "Kostnader och tidsåtgång"
+      ]
+    },
+    {
+      id: 2,
+      title: "BAS-P vs BAS-U: Skillnader och när de behövs",
+      description: "Förstå skillnaderna mellan BAS-P och BAS-U samt när respektive roll krävs i ditt projekt.",
+      readTime: "6 min",
+      category: "Säkerhetssamordning",
+      content: [
+        "Vad är BAS-P (projektering)?",
+        "Vad är BAS-U (utförande)?",
+        "Lagkrav enligt AFS 1999:3",
+        "När krävs BAS-P respektive BAS-U?",
+        "Samarbete mellan BAS-P och BAS-U"
+      ]
+    },
+    {
+      id: 3,
+      title: "Bygglovsprocessen i Västernorrland",
+      description: "Steg-för-steg guide genom bygglovsprocessen för kommunerna i Västernorrland.",
+      readTime: "10 min",
+      category: "Bygglov",
+      content: [
+        "Förberedelser inför bygglovsansökan",
+        "Nödvändiga handlingar",
+        "Kommunala skillnader",
+        "Handläggningstider",
+        "Vanliga fallgropar att undvika"
+      ]
+    },
+    {
+      id: 4,
+      title: "Kvalitetskontroll under byggtiden",
+      description: "Hur du säkerställer kvalitet genom hela byggprocessen med rätt kontroller vid rätt tidpunkt.",
+      readTime: "12 min",
+      category: "Kvalitetskontroll",
+      content: [
+        "Planering av kvalitetskontroller",
+        "Kritiska kontrollpunkter",
+        "Dokumentation och rapportering",
+        "Samarbete med entreprenörer",
+        "Slutbesiktning och garantier"
+      ]
+    },
+    {
+      id: 5,
+      title: "Digitala verktyg för byggprojekt",
+      description: "Moderna digitala lösningar som effektiviserar byggprocessen och förbättrar kommunikationen.",
+      readTime: "7 min",
+      category: "Digitalisering",
+      content: [
+        "Projekthanteringsverktyg",
+        "Digital dokumentation",
+        "Kommunikationsplattformar",
+        "Mobila inspektionsappar",
+        "Integrering med befintliga system"
+      ]
+    },
+    {
+      id: 6,
+      title: "Miljötänk i byggprocessen",
+      description: "Hur du integrerar hållbarhet och miljöhänsyn i ditt byggprojekt från start till mål.",
+      readTime: "9 min",
+      category: "Miljö & Hållbarhet",
+      content: [
+        "Miljöcertifieringar (BREEAM, LEED)",
+        "Materialval och återvinning",
+        "Energieffektivisering",
+        "Avfallshantering på byggarbetsplatsen",
+        "Långsiktig hållbarhet"
+      ]
+    }
+  ];
 
-  useEffect(() => {
-    const fetchGuides = async () => {
-      try {
-        const publishedGuides = await BlogPost.filter({ published: true }, { sort: '-created_at' });
-        setGuides(publishedGuides);
-      } catch (error) {
-        console.error('Error fetching guides:', error);
-      } finally {
-        setLoading(false);
-      }
+  const getCategoryColor = (category: string) => {
+    const colors = {
+      "Kontrollansvarig": "bg-blue-100 text-blue-800",
+      "Säkerhetssamordning": "bg-red-100 text-red-800",
+      "Bygglov": "bg-green-100 text-green-800",
+      "Kvalitetskontroll": "bg-purple-100 text-purple-800",
+      "Digitalisering": "bg-orange-100 text-orange-800",
+      "Miljö & Hållbarhet": "bg-emerald-100 text-emerald-800"
     };
-
-    fetchGuides();
-  }, []);
+    return colors[category as keyof typeof colors] || "bg-gray-100 text-gray-800";
+  };
 
   return (
     <>
       <Helmet>
-        <title>Guider - Byggprocess, Kontrollansvarig & BAS | Trygg Byggprocess med Ytterman</title>
-        <meta name="description" content="Omfattande guider om byggprocessen, kontrollansvarig, BAS-P, BAS-U och bygglov. Expertråd från Tobias Ytterman med över 20 års erfarenhet." />
-        <meta name="keywords" content="byggguider, kontrollansvarig guide, BAS-P guide, BAS-U guide, bygglov guide, byggprocess, Västernorrland" />
-        <link rel="canonical" href="https://ytterman.com/guider" />
-        <meta property="og:title" content="Guider - Byggprocess & Kontrollansvarig | Trygg Byggprocess" />
-        <meta property="og:description" content="Omfattande guider om byggprocessen, kontrollansvarig, BAS-P, BAS-U och bygglov från expert med över 20 års erfarenhet." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://ytterman.com/guider" />
+        <title>Guider - Trygg Byggprocess med Ytterman</title>
+        <meta name="description" content="Omfattande guider om byggprocessen, kontrollansvarig, BAS-P/BAS-U och kvalitetskontroll. Expert råd från Tobias Ytterman." />
+        <meta name="keywords" content="byggguider, kontrollansvarig guide, BAS-P guide, BAS-U guide, byggprocess, kvalitetskontroll" />
       </Helmet>
 
-      <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-amber-100">
-        <Header />
-        
-        <main className="pt-20">
-          {/* Hero Section */}
-          <section className="py-16 px-4">
+      <div className="min-h-screen bg-gradient-to-br from-stone-50 via-amber-50/30 to-stone-50">
+        {/* Hero Section */}
+        <div className="bg-gradient-to-r from-stone-800 to-amber-800 text-white py-16">
+          <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-4xl md:text-5xl font-bold text-amber-900 mb-6">
-                Guider & Expertråd
+              <h1 className="text-4xl md:text-5xl font-bold mb-6">
+                Expertguider för Byggprocessen
               </h1>
-              <p className="text-xl text-amber-800 mb-8 max-w-3xl mx-auto">
-                Omfattande guider om byggprocessen, kontrollansvarig, BAS-P, BAS-U och bygglov. 
-                Baserat på över 20 års erfarenhet inom byggbranschen.
+              <p className="text-xl md:text-2xl text-stone-200 mb-8">
+                Djupgående kunskap och praktiska råd från över 20 års erfarenhet inom byggbranschen
               </p>
-            </div>
-          </section>
-
-          {/* Guides Grid */}
-          <section className="py-12 px-4">
-            <div className="max-w-6xl mx-auto">
-              {loading ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {[1, 2, 3, 4, 5, 6].map((i) => (
-                    <Card key={i} className="animate-pulse">
-                      <CardHeader>
-                        <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
-                        <div className="h-3 bg-gray-200 rounded w-1/2"></div>
-                      </CardHeader>
-                      <CardContent>
-                        <div className="h-20 bg-gray-200 rounded mb-4"></div>
-                        <div className="h-3 bg-gray-200 rounded w-1/4"></div>
-                      </CardContent>
-                    </Card>
-                  ))}
+              <div className="flex flex-wrap justify-center gap-4 text-sm">
+                <div className="flex items-center gap-2">
+                  <BookOpen className="w-5 h-5" />
+                  <span>{guides.length} Expertguider</span>
                 </div>
-              ) : guides.length > 0 ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {guides.map((guide) => (
-                    <Card key={guide.id} className="group hover:shadow-lg transition-all duration-300 bg-white/80 backdrop-blur-sm border-amber-200">
-                      <CardHeader>
-                        <div className="flex items-start justify-between mb-2">
-                          <Badge variant="secondary" className="bg-amber-100 text-amber-800">
-                            {guide.category || 'Guide'}
-                          </Badge>
-                          {guide.reading_time && (
-                            <div className="flex items-center text-sm text-amber-600">
-                              <Clock className="w-4 h-4 mr-1" />
-                              {guide.reading_time} min
-                            </div>
-                          )}
-                        </div>
-                        <CardTitle className="text-xl text-amber-900 group-hover:text-amber-700 transition-colors">
-                          {guide.title}
-                        </CardTitle>
-                        <CardDescription className="text-amber-700">
-                          {guide.excerpt}
-                        </CardDescription>
-                      </CardHeader>
-                      <CardContent>
-                        {guide.featured_image && (
-                          <img 
-                            src={guide.featured_image} 
-                            alt={guide.title}
-                            className="w-full h-48 object-cover rounded-lg mb-4"
-                          />
-                        )}
-                        <div className="flex items-center justify-between">
-                          <div className="flex flex-wrap gap-1">
-                            {guide.tags?.slice(0, 2).map((tag: string, index: number) => (
-                              <Badge key={index} variant="outline" className="text-xs border-amber-300 text-amber-700">
-                                {tag}
-                              </Badge>
-                            ))}
-                          </div>
-                          <Link 
-                            to={`/blogg/${guide.slug}`}
-                            className="inline-flex items-center text-amber-700 hover:text-amber-900 font-medium group-hover:translate-x-1 transition-transform"
-                          >
-                            Läs mer
-                            <ArrowRight className="w-4 h-4 ml-1" />
-                          </Link>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
+                <div className="flex items-center gap-2">
+                  <User className="w-5 h-5" />
+                  <span>Tobias Ytterman</span>
                 </div>
-              ) : (
-                <div className="text-center py-16">
-                  <h3 className="text-2xl font-semibold text-amber-900 mb-4">
-                    Inga guider tillgängliga än
-                  </h3>
-                  <p className="text-amber-700 mb-8">
-                    Vi arbetar på att skapa omfattande guider för dig. Kom tillbaka snart!
-                  </p>
-                  <Link 
-                    to="/kontakt"
-                    className="inline-flex items-center px-6 py-3 bg-amber-700 text-white rounded-lg hover:bg-amber-800 transition-colors"
-                  >
-                    Kontakta oss för rådgivning
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </Link>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-5 h-5" />
+                  <span>Certifierad Expert</span>
                 </div>
-              )}
-            </div>
-          </section>
-
-          {/* CTA Section */}
-          <section className="py-16 px-4 bg-amber-900/10">
-            <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-3xl font-bold text-amber-900 mb-6">
-                Behöver du personlig rådgivning?
-              </h2>
-              <p className="text-xl text-amber-800 mb-8">
-                Kontakta Tobias Ytterman för skräddarsydd hjälp med ditt byggprojekt
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link 
-                  to="/kontakt"
-                  className="inline-flex items-center px-8 py-4 bg-amber-700 text-white rounded-lg hover:bg-amber-800 transition-colors font-semibold"
-                >
-                  Kontakta oss
-                </Link>
-                <a 
-                  href="tel:076-111 84 47"
-                  className="inline-flex items-center px-8 py-4 border-2 border-amber-700 text-amber-700 rounded-lg hover:bg-amber-700 hover:text-white transition-colors font-semibold"
-                >
-                  Ring: 076-111 84 47
-                </a>
               </div>
             </div>
-          </section>
-        </main>
+          </div>
+        </div>
 
-        <Footer />
+        {/* Guides Grid */}
+        <div className="container mx-auto px-4 py-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {guides.map((guide) => (
+              <Card key={guide.id} className="hover:shadow-lg transition-shadow duration-300 border-stone-200">
+                <CardHeader>
+                  <div className="flex justify-between items-start mb-3">
+                    <Badge className={getCategoryColor(guide.category)}>
+                      {guide.category}
+                    </Badge>
+                    <div className="flex items-center text-stone-500 text-sm">
+                      <Clock className="w-4 h-4 mr-1" />
+                      {guide.readTime}
+                    </div>
+                  </div>
+                  <CardTitle className="text-xl text-stone-800 leading-tight">
+                    {guide.title}
+                  </CardTitle>
+                  <CardDescription className="text-stone-600">
+                    {guide.description}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-2">
+                    <h4 className="font-semibold text-stone-700 text-sm mb-3">Innehåll:</h4>
+                    <ul className="space-y-1">
+                      {guide.content.map((item, index) => (
+                        <li key={index} className="flex items-start text-sm text-stone-600">
+                          <CheckCircle className="w-4 h-4 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        {/* CTA Section */}
+        <div className="bg-stone-100 py-16">
+          <div className="container mx-auto px-4 text-center">
+            <h2 className="text-3xl font-bold text-stone-800 mb-6">
+              Behöver du personlig rådgivning?
+            </h2>
+            <p className="text-xl text-stone-600 mb-8 max-w-2xl mx-auto">
+              Kontakta mig för skräddarsydd hjälp med ditt specifika byggprojekt. 
+              Med över 20 års erfarenhet hjälper jag dig navigera genom hela processen.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a 
+                href="/kontakt" 
+                className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors"
+              >
+                Kontakta mig
+              </a>
+              <a 
+                href="/tjanster" 
+                className="border-2 border-stone-300 hover:border-stone-400 text-stone-700 px-8 py-3 rounded-lg font-semibold transition-colors"
+              >
+                Se alla tjänster
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );
-}
+};
+
+export default GuidesPage;

@@ -7,6 +7,8 @@ import { HelmetProvider } from 'react-helmet-async';
 import Index from "./pages/Index";
 import TjansterPage from "./pages/TjansterPage";
 import KontaktPage from "./pages/KontaktPage";
+import GuidesPage from "./pages/GuidesPage";
+import FAQPage from "./pages/FAQPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -35,6 +37,8 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/tjanster" element={<TjansterPage />} />
+            <Route path="/guider" element={<GuidesPage />} />
+            <Route path="/faq" element={<FAQPage />} />
             <Route path="/kontakt" element={<KontaktPage />} />
             {/* Catch-all route for non-existent pages */}
             <Route path="*" element={<Index />} />
