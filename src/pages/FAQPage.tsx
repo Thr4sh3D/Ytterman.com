@@ -62,7 +62,7 @@ const FAQPage = () => {
         },
         {
           question: "Arbetar du digitalt eller endast med pappershandlingar?",
-          answer: "Jag använder moderna digitala verktyg för effektiv projekthantering, inklusive digitala rapporter, fotodokumentation och molnbaserad fildelning. Detta ger dig realtidsuppdateringar och enkel åtkomst till all projektdokumentation. Naturligtvis kan jag också arbeta med traditionella metoder om så önskas."
+          answer: "Jag använder moderna digitala verktyg för effektiv projekthantering, inklusive digitala rapporter, fotodokumentation och molnbaserad fildelning. Detta ger dig realtidsuppdateringar och enkel åtkomst to all projektdokumentation. Naturligtvis kan jag också arbeta med traditionella metoder om så önskas."
         },
         {
           question: "Vad händer om problem upptäcks under kontrollen?",
@@ -94,12 +94,73 @@ const FAQPage = () => {
     }
   ];
 
+  // Structured data for FAQ
+  const faqStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqCategories.flatMap(category => 
+      category.questions.map(faq => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.answer
+        }
+      }))
+    )
+  };
+
   return (
     <>
       <Helmet>
-        <title>Vanliga frågor (FAQ) - Trygg Byggprocess med Ytterman</title>
-        <meta name="description" content="Svar på vanliga frågor om kontrollansvarig, BAS-P, BAS-U och byggprocessen. Expert svar från Tobias Ytterman." />
-        <meta name="keywords" content="FAQ byggprocess, kontrollansvarig frågor, BAS-P frågor, BAS-U frågor, byggkontroll" />
+        <title>Vanliga frågor (FAQ) - Kontrollansvarig & BAS | Ytterman Västernorrland</title>
+        <meta name="description" content="Svar på vanliga frågor om kontrollansvarig, BAS-P, BAS-U och byggprocessen i Västernorrland. Expert svar från certifierad kontrollansvarig Tobias Ytterman." />
+        <meta name="keywords" content="FAQ byggprocess, kontrollansvarig frågor, BAS-P frågor, BAS-U frågor, byggkontroll Västernorrland, kontrollansvarig Sundsvall, BAS Härnösand" />
+        <link rel="canonical" href="https://ytterman.com/faq" />
+        {/* Open Graph tags */}
+        <meta property="og:title" content="Vanliga frågor (FAQ) - Kontrollansvarig & BAS | Ytterman" />
+        <meta property="og:description" content="Svar på vanliga frågor om kontrollansvarig, BAS-P, BAS-U och byggprocessen i Västernorrland." />
+        <meta property="og:url" content="https://ytterman.com/faq" />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="sv_SE" />
+        {/* Twitter Card tags */}
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Vanliga frågor (FAQ) - Kontrollansvarig & BAS | Ytterman" />
+        <meta name="twitter:description" content="Svar på vanliga frågor om kontrollansvarig, BAS-P, BAS-U och byggprocessen i Västernorrland." />
+        {/* Structured data for FAQ */}
+        <script type="application/ld+json">
+          {JSON.stringify(faqStructuredData)}
+        </script>
+        {/* Additional structured data for organization */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Ytterman - Kontrollansvarig & BAS",
+            "url": "https://ytterman.com",
+            "logo": "https://ytterman.com/logo.png",
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": "+46-XXX-XXX-XXX",
+              "contactType": "customer service",
+              "areaServed": "SE",
+              "availableLanguage": "Swedish"
+            },
+            "areaServed": {
+              "@type": "State",
+              "name": "Västernorrland"
+            },
+            "serviceArea": {
+              "@type": "GeoCircle",
+              "geoMidpoint": {
+                "@type": "GeoCoordinates",
+                "latitude": 62.3908,
+                "longitude": 17.3069
+              },
+              "geoRadius": "100000"
+            }
+          })}
+        </script>
       </Helmet>
 
       <div className="min-h-screen bg-gradient-to-br from-stone-50 via-amber-50/30 to-stone-50">

@@ -1,92 +1,106 @@
-import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import React from 'react';
+import { Helmet } from 'react-helmet-async';
 
-export const SEOOptimizer = () => {
-  const location = useLocation();
+interface SEOOptimizerProps {
+  title: string;
+  description: string;
+  keywords?: string;
+  url: string;
+  type?: 'website' | 'article' | 'service';
+  image?: string;
+  structuredData?: object;
+  noindex?: boolean;
+}
 
-  useEffect(() => {
-    // Uppdatera canonical URL
-    const updateCanonicalUrl = () => {
-      let canonical = document.querySelector('link[rel="canonical"]');
-      if (!canonical) {
-        canonical = document.createElement('link');
-        canonical.setAttribute('rel', 'canonical');
-        document.head.appendChild(canonical);
-      }
-      canonical.setAttribute('href', `https://ytterman.com${location.pathname}`);
-    };
-
-    // Lägg till strukturerad data för lokalt företag
-    const addLocalBusinessSchema = () => {
-      if (!document.querySelector('#local-business-schema')) {
-        const script = document.createElement('script');
-        script.id = 'local-business-schema';
-        script.type = 'application/ld+json';
-        script.textContent = JSON.stringify({
+export const SEOOptimizer: React.FC<SEOOptimizerProps> = ({
+  title,
+  description,
+  keywords,
+  url,
+  type = 'website',
+  image = 'https://ytterman.com/og-image.jpg',
+  structuredData,
+  noindex = false
+}) => {
+  const fullTitle = title.includes('Ytterman') ? title : `${title} | Ytterman`;
+  
+  return (
+    <Helmet>
+      {/* Basic meta tags */}
+      <title>{fullTitle}</title>
+      <meta name="description" content={description} />
+      {keywords && <meta name="keywords" content={keywords} />}
+      <link rel="canonical" href={url} />
+      
+      {/* Robots meta */}
+      <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"} />
+      <meta name="googlebot" content={noindex ? "noindex, nofollow" : "index, follow"} />
+      
+      {/* Open Graph tags */}
+      <meta property="og:title" content={fullTitle} />
+      <meta property="og:description" content={description} />
+      <meta property="og:url" content={url} />
+      <meta property="og:type" content={type} />
+      <meta property="og:image" content={image} />
+      <meta property="og:locale" content="sv_SE" />
+      <meta property="og:site_name" content="Ytterman - Kontrollansvarig & BAS" />
+      
+      {/* Twitter Card tags */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={fullTitle} />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:image" content={image} />
+      
+      {/* Language and region */}
+      <meta name="language" content="Swedish" />
+      <meta name="geo.region" content="SE-Y" />
+      <meta name="geo.placename" content="Västernorrland" />
+      
+      {/* Hreflang */}
+      <link rel="alternate" hrefLang="sv" href={url} />
+      <link rel="alternate" hrefLang="x-default" href={url} />
+      
+      {/* Structured data */}
+      {structuredData && (
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
+      )}
+      
+      {/* Organization structured data (always include) */}
+      <script type="application/ld+json">
+        {JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "LocalBusiness",
+          "@type": "Organization",
           "name": "Ytterman - Kontrollansvarig & BAS",
-          "description": "Certifierad Kontrollansvarig och Byggarbetsmiljösamordnare i Västernorrland",
           "url": "https://ytterman.com",
-          "telephone": "+46761118447",
-          "email": "tobias@ytterman.com",
-          "address": {
-            "@type": "PostalAddress",
-            "addressRegion": "Västernorrland",
-            "addressCountry": "SE"
+          "logo": "https://ytterman.com/logo.png",
+          "description": "Certifierad kontrollansvarig och byggarbetsmiljösamordnare (BAS-P/BAS-U) i Västernorrland med över 20 års erfarenhet.",
+          "areaServed": {
+            "@type": "State",
+            "name": "Västernorrland"
           },
-          "areaServed": [
-            "Sundsvall", "Härnösand", "Sollefteå", "Timrå", "Kramfors", "Västernorrland"
-          ],
-          "serviceType": [
-            "Kontrollansvarig", "BAS-P", "BAS-U", "Byggkontroll", "Arbetsmiljösamordning"
-          ],
-          "priceRange": "12000-25000 SEK",
-          "openingHours": "Mo-Fr 08:00-17:00"
-        });
-        document.head.appendChild(script);
-      }
-    };
-
-    // Optimera meta-taggar baserat på sida
-    const optimizeMetaTags = () => {
-      const path = location.pathname;
-      let title = '';
-      let description = '';
-
-      switch (path) {
-        case '/':
-          title = 'Ytterman - Kontrollansvarig & BAS i Västernorrland | Certifierad Expert';
-          description = 'Certifierad Kontrollansvarig och BAS-P/BAS-U i Västernorrland. 20+ års erfarenhet. Fast pris. Sundsvall, Härnösand, Sollefteå, Timrå, Kramfors.';
-          break;
-        case '/tjanster':
-          title = 'Tjänster - Kontrollansvarig, BAS-P, BAS-U | Ytterman Västernorrland';
-          description = 'Kompletta byggtjänster: Kontrollansvarig, BAS-P, BAS-U, bygglovshandlingar. Fast pris, trygg process. Sundsvall, Härnösand, Sollefteå.';
-          break;
-        case '/kontakt':
-          title = 'Kontakt - Kontrollansvarig & BAS Västernorrland | Ring 076-111 84 47';
-          description = 'Kontakta Ytterman för kontrollansvarig och BAS-tjänster. Ring 076-111 84 47 eller maila tobias@ytterman.com. Kostnadsfri konsultation.';
-          break;
-      }
-
-      if (title) {
-        document.title = title;
-        
-        let metaDescription = document.querySelector('meta[name="description"]');
-        if (!metaDescription) {
-          metaDescription = document.createElement('meta');
-          metaDescription.setAttribute('name', 'description');
-          document.head.appendChild(metaDescription);
-        }
-        metaDescription.setAttribute('content', description);
-      }
-    };
-
-    updateCanonicalUrl();
-    addLocalBusinessSchema();
-    optimizeMetaTags();
-
-  }, [location]);
-
-  return null;
+          "serviceArea": {
+            "@type": "GeoCircle",
+            "geoMidpoint": {
+              "@type": "GeoCoordinates",
+              "latitude": 62.3908,
+              "longitude": 17.3069
+            },
+            "geoRadius": "100000"
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "customer service",
+            "areaServed": "SE",
+            "availableLanguage": "Swedish"
+          },
+          "sameAs": [
+            "https://www.linkedin.com/company/ytterman",
+            "https://www.facebook.com/ytterman"
+          ]
+        })}
+      </script>
+    </Helmet>
+  );
 };

@@ -6,6 +6,7 @@ import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { AdvancedSEO } from '@/components/AdvancedSEO';
 import { SEOEnhancements } from '@/components/SEOEnhancements';
 import { LazyServices, LazyPricing, LazyAbout, LazyContact, LazyServiceQuickMessages } from '@/components/LazyComponents';
+import { Helmet } from 'react-helmet-async';
 
 // Loading component för lazy-loaded komponenter
 const LoadingSpinner = () => (
@@ -103,6 +104,23 @@ const Index = () => {
 
   return (
     <>
+      <Helmet>
+        <link rel="canonical" href="https://ytterman.com/" />
+        
+        {/* Additional meta tags for better indexing */}
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <meta name="googlebot" content="index, follow" />
+        
+        {/* Hreflang for Swedish content */}
+        <link rel="alternate" hrefLang="sv" href="https://ytterman.com/" />
+        <link rel="alternate" hrefLang="x-default" href="https://ytterman.com/" />
+        
+        {/* Internal linking hints */}
+        <link rel="preload" href="/tjanster" as="document" />
+        <link rel="preload" href="/kontakt" as="document" />
+        <link rel="preload" href="/faq" as="document" />
+      </Helmet>
+      
       <AdvancedSEO 
         title="Ytterman - Kontrollansvarig & BAS i Västernorrland | Certifierad Expert"
         description="Certifierad Kontrollansvarig och Byggarbetsmiljösamordnare (BAS-P/BAS-U) i Västernorrland. Över 20 års erfarenhet. Trygg byggprocess med fast pris. Verksam i Sundsvall, Härnösand, Sollefteå, Timrå, Kramfors."
@@ -118,6 +136,32 @@ const Index = () => {
         <Header />
         <main>
           <Hero />
+          
+          {/* Internal linking section for better SEO */}
+          <section className="py-8 bg-stone-50">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto text-center">
+                <nav className="flex flex-wrap justify-center gap-4 text-sm">
+                  <a href="/tjanster" className="text-stone-600 hover:text-amber-600 transition-colors">
+                    Våra tjänster
+                  </a>
+                  <span className="text-stone-400">•</span>
+                  <a href="/faq" className="text-stone-600 hover:text-amber-600 transition-colors">
+                    Vanliga frågor
+                  </a>
+                  <span className="text-stone-400">•</span>
+                  <a href="/guider" className="text-stone-600 hover:text-amber-600 transition-colors">
+                    Guider & Tips
+                  </a>
+                  <span className="text-stone-400">•</span>
+                  <a href="/kontakt" className="text-stone-600 hover:text-amber-600 transition-colors">
+                    Kontakta oss
+                  </a>
+                </nav>
+              </div>
+            </div>
+          </section>
+          
           <Suspense fallback={<LoadingSpinner />}>
             <LazyServices onServiceSelect={handleServiceSelect} />
           </Suspense>
