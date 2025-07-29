@@ -3,7 +3,8 @@ import { Helmet } from 'react-helmet-async';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { HelpCircle, Phone, Mail, MessageCircle } from 'lucide-react';
+import { Button } from "@/components/ui/button";
+import { HelpCircle, Phone, Mail, MessageCircle, Home } from 'lucide-react';
 
 const FAQPage = () => {
   const faqCategories = [
@@ -106,6 +107,18 @@ const FAQPage = () => {
         <div className="bg-gradient-to-r from-stone-800 to-amber-800 text-white py-16">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
+              <div className="mb-6">
+                <a href="/">
+                  <Button 
+                    variant="ghost" 
+                    className="text-white hover:bg-white/10"
+                  >
+                    <Home className="w-4 h-4 mr-2" />
+                    Tillbaka till hem
+                  </Button>
+                </a>
+              </div>
+
               <HelpCircle className="w-16 h-16 mx-auto mb-6 text-amber-200" />
               <h1 className="text-4xl md:text-5xl font-bold mb-6">
                 Vanliga frågor
