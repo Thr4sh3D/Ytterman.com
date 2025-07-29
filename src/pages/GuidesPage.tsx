@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Clock, User, BookOpen, CheckCircle } from 'lucide-react';
+import { Clock, User, BookOpen, CheckCircle, ArrowRight } from 'lucide-react';
 
 const GuidesPage = () => {
   const guides = [
@@ -12,6 +12,7 @@ const GuidesPage = () => {
       description: "En komplett guide om vad en kontrollansvarig gör och varför det är viktigt för ditt byggprojekt.",
       readTime: "8 min",
       category: "Kontrollansvarig",
+      href: "/guider/kontrollansvarig",
       content: [
         "Vad är en kontrollansvarig?",
         "Lagkrav och certifiering",
@@ -26,6 +27,7 @@ const GuidesPage = () => {
       description: "Förstå skillnaderna mellan BAS-P och BAS-U samt när respektive roll krävs i ditt projekt.",
       readTime: "6 min",
       category: "Säkerhetssamordning",
+      href: "/guider/bas",
       content: [
         "Vad är BAS-P (projektering)?",
         "Vad är BAS-U (utförande)?",
@@ -40,6 +42,7 @@ const GuidesPage = () => {
       description: "Steg-för-steg guide genom bygglovsprocessen för kommunerna i Västernorrland.",
       readTime: "10 min",
       category: "Bygglov",
+      href: "/guider/bygglov",
       content: [
         "Förberedelser inför bygglovsansökan",
         "Nödvändiga handlingar",
@@ -54,6 +57,7 @@ const GuidesPage = () => {
       description: "Hur du säkerställer kvalitet genom hela byggprocessen med rätt kontroller vid rätt tidpunkt.",
       readTime: "12 min",
       category: "Kvalitetskontroll",
+      href: "/guider/kvalitetskontroll",
       content: [
         "Planering av kvalitetskontroller",
         "Kritiska kontrollpunkter",
@@ -68,6 +72,7 @@ const GuidesPage = () => {
       description: "Moderna digitala lösningar som effektiviserar byggprocessen och förbättrar kommunikationen.",
       readTime: "7 min",
       category: "Digitalisering",
+      href: "/guider/digitala-verktyg",
       content: [
         "Projekthanteringsverktyg",
         "Digital dokumentation",
@@ -82,6 +87,7 @@ const GuidesPage = () => {
       description: "Hur du integrerar hållbarhet och miljöhänsyn i ditt byggprojekt från start till mål.",
       readTime: "9 min",
       category: "Miljö & Hållbarhet",
+      href: "/guider/miljo",
       content: [
         "Miljöcertifieringar (BREEAM, LEED)",
         "Materialval och återvinning",
@@ -145,7 +151,7 @@ const GuidesPage = () => {
         <div className="container mx-auto px-4 py-16">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {guides.map((guide) => (
-              <Card key={guide.id} className="hover:shadow-lg transition-shadow duration-300 border-stone-200">
+              <Card key={guide.id} className="hover:shadow-lg transition-all duration-300 border-stone-200 group">
                 <CardHeader>
                   <div className="flex justify-between items-start mb-3">
                     <Badge className={getCategoryColor(guide.category)}>
@@ -156,7 +162,7 @@ const GuidesPage = () => {
                       {guide.readTime}
                     </div>
                   </div>
-                  <CardTitle className="text-xl text-stone-800 leading-tight">
+                  <CardTitle className="text-xl text-stone-800 leading-tight group-hover:text-amber-700 transition-colors">
                     {guide.title}
                   </CardTitle>
                   <CardDescription className="text-stone-600">
@@ -164,16 +170,26 @@ const GuidesPage = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-2">
-                    <h4 className="font-semibold text-stone-700 text-sm mb-3">Innehåll:</h4>
-                    <ul className="space-y-1">
-                      {guide.content.map((item, index) => (
-                        <li key={index} className="flex items-start text-sm text-stone-600">
-                          <CheckCircle className="w-4 h-4 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="font-semibold text-stone-700 text-sm mb-3">Innehåll:</h4>
+                      <ul className="space-y-1">
+                        {guide.content.map((item, index) => (
+                          <li key={index} className="flex items-start text-sm text-stone-600">
+                            <CheckCircle className="w-4 h-4 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    
+                    <a 
+                      href={guide.href}
+                      className="inline-flex items-center text-amber-600 hover:text-amber-700 font-semibold text-sm transition-colors group"
+                    >
+                      Läs hela guiden
+                      <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                    </a>
                   </div>
                 </CardContent>
               </Card>
