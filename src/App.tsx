@@ -12,6 +12,9 @@ import FAQPage from "./pages/FAQPage";
 import KontrollansvarigGuide from "./pages/guides/KontrollansvarigGuide";
 import BasGuide from "./pages/guides/BasGuide";
 import BygglovGuide from "./pages/guides/BygglovGuide";
+import KvalitetskontrollGuide from "./pages/guides/KvalitetskontrollGuide";
+import DigitalaVerktygGuide from "./pages/guides/DigitalaVerktygGuide";
+import MiljoGuide from "./pages/guides/MiljoGuide";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -44,6 +47,9 @@ const App = () => (
             <Route path="/guider/kontrollansvarig" element={<KontrollansvarigGuide />} />
             <Route path="/guider/bas" element={<BasGuide />} />
             <Route path="/guider/bygglov" element={<BygglovGuide />} />
+            <Route path="/guider/kvalitetskontroll" element={<KvalitetskontrollGuide />} />
+            <Route path="/guider/digitala-verktyg" element={<DigitalaVerktygGuide />} />
+            <Route path="/guider/miljo" element={<MiljoGuide />} />
             <Route path="/faq" element={<FAQPage />} />
             <Route path="/kontakt" element={<KontaktPage />} />
             {/* Catch-all route for non-existent pages */}
