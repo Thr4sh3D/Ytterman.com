@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Clock, User, ArrowLeft, CheckCircle } from 'lucide-react';
+import { Clock, User, ArrowLeft, CheckCircle, Home } from 'lucide-react';
 
 interface GuideLayoutProps {
   title: string;
@@ -50,14 +50,25 @@ export const GuideLayout = ({
         <div className="bg-gradient-to-r from-stone-800 to-amber-800 text-white py-12">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-              <Button 
-                variant="ghost" 
-                className="text-white hover:bg-white/10 mb-6"
-                onClick={() => window.history.back()}
-              >
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Tillbaka till guider
-              </Button>
+              <div className="flex flex-wrap gap-3 mb-6">
+                <Button 
+                  variant="ghost" 
+                  className="text-white hover:bg-white/10"
+                  onClick={() => window.history.back()}
+                >
+                  <ArrowLeft className="w-4 h-4 mr-2" />
+                  Tillbaka till guider
+                </Button>
+                <a href="/">
+                  <Button 
+                    variant="ghost" 
+                    className="text-white hover:bg-white/10"
+                  >
+                    <Home className="w-4 h-4 mr-2" />
+                    Hem
+                  </Button>
+                </a>
+              </div>
               
               <div className="flex flex-wrap items-center gap-4 mb-6">
                 <Badge className={getCategoryColor(category)}>
@@ -92,6 +103,32 @@ export const GuideLayout = ({
           </div>
         </div>
 
+        {/* Navigation Section - Bottom */}
+        <div className="bg-stone-50 py-8 border-t border-stone-200">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto flex flex-wrap justify-center gap-4">
+              <a href="/">
+                <Button 
+                  variant="outline" 
+                  className="border-stone-300 hover:border-stone-400 text-stone-700"
+                >
+                  <Home className="w-4 h-4 mr-2" />
+                  Tillbaka till hem
+                </Button>
+              </a>
+              <a href="/guider">
+                <Button 
+                  variant="outline" 
+                  className="border-stone-300 hover:border-stone-400 text-stone-700"
+                >
+                  <ArrowLeft className="w-4 h-4 mr-2" />
+                  Alla guider
+                </Button>
+              </a>
+            </div>
+          </div>
+        </div>
+
         {/* CTA Section */}
         <div className="bg-stone-100 py-12">
           <div className="container mx-auto px-4 text-center">
@@ -109,10 +146,10 @@ export const GuideLayout = ({
                 Kontakta mig
               </a>
               <a 
-                href="/guider" 
+                href="/tjanster" 
                 className="border-2 border-stone-300 hover:border-stone-400 text-stone-700 px-6 py-3 rounded-lg font-semibold transition-colors"
               >
-                Fler guider
+                Se alla tjänster
               </a>
             </div>
           </div>
