@@ -1,7 +1,7 @@
 import emailjs from 'emailjs-com';
 
 // EmailJS configuration med dina riktiga uppgifter
-const SERVICE_ID = 'service_0g84n99';
+const SERVICE_ID = 'service_hkaan9a';
 const TEMPLATE_ID = 'template_r43g9li';
 const PUBLIC_KEY = 'HiImRG5AmvO4_ias5';
 
