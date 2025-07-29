@@ -1,5 +1,5 @@
 import { OptimizedImage } from '@/components/OptimizedImage';
-import { Shield, Award, CheckCircle, HardHat } from 'lucide-react';
+import { Shield, Award, CheckCircle, HardHat, ExternalLink } from 'lucide-react';
 
 interface CertificationsProps {
   showTitle?: boolean;
@@ -51,7 +51,7 @@ export const Certifications = ({ showTitle = true, compact = false }: Certificat
               </div>
             </div>
             
-            <div className="relative">
+            <div className="relative mb-4">
               <OptimizedImage
                 src="https://ellprnxjjzatijdxcogk.supabase.co/storage/v1/object/public/superdev-project-images/1a9c4603-3de4-4ce7-b4df-b42fb67a7f27/aorpjse3ulohvjtaxgvsp/1751536744592-KA_copyright.png"
                 alt="Certifikat för Kontrollansvarig enligt Plan- och bygglagen - Tobias Ytterman, Kiwa Certification"
@@ -63,6 +63,17 @@ export const Certifications = ({ showTitle = true, compact = false }: Certificat
                 Giltigt
               </div>
             </div>
+
+            {/* KIWA Certifikat Länk */}
+            <a 
+              href="https://idun.kiwa.se/certificates/25642"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold transition-colors text-sm"
+            >
+              <ExternalLink className="w-4 h-4 mr-2" />
+              Verifiera certifikat hos KIWA
+            </a>
           </div>
         </div>
 
