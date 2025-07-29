@@ -6,6 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { useFormValidation, formatPhoneNumber, type FormData } from '@/components/FormValidation';
 import { trackConversion } from '@/components/ConversionTracking';
+import { sendContactEmail } from '@/lib/emailjs';
 
 interface ContactFormProps {
   className?: string;
@@ -119,24 +120,40 @@ export const ContactForm = ({ className = '' }: ContactFormProps) => {
         phone: formData.phone ? formatPhoneNumber(formData.phone) : ''
       };
 
-      // Simulate form submission - ersätt med riktig EmailJS integration
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Skicka e-post via EmailJS
+      const result = await sendContactEmail(formattedData);
       
-      // Spåra Google Ads konvertering
-      trackConversion(
-        'AW-XXXXXXXXX', // Ersätt med din Google Ads Conversion ID
-        'contact-form-submission', // Ersätt med din Conversion Label
-        100, // Värde på konverteringen (valfritt)
-        'SEK'
-      );
-      
-      setSubmitStatus('Meddelandet har skickats! Du omdirigeras nu...');
-      
-      // Redirect to thank you page with service parameter
-      const serviceParam = formData.project ? `?service=${encodeURIComponent(formData.project)}&source=contact-form` : '?service=kontakt&source=contact-form';
-      window.location.href = `/tack${serviceParam}`;
+      if (result.success) {
+        // Spåra Google Ads konvertering
+        trackConversion(
+          'AW-XXXXXXXXX', // Ersätt med din Google Ads Conversion ID
+          'contact-form-submission', // Ersätt med din Conversion Label
+          100, // Värde på konverteringen (valfritt)
+          'SEK'
+        );
+        
+        setSubmitStatus('Meddelandet har skickats! Du omdirigeras nu...');
+        
+        toast({
+          title: "Meddelande skickat!",
+          description: "Tack för ditt meddelande. Vi återkommer inom kort.",
+          variant: "default"
+        });
+        
+        // Redirect to thank you page with service parameter
+        const serviceParam = formData.project ? `?service=${encodeURIComponent(formData.project)}&source=contact-form` : '?service=kontakt&source=contact-form';
+        
+        // Vänta lite innan omdirigering så användaren ser bekräftelsen
+        setTimeout(() => {
+          window.location.href = `/tack${serviceParam}`;
+        }, 2000);
+        
+      } else {
+        throw new Error(result.error || 'Okänt fel');
+      }
       
     } catch (error) {
+      console.error('Form submission error:', error);
       setSubmitStatus('Ett fel uppstod. Försök igen eller ring oss direkt på 076-111 84 47.');
       toast({
         title: "Fel uppstod",
