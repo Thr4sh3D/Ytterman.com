@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { BlogPost } from '@/entities';
+import { BlogPost } from '@superdevhq/client';
 import { BlogList } from '@/components/BlogList';
 import { BlogHero } from '@/components/BlogHero';
 import { Header } from '@/components/Header';
