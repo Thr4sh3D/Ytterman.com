@@ -8,10 +8,9 @@ export const Header = () => {
   const navigation = [
     { name: 'Hem', href: '/' },
     { name: 'Tjänster', href: '/tjanster' },
-    { name: 'Kontrollansvarig', href: '/kontrollansvarig' },
-    { name: 'BAS-P', href: '/bas-p' },
-    { name: 'BAS-U', href: '/bas-u' },
-    { name: 'Guider', href: '/blogg' },
+    { name: 'Guider', href: '/guider' },
+    { name: 'FAQ', href: '/faq' },
+    { name: 'Kontakt', href: '/kontakt' },
   ];
 
   const scrollToContact = () => {
