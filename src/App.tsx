@@ -18,6 +18,8 @@ import BasPPage from "./pages/BasPPage";
 import BasUPage from "./pages/BasUPage";
 import BlogPage from "./pages/BlogPage";
 import BlogPostPage from "./pages/BlogPostPage";
+import GuidesPage from "./pages/GuidesPage";
+import FAQPage from "./pages/FAQPage";
 import KontaktPage from "./pages/KontaktPage";
 import SiteAnalysisPage from "./pages/SiteAnalysisPage";
 import TackPage from "./pages/TackPage";
@@ -60,6 +62,8 @@ const App = () => (
               <Route path="/bas-u" element={<BasUPage />} />
               <Route path="/blogg" element={<BlogPage />} />
               <Route path="/blogg/:slug" element={<BlogPostPage />} />
+              <Route path="/guider" element={<GuidesPage />} />
+              <Route path="/faq" element={<FAQPage />} />
               <Route path="/kontakt" element={<KontaktPage />} />
               <Route path="/tack" element={<TackPage />} />
               <Route path="/analys" element={<SiteAnalysisPage />} />
