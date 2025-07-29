@@ -4,25 +4,9 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from 'react-helmet-async';
-import { ErrorBoundary } from "@/components/ErrorBoundary";
-import { PerformanceOptimizer } from "@/components/PerformanceOptimizer";
-import { AccessibilityEnhancements } from "@/components/AccessibilityEnhancements";
-import { SEOOptimizer } from "@/components/SEOOptimizer";
-import { GoogleTagManager } from "@/components/GoogleTagManager";
-import { DynamicSitemap } from "@/components/DynamicSitemap";
 import Index from "./pages/Index";
-import NotFound from "./pages/NotFound";
 import TjansterPage from "./pages/TjansterPage";
-import KontrollansvarigPage from "./pages/KontrollansvarigPage";
-import BasPPage from "./pages/BasPPage";
-import BasUPage from "./pages/BasUPage";
-import BlogPage from "./pages/BlogPage";
-import BlogPostPage from "./pages/BlogPostPage";
-import GuidesPage from "./pages/GuidesPage";
-import FAQPage from "./pages/FAQPage";
 import KontaktPage from "./pages/KontaktPage";
-import SiteAnalysisPage from "./pages/SiteAnalysisPage";
-import TackPage from "./pages/TackPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -42,39 +26,23 @@ const queryClient = new QueryClient({
 });
 
 const App = () => (
-  <ErrorBoundary>
-    <HelmetProvider>
-      <QueryClientProvider client={queryClient}>
-        <TooltipProvider>
-          <GoogleTagManager />
-          <PerformanceOptimizer />
-          <AccessibilityEnhancements />
-          <DynamicSitemap />
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
-            <SEOOptimizer />
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/tjanster" element={<TjansterPage />} />
-              <Route path="/kontrollansvarig" element={<KontrollansvarigPage />} />
-              <Route path="/bas-p" element={<BasPPage />} />
-              <Route path="/bas-u" element={<BasUPage />} />
-              <Route path="/blogg" element={<BlogPage />} />
-              <Route path="/blogg/:slug" element={<BlogPostPage />} />
-              <Route path="/guider" element={<GuidesPage />} />
-              <Route path="/faq" element={<FAQPage />} />
-              <Route path="/kontakt" element={<KontaktPage />} />
-              <Route path="/tack" element={<TackPage />} />
-              <Route path="/analys" element={<SiteAnalysisPage />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </BrowserRouter>
-        </TooltipProvider>
-      </QueryClientProvider>
-    </HelmetProvider>
-  </ErrorBoundary>
+  <HelmetProvider>
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/tjanster" element={<TjansterPage />} />
+            <Route path="/kontakt" element={<KontaktPage />} />
+            {/* Catch-all route for non-existent pages */}
+            <Route path="*" element={<Index />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  </HelmetProvider>
 );
 
 export default App;
