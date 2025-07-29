@@ -3,7 +3,6 @@ import { Helmet } from 'react-helmet-async';
 import { BlogPost } from '@/entities';
 import { BlogList } from '@/components/BlogList';
 import { BlogHero } from '@/components/BlogHero';
-import { BlogSidebar } from '@/components/BlogSidebar';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 
@@ -67,20 +66,13 @@ export default function BlogPage() {
         <BlogHero />
         
         <div className="container mx-auto px-4 py-12">
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-            <div className="lg:col-span-3">
-              <BlogList 
-                posts={posts} 
-                loading={loading}
-                selectedCategory={selectedCategory}
-                onCategoryChange={setSelectedCategory}
-                categories={categories}
-              />
-            </div>
-            <div className="lg:col-span-1">
-              <BlogSidebar categories={categories} />
-            </div>
-          </div>
+          <BlogList 
+            posts={posts} 
+            loading={loading}
+            selectedCategory={selectedCategory}
+            onCategoryChange={setSelectedCategory}
+            categories={categories}
+          />
         </div>
       </main>
 
