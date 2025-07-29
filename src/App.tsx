@@ -9,6 +9,9 @@ import TjansterPage from "./pages/TjansterPage";
 import KontaktPage from "./pages/KontaktPage";
 import GuidesPage from "./pages/GuidesPage";
 import FAQPage from "./pages/FAQPage";
+import KontrollansvarigGuide from "./pages/guides/KontrollansvarigGuide";
+import BasGuide from "./pages/guides/BasGuide";
+import BygglovGuide from "./pages/guides/BygglovGuide";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -38,6 +41,9 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/tjanster" element={<TjansterPage />} />
             <Route path="/guider" element={<GuidesPage />} />
+            <Route path="/guider/kontrollansvarig" element={<KontrollansvarigGuide />} />
+            <Route path="/guider/bas" element={<BasGuide />} />
+            <Route path="/guider/bygglov" element={<BygglovGuide />} />
             <Route path="/faq" element={<FAQPage />} />
             <Route path="/kontakt" element={<KontaktPage />} />
             {/* Catch-all route for non-existent pages */}
