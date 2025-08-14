@@ -7,14 +7,14 @@ export const GoogleSearchConsole: React.FC = () => {
       {/* Google Search Console verification - replace with actual verification code */}
       <meta name="google-site-verification" content="YOUR_GOOGLE_SEARCH_CONSOLE_VERIFICATION_CODE" />
       
-      {/* Google Analytics - replace with actual tracking ID */}
-      <script async src="https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID"></script>
+      {/* Google Ads tracking tag */}
+      <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17296101730"></script>
       <script>
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', 'GA_TRACKING_ID');
+          gtag('config', 'AW-17296101730');
         `}
       </script>
       
