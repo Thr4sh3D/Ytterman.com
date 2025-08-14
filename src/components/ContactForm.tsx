@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { useFormValidation, formatPhoneNumber, type FormData } from '@/components/FormValidation';
-import { trackConversion } from '@/components/ConversionTracking';
+import { useGoogleAdsTracking } from '@/hooks/useGoogleAdsTracking';
 import { sendContactEmail } from '@/lib/emailjs';
 
 interface ContactFormProps {
@@ -24,6 +24,7 @@ export const ContactForm = ({ className = '' }: ContactFormProps) => {
   const [submitStatus, setSubmitStatus] = useState<string>('');
   const { toast } = useToast();
   const { errors, validateForm, clearErrors } = useFormValidation();
+  const { trackFormSubmission } = useGoogleAdsTracking();
   const formRef = useRef<HTMLDivElement>(null);
   const statusRef = useRef<HTMLDivElement>(null);
 
@@ -124,13 +125,8 @@ export const ContactForm = ({ className = '' }: ContactFormProps) => {
       const result = await sendContactEmail(formattedData);
       
       if (result.success) {
-        // Spåra Google Ads konvertering
-        trackConversion(
-          'AW-XXXXXXXXX', // Ersätt med din Google Ads Conversion ID
-          'contact-form-submission', // Ersätt med din Conversion Label
-          100, // Värde på konverteringen (valfritt)
-          'SEK'
-        );
+        // Spåra Google Ads konvertering med den nya implementationen
+        trackFormSubmission('contact_form', 1000); // Värde i SEK
         
         setSubmitStatus('Meddelandet har skickats! Du omdirigeras nu...');
         
