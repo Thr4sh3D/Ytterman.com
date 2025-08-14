@@ -11,8 +11,8 @@ import {
  * Hook for Google Ads conversion tracking
  */
 export const useGoogleAdsTracking = () => {
-  const trackFormSubmission = useCallback((formType: string = 'contact', value?: number) => {
-    trackContactFormConversion(formType, value);
+  const trackFormSubmission = useCallback((formType: string = 'contact') => {
+    trackContactFormConversion(formType);
   }, []);
 
   const trackPhoneCall = useCallback(() => {

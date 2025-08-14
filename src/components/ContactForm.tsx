@@ -125,8 +125,8 @@ export const ContactForm = ({ className = '' }: ContactFormProps) => {
       const result = await sendContactEmail(formattedData);
       
       if (result.success) {
-        // Spåra Google Ads konvertering med den nya implementationen
-        trackFormSubmission('contact_form', 1000); // Värde i SEK
+        // Spåra Google Ads lead-konvertering (utan värde)
+        trackFormSubmission('contact_form');
         
         setSubmitStatus('Meddelandet har skickats! Du omdirigeras nu...');
         

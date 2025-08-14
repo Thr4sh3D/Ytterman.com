@@ -32,8 +32,8 @@ export const trackConversion = (config: ConversionConfig = {}) => {
       send_to: conversionId ? `AW-17296101730/${conversionId}` : 'AW-17296101730'
     };
 
-    // Add optional parameters
-    if (value !== undefined) {
+    // Add optional parameters only if value is specified
+    if (value !== undefined && value > 0) {
       conversionData.value = value;
       conversionData.currency = currency;
     }
@@ -54,15 +54,13 @@ export const trackConversion = (config: ConversionConfig = {}) => {
 };
 
 /**
- * Track a contact form submission conversion
+ * Track a contact form submission conversion (lead generation)
  * @param formType - Type of form submitted (e.g., 'contact', 'quote_request')
- * @param value - Optional conversion value
  */
-export const trackContactFormConversion = (formType: string = 'contact', value?: number) => {
+export const trackContactFormConversion = (formType: string = 'contact') => {
   trackConversion({
-    conversionLabel: `contact_form_${formType}`,
-    value,
-    currency: 'SEK'
+    conversionLabel: `contact_form_${formType}`
+    // Inget värde - vi spårar bara att formuläret skickades in
   });
 };
 
