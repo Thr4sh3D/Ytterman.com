@@ -10,6 +10,7 @@ import TjansterPage from "./pages/TjansterPage";
 import KontaktPage from "./pages/KontaktPage";
 import GuidesPage from "./pages/GuidesPage";
 import FAQPage from "./pages/FAQPage";
+import Integritetspolicy from "./pages/Integritetspolicy";
 import KontrollansvarigGuide from "./pages/guides/KontrollansvarigGuide";
 import BasGuide from "./pages/guides/BasGuide";
 import BygglovGuide from "./pages/guides/BygglovGuide";
@@ -54,6 +55,7 @@ const App = () => (
             <Route path="/guider/miljo" element={<MiljoGuide />} />
             <Route path="/faq" element={<FAQPage />} />
             <Route path="/kontakt" element={<KontaktPage />} />
+            <Route path="/integritetspolicy" element={<Integritetspolicy />} />
             {/* Catch-all route for non-existent pages */}
             <Route path="*" element={<Index />} />
           </Routes>

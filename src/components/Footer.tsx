@@ -81,8 +81,11 @@ export const Footer = () => {
             © {currentYear} Ytterman. Alla rättigheter förbehållna.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="/blogg" className="text-gray-400 hover:text-white transition-colors text-sm">
+            <a href="/guider" className="text-gray-400 hover:text-white transition-colors text-sm">
               Guider
+            </a>
+            <a href="/integritetspolicy" className="text-gray-400 hover:text-white transition-colors text-sm">
+              Integritetspolicy
             </a>
             <a href="/#kontakt" className="text-gray-400 hover:text-white transition-colors text-sm">
               Kontakt
