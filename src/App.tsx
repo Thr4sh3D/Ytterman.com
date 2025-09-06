@@ -15,8 +15,6 @@ const GuidesPage = lazy(() => import("./pages/GuidesPage"));
 const FAQPage = lazy(() => import("./pages/FAQPage"));
 const Integritetspolicy = lazy(() => import("./pages/Integritetspolicy"));
 const NotFound = lazy(() => import("./pages/NotFound"));
-const BlogPage = lazy(() => import("./pages/BlogPage"));
-const BlogPostPage = lazy(() => import("./pages/BlogPostPage"));
 
 // Lazy load guide pages
 const KontrollansvarigGuide = lazy(() => import("./pages/guides/KontrollansvarigGuide"));
@@ -72,8 +70,6 @@ const App = () => (
               <Route path="/guider/kvalitetskontroll" element={<KvalitetskontrollGuide />} />
               <Route path="/guider/digitala-verktyg" element={<DigitalaVerktygGuide />} />
               <Route path="/guider/miljo" element={<MiljoGuide />} />
-              <Route path="/blogg" element={<BlogPage />} />
-              <Route path="/blogg/:slug" element={<BlogPostPage />} />
               <Route path="/faq" element={<FAQPage />} />
               <Route path="/kontakt" element={<KontaktPage />} />
               <Route path="/integritetspolicy" element={<Integritetspolicy />} />
