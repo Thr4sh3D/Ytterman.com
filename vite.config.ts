@@ -16,24 +16,31 @@ export default defineConfig({
           // Separate vendor libraries
           'react-vendor': ['react', 'react-dom'],
           'router-vendor': ['react-router-dom'],
-          'ui-vendor': ['@radix-ui/react-accordion', '@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu'],
+          'ui-vendor': [
+            '@radix-ui/react-accordion',
+            '@radix-ui/react-dialog',
+            '@radix-ui/react-dropdown-menu',
+            '@radix-ui/react-navigation-menu',
+            '@radix-ui/react-popover',
+            '@radix-ui/react-select',
+            '@radix-ui/react-tabs',
+            '@radix-ui/react-toast'
+          ],
           'query-vendor': ['@tanstack/react-query'],
           'helmet-vendor': ['react-helmet-async'],
           'icons-vendor': ['lucide-react'],
           // Separate large components
-          'pages': [
-            './src/pages/Index.tsx',
-            './src/pages/TjansterPage.tsx',
-            './src/pages/FAQPage.tsx'
+          'lazy-components': [
+            './src/components/LazyComponents'
           ]
         }
       }
     },
-    // Optimize chunk size
+    // Optimize chunk size warning limit
     chunkSizeWarningLimit: 600,
     // Enable source maps for better debugging
     sourcemap: false,
-    // Minify for production
+    // Optimize minification
     minify: 'terser',
     terserOptions: {
       compress: {
@@ -41,6 +48,11 @@ export default defineConfig({
         drop_debugger: true
       }
     }
+  },
+  // Optimize dev server
+  server: {
+    port: 3000,
+    open: true
   },
   // Optimize dependencies
   optimizeDeps: {

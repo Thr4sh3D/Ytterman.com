@@ -11,7 +11,7 @@ import { Helmet } from 'react-helmet-async';
 // Loading component för lazy-loaded komponenter
 const LoadingSpinner = () => (
   <div className="flex justify-center items-center py-20" role="status" aria-label="Laddar innehåll">
-    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary" aria-hidden="true"></div>
     <span className="sr-only">Laddar...</span>
   </div>
 );
@@ -139,13 +139,13 @@ const Index = () => {
           <Hero />
           
           {/* Internal linking section for better SEO */}
-          <section className="py-8 bg-stone-50">
+          <section className="py-8 bg-stone-50" aria-label="Snabbnavigation">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto text-center">
                 <nav className="flex flex-wrap justify-center gap-4 text-sm" aria-label="Snabblänkar">
                   <a 
                     href="/tjanster" 
-                    className="text-stone-600 hover:text-amber-600 transition-colors"
+                    className="text-stone-600 hover:text-amber-600 transition-colors focus:outline-none focus:ring-2 focus:ring-amber-600 focus:ring-offset-2 rounded"
                     aria-label="Gå till våra tjänster"
                   >
                     Våra tjänster
@@ -153,23 +153,23 @@ const Index = () => {
                   <span className="text-stone-400" aria-hidden="true">•</span>
                   <a 
                     href="/faq" 
-                    className="text-stone-600 hover:text-amber-600 transition-colors"
-                    aria-label="Läs vanliga frågor och svar"
+                    className="text-stone-600 hover:text-amber-600 transition-colors focus:outline-none focus:ring-2 focus:ring-amber-600 focus:ring-offset-2 rounded"
+                    aria-label="Läs vanliga frågor"
                   >
                     Vanliga frågor
                   </a>
                   <span className="text-stone-400" aria-hidden="true">•</span>
                   <a 
                     href="/guider" 
-                    className="text-stone-600 hover:text-amber-600 transition-colors"
-                    aria-label="Läs våra guider och tips"
+                    className="text-stone-600 hover:text-amber-600 transition-colors focus:outline-none focus:ring-2 focus:ring-amber-600 focus:ring-offset-2 rounded"
+                    aria-label="Läs guider och tips"
                   >
                     Guider & Tips
                   </a>
                   <span className="text-stone-400" aria-hidden="true">•</span>
                   <a 
                     href="/kontakt" 
-                    className="text-stone-600 hover:text-amber-600 transition-colors"
+                    className="text-stone-600 hover:text-amber-600 transition-colors focus:outline-none focus:ring-2 focus:ring-amber-600 focus:ring-offset-2 rounded"
                     aria-label="Kontakta oss"
                   >
                     Kontakta oss
