@@ -2,7 +2,7 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { AdvancedSEO } from '@/components/AdvancedSEO';
-import { FAQ, faqData } from '@/components/FAQ';
+import { ServiceFAQ } from '@/components/ServiceFAQ';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { CheckCircle, Phone, Mail, FileText, Users, Shield, Building, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -137,8 +137,9 @@ const TjansterPage = () => {
                 <Button 
                   onClick={scrollToContact}
                   className="earth-gradient text-white hover:opacity-90 px-8 py-4 text-lg"
+                  aria-label="Få kostnadsfri offert för byggtjänster"
                 >
-                  <Phone className="w-5 h-5 mr-2" />
+                  <Phone className="w-5 h-5 mr-2" aria-hidden="true" />
                   Få kostnadsfri offert
                 </Button>
               </div>
@@ -155,7 +156,7 @@ const TjansterPage = () => {
                       <div key={index} className="bg-slate-50 rounded-xl p-8 hover:shadow-lg transition-shadow">
                         <div className="flex items-center mb-6">
                           <div className="w-12 h-12 earth-gradient rounded-lg flex items-center justify-center mr-4">
-                            <IconComponent className="w-6 h-6 text-white" />
+                            <IconComponent className="w-6 h-6 text-white" aria-hidden="true" />
                           </div>
                           <div>
                             <h3 className="text-2xl font-bold text-slate-900">{service.title}</h3>
@@ -168,7 +169,7 @@ const TjansterPage = () => {
                         <ul className="space-y-3 mb-8">
                           {service.features.map((feature, featureIndex) => (
                             <li key={featureIndex} className="flex items-start space-x-3">
-                              <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
+                              <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" aria-hidden="true" />
                               <span className="text-slate-700">{feature}</span>
                             </li>
                           ))}
@@ -178,6 +179,7 @@ const TjansterPage = () => {
                           <Button 
                             onClick={() => handleServiceQuote(service.id)}
                             className="flex-1 earth-gradient text-white hover:opacity-90"
+                            aria-label={`Få offert för ${service.title}`}
                           >
                             Få offert
                           </Button>
@@ -185,9 +187,10 @@ const TjansterPage = () => {
                             onClick={() => window.location.href = service.link}
                             variant="outline"
                             className="hover:bg-primary hover:text-white"
+                            aria-label={`Läs mer om ${service.title}`}
                           >
                             Läs mer
-                            <ArrowRight className="w-4 h-4 ml-2" />
+                            <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
                           </Button>
                         </div>
                       </div>
@@ -244,7 +247,7 @@ const TjansterPage = () => {
             </div>
           </section>
 
-          <FAQ items={serviceFaq} />
+          <ServiceFAQ items={serviceFaq} />
 
           <section className="py-20 bg-white">
             <div className="container mx-auto px-4">
@@ -261,8 +264,9 @@ const TjansterPage = () => {
                   <a 
                     href="/kontrollansvarig"
                     className="bg-slate-50 p-6 rounded-lg hover:shadow-lg transition-shadow group"
+                    aria-label="Läs mer om kontrollansvarig-tjänster"
                   >
-                    <Shield className="w-8 h-8 text-primary mb-4 mx-auto" />
+                    <Shield className="w-8 h-8 text-primary mb-4 mx-auto" aria-hidden="true" />
                     <h3 className="font-bold text-slate-900 mb-2 group-hover:text-primary transition-colors">
                       Kontrollansvarig Guide
                     </h3>
@@ -274,8 +278,9 @@ const TjansterPage = () => {
                   <a 
                     href="/bas-p"
                     className="bg-slate-50 p-6 rounded-lg hover:shadow-lg transition-shadow group"
+                    aria-label="Läs mer om BAS-P tjänster"
                   >
-                    <FileText className="w-8 h-8 text-primary mb-4 mx-auto" />
+                    <FileText className="w-8 h-8 text-primary mb-4 mx-auto" aria-hidden="true" />
                     <h3 className="font-bold text-slate-900 mb-2 group-hover:text-primary transition-colors">
                       BAS-P Information
                     </h3>
@@ -287,8 +292,9 @@ const TjansterPage = () => {
                   <a 
                     href="/bas-u"
                     className="bg-slate-50 p-6 rounded-lg hover:shadow-lg transition-shadow group"
+                    aria-label="Läs mer om BAS-U tjänster"
                   >
-                    <Users className="w-8 h-8 text-primary mb-4 mx-auto" />
+                    <Users className="w-8 h-8 text-primary mb-4 mx-auto" aria-hidden="true" />
                     <h3 className="font-bold text-slate-900 mb-2 group-hover:text-primary transition-colors">
                       BAS-U Detaljer
                     </h3>
@@ -314,15 +320,17 @@ const TjansterPage = () => {
                 <Button 
                   onClick={scrollToContact}
                   className="earth-gradient text-white hover:opacity-90 px-8 py-4 text-lg"
+                  aria-label="Få kostnadsfri offert"
                 >
-                  <Phone className="w-5 h-5 mr-2" />
+                  <Phone className="w-5 h-5 mr-2" aria-hidden="true" />
                   Få kostnadsfri offert
                 </Button>
                 <a 
                   href="mailto:tobias@ytterman.com"
                   className="inline-flex items-center px-8 py-4 border-2 border-white text-white rounded-lg hover:bg-white hover:text-slate-900 transition-colors text-lg font-semibold"
+                  aria-label="Skicka e-post till tobias@ytterman.com"
                 >
-                  <Mail className="w-5 h-5 mr-2" />
+                  <Mail className="w-5 h-5 mr-2" aria-hidden="true" />
                   tobias@ytterman.com
                 </a>
               </div>

@@ -11,6 +11,7 @@ import KontaktPage from "./pages/KontaktPage";
 import GuidesPage from "./pages/GuidesPage";
 import FAQPage from "./pages/FAQPage";
 import Integritetspolicy from "./pages/Integritetspolicy";
+import NotFound from "./pages/NotFound";
 import KontrollansvarigGuide from "./pages/guides/KontrollansvarigGuide";
 import BasGuide from "./pages/guides/BasGuide";
 import BygglovGuide from "./pages/guides/BygglovGuide";
@@ -56,8 +57,8 @@ const App = () => (
             <Route path="/faq" element={<FAQPage />} />
             <Route path="/kontakt" element={<KontaktPage />} />
             <Route path="/integritetspolicy" element={<Integritetspolicy />} />
-            {/* Catch-all route for non-existent pages */}
-            <Route path="*" element={<Index />} />
+            {/* Dedicated 404 route for non-existent pages */}
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
       </TooltipProvider>

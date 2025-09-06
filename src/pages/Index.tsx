@@ -10,8 +10,9 @@ import { Helmet } from 'react-helmet-async';
 
 // Loading component för lazy-loaded komponenter
 const LoadingSpinner = () => (
-  <div className="flex justify-center items-center py-20">
+  <div className="flex justify-center items-center py-20" role="status" aria-label="Laddar innehåll">
     <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+    <span className="sr-only">Laddar...</span>
   </div>
 );
 
@@ -134,27 +135,43 @@ const Index = () => {
       
       <div className="min-h-screen">
         <Header />
-        <main>
+        <main role="main">
           <Hero />
           
           {/* Internal linking section for better SEO */}
           <section className="py-8 bg-stone-50">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto text-center">
-                <nav className="flex flex-wrap justify-center gap-4 text-sm">
-                  <a href="/tjanster" className="text-stone-600 hover:text-amber-600 transition-colors">
+                <nav className="flex flex-wrap justify-center gap-4 text-sm" aria-label="Snabblänkar">
+                  <a 
+                    href="/tjanster" 
+                    className="text-stone-600 hover:text-amber-600 transition-colors"
+                    aria-label="Gå till våra tjänster"
+                  >
                     Våra tjänster
                   </a>
-                  <span className="text-stone-400">•</span>
-                  <a href="/faq" className="text-stone-600 hover:text-amber-600 transition-colors">
+                  <span className="text-stone-400" aria-hidden="true">•</span>
+                  <a 
+                    href="/faq" 
+                    className="text-stone-600 hover:text-amber-600 transition-colors"
+                    aria-label="Läs vanliga frågor och svar"
+                  >
                     Vanliga frågor
                   </a>
-                  <span className="text-stone-400">•</span>
-                  <a href="/guider" className="text-stone-600 hover:text-amber-600 transition-colors">
+                  <span className="text-stone-400" aria-hidden="true">•</span>
+                  <a 
+                    href="/guider" 
+                    className="text-stone-600 hover:text-amber-600 transition-colors"
+                    aria-label="Läs våra guider och tips"
+                  >
                     Guider & Tips
                   </a>
-                  <span className="text-stone-400">•</span>
-                  <a href="/kontakt" className="text-stone-600 hover:text-amber-600 transition-colors">
+                  <span className="text-stone-400" aria-hidden="true">•</span>
+                  <a 
+                    href="/kontakt" 
+                    className="text-stone-600 hover:text-amber-600 transition-colors"
+                    aria-label="Kontakta oss"
+                  >
                     Kontakta oss
                   </a>
                 </nav>
