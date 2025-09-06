@@ -1,9 +1,8 @@
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
-import { AdvancedSEO } from '@/components/AdvancedSEO';
 import { Button } from '@/components/ui/button';
-import { Home, Search, Phone, ArrowLeft, MapPin } from 'lucide-react';
+import { Home, Phone, ArrowLeft, MapPin } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 
 const NotFound = () => {
