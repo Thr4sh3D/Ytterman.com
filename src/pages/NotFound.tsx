@@ -80,7 +80,7 @@ const NotFound = () => {
                   <Button 
                     onClick={() => window.history.back()}
                     variant="outline"
-                    className="px-8 py-4 text-lg"
+                    className="px-8 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                     aria-label="Gå tillbaka till föregående sida"
                   >
                     <ArrowLeft className="w-5 h-5 mr-2" aria-hidden="true" />

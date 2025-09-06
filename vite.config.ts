@@ -13,7 +13,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          // Separate vendor libraries
+          // Separate vendor libraries for better caching
           'react-vendor': ['react', 'react-dom'],
           'router-vendor': ['react-router-dom'],
           'ui-vendor': [
@@ -29,7 +29,7 @@ export default defineConfig({
           'query-vendor': ['@tanstack/react-query'],
           'helmet-vendor': ['react-helmet-async'],
           'icons-vendor': ['lucide-react'],
-          // Separate large components
+          // Separate lazy components to reduce main bundle
           'lazy-components': [
             './src/components/LazyComponents'
           ]
@@ -38,30 +38,27 @@ export default defineConfig({
     },
     // Optimize chunk size warning limit
     chunkSizeWarningLimit: 600,
-    // Enable source maps for better debugging
+    // Disable source maps for production to reduce size
     sourcemap: false,
-    // Optimize minification
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true
-      }
-    }
+    // Use esbuild for minification (faster and included by default)
+    minify: 'esbuild',
+    // Optimize target for modern browsers
+    target: 'es2020'
   },
   // Optimize dev server
   server: {
     port: 3000,
     open: true
   },
-  // Optimize dependencies
+  // Pre-bundle dependencies for faster dev startup
   optimizeDeps: {
     include: [
       'react',
       'react-dom',
       'react-router-dom',
       '@tanstack/react-query',
-      'lucide-react'
+      'lucide-react',
+      'react-helmet-async'
     ]
   }
 });

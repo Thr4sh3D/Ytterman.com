@@ -57,7 +57,7 @@ const App = () => (
             <Route path="/faq" element={<FAQPage />} />
             <Route path="/kontakt" element={<KontaktPage />} />
             <Route path="/integritetspolicy" element={<Integritetspolicy />} />
-            {/* Dedicated 404 route for non-existent pages */}
+            {/* Catch-all route for 404 pages - CRITICAL for SEO */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
