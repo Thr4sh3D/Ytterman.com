@@ -4,7 +4,6 @@ import { Hero } from '@/components/Hero';
 import { Footer } from '@/components/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { AdvancedSEO } from '@/components/AdvancedSEO';
-import { SEOEnhancements } from '@/components/SEOEnhancements';
 import { LazyServices, LazyPricing, LazyAbout, LazyContact, LazyServiceQuickMessages } from '@/components/LazyComponents';
 import { Helmet } from 'react-helmet-async';
 
@@ -129,7 +128,6 @@ const Index = () => {
         faq={faqData}
         reviews={reviews}
       />
-      <SEOEnhancements />
       
       <div className="min-h-screen">
         <Header />
