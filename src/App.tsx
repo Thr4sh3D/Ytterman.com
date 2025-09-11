@@ -4,11 +4,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { HelmetProvider } from 'react-helmet-async';
 import { Toaster } from "@/components/ui/sonner";
 
-// Lazy load pages for better performance
 const Index = lazy(() => import("./pages/Index"));
 const TjansterPage = lazy(() => import("./pages/TjansterPage"));
 const KontaktPage = lazy(() => import("./pages/KontaktPage"));
-const About = lazy(() => import("./pages/About"));
 const GuidesPage = lazy(() => import("./pages/GuidesPage"));
 const FAQPage = lazy(() => import("./pages/FAQPage"));
 const Integritetspolicy = lazy(() => import("./pages/Integritetspolicy"));
@@ -16,7 +14,6 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 const BlogPage = lazy(() => import("./pages/BlogPage"));
 const BlogPostPage = lazy(() => import("./pages/BlogPostPage"));
 
-// Lazy load guide pages
 const KontrollansvarigGuide = lazy(() => import("./pages/guides/KontrollansvarigGuide"));
 const BasGuide = lazy(() => import("./pages/guides/BasGuide"));
 const BygglovGuide = lazy(() => import("./pages/guides/BygglovGuide"));
@@ -24,17 +21,15 @@ const KvalitetskontrollGuide = lazy(() => import("./pages/guides/Kvalitetskontro
 const DigitalaVerktygGuide = lazy(() => import("./pages/guides/DigitalaVerktygGuide"));
 const MiljoGuide = lazy(() => import("./pages/guides/MiljoGuide"));
 
-// Create a client
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 1000 * 60 * 5, // 5 minutes
+      staleTime: 1000 * 60 * 5,
       retry: 1,
     },
   },
 });
 
-// Loading component
 const LoadingSpinner = () => (
   <div className="min-h-screen flex items-center justify-center">
     <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
@@ -50,7 +45,6 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/tjanster" element={<TjansterPage />} />
-              <Route path="/om-oss" element={<About />} />
               <Route path="/guider" element={<GuidesPage />} />
               <Route path="/guider/kontrollansvarig" element={<KontrollansvarigGuide />} />
               <Route path="/guider/bas" element={<BasGuide />} />
