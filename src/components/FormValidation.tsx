@@ -8,7 +8,7 @@ export interface FormData {
   message: string;
 }
 
-export interface ValidationErrors {
+interface ValidationErrors {
   name?: string;
   email?: string;
   phone?: string;
@@ -18,36 +18,43 @@ export interface ValidationErrors {
 export const useFormValidation = () => {
   const [errors, setErrors] = useState<ValidationErrors>({});
 
-  const validateForm = (data: FormData): boolean => {
+  const validateEmail = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validatePhone = (phone: string): boolean => {
+    if (!phone) return true; // Phone is optional
+    const phoneRegex = /^[\+]?[0-9\s\-\(\)]{8,}$/;
+    return phoneRegex.test(phone.replace(/\s/g, ''));
+  };
+
+  const validateForm = (formData: FormData): boolean => {
     const newErrors: ValidationErrors = {};
 
-    // Validera namn
-    if (!data.name.trim()) {
+    // Name validation
+    if (!formData.name.trim()) {
       newErrors.name = 'Namn är obligatoriskt';
-    } else if (data.name.trim().length < 2) {
+    } else if (formData.name.trim().length < 2) {
       newErrors.name = 'Namnet måste vara minst 2 tecken';
     }
 
-    // Validera e-post
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!data.email.trim()) {
+    // Email validation
+    if (!formData.email.trim()) {
       newErrors.email = 'E-post är obligatoriskt';
-    } else if (!emailRegex.test(data.email)) {
+    } else if (!validateEmail(formData.email)) {
       newErrors.email = 'Ange en giltig e-postadress';
     }
 
-    // Validera telefon (valfritt men om angivet ska det vara giltigt)
-    if (data.phone.trim()) {
-      const phoneRegex = /^[\+]?[0-9\s\-\(\)]{8,}$/;
-      if (!phoneRegex.test(data.phone.replace(/\s/g, ''))) {
-        newErrors.phone = 'Ange ett giltigt telefonnummer';
-      }
+    // Phone validation (optional)
+    if (formData.phone && !validatePhone(formData.phone)) {
+      newErrors.phone = 'Ange ett giltigt telefonnummer';
     }
 
-    // Validera meddelande
-    if (!data.message.trim()) {
+    // Message validation
+    if (!formData.message.trim()) {
       newErrors.message = 'Meddelande är obligatoriskt';
-    } else if (data.message.trim().length < 10) {
+    } else if (formData.message.trim().length < 10) {
       newErrors.message = 'Meddelandet måste vara minst 10 tecken';
     }
 
@@ -66,17 +73,19 @@ export const useFormValidation = () => {
   };
 };
 
-// Hjälpfunktion för att formatera telefonnummer
 export const formatPhoneNumber = (phone: string): string => {
-  const cleaned = phone.replace(/\D/g, '');
+  // Remove all non-digit characters except +
+  const cleaned = phone.replace(/[^\d+]/g, '');
   
-  if (cleaned.startsWith('46')) {
-    // Svenskt nummer med landskod
-    return `+${cleaned.slice(0, 2)} ${cleaned.slice(2, 5)} ${cleaned.slice(5, 8)} ${cleaned.slice(8, 10)} ${cleaned.slice(10, 12)}`.trim();
-  } else if (cleaned.startsWith('0')) {
-    // Svenskt nummer utan landskod
-    return `${cleaned.slice(0, 3)}-${cleaned.slice(3, 6)} ${cleaned.slice(6, 8)} ${cleaned.slice(8, 10)}`.trim();
+  // If it starts with 0, replace with +46
+  if (cleaned.startsWith('0')) {
+    return '+46' + cleaned.substring(1);
   }
   
-  return phone; // Returnera ursprungligt format om det inte matchar
+  // If it doesn't start with +, assume it's Swedish and add +46
+  if (!cleaned.startsWith('+')) {
+    return '+46' + cleaned;
+  }
+  
+  return cleaned;
 };
