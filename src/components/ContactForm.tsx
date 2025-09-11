@@ -36,7 +36,9 @@ export const ContactForm = ({ className = '' }: ContactFormProps) => {
     'kontrollansvarig-service': 'villa',
     'bas-p-service': 'villa',
     'bas-u-service': 'villa',
-    'kombinerade-paket-service': 'flerfamilj'
+    'kombinerade-paket-service': 'flerfamilj',
+    'energideklaration': 'villa',
+    'overlatelsebesiktning': 'villa'
   };
 
   // Läs URL-parametrar och fyll i formuläret automatiskt
@@ -72,6 +74,14 @@ export const ContactForm = ({ className = '' }: ContactFormProps) => {
           break;
         case 'bas-u-service':
           prefilledMessage = 'Hej! Jag är intresserad av BAS-U tjänsten. Kan du kontakta mig för mer information?';
+          projectType = 'villa';
+          break;
+        case 'energideklaration':
+          prefilledMessage = 'Hej! Jag behöver en energideklaration för min fastighet. Kan du kontakta mig för mer information om processen och prisuppgift?';
+          projectType = 'villa';
+          break;
+        case 'overlatelsebesiktning':
+          prefilledMessage = 'Hej! Jag är intresserad av en överlåtelsebesiktning inför försäljning av min fastighet. Kan du kontakta mig för mer information och prisuppgift?';
           projectType = 'villa';
           break;
         case 'kombinerade-paket-service':

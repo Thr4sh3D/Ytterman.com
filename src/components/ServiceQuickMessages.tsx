@@ -14,6 +14,18 @@ export const ServiceQuickMessages = ({ onServiceSelect }: ServiceQuickMessagesPr
       cta: 'Kontakta oss om KA'
     },
     {
+      id: 'energideklaration',
+      title: 'Energideklaration behövs?',
+      message: 'Lagkrav vid försäljning. Snabb leverans med energiklassning och förbättringsförslag.',
+      cta: 'Beställ energideklaration'
+    },
+    {
+      id: 'overlatelsebesiktning',
+      title: 'Ska du sälja fastighet?',
+      message: 'Upptäck fel i förväg med professionell överlåtelsebesiktning.',
+      cta: 'Boka besiktning'
+    },
+    {
       id: 'bas-p-service',
       title: 'BAS-P för ditt projekt?',
       message: 'Arbetsmiljösamordning under projekteringsfasen för säker byggprocess.',
@@ -52,7 +64,7 @@ export const ServiceQuickMessages = ({ onServiceSelect }: ServiceQuickMessagesPr
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {quickMessages.map((item, index) => (
               <div 
                 key={index}

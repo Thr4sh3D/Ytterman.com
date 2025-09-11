@@ -1,4 +1,4 @@
-import { Shield, FileText, Users, Building, CheckCircle, ArrowRight } from 'lucide-react';
+import { Shield, FileText, Users, Building, CheckCircle, ArrowRight, Zap, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 interface ServicesProps {
@@ -19,7 +19,8 @@ export const Services = ({ onServiceSelect }: ServicesProps) => {
         'Samordning med byggkontroll'
       ],
       icon: Shield,
-      popular: true
+      popular: true,
+      link: '/kontrollansvarig'
     },
     {
       id: 'bas-p-service',
@@ -32,7 +33,8 @@ export const Services = ({ onServiceSelect }: ServicesProps) => {
         'Samordning mellan projektörer',
         'Dokumentation enligt AML'
       ],
-      icon: FileText
+      icon: FileText,
+      link: '/bas-p'
     },
     {
       id: 'bas-u-service',
@@ -45,7 +47,38 @@ export const Services = ({ onServiceSelect }: ServicesProps) => {
         'Arbetsmiljöuppföljning',
         'Incidentrapportering'
       ],
-      icon: Users
+      icon: Users,
+      link: '/bas-u'
+    },
+    {
+      id: 'energideklaration',
+      title: 'Energideklaration',
+      description: 'Professionell energideklaration enligt lagkrav',
+      price: 'Från 4,500 SEK',
+      features: [
+        'Energiklassning A-G',
+        'Förbättringsförslag',
+        'Giltig i 10 år',
+        'Snabb leverans'
+      ],
+      icon: Zap,
+      link: '/energideklaration',
+      new: true
+    },
+    {
+      id: 'overlatelsebesiktning',
+      title: 'Överlåtelsebesiktning',
+      description: 'Teknisk besiktning inför fastighetsförsäljning',
+      price: 'Från 8,500 SEK',
+      features: [
+        'Upptäck fel i förväg',
+        'Detaljerad rapport',
+        'Trygghet vid försäljning',
+        'Professionell bedömning'
+      ],
+      icon: Search,
+      link: '/overlatelsebesiktning',
+      new: true
     },
     {
       id: 'bygglovshandlingar',
@@ -58,7 +91,8 @@ export const Services = ({ onServiceSelect }: ServicesProps) => {
         'Teknisk beskrivning',
         'Energiberäkningar'
       ],
-      icon: Building
+      icon: Building,
+      link: '/kontakt'
     }
   ];
 
@@ -78,11 +112,11 @@ export const Services = ({ onServiceSelect }: ServicesProps) => {
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
               Professionella byggtjänster för ditt projekt. Från kontrollansvarig till 
-              arbetsmiljösamordning - vi hjälper dig genom hela byggprocessen.
+              arbetsmiljösamordning, energideklarationer och besiktningar - vi hjälper dig genom hela processen.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => {
               const IconComponent = service.icon;
               return (
@@ -100,12 +134,26 @@ export const Services = ({ onServiceSelect }: ServicesProps) => {
                     </div>
                   )}
                   
+                  {service.new && (
+                    <div className="absolute -top-3 right-6">
+                      <span className="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                        Ny tjänst
+                      </span>
+                    </div>
+                  )}
+                  
                   <div className="flex items-center mb-6">
-                    <div className="w-12 h-12 earth-gradient rounded-lg flex items-center justify-center mr-4">
+                    <div className={`w-12 h-12 rounded-lg flex items-center justify-center mr-4 ${
+                      service.id === 'energideklaration' 
+                        ? 'bg-gradient-to-r from-green-500 to-blue-500'
+                        : service.id === 'overlatelsebesiktning'
+                        ? 'bg-gradient-to-r from-blue-500 to-purple-500'
+                        : 'earth-gradient'
+                    }`}>
                       <IconComponent className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <h3 className="text-2xl font-bold text-slate-900">{service.title}</h3>
+                      <h3 className="text-xl font-bold text-slate-900">{service.title}</h3>
                       <p className="text-primary font-semibold">{service.price}</p>
                     </div>
                   </div>
@@ -121,13 +169,27 @@ export const Services = ({ onServiceSelect }: ServicesProps) => {
                     ))}
                   </ul>
                   
-                  <Button 
-                    onClick={() => handleServiceClick(service.id)}
-                    className="w-full earth-gradient text-white hover:opacity-90"
-                  >
-                    Välj denna tjänst
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </Button>
+                  <div className="flex gap-3">
+                    <Button 
+                      onClick={() => handleServiceClick(service.id)}
+                      className={`flex-1 text-white hover:opacity-90 ${
+                        service.id === 'energideklaration' 
+                          ? 'bg-gradient-to-r from-green-500 to-blue-500'
+                          : service.id === 'overlatelsebesiktning'
+                          ? 'bg-gradient-to-r from-blue-500 to-purple-500'
+                          : 'earth-gradient'
+                      }`}
+                    >
+                      Välj tjänst
+                    </Button>
+                    <Button 
+                      onClick={() => window.location.href = service.link}
+                      variant="outline"
+                      className="hover:bg-primary hover:text-white"
+                    >
+                      <ArrowRight className="w-4 h-4" />
+                    </Button>
+                  </div>
                 </div>
               );
             })}

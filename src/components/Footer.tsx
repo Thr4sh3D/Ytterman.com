@@ -56,6 +56,16 @@ export const Footer = () => {
                 </a>
               </li>
               <li>
+                <a href="/energideklaration" className="text-gray-300 hover:text-white transition-colors">
+                  Energideklaration
+                </a>
+              </li>
+              <li>
+                <a href="/overlatelsebesiktning" className="text-gray-300 hover:text-white transition-colors">
+                  Överlåtelsebesiktning
+                </a>
+              </li>
+              <li>
                 <a href="/tjanster" className="text-gray-300 hover:text-white transition-colors">
                   Bygglovshandlingar
                 </a>
