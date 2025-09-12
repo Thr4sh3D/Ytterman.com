@@ -13,8 +13,6 @@ const Integritetspolicy = lazy(() => import("./pages/Integritetspolicy"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const BlogPage = lazy(() => import("./pages/BlogPage"));
 const BlogPostPage = lazy(() => import("./pages/BlogPostPage"));
-const EnergideklarationPage = lazy(() => import("./pages/EnergideklarationPage"));
-const OverlatelsebesiktningPage = lazy(() => import("./pages/OverlatelsebesiktningPage"));
 
 const KontrollansvarigGuide = lazy(() => import("./pages/guides/KontrollansvarigGuide"));
 const BasGuide = lazy(() => import("./pages/guides/BasGuide"));
@@ -47,8 +45,6 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/tjanster" element={<TjansterPage />} />
-              <Route path="/energideklaration" element={<EnergideklarationPage />} />
-              <Route path="/overlatelsebesiktning" element={<OverlatelsebesiktningPage />} />
               <Route path="/guider" element={<GuidesPage />} />
               <Route path="/guider/kontrollansvarig" element={<KontrollansvarigGuide />} />
               <Route path="/guider/bas" element={<BasGuide />} />

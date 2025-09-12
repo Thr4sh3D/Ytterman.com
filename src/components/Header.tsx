@@ -1,25 +1,13 @@
 import { useState } from 'react';
-import { Menu, X, Phone, ChevronDown } from 'lucide-react';
+import { Menu, X, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isServicesOpen, setIsServicesOpen] = useState(false);
 
   const navigation = [
     { name: 'Hem', href: '/' },
-    { 
-      name: 'Tjänster', 
-      href: '/tjanster',
-      submenu: [
-        { name: 'Kontrollansvarig', href: '/kontrollansvarig' },
-        { name: 'BAS-P', href: '/bas-p' },
-        { name: 'BAS-U', href: '/bas-u' },
-        { name: 'Energideklaration', href: '/energideklaration' },
-        { name: 'Överlåtelsebesiktning', href: '/overlatelsebesiktning' },
-        { name: 'Alla tjänster', href: '/tjanster' }
-      ]
-    },
+    { name: 'Tjänster', href: '/tjanster' },
     { name: 'Guider', href: '/guider' },
     { name: 'FAQ', href: '/faq' },
     { name: 'Kontakt', href: '/kontakt' },
@@ -51,44 +39,13 @@ export const Header = () => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             {navigation.map((item) => (
-              <div key={item.name} className="relative group">
-                {item.submenu ? (
-                  <>
-                    <button
-                      className="flex items-center text-slate-700 hover:text-primary transition-colors font-medium"
-                      onMouseEnter={() => setIsServicesOpen(true)}
-                      onMouseLeave={() => setIsServicesOpen(false)}
-                    >
-                      {item.name}
-                      <ChevronDown className="w-4 h-4 ml-1" />
-                    </button>
-                    {isServicesOpen && (
-                      <div 
-                        className="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-slate-200 py-2 z-50"
-                        onMouseEnter={() => setIsServicesOpen(true)}
-                        onMouseLeave={() => setIsServicesOpen(false)}
-                      >
-                        {item.submenu.map((subItem) => (
-                          <a
-                            key={subItem.name}
-                            href={subItem.href}
-                            className="block px-4 py-2 text-slate-700 hover:bg-slate-50 hover:text-primary transition-colors"
-                          >
-                            {subItem.name}
-                          </a>
-                        ))}
-                      </div>
-                    )}
-                  </>
-                ) : (
-                  <a
-                    href={item.href}
-                    className="text-slate-700 hover:text-primary transition-colors font-medium"
-                  >
-                    {item.name}
-                  </a>
-                )}
-              </div>
+              <a
+                key={item.name}
+                href={item.href}
+                className="text-slate-700 hover:text-primary transition-colors font-medium"
+              >
+                {item.name}
+              </a>
             ))}
           </nav>
 
@@ -125,29 +82,14 @@ export const Header = () => {
           <div className="md:hidden py-4 border-t border-slate-200">
             <nav className="flex flex-col space-y-4">
               {navigation.map((item) => (
-                <div key={item.name}>
-                  <a
-                    href={item.href}
-                    className="text-slate-700 hover:text-primary transition-colors font-medium block"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {item.name}
-                  </a>
-                  {item.submenu && (
-                    <div className="ml-4 mt-2 space-y-2">
-                      {item.submenu.map((subItem) => (
-                        <a
-                          key={subItem.name}
-                          href={subItem.href}
-                          className="text-slate-600 hover:text-primary transition-colors text-sm block"
-                          onClick={() => setIsMenuOpen(false)}
-                        >
-                          {subItem.name}
-                        </a>
-                      ))}
-                    </div>
-                  )}
-                </div>
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="text-slate-700 hover:text-primary transition-colors font-medium"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item.name}
+                </a>
               ))}
               <div className="pt-4 border-t border-slate-200 space-y-3">
                 <a 
