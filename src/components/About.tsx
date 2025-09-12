@@ -1,26 +1,28 @@
-import { Award, Clock, MapPin, Users } from 'lucide-react';
+import { OptimizedImage } from '@/components/OptimizedImage';
+import { Certifications } from '@/components/Certifications';
+import { CheckCircle, Award, Users, Clock } from 'lucide-react';
 
 export const About = () => {
-  const stats = [
-    {
-      icon: Clock,
-      value: '20+',
-      label: 'År av erfarenhet'
-    },
+  const achievements = [
     {
       icon: Award,
-      value: '500+',
-      label: 'Genomförda projekt'
+      title: "20+ års erfarenhet",
+      description: "Gedigen erfarenhet inom byggbranschen och kontroll"
+    },
+    {
+      icon: CheckCircle,
+      title: "Certifierad expert",
+      description: "Officiellt certifierad kontrollansvarig enligt PBL"
     },
     {
       icon: Users,
-      value: '100%',
-      label: 'Nöjda kunder'
+      title: "100+ nöjda kunder",
+      description: "Framgångsrikt genomförda projekt i hela Västernorrland"
     },
     {
-      icon: MapPin,
-      value: '5',
-      label: 'Städer i Västernorrland'
+      icon: Clock,
+      title: "Snabb hantering",
+      description: "Effektiv process från kontakt till slutbevis"
     }
   ];
 
@@ -28,63 +30,67 @@ export const About = () => {
     <section id="om-oss" className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-slate-900 mb-6">
+              Om Ytterman
+            </h2>
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+              Med över 20 års erfarenhet inom byggbranschen erbjuder vi professionella 
+              tjänster som kontrollansvarig och byggarbetsmiljösamordnare i Västernorrland.
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-16 items-center mb-16">
             <div>
-              <h2 className="text-4xl font-bold text-slate-900 mb-6">
-                Om Ytterman
-              </h2>
-              <p className="text-xl text-slate-600 mb-6">
-                Med över 20 års erfarenhet inom byggbranschen erbjuder vi professionella 
-                tjänster som kontrollansvarig och byggarbetsmiljösamordnare i Västernorrland.
+              <h3 className="text-3xl font-bold text-slate-900 mb-6">
+                Tobias Ytterman
+              </h3>
+              <p className="text-lg text-slate-600 mb-6">
+                Som certifierad kontrollansvarig och byggarbetsmiljösamordnare har jag 
+                hjälpt hundratals kunder genom hela byggprocessen. Min expertis sträcker 
+                sig från småhus till större kommersiella projekt.
               </p>
-              <p className="text-slate-600 mb-8">
-                Tobias Ytterman är certifierad enligt Plan- och bygglagen (PBL) och har gedigen 
-                erfarenhet av att säkerställa att byggprojekt genomförs enligt gällande regelverk 
-                och med högsta kvalitet. Vi tror på transparens, pålitlighet och tydlig kommunikation 
-                i alla våra uppdrag.
+              <p className="text-lg text-slate-600 mb-8">
+                Jag är stolt över att kunna erbjuda trygghet och kvalitetssäkring för 
+                ditt byggprojekt med fast pris och tydlig kommunikation genom hela processen.
               </p>
               
-              <div className="grid grid-cols-2 gap-6">
-                {stats.map((stat, index) => {
-                  const IconComponent = stat.icon;
+              <div className="grid sm:grid-cols-2 gap-6">
+                {achievements.map((achievement, index) => {
+                  const IconComponent = achievement.icon;
                   return (
-                    <div key={index} className="text-center">
-                      <div className="w-12 h-12 earth-gradient rounded-lg flex items-center justify-center mx-auto mb-3">
-                        <IconComponent className="w-6 h-6 text-white" />
+                    <div key={index} className="flex items-start space-x-3">
+                      <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <IconComponent className="w-5 h-5 text-primary" />
                       </div>
-                      <div className="text-2xl font-bold text-slate-900">{stat.value}</div>
-                      <div className="text-sm text-slate-600">{stat.label}</div>
+                      <div>
+                        <h4 className="font-semibold text-slate-900 mb-1">
+                          {achievement.title}
+                        </h4>
+                        <p className="text-sm text-slate-600">
+                          {achievement.description}
+                        </p>
+                      </div>
                     </div>
                   );
                 })}
               </div>
             </div>
             
-            <div className="bg-slate-50 rounded-xl p-8">
-              <h3 className="text-2xl font-bold text-slate-900 mb-6">
-                Våra värderingar
-              </h3>
-              <div className="space-y-6">
-                <div>
-                  <h4 className="font-semibold text-slate-900 mb-2">Transparens</h4>
-                  <p className="text-slate-600">
-                    Fast pris utan dolda kostnader. Du vet alltid vad du betalar för.
-                  </p>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-slate-900 mb-2">Kvalitet</h4>
-                  <p className="text-slate-600">
-                    Alla våra tjänster utförs enligt högsta standard och gällande regelverk.
-                  </p>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-slate-900 mb-2">Tillgänglighet</h4>
-                  <p className="text-slate-600">
-                    Vi finns alltid tillgängliga för våra kunder under hela projektets gång.
-                  </p>
-                </div>
-              </div>
+            <div className="relative">
+              <OptimizedImage
+                src="https://ellprnxjjzatijdxcogk.supabase.co/storage/v1/object/public/superdev-project-images/1a9c4603-3de4-4ce7-b4df-b42fb67a7f27/aorpjse3ulohvjtaxgvsp/1751541461385-profile_pic_color_square.png"
+                alt="Tobias Ytterman - Certifierad Kontrollansvarig och Byggarbetsmiljösamordnare i Västernorrland"
+                className="rounded-xl shadow-lg w-full h-auto"
+                width={500}
+                height={600}
+              />
             </div>
+          </div>
+
+          {/* Certifications Section */}
+          <div className="bg-slate-50 rounded-2xl p-8">
+            <Certifications showTitle={true} />
           </div>
         </div>
       </div>

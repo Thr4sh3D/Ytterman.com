@@ -1,35 +1,36 @@
 import { useCallback } from 'react';
+import { 
+  trackConversion, 
+  trackContactFormConversion, 
+  trackPhoneCallConversion, 
+  trackEmailClickConversion,
+  ConversionConfig 
+} from '@/utils/googleAdsTracking';
 
-declare global {
-  interface Window {
-    gtag?: (...args: any[]) => void;
-  }
-}
-
+/**
+ * Hook for Google Ads conversion tracking
+ */
 export const useGoogleAdsTracking = () => {
-  const trackFormSubmission = useCallback((formType: string) => {
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', 'conversion', {
-        send_to: 'AW-CONVERSION_ID/CONVERSION_LABEL', // Replace with actual conversion ID
-        event_category: 'form_submission',
-        event_label: formType,
-        value: 1
-      });
-    }
+  const trackFormSubmission = useCallback((formType: string = 'contact') => {
+    trackContactFormConversion(formType);
   }, []);
 
-  const trackPhoneClick = useCallback(() => {
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', 'conversion', {
-        send_to: 'AW-CONVERSION_ID/PHONE_CONVERSION_LABEL', // Replace with actual conversion ID
-        event_category: 'phone_click',
-        value: 1
-      });
-    }
+  const trackPhoneCall = useCallback(() => {
+    trackPhoneCallConversion();
+  }, []);
+
+  const trackEmailClick = useCallback(() => {
+    trackEmailClickConversion();
+  }, []);
+
+  const trackCustomConversion = useCallback((config: ConversionConfig) => {
+    trackConversion(config);
   }, []);
 
   return {
     trackFormSubmission,
-    trackPhoneClick
+    trackPhoneCall,
+    trackEmailClick,
+    trackCustomConversion
   };
 };

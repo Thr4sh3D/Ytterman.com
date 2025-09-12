@@ -1,80 +1,84 @@
-import { MessageSquare, ArrowRight } from 'lucide-react';
+import { FileText, PenTool, Map, Building2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 interface ServiceQuickMessagesProps {
-  onServiceSelect?: (serviceId: string) => void;
+  onServiceSelect: (serviceId: string) => void;
 }
 
 export const ServiceQuickMessages = ({ onServiceSelect }: ServiceQuickMessagesProps) => {
-  const quickMessages = [
-    {
-      id: 'kontrollansvarig-service',
-      title: 'Behöver du en Kontrollansvarig?',
-      message: 'Få hjälp med kontrollplan, teknisk kontroll och slutbevis enligt PBL.',
-      cta: 'Kontakta oss om KA'
-    },
-    {
-      id: 'bas-p-service',
-      title: 'BAS-P för ditt projekt?',
-      message: 'Arbetsmiljösamordning under projekteringsfasen för säker byggprocess.',
-      cta: 'Fråga om BAS-P'
-    },
-    {
-      id: 'bas-u-service',
-      title: 'BAS-U under byggfasen?',
-      message: 'Säkerhetssamordning och arbetsmiljöuppföljning på byggarbetsplatsen.',
-      cta: 'Kontakta om BAS-U'
-    },
+  const quickServices = [
     {
       id: 'bygglovshandlingar',
-      title: 'Bygglovshandlingar?',
-      message: 'Kompletta handlingar för bygglov - ritningar, beskrivningar och beräkningar.',
-      cta: 'Få hjälp med bygglov'
+      icon: FileText,
+      title: "Bygglovshandlingar",
+      projectType: "Villa/Småhus",
+      message: "Hej! Jag behöver hjälp med att ta fram bygglovshandlingar för mitt projekt. Kan du hjälpa mig med ansökan och alla nödvändiga dokument?"
+    },
+    {
+      id: 'planritning',
+      icon: PenTool,
+      title: "Planritning",
+      projectType: "Flerfamiljshus",
+      message: "Hej! Jag behöver professionella planritningar för mitt byggprojekt. Kan vi diskutera omfattning och tidsplan för ritningsarbetet?"
+    },
+    {
+      id: 'situationsplan',
+      icon: Map,
+      title: "Situationsplan",
+      projectType: "Villa/Småhus",
+      message: "Hej! Jag behöver en situationsplan för mitt projekt. Kan du hjälpa mig med uppmätning och framtagning av situationsplanen?"
+    },
+    {
+      id: 'sektionsritningar',
+      icon: Building2,
+      title: "Sektionsritningar",
+      projectType: "Kommersiell",
+      message: "Hej! Jag behöver sektionsritningar för mitt byggprojekt. Kan vi boka ett möte för att diskutera de tekniska kraven och detaljerna?"
     }
   ];
 
-  const handleQuickMessage = (serviceId: string) => {
-    if (onServiceSelect) {
-      onServiceSelect(serviceId);
-    }
-  };
-
   return (
-    <section className="py-16 bg-gradient-to-br from-primary/5 to-amber-50/30">
+    <section className="py-12 bg-secondary/20 border-t border-border/50">
       <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-slate-900 mb-4">
-              Snabb kontakt för specifika tjänster
-            </h2>
-            <p className="text-slate-600">
-              Klicka på den tjänst du behöver så förbereder vi ett meddelande åt dig
-            </p>
-          </div>
+        <div className="text-center mb-8">
+          <h3 className="text-xl font-semibold text-foreground mb-2">
+            Snabbmeddelanden för andra tjänster
+          </h3>
+          <p className="text-sm text-muted-foreground">
+            Klicka för att fylla i kontaktformuläret automatiskt
+          </p>
+        </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {quickMessages.map((item, index) => (
-              <div 
-                key={index}
-                className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow"
-              >
-                <div className="flex items-center mb-4">
-                  <MessageSquare className="w-6 h-6 text-primary mr-2" />
-                  <h3 className="font-semibold text-slate-900">{item.title}</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
+          {quickServices.map((service) => (
+            <div
+              key={service.id}
+              className="bg-white rounded-lg p-4 shadow-sm border border-border/50 hover:shadow-md transition-shadow"
+            >
+              <div className="flex items-center space-x-3 mb-3">
+                <div className="w-8 h-8 earth-gradient rounded-lg flex items-center justify-center">
+                  <service.icon className="w-4 h-4 text-white" />
                 </div>
-                <p className="text-sm text-slate-600 mb-4">{item.message}</p>
-                <Button 
-                  onClick={() => handleQuickMessage(item.id)}
-                  variant="outline"
-                  size="sm"
-                  className="w-full hover:bg-primary hover:text-white"
-                >
-                  {item.cta}
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </Button>
+                <div>
+                  <h4 className="font-medium text-foreground text-sm">{service.title}</h4>
+                  <span className="text-xs text-muted-foreground">{service.projectType}</span>
+                </div>
               </div>
-            ))}
-          </div>
+              
+              <p className="text-xs text-muted-foreground mb-3">
+                {service.message}
+              </p>
+              
+              <Button
+                onClick={() => onServiceSelect(service.id)}
+                variant="outline"
+                size="sm"
+                className="w-full text-xs"
+              >
+                Begär offert
+              </Button>
+            </div>
+          ))}
         </div>
       </div>
     </section>
