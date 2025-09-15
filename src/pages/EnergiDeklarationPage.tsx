@@ -3,57 +3,57 @@ import { FAQ } from "@/components/FAQ";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle, Phone, Mail, MapPin, Clock, Award, Shield, FileText, Users, HardHat, Eye } from "lucide-react";
+import { CheckCircle, Phone, Mail, MapPin, Clock, Award, Shield, FileText, Zap, Home, Calculator } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const BasUPage = () => {
-  const basUFAQ = [
+const EnergiDeklarationPage = () => {
+  const energiDeklarationFAQ = [
     {
-      question: "Vad är BAS-U?",
-      answer: "BAS-U (Byggarbetsmiljösamordnare under utförande) ansvarar för att samordna arbetsmiljöfrågor under byggfasen och säkerställer att arbetsmiljöplanen följs."
+      question: "Vad är en energideklaration?",
+      answer: "En energideklaration visar byggnadens energiprestanda och ger information om energiförbrukning, energiklass och förslag på energibesparande åtgärder."
     },
     {
-      question: "När behövs en BAS-U?",
-      answer: "BAS-U krävs när flera entreprenörer arbetar samtidigt på byggarbetsplatsen, eller när projektet beräknas ta mer än 30 arbetsdagar eller 500 persondagar."
+      question: "När behövs en energideklaration?",
+      answer: "Energideklaration krävs vid försäljning, uthyrning eller vid större renoveringar av byggnader. Den ska också uppdateras regelbundet."
     },
     {
-      question: "Vad ingår i BAS-U tjänsten?",
-      answer: "Arbetsmiljöuppföljning, säkerhetsronder, samordning av entreprenörer, incidentrapportering och säkerställande av att alla säkerhetsrutiner följs."
+      question: "Hur lång tid tar det att få en energideklaration?",
+      answer: "Normalt tar det 1-2 veckor från besiktning till färdig energideklaration, beroende på byggnadens storlek och komplexitet."
     },
     {
-      question: "Kan samma person vara både BAS-P och BAS-U?",
-      answer: "Ja, samma person kan vara både BAS-P och BAS-U, vilket ger kontinuitet och djup förståelse för projektets arbetsmiljöaspekter."
+      question: "Vad kostar en energideklaration?",
+      answer: "Kostnaden varierar beroende på byggnadens storlek och typ. Kontakta oss för en kostnadsfri offert anpassad efter din fastighet."
     }
   ];
 
   const services = [
     {
-      title: "Säkerhetsronder",
-      description: "Regelbundna säkerhetsronder och kontroller på byggarbetsplatsen",
-      icon: <Eye className="h-6 w-6" />
+      title: "Energibesiktning",
+      description: "Grundlig besiktning av byggnadens energisystem",
+      icon: <Home className="h-6 w-6" />
     },
     {
-      title: "Samordning",
-      description: "Samordning mellan olika entreprenörer och arbetslag",
-      icon: <Users className="h-6 w-6" />
+      title: "Energiberäkning",
+      description: "Beräkning av byggnadens energiprestanda och energiklass",
+      icon: <Calculator className="h-6 w-6" />
     },
     {
-      title: "Incidenthantering",
-      description: "Hantering och rapportering av arbetsmiljöincidenter",
-      icon: <Shield className="h-6 w-6" />
+      title: "Åtgärdsförslag",
+      description: "Konkreta förslag på energibesparande åtgärder",
+      icon: <Zap className="h-6 w-6" />
     },
     {
-      title: "Dokumentation",
-      description: "Löpande dokumentation av arbetsmiljöarbetet",
-      icon: <FileText className="h-6 w-6" />
+      title: "Certifiering",
+      description: "Utfärdande av officiell energideklaration",
+      icon: <Award className="h-6 w-6" />
     }
   ];
 
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "name": "BAS-U tjänster - Byggarbetsmiljösamordnare under utförande",
-    "description": "Professionella BAS-U tjänster i Västernorrland. Certifierad byggarbetsmiljösamordnare med över 20 års erfarenhet.",
+    "name": "Energideklaration",
+    "description": "Professionella energideklarationer i Västernorrland. Certifierad energiexpert med över 20 års erfarenhet.",
     "provider": {
       "@type": "LocalBusiness",
       "name": "Ytterman",
@@ -69,21 +69,21 @@ const BasUPage = () => {
     "areaServed": [
       "Sundsvall", "Härnösand", "Sollefteå", "Timrå", "Kramfors"
     ],
-    "serviceType": "BAS-U (Byggarbetsmiljösamordnare under utförande)",
+    "serviceType": "Energideklaration",
     "offers": {
       "@type": "Offer",
-      "description": "BAS-U tjänster från 15,000 SEK",
-      "priceRange": "Från 15,000 SEK"
+      "description": "Energideklaration från 8,000 SEK",
+      "priceRange": "Från 8,000 SEK"
     }
   };
 
   return (
     <>
       <SEO
-        title="BAS-U i Västernorrland - Byggarbetsmiljösamordnare Utförande | Ytterman"
-        description="Behöver du BAS-U? Certifierad byggarbetsmiljösamordnare under utförande med 20+ års erfarenhet i Sundsvall, Härnösand, Sollefteå, Timrå, Kramfors."
-        keywords="BAS-U, byggarbetsmiljösamordnare, säkerhetsronder, BAS-U Sundsvall, BAS-U Härnösand, BAS-U Västernorrland, arbetsmiljö byggarbetsplats"
-        url="https://ytterman.com/bas-u"
+        title="Energideklaration i Västernorrland - Certifierad Energiexpert | Ytterman"
+        description="Behöver du energideklaration? Certifierad energiexpert med 20+ års erfarenhet i Sundsvall, Härnösand, Sollefteå, Timrå, Kramfors. Snabb handläggning."
+        keywords="energideklaration, energideklaration Sundsvall, energideklaration Härnösand, energideklaration Västernorrland, energiklass, energibesiktning"
+        url="https://ytterman.com/energideklaration"
         type="webpage"
       />
       
@@ -91,7 +91,7 @@ const BasUPage = () => {
         {JSON.stringify(structuredData)}
       </script>
 
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-orange-50/30 to-slate-50">
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-yellow-50/30 to-slate-50">
         {/* Header */}
         <header className="bg-white shadow-sm border-b">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
@@ -111,19 +111,19 @@ const BasUPage = () => {
         {/* Hero Section */}
         <section className="py-20 px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
-            <Badge className="mb-4 bg-orange-100 text-orange-800 hover:bg-orange-200">
-              Certifierad BAS-U
+            <Badge className="mb-4 bg-yellow-100 text-yellow-800 hover:bg-yellow-200">
+              Certifierad Energiexpert
             </Badge>
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              BAS-U i Västernorrland
+              Energideklaration i Västernorrland
             </h1>
             <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              Säkerställ en trygg arbetsmiljö under hela byggfasen. Som certifierad BAS-U 
-              (Byggarbetsmiljösamordnare under utförande) övervakar jag säkerheten på 
-              byggarbetsplatsen och samordnar alla entreprenörer.
+              Få en professionell energideklaration för din fastighet. Som certifierad energiexpert 
+              hjälper jag dig med energibesiktning, energiberäkning och konkreta förslag för 
+              energibesparingar.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-orange-600 hover:bg-orange-700" asChild>
+              <Button size="lg" className="bg-yellow-600 hover:bg-yellow-700" asChild>
                 <Link to="/kontakt">Begär offert</Link>
               </Button>
               <Button variant="outline" size="lg" asChild>
@@ -140,13 +140,13 @@ const BasUPage = () => {
         <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
-              BAS-U Tjänster
+              Energideklaration Tjänster
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {services.map((service, index) => (
                 <Card key={index} className="text-center hover:shadow-lg transition-shadow">
                   <CardHeader>
-                    <div className="mx-auto mb-4 p-3 bg-orange-100 rounded-full w-fit">
+                    <div className="mx-auto mb-4 p-3 bg-yellow-100 rounded-full w-fit">
                       {service.icon}
                     </div>
                     <CardTitle className="text-lg">{service.title}</CardTitle>
@@ -164,64 +164,96 @@ const BasUPage = () => {
         <section className="py-16 px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
-              BAS-U Processen
+              Så går energideklarationen till
             </h2>
             <div className="space-y-8">
               <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-orange-600 text-white rounded-full flex items-center justify-center font-semibold">
+                <div className="flex-shrink-0 w-8 h-8 bg-yellow-600 text-white rounded-full flex items-center justify-center font-semibold">
                   1
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Uppstart</h3>
-                  <p className="text-gray-600">Genomgång av arbetsmiljöplan och etablering av säkerhetsrutiner.</p>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Bokning & Planering</h3>
+                  <p className="text-gray-600">Vi bokar en tid för besiktning och går igenom vad som behövs.</p>
                 </div>
               </div>
               <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-orange-600 text-white rounded-full flex items-center justify-center font-semibold">
+                <div className="flex-shrink-0 w-8 h-8 bg-yellow-600 text-white rounded-full flex items-center justify-center font-semibold">
                   2
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Löpande kontroll</h3>
-                  <p className="text-gray-600">Regelbundna säkerhetsronder och kontroller på byggarbetsplatsen.</p>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Energibesiktning</h3>
+                  <p className="text-gray-600">Grundlig besiktning av byggnadens energisystem och konstruktion.</p>
                 </div>
               </div>
               <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-orange-600 text-white rounded-full flex items-center justify-center font-semibold">
+                <div className="flex-shrink-0 w-8 h-8 bg-yellow-600 text-white rounded-full flex items-center justify-center font-semibold">
                   3
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Samordning</h3>
-                  <p className="text-gray-600">Kontinuerlig samordning mellan entreprenörer och arbetslag.</p>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Beräkning & Analys</h3>
+                  <p className="text-gray-600">Beräkning av energiprestanda och identifiering av förbättringsområden.</p>
                 </div>
               </div>
               <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-orange-600 text-white rounded-full flex items-center justify-center font-semibold">
+                <div className="flex-shrink-0 w-8 h-8 bg-yellow-600 text-white rounded-full flex items-center justify-center font-semibold">
                   4
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Avslut</h3>
-                  <p className="text-gray-600">Slutrapport och dokumentation av arbetsmiljöarbetet.</p>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Energideklaration</h3>
+                  <p className="text-gray-600">Färdig energideklaration med energiklass och åtgärdsförslag.</p>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* FAQ Section */}
+        {/* Benefits Section */}
         <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
+              Fördelar med energideklaration
+            </h2>
+            <div className="grid md:grid-cols-3 gap-8">
+              <div className="text-center">
+                <div className="mx-auto mb-4 p-3 bg-green-100 rounded-full w-fit">
+                  <Zap className="h-8 w-8 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Sänk energikostnaderna</h3>
+                <p className="text-gray-600">Få konkreta förslag på hur du kan minska din energiförbrukning och spara pengar.</p>
+              </div>
+              <div className="text-center">
+                <div className="mx-auto mb-4 p-3 bg-blue-100 rounded-full w-fit">
+                  <Home className="h-8 w-8 text-blue-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Öka fastighetsvärdet</h3>
+                <p className="text-gray-600">En bra energiklass kan öka din fastighets värde och attraktivitet på marknaden.</p>
+              </div>
+              <div className="text-center">
+                <div className="mx-auto mb-4 p-3 bg-purple-100 rounded-full w-fit">
+                  <Shield className="h-8 w-8 text-purple-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Lagkrav</h3>
+                <p className="text-gray-600">Uppfyll lagkraven för energideklaration vid försäljning eller uthyrning.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="py-16 px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
-              Vanliga frågor om BAS-U
+              Vanliga frågor om energideklaration
             </h2>
-            <FAQ items={basUFAQ} />
+            <FAQ items={energiDeklarationFAQ} />
           </div>
         </section>
 
         {/* Contact CTA */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-orange-600 text-white">
+        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-yellow-600 text-white">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-6">
-              Behöver du BAS-U för ditt projekt?
+              Behöver du energideklaration?
             </h2>
             <p className="text-xl mb-8 opacity-90">
               Kontakta mig idag för en kostnadsfri konsultation och offert.
@@ -230,7 +262,7 @@ const BasUPage = () => {
               <Button size="lg" variant="secondary" asChild>
                 <Link to="/kontakt">Skicka förfrågan</Link>
               </Button>
-              <Button size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-orange-600" asChild>
+              <Button size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-yellow-600" asChild>
                 <a href="mailto:tobias@ytterman.com">
                   <Mail className="mr-2 h-4 w-4" />
                   tobias@ytterman.com
@@ -297,4 +329,4 @@ const BasUPage = () => {
   );
 };
 
-export default BasUPage;
+export default EnergiDeklarationPage;

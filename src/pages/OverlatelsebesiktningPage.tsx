@@ -3,48 +3,48 @@ import { FAQ } from "@/components/FAQ";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle, Phone, Mail, MapPin, Clock, Award, Shield, FileText, Users, HardHat, Eye } from "lucide-react";
+import { CheckCircle, Phone, Mail, MapPin, Clock, Award, Shield, FileText, Search, Camera, ClipboardCheck } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const BasUPage = () => {
-  const basUFAQ = [
+const OverlatelsebesiktningPage = () => {
+  const overlatelsebesiktningFAQ = [
     {
-      question: "Vad är BAS-U?",
-      answer: "BAS-U (Byggarbetsmiljösamordnare under utförande) ansvarar för att samordna arbetsmiljöfrågor under byggfasen och säkerställer att arbetsmiljöplanen följs."
+      question: "Vad är en överlåtelsebesiktning?",
+      answer: "En överlåtelsebesiktning är en teknisk undersökning av en fastighet som genomförs inför försäljning för att identifiera eventuella fel och brister."
     },
     {
-      question: "När behövs en BAS-U?",
-      answer: "BAS-U krävs när flera entreprenörer arbetar samtidigt på byggarbetsplatsen, eller när projektet beräknas ta mer än 30 arbetsdagar eller 500 persondagar."
+      question: "Varför behövs en överlåtelsebesiktning?",
+      answer: "Besiktningen skyddar både köpare och säljare genom att dokumentera fastighetens skick och identifiera eventuella problem som kan påverka värdet."
     },
     {
-      question: "Vad ingår i BAS-U tjänsten?",
-      answer: "Arbetsmiljöuppföljning, säkerhetsronder, samordning av entreprenörer, incidentrapportering och säkerställande av att alla säkerhetsrutiner följs."
+      question: "Vad ingår i besiktningen?",
+      answer: "Vi kontrollerar byggnadens konstruktion, installationer, fukt- och ventilationssystem, samt dokumenterar alla iakttagelser i en detaljerad rapport."
     },
     {
-      question: "Kan samma person vara både BAS-P och BAS-U?",
-      answer: "Ja, samma person kan vara både BAS-P och BAS-U, vilket ger kontinuitet och djup förståelse för projektets arbetsmiljöaspekter."
+      question: "Hur lång tid tar en överlåtelsebesiktning?",
+      answer: "Besiktningstiden varierar beroende på fastighetens storlek, men vanligtvis tar det 2-4 timmar. Rapporten levereras inom 24-48 timmar."
     }
   ];
 
   const services = [
     {
-      title: "Säkerhetsronder",
-      description: "Regelbundna säkerhetsronder och kontroller på byggarbetsplatsen",
-      icon: <Eye className="h-6 w-6" />
+      title: "Teknisk besiktning",
+      description: "Grundlig kontroll av byggnadens konstruktion och skick",
+      icon: <Search className="h-6 w-6" />
     },
     {
-      title: "Samordning",
-      description: "Samordning mellan olika entreprenörer och arbetslag",
-      icon: <Users className="h-6 w-6" />
-    },
-    {
-      title: "Incidenthantering",
-      description: "Hantering och rapportering av arbetsmiljöincidenter",
-      icon: <Shield className="h-6 w-6" />
+      title: "Installationskontroll",
+      description: "Kontroll av el-, VVS- och ventilationsinstallationer",
+      icon: <ClipboardCheck className="h-6 w-6" />
     },
     {
       title: "Dokumentation",
-      description: "Löpande dokumentation av arbetsmiljöarbetet",
+      description: "Detaljerad fotografisk dokumentation av alla iakttagelser",
+      icon: <Camera className="h-6 w-6" />
+    },
+    {
+      title: "Besiktningsrapport",
+      description: "Professionell rapport med alla fynd och rekommendationer",
       icon: <FileText className="h-6 w-6" />
     }
   ];
@@ -52,8 +52,8 @@ const BasUPage = () => {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "name": "BAS-U tjänster - Byggarbetsmiljösamordnare under utförande",
-    "description": "Professionella BAS-U tjänster i Västernorrland. Certifierad byggarbetsmiljösamordnare med över 20 års erfarenhet.",
+    "name": "Överlåtelsebesiktning",
+    "description": "Professionella överlåtelsebesiktningar i Västernorrland. Certifierad besiktningsman med över 20 års erfarenhet.",
     "provider": {
       "@type": "LocalBusiness",
       "name": "Ytterman",
@@ -69,21 +69,21 @@ const BasUPage = () => {
     "areaServed": [
       "Sundsvall", "Härnösand", "Sollefteå", "Timrå", "Kramfors"
     ],
-    "serviceType": "BAS-U (Byggarbetsmiljösamordnare under utförande)",
+    "serviceType": "Överlåtelsebesiktning",
     "offers": {
       "@type": "Offer",
-      "description": "BAS-U tjänster från 15,000 SEK",
-      "priceRange": "Från 15,000 SEK"
+      "description": "Överlåtelsebesiktning från 12,000 SEK",
+      "priceRange": "Från 12,000 SEK"
     }
   };
 
   return (
     <>
       <SEO
-        title="BAS-U i Västernorrland - Byggarbetsmiljösamordnare Utförande | Ytterman"
-        description="Behöver du BAS-U? Certifierad byggarbetsmiljösamordnare under utförande med 20+ års erfarenhet i Sundsvall, Härnösand, Sollefteå, Timrå, Kramfors."
-        keywords="BAS-U, byggarbetsmiljösamordnare, säkerhetsronder, BAS-U Sundsvall, BAS-U Härnösand, BAS-U Västernorrland, arbetsmiljö byggarbetsplats"
-        url="https://ytterman.com/bas-u"
+        title="Överlåtelsebesiktning i Västernorrland - Certifierad Besiktningsman | Ytterman"
+        description="Behöver du överlåtelsebesiktning? Certifierad besiktningsman med 20+ års erfarenhet i Sundsvall, Härnösand, Sollefteå, Timrå, Kramfors. Snabb rapport."
+        keywords="överlåtelsebesiktning, besiktning, fastighetbesiktning, överlåtelsebesiktning Sundsvall, överlåtelsebesiktning Härnösand, besiktningsman Västernorrland"
+        url="https://ytterman.com/overlatelsebesiktning"
         type="webpage"
       />
       
@@ -91,7 +91,7 @@ const BasUPage = () => {
         {JSON.stringify(structuredData)}
       </script>
 
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-orange-50/30 to-slate-50">
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-purple-50/30 to-slate-50">
         {/* Header */}
         <header className="bg-white shadow-sm border-b">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
@@ -111,20 +111,20 @@ const BasUPage = () => {
         {/* Hero Section */}
         <section className="py-20 px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
-            <Badge className="mb-4 bg-orange-100 text-orange-800 hover:bg-orange-200">
-              Certifierad BAS-U
+            <Badge className="mb-4 bg-purple-100 text-purple-800 hover:bg-purple-200">
+              Certifierad Besiktningsman
             </Badge>
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              BAS-U i Västernorrland
+              Överlåtelsebesiktning i Västernorrland
             </h1>
             <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              Säkerställ en trygg arbetsmiljö under hela byggfasen. Som certifierad BAS-U 
-              (Byggarbetsmiljösamordnare under utförande) övervakar jag säkerheten på 
-              byggarbetsplatsen och samordnar alla entreprenörer.
+              Säkerställ en trygg fastighetsaffär med professionell överlåtelsebesiktning. 
+              Som certifierad besiktningsman med över 20 års erfarenhet ger jag dig en 
+              detaljerad rapport om fastighetens skick.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-orange-600 hover:bg-orange-700" asChild>
-                <Link to="/kontakt">Begär offert</Link>
+              <Button size="lg" className="bg-purple-600 hover:bg-purple-700" asChild>
+                <Link to="/kontakt">Boka besiktning</Link>
               </Button>
               <Button variant="outline" size="lg" asChild>
                 <a href="tel:+46761118447">
@@ -140,13 +140,13 @@ const BasUPage = () => {
         <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
-              BAS-U Tjänster
+              Vad ingår i besiktningen
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {services.map((service, index) => (
                 <Card key={index} className="text-center hover:shadow-lg transition-shadow">
                   <CardHeader>
-                    <div className="mx-auto mb-4 p-3 bg-orange-100 rounded-full w-fit">
+                    <div className="mx-auto mb-4 p-3 bg-purple-100 rounded-full w-fit">
                       {service.icon}
                     </div>
                     <CardTitle className="text-lg">{service.title}</CardTitle>
@@ -160,47 +160,82 @@ const BasUPage = () => {
           </div>
         </section>
 
-        {/* Process Section */}
+        {/* What We Check Section */}
         <section className="py-16 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
+              Vad kontrollerar vi
+            </h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="bg-white p-6 rounded-lg shadow-sm border">
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">Konstruktion</h3>
+                <ul className="space-y-2 text-gray-600">
+                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Grund och källare</li>
+                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Väggar och tak</li>
+                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Fönster och dörrar</li>
+                </ul>
+              </div>
+              <div className="bg-white p-6 rounded-lg shadow-sm border">
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">Installationer</h3>
+                <ul className="space-y-2 text-gray-600">
+                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Elinstallationer</li>
+                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />VVS-system</li>
+                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Ventilation</li>
+                </ul>
+              </div>
+              <div className="bg-white p-6 rounded-lg shadow-sm border">
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">Miljö & Säkerhet</h3>
+                <ul className="space-y-2 text-gray-600">
+                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Fuktmätning</li>
+                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Brandskydd</li>
+                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Radon</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Process Section */}
+        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
-              BAS-U Processen
+              Så går besiktningen till
             </h2>
             <div className="space-y-8">
               <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-orange-600 text-white rounded-full flex items-center justify-center font-semibold">
+                <div className="flex-shrink-0 w-8 h-8 bg-purple-600 text-white rounded-full flex items-center justify-center font-semibold">
                   1
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Uppstart</h3>
-                  <p className="text-gray-600">Genomgång av arbetsmiljöplan och etablering av säkerhetsrutiner.</p>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Bokning</h3>
+                  <p className="text-gray-600">Vi bokar en tid som passar dig och går igenom vad som ska besiktigas.</p>
                 </div>
               </div>
               <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-orange-600 text-white rounded-full flex items-center justify-center font-semibold">
+                <div className="flex-shrink-0 w-8 h-8 bg-purple-600 text-white rounded-full flex items-center justify-center font-semibold">
                   2
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Löpande kontroll</h3>
-                  <p className="text-gray-600">Regelbundna säkerhetsronder och kontroller på byggarbetsplatsen.</p>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Besiktning</h3>
+                  <p className="text-gray-600">Grundlig genomgång av fastigheten med dokumentation av alla iakttagelser.</p>
                 </div>
               </div>
               <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-orange-600 text-white rounded-full flex items-center justify-center font-semibold">
+                <div className="flex-shrink-0 w-8 h-8 bg-purple-600 text-white rounded-full flex items-center justify-center font-semibold">
                   3
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Samordning</h3>
-                  <p className="text-gray-600">Kontinuerlig samordning mellan entreprenörer och arbetslag.</p>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Rapport</h3>
+                  <p className="text-gray-600">Detaljerad besiktningsrapport med bilder och rekommendationer levereras inom 48 timmar.</p>
                 </div>
               </div>
               <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-orange-600 text-white rounded-full flex items-center justify-center font-semibold">
+                <div className="flex-shrink-0 w-8 h-8 bg-purple-600 text-white rounded-full flex items-center justify-center font-semibold">
                   4
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Avslut</h3>
-                  <p className="text-gray-600">Slutrapport och dokumentation av arbetsmiljöarbetet.</p>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Uppföljning</h3>
+                  <p className="text-gray-600">Vi går igenom rapporten med dig och svarar på eventuella frågor.</p>
                 </div>
               </div>
             </div>
@@ -208,29 +243,29 @@ const BasUPage = () => {
         </section>
 
         {/* FAQ Section */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+        <section className="py-16 px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
-              Vanliga frågor om BAS-U
+              Vanliga frågor om överlåtelsebesiktning
             </h2>
-            <FAQ items={basUFAQ} />
+            <FAQ items={overlatelsebesiktningFAQ} />
           </div>
         </section>
 
         {/* Contact CTA */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-orange-600 text-white">
+        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-purple-600 text-white">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-6">
-              Behöver du BAS-U för ditt projekt?
+              Behöver du överlåtelsebesiktning?
             </h2>
             <p className="text-xl mb-8 opacity-90">
-              Kontakta mig idag för en kostnadsfri konsultation och offert.
+              Kontakta mig idag för att boka din besiktning eller få en kostnadsfri offert.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" variant="secondary" asChild>
-                <Link to="/kontakt">Skicka förfrågan</Link>
+                <Link to="/kontakt">Boka besiktning</Link>
               </Button>
-              <Button size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-orange-600" asChild>
+              <Button size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-purple-600" asChild>
                 <a href="mailto:tobias@ytterman.com">
                   <Mail className="mr-2 h-4 w-4" />
                   tobias@ytterman.com
@@ -244,7 +279,7 @@ const BasUPage = () => {
               </div>
               <div className="flex items-center">
                 <Clock className="mr-2 h-4 w-4" />
-                Snabb handläggning
+                Snabb rapport
               </div>
             </div>
           </div>
@@ -267,6 +302,7 @@ const BasUPage = () => {
                   <li><Link to="/bas-p" className="hover:text-white transition-colors">BAS-P</Link></li>
                   <li><Link to="/bas-u" className="hover:text-white transition-colors">BAS-U</Link></li>
                   <li><Link to="/energideklaration" className="hover:text-white transition-colors">Energideklaration</Link></li>
+                  <li><Link to="/overlatelsebesiktning" className="hover:text-white transition-colors">Överlåtelsebesiktning</Link></li>
                 </ul>
               </div>
               <div>
@@ -297,4 +333,4 @@ const BasUPage = () => {
   );
 };
 
-export default BasUPage;
+export default OverlatelsebesiktningPage;

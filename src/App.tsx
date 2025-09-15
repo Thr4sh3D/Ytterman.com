@@ -14,6 +14,13 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 const BlogPage = lazy(() => import("./pages/BlogPage"));
 const BlogPostPage = lazy(() => import("./pages/BlogPostPage"));
 
+// Service pages
+const KontrollansvarigPage = lazy(() => import("./pages/KontrollansvarigPage"));
+const BasPPage = lazy(() => import("./pages/BasPPage"));
+const BasUPage = lazy(() => import("./pages/BasUPage"));
+const EnergiDeklarationPage = lazy(() => import("./pages/EnergiDeklarationPage"));
+const OverlatelsebesiktningPage = lazy(() => import("./pages/OverlatelsebesiktningPage"));
+
 const KontrollansvarigGuide = lazy(() => import("./pages/guides/KontrollansvarigGuide"));
 const BasGuide = lazy(() => import("./pages/guides/BasGuide"));
 const BygglovGuide = lazy(() => import("./pages/guides/BygglovGuide"));
@@ -45,6 +52,14 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/tjanster" element={<TjansterPage />} />
+              
+              {/* Service pages */}
+              <Route path="/kontrollansvarig" element={<KontrollansvarigPage />} />
+              <Route path="/bas-p" element={<BasPPage />} />
+              <Route path="/bas-u" element={<BasUPage />} />
+              <Route path="/energideklaration" element={<EnergiDeklarationPage />} />
+              <Route path="/overlatelsebesiktning" element={<OverlatelsebesiktningPage />} />
+              
               <Route path="/guider" element={<GuidesPage />} />
               <Route path="/guider/kontrollansvarig" element={<KontrollansvarigGuide />} />
               <Route path="/guider/bas" element={<BasGuide />} />
