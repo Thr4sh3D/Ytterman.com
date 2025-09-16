@@ -2,7 +2,8 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Clock, User, BookOpen, CheckCircle, ArrowRight } from 'lucide-react';
+import { Button } from "@/components/ui/button";
+import { Clock, User, BookOpen, CheckCircle, ArrowRight, Home } from 'lucide-react';
 
 const GuidesPage = () => {
   const guides = [
@@ -119,6 +120,30 @@ const GuidesPage = () => {
       </Helmet>
 
       <div className="min-h-screen bg-gradient-to-br from-stone-50 via-amber-50/30 to-stone-50">
+        {/* Top Navigation Bar */}
+        <div className="bg-white border-b border-stone-200 shadow-sm sticky top-0 z-50">
+          <div className="container mx-auto px-4 py-3">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <a href="/">
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    className="border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white font-semibold"
+                  >
+                    <Home className="w-4 h-4 mr-2" />
+                    Hem
+                  </Button>
+                </a>
+              </div>
+              
+              <div className="text-sm text-stone-500">
+                Expertguider för Byggprocessen
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Hero Section */}
         <div className="bg-gradient-to-r from-stone-800 to-amber-800 text-white py-16">
           <div className="container mx-auto px-4">

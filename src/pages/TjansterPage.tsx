@@ -4,7 +4,7 @@ import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { AdvancedSEO } from '@/components/AdvancedSEO';
 import { ServiceFAQ } from '@/components/ServiceFAQ';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
-import { CheckCircle, Phone, Mail, FileText, Users, Shield, Building, ArrowRight } from 'lucide-react';
+import { CheckCircle, Phone, Mail, FileText, Users, Shield, Building, ArrowRight, Zap, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { CanonicalUrl } from '@/components/CanonicalUrl';
 
@@ -73,17 +73,45 @@ const TjansterPage = () => {
       ],
       icon: Building,
       link: "/kontakt"
+    },
+    {
+      id: 'energideklaration-service',
+      title: "Energideklaration",
+      description: "Professionell energideklaration för din fastighet",
+      price: "Från 8,000 SEK",
+      features: [
+        "Energibesiktning på plats",
+        "Energiberäkning och klassning",
+        "Åtgärdsförslag för energibesparing",
+        "Officiell energideklaration"
+      ],
+      icon: Zap,
+      link: "/energideklaration"
+    },
+    {
+      id: 'overlatelsebesiktning-service',
+      title: "Överlåtelsebesiktning",
+      description: "Teknisk besiktning inför fastighetsförsäljning",
+      price: "Från 12,000 SEK",
+      features: [
+        "Teknisk besiktning av fastigheten",
+        "Kontroll av installationer",
+        "Fotografisk dokumentation",
+        "Detaljerad besiktningsrapport"
+      ],
+      icon: Search,
+      link: "/overlatelsebesiktning"
     }
   ];
 
   const serviceFaq = [
     {
       question: "Vilka tjänster erbjuder Ytterman?",
-      answer: "Vi erbjuder kontrollansvarig (KA), BAS-P, BAS-U och bygglovshandlingar för byggprojekt i Västernorrland. Alla tjänster utförs av certifierad personal med över 20 års erfarenhet."
+      answer: "Vi erbjuder kontrollansvarig (KA), BAS-P, BAS-U, bygglovshandlingar, energideklaration och överlåtelsebesiktning för byggprojekt i Västernorrland. Alla tjänster utförs av certifierad personal med över 20 års erfarenhet."
     },
     {
       question: "Vad kostar era tjänster?",
-      answer: "Priserna varierar beroende på projektets omfattning. KA från 15,000 kr, BAS-P från 12,000 kr, BAS-U från 18,000 kr och bygglovshandlingar från 8,000 kr. Vi ger alltid fast pris efter kostnadsfri konsultation."
+      answer: "Priserna varierar beroende på projektets omfattning. KA från 15,000 kr, BAS-P från 12,000 kr, BAS-U från 18,000 kr, bygglovshandlingar från 8,000 kr, energideklaration från 8,000 kr och överlåtelsebesiktning från 12,000 kr. Vi ger alltid fast pris efter kostnadsfri konsultation."
     },
     {
       question: "Vilka områden täcker ni?",
@@ -104,8 +132,8 @@ const TjansterPage = () => {
     <>
       <AdvancedSEO 
         title="Tjänster - Kontrollansvarig, BAS-P, BAS-U | Ytterman"
-        description="Kompletta byggtjänster i Västernorrland. Kontrollansvarig, BAS-P, BAS-U och bygglovshandlingar. Över 20 års erfarenhet. Fast pris och trygg process."
-        keywords="kontrollansvarig tjänster, BAS-P, BAS-U, bygglovshandlingar, byggtjänster Västernorrland, Sundsvall, Härnösand, byggkontroll"
+        description="Kompletta byggtjänster i Västernorrland. Kontrollansvarig, BAS-P, BAS-U, bygglovshandlingar, energideklaration och överlåtelsebesiktning. Över 20 års erfarenhet. Fast pris och trygg process."
+        keywords="kontrollansvarig tjänster, BAS-P, BAS-U, bygglovshandlingar, energideklaration, överlåtelsebesiktning, byggtjänster Västernorrland, Sundsvall, Härnösand, byggkontroll"
         url="https://ytterman.com/tjanster"
         breadcrumbs={breadcrumbs}
         faq={serviceFaq}
@@ -149,7 +177,7 @@ const TjansterPage = () => {
           <section className="py-20 bg-white">
             <div className="container mx-auto px-4">
               <div className="max-w-6xl mx-auto">
-                <div className="grid md:grid-cols-2 gap-8">
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {services.map((service, index) => {
                     const IconComponent = service.icon;
                     return (
@@ -200,6 +228,8 @@ const TjansterPage = () => {
               </div>
             </div>
           </section>
+
+          {/* ... keep existing code (process section, FAQ, and remaining sections) ... */}
 
           <section className="py-20 bg-slate-50">
             <div className="container mx-auto px-4">
