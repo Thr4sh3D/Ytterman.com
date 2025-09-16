@@ -4,7 +4,7 @@ import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { AdvancedSEO } from '@/components/AdvancedSEO';
 import { ServiceFAQ } from '@/components/ServiceFAQ';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
-import { CheckCircle, Phone, Mail, FileText, Users, Shield, Building, ArrowRight, Zap, Search } from 'lucide-react';
+import { CheckCircle, Phone, Mail, FileText, Users, Shield, Building, ArrowRight, Zap, Search, Calculator } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { CanonicalUrl } from '@/components/CanonicalUrl';
 
@@ -61,6 +61,21 @@ const TjansterPage = () => {
       link: "/bas-u"
     },
     {
+      id: 'energiberakning-online-service',
+      title: "Energiberäkning Online",
+      description: "Snabb och enkel energiberäkning direkt online",
+      price: "2,999 SEK",
+      features: [
+        "Automatiserad beräkning online",
+        "Professionell rapport direkt",
+        "Perfekt för bygglov",
+        "24/7 tillgänglighet"
+      ],
+      icon: Calculator,
+      link: "/energiberakning-online",
+      isNew: true
+    },
+    {
       id: 'bygglovshandlingar',
       title: "Bygglovshandlingar",
       description: "Kompletta bygglovshandlingar för ditt projekt",
@@ -107,11 +122,11 @@ const TjansterPage = () => {
   const serviceFaq = [
     {
       question: "Vilka tjänster erbjuder Ytterman?",
-      answer: "Vi erbjuder kontrollansvarig (KA), BAS-P, BAS-U, bygglovshandlingar, energideklaration och överlåtelsebesiktning för byggprojekt i Västernorrland. Alla tjänster utförs av certifierad personal med över 20 års erfarenhet."
+      answer: "Vi erbjuder kontrollansvarig (KA), BAS-P, BAS-U, energiberäkning online, bygglovshandlingar, energideklaration och överlåtelsebesiktning för byggprojekt i Västernorrland. Alla tjänster utförs av certifierad personal med över 20 års erfarenhet."
     },
     {
       question: "Vad kostar era tjänster?",
-      answer: "Priserna varierar beroende på projektets omfattning. KA från 15,000 kr, BAS-P från 12,000 kr, BAS-U från 18,000 kr, bygglovshandlingar från 8,000 kr, energideklaration från 8,000 kr och överlåtelsebesiktning från 12,000 kr. Vi ger alltid fast pris efter kostnadsfri konsultation."
+      answer: "Priserna varierar beroende på projektets omfattning. KA från 15,000 kr, BAS-P från 12,000 kr, BAS-U från 18,000 kr, energiberäkning online 2,999 kr, bygglovshandlingar från 8,000 kr, energideklaration från 8,000 kr och överlåtelsebesiktning från 12,000 kr. Vi ger alltid fast pris efter kostnadsfri konsultation."
     },
     {
       question: "Vilka områden täcker ni?",
@@ -119,7 +134,7 @@ const TjansterPage = () => {
     },
     {
       question: "Hur snabbt kan ni starta ett uppdrag?",
-      answer: "Vi strävar efter att kunna starta inom 1-2 veckor efter bekräftad beställning. För akuta ärenden kan vi ofta ordna snabbare start beroende på vår aktuella arbetsbelastning."
+      answer: "Vi strävar efter att kunna starta inom 1-2 veckor efter bekräftad beställning. För akuta ärenden kan vi ofta ordna snabbare start beroende på vår aktuella arbetsbelastning. Energiberäkning online är tillgänglig direkt 24/7."
     }
   ];
 
@@ -131,9 +146,9 @@ const TjansterPage = () => {
   return (
     <>
       <AdvancedSEO 
-        title="Tjänster - Kontrollansvarig, BAS-P, BAS-U | Ytterman"
-        description="Kompletta byggtjänster i Västernorrland. Kontrollansvarig, BAS-P, BAS-U, bygglovshandlingar, energideklaration och överlåtelsebesiktning. Över 20 års erfarenhet. Fast pris och trygg process."
-        keywords="kontrollansvarig tjänster, BAS-P, BAS-U, bygglovshandlingar, energideklaration, överlåtelsebesiktning, byggtjänster Västernorrland, Sundsvall, Härnösand, byggkontroll"
+        title="Tjänster - Kontrollansvarig, BAS-P, BAS-U, Energiberäkning Online | Ytterman"
+        description="Kompletta byggtjänster i Västernorrland. Kontrollansvarig, BAS-P, BAS-U, energiberäkning online, bygglovshandlingar, energideklaration och överlåtelsebesiktning. Över 20 års erfarenhet. Fast pris och trygg process."
+        keywords="kontrollansvarig tjänster, BAS-P, BAS-U, energiberäkning online, bygglovshandlingar, energideklaration, överlåtelsebesiktning, byggtjänster Västernorrland, Sundsvall, Härnösand, byggkontroll"
         url="https://ytterman.com/tjanster"
         breadcrumbs={breadcrumbs}
         faq={serviceFaq}
@@ -181,7 +196,12 @@ const TjansterPage = () => {
                   {services.map((service, index) => {
                     const IconComponent = service.icon;
                     return (
-                      <div key={index} className="bg-slate-50 rounded-xl p-8 hover:shadow-lg transition-shadow">
+                      <div key={index} className="bg-slate-50 rounded-xl p-8 hover:shadow-lg transition-shadow relative">
+                        {service.isNew && (
+                          <div className="absolute -top-2 -right-2 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                            Ny!
+                          </div>
+                        )}
                         <div className="flex items-center mb-6">
                           <div className="w-12 h-12 earth-gradient rounded-lg flex items-center justify-center mr-4">
                             <IconComponent className="w-6 h-6 text-white" aria-hidden="true" />
@@ -209,7 +229,7 @@ const TjansterPage = () => {
                             className="flex-1 earth-gradient text-white hover:opacity-90"
                             aria-label={`Få offert för ${service.title}`}
                           >
-                            Få offert
+                            {service.id === 'energiberakning-online-service' ? 'Starta nu' : 'Få offert'}
                           </Button>
                           <Button 
                             onClick={() => window.location.href = service.link}
@@ -229,6 +249,7 @@ const TjansterPage = () => {
             </div>
           </section>
 
+          {/* ... keep existing code (process section, FAQ, etc.) */}
           <section className="py-20 bg-slate-50">
             <div className="container mx-auto px-4">
               <div className="max-w-6xl mx-auto">
