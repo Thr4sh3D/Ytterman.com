@@ -229,8 +229,6 @@ const TjansterPage = () => {
             </div>
           </section>
 
-          {/* ... keep existing code (process section, FAQ, and remaining sections) ... */}
-
           <section className="py-20 bg-slate-50">
             <div className="container mx-auto px-4">
               <div className="max-w-6xl mx-auto">
