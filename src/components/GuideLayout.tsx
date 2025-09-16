@@ -46,30 +46,43 @@ export const GuideLayout = ({
       </Helmet>
 
       <div className="min-h-screen bg-gradient-to-br from-stone-50 via-amber-50/30 to-stone-50">
-        {/* Header */}
-        <div className="bg-gradient-to-r from-stone-800 to-amber-800 text-white py-12">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <div className="flex flex-wrap gap-3 mb-6">
-                <Button 
-                  variant="ghost" 
-                  className="text-white hover:bg-white/10"
-                  onClick={() => window.history.back()}
-                >
-                  <ArrowLeft className="w-4 h-4 mr-2" />
-                  Tillbaka till guider
-                </Button>
+        {/* Top Navigation Bar - More prominent */}
+        <div className="bg-white border-b border-stone-200 shadow-sm sticky top-0 z-50">
+          <div className="container mx-auto px-4 py-3">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
                 <a href="/">
                   <Button 
-                    variant="ghost" 
-                    className="text-white hover:bg-white/10"
+                    variant="outline" 
+                    size="sm"
+                    className="border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white font-semibold"
                   >
                     <Home className="w-4 h-4 mr-2" />
                     Hem
                   </Button>
                 </a>
+                <Button 
+                  variant="ghost" 
+                  size="sm"
+                  className="text-stone-600 hover:bg-stone-100"
+                  onClick={() => window.history.back()}
+                >
+                  <ArrowLeft className="w-4 h-4 mr-2" />
+                  Tillbaka
+                </Button>
               </div>
               
+              <div className="text-sm text-stone-500">
+                Expertguider för Byggprocessen
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Header */}
+        <div className="bg-gradient-to-r from-stone-800 to-amber-800 text-white py-12">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
               <div className="flex flex-wrap items-center gap-4 mb-6">
                 <Badge className={getCategoryColor(category)}>
                   {category}
@@ -109,17 +122,16 @@ export const GuideLayout = ({
             <div className="max-w-4xl mx-auto flex flex-wrap justify-center gap-4">
               <a href="/">
                 <Button 
-                  variant="outline" 
-                  className="border-stone-300 hover:border-stone-400 text-stone-700"
+                  className="bg-amber-600 hover:bg-amber-700 text-white font-semibold px-6 py-3"
                 >
                   <Home className="w-4 h-4 mr-2" />
-                  Tillbaka till hem
+                  Tillbaka till startsidan
                 </Button>
               </a>
               <a href="/guider">
                 <Button 
                   variant="outline" 
-                  className="border-stone-300 hover:border-stone-400 text-stone-700"
+                  className="border-stone-300 hover:border-stone-400 text-stone-700 px-6 py-3"
                 >
                   <ArrowLeft className="w-4 h-4 mr-2" />
                   Alla guider
