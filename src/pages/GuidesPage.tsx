@@ -96,6 +96,36 @@ const GuidesPage = () => {
         "Avfallshantering på byggarbetsplatsen",
         "Långsiktig hållbarhet"
       ]
+    },
+    {
+      id: 7,
+      title: "Energideklaration - Komplett Guide",
+      description: "Allt du behöver veta om energideklaration för din fastighet, från lagkrav till energibesparingar.",
+      readTime: "8 min",
+      category: "Energi & Miljö",
+      href: "/guider/energi",
+      content: [
+        "Vad är en energideklaration?",
+        "När behövs energideklaration?",
+        "Energiklasser A-G",
+        "Besiktningsprocessen",
+        "Kostnader och tidsåtgång"
+      ]
+    },
+    {
+      id: 8,
+      title: "Överlåtelsebesiktning - Komplett Guide",
+      description: "Allt om överlåtelsebesiktning inför fastighetsförsäljning - för både säljare och köpare.",
+      readTime: "10 min",
+      category: "Fastighetsbesiktning",
+      href: "/guider/overlatelsebesiktning",
+      content: [
+        "Vad är överlåtelsebesiktning?",
+        "Fördelar för säljare och köpare",
+        "Vad kontrolleras vid besiktning?",
+        "Vanliga fel och brister",
+        "Kostnader och tidsåtgång"
+      ]
     }
   ];
 
@@ -106,7 +136,9 @@ const GuidesPage = () => {
       "Bygglov": "bg-green-100 text-green-800",
       "Kvalitetskontroll": "bg-purple-100 text-purple-800",
       "Digitalisering": "bg-orange-100 text-orange-800",
-      "Miljö & Hållbarhet": "bg-emerald-100 text-emerald-800"
+      "Miljö & Hållbarhet": "bg-emerald-100 text-emerald-800",
+      "Energi & Miljö": "bg-yellow-100 text-yellow-800",
+      "Fastighetsbesiktning": "bg-indigo-100 text-indigo-800"
     };
     return colors[category as keyof typeof colors] || "bg-gray-100 text-gray-800";
   };
@@ -115,8 +147,8 @@ const GuidesPage = () => {
     <>
       <Helmet>
         <title>Guider - Trygg Byggprocess med Ytterman</title>
-        <meta name="description" content="Omfattande guider om byggprocessen, kontrollansvarig, BAS-P/BAS-U och kvalitetskontroll. Expert råd från Tobias Ytterman." />
-        <meta name="keywords" content="byggguider, kontrollansvarig guide, BAS-P guide, BAS-U guide, byggprocess, kvalitetskontroll" />
+        <meta name="description" content="Omfattande guider om byggprocessen, kontrollansvarig, BAS-P/BAS-U, energideklaration, överlåtelsebesiktning och kvalitetskontroll. Expert råd från Tobias Ytterman." />
+        <meta name="keywords" content="byggguider, kontrollansvarig guide, BAS-P guide, BAS-U guide, energideklaration guide, överlåtelsebesiktning guide, byggprocess, kvalitetskontroll" />
       </Helmet>
 
       <div className="min-h-screen bg-gradient-to-br from-stone-50 via-amber-50/30 to-stone-50">
@@ -174,7 +206,7 @@ const GuidesPage = () => {
 
         {/* Guides Grid */}
         <div className="container mx-auto px-4 py-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {guides.map((guide) => (
               <Card key={guide.id} className="hover:shadow-lg transition-all duration-300 border-stone-200 group">
                 <CardHeader>
