@@ -1,4 +1,4 @@
-import { Shield, Users, FileText, Building, PenTool, Map, Layers } from 'lucide-react';
+import { Shield, Users, FileText, Building, PenTool, Map, Layers, Zap, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
 
@@ -15,21 +15,40 @@ export const Services = ({ onServiceSelect }: ServicesProps) => {
       icon: Shield,
       title: 'Kontrollansvarig (KA)',
       description: 'Teknisk kontroll enligt Plan- och bygglagen (PBL). Säkerställer att ditt byggprojekt följer gällande regler och föreskrifter.',
-      features: ['Kontrollplan', 'Besiktningar', 'Slutbevis', 'Teknisk rådgivning']
+      features: ['Kontrollplan', 'Besiktningar', 'Slutbevis', 'Teknisk rådgivning'],
+      link: '/kontrollansvarig'
     },
     {
       id: 'bas-p-service',
       icon: Users,
       title: 'BAS-P (Projektering)',
       description: 'Byggarbetsmiljösamordnare under projekteringsfasen. Planerar för en säker arbetsmiljö redan från början.',
-      features: ['Arbetsmiljöplan', 'Riskbedömning', 'Säkerhetsspecifikation', 'Samordning']
+      features: ['Arbetsmiljöplan', 'Riskbedömning', 'Säkerhetsspecifikation', 'Samordning'],
+      link: '/bas-p'
     },
     {
       id: 'bas-u-service',
       icon: Building,
       title: 'BAS-U (Utförande)',
       description: 'Byggarbetsmiljösamordnare under utförandefasen. Övervakar och säkerställer arbetsmiljön på byggarbetsplatsen.',
-      features: ['Arbetsmiljöuppföljning', 'Säkerhetsinspektioner', 'Incidenthantering', 'Utbildning']
+      features: ['Arbetsmiljöuppföljning', 'Säkerhetsinspektioner', 'Incidenthantering', 'Utbildning'],
+      link: '/bas-u'
+    },
+    {
+      id: 'energideklaration-service',
+      icon: Zap,
+      title: 'Energideklaration',
+      description: 'Professionell energideklaration för din fastighet. Energibesiktning, energiberäkning och åtgärdsförslag.',
+      features: ['Energibesiktning', 'Energiberäkning', 'Energiklass', 'Åtgärdsförslag'],
+      link: '/energideklaration'
+    },
+    {
+      id: 'overlatelsebesiktning-service',
+      icon: Search,
+      title: 'Överlåtelsebesiktning',
+      description: 'Teknisk besiktning inför fastighetsförsäljning. Identifierar fel och brister för en trygg affär.',
+      features: ['Teknisk besiktning', 'Installationskontroll', 'Besiktningsrapport', 'Fotografisk dokumentation'],
+      link: '/overlatelsebesiktning'
     },
     {
       id: 'kombinerade-paket-service',
@@ -70,6 +89,10 @@ export const Services = ({ onServiceSelect }: ServicesProps) => {
     navigate(`/kontakt?service=${serviceId}&source=services-page`);
   };
 
+  const handleLearnMore = (link: string) => {
+    navigate(link);
+  };
+
   return (
     <section id="tjanster" className="py-20 bg-secondary/30">
       <div className="container mx-auto px-4">
@@ -85,7 +108,7 @@ export const Services = ({ onServiceSelect }: ServicesProps) => {
         </div>
 
         {/* Huvudtjänster */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {services.map((service) => (
             <div
               key={service.id}
@@ -112,12 +135,23 @@ export const Services = ({ onServiceSelect }: ServicesProps) => {
                 ))}
               </ul>
 
-              <Button
-                onClick={() => handleGetQuote(service.id)}
-                className="w-full earth-gradient text-white hover:opacity-90"
-              >
-                Få en offert
-              </Button>
+              <div className="flex gap-2">
+                <Button
+                  onClick={() => handleGetQuote(service.id)}
+                  className="flex-1 earth-gradient text-white hover:opacity-90"
+                >
+                  Få offert
+                </Button>
+                {service.link && (
+                  <Button
+                    onClick={() => handleLearnMore(service.link)}
+                    variant="outline"
+                    className="border-accent text-accent hover:bg-accent hover:text-white"
+                  >
+                    Läs mer
+                  </Button>
+                )}
+              </div>
             </div>
           ))}
         </div>
