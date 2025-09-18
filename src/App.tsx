@@ -19,6 +19,7 @@ import BlogPostPage from '@/pages/BlogPostPage';
 import About from '@/pages/About';
 import FAQPage from '@/pages/FAQPage';
 import Integritetspolicy from '@/pages/Integritetspolicy';
+import TackPage from '@/pages/TackPage';
 import NotFound from '@/pages/NotFound';
 
 // Guide Pages
@@ -50,6 +51,7 @@ function App() {
               {/* Main Pages */}
               <Route path="/" element={<Index />} />
               <Route path="/kontakt" element={<KontaktPage />} />
+              <Route path="/tack" element={<TackPage />} />
               <Route path="/tjanster" element={<TjansterPage />} />
               <Route path="/kontrollansvarig" element={<KontrollansvarigPage />} />
               <Route path="/bas-p" element={<BasPPage />} />
