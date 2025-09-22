@@ -93,6 +93,10 @@ export const Services = ({ onServiceSelect }: ServicesProps) => {
     navigate(link);
   };
 
+  const handleStartOnlineCalculation = () => {
+    navigate('/energiberakning-online');
+  };
+
   return (
     <section id="tjanster" className="py-20 bg-secondary/30">
       <div className="container mx-auto px-4">
@@ -105,6 +109,40 @@ export const Services = ({ onServiceSelect }: ServicesProps) => {
             till slutbesiktning. Med över 20 års erfarenhet säkerställer jag att 
             ditt projekt genomförs enligt alla regler och med högsta kvalitet.
           </p>
+        </div>
+
+        {/* Energiberäkning Online - Featured Service */}
+        <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 mb-16 text-white">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="inline-flex items-center space-x-2 bg-white/20 px-4 py-2 rounded-full mb-4">
+              <Zap className="w-5 h-5" />
+              <span className="text-sm font-medium">Ny tjänst</span>
+            </div>
+            <h3 className="text-3xl font-bold mb-4">
+              Energiberäkning Online
+            </h3>
+            <p className="text-xl text-blue-100 mb-6">
+              Snabb och enkel energiberäkning direkt online. Professionell kvalitet till fast pris - endast 2,999 kr.
+            </p>
+            <div className="flex flex-wrap justify-center gap-6 text-sm mb-8">
+              <div className="flex items-center gap-2">
+                <span>✓ Klar på minuter</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span>✓ Professionell rapport</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span>✓ Fast pris 2,999 kr</span>
+              </div>
+            </div>
+            <Button
+              onClick={handleStartOnlineCalculation}
+              size="lg"
+              className="bg-white text-blue-600 hover:bg-blue-50 font-semibold px-8 py-3"
+            >
+              Starta nu
+            </Button>
+          </div>
         </div>
 
         {/* Huvudtjänster */}
