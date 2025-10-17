@@ -68,7 +68,7 @@ function App() {
               <Route path="/om-oss" element={<About />} />
               <Route path="/faq" element={<FAQPage />} />
               <Route path="/integritetspolicy" element={<Integritetspolicy />} />
-              
+
               {/* Guide Pages */}
               <Route path="/guider/kontrollansvarig" element={<KontrollansvarigGuide />} />
               <Route path="/guider/bas" element={<BasGuide />} />
@@ -78,13 +78,13 @@ function App() {
               <Route path="/guider/miljo" element={<MiljoGuide />} />
               <Route path="/guider/energi" element={<EnergiGuide />} />
               <Route path="/guider/overlatelsebesiktning" element={<OverlatelsebesiktningGuide />} />
-              
+
               {/* 404 Page */}
               <Route path="*" element={<NotFound />} />
             </Routes>
             <Toaster />
             <GoogleConsentMode />
-            <GoogleTagManager gtmId="GTM-XXXXXXX" />
+            <GoogleTagManager gtmId="GTM-TM2PZJ77" />
             <GoogleAdsTracking 
               conversionId="AW-CONVERSION_ID"
               phoneConversionLabel="PHONE_CONVERSION_LABEL"
