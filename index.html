@@ -1,6 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
   <head>
+    <!-- Google Consent Mode v2 - Must be loaded first -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      
+      // Set default consent state before any other Google scripts load
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'functionality_storage': 'granted',
+        'personalization_storage': 'denied',
+        'security_storage': 'granted',
+        'wait_for_update': 500
+      });
+    </script>
+    
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17296101730"></script>
     <script>
@@ -8,16 +26,27 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'AW-17296101730');
+      gtag('config', 'AW-17296101730', {
+        'allow_ad_personalization_signals': false,
+        'allow_google_signals': false
+      });
+      
+      // Add Google Analytics if needed
+      gtag('config', 'GA_MEASUREMENT_ID', {
+        'anonymize_ip': true,
+        'allow_ad_personalization_signals': false,
+        'allow_google_signals': false
+      });
     </script>
     
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Change the title -->
-    <title>Website</title>
-    <meta name="description" content="Superdev" />
-    <meta name="author" content="Superdev" />
+    <title>Trygg Byggprocess med Ytterman - Kontrollansvarig & BAS i Västernorrland</title>
+    <meta name="description" content="Certifierad kontrollansvarig och BAS-P/BAS-U i Västernorrland. Över 20 års erfarenhet. Snabb hantering, digitala verktyg och trygg byggprocess." />
+    <meta name="author" content="Tobias Ytterman" />
     <meta property="og:image" content="/og-image.png" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://ytterman.com/" />
     
   </head>
 
