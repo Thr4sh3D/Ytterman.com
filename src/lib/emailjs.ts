@@ -13,7 +13,7 @@ interface ContactFormData {
   message: string;
 }
 
-export const sendContactEmail = async (formData: ContactFormData) => {
+export const sendContactEmail = async (formData: ContactFormData): Promise<{ success: boolean; message?: string; error?: string }> => {
   try {
     // Template parameters för EmailJS
     const templateParams = {
