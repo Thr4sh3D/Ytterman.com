@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { HelmetProvider } from 'react-helmet-async';
 import { Toaster } from '@/components/ui/sonner';
 import GoogleConsentMode from '@/components/GoogleConsentMode';
+import GoogleTagManager from '@/components/GoogleTagManager';
 import GoogleAdsTracking from '@/components/GoogleAdsTracking';
 
 // Pages
@@ -83,6 +84,7 @@ function App() {
             </Routes>
             <Toaster />
             <GoogleConsentMode />
+            <GoogleTagManager gtmId="GTM-XXXXXXX" />
             <GoogleAdsTracking 
               conversionId="AW-CONVERSION_ID"
               phoneConversionLabel="PHONE_CONVERSION_LABEL"

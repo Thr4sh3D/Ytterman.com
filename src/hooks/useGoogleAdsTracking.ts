@@ -1,55 +1,35 @@
 import { useEffect } from 'react';
 
-// Google Ads tracking hook
+// GTM tracking hook
 export const useGoogleAdsTracking = () => {
   useEffect(() => {
-    // Ladda Google Ads script om det inte redan finns
-    if (!window.gtag) {
-      const script = document.createElement('script');
-      script.async = true;
-      script.src = 'https://www.googletagmanager.com/gtag/js?id=AW-CONVERSION_ID';
-      document.head.appendChild(script);
-
-      window.dataLayer = window.dataLayer || [];
-      window.gtag = function() {
-        window.dataLayer.push(arguments);
-      };
-      window.gtag('js', new Date());
-      window.gtag('config', 'AW-CONVERSION_ID');
-    }
+    // Initiera dataLayer om det inte redan finns
+    window.dataLayer = window.dataLayer || [];
   }, []);
 
   const trackPhoneClick = (phoneNumber: string) => {
     console.log('Tracking phone click:', phoneNumber);
     
-    // Google Analytics 4 event
+    // Skicka event till GTM dataLayer
+    if (window.dataLayer) {
+      window.dataLayer.push({
+        event: 'phone_click',
+        event_category: 'engagement',
+        event_action: 'click',
+        event_label: phoneNumber,
+        phone_number: phoneNumber,
+        page_location: window.location.href,
+        page_title: document.title,
+        timestamp: new Date().toISOString()
+      });
+    }
+
+    // Fallback för direkt gtag om det finns
     if (window.gtag) {
       window.gtag('event', 'phone_click', {
         event_category: 'engagement',
         event_label: phoneNumber,
-        phone_number: phoneNumber,
-        custom_parameter_1: 'phone_interaction'
-      });
-    }
-
-    // Google Ads conversion tracking
-    if (window.gtag) {
-      window.gtag('event', 'conversion', {
-        send_to: 'AW-CONVERSION_ID/PHONE_CONVERSION_LABEL',
-        value: 1.0,
-        currency: 'SEK',
         phone_number: phoneNumber
-      });
-    }
-
-    // Skicka även till dataLayer för GTM
-    if (window.dataLayer) {
-      window.dataLayer.push({
-        event: 'phone_click',
-        phone_number: phoneNumber,
-        event_category: 'engagement',
-        event_action: 'click',
-        event_label: phoneNumber
       });
     }
   };
@@ -57,35 +37,30 @@ export const useGoogleAdsTracking = () => {
   const trackFormSubmission = (formType: string, formData?: any) => {
     console.log('Tracking form submission:', formType, formData);
     
-    // Google Analytics 4 event
+    // Skicka event till GTM dataLayer
+    if (window.dataLayer) {
+      window.dataLayer.push({
+        event: 'form_submit',
+        event_category: 'engagement',
+        event_action: 'submit',
+        event_label: formType,
+        form_type: formType,
+        form_location: window.location.pathname,
+        form_name: formData?.name || '',
+        form_project: formData?.project || '',
+        form_has_phone: formData?.has_phone || false,
+        page_location: window.location.href,
+        page_title: document.title,
+        timestamp: new Date().toISOString()
+      });
+    }
+
+    // Fallback för direkt gtag om det finns
     if (window.gtag) {
       window.gtag('event', 'form_submit', {
         event_category: 'engagement',
         event_label: formType,
-        form_type: formType,
-        form_location: window.location.pathname
-      });
-    }
-
-    // Google Ads conversion tracking
-    if (window.gtag) {
-      window.gtag('event', 'conversion', {
-        send_to: 'AW-CONVERSION_ID/FORM_CONVERSION_LABEL',
-        value: 5.0,
-        currency: 'SEK',
         form_type: formType
-      });
-    }
-
-    // Skicka även till dataLayer för GTM
-    if (window.dataLayer) {
-      window.dataLayer.push({
-        event: 'form_submit',
-        form_type: formType,
-        form_location: window.location.pathname,
-        event_category: 'engagement',
-        event_action: 'submit',
-        event_label: formType
       });
     }
   };
@@ -93,6 +68,18 @@ export const useGoogleAdsTracking = () => {
   const trackPageView = (pagePath?: string) => {
     const path = pagePath || window.location.pathname;
     
+    // Skicka page view till GTM dataLayer
+    if (window.dataLayer) {
+      window.dataLayer.push({
+        event: 'page_view',
+        page_path: path,
+        page_title: document.title,
+        page_location: window.location.href,
+        timestamp: new Date().toISOString()
+      });
+    }
+
+    // Fallback för direkt gtag om det finns
     if (window.gtag) {
       window.gtag('event', 'page_view', {
         page_path: path,
@@ -100,13 +87,58 @@ export const useGoogleAdsTracking = () => {
         page_location: window.location.href
       });
     }
+  };
 
+  const trackButtonClick = (buttonText: string, buttonLocation: string) => {
+    console.log('Tracking button click:', buttonText, buttonLocation);
+    
     if (window.dataLayer) {
       window.dataLayer.push({
-        event: 'page_view',
-        page_path: path,
+        event: 'button_click',
+        event_category: 'engagement',
+        event_action: 'click',
+        event_label: buttonText,
+        button_text: buttonText,
+        button_location: buttonLocation,
+        page_location: window.location.href,
         page_title: document.title,
-        page_location: window.location.href
+        timestamp: new Date().toISOString()
+      });
+    }
+  };
+
+  const trackServiceInterest = (serviceName: string, serviceType: string) => {
+    console.log('Tracking service interest:', serviceName, serviceType);
+    
+    if (window.dataLayer) {
+      window.dataLayer.push({
+        event: 'service_interest',
+        event_category: 'engagement',
+        event_action: 'view',
+        event_label: serviceName,
+        service_name: serviceName,
+        service_type: serviceType,
+        page_location: window.location.href,
+        page_title: document.title,
+        timestamp: new Date().toISOString()
+      });
+    }
+  };
+
+  const trackDownload = (fileName: string, fileType: string) => {
+    console.log('Tracking download:', fileName, fileType);
+    
+    if (window.dataLayer) {
+      window.dataLayer.push({
+        event: 'file_download',
+        event_category: 'engagement',
+        event_action: 'download',
+        event_label: fileName,
+        file_name: fileName,
+        file_type: fileType,
+        page_location: window.location.href,
+        page_title: document.title,
+        timestamp: new Date().toISOString()
       });
     }
   };
@@ -114,14 +146,17 @@ export const useGoogleAdsTracking = () => {
   return {
     trackPhoneClick,
     trackFormSubmission,
-    trackPageView
+    trackPageView,
+    trackButtonClick,
+    trackServiceInterest,
+    trackDownload
   };
 };
 
-// TypeScript declarations för global gtag
+// TypeScript declarations för global dataLayer och gtag
 declare global {
   interface Window {
-    gtag: (...args: any[]) => void;
+    gtag?: (...args: any[]) => void;
     dataLayer: any[];
   }
 }
