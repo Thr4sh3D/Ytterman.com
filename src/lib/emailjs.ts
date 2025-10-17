@@ -1,4 +1,4 @@
-import emailjs from 'emailjs-com';
+import emailjs from '@emailjs/browser';
 
 // EmailJS configuration med dina riktiga uppgifter
 const SERVICE_ID = 'service_hkaan9a';
