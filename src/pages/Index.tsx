@@ -4,7 +4,16 @@ import { Hero } from '@/components/Hero';
 import { Footer } from '@/components/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { AdvancedSEO } from '@/components/AdvancedSEO';
-import { LazyServices, LazyPricing, LazyAbout, LazyContact, LazyServiceQuickMessages } from '@/components/LazyComponents';
+import { 
+  LazyServices, 
+  LazyPricing, 
+  LazyAbout, 
+  LazyContact, 
+  LazyServiceQuickMessages,
+  LazyWhyStrongKA2025,
+  LazyKAProcess,
+  LazyWhoIHelp
+} from '@/components/LazyComponents';
 import { Helmet } from 'react-helmet-async';
 
 // Loading component för lazy-loaded komponenter
@@ -62,9 +71,9 @@ const Index = () => {
   ];
 
   const packageMessages = {
-    'kontrollansvarig': 'Hej! Jag är intresserad av paketet "Kontrollansvarig" och skulle vilja veta mer om hur du kan hjälpa mig med mitt byggprojekt. Kan vi boka en kostnadsfri konsultation?',
-    'ka-bas-paket': 'Hej! Jag är intresserad av det populära "KA + BAS Paketet" och skulle vilja diskutera hur detta passar mitt projekt. Kan vi boka ett möte för att gå igenom detaljerna?',
-    'brf-stora-projekt': 'Hej! Jag har ett större/komplext projekt och skulle vilja få en offert för "BRF & Större Projekt"-paketet. Kan vi boka en konsultation för att diskutera projektets omfattning?'
+    'kontrollansvarig': 'Hej! Jag är intresserad av paketet "Grundpaket – Lagkrav KA" och skulle vilja veta mer om hur du kan hjälpa mig med mitt byggprojekt. Kan vi boka en kostnadsfri konsultation?',
+    'ka-bas-paket': 'Hej! Jag är intresserad av det populära "Pluspaket – Trygg KA" och skulle vilja diskutera hur detta passar mitt projekt. Kan vi boka ett möte för att gå igenom detaljerna?',
+    'brf-stora-projekt': 'Hej! Jag har ett större/komplext projekt och skulle vilja få en offert för "Premium – Projektstöd"-paketet. Kan vi boka en konsultation för att diskutera projektets omfattning?'
   };
 
   const serviceMessages = {
@@ -134,9 +143,10 @@ const Index = () => {
       <div className="min-h-screen">
         <Header />
         <main role="main">
+          {/* BEHÅLLS OFÖRÄNDRAT */}
           <Hero />
           
-          {/* Internal linking section for better SEO */}
+          {/* BEHÅLLS OFÖRÄNDRAT - Internal linking section for better SEO */}
           <section className="py-8 bg-stone-50" aria-label="Snabbnavigation">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto text-center">
@@ -177,21 +187,45 @@ const Index = () => {
             </div>
           </section>
           
+          {/* BEHÅLLS OFÖRÄNDRAT - Services section */}
           <Suspense fallback={<LoadingSpinner />}>
             <LazyServices onServiceSelect={handleServiceSelect} />
           </Suspense>
+
+          {/* NY SEKTION - Varför stark KA 2025 */}
+          <Suspense fallback={<LoadingSpinner />}>
+            <LazyWhyStrongKA2025 />
+          </Suspense>
+
+          {/* UPPDATERAD - Pricing with new package names */}
           <Suspense fallback={<LoadingSpinner />}>
             <LazyPricing onPackageSelect={handlePackageSelect} />
           </Suspense>
+
+          {/* NY SEKTION - KA Process */}
+          <Suspense fallback={<LoadingSpinner />}>
+            <LazyKAProcess />
+          </Suspense>
+
+          {/* NY SEKTION - Who I Help */}
+          <Suspense fallback={<LoadingSpinner />}>
+            <LazyWhoIHelp />
+          </Suspense>
+
+          {/* UPPDATERAD - About with Why Choose section */}
           <Suspense fallback={<LoadingSpinner />}>
             <LazyAbout />
           </Suspense>
+
+          {/* UPPDATERAD - Contact with new CTA */}
           <Suspense fallback={<LoadingSpinner />}>
             <LazyContact 
               selectedPackage={selectedPackage} 
               prefilledMessage={prefilledMessage}
             />
           </Suspense>
+
+          {/* BEHÅLLS OFÖRÄNDRAT - Service Quick Messages */}
           <Suspense fallback={<LoadingSpinner />}>
             <LazyServiceQuickMessages onServiceSelect={handleServiceSelect} />
           </Suspense>

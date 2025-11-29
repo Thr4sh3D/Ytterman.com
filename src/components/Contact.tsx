@@ -119,11 +119,10 @@ export const Contact = ({ selectedPackage, prefilledMessage }: ContactProps) => 
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-6">
-            Kontakta Mig
+            Kontakta mig tidigt – det lönar sig
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Redo att starta ditt byggprojekt? Kontakta mig för en kostnadsfri konsultation 
-            och låt oss diskutera hur jag kan hjälpa dig.
+            Många hör av sig för sent i processen och får onödiga problem. Ju tidigare du tar kontakt, desto smidigare blir hela projektet. <strong>Boka en kostnadsfri konsultation redan idag</strong> – så ser vi till att du får rätt start från början.
           </p>
         </div>
 
