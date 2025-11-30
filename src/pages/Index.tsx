@@ -16,7 +16,6 @@ import {
 } from '@/components/LazyComponents';
 import { Helmet } from 'react-helmet-async';
 
-// Loading component för lazy-loaded komponenter
 const LoadingSpinner = () => (
   <div className="flex justify-center items-center py-20" role="status" aria-label="Laddar innehåll">
     <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary" aria-hidden="true"></div>
@@ -28,7 +27,6 @@ const Index = () => {
   const [selectedPackage, setSelectedPackage] = useState<string>('');
   const [prefilledMessage, setPrefilledMessage] = useState<string>('');
 
-  // FAQ data för SEO
   const faqData = [
     {
       question: "Vad är en kontrollansvarig och när behöver jag en?",
@@ -48,7 +46,6 @@ const Index = () => {
     }
   ];
 
-  // Reviews data för SEO
   const reviews = [
     {
       author: "Anna Andersson",
@@ -93,7 +90,6 @@ const Index = () => {
     setSelectedPackage(packageId);
     setPrefilledMessage(packageMessages[packageId as keyof typeof packageMessages] || '');
     
-    // Scroll to contact section when package is selected
     const element = document.getElementById('kontakt');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -104,7 +100,6 @@ const Index = () => {
     setSelectedPackage(serviceId);
     setPrefilledMessage(serviceMessages[serviceId as keyof typeof serviceMessages] || '');
     
-    // Scroll to contact section when service is selected
     const element = document.getElementById('kontakt');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -115,16 +110,10 @@ const Index = () => {
     <>
       <Helmet>
         <link rel="canonical" href="https://ytterman.com/" />
-        
-        {/* Additional meta tags for better indexing */}
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
         <meta name="googlebot" content="index, follow" />
-        
-        {/* Hreflang for Swedish content */}
         <link rel="alternate" hrefLang="sv" href="https://ytterman.com/" />
         <link rel="alternate" hrefLang="x-default" href="https://ytterman.com/" />
-        
-        {/* Internal linking hints */}
         <link rel="preload" href="/tjanster" as="document" />
         <link rel="preload" href="/kontakt" as="document" />
         <link rel="preload" href="/faq" as="document" />
@@ -143,10 +132,8 @@ const Index = () => {
       <div className="min-h-screen">
         <Header />
         <main role="main">
-          {/* BEHÅLLS OFÖRÄNDRAT */}
           <Hero />
           
-          {/* BEHÅLLS OFÖRÄNDRAT - Internal linking section for better SEO */}
           <section className="py-8 bg-stone-50" aria-label="Snabbnavigation">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto text-center">
@@ -187,37 +174,30 @@ const Index = () => {
             </div>
           </section>
           
-          {/* BEHÅLLS OFÖRÄNDRAT - Services section */}
           <Suspense fallback={<LoadingSpinner />}>
             <LazyServices onServiceSelect={handleServiceSelect} />
           </Suspense>
 
-          {/* NY SEKTION - Varför stark KA 2025 */}
           <Suspense fallback={<LoadingSpinner />}>
             <LazyWhyStrongKA2025 />
           </Suspense>
 
-          {/* UPPDATERAD - Pricing with new package names */}
           <Suspense fallback={<LoadingSpinner />}>
             <LazyPricing onPackageSelect={handlePackageSelect} />
           </Suspense>
 
-          {/* NY SEKTION - KA Process */}
           <Suspense fallback={<LoadingSpinner />}>
             <LazyKAProcess />
           </Suspense>
 
-          {/* NY SEKTION - Who I Help */}
           <Suspense fallback={<LoadingSpinner />}>
             <LazyWhoIHelp />
           </Suspense>
 
-          {/* UPPDATERAD - About with Why Choose section */}
           <Suspense fallback={<LoadingSpinner />}>
             <LazyAbout />
           </Suspense>
 
-          {/* UPPDATERAD - Contact with new CTA */}
           <Suspense fallback={<LoadingSpinner />}>
             <LazyContact 
               selectedPackage={selectedPackage} 
@@ -225,7 +205,6 @@ const Index = () => {
             />
           </Suspense>
 
-          {/* BEHÅLLS OFÖRÄNDRAT - Service Quick Messages */}
           <Suspense fallback={<LoadingSpinner />}>
             <LazyServiceQuickMessages onServiceSelect={handleServiceSelect} />
           </Suspense>
