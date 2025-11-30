@@ -9,10 +9,7 @@ import {
   LazyPricing, 
   LazyAbout, 
   LazyContact, 
-  LazyServiceQuickMessages,
-  LazyWhyStrongKA2025,
-  LazyKAProcess,
-  LazyWhoIHelp
+  LazyServiceQuickMessages
 } from '@/components/LazyComponents';
 import { Helmet } from 'react-helmet-async';
 
@@ -67,9 +64,9 @@ const Index = () => {
   ];
 
   const packageMessages = {
-    'kontrollansvarig': 'Hej! Jag är intresserad av paketet "Grundpaket – Lagkrav KA" och skulle vilja veta mer om hur du kan hjälpa mig med mitt byggprojekt. Kan vi boka en kostnadsfri konsultation?',
-    'ka-bas-paket': 'Hej! Jag är intresserad av det populära "Pluspaket – Trygg KA" och skulle vilja diskutera hur detta passar mitt projekt. Kan vi boka ett möte för att gå igenom detaljerna?',
-    'brf-stora-projekt': 'Hej! Jag har ett större/komplext projekt och skulle vilja få en offert för "Premium – Projektstöd"-paketet. Kan vi boka en konsultation för att diskutera projektets omfattning?'
+    'kontrollansvarig': 'Hej! Jag är intresserad av paketet "Kontrollansvarig" och skulle vilja veta mer om hur du kan hjälpa mig med mitt byggprojekt. Kan vi boka en kostnadsfri konsultation?',
+    'ka-bas-paket': 'Hej! Jag är intresserad av det populära "KA + BAS Paket" och skulle vilja diskutera hur detta passar mitt projekt. Kan vi boka ett möte för att gå igenom detaljerna?',
+    'brf-stora-projekt': 'Hej! Jag har ett större/komplext projekt och skulle vilja få en offert. Kan vi boka en konsultation för att diskutera projektets omfattning?'
   };
 
   const serviceMessages = {
@@ -162,19 +159,7 @@ const Index = () => {
           </Suspense>
 
           <Suspense fallback={<LoadingSpinner />}>
-            <LazyWhyStrongKA2025 />
-          </Suspense>
-
-          <Suspense fallback={<LoadingSpinner />}>
             <LazyPricing onPackageSelect={handlePackageSelect} />
-          </Suspense>
-
-          <Suspense fallback={<LoadingSpinner />}>
-            <LazyKAProcess />
-          </Suspense>
-
-          <Suspense fallback={<LoadingSpinner />}>
-            <LazyWhoIHelp />
           </Suspense>
 
           <Suspense fallback={<LoadingSpinner />}>
