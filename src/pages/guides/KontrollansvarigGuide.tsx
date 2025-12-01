@@ -9,9 +9,10 @@ const KontrollansvarigGuide = () => {
       description="En komplett guide om vad en kontrollansvarig gör och varför det är viktigt för ditt byggprojekt."
       category="Kontrollansvarig"
       readTime="8 min"
-      seoTitle="Kontrollansvarig Guide - Allt du behöver veta | Ytterman"
-      seoDescription="Komplett guide om kontrollansvarigs roll, ansvar och när du behöver en. Expert råd från certifierad kontrollansvarig Tobias Ytterman."
-      keywords="kontrollansvarig, byggkontroll, PBL, plan- och bygglagen, bygglov, teknisk kontroll"
+      seoTitle="Kontrollansvarig Guide - Allt du behöver veta 2025 | Ytterman"
+      seoDescription="Komplett guide om kontrollansvarigs roll, ansvar och när du behöver en. Expert råd från certifierad kontrollansvarig Tobias Ytterman i Västernorrland."
+      keywords="kontrollansvarig, byggkontroll, PBL, plan- och bygglagen, bygglov, teknisk kontroll, slutbevis, kontrollplan, Västernorrland"
+      canonicalPath="/guider/kontrollansvarig"
     >
       <div className="prose prose-stone max-w-none">
         <h2 className="flex items-center gap-2 text-2xl font-bold text-stone-800 mb-6">

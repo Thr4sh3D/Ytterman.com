@@ -9,9 +9,10 @@ const BasGuide = () => {
       description="Förstå skillnaderna mellan BAS-P och BAS-U samt när respektive roll krävs i ditt projekt."
       category="Säkerhetssamordning"
       readTime="6 min"
-      seoTitle="BAS-P och BAS-U Guide - Säkerhetssamordning | Ytterman"
-      seoDescription="Komplett guide om BAS-P och BAS-U roller, skillnader och lagkrav. Expert råd från certifierad säkerhetssamordnare Tobias Ytterman."
-      keywords="BAS-P, BAS-U, säkerhetssamordnare, arbetsmiljö, AFS 1999:3, byggarbetsmiljö"
+      seoTitle="BAS-P och BAS-U Guide - Säkerhetssamordning 2025 | Ytterman"
+      seoDescription="Komplett guide om BAS-P och BAS-U roller, skillnader och lagkrav enligt AFS 1999:3. Expert råd från certifierad säkerhetssamordnare Tobias Ytterman i Västernorrland."
+      keywords="BAS-P, BAS-U, säkerhetssamordnare, arbetsmiljö, AFS 1999:3, byggarbetsmiljö, arbetsmiljöplan, Västernorrland"
+      canonicalPath="/guider/bas"
     >
       <div className="prose prose-stone max-w-none">
         <h2 className="flex items-center gap-2 text-2xl font-bold text-stone-800 mb-6">

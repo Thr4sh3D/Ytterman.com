@@ -1,40 +1,61 @@
-import { Helmet } from 'react-helmet-async';
+import { Header } from '@/components/Header';
+import { Footer } from '@/components/Footer';
+import { Hero } from '@/components/Hero';
+import { Services } from '@/components/Services';
+import { About } from '@/components/About';
+import { Certification } from '@/components/Certification';
+import { Contact } from '@/components/Contact';
+import { FAQ } from '@/components/FAQ';
+import { WhatsAppButton } from '@/components/WhatsAppButton';
+import { AdvancedSEO } from '@/components/AdvancedSEO';
+import { CanonicalUrl } from '@/components/CanonicalUrl';
 
 const Index = () => {
+  const homeFaq = [
+    {
+      question: "Vilka tjänster erbjuder Ytterman?",
+      answer: "Vi erbjuder Kontrollansvarig (KA), BAS-P, BAS-U, energiberäkning online, bygglovshandlingar, energideklaration och överlåtelsebesiktning i Västernorrland."
+    },
+    {
+      question: "Var är ni verksamma?",
+      answer: "Vi är verksamma i hela Västernorrland med fokus på Sundsvall, Härnösand, Sollefteå, Timrå och Kramfors."
+    },
+    {
+      question: "Hur lång tid tar det att få en offert?",
+      answer: "Du får vanligtvis en offert inom 24 timmar efter att du kontaktat oss."
+    },
+    {
+      question: "Vad kostar era tjänster?",
+      answer: "Priserna varierar beroende på projektets omfattning. Kontrollansvarig från 15,000 kr, BAS-P från 12,000 kr, BAS-U från 18,000 kr, energiberäkning online 2,999 kr. Kontakta oss för en kostnadsfri konsultation och fast prisoffert."
+    }
+  ];
+
   return (
     <>
-      <Helmet>
-        <title>Ytterman - Kontrollansvarig & BAS i Västernorrland</title>
-        <meta name="description" content="Certifierad Kontrollansvarig och Byggarbetsmiljösamordnare i Västernorrland" />
-      </Helmet>
+      <AdvancedSEO 
+        title="Ytterman - Kontrollansvarig & BAS-P/BAS-U i Västernorrland | Sundsvall, Härnösand"
+        description="Certifierad Kontrollansvarig och Byggarbetsmiljösamordnare (BAS-P/BAS-U) i Västernorrland. Över 20 års erfarenhet. Tjänster: KA, BAS, energiberäkning online, bygglov. Sundsvall, Härnösand, Sollefteå, Timrå, Kramfors."
+        keywords="kontrollansvarig, BAS-P, BAS-U, byggarbetsmiljösamordnare, byggkontroll, energiberäkning online, Sundsvall, Härnösand, Sollefteå, Timrå, Kramfors, Västernorrland, bygglov, Tobias Ytterman"
+        url="https://ytterman.com"
+        type="website"
+        organization={true}
+        faq={homeFaq}
+      />
       
-      <div className="min-h-screen bg-white">
-        <header className="bg-stone-800 text-white py-4">
-          <div className="container mx-auto px-4">
-            <h1 className="text-2xl font-bold">Ytterman</h1>
-          </div>
-        </header>
-        
-        <main className="container mx-auto px-4 py-16">
-          <h2 className="text-4xl font-bold mb-4">Kontrollansvarig & BAS i Västernorrland</h2>
-          <p className="text-xl mb-8">Certifierad expert med över 20 års erfarenhet</p>
-          
-          <div className="bg-amber-50 p-6 rounded-lg">
-            <h3 className="text-2xl font-bold mb-4">Tjänster</h3>
-            <ul className="space-y-2">
-              <li>✓ Kontrollansvarig (KA)</li>
-              <li>✓ BAS-P (Projektering)</li>
-              <li>✓ BAS-U (Utförande)</li>
-              <li>✓ Energideklaration</li>
-            </ul>
-          </div>
+      <CanonicalUrl path="/" />
+      
+      <div className="min-h-screen">
+        <Header />
+        <main>
+          <Hero />
+          <Services />
+          <About />
+          <Certification />
+          <FAQ items={homeFaq} />
+          <Contact />
         </main>
-        
-        <footer className="bg-stone-800 text-white py-8 mt-16">
-          <div className="container mx-auto px-4 text-center">
-            <p>© 2025 Ytterman. Kontakt: 076-111 84 47</p>
-          </div>
-        </footer>
+        <Footer />
+        <WhatsAppButton />
       </div>
     </>
   );

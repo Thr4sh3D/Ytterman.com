@@ -1,171 +1,159 @@
-import React from 'react';
-import { Helmet } from 'react-helmet-async';
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Clock, User, ArrowLeft, CheckCircle, Home } from 'lucide-react';
+import { ReactNode } from 'react';
+import { Header } from '@/components/Header';
+import { Footer } from '@/components/Footer';
+import { WhatsAppButton } from '@/components/WhatsAppButton';
+import { AdvancedSEO } from '@/components/AdvancedSEO';
+import { CanonicalUrl } from '@/components/CanonicalUrl';
+import { Breadcrumbs } from '@/components/Breadcrumbs';
+import { Clock, Tag } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 interface GuideLayoutProps {
   title: string;
   description: string;
   category: string;
   readTime: string;
-  children: React.ReactNode;
-  seoTitle?: string;
-  seoDescription?: string;
-  keywords?: string;
+  seoTitle: string;
+  seoDescription: string;
+  keywords: string;
+  children: ReactNode;
+  canonicalPath?: string;
 }
 
-export const GuideLayout = ({ 
-  title, 
-  description, 
-  category, 
-  readTime, 
-  children,
+export const GuideLayout = ({
+  title,
+  description,
+  category,
+  readTime,
   seoTitle,
   seoDescription,
-  keywords
+  keywords,
+  children,
+  canonicalPath
 }: GuideLayoutProps) => {
-  const getCategoryColor = (category: string) => {
-    const colors = {
-      "Kontrollansvarig": "bg-blue-100 text-blue-800",
-      "Säkerhetssamordning": "bg-red-100 text-red-800",
-      "Bygglov": "bg-green-100 text-green-800",
-      "Kvalitetskontroll": "bg-purple-100 text-purple-800",
-      "Digitalisering": "bg-orange-100 text-orange-800",
-      "Miljö & Hållbarhet": "bg-emerald-100 text-emerald-800"
-    };
-    return colors[category as keyof typeof colors] || "bg-gray-100 text-gray-800";
-  };
+  const breadcrumbs = [
+    { name: 'Hem', url: 'https://ytterman.com' },
+    { name: 'Guider', url: 'https://ytterman.com/guider' },
+    { name: title, url: canonicalPath ? `https://ytterman.com${canonicalPath}` : '' }
+  ];
 
   return (
     <>
-      <Helmet>
-        <title>{seoTitle || `${title} - Trygg Byggprocess med Ytterman`}</title>
-        <meta name="description" content={seoDescription || description} />
-        {keywords && <meta name="keywords" content={keywords} />}
-      </Helmet>
+      <AdvancedSEO 
+        title={seoTitle}
+        description={seoDescription}
+        keywords={keywords}
+        url={canonicalPath ? `https://ytterman.com${canonicalPath}` : 'https://ytterman.com/guider'}
+        type="article"
+        organization={true}
+        breadcrumbs={breadcrumbs}
+        article={{
+          publishedTime: new Date().toISOString(),
+          author: 'Tobias Ytterman',
+          section: 'Guider',
+          tags: keywords.split(', ')
+        }}
+      />
+      
+      {canonicalPath && <CanonicalUrl path={canonicalPath} />}
+      
+      <div className="min-h-screen bg-slate-50">
+        <Header />
+        
+        <main>
+          {/* Breadcrumbs */}
+          <section className="py-4 bg-white border-b">
+            <div className="container mx-auto px-4">
+              <Breadcrumbs items={breadcrumbs.slice(1)} />
+            </div>
+          </section>
 
-      <div className="min-h-screen bg-gradient-to-br from-stone-50 via-amber-50/30 to-stone-50">
-        {/* Top Navigation Bar - More prominent */}
-        <div className="bg-white border-b border-stone-200 shadow-sm sticky top-0 z-50">
-          <div className="container mx-auto px-4 py-3">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <a href="/">
+          {/* Hero Section */}
+          <section className="py-12 bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-50">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto">
+                <div className="flex items-center gap-4 mb-6">
+                  <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-semibold">
+                    <Tag className="w-3 h-3 inline mr-1" />
+                    {category}
+                  </span>
+                  <span className="flex items-center text-slate-600 text-sm">
+                    <Clock className="w-4 h-4 mr-1" />
+                    {readTime} läsning
+                  </span>
+                </div>
+                
+                <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
+                  {title}
+                </h1>
+                
+                <p className="text-xl text-slate-600 mb-8">
+                  {description}
+                </p>
+                
+                <div className="flex items-center justify-between pt-6 border-t border-slate-200">
+                  <div className="flex items-center">
+                    <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold text-lg mr-3">
+                      TY
+                    </div>
+                    <div>
+                      <p className="font-semibold text-slate-900">Tobias Ytterman</p>
+                      <p className="text-sm text-slate-600">Certifierad KA & BAS-P/BAS-U</p>
+                    </div>
+                  </div>
+                  
                   <Button 
-                    variant="outline" 
-                    size="sm"
-                    className="border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white font-semibold"
+                    onClick={() => window.location.href = '/kontakt'}
+                    className="earth-gradient text-white hover:opacity-90"
                   >
-                    <Home className="w-4 h-4 mr-2" />
-                    Hem
+                    Kontakta oss
                   </Button>
-                </a>
-                <Button 
-                  variant="ghost" 
-                  size="sm"
-                  className="text-stone-600 hover:bg-stone-100"
-                  onClick={() => window.history.back()}
-                >
-                  <ArrowLeft className="w-4 h-4 mr-2" />
-                  Tillbaka
-                </Button>
-              </div>
-              
-              <div className="text-sm text-stone-500">
-                Expertguider för Byggprocessen
+                </div>
               </div>
             </div>
-          </div>
-        </div>
+          </section>
 
-        {/* Header */}
-        <div className="bg-gradient-to-r from-stone-800 to-amber-800 text-white py-12">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <div className="flex flex-wrap items-center gap-4 mb-6">
-                <Badge className={getCategoryColor(category)}>
-                  {category}
-                </Badge>
-                <div className="flex items-center text-stone-200">
-                  <Clock className="w-4 h-4 mr-1" />
-                  {readTime}
-                </div>
-                <div className="flex items-center text-stone-200">
-                  <User className="w-4 h-4 mr-1" />
-                  Tobias Ytterman
-                </div>
+          {/* Content */}
+          <section className="py-16 bg-white">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto">
+                {children}
               </div>
-              
-              <h1 className="text-3xl md:text-4xl font-bold mb-4">
-                {title}
-              </h1>
-              <p className="text-xl text-stone-200">
-                {description}
+            </div>
+          </section>
+
+          {/* CTA Section */}
+          <section className="py-16 bg-slate-900 text-white">
+            <div className="container mx-auto px-4 text-center">
+              <h2 className="text-3xl font-bold mb-4">
+                Behöver du hjälp med ditt byggprojekt?
+              </h2>
+              <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+                Kontakta oss för en kostnadsfri konsultation och fast prisoffert.
               </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Content */}
-        <div className="container mx-auto px-4 py-12">
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-white rounded-lg shadow-sm border border-stone-200 p-8 md:p-12">
-              {children}
-            </div>
-          </div>
-        </div>
-
-        {/* Navigation Section - Bottom */}
-        <div className="bg-stone-50 py-8 border-t border-stone-200">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto flex flex-wrap justify-center gap-4">
-              <a href="/">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button 
-                  className="bg-amber-600 hover:bg-amber-700 text-white font-semibold px-6 py-3"
+                  onClick={() => window.location.href = '/kontakt'}
+                  size="lg"
+                  className="earth-gradient text-white hover:opacity-90"
                 >
-                  <Home className="w-4 h-4 mr-2" />
-                  Tillbaka till startsidan
+                  Få kostnadsfri offert
                 </Button>
-              </a>
-              <a href="/guider">
                 <Button 
-                  variant="outline" 
-                  className="border-stone-300 hover:border-stone-400 text-stone-700 px-6 py-3"
+                  onClick={() => window.location.href = 'tel:+46761118447'}
+                  size="lg"
+                  variant="outline"
+                  className="border-white text-white hover:bg-white hover:text-slate-900"
                 >
-                  <ArrowLeft className="w-4 h-4 mr-2" />
-                  Alla guider
+                  Ring direkt: 076-111 84 47
                 </Button>
-              </a>
+              </div>
             </div>
-          </div>
-        </div>
-
-        {/* CTA Section */}
-        <div className="bg-stone-100 py-12">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-2xl font-bold text-stone-800 mb-4">
-              Behöver du hjälp med ditt projekt?
-            </h2>
-            <p className="text-stone-600 mb-6 max-w-2xl mx-auto">
-              Kontakta mig för personlig rådgivning och professionell hjälp med ditt byggprojekt.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a 
-                href="/kontakt" 
-                className="bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
-              >
-                Kontakta mig
-              </a>
-              <a 
-                href="/tjanster" 
-                className="border-2 border-stone-300 hover:border-stone-400 text-stone-700 px-6 py-3 rounded-lg font-semibold transition-colors"
-              >
-                Se alla tjänster
-              </a>
-            </div>
-          </div>
-        </div>
+          </section>
+        </main>
+        
+        <Footer />
+        <WhatsAppButton />
       </div>
     </>
   );
