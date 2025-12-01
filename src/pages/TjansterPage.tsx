@@ -26,7 +26,7 @@ const TjansterPage = () => {
       id: 'kontrollansvarig-service',
       title: "Kontrollansvarig (KA)",
       description: "Certifierad kontrollansvarig enligt PBL för teknisk kontroll och slutbesiktning",
-      price: "Från 15,000 SEK",
+      price: "Från 19,999 SEK",
       features: [
         "Kontrollplan och teknisk kontroll",
         "Slutbesiktning och slutbevis",
@@ -130,7 +130,7 @@ const TjansterPage = () => {
     },
     {
       question: "Vad kostar era tjänster?",
-      answer: "Priserna varierar beroende på projektets omfattning. KA från 15,000 kr, BAS-P från 12,000 kr, BAS-U från 18,000 kr, energiberäkning online 2,999 kr, bygglovshandlingar från 8,000 kr, energideklaration från 8,000 kr och överlåtelsebesiktning från 12,000 kr. Vi ger alltid fast pris efter kostnadsfri konsultation."
+      answer: "Priserna varierar beroende på projektets omfattning. KA från 19,999 kr, BAS-P från 12,000 kr, BAS-U från 18,000 kr, energiberäkning online 2,999 kr, bygglovshandlingar från 8,000 kr, energideklaration från 8,000 kr och överlåtelsebesiktning från 12,000 kr. Vi ger alltid fast pris efter kostnadsfri konsultation."
     },
     {
       question: "Vilka områden täcker ni?",

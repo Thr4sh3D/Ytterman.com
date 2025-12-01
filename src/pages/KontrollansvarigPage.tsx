@@ -72,8 +72,8 @@ const KontrollansvarigPage = () => {
     "serviceType": "Kontrollansvarig",
     "offers": {
       "@type": "Offer",
-      "description": "Kontrollansvarig tjänster från 15,000 SEK",
-      "priceRange": "Från 15,000 SEK"
+      "description": "Kontrollansvarig tjänster från 19,999 SEK",
+      "priceRange": "Från 19,999 SEK"
     }
   };
 

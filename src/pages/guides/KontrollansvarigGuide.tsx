@@ -138,13 +138,13 @@ const KontrollansvarigGuide = () => {
         <div className="grid md:grid-cols-3 gap-4 mb-8">
           <div className="bg-white border border-stone-200 p-4 rounded-lg text-center">
             <h3 className="font-semibold text-stone-800 mb-2">Mindre projekt</h3>
-            <p className="text-2xl font-bold text-amber-600 mb-2">15,000-30,000 kr</p>
+            <p className="text-2xl font-bold text-amber-600 mb-2">19,999-35,000 kr</p>
             <p className="text-sm text-stone-600">Enklare tillbyggnader och renoveringar</p>
           </div>
           
           <div className="bg-white border border-stone-200 p-4 rounded-lg text-center">
             <h3 className="font-semibold text-stone-800 mb-2">Medelstora projekt</h3>
-            <p className="text-2xl font-bold text-amber-600 mb-2">30,000-80,000 kr</p>
+            <p className="text-2xl font-bold text-amber-600 mb-2">35,000-80,000 kr</p>
             <p className="text-sm text-stone-600">Villor och mindre flerbostadshus</p>
           </div>
           

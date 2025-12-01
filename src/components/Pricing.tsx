@@ -13,7 +13,7 @@ export const Pricing = ({ onPackageSelect }: PricingProps) => {
     {
       id: 'kontrollansvarig',
       name: 'Grundpaket – Lagkrav KA',
-      price: 'Från 15,000 SEK',
+      price: 'Från 19,999 SEK',
       description: 'Du uppfyller lagkraven – inget mer, inget mindre',
       features: [
         'Kontrollplan enligt PBL (skräddarsydd)',
@@ -28,7 +28,7 @@ export const Pricing = ({ onPackageSelect }: PricingProps) => {
     {
       id: 'ka-bas-paket',
       name: 'Pluspaket – Trygg KA',
-      price: 'Från 25,000 SEK',
+      price: 'Från 29,990 SEK',
       description: 'Mest populära paketet – trygghet genom hela projektet',
       features: [
         'Allt i Grundpaket +',
