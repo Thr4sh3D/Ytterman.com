@@ -129,5 +129,8 @@ export const faqData = {
       question: "Erbjuder ni kostnadsfri konsultation?",
       answer: "Ja, vi erbjuder alltid en kostnadsfri första konsultation där vi går igenom ditt projekt och ger råd om vilka tjänster som behövs."
     }
-  ]
+  ],
+  get bas() {
+    return [...this.basP, ...this.basU];
+  }
 };
