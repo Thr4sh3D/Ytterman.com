@@ -5,21 +5,23 @@ import { AdvancedSEO } from '@/components/AdvancedSEO';
 import { ServiceFAQ } from '@/components/ServiceFAQ';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { CheckCircle, Phone, Mail, FileText, Users, Shield, Building, ArrowRight, Zap, Search, Calculator, CalendarCheck } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { CanonicalUrl } from '@/components/CanonicalUrl';
 import { BOOKING_OVL_URL } from '@/config/booking';
 
 const TjansterPage = () => {
+  const navigate = useNavigate();
   const scrollToContact = () => {
-    window.location.href = '/kontakt?source=tjanster-page';
+    navigate('/kontakt?source=tjanster-page');
   };
 
   const handleServiceQuote = (serviceId: string) => {
-    window.location.href = `/kontakt?service=${serviceId}&source=tjanster-page`;
+    navigate(`/kontakt?service=${serviceId}&source=tjanster-page`);
   };
 
   const handleStartOnlineCalculation = () => {
-    window.location.href = '/energiberakning-online';
+    navigate('/energiberakning-online');
   };
 
   const services = [

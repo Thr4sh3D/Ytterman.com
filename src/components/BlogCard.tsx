@@ -1,4 +1,5 @@
 import { Calendar, Clock, User, ArrowRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 
 interface BlogCardProps {
@@ -17,6 +18,7 @@ interface BlogCardProps {
 }
 
 export const BlogCard = ({ post }: BlogCardProps) => {
+  const navigate = useNavigate();
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('sv-SE', {
       year: 'numeric',
@@ -68,7 +70,7 @@ export const BlogCard = ({ post }: BlogCardProps) => {
           
           <Button 
             variant="ghost" 
-            size="sm"
+            size="sm"navigate(`/blogg/${post.slug}`)
             onClick={() => window.location.href = `/blogg/${post.slug}`}
             className="text-primary hover:text-primary/80"
           >

@@ -1,4 +1,5 @@
 import { ArrowRight, Shield, Users, FileText, Building } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 
 interface Service {
@@ -15,6 +16,7 @@ interface RelatedServicesProps {
 }
 
 export const RelatedServices = ({ currentService, className = "" }: RelatedServicesProps) => {
+  const navigate = useNavigate();
   const allServices: Service[] = [
     {
       title: "Kontrollansvarig (KA)",
@@ -80,7 +82,7 @@ export const RelatedServices = ({ currentService, className = "" }: RelatedServi
                   
                   <p className="text-slate-600 mb-6">{service.description}</p>
                   
-                  <Button 
+                  <Button navigate(service.url)
                     onClick={() => window.location.href = service.url}
                     variant="outline"
                     className="w-full hover:bg-primary hover:text-white"
@@ -95,7 +97,7 @@ export const RelatedServices = ({ currentService, className = "" }: RelatedServi
           
           <div className="text-center mt-12">
             <Button 
-              onClick={() => window.location.href = '/kontakt'}
+              onClick={() => navigate('/kontakt')}
               className="earth-gradient text-white hover:opacity-90 px-8 py-4 text-lg"
             >
               Få kostnadsfri konsultation
