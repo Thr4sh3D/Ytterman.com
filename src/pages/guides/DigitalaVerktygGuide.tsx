@@ -321,7 +321,7 @@ const DigitalaVerktygGuide = () => {
             Som erfaren projektledare hjälper jag dig att välja och implementera rätt digitala verktyg:
           </p>
           <ul className="space-y-2 text-orange-700">
-            <li>• Behovsanalys och verktygsvalet>
+            <li>• Behovsanalys och verktygsvalet</li>
             <li>• Implementation och utbildning</li>
             <li>• Integration med befintliga system</li>
             <li>• Löpande support och optimering</li>

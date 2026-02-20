@@ -4,8 +4,9 @@ import { FAQ } from "@/components/FAQ";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle, Phone, Mail, MapPin, Clock, Award, Shield, FileText, Search, Camera, ClipboardCheck } from "lucide-react";
+import { CheckCircle, Phone, Mail, MapPin, Clock, Award, Shield, FileText, Search, Camera, ClipboardCheck, CalendarCheck } from "lucide-react";
 import { Link } from "react-router-dom";
+import { BOOKING_OVL_URL } from "@/config/booking";
 
 const OverlatelsebesiktningPage = () => {
   const overlatelsebesiktningFAQ = [
@@ -268,6 +269,18 @@ const OverlatelsebesiktningPage = () => {
               <Button size="lg" variant="secondary" asChild>
                 <Link to="/kontakt">Boka besiktning</Link>
               </Button>
+              {BOOKING_OVL_URL && (
+                <Button size="lg" variant="secondary" asChild>
+                  <a 
+                    href={BOOKING_OVL_URL} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                  >
+                    <CalendarCheck className="mr-2 h-4 w-4" />
+                    Boka online
+                  </a>
+                </Button>
+              )}
               <Button size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-purple-600" asChild>
                 <a href="mailto:tobias@ytterman.com">
                   <Mail className="mr-2 h-4 w-4" />

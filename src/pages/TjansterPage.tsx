@@ -4,9 +4,10 @@ import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { AdvancedSEO } from '@/components/AdvancedSEO';
 import { ServiceFAQ } from '@/components/ServiceFAQ';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
-import { CheckCircle, Phone, Mail, FileText, Users, Shield, Building, ArrowRight, Zap, Search, Calculator } from 'lucide-react';
+import { CheckCircle, Phone, Mail, FileText, Users, Shield, Building, ArrowRight, Zap, Search, Calculator, CalendarCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { CanonicalUrl } from '@/components/CanonicalUrl';
+import { BOOKING_OVL_URL } from '@/config/booking';
 
 const TjansterPage = () => {
   const scrollToContact = () => {
@@ -235,6 +236,23 @@ const TjansterPage = () => {
                           >
                             {service.id === 'energiberakning-online-service' ? 'Starta nu' : 'Få offert'}
                           </Button>
+                          {service.id === 'overlatelsebesiktning-service' && BOOKING_OVL_URL && (
+                            <Button 
+                              asChild
+                              variant="outline"
+                              className="hover:bg-primary hover:text-white"
+                              aria-label="Boka överlåtelsebesiktning online"
+                            >
+                              <a 
+                                href={BOOKING_OVL_URL} 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                              >
+                                <CalendarCheck className="w-4 h-4 mr-2" aria-hidden="true" />
+                                Boka online
+                              </a>
+                            </Button>
+                          )}
                           <Button 
                             onClick={() => window.location.href = service.link}
                             variant="outline"
