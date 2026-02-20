@@ -424,13 +424,13 @@ const OverlatelsebesiktningPage = () => {
                   </a>
                 </Button>
               )}
-              <Button size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-amber-600" asChild>
+              <Button size="lg" className="bg-transparent text-white border-2 border-white hover:bg-white hover:text-amber-600" asChild>
                 <a href="mailto:tobias@ytterman.com">
                   <Mail className="mr-2 h-4 w-4" />
                   Kontakta oss
                 </a>
               </Button>
-              <Button size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-amber-600" asChild>
+              <Button size="lg" className="bg-transparent text-white border-2 border-white hover:bg-white hover:text-amber-600" asChild>
                 <Link to="/kontakt">
                   Kontaktformulär
                 </Link>
