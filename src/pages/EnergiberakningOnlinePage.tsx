@@ -1,6 +1,8 @@
 import React from 'react';
 import { SEO } from "@/components/SEO";
 import { CanonicalUrl } from "@/components/CanonicalUrl";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -46,34 +48,9 @@ const EnergiberakningOnlinePage = () => {
       
       <CanonicalUrl path="/energiberakning-online" />
 
+      <Header />
+      
       <div className="min-h-screen bg-gradient-to-br from-stone-50 via-blue-50/30 to-stone-50">
-        {/* Top Navigation Bar */}
-        <div className="bg-white border-b border-stone-200 shadow-sm sticky top-0 z-50">
-          <div className="container mx-auto px-4 py-3">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <a href="/">
-                  <Button 
-                    variant="outline" 
-                    size="sm"
-                    className="border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white font-semibold"
-                  >
-                    <Home className="w-4 h-4 mr-2" />
-                    Hem
-                  </Button>
-                </a>
-                <span className="text-stone-400">•</span>
-                <a href="/tjanster" className="text-blue-600 hover:text-blue-700 font-medium">
-                  Tjänster
-                </a>
-              </div>
-              
-              <div className="text-sm text-stone-500">
-                Energiberäkning Online
-              </div>
-            </div>
-          </div>
-        </div>
 
         {/* Hero Section */}
         <div className="bg-gradient-to-r from-blue-800 to-amber-800 text-white py-16">
@@ -291,6 +268,8 @@ const EnergiberakningOnlinePage = () => {
             </Card>
           </div>
         </div>
+        
+        <Footer />
       </div>
     </>
   );

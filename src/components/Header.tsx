@@ -31,7 +31,7 @@ export const Header = () => {
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
           <div className="flex items-center">
-            <a href="/" className="text-2xl font-bold earth-gradient bg-clip-text text-transparent">
+            <a href="/" className="text-2xl font-bold text-gradient">
               Ytterman
             </a>
           </div>

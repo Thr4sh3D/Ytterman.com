@@ -1,6 +1,9 @@
 import { SEO } from "@/components/SEO";
 import { CanonicalUrl } from "@/components/CanonicalUrl";
 import { FAQ } from "@/components/FAQ";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
+import { ServiceHero } from "@/components/ServiceHero";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -94,51 +97,43 @@ const EnergiDeklarationPage = () => {
         {JSON.stringify(structuredData)}
       </script>
 
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-yellow-50/30 to-slate-50">
-        {/* Header */}
-        <header className="bg-white shadow-sm border-b">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <div className="flex items-center justify-between">
-              <Link to="/" className="text-2xl font-bold text-primary">
-                Ytterman
-              </Link>
-              <nav className="hidden md:flex space-x-8">
-                <Link to="/" className="text-gray-600 hover:text-primary transition-colors">Hem</Link>
-                <Link to="/tjanster" className="text-gray-600 hover:text-primary transition-colors">Tjänster</Link>
-                <Link to="/kontakt" className="text-gray-600 hover:text-primary transition-colors">Kontakt</Link>
-              </nav>
-            </div>
-          </div>
-        </header>
+      <div className="min-h-screen">
+        <Header />
+        
+        <ServiceHero
+          badge="Certifierad Energiexpert"
+          title="Energideklaration i Västernorrland"
+          subtitle="Professionell energibesiktning och rådgivning"
+          description="Få en professionell energideklaration för din fastighet. Som certifierad energiexpert hjälper jag dig med energibesiktning, energiberäkning och konkreta förslag för energibesparingar."
+          features={[
+            "Komplett energibesiktning av fastigheten",
+            "Energiberäkning och energiklass",
+            "Konkreta förslag på energibesparande åtgärder",
+            "Official energideklaration enligt BBR",
+            "Snabb handläggning - klart inom 1-2 veckor"
+          ]}
+          ctaPrimary={{
+            text: "Begär offert",
+            href: "/kontakt"
+          }}
+          ctaSecondary={{
+            text: "Ring direkt",
+            href: "tel:+46761118447",
+            phone: true
+          }}
+          bannerContent={{
+            icon: Zap,
+            title: "Certifierad Energiexpert",
+            subtitle: "Energideklaration",
+            certifications: [
+              "Certifierad energideklarationsexpert",
+              "Över 20 års erfarenhet av energiberäkningar",
+              "Snabb handläggning och tydlig rapport"
+            ]
+          }}
+        />
 
-        {/* Hero Section */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center">
-            <Badge className="mb-4 bg-yellow-100 text-yellow-800 hover:bg-yellow-200">
-              Certifierad Energiexpert
-            </Badge>
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Energideklaration i Västernorrland
-            </h1>
-            <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              Få en professionell energideklaration för din fastighet. Som certifierad energiexpert 
-              hjälper jag dig med energibesiktning, energiberäkning och konkreta förslag för 
-              energibesparingar.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="earth-gradient text-white hover:opacity-90" asChild>
-                <Link to="/kontakt">Begär offert</Link>
-              </Button>
-              <Button variant="outline" size="lg" asChild>
-                <a href="tel:+46761118447">
-                  <Phone className="mr-2 h-4 w-4" />
-                  Ring direkt
-                </a>
-              </Button>
-            </div>
-          </div>
-        </section>
-
+        <div className="bg-gradient-to-br from-slate-50 via-yellow-50/30 to-slate-50">
         {/* Services Section */}
         <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
           <div className="max-w-6xl mx-auto">
@@ -285,48 +280,9 @@ const EnergiDeklarationPage = () => {
           </div>
         </section>
 
-        {/* Footer */}
-        <footer className="bg-gray-900 text-white py-12 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid md:grid-cols-4 gap-8">
-              <div>
-                <h3 className="text-lg font-semibold mb-4">Ytterman</h3>
-                <p className="text-gray-400 text-sm">
-                  Certifierad kontrollansvarig och BAS med över 20 års erfarenhet i Västernorrland.
-                </p>
-              </div>
-              <div>
-                <h4 className="font-semibold mb-4">Tjänster</h4>
-                <ul className="space-y-2 text-sm text-gray-400">
-                  <li><Link to="/kontrollansvarig" className="hover:text-white transition-colors">Kontrollansvarig</Link></li>
-                  <li><Link to="/bas-p" className="hover:text-white transition-colors">BAS-P</Link></li>
-                  <li><Link to="/bas-u" className="hover:text-white transition-colors">BAS-U</Link></li>
-                  <li><Link to="/energideklaration" className="hover:text-white transition-colors">Energideklaration</Link></li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-semibold mb-4">Områden</h4>
-                <ul className="space-y-2 text-sm text-gray-400">
-                  <li>Sundsvall</li>
-                  <li>Härnösand</li>
-                  <li>Sollefteå</li>
-                  <li>Timrå</li>
-                  <li>Kramfors</li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-semibold mb-4">Kontakt</h4>
-                <div className="space-y-2 text-sm text-gray-400">
-                  <p>Telefon: 076-111 84 47</p>
-                  <p>E-post: tobias@ytterman.com</p>
-                </div>
-              </div>
-            </div>
-            <div className="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-400">
-              <p>&copy; 2024 Ytterman. Alla rättigheter förbehållna.</p>
-            </div>
-          </div>
-        </footer>
+        </div> {/* Close bg-gradient div */}
+
+        <Footer />
       </div>
     </>
   );
