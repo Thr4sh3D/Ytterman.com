@@ -2,13 +2,9 @@ import { defineConfig } from "vite"
 import react from "@vitejs/plugin-react-swc"
 import path from "path"
 
-export default defineConfig(({ mode }) => ({
+export default defineConfig({
+  base: "/",
   plugins: [react()],
-
-  // Needed for GitHub Pages project site:
-  // https://thr4sh3d.github.io/Ytterman.com/
-  base: mode === "production" ? "/Ytterman.com/" : "/",
-
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
@@ -61,4 +57,4 @@ export default defineConfig(({ mode }) => ({
       "react-helmet-async",
     ],
   },
-}))
+})
