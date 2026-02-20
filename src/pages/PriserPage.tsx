@@ -66,7 +66,7 @@ const PriserPage = () => {
                 <div className="flex flex-wrap gap-4 justify-center items-center">
                   <a 
                     href="#kontakt" 
-                    className="inline-block bg-primary text-white px-8 py-4 rounded-lg font-semibold hover:bg-primary/90 transition-colors shadow-lg"
+                    className="earth-gradient text-white px-8 py-4 rounded-lg font-semibold hover:opacity-90 transition-colors shadow-lg inline-block"
                   >
                     Få kostnadsfri offert
                   </a>
@@ -435,7 +435,7 @@ const PriserPage = () => {
                   <div className="flex flex-wrap gap-4 justify-center">
                     <a 
                       href="#kontakt" 
-                      className="inline-block bg-primary text-white px-8 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors"
+                      className="earth-gradient hover:opacity-90 text-white px-8 py-3 rounded-lg font-semibold transition-colors inline-block"
                     >
                       Begär offert nu
                     </a>

@@ -83,15 +83,15 @@ const BygglovGuide = () => {
             </ul>
           </div>
           
-          <div className="bg-purple-50 p-6 rounded-lg">
-            <h3 className="font-semibold text-purple-800 mb-4">Kompletterande handlingar</h3>
-            <ul className="space-y-2 text-purple-700 text-sm">
+          <div className="bg-amber-50 p-6 rounded-lg">
+            <h3 className="font-semibold text-amber-800 mb-4">Kompletterande handlingar</h3>
+            <ul className="space-y-2 text-amber-700 text-sm">
               <li>• Konstruktionsritningar (vid behov)</li>
               <li>• Energiberäkning</li>
               <li>• Geoteknisk utredning (vid behov)</li>
               <li>• Miljöutredning (vid behov)</li>
               <li>• Brandskyddsbeskrivning</li>
-              <li>• Kontrollplan (upprättas av <Link to="/kontrollansvarig" className="text-purple-800 hover:text-purple-900 font-medium underline">kontrollansvarig</Link>)</li>
+              <li>• Kontrollplan (upprättas av <Link to="/kontrollansvarig" className="text-amber-800 hover:text-amber-900 font-medium underline">kontrollansvarig</Link>)</li>
             </ul>
           </div>
         </div>
@@ -183,7 +183,7 @@ const BygglovGuide = () => {
         </div>
 
         <h2 className="flex items-center gap-2 text-2xl font-bold text-stone-800 mb-6">
-          <Clock className="w-6 h-6 text-purple-600" />
+          <Clock className="w-6 h-6 text-amber-600" />
           Handläggningstider
         </h2>
 

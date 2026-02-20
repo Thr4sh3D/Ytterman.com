@@ -41,7 +41,7 @@ const TjansterPage = () => {
       id: 'bas-p-service',
       title: "BAS-P (Projektering)",
       description: "Byggarbetsmiljösamordnare under projekteringsfasen",
-      price: "Från 12,000 SEK",
+      price: "Från 15,000 SEK",
       features: [
         "Arbetsmiljöplan för projektet",
         "Riskbedömning och säkerhetsanalys",
@@ -55,7 +55,7 @@ const TjansterPage = () => {
       id: 'bas-u-service',
       title: "BAS-U (Utförande)",
       description: "Byggarbetsmiljösamordnare under byggfasen",
-      price: "Från 18,000 SEK",
+      price: "Från 20,000 SEK",
       features: [
         "Säkerhetsronder på byggarbetsplats",
         "Samordning mellan entreprenörer",
@@ -131,7 +131,7 @@ const TjansterPage = () => {
     },
     {
       question: "Vad kostar era tjänster?",
-      answer: "Priserna varierar beroende på projektets omfattning. KA från 19,999 kr, BAS-P från 12,000 kr, BAS-U från 18,000 kr, energiberäkning online 2,999 kr, bygglovshandlingar från 8,000 kr, energideklaration från 8,000 kr och överlåtelsebesiktning från 12,000 kr. Vi ger alltid fast pris efter kostnadsfri konsultation."
+      answer: "Priserna varierar beroende på projektets omfattning. KA från 19,999 kr, BAS-P från 15,000 kr, BAS-U från 20,000 kr, energiberäkning online 2,999 kr, bygglovshandlingar från 8,000 kr, energideklaration från 8,000 kr och överlåtelsebesiktning från 12,000 kr. Vi ger alltid fast pris efter kostnadsfri konsultation."
     },
     {
       question: "Vilka områden täcker ni?",

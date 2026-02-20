@@ -185,7 +185,7 @@ const ContactForm = () => {
               <Button 
                 type="submit" 
                 disabled={isSubmitting}
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+                className="w-full earth-gradient hover:opacity-90 text-white"
               >
                 {isSubmitting ? (
                   <div className="flex items-center gap-2">
@@ -275,7 +275,7 @@ const ContactForm = () => {
               </p>
               <Button 
                 asChild 
-                className="w-full bg-blue-600 hover:bg-blue-700"
+                className="w-full earth-gradient hover:opacity-90 text-white"
               >
                 <a 
                   href="tel:+46761118447"

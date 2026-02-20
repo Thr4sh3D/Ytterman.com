@@ -98,7 +98,7 @@ const VasternorrlandGuide = () => {
         </div>
 
         <h2 className="flex items-center gap-2 text-2xl font-bold text-stone-800 mb-6 mt-10">
-          <Building className="w-6 h-6 text-purple-600" />
+          <Building className="w-6 h-6 text-amber-600" />
           Härnösands kommun
         </h2>
 
@@ -107,9 +107,9 @@ const VasternorrlandGuide = () => {
           kulturhistoriskt värdefulla miljöer.
         </p>
 
-        <div className="bg-purple-50 p-6 rounded-lg mb-6">
+        <div className="bg-amber-50 p-6 rounded-lg mb-6">
           <h3 className="font-semibold text-stone-800 mb-3 flex items-center">
-            <CheckCircle className="w-5 h-5 text-purple-600 mr-2" />
+            <CheckCircle className="w-5 h-5 text-amber-600 mr-2" />
             Särskilt för Härnösand:
           </h3>
           <ul className="space-y-3 text-stone-700">
@@ -131,9 +131,9 @@ const VasternorrlandGuide = () => {
             </li>
           </ul>
 
-          <div className="mt-4 pt-4 border-t border-purple-200">
+          <div className="mt-4 pt-4 border-t border-amber-200">
             <h4 className="font-semibold text-stone-800 mb-2 flex items-center">
-              <Phone className="w-4 h-4 text-purple-600 mr-2" />
+              <Phone className="w-4 h-4 text-amber-600 mr-2" />
               Kontakt Härnösands byggnadsnämnd:
             </h4>
             <p className="text-stone-700">

@@ -21,7 +21,7 @@ const EnergiberakningOnlinePage = () => {
     {
       title: "Kostnadeffektivt",
       description: "Betydligt lägre kostnad än traditionella energiberäkningar",
-      icon: <Zap className="w-8 h-8 text-purple-600" />
+      icon: <Zap className="w-8 h-8 text-amber-600" />
     }
   ];
 
@@ -76,7 +76,7 @@ const EnergiberakningOnlinePage = () => {
         </div>
 
         {/* Hero Section */}
-        <div className="bg-gradient-to-r from-blue-800 to-purple-800 text-white py-16">
+        <div className="bg-gradient-to-r from-blue-800 to-amber-800 text-white py-16">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
               <Badge className="bg-white/20 text-white border-white/30 mb-4">
@@ -151,7 +151,7 @@ const EnergiberakningOnlinePage = () => {
           </div>
 
           {/* Price Section */}
-          <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-8 text-center mb-16">
+          <div className="bg-gradient-to-r from-blue-50 to-amber-50 rounded-xl p-8 text-center mb-16">
             <h3 className="text-2xl font-bold text-stone-800 mb-4">
               Transparent prissättning
             </h3>
@@ -217,7 +217,7 @@ const EnergiberakningOnlinePage = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a 
                 href="/kontakt?service=energiberakning-online" 
-                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors inline-flex items-center justify-center gap-2"
+                className="earth-gradient hover:opacity-90 text-white px-8 py-3 rounded-lg font-semibold transition-colors inline-flex items-center justify-center gap-2"
               >
                 <Mail className="w-5 h-5" />
                 Kontakta mig

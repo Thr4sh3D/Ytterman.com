@@ -17,22 +17,22 @@ const KvalitetskontrollGuide = () => {
     >
       <div className="prose prose-stone max-w-none">
         <h2 className="flex items-center gap-2 text-2xl font-bold text-stone-800 mb-6">
-          <Target className="w-6 h-6 text-purple-600" />
+          <Target className="w-6 h-6 text-amber-600" />
           Planering av kvalitetskontroller
         </h2>
         
         <p className="text-lg text-stone-700 mb-6">
           Framgångsrik kvalitetskontroll börjar redan i planeringsfasen. Genom att identifiera 
-          kritiska kontrollpunkter tidigt tillsammans med en <Link to="/kontrollansvarig" className="text-purple-600 hover:text-purple-700 font-medium underline">certifierad kontrollansvarig</Link> kan du förebygga problem och säkerställa att projektet 
+          kritiska kontrollpunkter tidigt tillsammans med en <Link to="/kontrollansvarig" className="text-amber-600 hover:text-amber-700 font-medium underline">certifierad kontrollansvarig</Link> kan du förebygga problem och säkerställa att projektet 
           håller hög kvalitet från start till mål.
         </p>
 
-        <div className="bg-purple-50 border-l-4 border-purple-400 p-6 mb-8">
+        <div className="bg-amber-50 border-l-4 border-amber-400 p-6 mb-8">
           <div className="flex items-start">
-            <Target className="w-5 h-5 text-purple-600 mt-1 mr-3 flex-shrink-0" />
+            <Target className="w-5 h-5 text-amber-600 mt-1 mr-3 flex-shrink-0" />
             <div>
-              <h3 className="font-semibold text-purple-800 mb-2">Kvalitet som grund</h3>
-              <p className="text-purple-700">
+              <h3 className="font-semibold text-amber-800 mb-2">Kvalitet som grund</h3>
+              <p className="text-amber-700">
                 Kvalitetskontroll handlar inte bara om att hitta fel - det handlar om att skapa 
                 system som förhindrar att fel uppstår från början.
               </p>
@@ -199,7 +199,7 @@ const KvalitetskontrollGuide = () => {
         </h2>
 
         <p className="mb-6">
-          Framgångsrik kvalitetskontroll kräver nära samarbete med alla inblandade entreprenörer, inklusive <Link to="/bas-p" className="text-purple-600 hover:text-purple-700 font-medium underline">BAS-P</Link> och <Link to="/bas-u" className="text-purple-600 hover:text-purple-700 font-medium underline">BAS-U</Link> för säkerhetsaspekter. 
+          Framgångsrik kvalitetskontroll kräver nära samarbete med alla inblandade entreprenörer, inklusive <Link to="/bas-p" className="text-amber-600 hover:text-amber-700 font-medium underline">BAS-P</Link> och <Link to="/bas-u" className="text-amber-600 hover:text-amber-700 font-medium underline">BAS-U</Link> för säkerhetssaspekter.
           Kommunikation och tydliga förväntningar är nyckeln till framgång.
         </p>
 

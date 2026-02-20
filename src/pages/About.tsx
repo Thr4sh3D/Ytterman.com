@@ -70,7 +70,7 @@ const About = () => {
                 <div className="text-center">
                   <a 
                     href="/kontakt" 
-                    className="inline-flex items-center px-6 py-3 bg-amber-600 text-white font-medium rounded-lg hover:bg-amber-700 transition-colors"
+                    className="inline-flex items-center px-6 py-3 earth-gradient text-white font-medium rounded-lg hover:opacity-90 transition-colors"
                   >
                     Kontakta oss
                   </a>

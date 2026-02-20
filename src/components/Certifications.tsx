@@ -69,7 +69,7 @@ export const Certifications = ({ showTitle = true, compact = false }: Certificat
               href="https://idun.kiwa.se/certificates/25642"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold transition-colors text-sm"
+              className="inline-flex items-center justify-center w-full earth-gradient hover:opacity-90 text-white px-4 py-2 rounded-lg font-semibold transition-colors text-sm"
             >
               <ExternalLink className="w-4 h-4 mr-2" />
               Verifiera certifikat hos KIWA

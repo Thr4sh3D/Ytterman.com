@@ -27,7 +27,7 @@ const Index = () => {
     },
     {
       question: "Vad kostar era tjänster?",
-      answer: "Priserna varierar beroende på projektets omfattning. Kontrollansvarig från 15,000 kr, BAS-P från 12,000 kr, BAS-U från 18,000 kr, energiberäkning online 2,999 kr. Kontakta oss för en kostnadsfri konsultation och fast prisoffert."
+      answer: "Priserna varierar beroende på projektets omfattning. Kontrollansvarig från 19,999 kr, BAS-P från 15,000 kr, BAS-U från 20,000 kr, energiberäkning online 2,999 kr. Kontakta oss för en kostnadsfri konsultation och fast prisoffert."
     }
   ];
 

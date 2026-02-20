@@ -126,7 +126,7 @@ const EnergiDeklarationPage = () => {
               energibesparingar.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-yellow-600 hover:bg-yellow-700" asChild>
+              <Button size="lg" className="earth-gradient text-white hover:opacity-90" asChild>
                 <Link to="/kontakt">Begär offert</Link>
               </Button>
               <Button variant="outline" size="lg" asChild>
@@ -232,8 +232,8 @@ const EnergiDeklarationPage = () => {
                 <p className="text-gray-600">En bra energiklass kan öka din fastighets värde och attraktivitet på marknaden.</p>
               </div>
               <div className="text-center">
-                <div className="mx-auto mb-4 p-3 bg-purple-100 rounded-full w-fit">
-                  <Shield className="h-8 w-8 text-purple-600" />
+                <div className="mx-auto mb-4 p-3 bg-amber-100 rounded-full w-fit">
+                  <Shield className="h-8 w-8 text-amber-600" />
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Lagkrav</h3>
                 <p className="text-gray-600">Uppfyll lagkraven för energideklaration vid försäljning eller uthyrning.</p>
@@ -253,7 +253,7 @@ const EnergiDeklarationPage = () => {
         </section>
 
         {/* Contact CTA */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-yellow-600 text-white">
+        <section className="py-16 px-4 sm:px-6 lg:px-8 earth-gradient text-white">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-6">
               Behöver du energideklaration?

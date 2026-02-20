@@ -210,9 +210,9 @@ const MiljoGuide = () => {
             </p>
           </div>
 
-          <div className="bg-purple-50 border-l-4 border-purple-400 p-4">
-            <h4 className="font-semibold text-purple-800 mb-2">Förnyelsebar energi</h4>
-            <p className="text-purple-700 text-sm">
+          <div className="bg-amber-50 border-l-4 border-amber-400 p-4">
+            <h4 className="font-semibold text-amber-800 mb-2">Förnyelsebar energi</h4>
+            <p className="text-amber-700 text-sm">
               Solceller, solvärmepaneler, småskalig vindkraft och energilagring. 
               Integration med smarta elnät.
             </p>

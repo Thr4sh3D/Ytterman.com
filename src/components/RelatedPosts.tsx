@@ -101,7 +101,7 @@ export const RelatedPosts = ({ posts, currentCategory }: RelatedPostsProps) => {
 
           <div className="text-center mt-12">
             <Link to="/blogg">
-              <button className="bg-primary text-white px-8 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors">
+              <button className="earth-gradient text-white px-8 py-3 rounded-lg font-semibold hover:opacity-90 transition-colors">
                 Se alla artiklar
               </button>
             </Link>

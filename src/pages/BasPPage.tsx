@@ -126,7 +126,7 @@ const BasPPage = () => {
               och förebygga arbetsmiljörisker.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-green-600 hover:bg-green-700" asChild>
+              <Button size="lg" className="earth-gradient text-white hover:opacity-90" asChild>
                 <Link to="/kontakt">Begär offert</Link>
               </Button>
               <Button variant="outline" size="lg" asChild>
@@ -221,7 +221,7 @@ const BasPPage = () => {
         </section>
 
         {/* Contact CTA */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-green-600 text-white">
+        <section className="py-16 px-4 sm:px-6 lg:px-8 earth-gradient text-white">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-6">
               Behöver du BAS-P för ditt projekt?

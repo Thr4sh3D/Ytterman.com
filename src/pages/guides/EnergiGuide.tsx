@@ -68,7 +68,7 @@ const EnergiGuide = () => {
     {
       title: "Uppfyll lagkrav",
       description: "Energideklaration är obligatorisk vid försäljning och uthyrning av fastigheter över 50 m².",
-      icon: <FileText className="w-8 h-8 text-purple-600" />
+      icon: <FileText className="w-8 h-8 text-amber-600" />
     }
   ];
 

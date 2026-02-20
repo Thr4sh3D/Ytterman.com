@@ -132,25 +132,25 @@ const BasPGuideExtended = () => {
 
         <ul className="space-y-3 mb-6">
           <li className="flex items-start">
-            <Building className="w-5 h-5 text-purple-600 mr-3 mt-0.5 flex-shrink-0" />
+            <Building className="w-5 h-5 text-amber-600 mr-3 mt-0.5 flex-shrink-0" />
             <div>
               <strong>Arkitekter:</strong> Säkerställer att byggnadsutformningen möjliggör säkert arbete
             </div>
           </li>
           <li className="flex items-start">
-            <Building className="w-5 h-5 text-purple-600 mr-3 mt-0.5 flex-shrink-0" />
+            <Building className="w-5 h-5 text-amber-600 mr-3 mt-0.5 flex-shrink-0" />
             <div>
               <strong>Konstruktörer:</strong> Verifierar att konstruktionen kan utföras säkert
             </div>
           </li>
           <li className="flex items-start">
-            <Building className="w-5 h-5 text-purple-600 mr-3 mt-0.5 flex-shrink-0" />
+            <Building className="w-5 h-5 text-amber-600 mr-3 mt-0.5 flex-shrink-0" />
             <div>
               <strong>Installationskonsulter (VVS, El, Ventilation):</strong> Planerar installationsarbete med arbetsmiljöhänsyn
             </div>
           </li>
           <li className="flex items-start">
-            <Building className="w-5 h-5 text-purple-600 mr-3 mt-0.5 flex-shrink-0" />
+            <Building className="w-5 h-5 text-amber-600 mr-3 mt-0.5 flex-shrink-0" />
             <div>
               <strong>Geotekniker:</strong> Säkerställer säker grundläggning och schaktning
             </div>

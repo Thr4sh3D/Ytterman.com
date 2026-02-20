@@ -177,9 +177,9 @@ const DigitalaVerktygGuide = () => {
             </ul>
           </div>
           
-          <div className="bg-purple-50 p-6 rounded-lg">
-            <h3 className="font-semibold text-purple-800 mb-4">Strukturerad kommunikation</h3>
-            <ul className="space-y-2 text-purple-700 text-sm">
+          <div className="bg-amber-50 p-6 rounded-lg">
+            <h3 className="font-semibold text-amber-800 mb-4">Strukturerad kommunikation</h3>
+            <ul className="space-y-2 text-amber-700 text-sm">
               <li>• Projektspecifika kanaler och grupper</li>
               <li>• Automatiska notifieringar och påminnelser</li>
               <li>• Integrering med projekthanteringsverktyg</li>
@@ -272,7 +272,7 @@ const DigitalaVerktygGuide = () => {
         </div>
 
         <h2 className="flex items-center gap-2 text-2xl font-bold text-stone-800 mb-6">
-          <Shield className="w-6 h-6 text-purple-600" />
+          <Shield className="w-6 h-6 text-amber-600" />
           Integrering med befintliga system
         </h2>
 
@@ -281,24 +281,24 @@ const DigitalaVerktygGuide = () => {
           befintliga system. Detta skapar en smidig arbetsflöde utan dubbelarbete.
         </p>
 
-        <div className="bg-purple-50 border border-purple-200 p-6 rounded-lg mb-8">
-          <h3 className="font-semibold text-purple-800 mb-4">Viktiga integrationspunkter</h3>
+        <div className="bg-amber-50 border border-amber-200 p-6 rounded-lg mb-8">
+          <h3 className="font-semibold text-amber-800 mb-4">Viktiga integrationspunkter</h3>
           
-          <ul className="space-y-3 text-purple-700">
+          <ul className="space-y-3 text-amber-700">
             <li className="flex items-start">
-              <CheckCircle className="w-5 h-5 text-purple-600 mr-3 mt-0.5 flex-shrink-0" />
+              <CheckCircle className="w-5 h-5 text-amber-600 mr-3 mt-0.5 flex-shrink-0" />
               <span><strong>Ekonomisystem:</strong> Automatisk överföring av kostnader och faktureringsunderlag</span>
             </li>
             <li className="flex items-start">
-              <CheckCircle className="w-5 h-5 text-purple-600 mr-3 mt-0.5 flex-shrink-0" />
+              <CheckCircle className="w-5 h-5 text-amber-600 mr-3 mt-0.5 flex-shrink-0" />
               <span><strong>CAD-system:</strong> Synkronisering av ritningar och tekniska ändringar</span>
             </li>
             <li className="flex items-start">
-              <CheckCircle className="w-5 h-5 text-purple-600 mr-3 mt-0.5 flex-shrink-0" />
+              <CheckCircle className="w-5 h-5 text-amber-600 mr-3 mt-0.5 flex-shrink-0" />
               <span><strong>Tidrapportering:</strong> Automatisk registrering av arbetstid och aktiviteter</span>
             </li>
             <li className="flex items-start">
-              <CheckCircle className="w-5 h-5 text-purple-600 mr-3 mt-0.5 flex-shrink-0" />
+              <CheckCircle className="w-5 h-5 text-amber-600 mr-3 mt-0.5 flex-shrink-0" />
               <span><strong>Dokumenthantering:</strong> Central lagring och versionshantering</span>
             </li>
           </ul>

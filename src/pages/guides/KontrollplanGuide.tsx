@@ -222,7 +222,7 @@ const KontrollplanGuide = () => {
         </p>
 
         <h2 className="flex items-center gap-2 text-2xl font-bold text-stone-800 mb-6 mt-10">
-          <Building className="w-6 h-6 text-purple-600" />
+          <Building className="w-6 h-6 text-amber-600" />
           Hur upprättas kontrollplan?
         </h2>
 

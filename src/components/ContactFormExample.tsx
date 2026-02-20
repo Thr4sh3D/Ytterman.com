@@ -177,7 +177,7 @@ export const ContactFormExample: React.FC = () => {
         <Button
           type="submit"
           disabled={isSubmitting}
-          className="w-full bg-amber-600 hover:bg-amber-700 text-white"
+          className="w-full earth-gradient hover:opacity-90 text-white"
         >
           {isSubmitting ? 'Skickar...' : 'Skicka meddelande'}
         </Button>

@@ -366,7 +366,7 @@ const OmradenPage = () => {
                     <div className="flex flex-wrap gap-4">
                       <a 
                         href="tel:0761118447" 
-                        className="inline-block bg-primary text-white px-6 py-2 rounded-lg font-semibold hover:bg-primary/90 transition-colors"
+                        className="earth-gradient text-white px-6 py-2 rounded-lg font-semibold hover:opacity-90 transition-colors inline-block"
                       >
                         Ring: 076-111 84 47
                       </a>
@@ -527,7 +527,7 @@ const OmradenPage = () => {
                   <div className="flex flex-wrap gap-4 justify-center">
                     <a 
                       href="tel:0761118447" 
-                      className="inline-block bg-primary text-white px-8 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors shadow-lg"
+                      className="earth-gradient text-white px-8 py-3 rounded-lg font-semibold hover:opacity-90 transition-colors shadow-lg inline-block"
                     >
                       📞 076-111 84 47
                     </a>

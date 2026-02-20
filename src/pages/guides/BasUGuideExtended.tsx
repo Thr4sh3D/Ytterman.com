@@ -258,7 +258,7 @@ const BasUGuideExtended = () => {
         </p>
 
         <h2 className="flex items-center gap-2 text-2xl font-bold text-stone-800 mb-6 mt-10">
-          <FileCheck className="w-6 h-6 text-purple-600" />
+          <FileCheck className="w-6 h-6 text-amber-600" />
           Skillnad mellan BAS-P och BAS-U
         </h2>
 
