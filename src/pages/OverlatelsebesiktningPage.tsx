@@ -413,7 +413,7 @@ const OverlatelsebesiktningPage = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               {BOOKING_OVL_URL && (
-                <Button size="lg" variant="secondary" asChild>
+                <Button size="lg" className="bg-white text-slate-900 hover:bg-slate-100" asChild>
                   <a 
                     href={BOOKING_OVL_URL} 
                     target="_blank" 

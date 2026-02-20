@@ -92,7 +92,7 @@ const TjansterPage = () => {
         "Energiberäkningar"
       ],
       icon: Building,
-      link: "/kontakt"
+      link: "/bygglovshandlingar"
     },
     {
       id: 'energideklaration-service',

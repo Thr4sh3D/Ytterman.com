@@ -14,6 +14,7 @@ import BasUPage from '@/pages/BasUPage';
 import EnergiDeklarationPage from '@/pages/EnergiDeklarationPage';
 import OverlatelsebesiktningPage from '@/pages/OverlatelsebesiktningPage';
 import EnergiberakningOnlinePage from '@/pages/EnergiberakningOnlinePage';
+import BygglovshandlingarPage from '@/pages/BygglovshandlingarPage';
 import GuidesPage from '@/pages/GuidesPage';
 import FAQPage from '@/pages/FAQPage';
 import About from '@/pages/About';
@@ -81,6 +82,7 @@ function App() {
                             <Route path="/energideklaration" element={<EnergiDeklarationPage />} />
                             <Route path="/overlatelsebesiktning" element={<OverlatelsebesiktningPage />} />
                             <Route path="/energiberakning-online" element={<EnergiberakningOnlinePage />} />
+                            <Route path="/bygglovshandlingar" element={<BygglovshandlingarPage />} />
                             
                             {/* Guides */}
                             <Route path="/guider" element={<GuidesPage />} />

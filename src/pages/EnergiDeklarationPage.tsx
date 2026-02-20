@@ -257,7 +257,7 @@ const EnergiDeklarationPage = () => {
               Kontakta mig idag för en kostnadsfri konsultation och offert.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="secondary" asChild>
+              <Button size="lg" className="bg-white text-slate-900 hover:bg-slate-100" asChild>
                 <Link to="/kontakt">Skicka förfrågan</Link>
               </Button>
               <Button size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-yellow-600" asChild>

@@ -56,7 +56,7 @@ export const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="/tjanster" className="text-gray-300 hover:text-white transition-colors">
+                <a href="/bygglovshandlingar" className="text-gray-300 hover:text-white transition-colors">
                   Bygglovshandlingar
                 </a>
               </li>
