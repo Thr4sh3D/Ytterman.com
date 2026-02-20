@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { GuideLayout } from '@/components/GuideLayout';
 import { CheckCircle, AlertTriangle, Target, FileText, Users, Calendar } from 'lucide-react';
 
@@ -12,6 +13,7 @@ const KvalitetskontrollGuide = () => {
       seoTitle="Kvalitetskontroll Guide - Byggkvalitet & Kontrollpunkter | Ytterman"
       seoDescription="Komplett guide om kvalitetskontroll i byggprojekt. Kritiska kontrollpunkter, dokumentation och slutbesiktning. Expert råd från Tobias Ytterman."
       keywords="kvalitetskontroll, byggkvalitet, kontrollpunkter, slutbesiktning, byggdokumentation, kvalitetssäkring"
+      canonicalPath="/guider/kvalitetskontroll"
     >
       <div className="prose prose-stone max-w-none">
         <h2 className="flex items-center gap-2 text-2xl font-bold text-stone-800 mb-6">
@@ -21,7 +23,7 @@ const KvalitetskontrollGuide = () => {
         
         <p className="text-lg text-stone-700 mb-6">
           Framgångsrik kvalitetskontroll börjar redan i planeringsfasen. Genom att identifiera 
-          kritiska kontrollpunkter tidigt kan du förebygga problem och säkerställa att projektet 
+          kritiska kontrollpunkter tidigt tillsammans med en <Link to="/kontrollansvarig" className="text-purple-600 hover:text-purple-700 font-medium underline">certifierad kontrollansvarig</Link> kan du förebygga problem och säkerställa att projektet 
           håller hög kvalitet från start till mål.
         </p>
 
@@ -197,7 +199,7 @@ const KvalitetskontrollGuide = () => {
         </h2>
 
         <p className="mb-6">
-          Framgångsrik kvalitetskontroll kräver nära samarbete med alla inblandade entreprenörer. 
+          Framgångsrik kvalitetskontroll kräver nära samarbete med alla inblandade entreprenörer, inklusive <Link to="/bas-p" className="text-purple-600 hover:text-purple-700 font-medium underline">BAS-P</Link> och <Link to="/bas-u" className="text-purple-600 hover:text-purple-700 font-medium underline">BAS-U</Link> för säkerhetsaspekter. 
           Kommunikation och tydliga förväntningar är nyckeln till framgång.
         </p>
 
@@ -286,6 +288,20 @@ const KvalitetskontrollGuide = () => {
             <li>• Modern digital dokumentation och rapportering</li>
             <li>• Professionell slutbesiktning och garantihantering</li>
             <li>• Långsiktigt stöd för underhåll och garantiärenden</li>
+          </ul>
+          <div className="mt-4 pt-4 border-t border-purple-300">
+            <Link to="/kontakt" className="inline-block bg-purple-700 text-white px-6 py-3 rounded-lg hover:bg-purple-800 transition-colors font-semibold">
+              Diskutera ditt projekt →
+            </Link>
+          </div>
+        </div>
+
+        <div className="mt-12 pt-8 border-t border-stone-200">
+          <h3 className="text-xl font-semibold text-stone-800 mb-4">Relaterade guider</h3>
+          <ul className="space-y-2 text-stone-700">
+            <li>• <Link to="/guider/kontrollansvarig" className="text-amber-600 hover:text-amber-700 font-medium underline">Kontrollansvarigs roll och ansvar</Link></li>
+            <li>• <Link to="/guider/bygglov" className="text-amber-600 hover:text-amber-700 font-medium underline">Bygglovsprocessen i Västernorrland</Link></li>
+            <li>• <Link to="/guider/digitala-verktyg" className="text-amber-600 hover:text-amber-700 font-medium underline">Digitala verktyg för byggprojekt</Link></li>
           </ul>
         </div>
       </div>

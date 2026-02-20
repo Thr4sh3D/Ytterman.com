@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { GuideLayout } from '@/components/GuideLayout';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -10,7 +11,10 @@ const OverlatelsebesiktningGuide = () => {
     description: "Allt du behöver veta om överlåtelsebesiktning inför fastighetsförsäljning",
     readTime: "10 min",
     category: "Fastighetsbesiktning",
-    lastUpdated: "2024-12-19"
+    seoTitle: "Överlåtelsebesiktning Guide - Fastighetsbesiktning Försäljning | Ytterman",
+    seoDescription: "Komplett guide om överlåtelsebesiktning vid fastighetsförsäljning. Processen, kostnad och vad som ingår. Expert råd från Tobias Ytterman i Västernorrland.",
+    keywords: "överlåtelsebesiktning, fastighetsbesiktning, försäljningsbesiktning, köpebesiktning, husbesiktning, fastighetsförsäljning, Västernorrland",
+    canonicalPath: "/guider/overlatelsebesiktning"
   };
 
   const inspectionAreas = [
@@ -142,7 +146,8 @@ const OverlatelsebesiktningGuide = () => {
             <p>
               Besiktningen utförs av en certifierad besiktningsman och resulterar i en detaljerad 
               rapport som ger både säljare och köpare en objektiv bild av fastighetens skick. 
-              Detta skapar trygghet för båda parter och kan förebygga framtida tvister.
+              Detta skapar trygghet för båda parter och kan förebygga framtida tvister. 
+              Ofta kombineras överlåtelsebesiktning med en <Link to="/energideklaration" className="text-purple-600 hover:text-purple-700 font-medium underline">energideklaration</Link> för en komplett bild av fastigheten.
             </p>
           </div>
         </section>
@@ -367,23 +372,32 @@ const OverlatelsebesiktningGuide = () => {
             Behöver du överlåtelsebesiktning?
           </h2>
           <p className="text-xl text-stone-600 mb-6">
-            Kontakta mig för en kostnadsfri konsultation och offert anpassad efter din fastighet.
+            Kontakta mig för en kostnadsfri konsultation och offert anpassad efter din fastighet. Se även <Link to="/priser" className="text-purple-600 hover:text-purple-700 font-medium underline">våra priser</Link>.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a 
-              href="/kontakt?service=overlatelsebesiktning" 
+            <Link 
+              to="/kontakt?service=overlatelsebesiktning" 
               className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors"
             >
               Boka besiktning
-            </a>
-            <a 
-              href="/overlatelsebesiktning" 
+            </Link>
+            <Link 
+              to="/overlatelsebesiktning" 
               className="border-2 border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white px-8 py-3 rounded-lg font-semibold transition-colors"
             >
               Läs mer om tjänsten
-            </a>
+            </Link>
           </div>
         </section>
+
+        <div className="mt-12 pt-8 border-t border-stone-200">
+          <h3 className="text-xl font-semibold text-stone-800 mb-4">Relaterade guider</h3>
+          <ul className="space-y-2 text-stone-700">
+            <li>• <Link to="/guider/energi" className="text-amber-600 hover:text-amber-700 font-medium underline">Energideklaration - Komplett Guide</Link></li>
+            <li>• <Link to="/guider/kontrollansvarig" className="text-amber-600 hover:text-amber-700 font-medium underline">Kontrollansvarig vid nybyggnation</Link></li>
+            <li>• <Link to="/guider/kvalitetskontroll" className="text-amber-600 hover:text-amber-700 font-medium underline">Kvalitetskontroll i byggprojekt</Link></li>
+          </ul>
+        </div>
       </div>
     </GuideLayout>
   );

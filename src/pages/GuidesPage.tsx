@@ -4,76 +4,31 @@ import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { AdvancedSEO } from '@/components/AdvancedSEO';
 import { CanonicalUrl } from '@/components/CanonicalUrl';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
-import { BookOpen, Shield, Users, FileText, Building, Zap, Leaf, Laptop } from 'lucide-react';
+import { BookOpen, Shield, Users, FileText, Building, Zap, Leaf, Laptop, CheckCircle, MapPin, AlertTriangle, LucideIcon } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { knowledgeBase } from '@/content/knowledgeBase';
+
+// Icon mapping for dynamic icon resolution
+const iconMap: Record<string, LucideIcon> = {
+  Shield,
+  Users,
+  FileText,
+  Building,
+  BookOpen,
+  Zap,
+  Leaf,
+  Laptop,
+  CheckCircle,
+  MapPin,
+  AlertTriangle
+};
 
 const GuidesPage = () => {
-  const guides = [
-    {
-      title: 'Kontrollansvarigs roll i byggprocessen',
-      description: 'En komplett guide om vad en kontrollansvarig gör och varför det är viktigt för ditt byggprojekt.',
-      icon: Shield,
-      link: '/guider/kontrollansvarig',
-      category: 'Kontrollansvarig',
-      readTime: '8 min'
-    },
-    {
-      title: 'BAS-P vs BAS-U: Skillnader och när de behövs',
-      description: 'Förstå skillnaderna mellan BAS-P och BAS-U samt när respektive roll krävs i ditt projekt.',
-      icon: Users,
-      link: '/guider/bas',
-      category: 'Säkerhetssamordning',
-      readTime: '6 min'
-    },
-    {
-      title: 'Bygglovsprocessen steg för steg',
-      description: 'En praktisk guide till bygglovsprocessen från ansökan till slutbesked.',
-      icon: FileText,
-      link: '/guider/bygglov',
-      category: 'Bygglov',
-      readTime: '10 min'
-    },
-    {
-      title: 'Kvalitetskontroll i byggprojekt',
-      description: 'Lär dig om kvalitetskontrollens betydelse och hur den genomförs i byggprojekt.',
-      icon: Building,
-      link: '/guider/kvalitetskontroll',
-      category: 'Kvalitetskontroll',
-      readTime: '7 min'
-    },
-    {
-      title: 'Överlåtelsebesiktning - Vad du behöver veta',
-      description: 'Komplett guide om överlåtelsebesiktning vid fastighetsförsäljning.',
-      icon: BookOpen,
-      link: '/guider/overlatelsebesiktning',
-      category: 'Besiktning',
-      readTime: '5 min'
-    },
-    {
-      title: 'Energideklaration och energikrav',
-      description: 'Allt om energideklaration, energikrav och hur du förbättrar din fastighets energiprestanda.',
-      icon: Zap,
-      link: '/guider/energi',
-      category: 'Energi',
-      readTime: '9 min'
-    },
-    {
-      title: 'Miljökrav i byggprocessen',
-      description: 'Guide om miljökrav, hållbarhet och miljöcertifieringar i byggbranschen.',
-      icon: Leaf,
-      link: '/guider/miljo',
-      category: 'Miljö',
-      readTime: '8 min'
-    },
-    {
-      title: 'Digitala verktyg för byggprojekt',
-      description: 'Översikt över moderna digitala verktyg som effektiviserar byggprocessen.',
-      icon: Laptop,
-      link: '/guider/digitala-verktyg',
-      category: 'Digitalisering',
-      readTime: '6 min'
-    }
-  ];
+  // Use guides from centralized data source
+  const guides = knowledgeBase.map(guide => ({
+    ...guide,
+    icon: iconMap[guide.icon] || FileText
+  }));
 
   const breadcrumbs = [
     { name: 'Hem', url: 'https://ytterman.com' },

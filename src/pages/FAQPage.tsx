@@ -18,15 +18,20 @@ const FAQPage = () => {
   const allFaqItems = [
     ...faqData.general,
     ...faqData.kontrollansvarig,
-    ...faqData.bas
+    ...faqData.bas,
+    ...faqData.pricing,
+    ...faqData.bygglov,
+    ...faqData.certifiering,
+    ...faqData.overlatelsebesiktning,
+    ...faqData.lokalt
   ];
 
   return (
     <>
       <AdvancedSEO 
-        title="Vanliga frågor om Kontrollansvarig & BAS | Ytterman"
-        description="Få svar på vanliga frågor om kontrollansvarig, BAS-P, BAS-U, bygglov, energideklaration och överlåtelsebesiktning i Västernorrland. Expertråd från Tobias Ytterman."
-        keywords="FAQ, vanliga frågor, kontrollansvarig frågor, BAS-P frågor, BAS-U frågor, bygglov frågor, Västernorrland, Sundsvall"
+        title="FAQ Kontrollansvarig & BAS - 32+ Frågor & Svar | Västernorrland"
+        description="Komplett FAQ om kontrollansvarig, BAS-P, BAS-U, bygglov, certifiering, priser och lokala tjänster i Sundsvall, Härnösand, Timrå. Expertråd från Tobias Ytterman. Svar på alla dina frågor!"
+        keywords="FAQ kontrollansvarig, vanliga frågor BAS, kontrollansvarig bygglov, certifiering KA, pris kontrollansvarig, kontrollansvarig Sundsvall, BAS Härnösand, bygglov frågor, Västernorrland"
         url="https://ytterman.com/faq"
         type="website"
         organization={true}
@@ -102,6 +107,66 @@ const FAQPage = () => {
                   Frågor om BAS-P och BAS-U
                 </h2>
                 <FAQ items={faqData.bas} />
+              </div>
+            </div>
+          </section>
+
+          {/* Pricing FAQ */}
+          <section className="py-16 bg-slate-50">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto">
+                <h2 className="text-3xl font-bold text-slate-900 mb-8">
+                  Frågor om priser och kostnader
+                </h2>
+                <FAQ items={faqData.pricing} />
+              </div>
+            </div>
+          </section>
+
+          {/* Bygglov FAQ */}
+          <section className="py-16 bg-white">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto">
+                <h2 className="text-3xl font-bold text-slate-900 mb-8">
+                  Frågor om kontrollansvarig och bygglov
+                </h2>
+                <FAQ items={faqData.bygglov} />
+              </div>
+            </div>
+          </section>
+
+          {/* Certifiering FAQ */}
+          <section className="py-16 bg-slate-50">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto">
+                <h2 className="text-3xl font-bold text-slate-900 mb-8">
+                  Frågor om certifiering
+                </h2>
+                <FAQ items={faqData.certifiering} />
+              </div>
+            </div>
+          </section>
+
+          {/* Överlåtelsebesiktning FAQ */}
+          <section className="py-16 bg-white">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto">
+                <h2 className="text-3xl font-bold text-slate-900 mb-8">
+                  Frågor om överlåtelsebesiktning
+                </h2>
+                <FAQ items={faqData.overlatelsebesiktning} />
+              </div>
+            </div>
+          </section>
+
+          {/* Lokala frågor FAQ */}
+          <section className="py-16 bg-slate-50">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto">
+                <h2 className="text-3xl font-bold text-slate-900 mb-8">
+                  Frågor om lokala tjänster i Västernorrland
+                </h2>
+                <FAQ items={faqData.lokalt} />
               </div>
             </div>
           </section>

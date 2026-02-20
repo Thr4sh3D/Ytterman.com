@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { GuideLayout } from '@/components/GuideLayout';
 import { CheckCircle, AlertTriangle, Shield, Users, FileText } from 'lucide-react';
 
@@ -21,7 +22,7 @@ const BasGuide = () => {
         </h2>
         
         <p className="text-lg text-stone-700 mb-6">
-          BAS-P är en säkerhetssamordnare som arbetar under projekteringsfasen för att säkerställa att 
+          <Link to="/bas-p" className="text-red-600 hover:text-red-700 font-medium underline">BAS-P</Link> är en säkerhetssamordnare som arbetar under projekteringsfasen för att säkerställa att 
           arbetsmiljöaspekter beaktas redan från början. Rollen är avgörande för att skapa säkra 
           förutsättningar för det kommande byggarbetet.
         </p>
@@ -66,7 +67,7 @@ const BasGuide = () => {
         </h2>
 
         <p className="text-lg text-stone-700 mb-6">
-          BAS-U arbetar under byggfasen och ansvarar för att säkerhetsplanerna följs i praktiken. 
+          <Link to="/bas-u" className="text-blue-600 hover:text-blue-700 font-medium underline">BAS-U</Link> arbetar under byggfasen och ansvarar för att säkerhetsplanerna följs i praktiken. 
           Denna roll är kritisk för att upprätthålla en säker arbetsmiljö på byggarbetsplatsen.
         </p>
 
@@ -135,7 +136,7 @@ const BasGuide = () => {
         <div className="bg-amber-50 border border-amber-200 p-6 rounded-lg mb-8">
           <h3 className="font-semibold text-amber-800 mb-4">Lagkrav enligt AFS 1999:3</h3>
           <p className="text-amber-700 mb-4">
-            Både BAS-P och BAS-U krävs när:
+            Både BAS-P och BAS-U krävs när (ofta tillsammans med en <Link to="/kontrollansvarig" className="text-amber-800 hover:text-amber-900 font-medium underline">certifierad kontrollansvarig</Link>):
           </p>
           <ul className="space-y-2 text-amber-700">
             <li>• Fler än en entreprenör arbetar på samma arbetsplats</li>
@@ -208,7 +209,21 @@ const BasGuide = () => {
             <li>• Komplett säkerhetssamordning från projektering till färdigställande</li>
             <li>• Djup förståelse för lokala förhållanden i Västernorrland</li>
             <li>• Digital dokumentation och effektiv kommunikation</li>
-            <li>• Konkurrenskraftiga priser för både enskilda uppdrag och helhetslösningar</li>
+            <li>• Konkurrenskraftiga priser för både enskilda uppdrag och helhetslösningar - <Link to="/priser" className="text-blue-800 hover:text-blue-900 font-medium underline">se priser här</Link></li>
+          </ul>
+          <div className="mt-4 pt-4 border-t border-blue-300">
+            <Link to="/kontakt" className="inline-block bg-blue-700 text-white px-6 py-3 rounded-lg hover:bg-blue-800 transition-colors font-semibold">
+              Begär offert för BAS-tjänster →
+            </Link>
+          </div>
+        </div>
+
+        <div className="mt-12 pt-8 border-t border-stone-200">
+          <h3 className="text-xl font-semibold text-stone-800 mb-4">Relaterade guider</h3>
+          <ul className="space-y-2 text-stone-700">
+            <li>• <Link to="/guider/kontrollansvarig" className="text-amber-600 hover:text-amber-700 font-medium underline">Kontrollansvarigs roll i byggprocessen</Link></li>
+            <li>• <Link to="/guider/bygglov" className="text-amber-600 hover:text-amber-700 font-medium underline">Bygglovsprocessen i Västernorrland</Link></li>
+            <li>• <Link to="/guider/kvalitetskontroll" className="text-amber-600 hover:text-amber-700 font-medium underline">Kvalitetskontroll: säkerställ högsta byggkvalitet</Link></li>
           </ul>
         </div>
       </div>

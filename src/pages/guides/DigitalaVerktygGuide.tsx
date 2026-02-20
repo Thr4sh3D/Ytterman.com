@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { GuideLayout } from '@/components/GuideLayout';
 import { CheckCircle, Smartphone, Cloud, MessageSquare, Zap, Shield } from 'lucide-react';
 
@@ -12,6 +13,7 @@ const DigitalaVerktygGuide = () => {
       seoTitle="Digitala Verktyg Byggprojekt - Effektivisering & Kommunikation | Ytterman"
       seoDescription="Guide till moderna digitala verktyg för byggprojekt. Projekthantering, dokumentation och kommunikation. Expert råd från Tobias Ytterman."
       keywords="digitala verktyg, byggprojekt, projekthantering, digital dokumentation, byggappar, kommunikation"
+      canonicalPath="/guider/digitala-verktyg"
     >
       <div className="prose prose-stone max-w-none">
         <h2 className="flex items-center gap-2 text-2xl font-bold text-stone-800 mb-6">
@@ -21,7 +23,7 @@ const DigitalaVerktygGuide = () => {
         
         <p className="text-lg text-stone-700 mb-6">
           Moderna projekthanteringsverktyg revolutionerar hur vi arbetar med byggprojekt. 
-          Genom att digitalisera planering, uppföljning och kommunikation kan vi dramatiskt 
+          Genom att digitalisera planering, uppföljning och kommunikation kan <Link to="/kontrollansvarig" className="text-orange-600 hover:text-orange-700 font-medium underline">kontrollansvariga</Link> och <Link to="/bas-p" className="text-orange-600 hover:text-orange-700 font-medium underline">BAS</Link> dramatiskt 
           förbättra effektiviteten och minska risken för missförstånd.
         </p>
 
@@ -96,7 +98,7 @@ const DigitalaVerktygGuide = () => {
 
         <p className="mb-6">
           Digital dokumentation revolutionerar hur vi hanterar ritningar, specifikationer och 
-          kontrollprotokoll. Molnbaserade lösningar ger alla projektparter tillgång till 
+          kontrollprotokoll. Molnbaserade lösningar ger alla projektparter, inklusive <Link to="/kontrollansvarig" className="text-orange-600 hover:text-orange-700 font-medium underline">kontrollansvarig</Link> och entreprenörer, tillgång till 
           aktuell information var de än befinner sig.
         </p>
 
@@ -319,11 +321,25 @@ const DigitalaVerktygGuide = () => {
             Som erfaren projektledare hjälper jag dig att välja och implementera rätt digitala verktyg:
           </p>
           <ul className="space-y-2 text-orange-700">
-            <li>• Behovsanalys och verktygsval</li>
+            <li>• Behovsanalys och verktygsvalet>
             <li>• Implementation och utbildning</li>
             <li>• Integration med befintliga system</li>
             <li>• Löpande support och optimering</li>
             <li>• Mätning av effekter och ROI</li>
+          </ul>
+          <div className="mt-4 pt-4 border-t border-orange-300">
+            <Link to="/kontakt" className="inline-block bg-orange-700 text-white px-6 py-3 rounded-lg hover:bg-orange-800 transition-colors font-semibold">
+              Digitaliseringskonsultation →
+            </Link>
+          </div>
+        </div>
+
+        <div className="mt-12 pt-8 border-t border-stone-200">
+          <h3 className="text-xl font-semibold text-stone-800 mb-4">Relaterade guider</h3>
+          <ul className="space-y-2 text-stone-700">
+            <li>• <Link to="/guider/kontrollansvarig" className="text-amber-600 hover:text-amber-700 font-medium underline">Kontrollansvarigs roll i moderna byggprojekt</Link></li>
+            <li>• <Link to="/guider/kvalitetskontroll" className="text-amber-600 hover:text-amber-700 font-medium underline">Kvalitetskontroll med digitala verktyg</Link></li>
+            <li>• <Link to="/guider/bas" className="text-amber-600 hover:text-amber-700 font-medium underline">BAS-P och BAS-U - Säkerhetssamordning</Link></li>
           </ul>
         </div>
       </div>

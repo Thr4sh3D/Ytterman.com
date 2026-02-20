@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { GuideLayout } from '@/components/GuideLayout';
 import { CheckCircle, AlertTriangle, FileText, Clock, MapPin } from 'lucide-react';
 
@@ -12,6 +13,7 @@ const BygglovGuide = () => {
       seoTitle="Bygglov Guide Västernorrland - Sundsvall, Härnösand | Ytterman"
       seoDescription="Komplett guide för bygglovsprocessen i Västernorrlands kommuner. Handläggningstider, krav och tips från expert Tobias Ytterman."
       keywords="bygglov, Västernorrland, Sundsvall, Härnösand, Sollefteå, Kramfors, Timrå, bygglovsansökan"
+      canonicalPath="/guider/bygglov"
     >
       <div className="prose prose-stone max-w-none">
         <h2 className="flex items-center gap-2 text-2xl font-bold text-stone-800 mb-6">
@@ -30,7 +32,7 @@ const BygglovGuide = () => {
             <div>
               <h3 className="font-semibold text-green-800 mb-2">Professionell hjälp lönar sig</h3>
               <p className="text-green-700">
-                Med över 20 års erfarenhet hjälper jag dig navigera bygglovsprocessen effektivt 
+                Med över 20 års erfarenhet som <Link to="/kontrollansvarig" className="text-green-800 hover:text-green-900 font-medium underline">kontrollansvarig</Link> hjälper jag dig navigera bygglovsprocessen effektivt 
                 och undvika vanliga fallgropar som kan förlänga handläggningstiden.
               </p>
             </div>
@@ -89,7 +91,7 @@ const BygglovGuide = () => {
               <li>• Geoteknisk utredning (vid behov)</li>
               <li>• Miljöutredning (vid behov)</li>
               <li>• Brandskyddsbeskrivning</li>
-              <li>• Kontrollplan</li>
+              <li>• Kontrollplan (upprättas av <Link to="/kontrollansvarig" className="text-purple-800 hover:text-purple-900 font-medium underline">kontrollansvarig</Link>)</li>
             </ul>
           </div>
         </div>
@@ -257,6 +259,21 @@ const BygglovGuide = () => {
             <li>• Undvika vanliga fallgropar som försenar processen</li>
             <li>• Kommunicera effektivt med bygglovsmyndigheten</li>
             <li>• Hantera eventuella kompletteringskrav</li>
+            <li>• Samordna med <Link to="/bas-p" className="text-green-800 hover:text-green-900 font-medium underline">BAS-P</Link> och <Link to="/bas-u" className="text-green-800 hover:text-green-900 font-medium underline">BAS-U</Link> för arbetsmiljö</li>
+          </ul>
+          <div className="mt-4 pt-4 border-t border-green-300">
+            <Link to="/kontakt" className="inline-block bg-green-700 text-white px-6 py-3 rounded-lg hover:bg-green-800 transition-colors font-semibold">
+              Få hjälp med ditt bygglov →
+            </Link>
+          </div>
+        </div>
+
+        <div className="mt-12 pt-8 border-t border-stone-200">
+          <h3 className="text-xl font-semibold text-stone-800 mb-4">Relaterade guider</h3>
+          <ul className="space-y-2 text-stone-700">
+            <li>• <Link to="/guider/kontrollansvarig" className="text-amber-600 hover:text-amber-700 font-medium underline">Kontrollansvarig Guide - Allt du behöver veta</Link></li>
+            <li>• <Link to="/guider/kvalitetskontroll" className="text-amber-600 hover:text-amber-700 font-medium underline">Kvalitetskontroll i byggprojekt</Link></li>
+            <li>• <Link to="/guider/bas" className="text-amber-600 hover:text-amber-700 font-medium underline">BAS-P och BAS-U: Säkerhetssamordning</Link></li>
           </ul>
         </div>
       </div>
