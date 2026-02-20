@@ -1,6 +1,7 @@
-import { Shield, Users, FileText, Building, PenTool, Map, Layers, Zap, Search } from 'lucide-react';
+import { Shield, Users, FileText, Building, PenTool, Map, Layers, Zap, Search, CalendarCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
+import { BOOKING_OVL_URL } from '@/config/booking';
 
 interface ServicesProps {
   onServiceSelect: (serviceId: string) => void;
@@ -46,8 +47,8 @@ export const Services = ({ onServiceSelect }: ServicesProps) => {
       id: 'overlatelsebesiktning-service',
       icon: Search,
       title: 'Överlåtelsebesiktning',
-      description: 'Teknisk besiktning inför fastighetsförsäljning. Identifierar fel och brister för en trygg affär.',
-      features: ['Teknisk besiktning', 'Installationskontroll', 'Besiktningsrapport', 'Fotografisk dokumentation'],
+      description: 'Okulär besiktning inför fastighetesförsäljning. Identifierar synliga fel och brister för en trygg affär.',
+      features: ['Visuell kontroll', 'Synliga installationer', 'Besiktningsrapport', 'Fotografisk dokumentation'],
       link: '/overlatelsebesiktning'
     },
     {
@@ -174,12 +175,29 @@ export const Services = ({ onServiceSelect }: ServicesProps) => {
               </ul>
 
               <div className="flex gap-2">
-                <Button
-                  onClick={() => handleGetQuote(service.id)}
-                  className="flex-1 earth-gradient text-white hover:opacity-90"
-                >
-                  Få offert
-                </Button>
+                {service.id !== 'overlatelsebesiktning-service' && (
+                  <Button
+                    onClick={() => handleGetQuote(service.id)}
+                    className="flex-1 earth-gradient text-white hover:opacity-90"
+                  >
+                    Få offert
+                  </Button>
+                )}
+                {service.id === 'overlatelsebesiktning-service' && BOOKING_OVL_URL && (
+                  <Button
+                    asChild
+                    className="flex-1 earth-gradient text-white hover:opacity-90"
+                  >
+                    <a 
+                      href={BOOKING_OVL_URL} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                    >
+                      <CalendarCheck className="w-4 h-4 mr-2" />
+                      Boka online
+                    </a>
+                  </Button>
+                )}
                 {service.link && (
                   <Button
                     onClick={() => handleLearnMore(service.link)}

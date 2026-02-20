@@ -493,22 +493,22 @@ const OmradenPage = () => {
                     </div>
                   </div>
 
-                  <div className="bg-gradient-to-br from-purple-50 to-purple-100 border-2 border-purple-200 rounded-xl p-6">
-                    <h3 className="text-xl font-bold text-purple-900 mb-3">Överlåtelsebesiktning</h3>
-                    <p className="text-purple-800 mb-4">
+                  <div className="bg-gradient-to-br from-amber-50 to-orange-100 border-2 border-amber-200 rounded-xl p-6">
+                    <h3 className="text-xl font-bold text-amber-900 mb-3">Överlåtelsebesiktning</h3>
+                    <p className="text-amber-800 mb-4">
                       Objektiv besiktning inför fastighetsaffär. Identifierar dolda fel och brister 
                       för trygg fastighetsaffär.
                     </p>
                     <div className="flex flex-wrap gap-3">
                       <Link 
                         to="/overlatelsebesiktning" 
-                        className="text-purple-600 hover:text-purple-700 font-semibold text-sm inline-flex items-center"
+                        className="text-amber-600 hover:text-amber-700 font-semibold text-sm inline-flex items-center"
                       >
                         Tjänsten →
                       </Link>
                       <Link 
                         to="/guider/overlatelsebesiktning" 
-                        className="text-purple-600 hover:text-purple-700 font-semibold text-sm inline-flex items-center"
+                        className="text-amber-600 hover:text-amber-700 font-semibold text-sm inline-flex items-center"
                       >
                         Besiktningsguide →
                       </Link>

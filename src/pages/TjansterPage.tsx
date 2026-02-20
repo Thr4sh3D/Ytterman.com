@@ -111,11 +111,11 @@ const TjansterPage = () => {
     {
       id: 'overlatelsebesiktning-service',
       title: "Överlåtelsebesiktning",
-      description: "Teknisk besiktning inför fastighetsförsäljning",
+      description: "Okulär besiktning inför fastighetesförsäljning",
       price: "Från 12,000 SEK",
       features: [
-        "Teknisk besiktning av fastigheten",
-        "Kontroll av installationer",
+        "Visuell kontroll av fastigheten",
+        "Kontroll av synliga installationer",
         "Fotografisk dokumentation",
         "Detaljerad besiktningsrapport"
       ],
@@ -229,18 +229,19 @@ const TjansterPage = () => {
                         </ul>
                         
                         <div className="flex gap-3">
-                          <Button 
-                            onClick={() => service.id === 'energiberakning-online-service' ? handleStartOnlineCalculation() : handleServiceQuote(service.id)}
-                            className="flex-1 earth-gradient text-white hover:opacity-90"
-                            aria-label={`${service.id === 'energiberakning-online-service' ? 'Starta' : 'Få offert för'} ${service.title}`}
-                          >
-                            {service.id === 'energiberakning-online-service' ? 'Starta nu' : 'Få offert'}
-                          </Button>
+                          {service.id !== 'overlatelsebesiktning-service' && (
+                            <Button 
+                              onClick={() => service.id === 'energiberakning-online-service' ? handleStartOnlineCalculation() : handleServiceQuote(service.id)}
+                              className="flex-1 earth-gradient text-white hover:opacity-90"
+                              aria-label={`${service.id === 'energiberakning-online-service' ? 'Starta' : 'Få offert för'} ${service.title}`}
+                            >
+                              {service.id === 'energiberakning-online-service' ? 'Starta nu' : 'Få offert'}
+                            </Button>
+                          )}
                           {service.id === 'overlatelsebesiktning-service' && BOOKING_OVL_URL && (
                             <Button 
                               asChild
-                              variant="outline"
-                              className="hover:bg-primary hover:text-white"
+                              className="flex-1 earth-gradient text-white hover:opacity-90"
                               aria-label="Boka överlåtelsebesiktning online"
                             >
                               <a 

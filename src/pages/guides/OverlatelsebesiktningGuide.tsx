@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { GuideLayout } from '@/components/GuideLayout';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle, Search, Camera, FileText, AlertTriangle, Home, Shield, Clock } from 'lucide-react';
+import { CheckCircle, Search, Camera, FileText, AlertTriangle, Home, Shield, Clock, CalendarCheck } from 'lucide-react';
+import { BOOKING_OVL_URL } from '@/config/booking';
 
 const OverlatelsebesiktningGuide = () => {
   const guideData = {
@@ -94,7 +95,7 @@ const OverlatelsebesiktningGuide = () => {
     {
       title: "Snabbare försäljning",
       description: "Köpare känner sig tryggare när de vet att fastigheten är professionellt besiktigad.",
-      icon: <Clock className="w-8 h-8 text-purple-600" />
+      icon: <Clock className="w-8 h-8 text-amber-600" />
     }
   ];
 
@@ -139,15 +140,37 @@ const OverlatelsebesiktningGuide = () => {
           <h2 className="text-3xl font-bold text-stone-800 mb-6">Vad är en överlåtelsebesiktning?</h2>
           <div className="prose prose-lg max-w-none text-stone-600">
             <p>
-              En överlåtelsebesiktning är en teknisk undersökning av en fastighet som genomförs 
-              inför försäljning. Syftet är att identifiera eventuella fel, brister och 
+              En överlåtelsebesiktning är en okulär (visuell) undersökning av en fastighet som genomförs 
+              inför försäljning. Syftet är att identifiera synliga fel, brister och 
               underhållsbehov som kan påverka fastighetens värde eller säkerhet.
             </p>
             <p>
-              Besiktningen utförs av en certifierad besiktningsman och resulterar i en detaljerad 
-              rapport som ger både säljare och köpare en objektiv bild av fastighetens skick. 
+              Besiktningen utförs av erfaren byggfackman och resulterar i en detaljerad 
+              rapport som ger både säljare och köpare en objektiv bild av fastighetens synliga skick. 
               Detta skapar trygghet för båda parter och kan förebygga framtida tvister. 
-              Ofta kombineras överlåtelsebesiktning med en <Link to="/energideklaration" className="text-purple-600 hover:text-purple-700 font-medium underline">energideklaration</Link> för en komplett bild av fastigheten.
+              Ofta kombineras överlåtelsebesiktning med en <Link to="/energideklaration" className="text-amber-600 hover:text-amber-700 font-medium underline">energideklaration</Link> för en komplett bild av fastigheten.
+            </p>
+          </div>
+        </section>
+
+        {/* Scope and Disclaimer */}
+        <section className="bg-amber-50 rounded-xl p-8 border border-amber-200">
+          <h2 className="text-2xl font-bold text-stone-800 mb-4">Viktigt att veta om besiktningen</h2>
+          <div className="prose max-w-none text-stone-700">
+            <p className="mb-3">
+              <strong>Överlåtelsebesiktningen är en okulär (visuell) besiktning.</strong> Detta innebär att 
+              endast synliga och åtkomliga byggnadsdelar kontrolleras. Inga håltagningar, rivningar, 
+              demonteringar eller provtagningar görs.
+            </p>
+            <p className="mb-3">
+              <strong>Ej åtkomliga områden kan inte besiktigas:</strong> Låsta utrymmen, täckta ytor, 
+              kraftigt möblerade områden, isolerade vindar, snötäckta tak eller ej öppningsbara 
+              inspektionsluckor omfattas inte av besiktningen.
+            </p>
+            <p className="mb-0">
+              <strong>Installationer bedöms visuellt:</strong> El-, VVS- och ventilationsinstallationer 
+              kontrolleras endast genom synliga tecken – inte som funktionskontroll eller fackmässig 
+              installation. Vid indikation på problem rekommenderas fortsatt utredning av fackman.
             </p>
           </div>
         </section>
@@ -367,23 +390,34 @@ const OverlatelsebesiktningGuide = () => {
         </section>
 
         {/* CTA */}
-        <section className="bg-gradient-to-r from-purple-50 to-blue-50 rounded-xl p-8 text-center">
+        <section className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl p-8 text-center">
           <h2 className="text-3xl font-bold text-stone-800 mb-4">
-            Behöver du överlåtelsebesiktning?
+            Redo att boka överlåtelsebesiktning?
           </h2>
           <p className="text-xl text-stone-600 mb-6">
-            Kontakta mig för en kostnadsfri konsultation och offert anpassad efter din fastighet. Se även <Link to="/priser" className="text-purple-600 hover:text-purple-700 font-medium underline">våra priser</Link>.
+            Boka direkt online eller kontakta oss för mer information. Se även <Link to="/priser" className="text-amber-600 hover:text-amber-700 font-medium underline">våra priser</Link>.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            {BOOKING_OVL_URL && (
+              <a 
+                href={BOOKING_OVL_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors inline-flex items-center justify-center gap-2"
+              >
+                <CalendarCheck className="w-5 h-5" />
+                Boka online
+              </a>
+            )}
             <Link 
-              to="/kontakt?service=overlatelsebesiktning" 
-              className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors"
+              to="/kontakt" 
+              className="border-2 border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white px-8 py-3 rounded-lg font-semibold transition-colors"
             >
-              Boka besiktning
+              Kontaktformulär
             </Link>
             <Link 
               to="/overlatelsebesiktning" 
-              className="border-2 border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white px-8 py-3 rounded-lg font-semibold transition-colors"
+              className="border-2 border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white px-8 py-3 rounded-lg font-semibold transition-colors"
             >
               Läs mer om tjänsten
             </Link>
