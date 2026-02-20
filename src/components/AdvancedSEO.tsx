@@ -40,7 +40,7 @@ export const AdvancedSEO = ({
   description, 
   keywords, 
   url, 
-  image = "/og-image.jpg",
+  image = "/og-image.png",
   type = "website",
   organization = false,
   breadcrumbs = [],

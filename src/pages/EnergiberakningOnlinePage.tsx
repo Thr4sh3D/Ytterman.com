@@ -1,5 +1,6 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import { SEO } from "@/components/SEO";
+import { CanonicalUrl } from "@/components/CanonicalUrl";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -35,15 +36,15 @@ const EnergiberakningOnlinePage = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Energiberäkning Online - Snabb & Enkel | Trygg Byggprocess med Ytterman</title>
-        <meta name="description" content="Gör din energiberäkning online snabbt och enkelt. Professionell kvalitet till låg kostnad. Få din rapport direkt - perfekt för bygglov och energideklarationer." />
-        <meta name="keywords" content="energiberäkning online, energiberäkning bygglov, energiberäkning pris, energiberäkning snabb, energiberäkning Västernorrland, Sundsvall, Härnösand" />
-        <meta property="og:title" content="Energiberäkning Online - Snabb & Enkel | Trygg Byggprocess med Ytterman" />
-        <meta property="og:description" content="Gör din energiberäkning online snabbt och enkelt. Professionell kvalitet till låg kostnad." />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://tryggbyggprocess.se/energiberakning-online" />
-      </Helmet>
+      <SEO
+        title="Energiberäkning Online Västernorrland - Snabb & Professionell | Ytterman"
+        description="Gör din energiberäkning online snabbt och enkelt. Professionell kvalitet till fast pris 2,999 kr. Sundsvall, Härnösand, Sollefteå. Svar inom minuter!"
+        keywords="energiberäkning online, energiberäkning bygglov, energiberäkning pris, energiberäkning snabb, energiberäkning Västernorrland, Sundsvall, Härnösand"
+        url="https://ytterman.com/energiberakning-online"
+        type="webpage"
+      />
+      
+      <CanonicalUrl path="/energiberakning-online" />
 
       <div className="min-h-screen bg-gradient-to-br from-stone-50 via-blue-50/30 to-stone-50">
         {/* Top Navigation Bar */}

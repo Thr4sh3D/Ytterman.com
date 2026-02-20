@@ -1,6 +1,7 @@
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { AdvancedSEO } from '@/components/AdvancedSEO';
+import { CanonicalUrl } from '@/components/CanonicalUrl';
 
 const About = () => {
   return (
@@ -9,8 +10,10 @@ const About = () => {
         title="Om Ytterman - Kontrollansvarig & BAS-expert i Västernorrland"
         description="Lär känna Tobias Ytterman - certifierad kontrollansvarig och BAS-expert med över 20 års erfarenhet. Trygg byggprocess i Sundsvall, Härnösand, Sollefteå, Timrå och Kramfors."
         keywords="om ytterman, tobias ytterman, kontrollansvarig västernorrland, BAS expert, byggkontroll erfarenhet"
-        url="https://ytterman.com/om-oss"
+        url="https://ytterman.com/om"
       />
+      
+      <CanonicalUrl path="/om" />
       
       <div className="min-h-screen flex flex-col">
         <Header />

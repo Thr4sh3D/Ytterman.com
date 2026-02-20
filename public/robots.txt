@@ -1,18 +1,4 @@
 User-agent: *
 Allow: /
 
-# Sitemap location
 Sitemap: https://ytterman.com/sitemap.xml
-
-# Crawl-delay for polite crawling
-Crawl-delay: 1
-
-# Allow all search engines to access important pages
-Allow: /tjanster
-Allow: /kontakt
-Allow: /guider
-Allow: /faq
-
-# Block any admin or private areas (if they exist)
-Disallow: /admin/
-Disallow: /private/

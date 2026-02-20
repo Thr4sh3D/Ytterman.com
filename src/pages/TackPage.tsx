@@ -4,6 +4,7 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { AdvancedSEO } from '@/components/AdvancedSEO';
+import { CanonicalUrl } from '@/components/CanonicalUrl';
 import { CheckCircle, Phone, Mail, Calendar, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -117,6 +118,8 @@ const TackPage = () => {
         keywords="tack, förfrågan skickad, kontrollansvarig offert, BAS konsultation"
         url="https://ytterman.com/tack"
       />
+      
+      <CanonicalUrl path="/tack" />
       
       <div className="min-h-screen">
         <Header />

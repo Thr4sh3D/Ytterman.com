@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Omdirigerar... | Ytterman</title>
+  <script>
+    // GitHub Pages SPA redirect script
+    // This script runs on the 404 page and redirects to the index page
+    // with the path encoded as a query parameter that can be decoded by the index page
+    
+    (function() {
+      var pathSegmentsToKeep = 0; // 0 for custom domain, 1 for GitHub pages with repo name
+      
+      var location = window.location;
+      var path = location.pathname.slice(1);
+      
+      // Redirect to index.html with the path as a query parameter
+      // Using sessionStorage to pass the path (more reliable than query params)
+      if (path) {
+        sessionStorage.setItem('spa-redirect-path', '/' + path + location.search + location.hash);
+      }
+      
+      // Redirect to the root, where index.html will read from sessionStorage
+      location.replace(
+        location.protocol + '//' + 
+        location.hostname + 
+        (location.port ? ':' + location.port : '') +
+        location.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + 
+        '/'
+      );
+    })();
+  </script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .loader {
+      text-align: center;
+    }
+    .spinner {
+      border: 4px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top: 4px solid white;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 20px;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    h1 {
+      font-size: 24px;
+      font-weight: 500;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="loader">
+    <div class="spinner"></div>
+    <h1>Omdirigerar...</h1>
+  </div>
+</body>
+</html>

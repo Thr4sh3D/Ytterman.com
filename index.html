@@ -1,6 +1,32 @@
 <!DOCTYPE html>
 <html lang="sv">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Preconnect to external domains for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="https://ellprnxjjzatijdxcogk.supabase.co" />
+    
+    <!-- Favicon and Icons -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="manifest" href="/site.webmanifest" />
+    
+    <!-- Theme color for mobile browsers -->
+    <meta name="theme-color" content="#2563eb" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    
     <!-- Google Consent Mode v2 - Must be loaded first -->
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -39,8 +65,7 @@
       });
     </script>
     
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- SEO Meta Tags (React Helmet will override these on route changes) -->
     <title>Trygg Byggprocess med Ytterman - Kontrollansvarig & BAS i Västernorrland</title>
     <meta name="description" content="Certifierad kontrollansvarig och BAS-P/BAS-U i Västernorrland. Över 20 års erfarenhet. Snabb hantering, digitala verktyg och trygg byggprocess." />
     <meta name="author" content="Tobias Ytterman" />
@@ -52,6 +77,23 @@
 
   <body>
     <div id="root"></div>
+    
+    <!-- GitHub Pages SPA redirect handler -->
+    <script>
+      // This script runs before React loads and handles redirects from 404.html
+      // It reads the stored path from sessionStorage and uses history.replaceState
+      // to restore the correct URL without causing a page reload or UI flash
+      (function() {
+        var redirectPath = sessionStorage.getItem('spa-redirect-path');
+        if (redirectPath) {
+          sessionStorage.removeItem('spa-redirect-path');
+          // Use replaceState to update the URL without reloading the page
+          // React Router will pick up the correct path when it initializes
+          history.replaceState(null, '', redirectPath);
+        }
+      })();
+    </script>
+    
     <!-- DO NOT REMOVE THESE IMPORTS -->
     <script src="https://ellprnxjjzatijdxcogk.supabase.co/storage/v1/object/public/cdn/console-capture.js" type="module"></script>
     <script type="module" src="/src/main.tsx"></script>

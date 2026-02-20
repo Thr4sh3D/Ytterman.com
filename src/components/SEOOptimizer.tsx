@@ -18,7 +18,7 @@ export const SEOOptimizer: React.FC<SEOOptimizerProps> = ({
   keywords,
   url,
   type = 'website',
-  image = 'https://ytterman.com/og-image.jpg',
+  image = 'https://ytterman.com/og-image.png',
   structuredData,
   noindex = false
 }) => {

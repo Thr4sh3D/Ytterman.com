@@ -1,4 +1,5 @@
 import { SEO } from "@/components/SEO";
+import { CanonicalUrl } from "@/components/CanonicalUrl";
 import { FAQ } from "@/components/FAQ";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -86,6 +87,8 @@ const BasUPage = () => {
         url="https://ytterman.com/bas-u"
         type="webpage"
       />
+      
+      <CanonicalUrl path="/bas-u" />
       
       <script type="application/ld+json">
         {JSON.stringify(structuredData)}

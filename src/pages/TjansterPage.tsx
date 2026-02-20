@@ -150,8 +150,8 @@ const TjansterPage = () => {
   return (
     <>
       <AdvancedSEO 
-        title="Tjänster - Kontrollansvarig, BAS-P, BAS-U, Energiberäkning Online | Ytterman"
-        description="Kompletta byggtjänster i Västernorrland. Kontrollansvarig, BAS-P, BAS-U, energiberäkning online, bygglovshandlingar, energideklaration och överlåtelsebesiktning. Över 20 års erfarenhet. Fast pris och trygg process."
+        title="Byggtjänster Västernorrland - KA, BAS, Energiberäkning | Ytterman"
+        description="Kontrollansvarig, BAS-P, BAS-U, energiberäkning online och bygglovshandlingar. 20+ års erfarenhet. Fast pris. Sundsvall, Härnösand, Sollefteå. Offert på 24h!"
         keywords="kontrollansvarig tjänster, BAS-P, BAS-U, energiberäkning online, bygglovshandlingar, energideklaration, överlåtelsebesiktning, byggtjänster Västernorrland, Sundsvall, Härnösand, byggkontroll"
         url="https://ytterman.com/tjanster"
         breadcrumbs={breadcrumbs}

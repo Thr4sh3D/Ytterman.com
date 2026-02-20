@@ -5,9 +5,11 @@ import { AdvancedSEO } from '@/components/AdvancedSEO';
 import { FAQ, faqData } from '@/components/FAQ';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { ConversionTracking } from '@/components/ConversionTracking';
+import { CanonicalUrl } from '@/components/CanonicalUrl';
 import { ContactForm } from '@/components/ContactForm';
 import { ContactInfo } from '@/components/ContactInfo';
 import { ServiceAreas } from '@/components/ServiceAreas';
+import { JsonLdSchema } from '@/components/JsonLdSchema';
 import { Phone, Mail } from 'lucide-react';
 
 const KontaktPage = () => {
@@ -19,8 +21,8 @@ const KontaktPage = () => {
   return (
     <>
       <AdvancedSEO 
-        title="Kontakt - Kontrollansvarig & BAS i Västernorrland | Ytterman"
-        description="Kontakta Ytterman för kontrollansvarig, BAS-P, BAS-U och byggkonsultation i Västernorrland. Ring 076-111 84 47 eller maila tobias@ytterman.com. Kostnadsfri konsultation."
+        title="Kontakta Ytterman - Kontrollansvarig & BAS Västernorrland"
+        description="Behöver du kontrollansvarig eller BAS? Ring 076-111 84 47 eller mejla tobias@ytterman.com. Kostnadsfri konsultation. Svar inom 24h!"
         keywords="kontakt kontrollansvarig, BAS-P BAS-U Västernorrland, byggkonsult Sundsvall, Härnösand, Sollefteå, Timrå, Kramfors, tobias ytterman"
         url="https://ytterman.com/kontakt"
         breadcrumbs={breadcrumbs}
@@ -28,6 +30,8 @@ const KontaktPage = () => {
         organization={true}
       />
       
+      <CanonicalUrl path="/kontakt" />
+      <JsonLdSchema type="ProfessionalService" />
       <ConversionTracking />
       
       {/* Skip link för tangentbordsnavigering */}
