@@ -47,7 +47,7 @@ export const Services = ({ onServiceSelect }: ServicesProps) => {
       id: 'overlatelsebesiktning-service',
       icon: Search,
       title: 'Överlåtelsebesiktning',
-      description: 'Okulär besiktning inför fastighetesförsäljning. Identifierar synliga fel och brister för en trygg affär.',
+      description: 'Okulär besiktning inför fastighetsförsäljning. Identifierar synliga fel och brister för en trygg affär. Boka direkt online – välj tid och betala vid bokning.',
       features: ['Visuell kontroll', 'Synliga installationer', 'Besiktningsrapport', 'Fotografisk dokumentation'],
       link: '/overlatelsebesiktning'
     },

@@ -3,7 +3,7 @@
 
 export const BOOKING_CONFIG = {
   // Överlåtelsebesiktning (Property Inspection)
-  OVL_URL: 'https://cal.com/mty-konsult',
+  OVL_URL: 'https://cal.com/mty-konsult/overlatelsebesiktning',
   
   // Future booking URLs can be added here
   // CONSULTATION_URL: 'https://cal.com/mty-konsult/konsultation',
