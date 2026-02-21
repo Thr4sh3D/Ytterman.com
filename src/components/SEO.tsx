@@ -11,7 +11,7 @@ interface SEOProps {
 
 export const SEO = ({
   title = "Ytterman - Kontrollansvarig & BAS i Västernorrland",
-  description = "Certifierad Kontrollansvarig och Byggarbetsmiljösamordnare (BAS-P/BAS-U) i Västernorrland. Över 20 års erfarenhet. Trygg byggprocess med fast pris. Verksam i Sundsvall, Härnösand, Sollefteå, Timrå, Kramfors.",
+  description = "Certifierad Kontrollansvarig och Byggarbetsmiljösamordnare (BAS-P/BAS-U) i Västernorrland. Över 20 års erfarenhet i byggbranschen. Trygg byggprocess med fast pris. Verksam i Sundsvall, Härnösand, Sollefteå, Timrå, Kramfors.",
   keywords = "kontrollansvarig, BAS-P, BAS-U, byggkontroll, Västernorrland, Sundsvall, Härnösand, Sollefteå, Timrå, Kramfors, bygglov, byggarbetsmiljösamordnare, kontrollplan, slutbevis, byggprocess",
   url = "https://ytterman.com",
   image = "/og-image.png",
@@ -22,7 +22,7 @@ export const SEO = ({
     "@type": "LocalBusiness",
     "name": "Ytterman",
     "alternateName": "Tobias Ytterman",
-    "description": "Certifierad Kontrollansvarig och Byggarbetsmiljösamordnare med över 20 års erfarenhet i Västernorrland",
+    "description": "Certifierad Kontrollansvarig och Byggarbetsmiljösamordnare med över 20 års erfarenhet i byggbranschen i Västernorrland",
     "url": url,
     "telephone": "+46761118447",
     "email": "tobias@ytterman.com",

@@ -57,7 +57,7 @@ const BasUPage = () => {
     "@context": "https://schema.org",
     "@type": "Service",
     "name": "BAS-U tjänster - Byggarbetsmiljösamordnare under utförande",
-    "description": "Professionella BAS-U tjänster i Västernorrland. Certifierad byggarbetsmiljösamordnare med över 20 års erfarenhet.",
+    "description": "Professionella BAS-U tjänster i Västernorrland. Certifierad byggarbetsmiljösamordnare med över 20 års erfarenhet i byggbranschen.",
     "provider": {
       "@type": "LocalBusiness",
       "name": "Ytterman",

@@ -57,7 +57,7 @@ const BasPPage = () => {
     "@context": "https://schema.org",
     "@type": "Service",
     "name": "BAS-P tjänster - Byggarbetsmiljösamordnare under projektering",
-    "description": "Professionella BAS-P tjänster i Västernorrland. Certifierad byggarbetsmiljösamordnare med över 20 års erfarenhet.",
+    "description": "Professionella BAS-P tjänster i Västernorrland. Certifierad byggarbetsmiljösamordnare med över 20 års erfarenhet i byggbranschen.",
     "provider": {
       "@type": "LocalBusiness",
       "name": "Ytterman",

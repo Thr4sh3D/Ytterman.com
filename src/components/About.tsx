@@ -156,7 +156,7 @@ export const About = () => {
           </div>
 
           {/* Certifications Section */}
-          <div className="bg-slate-50 rounded-2xl p-8">
+          <div id="certifikat" className="bg-slate-50 rounded-2xl p-8" style={{ scrollMarginTop: '96px' }}>
             <Certifications showTitle={true} />
           </div>
         </div>

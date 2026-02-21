@@ -57,7 +57,7 @@ const EnergiDeklarationPage = () => {
     "@context": "https://schema.org",
     "@type": "Service",
     "name": "Energideklaration",
-    "description": "Professionella energideklarationer i Västernorrland. Certifierad energiexpert med över 20 års erfarenhet.",
+    "description": "Professionella energideklarationer i Västernorrland. Certifierad energiexpert med över 20 års erfarenhet i byggbranschen.",
     "provider": {
       "@type": "LocalBusiness",
       "name": "Ytterman",

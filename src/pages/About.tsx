@@ -8,7 +8,7 @@ const About = () => {
     <>
       <AdvancedSEO 
         title="Om Ytterman - Kontrollansvarig & BAS-expert i Västernorrland"
-        description="Lär känna Tobias Ytterman - certifierad kontrollansvarig och BAS-expert med över 20 års erfarenhet. Trygg byggprocess i Sundsvall, Härnösand, Sollefteå, Timrå och Kramfors."
+        description="Lär känna Tobias Ytterman - certifierad kontrollansvarig och BAS-expert med över 20 års erfarenhet i byggbranschen. Trygg byggprocess i Sundsvall, Härnösand, Sollefteå, Timrå och Kramfors."
         keywords="om ytterman, tobias ytterman, kontrollansvarig västernorrland, BAS expert, byggkontroll erfarenhet"
         url="https://ytterman.com/om"
       />

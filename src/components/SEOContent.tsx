@@ -82,7 +82,7 @@ export const seoKeywords = {
 export const seoContent = {
   hero: {
     title: "Certifierad Kontrollansvarig & BAS i Västernorrland - Trygg Byggprocess",
-    subtitle: "Över 20 års erfarenhet av kontrollansvarig (KA), BAS-P och BAS-U tjänster i Sundsvall, Härnösand, Sollefteå, Timrå och Kramfors. Fast pris och professionell hantering för din byggprocess.",
+    subtitle: "Över 20 års erfarenhet i byggbranschen med certifiering inom kontrollansvarig (KA), BAS-P och BAS-U tjänster i Sundsvall, Härnösand, Sollefteå, Timrå och Kramfors. Fast pris och professionell hantering för din byggprocess.",
     cta: "Få kostnadsfri konsultation och offert idag"
   },
   services: {

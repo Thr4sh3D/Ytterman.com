@@ -268,7 +268,7 @@ const BygglovsguideVanligaMisstag = () => {
         </h2>
 
         <p className="mb-6">
-          Här är de 12 vanligaste misstagen jag sett under mina 20 år som kontrollansvarig i Västernorrland – och hur du undviker dem:
+          Här är de 12 vanligaste misstagen jag sett under mina 20+ år i byggbranschen som certifierad kontrollansvarig (KA enligt PBL) i Västernorrland – och hur du undviker dem:
         </p>
 
         <div className="space-y-6">
@@ -438,7 +438,7 @@ const BygglovsguideVanligaMisstag = () => {
             </li>
             <li className="flex items-start">
               <CheckCircle className="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
-              <span>✅ Tidspla upprättad med kontrollpunkter markerade</span>
+              <span>✅ Tidsplan upprättad med kontrollpunkter markerade</span>
             </li>
           </ul>
         </div>
@@ -511,7 +511,7 @@ const BygglovsguideVanligaMisstag = () => {
             Vill du ha hjälp som kontrollansvarig och BAS i Västernorrland?
           </h2>
           <p className="text-lg mb-6 text-blue-50">
-            Med över 20 års erfarenhet som kontrollansvarig i Sundsvall, Timrå, Härnösand, Kramfors, Sollefteå och Örnsköldsvik 
+            Med över 20 års erfarenhet i byggbranschen som certifierad kontrollansvarig (KA enligt PBL) i Sundsvall, Timrå, Härnösand, Kramfors, Sollefteå och Örnsköldsvik 
             hjälper jag dig undvika de vanligaste misstagen vid husbygge. Jag erbjuder både kontrollansvarig, BAS-P och BAS-U samt 
             paketlösningar för smidig samordning genom hela byggprocessen.
           </p>

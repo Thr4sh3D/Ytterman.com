@@ -75,7 +75,7 @@ export const SEOOptimizer: React.FC<SEOOptimizerProps> = ({
           "name": "Ytterman - Kontrollansvarig & BAS",
           "url": "https://ytterman.com",
           "logo": "https://ytterman.com/logo.png",
-          "description": "Certifierad kontrollansvarig och byggarbetsmiljösamordnare (BAS-P/BAS-U) i Västernorrland med över 20 års erfarenhet.",
+          "description": "Certifierad kontrollansvarig och byggarbetsmiljösamordnare (BAS-P/BAS-U) i Västernorrland med över 20 års erfarenhet i byggbranschen.",
           "areaServed": {
             "@type": "State",
             "name": "Västernorrland"

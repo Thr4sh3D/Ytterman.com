@@ -143,7 +143,7 @@ export const GuideLayout = ({
                   onClick={() => window.location.href = 'tel:+46761118447'}
                   size="lg"
                   variant="outline"
-                  className="border-white text-white hover:bg-white hover:text-slate-900"
+                  className="border-white text-slate-900 hover:bg-white hover:text-slate-900"
                 >
                   Ring direkt: 076-111 84 47
                 </Button>

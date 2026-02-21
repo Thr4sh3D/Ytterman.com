@@ -32,7 +32,7 @@ const BygglovGuide = () => {
             <div>
               <h3 className="font-semibold text-green-800 mb-2">Professionell hjälp lönar sig</h3>
               <p className="text-green-700">
-                Med över 20 års erfarenhet som <Link to="/kontrollansvarig" className="text-green-800 hover:text-green-900 font-medium underline">kontrollansvarig</Link> hjälper jag dig navigera bygglovsprocessen effektivt 
+                Med över 20 års erfarenhet i byggbranschen som certifierad <Link to="/kontrollansvarig" className="text-green-800 hover:text-green-900 font-medium underline">kontrollansvarig</Link> (KA enligt PBL) hjälper jag dig navigera bygglovsprocessen effektivt 
                 och undvika vanliga fallgropar som kan förlänga handläggningstiden.
               </p>
             </div>

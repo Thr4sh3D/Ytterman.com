@@ -14,7 +14,7 @@ export const Footer = () => {
             </h3>
             <p className="text-gray-300 mb-6">
               Certifierad Kontrollansvarig och Byggarbetsmiljösamordnare med över 20 års 
-              erfarenhet. Vi hjälper dig genom hela byggprocessen i Västernorrland.
+              erfarenhet i byggbranschen. Vi hjälper dig genom hela byggprocessen i Västernorrland.
             </p>
             <div className="space-y-3">
               <div className="flex items-center space-x-3">

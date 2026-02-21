@@ -10,7 +10,7 @@ export const JsonLdSchema = ({ type = 'ProfessionalService' }: JsonLdSchemaProps
     "@type": type,
     "name": "Ytterman",
     "alternateName": "Ytterman - Kontrollansvarig & BAS",
-    "description": "Certifierad kontrollansvarig (KA) och Byggarbetsmiljösamordnare (BAS-P/BAS-U) med över 20 års erfarenhet i Västernorrland",
+    "description": "Certifierad kontrollansvarig (KA) och Byggarbetsmiljösamordnare (BAS-P/BAS-U) med över 20 års erfarenhet i byggbranschen i Västernorrland",
     "url": "https://ytterman.com",
     "telephone": "+46761118447",
     "email": "tobias@ytterman.com",

@@ -365,7 +365,7 @@ const KontrollansvarigCertifieringGuide = () => {
             Anlita certifierad kontrollansvarig i Västernorrland
           </h2>
           <p className="text-lg mb-6 text-blue-50">
-            Som certifierad kontrollansvarig med över 20 års erfarenhet säkerställer jag att ditt projekt uppfyller alla krav. 
+            Som certifierad kontrollansvarig (KA enligt PBL) med över 20 års erfarenhet i byggbranschen säkerställer jag att ditt projekt uppfyller alla krav. 
             Läs mer om mitt <Link to="/guider/kontrollansvarig-ansvar" className="text-white underline font-semibold">ansvar som kontrollansvarig</Link>.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">

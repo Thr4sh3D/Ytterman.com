@@ -57,7 +57,7 @@ const KontrollansvarigPage = () => {
     "@context": "https://schema.org",
     "@type": "Service",
     "name": "Kontrollansvarig tjänster",
-    "description": "Professionella kontrollansvarig tjänster i Västernorrland. Certifierad kontrollansvarig med över 20 års erfarenhet.",
+    "description": "Professionella kontrollansvarig tjänster i Västernorrland. Certifierad kontrollansvarig med över 20 års erfarenhet i byggbranschen.",
     "provider": {
       "@type": "LocalBusiness",
       "name": "Ytterman",
@@ -104,7 +104,7 @@ const KontrollansvarigPage = () => {
           badge="Certifierad Kontrollansvarig"
           title="Kontrollansvarig i Västernorrland"
           subtitle="Trygg byggprocess med erfaren kontrollansvarig"
-          description="Säkerställ att ditt byggprojekt följer alla regler och krav. Som certifierad kontrollansvarig med över 20 års erfarenhet hjälper jag dig genom hela processen - från kontrollplan till slutbevis."
+          description="Säkerställ att ditt byggprojekt följer alla regler och krav. Som certifierad kontrollansvarig (KA enligt PBL) med över 20 års erfarenhet i byggbranschen hjälper jag dig genom hela processen - från kontrollplan till slutbevis."
           features={[
             "Kontrollplan och teknisk kontroll enligt PBL",
             "Slutbesiktning och utfärdande av slutbevis",

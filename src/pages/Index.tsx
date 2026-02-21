@@ -3,13 +3,14 @@ import { Footer } from '@/components/Footer';
 import { Hero } from '@/components/Hero';
 import { Services } from '@/components/Services';
 import { About } from '@/components/About';
-import { Certification } from '@/components/Certification';
 import { Contact } from '@/components/Contact';
 import { FAQ } from '@/components/FAQ';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { AdvancedSEO } from '@/components/AdvancedSEO';
 import { CanonicalUrl } from '@/components/CanonicalUrl';
 import { JsonLdSchema } from '@/components/JsonLdSchema';
+import { Button } from '@/components/ui/button';
+import { Award, Shield } from 'lucide-react';
 
 const Index = () => {
   const homeFaq = [
@@ -52,7 +53,31 @@ const Index = () => {
           <Hero />
           <Services />
           <About />
-          <Certification />
+          <section className="py-16 bg-gradient-to-br from-slate-50 to-amber-50">
+            <div className="container mx-auto px-4 text-center max-w-4xl">
+              <div className="flex justify-center mb-6">
+                <div className="w-16 h-16 earth-gradient rounded-xl flex items-center justify-center">
+                  <Shield className="w-8 h-8 text-white" />
+                </div>
+              </div>
+              <h2 className="text-3xl font-bold text-slate-900 mb-4">
+                Officiellt Certifierad Kontrollansvarig
+              </h2>
+              <p className="text-lg text-slate-600 mb-8 max-w-2xl mx-auto">
+                Kontrollera mina officiella certifieringar som kontrollansvarig enligt Plan- och bygglagen samt BAS-P och BAS-U certifikat.
+              </p>
+              <Button 
+                asChild
+                size="lg"
+                className="earth-gradient text-white hover:opacity-90"
+              >
+                <a href="#certifikat" aria-label="Scrolla till certifikat">
+                  <Award className="w-5 h-5 mr-2" />
+                  Visa certifikat
+                </a>
+              </Button>
+            </div>
+          </section>
           <FAQ items={homeFaq} />
           <Contact />
         </main>
