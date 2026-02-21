@@ -31,8 +31,6 @@ export default defineConfig({
           "query-vendor": ["@tanstack/react-query"],
           "helmet-vendor": ["react-helmet-async"],
           "icons-vendor": ["lucide-react"],
-          // Separate lazy components to reduce main bundle
-          "lazy-components": ["./src/components/LazyComponents"],
         },
         // Better asset naming for caching
         assetFileNames: (assetInfo) => {
