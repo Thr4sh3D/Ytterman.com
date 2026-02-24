@@ -5,11 +5,11 @@ import { useToast } from '@/hooks/use-toast';
 import { sendContactEmail } from '@/lib/emailjs';
 
 interface ContactProps {
-  selectedPackage: string;
-  prefilledMessage: string;
+  selectedPackage?: string;
+  prefilledMessage?: string;
 }
 
-export const Contact = ({ selectedPackage, prefilledMessage }: ContactProps) => {
+export const Contact = ({ selectedPackage = '', prefilledMessage = '' }: ContactProps) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',

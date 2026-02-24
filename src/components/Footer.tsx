@@ -34,6 +34,11 @@ export const Footer = () => {
                 <span>Västernorrland, Sverige</span>
               </div>
             </div>
+            
+            {/* Bygglov.se Kvalitetsbadge */}
+            <div className="mt-6">
+              <div id="bygglov-badge-container" style={{ width: '160px' }} />
+            </div>
           </div>
 
           {/* Services */}

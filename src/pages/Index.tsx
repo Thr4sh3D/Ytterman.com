@@ -9,6 +9,7 @@ import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { AdvancedSEO } from '@/components/AdvancedSEO';
 import { CanonicalUrl } from '@/components/CanonicalUrl';
 import { JsonLdSchema } from '@/components/JsonLdSchema';
+import { PricingPackages } from '@/components/PricingPackages';
 import { Button } from '@/components/ui/button';
 import { Award, Shield } from 'lucide-react';
 
@@ -51,7 +52,8 @@ const Index = () => {
         <Header />
         <main>
           <Hero />
-          <Services />
+          <Services onServiceSelect={() => {}} />
+          <PricingPackages />
           <About />
           <section className="py-16 bg-gradient-to-br from-slate-50 to-amber-50">
             <div className="container mx-auto px-4 text-center max-w-4xl">
@@ -79,7 +81,7 @@ const Index = () => {
             </div>
           </section>
           <FAQ items={homeFaq} />
-          <Contact />
+          <Contact selectedPackage="" prefilledMessage="" />
         </main>
         <Footer />
         <WhatsAppButton />

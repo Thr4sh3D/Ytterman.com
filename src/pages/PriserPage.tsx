@@ -7,6 +7,8 @@ import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { ConversionTracking } from '@/components/ConversionTracking';
 import { CanonicalUrl } from '@/components/CanonicalUrl';
 import { ContactForm } from '@/components/ContactForm';
+import { PricingPackages } from '@/components/PricingPackages';
+import { PricingFAQ } from '@/components/PricingFAQ';
 import { CheckCircle, Clock, TrendingDown, Shield, Calculator, InfoIcon } from 'lucide-react';
 
 const PriserPage = () => {
@@ -23,7 +25,6 @@ const PriserPage = () => {
         keywords="kontrollansvarig pris, kontrollansvarig timpris, kontrollansvarig kostnad, vad kostar kontrollansvarig, BAS-P pris, BAS-U pris, byggsamordnare pris, Västernorrland"
         url="https://ytterman.com/priser"
         breadcrumbs={breadcrumbs}
-        faq={faqData.pricing}
         organization={true}
       />
       
@@ -80,6 +81,9 @@ const PriserPage = () => {
               </div>
             </div>
           </section>
+
+          {/* Nya paket & priser */}
+          <PricingPackages />
 
           {/* Fast pris vs Timpris */}
           <section className="py-16 bg-white">
@@ -533,8 +537,11 @@ const PriserPage = () => {
             </div>
           </section>
 
-          {/* FAQ */}
-          <FAQ items={faqData.pricing} title="Vanliga frågor om priser" />
+          {/* FAQ om paket och priser */}
+          <PricingFAQ />
+
+          {/* FAQ - Övriga frågor */}
+          <FAQ items={faqData.pricing} title="Fler vanliga frågor om priser" />
 
           {/* Kontaktformulär */}
           <section id="kontakt" className="py-16 bg-white">

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { BOOKING_OVL_URL } from '@/config/booking';
 
 interface ServicesProps {
-  onServiceSelect: (serviceId: string) => void;
+  onServiceSelect?: (serviceId: string) => void;
 }
 
 export const Services = ({ onServiceSelect }: ServicesProps) => {
