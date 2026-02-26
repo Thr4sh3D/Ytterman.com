@@ -1,0 +1,2 @@
+# This file tells GitHub Pages not to process the site with Jekyll
+# Important for Vite/React SPA builds to prevent asset file conflicts

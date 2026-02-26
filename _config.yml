@@ -1,0 +1,33 @@
+# GitHub Pages Jekyll Configuration for SPA
+# This file helps GitHub Pages understand how to serve the SPA correctly
+
+# Exclude build artifacts and source files from being processed by Jekyll
+exclude:
+  - node_modules/
+  - src/
+  - scripts/
+  - package*.json
+  - vite.config.ts
+  - tsconfig*.json
+  - README.md
+  - "*.md"
+  - .git/
+  - .github/
+  - dist/
+
+# Include these files in the output
+include:
+  - _redirects
+  - .nojekyll
+
+# Disable Jekyll processing (important for SPAs)
+# This prevents Jekyll from interfering with your Vite-built assets
+kramdown:
+  input: GFM
+  
+# Site settings
+url: "https://ytterman.com"
+baseurl: ""
+
+# Enforce HTTPS
+enforce_ssl: "ytterman.com"

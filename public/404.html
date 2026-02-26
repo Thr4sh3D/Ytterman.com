@@ -3,11 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Prevent indexing of 404 page -->
+  <meta name="robots" content="noindex, nofollow">
+  
+  <!-- Meta refresh for crawlers and browsers without JS (0 second delay) -->
+  <meta http-equiv="refresh" content="0;url=/">
+  
   <title>Omdirigerar... | Ytterman</title>
+  
+  <!-- Canonical points to homepage to avoid duplicate content issues -->
+  <link rel="canonical" href="https://ytterman.com/">
+  
   <script>
-    // GitHub Pages SPA redirect script
-    // This script runs on the 404 page and redirects to the index page
-    // with the path encoded as a query parameter that can be decoded by the index page
+    // GitHub Pages SPA redirect script - Enhanced for SEO
+    // This script runs immediately to minimize 404 exposure time
+    // Dual approach: meta refresh + JS redirect for maximum compatibility
     
     (function() {
       var pathSegmentsToKeep = 0; // 0 for custom domain, 1 for GitHub pages with repo name
@@ -15,20 +26,21 @@
       var location = window.location;
       var path = location.pathname.slice(1);
       
-      // Redirect to index.html with the path as a query parameter
-      // Using sessionStorage to pass the path (more reliable than query params)
-      if (path) {
+      // Store the path in sessionStorage so index.html can restore the correct route
+      if (path && path !== '404.html') {
         sessionStorage.setItem('spa-redirect-path', '/' + path + location.search + location.hash);
       }
       
-      // Redirect to the root, where index.html will read from sessionStorage
-      location.replace(
-        location.protocol + '//' + 
+      // Immediate redirect to root - React Router will handle the rest
+      // Using replace to avoid adding to browser history
+      var redirectUrl = location.protocol + '//' + 
         location.hostname + 
         (location.port ? ':' + location.port : '') +
         location.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + 
-        '/'
-      );
+        '/';
+      
+      // Immediate redirect
+      location.replace(redirectUrl);
     })();
   </script>
   <style>
