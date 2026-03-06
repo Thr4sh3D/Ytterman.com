@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync, existsSync } from 'fs';
+import { readFileSync, writeFileSync, existsSync, copyFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -15,13 +15,14 @@ try {
     process.exit(1);
   }
 
-  // Read index.html content
-  const indexContent = readFileSync(indexPath, 'utf-8');
+  // Copy index.html to 404.html
+  // This is necessary for GitHub Pages SPA routing
+  // GitHub Pages serves 404.html when a route is not found
+  // By making it identical to index.html, React Router can handle all routing
+  copyFileSync(indexPath, notFoundPath);
 
-  // Write 404.html with identical content
-  writeFileSync(notFoundPath, indexContent, 'utf-8');
-
-  console.log('✅ Successfully created dist/404.html from dist/index.html');
+  console.log('✅ Successfully created dist/404.html (copy of dist/index.html)');
+  console.log('   This enables proper SPA routing on GitHub Pages');
 } catch (error) {
   console.error('❌ Error copying index.html to 404.html:', error.message);
   process.exit(1);

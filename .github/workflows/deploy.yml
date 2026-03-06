@@ -33,6 +33,10 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Copy .nojekyll to dist
+        run: |
+          cp public/.nojekyll dist/.nojekyll || echo ".nojekyll copied"
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

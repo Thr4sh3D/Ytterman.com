@@ -4,45 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
+  <!-- 
+    NOTE: This file is overwritten during build by scripts/copy-404.mjs
+    The build process copies dist/index.html to dist/404.html for proper SPA routing on GitHub Pages
+    
+    This ensures that when GitHub Pages serves 404.html for unknown routes,
+    it actually serves the full React app, allowing React Router to handle the routing client-side.
+  -->
+  
   <!-- Prevent indexing of 404 page -->
   <meta name="robots" content="noindex, nofollow">
   
-  <!-- Meta refresh for crawlers and browsers without JS (0 second delay) -->
+  <!-- Meta refresh as fallback (in case build script doesn't run) -->
   <meta http-equiv="refresh" content="0;url=/">
   
   <title>Omdirigerar... | Ytterman</title>
   
-  <!-- Canonical points to homepage to avoid duplicate content issues -->
-  <link rel="canonical" href="https://ytterman.com/">
-  
-  <script>
-    // GitHub Pages SPA redirect script - Enhanced for SEO
-    // This script runs immediately to minimize 404 exposure time
-    // Dual approach: meta refresh + JS redirect for maximum compatibility
-    
-    (function() {
-      var pathSegmentsToKeep = 0; // 0 for custom domain, 1 for GitHub pages with repo name
-      
-      var location = window.location;
-      var path = location.pathname.slice(1);
-      
-      // Store the path in sessionStorage so index.html can restore the correct route
-      if (path && path !== '404.html') {
-        sessionStorage.setItem('spa-redirect-path', '/' + path + location.search + location.hash);
-      }
-      
-      // Immediate redirect to root - React Router will handle the rest
-      // Using replace to avoid adding to browser history
-      var redirectUrl = location.protocol + '//' + 
-        location.hostname + 
-        (location.port ? ':' + location.port : '') +
-        location.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + 
-        '/';
-      
-      // Immediate redirect
-      location.replace(redirectUrl);
-    })();
-  </script>
   <style>
     body {
       margin: 0;
@@ -77,6 +54,17 @@
       margin: 0;
     }
   </style>
+  
+  <script>
+    // Fallback redirect script (only used if build script doesn't run)
+    (function() {
+      var path = window.location.pathname.slice(1);
+      if (path && path !== '404.html') {
+        sessionStorage.setItem('spa-redirect-path', '/' + path + location.search + location.hash);
+      }
+      location.replace('/');
+    })();
+  </script>
 </head>
 <body>
   <div class="loader">
