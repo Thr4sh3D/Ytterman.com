@@ -23,14 +23,15 @@ export const pricingPackages: PricingPackage[] = [
     subtitle: 'Grundläggande kontroll',
     price: 'Från 29 500 kr',
     priceSubtext: 'inkl. moms',
-    description: 'Passar okomplicerade projekt med tydliga handlingar och få aktörer. Du får den lagstadgade kontrollen enligt PBL på ett effektivt sätt.',
+    description: 'Du får ditt projekt godkänt utan onödiga kompletteringar. Perfekt om du har tydliga handlingar och vill ha den lagstadgade kontrollen snabbt och professionellt.',
     features: [
       'Kontrollplan skräddarsydd för ditt projekt',
       'Genomgång av underlag och handlingar',
       'Medverkan i tekniskt samråd vid behov',
       '1 arbetsplatsbesök under byggtiden',
       'KA-utlåtande inför slutbesked',
-      'Löpande kommunikation via telefon och e-post'
+      'Löpande kommunikation via telefon och e-post',
+      '✓ Så här går det till: 1) Du skickar dina handlingar 2) Fast pris inom 24 h 3) Jag guidar dig till slutbesked'
     ],
     popular: false
   },
@@ -40,14 +41,15 @@ export const pricingPackages: PricingPackage[] = [
     subtitle: 'Utökad trygghet',
     price: 'Från 34 500 kr',
     priceSubtext: 'inkl. moms',
-    description: 'Passar projekt med fler aktörer, otydligare underlag eller större behov av avstämningar. Ger dig extra stöd och fler besök för ökad trygghet.',
+    description: 'Du slipper stress och oro – jag finns med dig hela vägen och löser problem innan de blir dyra. Mest valt av privatpersoner och mindre företag.',
     features: [
       'Allt i KA Bas ingår',
       '2 arbetsplatsbesök (istället för 1)',
       'Fler avstämningar under projektets gång',
       'Extra stöd vid tekniskt samråd',
       'Uppföljning av avvikelser och åtgärder',
-      'Snabbare svarstid och utökad tillgänglighet'
+      'Snabbare svarstid och utökad tillgänglighet',
+      '✓ Så här går det till: 1) Vi går igenom ditt projekt 2) Du får ett fast pris 3) Löpande stöd tills slutbesked är klart'
     ],
     popular: true
   },
@@ -57,14 +59,15 @@ export const pricingPackages: PricingPackage[] = [
     subtitle: 'Komplett paket',
     price: 'Från 46 500–52 500 kr',
     priceSubtext: 'inkl. moms',
-    description: 'Passar när beställaren vill samla kontrollansvar och arbetsmiljösamordning i ett sammanhållet upplägg. Alla roller i en hand ger effektiv samordning.',
+    description: 'Allt samlat i en hand – säkerhet både för bygget och arbetsmiljön. Perfekt när du vill ha full kontroll och minimera risk för stopp i projektet.',
     features: [
       'KA (Kontrollansvarig enligt PBL)',
       'BAS-P (Byggarbetsmiljösamordnare projektering)',
       'BAS-U (Byggarbetsmiljösamordnare utförande)',
       'Riskgenomgång och identifiering av arbetsmiljörisker',
       'Arbetsmiljöplan vid behov (t.ex. samordningsplan)',
-      'Samlad samordning för hela projektet'
+      'Samlad samordning för hela projektet',
+      '✓ Så här går det till: 1) Helhetsbild av projektet 2) Fast offert 3) Total hjälp från bygglov till slutbesked'
     ],
     popular: false
   }
@@ -92,8 +95,9 @@ export const actionTypePrices: ActionTypePrice[] = [
 ];
 
 export const disclaimerPoints = [
-  '1 normal kompletteringsvända i bygglovsprocessen ingår.',
+  '1 normal kompletteringsvända i bygglovsprocessen ingår – jag hjälper dig tills ärendet är klart.',
   'Upprepade kompletteringar som beror på ändringar, sena beslut eller bristande underlag debiteras enligt timpris.',
+  'Om kommunen kräver kompletteringar i de delar jag ansvarar för som KA, hjälper jag dig utan extra kostnad tills ärendet är i mål – det är min trygghetsgaranti.',
   'Priserna är exempel och kan justeras vid avvikande komplexitet, fler platsbesök eller om projektets omfattning ändras.',
   'KA ansvarar för kontroll enligt PBL – entreprenadledning och projektering ingår inte.'
 ];

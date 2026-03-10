@@ -26,16 +26,16 @@ export const Hero = () => {
             </div>
             
             <h1 className="text-4xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
-              Certifierad Kontrollansvarig och{' '}
-              <span className="text-gradient">BAS U/P – Västernorrland</span>
+              Bygglov och slutbesked utan strul – certifierad{' '}
+              <span className="text-gradient">Kontrollansvarig & BAS i Västernorrland</span>
             </h1>
             
             <p className="text-xl text-muted-foreground mb-4 leading-relaxed">
-              Kontrollansvarig & Byggarbetsmiljösamordnare BAS-P / BAS-U
+              Jag hjälper dig med kontrollansvar, BAS P/BAS U och kontakten med kommunen så att ditt projekt går igenom smidigt och i tid.
             </p>
             
             <p className="text-lg text-muted-foreground mb-8">
-              Verksam i Sundsvall, Härnösand, Sollefteå, Kramfors, Timrå och hela Västernorrland
+              Verksam i Sundsvall, Härnösand, Sollefteå, Kramfors, Timrå och hela Västernorrland – över 20 års erfarenhet från byggsektorn
             </p>
             
             <div className="space-y-4 mb-8">
@@ -67,16 +67,15 @@ export const Hero = () => {
                 size="lg"
                 className="earth-gradient text-white hover:opacity-90 text-lg px-8 py-6"
               >
-                Kontakta mig
+                Boka kostnadsfri genomgång
               </Button>
               <Button 
-                onClick={openWhatsApp}
+                onClick={scrollToContact}
                 variant="outline"
                 size="lg"
                 className="border-accent text-accent hover:bg-accent hover:text-white text-lg px-8 py-6"
               >
-                <MessageCircle className="w-5 h-5 mr-2" />
-                WhatsApp
+                Få fast prisförslag
               </Button>
             </div>
           </div>

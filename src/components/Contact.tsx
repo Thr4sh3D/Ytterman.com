@@ -122,7 +122,7 @@ export const Contact = ({ selectedPackage = '', prefilledMessage = '' }: Contact
             Kontakta mig tidigt – det lönar sig
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Många hör av sig för sent i processen och får onödiga problem. Ju tidigare du tar kontakt, desto smidigare blir hela projektet. <strong>Boka en kostnadsfri konsultation redan idag</strong> – så ser vi till att du får rätt start från början.
+            Många hör av sig för sent i processen och får onödiga problem och merkostnader. Ju tidigare du tar kontakt, desto smidigare blir hela projektet. <strong>Boka en kostnadsfri konsultation redan idag</strong> – så ser vi till att du får rätt start från början.
           </p>
         </div>
 
@@ -154,20 +154,25 @@ export const Contact = ({ selectedPackage = '', prefilledMessage = '' }: Contact
             </div>
 
             <div className="mt-8 p-6 bg-white rounded-lg">
-              <h4 className="font-semibold text-foreground mb-4">Kostnadsfri konsultation</h4>
+              <h4 className="font-semibold text-foreground mb-4">Kostnadsfri konsultation – inga förbindelser</h4>
               <p className="text-muted-foreground">
                 Jag erbjuder alltid en kostnadsfri första konsultation där vi går igenom 
-                ditt projekt och diskuterar vilka tjänster som behövs. Ring eller skicka 
-                ett meddelande så bokar vi ett möte.
+                ditt projekt och diskuterar vilka tjänster som behövs. Du får ett fast 
+                prisförslag utan förbindelser. Ring eller skicka ett meddelande så 
+                bokar vi ett möte redan idag.
               </p>
             </div>
           </div>
 
           {/* Contact Form */}
           <div className="bg-white rounded-2xl p-8 shadow-lg">
-            <h3 className="text-2xl font-bold text-foreground mb-6">
+            <h3 className="text-2xl font-bold text-foreground mb-4">
               Skicka meddelande
             </h3>
+            
+            <p className="text-muted-foreground mb-6">
+              Fyll i formuläret så återkommer jag vanligtvis inom 24 timmar med förslag på upplägg och fast prisförslag för just ditt projekt.
+            </p>
             
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-4">

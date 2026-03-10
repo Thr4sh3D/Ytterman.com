@@ -80,12 +80,37 @@ export const PricingPackages = () => {
                 className={`w-full ${pkg.popular ? 'earth-gradient text-white' : 'bg-slate-900 text-white hover:bg-slate-800'}`}
               >
                 <a href="/kontakt" aria-label={`Be om offert för ${pkg.name}`}>
-                  Be om offert
+                  {pkg.popular ? 'Starta med kostnadsfri konsultation' : 'Be om fast pris för detta paket'}
                 </a>
               </Button>
             </div>
           ))}
         </div>
+
+        {/* Social Proof / Testimonials - Prepared for future testimonials */}
+        {/* 
+        <div className="max-w-6xl mx-auto mb-16">
+          <div className="text-center mb-8">
+            <p className="text-lg font-semibold text-slate-900">
+              Erfaren Kontrollansvarig och BAS med 20+ års branscherfarenhet i Västernorrland
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-6">
+            {testimonials.map((testimonial, index) => (
+              <div key={index} className="bg-white rounded-xl p-6 shadow-md border border-slate-200">
+                <div className="flex gap-1 mb-3">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 text-amber-500 fill-current" />
+                  ))}
+                </div>
+                <p className="text-slate-700 mb-4 italic">"{testimonial.quote}"</p>
+                <p className="text-sm font-semibold text-slate-900">{testimonial.author}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        */}
 
         {/* Example Prices per Action Type */}
         <div className="max-w-5xl mx-auto mb-16">
@@ -132,7 +157,7 @@ export const PricingPackages = () => {
               <AlertCircle className="w-6 h-6 text-amber-600 flex-shrink-0 mt-1" />
               <div>
                 <h4 className="text-xl font-bold text-slate-900 mb-4">
-                  Viktigt om underlag, kompletteringar och omfattning
+                  Trygghetsgaranti – Jag finns med dig hela vägen
                 </h4>
                 <ul className="space-y-3">
                   {disclaimerPoints.map((point, index) => (
@@ -150,10 +175,10 @@ export const PricingPackages = () => {
         {/* CTA Section */}
         <div className="text-center">
           <h3 className="text-2xl font-bold text-slate-900 mb-4">
-            Redo att starta ditt projekt?
+            Klart att starta? Hör av dig idag
           </h3>
           <p className="text-slate-700 mb-8 max-w-2xl mx-auto">
-            Kontakta oss för en kostnadsfri konsultation och få en skräddarsydd offert inom 24 timmar.
+            Ju tidigare du tar kontakt, desto smidigare blir ditt projekt. Kostnadsfri konsultation och fast prisförslag inom 24 timmar.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button 
@@ -161,9 +186,9 @@ export const PricingPackages = () => {
               size="lg"
               className="earth-gradient text-white hover:opacity-90"
             >
-              <a href="/kontakt" aria-label="Be om offert">
+              <a href="/kontakt" aria-label="Boka kostnadsfri genomgång">
                 <Mail className="w-5 h-5 mr-2" />
-                Be om offert
+                Boka kostnadsfri genomgång
               </a>
             </Button>
             <Button 

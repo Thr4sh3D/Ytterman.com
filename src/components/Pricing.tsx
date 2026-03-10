@@ -14,13 +14,14 @@ export const Pricing = ({ onPackageSelect }: PricingProps) => {
             id: 'kontrollansvarig',
             name: 'Grundpaket – Lagkrav KA',
             price: 'Från 19,999 SEK',
-            description: 'Du uppfyller lagkraven – inget mer, inget mindre',
+            description: 'Du uppfyller lagkraven och får ditt projekt godkänt – snabbt och professionellt.',
             features: [
                 'Kontrollplan enligt PBL (skräddarsydd)',
                 'Teknisk kontroll enligt plan',
                 'Obligatoriska besiktningar',
                 'Slutbevis när allt är klart',
-                'Grundläggande dokumentation'
+                'Grundläggande dokumentation',
+                '✓ Så här går det till: 1) Handlingar in 2) Fast pris inom 24h 3) Guidning till slutbesked'
             ],
             popular: false,
             note: 'Perfekt för mindre projekt där du redan har koll på byggprocessen'
@@ -29,14 +30,15 @@ export const Pricing = ({ onPackageSelect }: PricingProps) => {
             id: 'ka-bas-paket',
             name: 'Pluspaket – Trygg KA',
             price: 'Från 29,990 SEK',
-            description: 'Mest populära paketet – trygghet genom hela projektet',
+            description: 'Du slipper stress och oro – jag finns med dig hela vägen och löser problem innan de blir dyra.',
             features: [
                 'Allt i Grundpaket +',
                 'BAS-P (Projektering) och BAS-U (Utförande)',
                 'Löpande rådgivning under hela projektet',
                 'Snabb återkoppling via telefon & WhatsApp',
                 'Hjälp med avvikelsehantering',
-                'Komplett dokumentation för framtida behov'
+                'Komplett dokumentation för framtida behov',
+                '✓ Så här går det till: 1) Projektgenomgång 2) Fast pris 3) Löpande stöd till slutbesked'
             ],
             popular: true,
             note: 'Rekommenderas för privatpersoner och mindre BRF-projekt'
@@ -45,14 +47,15 @@ export const Pricing = ({ onPackageSelect }: PricingProps) => {
             id: 'brf-stora-projekt',
             name: 'Premium – Projektstöd',
             price: 'Offert på förfrågan',
-            description: 'Full service – du slipper allt krångel',
+            description: 'Allt samlat i en hand – du slipper allt krångel medan projektet rinner på utan stopp.',
             features: [
                 'Allt i Pluspaket +',
                 'Dedikerad projektansvarig (jag)',
                 'Löpande möten med projektgruppen',
                 'Koordinering med kommun & myndigheter',
                 'Hjälp med upphandling av entreprenörer',
-                'Statusrapporter till styrelse/byggherre'
+                'Statusrapporter till styrelse/byggherre',
+                '✓ Så här går det till: 1) Helhetsbild 2) Fast offert 3) Total projektstöd'
             ],
             popular: false,
             note: 'För större BRF-projekt, kommersiella fastigheter eller komplexa projekt'
@@ -68,10 +71,10 @@ export const Pricing = ({ onPackageSelect }: PricingProps) => {
             <div className="container mx-auto px-4">
                 <div className="text-center mb-16">
                     <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-6">
-                        Välj rätt nivå för ditt projekt
+                        Välj rätt nivå för ditt projekt – tryggt och transparent
                     </h2>
                     <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                        Transparenta priser och tydliga paket. Du väljer själv hur mycket trygghet och stöd du vill ha – från grundläggande lagkrav till full projektstöd.
+                        Fasta priser och tydliga paket. Du väljer själv hur mycket trygghet och stöd du vill ha – från grundläggande lagkrav till fullständigt projektstöd. Inga dolda kostnader.
                     </p>
                 </div>
 
@@ -129,7 +132,7 @@ export const Pricing = ({ onPackageSelect }: PricingProps) => {
                                 }`}
                                 variant={pkg.popular ? 'default' : 'outline'}
                             >
-                                Få en offert
+                                {pkg.popular ? 'Starta med kostnadsfri konsultation' : 'Be om fast pris'}
                             </Button>
                         </div>
                     ))}
@@ -137,7 +140,7 @@ export const Pricing = ({ onPackageSelect }: PricingProps) => {
 
                 <div className="text-center mt-12">
                     <p className="text-muted-foreground max-w-2xl mx-auto">
-                        <strong>Transparenta priser, inga dolda kostnader.</strong> Alla priser är inklusive moms. Kontakta mig för en kostnadsfri konsultation och skräddarsydd offert för ditt projekt.
+                        <strong>Fasta priser, inga dolda kostnader.</strong> Alla priser inkluderar moms. Kontakta mig för en kostnadsfri konsultation – du får ett fast prisförslag inom 24 timmar som är anpassat för just ditt projekt.
                     </p>
                 </div>
             </div>
