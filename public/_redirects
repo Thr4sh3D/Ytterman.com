@@ -1,9 +1,11 @@
-# Redirect www to non-www
-https://www.ytterman.com/* https://ytterman.com/:splat 301!
+# Redirect http://www to https (no www) - handle both http and www at once
+http://www.ytterman.com/* https://ytterman.com/:splat 301!
 
 # Redirect http to https
 http://ytterman.com/* https://ytterman.com/:splat 301!
-http://www.ytterman.com/* https://ytterman.com/:splat 301!
+
+# Redirect www to non-www (https)
+https://www.ytterman.com/* https://ytterman.com/:splat 301!
 
 # SPA fallback - serve index.html for all routes (must be last)
 /*    /index.html   200

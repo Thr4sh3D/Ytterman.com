@@ -4,26 +4,35 @@
   publish = "dist"
   command = "npm run build"
 
+# Build settings
+[build.environment]
+  NODE_VERSION = "20"
+
 # Redirect rules for URL canonicalization
-[[redirects]]
-  from = "https://www.ytterman.com/*"
-  to = "https://ytterman.com/:splat"
-  status = 301
-  force = true
+# Order matters: most specific first
 
-[[redirects]]
-  from = "http://ytterman.com/*"
-  to = "https://ytterman.com/:splat"
-  status = 301
-  force = true
-
+# Redirect http://www to https (no www)
 [[redirects]]
   from = "http://www.ytterman.com/*"
   to = "https://ytterman.com/:splat"
   status = 301
   force = true
 
-# SPA fallback
+# Redirect http to https  
+[[redirects]]
+  from = "http://ytterman.com/*"
+  to = "https://ytterman.com/:splat"
+  status = 301
+  force = true
+
+# Redirect https://www to https (no www)
+[[redirects]]
+  from = "https://www.ytterman.com/*"
+  to = "https://ytterman.com/:splat"
+  status = 301
+  force = true
+
+# SPA fallback - must be last
 [[redirects]]
   from = "/*"
   to = "/index.html"
@@ -38,6 +47,8 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+    # Help search engines understand canonical URLs
+    Link = '<https://ytterman.com>; rel="canonical"'
 
 [[headers]]
   for = "/assets/*"

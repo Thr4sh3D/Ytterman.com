@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { HelmetProvider } from 'react-helmet-async';
 import { Toaster } from '@/components/ui/sonner';
 import { ScrollToTop } from '@/components/ScrollToTop';
+import { GoogleSearchConsole } from '@/components/GoogleSearchConsole';
 import { lazy, Suspense } from 'react';
 
 // Critical Pages (eager load for fast initial render)
@@ -65,6 +66,7 @@ function App() {
         <HelmetProvider>
             <QueryClientProvider client={queryClient}>
                 <Router>
+                    <GoogleSearchConsole />
                     <ScrollToTop />
                     <div className="min-h-screen">
                         <Suspense fallback={
