@@ -47,8 +47,13 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "geolocation=(), microphone=(), camera=()"
-    # Help search engines understand canonical URLs
-    Link = '<https://ytterman.com>; rel="canonical"'
+
+# Headers for HTML pages - optimize for search engine crawlers
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    X-Robots-Tag = "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+    Cache-Control = "public, max-age=0, must-revalidate"
 
 [[headers]]
   for = "/assets/*"
