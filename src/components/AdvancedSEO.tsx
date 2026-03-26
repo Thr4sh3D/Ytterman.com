@@ -39,7 +39,7 @@ export const AdvancedSEO = ({
   title, 
   description, 
   keywords, 
-  url, 
+  url: rawUrl, 
   image = "/og-image.png",
   type = "website",
   organization = false,
@@ -48,6 +48,8 @@ export const AdvancedSEO = ({
   faq = [],
   reviews = []
 }: AdvancedSEOProps) => {
+  // Ensure trailing slash for GitHub Pages compatibility (avoids 301 redirects)
+  const url = rawUrl && !rawUrl.endsWith('/') && rawUrl !== 'https://ytterman.com' ? rawUrl + '/' : rawUrl;
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",

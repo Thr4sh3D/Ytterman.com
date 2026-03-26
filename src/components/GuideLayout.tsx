@@ -31,10 +31,12 @@ export const GuideLayout = ({
   children,
   canonicalPath
 }: GuideLayoutProps) => {
+  // Ensure trailing slash for GitHub Pages compatibility
+  const trailingCanonical = canonicalPath && !canonicalPath.endsWith('/') ? canonicalPath + '/' : canonicalPath;
   const breadcrumbs = [
     { name: 'Hem', url: 'https://ytterman.com' },
-    { name: 'Guider', url: 'https://ytterman.com/guider' },
-    { name: title, url: canonicalPath ? `https://ytterman.com${canonicalPath}` : '' }
+    { name: 'Guider', url: 'https://ytterman.com/guider/' },
+    { name: title, url: trailingCanonical ? `https://ytterman.com${trailingCanonical}` : '' }
   ];
 
   return (
@@ -43,7 +45,7 @@ export const GuideLayout = ({
         title={seoTitle}
         description={seoDescription}
         keywords={keywords}
-        url={canonicalPath ? `https://ytterman.com${canonicalPath}` : 'https://ytterman.com/guider'}
+        url={trailingCanonical ? `https://ytterman.com${trailingCanonical}` : 'https://ytterman.com/guider/'}
         type="article"
         organization={true}
         breadcrumbs={breadcrumbs}

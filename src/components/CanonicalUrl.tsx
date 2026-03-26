@@ -15,7 +15,12 @@ export const CanonicalUrl = ({ path, fullUrl }: CanonicalUrlProps) => {
   const baseDomain = "https://ytterman.com";
   
   // Use fullUrl if provided, otherwise construct from path
-  const canonicalUrl = fullUrl || (path ? `${baseDomain}${path.startsWith('/') ? path : `/${path}`}` : baseDomain);
+  let canonicalUrl = fullUrl || (path ? `${baseDomain}${path.startsWith('/') ? path : `/${path}`}` : baseDomain);
+
+  // Ensure trailing slash for GitHub Pages compatibility (avoids 301 redirects)
+  if (canonicalUrl !== baseDomain && !canonicalUrl.endsWith('/')) {
+    canonicalUrl += '/';
+  }
 
   return (
     <Helmet>

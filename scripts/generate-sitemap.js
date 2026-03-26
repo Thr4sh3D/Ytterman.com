@@ -69,7 +69,9 @@ function generateSitemap(routes) {
 
   routes.forEach(route => {
     const { priority, changefreq } = getRoutePriority(route);
-    const url = route === '/' ? DOMAIN + '/' : DOMAIN + route;
+    // Root URL keeps its trailing slash; all other routes get a trailing slash
+    // to match GitHub Pages' directory-based serving (avoids 301 redirects)
+    const url = route === '/' ? DOMAIN + '/' : DOMAIN + route + '/';
     
     xml += '  <url>\n';
     xml += `    <loc>${url}</loc>\n`;
