@@ -90,7 +90,7 @@ const FAQPage = () => {
           </section>
 
           {/* General FAQ */}
-          <div className="faq-section">
+          <section className="faq-section" aria-label="Vanliga frågor">
           <section className="py-16 bg-white">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto">
@@ -185,7 +185,7 @@ const FAQPage = () => {
               </div>
             </div>
           </section>
-          </div>
+          </section>
 
           {/* CTA Section */}
           <section className="py-20 bg-slate-900 text-white">

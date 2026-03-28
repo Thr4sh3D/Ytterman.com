@@ -73,7 +73,7 @@ const Index = () => {
       <div className="min-h-screen">
         <Header />
         <main>
-          <div className="hero-section"><Hero /></div>
+          <section className="hero-section" aria-label="Huvudinnehåll"><Hero /></section>
           <Services onServiceSelect={() => {}} />
           <PricingPackages />
           <About />
@@ -102,7 +102,7 @@ const Index = () => {
               </Button>
             </div>
           </section>
-          <div className="faq-section"><FAQ items={homeFaq} /></div>
+          <section className="faq-section" aria-label="Vanliga frågor"><FAQ items={homeFaq} /></section>
           <Contact selectedPackage="" prefilledMessage="" />
         </main>
         <Footer />
