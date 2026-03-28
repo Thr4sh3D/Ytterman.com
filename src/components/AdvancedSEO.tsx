@@ -89,6 +89,10 @@ export const AdvancedSEO = ({
       },
       {
         "@type": "City",
+        "name": "Timrå"
+      },
+      {
+        "@type": "City",
         "name": "Örnsköldsvik"
       }
     ],
