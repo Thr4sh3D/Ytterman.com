@@ -1,5 +1,7 @@
-import { SEO } from "@/components/SEO";
+import { AdvancedSEO } from '@/components/AdvancedSEO';
 import { CanonicalUrl } from "@/components/CanonicalUrl";
+import { Breadcrumbs } from '@/components/Breadcrumbs';
+import { Helmet } from 'react-helmet-async';
 import { FAQ } from "@/components/FAQ";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -53,6 +55,11 @@ const BasPPage = () => {
     }
   ];
 
+  const breadcrumbs = [
+    { name: 'Hem', url: 'https://ytterman.com' },
+    { name: 'BAS-P', url: 'https://ytterman.com/bas-p' }
+  ];
+
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -83,22 +90,31 @@ const BasPPage = () => {
 
   return (
     <>
-      <SEO
+      <AdvancedSEO
         title="BAS-P i Västernorrland - Byggarbetsmiljösamordnare Projektering | Ytterman"
         description="Behöver du BAS-P? Certifierad byggarbetsmiljösamordnare under projektering med 20+ års erfarenhet i Sundsvall, Härnösand, Sollefteå, Timrå, Kramfors."
         keywords="BAS-P, byggarbetsmiljösamordnare, arbetsmiljöplan, BAS-P Sundsvall, BAS-P Härnösand, BAS-P Västernorrland, arbetsmiljö byggprojekt"
         url="https://ytterman.com/bas-p"
-        type="webpage"
+        type="website"
+        breadcrumbs={breadcrumbs}
+        faq={basPFAQ}
       />
       
       <CanonicalUrl path="/bas-p" />
       
-      <script type="application/ld+json">
-        {JSON.stringify(structuredData)}
-      </script>
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
+      </Helmet>
 
       <div className="min-h-screen">
         <Header />
+        <section className="py-4 bg-white border-b">
+          <div className="container mx-auto px-4">
+            <Breadcrumbs items={[{ label: 'BAS-P', href: '/bas-p' }]} />
+          </div>
+        </section>
         
         <ServiceHero
           badge="Certifierad BAS-P"

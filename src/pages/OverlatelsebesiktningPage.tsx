@@ -1,5 +1,7 @@
-import { SEO } from "@/components/SEO";
+import { AdvancedSEO } from '@/components/AdvancedSEO';
 import { CanonicalUrl } from "@/components/CanonicalUrl";
+import { Breadcrumbs } from '@/components/Breadcrumbs';
+import { Helmet } from 'react-helmet-async';
 import { FAQ } from "@/components/FAQ";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -58,6 +60,11 @@ const OverlatelsebesiktningPage = () => {
     }
   ];
 
+  const breadcrumbs = [
+    { name: 'Hem', url: 'https://ytterman.com' },
+    { name: 'Överlåtelsebesiktning', url: 'https://ytterman.com/overlatelsebesiktning' }
+  ];
+
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -88,21 +95,30 @@ const OverlatelsebesiktningPage = () => {
 
   return (
     <>
-      <SEO
-        title="Överlåtelsebesiktning Västernorrland - Boka Online | Ytterman"
+      <AdvancedSEO
+        title="Överlåtelsebesiktning Sundsvall & Härnösand | Ytterman"
         description="Behöver du överlåtelsebesiktning? 20+ års erfarenhet i byggbranschen. Sundsvall, Härnösand, Sollefteå, Timrå, Kramfors. Boka online eller kontakta oss."
-        keywords="överlåtelsebesiktning, besiktning, fastighetbesiktning, överlåtelsebesiktning Sundsvall, överlåtelsebesiktning Härnösand, Västernorrland"
+        keywords="överlåtelsebesiktning, besiktning, fastighetbesiktning, besiktningsman Sundsvall, överlåtelsebesiktning Härnösand, Västernorrland"
         url="https://ytterman.com/overlatelsebesiktning"
-        type="webpage"
+        type="website"
+        breadcrumbs={breadcrumbs}
+        faq={overlatelsebesiktningFAQ}
       />
       
       <CanonicalUrl path="/overlatelsebesiktning" />
       
-      <script type="application/ld+json">
-        {JSON.stringify(structuredData)}
-      </script>
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
+      </Helmet>
 
       <Header />
+      <section className="py-4 bg-white border-b">
+        <div className="container mx-auto px-4">
+          <Breadcrumbs items={[{ label: 'Överlåtelsebesiktning', href: '/overlatelsebesiktning' }]} />
+        </div>
+      </section>
       
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-amber-50/30 to-slate-50">
         <ServiceHero

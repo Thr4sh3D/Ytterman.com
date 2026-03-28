@@ -1,5 +1,7 @@
-import { SEO } from "@/components/SEO";
+import { AdvancedSEO } from '@/components/AdvancedSEO';
 import { CanonicalUrl } from "@/components/CanonicalUrl";
+import { Breadcrumbs } from '@/components/Breadcrumbs';
+import { Helmet } from 'react-helmet-async';
 import { FAQ } from "@/components/FAQ";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -53,6 +55,11 @@ const KontrollansvarigPage = () => {
     }
   ];
 
+  const breadcrumbs = [
+    { name: 'Hem', url: 'https://ytterman.com' },
+    { name: 'Kontrollansvarig', url: 'https://ytterman.com/kontrollansvarig' }
+  ];
+
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -83,22 +90,31 @@ const KontrollansvarigPage = () => {
 
   return (
     <>
-      <SEO
+      <AdvancedSEO
         title="Kontrollansvarig i Västernorrland - Certifierad & Erfaren | Ytterman"
         description="Behöver du en kontrollansvarig? Certifierad kontrollansvarig med 20+ års erfarenhet i Sundsvall, Härnösand, Sollefteå, Timrå, Kramfors. Fast pris, trygg process."
         keywords="kontrollansvarig, kontrollansvarig Sundsvall, kontrollansvarig Härnösand, kontrollansvarig Västernorrland, byggkontroll, slutbevis, kontrollplan, PBL"
         url="https://ytterman.com/kontrollansvarig"
-        type="webpage"
+        type="website"
+        breadcrumbs={breadcrumbs}
+        faq={kontrollansvarigFAQ}
       />
       
       <CanonicalUrl path="/kontrollansvarig" />
       
-      <script type="application/ld+json">
-        {JSON.stringify(structuredData)}
-      </script>
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
+      </Helmet>
 
       <div className="min-h-screen">
         <Header />
+        <section className="py-4 bg-white border-b">
+          <div className="container mx-auto px-4">
+            <Breadcrumbs items={[{ label: 'Kontrollansvarig', href: '/kontrollansvarig' }]} />
+          </div>
+        </section>
         
         <ServiceHero
           badge="Certifierad Kontrollansvarig"
