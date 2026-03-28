@@ -10,26 +10,35 @@ import { AdvancedSEO } from '@/components/AdvancedSEO';
 import { CanonicalUrl } from '@/components/CanonicalUrl';
 import { JsonLdSchema } from '@/components/JsonLdSchema';
 import { PricingPackages } from '@/components/PricingPackages';
+import { Helmet } from 'react-helmet-async';
 import { Button } from '@/components/ui/button';
 import { Award, Shield } from 'lucide-react';
 
 const Index = () => {
   const homeFaq = [
     {
-      question: "Vilka tjänster erbjuder Ytterman?",
-      answer: "Vi erbjuder Kontrollansvarig (KA), BAS-P, BAS-U, energiberäkning online, bygglovshandlingar, energideklaration och överlåtelsebesiktning i Västernorrland."
+      question: "Vad kostar en kontrollansvarig?",
+      answer: "Priset beror på projekttyp. KA Bas för en tillbyggnad kostar från 29 500 kr inkl. moms, ombyggnation från 32 500 kr och nybyggnad från 34 500 kr. Kontakta oss för en offert anpassad till ditt projekt."
     },
     {
-      question: "Var är ni verksamma?",
-      answer: "Vi är verksamma i hela Västernorrland med fokus på Sundsvall, Härnösand, Sollefteå, Timrå och Kramfors."
+      question: "Behöver jag en kontrollansvarig för mitt bygglov?",
+      answer: "Ja, enligt Plan- och bygglagen (PBL) krävs en certifierad kontrollansvarig för de flesta bygglovspliktiga åtgärder. Undantag kan gälla för enklare åtgärder som attefallshus."
     },
     {
-      question: "Hur lång tid tar det att få en offert?",
-      answer: "Du får vanligtvis en offert inom 24 timmar efter att du kontaktat oss."
+      question: "Vad är skillnaden mellan BAS-P och BAS-U?",
+      answer: "BAS-P (Byggarbetsmiljösamordnare för Projektering) ansvarar för arbetsmiljöfrågor under projekteringsfasen. BAS-U (Utförande) ansvarar under själva byggskedet. Båda rollerna krävs enligt Arbetsmiljöverkets föreskrifter."
     },
     {
-      question: "Vad kostar era tjänster?",
-      answer: "Priserna varierar beroende på projektets omfattning. Kontrollansvarig från 19,999 kr, BAS-P från 15,000 kr, BAS-U från 20,000 kr, energiberäkning online 2,999 kr. Kontakta oss för en kostnadsfri konsultation och fast prisoffert."
+      question: "Vilka områden täcker Ytterman?",
+      answer: "Vi verkar i hela Västernorrland — Härnösand, Sundsvall, Sollefteå, Kramfors och Örnsköldsvik. Vi kan även ta uppdrag i angränsande kommuner."
+    },
+    {
+      question: "Hur snabbt kan jag få en kontrollansvarig?",
+      answer: "Vanligtvis kan vi starta inom en vecka efter kontakt. Fyll i kontaktformuläret så återkommer vi inom 24 timmar med förslag på upplägg och pris."
+    },
+    {
+      question: "Vad gör en besiktningsman vid en överlåtelsebesiktning?",
+      answer: "En besiktningsman gör en okulär och teknisk genomgång av fastigheten inför en försäljning. Syftet är att identifiera byggtekniska brister, fuktskador och andra fel som kan påverka köpbeslutet."
     }
   ];
 
@@ -47,11 +56,24 @@ const Index = () => {
       
       <CanonicalUrl path="/" />
       <JsonLdSchema type="ProfessionalService" />
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "Kontrollansvarig Västernorrland",
+            "speakable": {
+              "@type": "SpeakableSpecification",
+              "cssSelector": [".hero-section", ".faq-section"]
+            }
+          })}
+        </script>
+      </Helmet>
       
       <div className="min-h-screen">
         <Header />
         <main>
-          <Hero />
+          <div className="hero-section"><Hero /></div>
           <Services onServiceSelect={() => {}} />
           <PricingPackages />
           <About />
@@ -80,7 +102,7 @@ const Index = () => {
               </Button>
             </div>
           </section>
-          <FAQ items={homeFaq} />
+          <div className="faq-section"><FAQ items={homeFaq} /></div>
           <Contact selectedPackage="" prefilledMessage="" />
         </main>
         <Footer />
