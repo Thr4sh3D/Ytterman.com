@@ -22,6 +22,13 @@ const OverlatelsebesiktningPage = lazy(() => import('@/pages/Overlatelsebesiktni
 const EnergiberakningOnlinePage = lazy(() => import('@/pages/EnergiberakningOnlinePage'));
 const BygglovshandlingarPage = lazy(() => import('@/pages/BygglovshandlingarPage'));
 
+// City-specific Kontrollansvarig Pages
+const KontrollansvarigSundsvall = lazy(() => import('@/pages/KontrollansvarigSundsvall'));
+const KontrollansvarigHarnosand = lazy(() => import('@/pages/KontrollansvarigHarnosand'));
+const KontrollansvarigTimra = lazy(() => import('@/pages/KontrollansvarigTimra'));
+const KontrollansvarigKramfors = lazy(() => import('@/pages/KontrollansvarigKramfors'));
+const KontrollansvarigSolleftea = lazy(() => import('@/pages/KontrollansvarigSolleftea'));
+
 // Lazy-loaded Info Pages
 const GuidesPage = lazy(() => import('@/pages/GuidesPage'));
 const FAQPage = lazy(() => import('@/pages/FAQPage'));
@@ -97,6 +104,13 @@ function App() {
                             <Route path="/overlatelsebesiktning" element={<OverlatelsebesiktningPage />} />
                             <Route path="/energiberakning-online" element={<EnergiberakningOnlinePage />} />
                             <Route path="/bygglovshandlingar" element={<BygglovshandlingarPage />} />
+                            
+                            {/* City-specific Kontrollansvarig Pages */}
+                            <Route path="/kontrollansvarig-sundsvall" element={<KontrollansvarigSundsvall />} />
+                            <Route path="/kontrollansvarig-harnosand" element={<KontrollansvarigHarnosand />} />
+                            <Route path="/kontrollansvarig-timra" element={<KontrollansvarigTimra />} />
+                            <Route path="/kontrollansvarig-kramfors" element={<KontrollansvarigKramfors />} />
+                            <Route path="/kontrollansvarig-solleftea" element={<KontrollansvarigSolleftea />} />
                             
                             {/* Guides */}
                             <Route path="/guider" element={<GuidesPage />} />

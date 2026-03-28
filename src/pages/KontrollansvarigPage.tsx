@@ -92,8 +92,8 @@ const KontrollansvarigPage = () => {
     <>
       <AdvancedSEO
         title="Kontrollansvarig i Västernorrland - Certifierad & Erfaren | Ytterman"
-        description="Behöver du en kontrollansvarig? Certifierad kontrollansvarig med 20+ års erfarenhet i Sundsvall, Härnösand, Sollefteå, Timrå, Kramfors. Fast pris, trygg process."
-        keywords="kontrollansvarig, kontrollansvarig Sundsvall, kontrollansvarig Härnösand, kontrollansvarig Västernorrland, byggkontroll, slutbevis, kontrollplan, PBL"
+        description="Behöver du en kontrollansvarig? Certifierad kontrollansvarig med 20+ års erfarenhet i Sundsvall, Härnösand, Timrå, Kramfors och Sollefteå. Fast pris, trygg process."
+        keywords="kontrollansvarig, kontrollansvarig Sundsvall, kontrollansvarig Härnösand, kontrollansvarig Timrå, kontrollansvarig Kramfors, kontrollansvarig Sollefteå, kontrollansvarig Västernorrland, byggkontroll, slutbevis, kontrollplan, PBL"
         url="https://ytterman.com/kontrollansvarig"
         type="website"
         breadcrumbs={breadcrumbs}
@@ -218,6 +218,55 @@ const KontrollansvarigPage = () => {
                   <p className="text-gray-600">Slutbesiktning och utfärdande av slutbevis när allt är klart.</p>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Local City Pages */}
+        <section className="py-16 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold text-center text-gray-900 mb-4">
+              Kontrollansvarig i din kommun
+            </h2>
+            <p className="text-lg text-gray-600 text-center mb-8">
+              Vi erbjuder kontrollansvarig tjänster i hela Västernorrland. Läs mer om vår lokala närvaro i din kommun:
+            </p>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <Link to="/kontrollansvarig-sundsvall" className="flex items-center justify-between p-5 bg-white rounded-lg border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all group">
+                <div>
+                  <span className="font-semibold text-gray-900 group-hover:text-blue-600">Kontrollansvarig Sundsvall</span>
+                  <span className="block text-sm text-gray-500">Hembas – direkt tillgänglig</span>
+                </div>
+                <MapPin className="h-5 w-5 text-gray-400 group-hover:text-blue-600" />
+              </Link>
+              <Link to="/kontrollansvarig-harnosand" className="flex items-center justify-between p-5 bg-white rounded-lg border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all group">
+                <div>
+                  <span className="font-semibold text-gray-900 group-hover:text-blue-600">Kontrollansvarig Härnösand</span>
+                  <span className="block text-sm text-gray-500">30 min från Sundsvall</span>
+                </div>
+                <MapPin className="h-5 w-5 text-gray-400 group-hover:text-blue-600" />
+              </Link>
+              <Link to="/kontrollansvarig-timra" className="flex items-center justify-between p-5 bg-white rounded-lg border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all group">
+                <div>
+                  <span className="font-semibold text-gray-900 group-hover:text-blue-600">Kontrollansvarig Timrå</span>
+                  <span className="block text-sm text-gray-500">20 min från Sundsvall</span>
+                </div>
+                <MapPin className="h-5 w-5 text-gray-400 group-hover:text-blue-600" />
+              </Link>
+              <Link to="/kontrollansvarig-kramfors" className="flex items-center justify-between p-5 bg-white rounded-lg border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all group">
+                <div>
+                  <span className="font-semibold text-gray-900 group-hover:text-blue-600">Kontrollansvarig Kramfors</span>
+                  <span className="block text-sm text-gray-500">40 min från Sundsvall</span>
+                </div>
+                <MapPin className="h-5 w-5 text-gray-400 group-hover:text-blue-600" />
+              </Link>
+              <Link to="/kontrollansvarig-solleftea" className="flex items-center justify-between p-5 bg-white rounded-lg border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all group">
+                <div>
+                  <span className="font-semibold text-gray-900 group-hover:text-blue-600">Kontrollansvarig Sollefteå</span>
+                  <span className="block text-sm text-gray-500">45 min från Sundsvall</span>
+                </div>
+                <MapPin className="h-5 w-5 text-gray-400 group-hover:text-blue-600" />
+              </Link>
             </div>
           </div>
         </section>

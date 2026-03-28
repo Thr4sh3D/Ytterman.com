@@ -27,14 +27,16 @@ export const seoKeywords = {
   primary: [
     'kontrollansvarig Västernorrland',
     'kontrollansvarig Sundsvall',
-    'kontrollansvarig Härnösand', 
+    'kontrollansvarig Härnösand',
+    'kontrollansvarig Timrå',
+    'kontrollansvarig Kramfors',
+    'kontrollansvarig Sollefteå',
     'BAS-P Sundsvall',
     'BAS-P Västernorrland',
     'BAS-U Härnösand',
     'BAS-U Sollefteå',
     'byggkontroll Västernorrland',
     'arbetsmiljösamordnare Timrå',
-    'kontrollansvarig Kramfors',
     'bygglov Sundsvall',
     'bygglov Härnösand'
   ],
@@ -67,8 +69,11 @@ export const seoKeywords = {
     'byggexpert Kramfors'
   ],
   local: [
-    'Sundsvall byggkontroll',
+    'Sundsvall kontrollansvarig',
     'Härnösand kontrollansvarig',
+    'Timrå kontrollansvarig',
+    'Kramfors kontrollansvarig',
+    'Sollefteå kontrollansvarig',
     'Sollefteå BAS-P',
     'Timrå BAS-U',
     'Kramfors bygglov',
