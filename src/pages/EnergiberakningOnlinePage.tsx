@@ -1,6 +1,7 @@
 import React from 'react';
-import { SEO } from "@/components/SEO";
+import { AdvancedSEO } from '@/components/AdvancedSEO';
 import { CanonicalUrl } from "@/components/CanonicalUrl";
+import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -36,19 +37,30 @@ const EnergiberakningOnlinePage = () => {
     "24/7 tillgänglighet - beräkna när det passar dig"
   ];
 
+  const breadcrumbs = [
+    { name: 'Hem', url: 'https://ytterman.com' },
+    { name: 'Energiberäkning Online', url: 'https://ytterman.com/energiberakning-online' }
+  ];
+
   return (
     <>
-      <SEO
+      <AdvancedSEO
         title="Energiberäkning Online Västernorrland - Snabb & Professionell | Ytterman"
         description="Gör din energiberäkning online snabbt och enkelt. Professionell kvalitet till fast pris 2,999 kr. Sundsvall, Härnösand, Sollefteå. Svar inom minuter!"
         keywords="energiberäkning online, energiberäkning bygglov, energiberäkning pris, energiberäkning snabb, energiberäkning Västernorrland, Sundsvall, Härnösand"
         url="https://ytterman.com/energiberakning-online"
-        type="webpage"
+        type="website"
+        breadcrumbs={breadcrumbs}
       />
       
       <CanonicalUrl path="/energiberakning-online" />
 
       <Header />
+      <section className="py-4 bg-white border-b">
+        <div className="container mx-auto px-4">
+          <Breadcrumbs items={[{ label: 'Energiberäkning Online', href: '/energiberakning-online' }]} />
+        </div>
+      </section>
       
       <div className="min-h-screen bg-gradient-to-br from-stone-50 via-blue-50/30 to-stone-50">
 

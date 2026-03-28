@@ -1,5 +1,7 @@
-import { SEO } from "@/components/SEO";
+import { AdvancedSEO } from '@/components/AdvancedSEO';
 import { CanonicalUrl } from "@/components/CanonicalUrl";
+import { Breadcrumbs } from '@/components/Breadcrumbs';
+import { Helmet } from 'react-helmet-async';
 import { FAQ } from "@/components/FAQ";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -66,6 +68,11 @@ const BygglovshandlingarPage = () => {
     }
   ];
 
+  const breadcrumbs = [
+    { name: 'Hem', url: 'https://ytterman.com' },
+    { name: 'Bygglovshandlingar', url: 'https://ytterman.com/bygglovshandlingar' }
+  ];
+
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -96,22 +103,31 @@ const BygglovshandlingarPage = () => {
 
   return (
     <>
-      <SEO
+      <AdvancedSEO
         title="Bygglovshandlingar Västernorrland - Planritningar & Teknisk Beskrivning | Ytterman"
         description="Behöver du bygglovshandlingar? Vi tar fram kompletta handlingar för bygglov: planritningar, fasadritningar, sektioner och energiberäkningar. Från 8,000 kr."
         keywords="bygglovshandlingar, planritningar, bygglov, fasadritningar, teknisk beskrivning, situationsplan, Sundsvall, Härnösand, Västernorrland"
         url="https://ytterman.com/bygglovshandlingar"
-        type="webpage"
+        type="website"
+        breadcrumbs={breadcrumbs}
+        faq={bygglovFAQ}
       />
       
       <CanonicalUrl path="/bygglovshandlingar" />
       
-      <script type="application/ld+json">
-        {JSON.stringify(structuredData)}
-      </script>
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
+      </Helmet>
 
       <div className="min-h-screen">
         <Header />
+        <section className="py-4 bg-white border-b">
+          <div className="container mx-auto px-4">
+            <Breadcrumbs items={[{ label: 'Bygglovshandlingar', href: '/bygglovshandlingar' }]} />
+          </div>
+        </section>
         
         <ServiceHero
           badge="Professionella Handlingar"

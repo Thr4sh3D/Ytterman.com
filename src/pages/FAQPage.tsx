@@ -5,6 +5,7 @@ import { AdvancedSEO } from '@/components/AdvancedSEO';
 import { CanonicalUrl } from '@/components/CanonicalUrl';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { FAQ, faqData } from '@/components/FAQ';
+import { Helmet } from 'react-helmet-async';
 import { Button } from '@/components/ui/button';
 import { HelpCircle } from 'lucide-react';
 
@@ -40,6 +41,19 @@ const FAQPage = () => {
       />
       
       <CanonicalUrl path="/faq" />
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "Vanliga frågor – Kontrollansvarig & BAS Västernorrland",
+            "speakable": {
+              "@type": "SpeakableSpecification",
+              "cssSelector": [".faq-section"]
+            }
+          })}
+        </script>
+      </Helmet>
       
       <div className="min-h-screen">
         <Header />
@@ -76,6 +90,7 @@ const FAQPage = () => {
           </section>
 
           {/* General FAQ */}
+          <div className="faq-section">
           <section className="py-16 bg-white">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto">
@@ -170,6 +185,7 @@ const FAQPage = () => {
               </div>
             </div>
           </section>
+          </div>
 
           {/* CTA Section */}
           <section className="py-20 bg-slate-900 text-white">
