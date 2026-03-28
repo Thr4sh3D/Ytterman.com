@@ -52,33 +52,32 @@ export const AdvancedSEO = ({
   const url = rawUrl && !rawUrl.endsWith('/') && rawUrl !== 'https://ytterman.com' ? rawUrl + '/' : rawUrl;
   const organizationSchema = {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "Ytterman",
+    "@type": "ProfessionalService",
+    "name": "Ytterman – Kontrollansvarig & BAS",
     "alternateName": "Tobias Ytterman",
-    "description": "Certifierad Kontrollansvarig och Byggarbetsmiljösamordnare med över 20 års erfarenhet i byggbranschen i Västernorrland",
+    "description": "Certifierad kontrollansvarig (KA) och BAS-P/BAS-U i Västernorrland. Över 20 års erfarenhet inom byggteknik.",
     "url": "https://ytterman.com",
     "telephone": "+46761118447",
     "email": "tobias@ytterman.com",
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": "Viksjö",
+      "addressLocality": "Härnösand",
       "addressRegion": "Västernorrland",
-      "postalCode": "86010",
       "addressCountry": "SE"
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": "62.3908",
-      "longitude": "17.3069"
+      "latitude": 62.6323,
+      "longitude": 17.9409
     },
     "areaServed": [
       {
         "@type": "City",
-        "name": "Sundsvall"
+        "name": "Härnösand"
       },
       {
-        "@type": "City", 
-        "name": "Härnösand"
+        "@type": "City",
+        "name": "Sundsvall"
       },
       {
         "@type": "City",
@@ -86,13 +85,14 @@ export const AdvancedSEO = ({
       },
       {
         "@type": "City",
-        "name": "Timrå"
+        "name": "Kramfors"
       },
       {
         "@type": "City",
-        "name": "Kramfors"
+        "name": "Örnsköldsvik"
       }
     ],
+    "sameAs": [],
     "serviceType": [
       "Kontrollansvarig enligt PBL",
       "BAS-P (Byggarbetsmiljösamordnare under projektering)",

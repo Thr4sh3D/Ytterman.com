@@ -1,5 +1,7 @@
-import { SEO } from "@/components/SEO";
+import { AdvancedSEO } from '@/components/AdvancedSEO';
 import { CanonicalUrl } from "@/components/CanonicalUrl";
+import { Breadcrumbs } from '@/components/Breadcrumbs';
+import { Helmet } from 'react-helmet-async';
 import { FAQ } from "@/components/FAQ";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -53,6 +55,11 @@ const EnergiDeklarationPage = () => {
     }
   ];
 
+  const breadcrumbs = [
+    { name: 'Hem', url: 'https://ytterman.com' },
+    { name: 'Energideklaration', url: 'https://ytterman.com/energideklaration' }
+  ];
+
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -83,22 +90,31 @@ const EnergiDeklarationPage = () => {
 
   return (
     <>
-      <SEO
+      <AdvancedSEO
         title="Energideklaration i Västernorrland - Certifierad Energiexpert | Ytterman"
         description="Behöver du energideklaration? Certifierad energiexpert med 20+ års erfarenhet i Sundsvall, Härnösand, Sollefteå, Timrå, Kramfors. Snabb handläggning."
         keywords="energideklaration, energideklaration Sundsvall, energideklaration Härnösand, energideklaration Västernorrland, energiklass, energibesiktning"
         url="https://ytterman.com/energideklaration"
-        type="webpage"
+        type="website"
+        breadcrumbs={breadcrumbs}
+        faq={energiDeklarationFAQ}
       />
       
       <CanonicalUrl path="/energideklaration" />
       
-      <script type="application/ld+json">
-        {JSON.stringify(structuredData)}
-      </script>
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
+      </Helmet>
 
       <div className="min-h-screen">
         <Header />
+        <section className="py-4 bg-white border-b">
+          <div className="container mx-auto px-4">
+            <Breadcrumbs items={[{ label: 'Energideklaration', href: '/energideklaration' }]} />
+          </div>
+        </section>
         
         <ServiceHero
           badge="Certifierad Energiexpert"

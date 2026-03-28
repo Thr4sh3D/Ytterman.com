@@ -143,9 +143,9 @@ const OmradenPage = () => {
   return (
     <>
       <AdvancedSEO 
-        title="Kontrollansvarig & BAS-P/U Västernorrland | Sundsvall, Härnösand, Timrå, Kramfors, Sollefteå, Örnsköldsvik"
-        description="Certifierad kontrollansvarig, BAS-P och BAS-U över hela Västernorrland. Lokal expertis i Sundsvall, Härnösand, Timrå, Kramfors, Sollefteå och Örnsköldsvik. Snabb service utan reskostnader. Ring 076-111 84 47!"
-        keywords="kontrollansvarig Sundsvall, BAS-P Sundsvall, BAS-U Härnösand, kontrollansvarig Timrå, BAS Kramfors, kontrollansvarig Sollefteå, BAS Örnsköldsvik, kontrollansvarig Västernorrland, bygglov Västernorrland"
+        title="Kontrollansvarig & Besiktningsman Sundsvall, Härnösand | Ytterman"
+        description="Certifierad kontrollansvarig, besiktningsman och byggkonsult i Västernorrland. Sundsvall, Härnösand, Sollefteå, Kramfors, Örnsköldsvik. Snabb service utan reskostnader."
+        keywords="kontrollansvarig Sundsvall, besiktningsman Sundsvall, byggkonsult Västernorrland, BAS-P Sundsvall, BAS-U Härnösand, kontrollansvarig Timrå, BAS Kramfors, kontrollansvarig Sollefteå, BAS Örnsköldsvik, kontrollansvarig Västernorrland"
         url="https://ytterman.com/omraden"
         breadcrumbs={breadcrumbs}
         faq={localFaq}
@@ -210,7 +210,7 @@ const OmradenPage = () => {
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto">
                 <h2 className="text-3xl md:text-4xl font-bold text-stone-900 mb-6 text-center">
-                  Lokal expertis i hela länet
+                  Byggkonsult Västernorrland — lokal expertis i hela länet
                 </h2>
                 <p className="text-lg text-stone-600 mb-8 text-center leading-relaxed">
                   Med över 20 års erfarenhet från byggbranschen i Västernorrland känner jag till 
@@ -537,6 +537,54 @@ const OmradenPage = () => {
                     >
                       Skicka förfrågan
                     </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Besiktningsman & Byggkonsult - location-targeted content */}
+          <section className="py-16 bg-stone-50">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto">
+                <h2 className="text-3xl md:text-4xl font-bold text-stone-900 mb-8 text-center">
+                  Besiktningsman Sundsvall & Västernorrland
+                </h2>
+                <p className="text-lg text-stone-600 mb-6 leading-relaxed">
+                  Som erfaren besiktningsman i Sundsvall och Västernorrland genomför jag professionella{' '}
+                  <Link to="/overlatelsebesiktning" className="text-primary hover:text-primary/80 font-medium underline">överlåtelsebesiktningar</Link> för
+                  dig som köper eller säljer fastighet. Med över 20 års erfarenhet i byggbranschen erbjuder jag en
+                  trygg och noggrann bedömning av fastighetens skick — i Sundsvall, Härnösand, Timrå, Kramfors, Sollefteå
+                  och Örnsköldsvik.
+                </p>
+
+                <div className="grid md:grid-cols-2 gap-8 mb-8">
+                  <div>
+                    <h3 className="text-xl font-bold text-stone-900 mb-3">
+                      Besiktningsman Härnösand
+                    </h3>
+                    <p className="text-stone-600 leading-relaxed">
+                      I Härnösand utför jag besiktningar av både äldre kulturhistoriska byggnader och moderna villor.
+                      Den unika bebyggelsen i Härnösands stadskärna kräver extra noggrannhet och erfarenhet.
+                      Jag erbjuder{' '}
+                      <Link to="/overlatelsebesiktning" className="text-primary hover:text-primary/80 font-medium underline">överlåtelsebesiktning</Link> och{' '}
+                      <Link to="/energideklaration" className="text-primary hover:text-primary/80 font-medium underline">energideklaration</Link> i hela
+                      Härnösands kommun.
+                    </p>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-stone-900 mb-3">
+                      Byggkonsult Sundsvall
+                    </h3>
+                    <p className="text-stone-600 leading-relaxed">
+                      Som byggkonsult i Sundsvall erbjuder jag helhetslösningar för ditt byggprojekt. Från{' '}
+                      <Link to="/kontrollansvarig" className="text-primary hover:text-primary/80 font-medium underline">kontrollansvarig</Link> och{' '}
+                      <Link to="/bas-p" className="text-primary hover:text-primary/80 font-medium underline">BAS-P</Link>/{' '}
+                      <Link to="/bas-u" className="text-primary hover:text-primary/80 font-medium underline">BAS-U</Link> till{' '}
+                      <Link to="/overlatelsebesiktning" className="text-primary hover:text-primary/80 font-medium underline">besiktning</Link> och{' '}
+                      <Link to="/energideklaration" className="text-primary hover:text-primary/80 font-medium underline">energideklaration</Link> — allt
+                      samlat hos en och samma byggkonsult med bred kompetens.
+                    </p>
                   </div>
                 </div>
               </div>
