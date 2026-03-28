@@ -29,6 +29,15 @@ const KontrollansvarigTimra = lazy(() => import('@/pages/KontrollansvarigTimra')
 const KontrollansvarigKramfors = lazy(() => import('@/pages/KontrollansvarigKramfors'));
 const KontrollansvarigSolleftea = lazy(() => import('@/pages/KontrollansvarigSolleftea'));
 
+// City-specific Överlåtelsebesiktning Pages
+const OverlatelsebesiktningSundsvall = lazy(() => import('@/pages/OverlatelsebesiktningSundsvall'));
+const OverlatelsebesiktningHarnosand = lazy(() => import('@/pages/OverlatelsebesiktningHarnosand'));
+const OverlatelsebesiktningTimra = lazy(() => import('@/pages/OverlatelsebesiktningTimra'));
+const OverlatelsebesiktningKramfors = lazy(() => import('@/pages/OverlatelsebesiktningKramfors'));
+const OverlatelsebesiktningSolleftea = lazy(() => import('@/pages/OverlatelsebesiktningSolleftea'));
+const OverlatelsebesiktningOrnskoldsvik = lazy(() => import('@/pages/OverlatelsebesiktningOrnskoldsvik'));
+const OverlatelsebesiktningAnge = lazy(() => import('@/pages/OverlatelsebesiktningAnge'));
+
 // Lazy-loaded Info Pages
 const GuidesPage = lazy(() => import('@/pages/GuidesPage'));
 const FAQPage = lazy(() => import('@/pages/FAQPage'));
@@ -111,6 +120,15 @@ function App() {
                             <Route path="/kontrollansvarig-timra" element={<KontrollansvarigTimra />} />
                             <Route path="/kontrollansvarig-kramfors" element={<KontrollansvarigKramfors />} />
                             <Route path="/kontrollansvarig-solleftea" element={<KontrollansvarigSolleftea />} />
+                            
+                            {/* City-specific Överlåtelsebesiktning Pages */}
+                            <Route path="/overlatelsebesiktning-sundsvall" element={<OverlatelsebesiktningSundsvall />} />
+                            <Route path="/overlatelsebesiktning-harnosand" element={<OverlatelsebesiktningHarnosand />} />
+                            <Route path="/overlatelsebesiktning-timra" element={<OverlatelsebesiktningTimra />} />
+                            <Route path="/overlatelsebesiktning-kramfors" element={<OverlatelsebesiktningKramfors />} />
+                            <Route path="/overlatelsebesiktning-solleftea" element={<OverlatelsebesiktningSolleftea />} />
+                            <Route path="/overlatelsebesiktning-ornskoldsvik" element={<OverlatelsebesiktningOrnskoldsvik />} />
+                            <Route path="/overlatelsebesiktning-ange" element={<OverlatelsebesiktningAnge />} />
                             
                             {/* Guides */}
                             <Route path="/guider" element={<GuidesPage />} />
