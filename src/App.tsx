@@ -67,6 +67,7 @@ const KontrollplanGuide = lazy(() => import('@/pages/guides/KontrollplanGuide'))
 const SlutbeskedGuide = lazy(() => import('@/pages/guides/SlutbeskedGuide'));
 const VasternorrlandGuide = lazy(() => import('@/pages/guides/VasternorrlandGuide'));
 const BygglovsguideVanligaMisstag = lazy(() => import('@/pages/guides/BygglovsguideVanligaMisstag'));
+const SeoFelsokningGuide = lazy(() => import('@/pages/guides/SeoFelsokningGuide'));
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -152,6 +153,7 @@ function App() {
                             <Route path="/guider/slutbesked" element={<SlutbeskedGuide />} />
                             <Route path="/guider/vasternorrland" element={<VasternorrlandGuide />} />
                             <Route path="/guider/bygglovsguide-vanliga-misstag-husbygge" element={<BygglovsguideVanligaMisstag />} />
+                            <Route path="/guider/seo-felsokning" element={<SeoFelsokningGuide />} />
                             
                             {/* 404 - Must be last */}
                             <Route path="*" element={<NotFound />} />
