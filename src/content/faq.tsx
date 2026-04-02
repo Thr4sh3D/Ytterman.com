@@ -239,7 +239,7 @@ export const faqItems: FAQItem[] = [
     question: "Hur fungerar kontrollansvarig vid bygglovsprocessen?",
     answer: (
       <>
-        Kontrollansvarig medverkar i alla faser från bygglovsansökan till slutbesked. KA granskar ritningar, upprättar kontrollplan, genomför tekniska kontroller under byggfasen och säkerställer att bygget följer godkänt bygglov och gällande byggregler. <Link to="/guider/kontrollansvarig-bygglov" className="text-blue-600 hover:text-blue-700 underline">Läs mer om KA vid bygglov</Link>
+        Kontrollansvarig medverkar i alla faser från bygglovsansökan till slutbesked. KA granskar ritningar, upprättar kontrollplan, genomför tekniska kontroller under byggfasen och säkerställer att bygget följer godkänt bygglov och gällande byggregler. <Link to="/guider/kontrollansvarig-bygglov/" className="text-blue-600 hover:text-blue-700 underline">Läs mer om KA vid bygglov</Link>
       </>
     ),
     keywords: ['kontrollansvarig bygglov', 'KA bygglov', 'bygglovsprocess', 'vad gör kontrollansvarig']
@@ -249,7 +249,7 @@ export const faqItems: FAQItem[] = [
     question: "Vilka krav finns för certifiering av kontrollansvarig?",
     answer: (
       <>
-        För att bli certifierad kontrollansvarig krävs högskoleutbildning inom bygg/teknik, minst 3 års yrkesrfarenhet från byggprojekt, godkänt certifieringsprov samt personlig certifiering från godkänt certifieringsorgan (SBUF, RISE eller SP). Certifikatet gäller i 5 år och måste sedan förnyas. <Link to="/guider/kontrollansvarig-certifiering" className="text-blue-600 hover:text-blue-700 underline">Läs mer om KA-certifiering</Link>
+        För att bli certifierad kontrollansvarig krävs högskoleutbildning inom bygg/teknik, minst 3 års yrkesrfarenhet från byggprojekt, godkänt certifieringsprov samt personlig certifiering från godkänt certifieringsorgan (SBUF, RISE eller SP). Certifikatet gäller i 5 år och måste sedan förnyas. <Link to="/guider/kontrollansvarig-certifiering/" className="text-blue-600 hover:text-blue-700 underline">Läs mer om KA-certifiering</Link>
       </>
     ),
     keywords: ['certifiering kontrollansvarig', 'KA certifikat', 'krav certifiering', 'bli kontrollansvarig']
@@ -259,7 +259,7 @@ export const faqItems: FAQItem[] = [
     question: "Vad är kontrollansvarigs juridiska ansvar?",
     answer: (
       <>
-        Kontrollansvarig har omfattande juridiskt ansvar enligt PBL. Om KA missar brister eller fel som leder till skador kan både civilrättsligt och straffrättsligt ansvar aktualiseras. Kontrollansvarig måste ha ansvarsförsäkring på minst 5 miljoner kronor per skada för att täcka eventuella skadeståndsanspråk. <Link to="/guider/kontrollansvarig-ansvar" className="text-blue-600 hover:text-blue-700 underline">Läs mer om KA:s ansvar</Link>
+        Kontrollansvarig har omfattande juridiskt ansvar enligt PBL. Om KA missar brister eller fel som leder till skador kan både civilrättsligt och straffrättsligt ansvar aktualiseras. Kontrollansvarig måste ha ansvarsförsäkring på minst 5 miljoner kronor per skada för att täcka eventuella skadeståndsanspråk. <Link to="/guider/kontrollansvarig-ansvar/" className="text-blue-600 hover:text-blue-700 underline">Läs mer om KA:s ansvar</Link>
       </>
     ),
     keywords: ['kontrollansvarig ansvar', 'KA juridiskt ansvar', 'skadeståndsansvar', 'vad händer om KA gör fel']
@@ -269,7 +269,7 @@ export const faqItems: FAQItem[] = [
     question: "Vad kostar kontrollansvarig per timme i Västernorrland?",
     answer: (
       <>
-        Timpriset för kontrollansvarig i Västernorrland ligger vanligtvis mellan 800-1,200 kr exkl. moms beroende på projektets komplexitet och KA:s erfarenhet. För större projekt är fast pris ofta mer ekonomiskt. En normalvilla kostar totalt 40,000-80,000 kr för fullständig KA-tjänst från start till slutbesked. <Link to="/guider/kontrollansvarig-timpris" className="text-blue-600 hover:text-blue-700 underline">Läs mer om KA-priser</Link>
+        Timpriset för kontrollansvarig i Västernorrland ligger vanligtvis mellan 800-1,200 kr exkl. moms beroende på projektets komplexitet och KA:s erfarenhet. För större projekt är fast pris ofta mer ekonomiskt. En normalvilla kostar totalt 40,000-80,000 kr för fullständig KA-tjänst från start till slutbesked. <Link to="/guider/kontrollansvarig-timpris/" className="text-blue-600 hover:text-blue-700 underline">Läs mer om KA-priser</Link>
       </>
     ),
     keywords: ['kontrollansvarig timpris', 'KA kostnad per timme', 'vad kostar KA', 'timpris västernorrland']
@@ -279,7 +279,7 @@ export const faqItems: FAQItem[] = [
     question: "När krävs BAS-U på byggarbetsplatsen?",
     answer: (
       <>
-        BAS-U krävs enligt arbetsmiljölagen när byggnaden är avsedd för arbete och det samtidigt kommer att arbeta mer än en entreprenör (underentreprenörer, konsulter etc) på byggarbetsplatsen. Detta gäller alla kommersiella byggnader, flerbostadshus och de flesta villor där flera hantverkare samverkar. <Link to="/guider/bas-u-guide" className="text-blue-600 hover:text-blue-700 underline">Läs fullständig BAS-U guide</Link>
+        BAS-U krävs enligt arbetsmiljölagen när byggnaden är avsedd för arbete och det samtidigt kommer att arbeta mer än en entreprenör (underentreprenörer, konsulter etc) på byggarbetsplatsen. Detta gäller alla kommersiella byggnader, flerbostadshus och de flesta villor där flera hantverkare samverkar. <Link to="/guider/bas-u-guide/" className="text-blue-600 hover:text-blue-700 underline">Läs fullständig BAS-U guide</Link>
       </>
     ),
     keywords: ['när krävs BAS-U', 'BAS-U obligatorisk', 'behövs BAS-U', 'BAS-U lagkrav']
@@ -289,7 +289,7 @@ export const faqItems: FAQItem[] = [
     question: "Vad ansvarar BAS-P för under projekteringen?",
     answer: (
       <>
-        BAS-P ansvarar för att upprätta arbetsmiljöplan, genomföra riskbedömningar, samordna arbetsmiljöaspekter mellan projektörer och konsulter samt säkerställa att byggnadens utformning inte skapar onödiga arbetsmiljörisker under byggfasen. BAS-P arbetar nära arkitekter och konstruktörer för att bygga in säkerhet redan i designen. <Link to="/guider/bas-p-guide" className="text-blue-600 hover:text-blue-700 underline">Läs fullständig BAS-P guide</Link>
+        BAS-P ansvarar för att upprätta arbetsmiljöplan, genomföra riskbedömningar, samordna arbetsmiljöaspekter mellan projektörer och konsulter samt säkerställa att byggnadens utformning inte skapar onödiga arbetsmiljörisker under byggfasen. BAS-P arbetar nära arkitekter och konstruktörer för att bygga in säkerhet redan i designen. <Link to="/guider/bas-p-guide/" className="text-blue-600 hover:text-blue-700 underline">Läs fullständig BAS-P guide</Link>
       </>
     ),
     keywords: ['BAS-P ansvar', 'vad gör BAS-P', 'BAS-P uppgifter', 'arbetsmiljösamordnare projektering']
@@ -299,7 +299,7 @@ export const faqItems: FAQItem[] = [
     question: "Vad är skillnaden mellan BAS-P och BAS-U?",
     answer: (
       <>
-        BAS-P arbetar under projekteringsfasen (ritningsstadiet) med förebyggande arbetsmiljöplanering, medan BAS-U arbetar under utförandefasen (själva byggandet) med säkerhetsronder och praktisk arbetsmiljösamordning. Båda roller krävs ofta på samma projekt men kan utföras av olika personer med olika kompetens. <Link to="/guider/vad-ar-bas" className="text-blue-600 hover:text-blue-700 underline">Läs mer om BAS</Link>
+        BAS-P arbetar under projekteringsfasen (ritningsstadiet) med förebyggande arbetsmiljöplanering, medan BAS-U arbetar under utförandefasen (själva byggandet) med säkerhetsronder och praktisk arbetsmiljösamordning. Båda roller krävs ofta på samma projekt men kan utföras av olika personer med olika kompetens. <Link to="/guider/vad-ar-bas/" className="text-blue-600 hover:text-blue-700 underline">Läs mer om BAS</Link>
       </>
     ),
     keywords: ['skillnad BAS-P BAS-U', 'BAS-P vs BAS-U', 'vad är BAS', 'BAS förklaring']
@@ -309,7 +309,7 @@ export const faqItems: FAQItem[] = [
     question: "Vad händer på tekniskt samråd?",
     answer: (
       <>
-        Tekniskt samråd är ett obligatoriskt möte mellan byggnadsnämnden, byggherren, kontrollansvarig och eventuellt andra sakkunniga. Mötet hålls innan byggstart för att gå igenom kontrollplanen, klarlägga bygglovets förutsättningar, diskutera tekniska lösningar och säkerställa att alla är överens om kraven. Efter godkänt samråd utfärdas startbesked. <Link to="/guider/tekniskt-samrad" className="text-blue-600 hover:text-blue-700 underline">Läs mer om tekniskt samråd</Link>
+        Tekniskt samråd är ett obligatoriskt möte mellan byggnadsnämnden, byggherren, kontrollansvarig och eventuellt andra sakkunniga. Mötet hålls innan byggstart för att gå igenom kontrollplanen, klarlägga bygglovets förutsättningar, diskutera tekniska lösningar och säkerställa att alla är överens om kraven. Efter godkänt samråd utfärdas startbesked. <Link to="/guider/tekniskt-samrad/" className="text-blue-600 hover:text-blue-700 underline">Läs mer om tekniskt samråd</Link>
       </>
     ),
     keywords: ['tekniskt samråd', 'vad händer tekniskt samråd', 'samråd bygglov', 'startbesked']
@@ -319,7 +319,7 @@ export const faqItems: FAQItem[] = [
     question: "Hur länge tar tekniskt samråd?",
     answer: (
       <>
-        Själva samrådsmötet tar vanligtvis 30-60 minuter. Från att ansökan om tekniskt samråd skickas in till att mötet hålls tar det normalt 2-4 veckor beroende på byggnadsnämndens belastning. Efter mötet tar det ytterligare 1-2 veckor innan startbesked utfärdas om allt är korrekt. <Link to="/guider/tekniskt-samrad" className="text-blue-600 hover:text-blue-700 underline">Läs mer om tekniskt samråd</Link>
+        Själva samrådsmötet tar vanligtvis 30-60 minuter. Från att ansökan om tekniskt samråd skickas in till att mötet hålls tar det normalt 2-4 veckor beroende på byggnadsnämndens belastning. Efter mötet tar det ytterligare 1-2 veckor innan startbesked utfärdas om allt är korrekt. <Link to="/guider/tekniskt-samrad/" className="text-blue-600 hover:text-blue-700 underline">Läs mer om tekniskt samråd</Link>
       </>
     ),
     keywords: ['tekniskt samråd tid', 'hur lång tid samråd', 'samråd varaktighet']
@@ -329,7 +329,7 @@ export const faqItems: FAQItem[] = [
     question: "Behövs tekniskt samråd vid renovering?",
     answer: (
       <>
-        Tekniskt samråd krävs endast för projekt där kontrollansvarig är obligatorisk och bygglov har beviljats. För mindre renoveringar som inte kräver bygglov eller KA behövs inget tekniskt samråd. Men för omfattande ombyggnader med bärande konstruktioner, stambyten eller utökad boyta krävs vanligtvis både bygglov och tekniskt samråd. <Link to="/guider/tekniskt-samrad" className="text-blue-600 hover:text-blue-700 underline">Läs mer om tekniskt samråd</Link>
+        Tekniskt samråd krävs endast för projekt där kontrollansvarig är obligatorisk och bygglov har beviljats. För mindre renoveringar som inte kräver bygglov eller KA behövs inget tekniskt samråd. Men för omfattande ombyggnader med bärande konstruktioner, stambyten eller utökad boyta krävs vanligtvis både bygglov och tekniskt samråd. <Link to="/guider/tekniskt-samrad/" className="text-blue-600 hover:text-blue-700 underline">Läs mer om tekniskt samråd</Link>
       </>
     ),
     keywords: ['tekniskt samråd renovering', 'ombyggnad samråd', 'behövs samråd']
@@ -339,7 +339,7 @@ export const faqItems: FAQItem[] = [
     question: "Vilka dokument behövs för slutbesked?",
     answer: (
       <>
-        För slutbesked krävs: kontrollansvarigs slutintyg, komplett kontrollplan med alla protokoll, sakkunnigutlåtanden (konstruktör, VVS, el, fuktsäkerhet, OVK), eventuella relationsritningar och driftsinstruktioner. Byggnadsnämnden granskar dokumentationen och kan kräva kompletteringar innan slutbesked beviljas. <Link to="/guider/slutbesked" className="text-blue-600 hover:text-blue-700 underline">Läs mer om slutbesked</Link>
+        För slutbesked krävs: kontrollansvarigs slutintyg, komplett kontrollplan med alla protokoll, sakkunnigutlåtanden (konstruktör, VVS, el, fuktsäkerhet, OVK), eventuella relationsritningar och driftsinstruktioner. Byggnadsnämnden granskar dokumentationen och kan kräva kompletteringar innan slutbesked beviljas. <Link to="/guider/slutbesked/" className="text-blue-600 hover:text-blue-700 underline">Läs mer om slutbesked</Link>
       </>
     ),
     keywords: ['slutbesked dokument', 'handlingar slutbesked', 'vad krävs slutbesked', 'slutbevis krav']
@@ -349,7 +349,7 @@ export const faqItems: FAQItem[] = [
     question: "Hur lång tid tar det att få slutbesked?",
     answer: (
       <>
-        Från att komplett ansökan om slutbesked skickas in till byggnadsnämnden tar det normalt 2-4 veckor att få slutbeskedet beviljat. I vissa kommuner går det snabbare (1-2 veckor) medan det i andra eller vid komplexa projekt kan ta upp till 6-8 veckor. Ofullständig dokumentation försenar processen ytterligare. <Link to="/guider/slutbesked" className="text-blue-600 hover:text-blue-700 underline">Läs mer om slutbesked</Link>
+        Från att komplett ansökan om slutbesked skickas in till byggnadsnämnden tar det normalt 2-4 veckor att få slutbeskedet beviljat. I vissa kommuner går det snabbare (1-2 veckor) medan det i andra eller vid komplexa projekt kan ta upp till 6-8 veckor. Ofullständig dokumentation försenar processen ytterligare. <Link to="/guider/slutbesked/" className="text-blue-600 hover:text-blue-700 underline">Läs mer om slutbesked</Link>
       </>
     ),
     keywords: ['slutbesked tid', 'hur lång tid slutbesked', 'slutbevis handläggningstid']
@@ -359,7 +359,7 @@ export const faqItems: FAQItem[] = [
     question: "Hur ser en kontrollplan ut?",
     answer: (
       <>
-        En kontrollplan listar alla kritiska kontrollpunkter i byggprocessen med specifikt vad som ska kontrolleras, vem som genomför kontrollen och när den ska göras. Exempel på kontrollpunkter: grundläggning före betong gjuts, bärande konstruktioner innan de täcks, fuktspärr, ventilation, brandskydd. Varje kontrollpunkt dokumenteras med protokoll och foton. <Link to="/guider/kontrollplan" className="text-blue-600 hover:text-blue-700 underline">Läs mer om kontrollplan</Link>
+        En kontrollplan listar alla kritiska kontrollpunkter i byggprocessen med specifikt vad som ska kontrolleras, vem som genomför kontrollen och när den ska göras. Exempel på kontrollpunkter: grundläggning före betong gjuts, bärande konstruktioner innan de täcks, fuktspärr, ventilation, brandskydd. Varje kontrollpunkt dokumenteras med protokoll och foton. <Link to="/guider/kontrollplan/" className="text-blue-600 hover:text-blue-700 underline">Läs mer om kontrollplan</Link>
       </>
     ),
     keywords: ['kontrollplan innehåll', 'hur ser kontrollplan ut', 'kontrollpunkter', 'vad står i kontrollplan']
@@ -369,7 +369,7 @@ export const faqItems: FAQItem[] = [
     question: "När ska kontrollplanen godkännas?",
     answer: (
       <>
-        Kontrollplanen ska vara upprättad av kontrollansvarig och godkänd av byggnadsnämnden innan byggstart. Godkännandet sker vanligtvis vid eller strax efter tekniskt samråd. Att börja bygga utan godkänd kontrollplan är lagbrott och kan leda till byggförbud och byggsanktionsavgift. <Link to="/guider/kontrollplan" className="text-blue-600 hover:text-blue-700 underline">Läs mer om kontrollplan</Link>
+        Kontrollplanen ska vara upprättad av kontrollansvarig och godkänd av byggnadsnämnden innan byggstart. Godkännandet sker vanligtvis vid eller strax efter tekniskt samråd. Att börja bygga utan godkänd kontrollplan är lagbrott och kan leda till byggförbud och byggsanktionsavgift. <Link to="/guider/kontrollplan/" className="text-blue-600 hover:text-blue-700 underline">Läs mer om kontrollplan</Link>
       </>
     ),
     keywords: ['kontrollplan godkännande', 'när godkänns kontrollplan', 'kontrollplan tidpunkt']
@@ -379,7 +379,7 @@ export const faqItems: FAQItem[] = [
     question: "Kan vem som helst bli kontrollansvarig?",
     answer: (
       <>
-        Nej, för att bli kontrollansvarig krävs högskoleutbildning inom bygg/teknik (minst 120 hp), dokumenterad yrkesrfarenhet från minst 3 års byggprojekt, fördjupade kunskaper om PBL och BBR samt godkänt certifieringsprov hos godkänt organ. Certifieringen är personlig och kräver kontinuerlig fortbildning. Det är en reglerad yrkesroll med höga krav. <Link to="/guider/kontrollansvarig-certifiering" className="text-blue-600 hover:text-blue-700 underline">Läs mer om certifiering</Link>
+        Nej, för att bli kontrollansvarig krävs högskoleutbildning inom bygg/teknik (minst 120 hp), dokumenterad yrkesrfarenhet från minst 3 års byggprojekt, fördjupade kunskaper om PBL och BBR samt godkänt certifieringsprov hos godkänt organ. Certifieringen är personlig och kräver kontinuerlig fortbildning. Det är en reglerad yrkesroll med höga krav. <Link to="/guider/kontrollansvarig-certifiering/" className="text-blue-600 hover:text-blue-700 underline">Läs mer om certifiering</Link>
       </>
     ),
     keywords: ['bli kontrollansvarig', 'KA utbildning', 'krav på KA', 'certifiering kontrollansvarig']
@@ -389,7 +389,7 @@ export const faqItems: FAQItem[] = [
     question: "Vad händer om kontrollansvarig gör fel?",
     answer: (
       <>
-        Om kontrollansvarig missar brister som leder till skador på byggnaden kan KA bli skadeståndsskyldig både gentemot byggherren och framtida köpare. I allvarliga fall kan även straffrättsligt ansvar aktualiseras (brott mot PBL). Därför måste KA ha ansvarsförsäkring och arbeta systematiskt enligt kontrollplanen. <Link to="/guider/kontrollansvarig-ansvar" className="text-blue-600 hover:text-blue-700 underline">Läs mer om KA:s ansvar</Link>
+        Om kontrollansvarig missar brister som leder till skador på byggnaden kan KA bli skadeståndsskyldig både gentemot byggherren och framtida köpare. I allvarliga fall kan även straffrättsligt ansvar aktualiseras (brott mot PBL). Därför måste KA ha ansvarsförsäkring och arbeta systematiskt enligt kontrollplanen. <Link to="/guider/kontrollansvarig-ansvar/" className="text-blue-600 hover:text-blue-700 underline">Läs mer om KA:s ansvar</Link>
       </>
     ),
     keywords: ['KA gör fel', 'fel av kontrollansvarig', 'skadestånd KA', 'ansvar kontrollansvarig']
@@ -399,7 +399,7 @@ export const faqItems: FAQItem[] = [
     question: "Måste BAS-P och BAS-U vara samma person?",
     answer: (
       <>
-        Nej, BAS-P och BAS-U kan vara olika personer med olika kompetens. BAS-P kräver ofta mer teoretisk och planerande kompetens medan BAS-U behöver praktisk byggplatsrfarenhet och förmåga att hantera löpande arbetsmiljöfrågor. På större projekt är det vanligt med olika personer, medan mindre projekt kan ha samma person för båda rollerna. <Link to="/guider/vad-ar-bas" className="text-blue-600 hover:text-blue-700 underline">Läs mer om BAS</Link>
+        Nej, BAS-P och BAS-U kan vara olika personer med olika kompetens. BAS-P kräver ofta mer teoretisk och planerande kompetens medan BAS-U behöver praktisk byggplatsrfarenhet och förmåga att hantera löpande arbetsmiljöfrågor. På större projekt är det vanligt med olika personer, medan mindre projekt kan ha samma person för båda rollerna. <Link to="/guider/vad-ar-bas/" className="text-blue-600 hover:text-blue-700 underline">Läs mer om BAS</Link>
       </>
     ),
     keywords: ['BAS-P BAS-U samma person', 'olika BAS-P BAS-U', 'kan samma person vara BAS-P och BAS-U']
@@ -409,7 +409,7 @@ export const faqItems: FAQItem[] = [
     question: "Vilka bygglovsregler gäller i Sundsvall?",
     answer: (
       <>
-        Sundsvall har särskilda krav i Stenstaden där kulturhistoriska värden måste beaktas. I övriga kommunen gäller standardregler enligt PBL. Bygglovstiden är normalt 4-6 veckor och kommunen har välutvecklade e-tjänster för ansökningar. Sundsvalls byggnadsnämnd är noggrann med tekniskt samråd och kontrollplaner vid större projekt. <Link to="/guider/vasternorrland" className="text-blue-600 hover:text-blue-700 underline">Läs mer om byggande i Västernorrland</Link>
+        Sundsvall har särskilda krav i Stenstaden där kulturhistoriska värden måste beaktas. I övriga kommunen gäller standardregler enligt PBL. Bygglovstiden är normalt 4-6 veckor och kommunen har välutvecklade e-tjänster för ansökningar. Sundsvalls byggnadsnämnd är noggrann med tekniskt samråd och kontrollplaner vid större projekt. <Link to="/guider/vasternorrland/" className="text-blue-600 hover:text-blue-700 underline">Läs mer om byggande i Västernorrland</Link>
       </>
     ),
     keywords: ['bygglov Sundsvall', 'Sundsvall regler', 'bygga i Sundsvall', 'Stenstaden bygglov']
@@ -419,7 +419,7 @@ export const faqItems: FAQItem[] = [
     question: "Hur är det att bygga i Härnösand och Timrå?",
     answer: (
       <>
-        Härnösand har kulturmiljöskydd i centrala delar vilket innebär extra hänsyn vid bygglov. Timrå är en expansiv kommun med många nya villaområden och snabb bygglovshantering (3-5 veckor). Båda kommuner kräver geoteknisk undersökning på lerjordar vilket är vanligt i kustnära områden. Vi har stor erfarenhet från båda kommunerna. <Link to="/guider/vasternorrland" className="text-blue-600 hover:text-blue-700 underline">Läs mer om byggande i Västernorrland</Link>
+        Härnösand har kulturmiljöskydd i centrala delar vilket innebär extra hänsyn vid bygglov. Timrå är en expansiv kommun med många nya villaområden och snabb bygglovshantering (3-5 veckor). Båda kommuner kräver geoteknisk undersökning på lerjordar vilket är vanligt i kustnära områden. Vi har stor erfarenhet från båda kommunerna. <Link to="/guider/vasternorrland/" className="text-blue-600 hover:text-blue-700 underline">Läs mer om byggande i Västernorrland</Link>
       </>
     ),
     keywords: ['bygga Härnösand', 'bygga Timrå', 'Härnösand bygglov', 'Timrå bygglov']
@@ -429,7 +429,7 @@ export const faqItems: FAQItem[] = [
     question: "Vilka särskilda regler finns i Kramfors och Sollefteå?",
     answer: (
       <>
-        Kramfors har Höga Kusten världsarv där mycket restriktiva regler gäller - ofta krävs förhandsbesked och samråd med länsstyrelsen. Sollefteå har högre snölastzoner och många fritidshus vilket påverkar konstruktionskrav och isolering. Båda kommuner har kuperad berggrund vilket kräver noggrann grundläggningskontroll. <Link to="/guider/vasternorrland" className="text-blue-600 hover:text-blue-700 underline">Läs mer om byggande i Västernorrland</Link>
+        Kramfors har Höga Kusten världsarv där mycket restriktiva regler gäller - ofta krävs förhandsbesked och samråd med länsstyrelsen. Sollefteå har högre snölastzoner och många fritidshus vilket påverkar konstruktionskrav och isolering. Båda kommuner har kuperad berggrund vilket kräver noggrann grundläggningskontroll. <Link to="/guider/vasternorrland/" className="text-blue-600 hover:text-blue-700 underline">Läs mer om byggande i Västernorrland</Link>
       </>
     ),
     keywords: ['bygga Kramfors', 'bygga Sollefteå', 'Höga Kusten bygglov', 'Sollefteå regler']
