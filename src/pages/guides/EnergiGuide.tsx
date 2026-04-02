@@ -80,12 +80,12 @@ const EnergiGuide = () => {
           <h2 className="text-3xl font-bold text-stone-800 mb-6">Vad är en energideklaration?</h2>
           <div className="prose prose-lg max-w-none text-stone-600">
             <p>
-              En <Link to="/energideklaration" className="text-green-600 hover:text-green-700 font-medium underline">energideklaration</Link> är ett dokument som visar en byggnads energiprestanda och ger 
+              En <Link to="/energideklaration/" className="text-green-600 hover:text-green-700 font-medium underline">energideklaration</Link> är ett dokument som visar en byggnads energiprestanda och ger 
               information om energiförbrukning, energiklass samt förslag på energibesparande åtgärder. 
               Det är ett viktigt verktyg för att förstå och förbättra din fastighets energieffektivitet.
             </p>
             <p>
-              Energideklarationen är obligatorisk vid försäljning (tillsammans med <Link to="/overlatelsebesiktning" className="text-green-600 hover:text-green-700 font-medium underline">överlåtelsebesiktning</Link>) och uthyrning av byggnader över 50 m² 
+              Energideklarationen är obligatorisk vid försäljning (tillsammans med <Link to="/overlatelsebesiktning/" className="text-green-600 hover:text-green-700 font-medium underline">överlåtelsebesiktning</Link>) och uthyrning av byggnader över 50 m² 
               och ska uppdateras regelbundet för att säkerställa att informationen är aktuell.
             </p>
           </div>
@@ -368,17 +368,17 @@ const EnergiGuide = () => {
             Behöver du energideklaration?
           </h2>
           <p className="text-xl text-stone-600 mb-6">
-            Kontakta mig för en kostnadsfri konsultation och offert anpassad efter din fastighet. Se även <Link to="/priser" className="text-yellow-600 hover:text-yellow-700 font-medium underline">priser för alla tjänster</Link>.
+            Kontakta mig för en kostnadsfri konsultation och offert anpassad efter din fastighet. Se även <Link to="/priser/" className="text-yellow-600 hover:text-yellow-700 font-medium underline">priser för alla tjänster</Link>.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
-              to="/kontakt?service=energideklaration" 
+              to="/kontakt/?service=energideklaration" 
               className="bg-yellow-600 hover:bg-yellow-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors"
             >
               Begär offert
             </Link>
             <Link 
-              to="/energideklaration" 
+              to="/energideklaration/" 
               className="border-2 border-yellow-600 text-yellow-600 hover:bg-yellow-600 hover:text-white px-8 py-3 rounded-lg font-semibold transition-colors"
             >
               Läs mer om tjänsten
@@ -389,9 +389,9 @@ const EnergiGuide = () => {
         <div className="mt-12 pt-8 border-t border-stone-200">
           <h3 className="text-xl font-semibold text-stone-800 mb-4">Relaterade guider</h3>
           <ul className="space-y-2 text-stone-700">
-            <li>• <Link to="/guider/overlatelsebesiktning" className="text-amber-600 hover:text-amber-700 font-medium underline">Överlåtelsebesiktning - Komplett Guide</Link></li>
-            <li>• <Link to="/guider/miljo" className="text-amber-600 hover:text-amber-700 font-medium underline">Miljötänk i byggprocessen</Link></li>
-            <li>• <Link to="/guider/kontrollansvarig" className="text-amber-600 hover:text-amber-700 font-medium underline">Kontrollansvarig vid nybyggnation</Link></li>
+            <li>• <Link to="/guider/overlatelsebesiktning/" className="text-amber-600 hover:text-amber-700 font-medium underline">Överlåtelsebesiktning - Komplett Guide</Link></li>
+            <li>• <Link to="/guider/miljo/" className="text-amber-600 hover:text-amber-700 font-medium underline">Miljötänk i byggprocessen</Link></li>
+            <li>• <Link to="/guider/kontrollansvarig/" className="text-amber-600 hover:text-amber-700 font-medium underline">Kontrollansvarig vid nybyggnation</Link></li>
           </ul>
         </div>
       </div>

@@ -165,7 +165,7 @@ const MiljoGuide = () => {
 
         <p className="mb-6">
           Energieffektivisering är ofta den mest kostnadseffektiva miljöåtgärden. Genom smart 
-          design och teknikval kan energiförbrukningen minskas drastiskt. Läs mer i vår <Link to="/guider/energi" className="text-emerald-600 hover:text-emerald-700 font-medium underline">energideklaration guide</Link>.
+          design och teknikval kan energiförbrukningen minskas drastiskt. Läs mer i vår <Link to="/guider/energi/" className="text-emerald-600 hover:text-emerald-700 font-medium underline">energideklaration guide</Link>.
         </p>
 
         <div className="grid md:grid-cols-3 gap-4 mb-8">
@@ -322,7 +322,7 @@ const MiljoGuide = () => {
         <div className="bg-emerald-50 border border-emerald-200 p-6 rounded-lg">
           <h3 className="font-semibold text-emerald-800 mb-3">Hållbart byggande med Tobias Ytterman</h3>
           <p className="text-emerald-700 mb-3">
-            Som erfaren <Link to="/kontrollansvarig" className="text-emerald-800 hover:text-emerald-900 font-medium underline">kontrollansvarig</Link> hjälper jag dig att integrera hållbarhet i hela byggprocessen:
+            Som erfaren <Link to="/kontrollansvarig/" className="text-emerald-800 hover:text-emerald-900 font-medium underline">kontrollansvarig</Link> hjälper jag dig att integrera hållbarhet i hela byggprocessen:
           </p>
           <ul className="space-y-2 text-emerald-700">
             <li>• Rådgivning om miljöcertifieringar (BREEAM/LEED)</li>
@@ -332,7 +332,7 @@ const MiljoGuide = () => {
             <li>• Långsiktig hållbarhetsplanering</li>
           </ul>
           <div className="mt-4 pt-4 border-t border-emerald-300">
-            <Link to="/kontakt" className="inline-block bg-emerald-700 text-white px-6 py-3 rounded-lg hover:bg-emerald-800 transition-colors font-semibold">
+            <Link to="/kontakt/" className="inline-block bg-emerald-700 text-white px-6 py-3 rounded-lg hover:bg-emerald-800 transition-colors font-semibold">
               Diskutera hållbart byggande →
             </Link>
           </div>
@@ -341,9 +341,9 @@ const MiljoGuide = () => {
         <div className="mt-12 pt-8 border-t border-stone-200">
           <h3 className="text-xl font-semibold text-stone-800 mb-4">Relaterade guider</h3>
           <ul className="space-y-2 text-stone-700">
-            <li>• <Link to="/guider/energi" className="text-amber-600 hover:text-amber-700 font-medium underline">Energideklaration och energieffektivisering</Link></li>
-            <li>• <Link to="/guider/kvalitetskontroll" className="text-amber-600 hover:text-amber-700 font-medium underline">Kvalitetskontroll i byggprojekt</Link></li>
-            <li>• <Link to="/guider/digitala-verktyg" className="text-amber-600 hover:text-amber-700 font-medium underline">Digitala verktyg för modern byggnation</Link></li>
+            <li>• <Link to="/guider/energi/" className="text-amber-600 hover:text-amber-700 font-medium underline">Energideklaration och energieffektivisering</Link></li>
+            <li>• <Link to="/guider/kvalitetskontroll/" className="text-amber-600 hover:text-amber-700 font-medium underline">Kvalitetskontroll i byggprojekt</Link></li>
+            <li>• <Link to="/guider/digitala-verktyg/" className="text-amber-600 hover:text-amber-700 font-medium underline">Digitala verktyg för modern byggnation</Link></li>
           </ul>
         </div>
       </div>

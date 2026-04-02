@@ -32,7 +32,7 @@ const BygglovGuide = () => {
             <div>
               <h3 className="font-semibold text-green-800 mb-2">Professionell hjälp lönar sig</h3>
               <p className="text-green-700">
-                Med över 20 års erfarenhet i byggbranschen som certifierad <Link to="/kontrollansvarig" className="text-green-800 hover:text-green-900 font-medium underline">kontrollansvarig</Link> (KA enligt PBL) hjälper jag dig navigera bygglovsprocessen effektivt 
+                Med över 20 års erfarenhet i byggbranschen som certifierad <Link to="/kontrollansvarig/" className="text-green-800 hover:text-green-900 font-medium underline">kontrollansvarig</Link> (KA enligt PBL) hjälper jag dig navigera bygglovsprocessen effektivt 
                 och undvika vanliga fallgropar som kan förlänga handläggningstiden.
               </p>
             </div>
@@ -91,7 +91,7 @@ const BygglovGuide = () => {
               <li>• Geoteknisk utredning (vid behov)</li>
               <li>• Miljöutredning (vid behov)</li>
               <li>• Brandskyddsbeskrivning</li>
-              <li>• Kontrollplan (upprättas av <Link to="/kontrollansvarig" className="text-amber-800 hover:text-amber-900 font-medium underline">kontrollansvarig</Link>)</li>
+              <li>• Kontrollplan (upprättas av <Link to="/kontrollansvarig/" className="text-amber-800 hover:text-amber-900 font-medium underline">kontrollansvarig</Link>)</li>
             </ul>
           </div>
         </div>
@@ -259,10 +259,10 @@ const BygglovGuide = () => {
             <li>• Undvika vanliga fallgropar som försenar processen</li>
             <li>• Kommunicera effektivt med bygglovsmyndigheten</li>
             <li>• Hantera eventuella kompletteringskrav</li>
-            <li>• Samordna med <Link to="/bas-p" className="text-green-800 hover:text-green-900 font-medium underline">BAS-P</Link> och <Link to="/bas-u" className="text-green-800 hover:text-green-900 font-medium underline">BAS-U</Link> för arbetsmiljö</li>
+            <li>• Samordna med <Link to="/bas-p/" className="text-green-800 hover:text-green-900 font-medium underline">BAS-P</Link> och <Link to="/bas-u/" className="text-green-800 hover:text-green-900 font-medium underline">BAS-U</Link> för arbetsmiljö</li>
           </ul>
           <div className="mt-4 pt-4 border-t border-green-300">
-            <Link to="/kontakt" className="inline-block bg-green-700 text-white px-6 py-3 rounded-lg hover:bg-green-800 transition-colors font-semibold">
+            <Link to="/kontakt/" className="inline-block bg-green-700 text-white px-6 py-3 rounded-lg hover:bg-green-800 transition-colors font-semibold">
               Få hjälp med ditt bygglov →
             </Link>
           </div>
@@ -271,9 +271,9 @@ const BygglovGuide = () => {
         <div className="mt-12 pt-8 border-t border-stone-200">
           <h3 className="text-xl font-semibold text-stone-800 mb-4">Relaterade guider</h3>
           <ul className="space-y-2 text-stone-700">
-            <li>• <Link to="/guider/kontrollansvarig" className="text-amber-600 hover:text-amber-700 font-medium underline">Kontrollansvarig Guide - Allt du behöver veta</Link></li>
-            <li>• <Link to="/guider/kvalitetskontroll" className="text-amber-600 hover:text-amber-700 font-medium underline">Kvalitetskontroll i byggprojekt</Link></li>
-            <li>• <Link to="/guider/bas" className="text-amber-600 hover:text-amber-700 font-medium underline">BAS-P och BAS-U: Säkerhetssamordning</Link></li>
+            <li>• <Link to="/guider/kontrollansvarig/" className="text-amber-600 hover:text-amber-700 font-medium underline">Kontrollansvarig Guide - Allt du behöver veta</Link></li>
+            <li>• <Link to="/guider/kvalitetskontroll/" className="text-amber-600 hover:text-amber-700 font-medium underline">Kvalitetskontroll i byggprojekt</Link></li>
+            <li>• <Link to="/guider/bas/" className="text-amber-600 hover:text-amber-700 font-medium underline">BAS-P och BAS-U: Säkerhetssamordning</Link></li>
           </ul>
         </div>
       </div>

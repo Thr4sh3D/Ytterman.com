@@ -18,7 +18,7 @@ const KontrollansvarigBygglovGuide = () => {
       <div className="prose prose-stone max-w-none">
         
         <p className="text-lg text-stone-700 mb-6 font-medium">
-          Kontrollansvarig (KA) är en central aktör i bygglovsprocessen som säkerställer att ditt projekt följer <Link to="/guider/bygglov" className="text-blue-600 hover:text-blue-700 font-medium underline">bygglov</Link> och 
+          Kontrollansvarig (KA) är en central aktör i bygglovsprocessen som säkerställer att ditt projekt följer <Link to="/guider/bygglov/" className="text-blue-600 hover:text-blue-700 font-medium underline">bygglov</Link> och 
           gällande byggregler. Denna guide förklarar exakt när du behöver KA, vilken roll de spelar och hur processen fungerar.
         </p>
 
@@ -52,7 +52,7 @@ const KontrollansvarigBygglovGuide = () => {
         <ul className="space-y-3 mb-8">
           <li className="flex items-start">
             <CheckCircle className="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
-            <span><strong>Nybyggnad:</strong> Alla nya byggnader oavsett storlek kräver <Link to="/kontrollansvarig" className="text-blue-600 hover:text-blue-700 underline">KA</Link></span>
+            <span><strong>Nybyggnad:</strong> Alla nya byggnader oavsett storlek kräver <Link to="/kontrollansvarig/" className="text-blue-600 hover:text-blue-700 underline">KA</Link></span>
           </li>
           <li className="flex items-start">
             <CheckCircle className="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
@@ -93,8 +93,8 @@ const KontrollansvarigBygglovGuide = () => {
         </ul>
 
         <p className="mb-6">
-          Som <Link to="/kontrollansvarig" className="text-blue-600 hover:text-blue-700 font-medium underline">certifierad kontrollansvarig i Västernorrland</Link> hjälper jag ofta kunder redan i detta skede, 
-          vilket sparar tid och pengar genom att undvika kompletteringskrav och förseningar. <Link to="/kontakt" className="text-blue-600 hover:text-blue-700 underline">Kontakta mig</Link> gärna för rådgivning inför din bygglovsansökan.
+          Som <Link to="/kontrollansvarig/" className="text-blue-600 hover:text-blue-700 font-medium underline">certifierad kontrollansvarig i Västernorrland</Link> hjälper jag ofta kunder redan i detta skede, 
+          vilket sparar tid och pengar genom att undvika kompletteringskrav och förseningar. <Link to="/kontakt/" className="text-blue-600 hover:text-blue-700 underline">Kontakta mig</Link> gärna för rådgivning inför din bygglovsansökan.
         </p>
 
         <h3 className="text-xl font-semibold text-stone-800 mb-4 mt-8">
@@ -102,7 +102,7 @@ const KontrollansvarigBygglovGuide = () => {
         </h3>
 
         <p className="mb-4">
-          När bygglov är beviljat måste du ansöka om startbesked innan byggnation får påbörjas. Här är <Link to="/kontrollansvarig" className="text-blue-600 hover:text-blue-700 underline">kontrollansvarigs roll</Link> avgörande:
+          När bygglov är beviljat måste du ansöka om startbesked innan byggnation får påbörjas. Här är <Link to="/kontrollansvarig/" className="text-blue-600 hover:text-blue-700 underline">kontrollansvarigs roll</Link> avgörande:
         </p>
 
         <div className="bg-gradient-to-r from-orange-50 to-amber-50 p-6 rounded-lg mb-6">
@@ -112,7 +112,7 @@ const KontrollansvarigBygglovGuide = () => {
               <div>
                 <strong className="text-stone-800">Upprättande av kontrollplan:</strong>
                 <p className="text-stone-700 mt-1">
-                  KA upprättar en <Link to="/guider/kontrollplan" className="text-blue-600 hover:text-blue-700 underline">kontrollplan</Link> som definierar vilka kontroller som ska göras under byggprocessen, 
+                  KA upprättar en <Link to="/guider/kontrollplan/" className="text-blue-600 hover:text-blue-700 underline">kontrollplan</Link> som definierar vilka kontroller som ska göras under byggprocessen, 
                   när de ska utföras och vem som ansvarar för varje kontroll.
                 </p>
               </div>
@@ -122,7 +122,7 @@ const KontrollansvarigBygglovGuide = () => {
               <div>
                 <strong className="text-stone-800">Tekniskt samråd:</strong>
                 <p className="text-stone-700 mt-1">
-                  Kontrollansvarig kallar till och leder <Link to="/guider/tekniskt-samrad" className="text-blue-600 hover:text-blue-700 underline">tekniskt samråd</Link> där byggnadsnämnden, 
+                  Kontrollansvarig kallar till och leder <Link to="/guider/tekniskt-samrad/" className="text-blue-600 hover:text-blue-700 underline">tekniskt samråd</Link> där byggnadsnämnden, 
                   konstruktör, entreprenör och andra relevanta parter går igenom projektet.
                 </p>
               </div>
@@ -151,7 +151,7 @@ const KontrollansvarigBygglovGuide = () => {
           <li className="flex items-start">
             <CheckCircle className="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
             <div>
-              <strong>Fortlöpande kontroller:</strong> KA genomför kontroller enligt <Link to="/guider/kontrollplan" className="text-blue-600 hover:text-blue-700 underline">kontrollplanen</Link> vid kritiska skeden
+              <strong>Fortlöpande kontroller:</strong> KA genomför kontroller enligt <Link to="/guider/kontrollplan/" className="text-blue-600 hover:text-blue-700 underline">kontrollplanen</Link> vid kritiska skeden
             </div>
           </li>
           <li className="flex items-start">
@@ -179,7 +179,7 @@ const KontrollansvarigBygglovGuide = () => {
         </h3>
 
         <p className="mb-4">
-          När byggnationen är klar har kontrollansvarig en avgörande roll för att få <Link to="/guider/slutbesked" className="text-blue-600 hover:text-blue-700 underline">slutbesked</Link>:
+          När byggnationen är klar har kontrollansvarig en avgörande roll för att få <Link to="/guider/slutbesked/" className="text-blue-600 hover:text-blue-700 underline">slutbesked</Link>:
         </p>
 
         <ul className="list-disc list-inside space-y-2 mb-6 text-stone-700">
@@ -212,7 +212,7 @@ const KontrollansvarigBygglovGuide = () => {
         </p>
 
         <p className="mb-6">
-          Läs mer om <Link to="/guider/kontrollansvarig-timpris" className="text-blue-600 hover:text-blue-700 font-medium underline">prissättning och timpris för kontrollansvarig</Link>.
+          Läs mer om <Link to="/guider/kontrollansvarig-timpris/" className="text-blue-600 hover:text-blue-700 font-medium underline">prissättning och timpris för kontrollansvarig</Link>.
         </p>
 
         <h2 className="flex items-center gap-2 text-2xl font-bold text-stone-800 mb-6 mt-10">
@@ -274,7 +274,7 @@ const KontrollansvarigBygglovGuide = () => {
             </h3>
             <p className="text-stone-700">
               Vi på Ytterman kan vanligtvis påbörja uppdrag inom 1-2 veckor. För akuta ärenden kan vi ofta starta snabbare. 
-              <Link to="/kontakt" className="text-blue-600 hover:text-blue-700 font-medium underline ml-1">Kontakta oss</Link> så hjälper vi dig direkt.
+              <Link to="/kontakt/" className="text-blue-600 hover:text-blue-700 font-medium underline ml-1">Kontakta oss</Link> så hjälper vi dig direkt.
             </p>
           </div>
         </div>
@@ -290,13 +290,13 @@ const KontrollansvarigBygglovGuide = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link 
-              to="/kontakt"
+              to="/kontakt/"
               className="inline-flex items-center justify-center px-6 py-3 bg-white text-blue-600 rounded-lg hover:bg-blue-50 transition-colors font-semibold"
             >
               Kontakta mig för offert
             </Link>
             <Link 
-              to="/kontrollansvarig"
+              to="/kontrollansvarig/"
               className="inline-flex items-center justify-center px-6 py-3 border-2 border-white text-white rounded-lg hover:bg-blue-800 transition-colors font-semibold"
             >
               Läs mer om tjänsten

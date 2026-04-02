@@ -18,7 +18,7 @@ const KontrollansvarigTimprisGuide = () => {
       <div className="prose prose-stone max-w-none">
         
         <p className="text-lg text-stone-700 mb-6 font-medium">
-          Att anlita <Link to="/kontrollansvarig" className="text-blue-600 hover:text-blue-700 font-medium underline">kontrollansvarig (KA)</Link> är obligatoriskt för de flesta 
+          Att anlita <Link to="/kontrollansvarig/" className="text-blue-600 hover:text-blue-700 font-medium underline">kontrollansvarig (KA)</Link> är obligatoriskt för de flesta 
           byggprojekt, men priserna kan variera kraftigt. Denna guide ger dig transparent information om timpris, totalpriser och vad som påverkar kostnaden.
         </p>
 
@@ -59,8 +59,8 @@ const KontrollansvarigTimprisGuide = () => {
         </div>
 
         <p className="mb-6">
-          På <strong>Ytterman</strong> i <Link to="/guider/vasternorrland" className="text-blue-600 hover:text-blue-700 underline">Västernorrland</Link> arbetar vi med timpris på <strong>1,200-1,350 kr/h</strong> beroende på projektets omfattning och komplexitet. 
-          För större uppdrag eller paketlösningar erbjuder vi förmånligare totalpriser. <Link to="/kontakt" className="text-blue-600 hover:text-blue-700 underline">Kontakta oss</Link> för en kostnadsfri offert.
+          På <strong>Ytterman</strong> i <Link to="/guider/vasternorrland/" className="text-blue-600 hover:text-blue-700 underline">Västernorrland</Link> arbetar vi med timpris på <strong>1,200-1,350 kr/h</strong> beroende på projektets omfattning och komplexitet. 
+          För större uppdrag eller paketlösningar erbjuder vi förmånligare totalpriser. <Link to="/kontakt/" className="text-blue-600 hover:text-blue-700 underline">Kontakta oss</Link> för en kostnadsfri offert.
         </p>
 
         <h2 className="flex items-center gap-2 text-2xl font-bold text-stone-800 mb-6 mt-10">
@@ -82,7 +82,7 @@ const KontrollansvarigTimprisGuide = () => {
               <h4 className="font-semibold text-stone-800 mb-2">Enklare villa (120-150 m²)</h4>
               <p className="text-stone-700 mb-3">Standardritningar, enkel konstruktion, inga särskilda krav</p>
               <p className="text-2xl font-bold text-orange-600">35,000-45,000 kr</p>
-              <p className="text-sm text-stone-600 mt-1">Inkluderar: <Link to="/guider/kontrollplan" className="text-blue-600 hover:text-blue-700 underline">kontrollplan</Link>, <Link to="/guider/tekniskt-samrad" className="text-blue-600 hover:text-blue-700 underline">tekniskt samråd</Link>, 4-6 platsbesök, slutbesiktning</p>
+              <p className="text-sm text-stone-600 mt-1">Inkluderar: <Link to="/guider/kontrollplan/" className="text-blue-600 hover:text-blue-700 underline">kontrollplan</Link>, <Link to="/guider/tekniskt-samrad/" className="text-blue-600 hover:text-blue-700 underline">tekniskt samråd</Link>, 4-6 platsbesök, slutbesiktning</p>
             </div>
             <div>
               <h4 className="font-semibold text-stone-800 mb-2">Större/komplex villa (200+ m²)</h4>
@@ -160,7 +160,7 @@ const KontrollansvarigTimprisGuide = () => {
 
         <p className="mb-6">
           Ett flerbostadshus kan kosta <strong>150,000-500,000 kr</strong> beroende på omfattning, byggtid och projektets komplexitet. 
-          För stora projekt kombineras ofta kontrollansvarig med <Link to="/bas-p" className="text-blue-600 hover:text-blue-700 underline">BAS-P</Link> och <Link to="/bas-u" className="text-blue-600 hover:text-blue-700 underline">BAS-U</Link> i paketlösningar.
+          För stora projekt kombineras ofta kontrollansvarig med <Link to="/bas-p/" className="text-blue-600 hover:text-blue-700 underline">BAS-P</Link> och <Link to="/bas-u/" className="text-blue-600 hover:text-blue-700 underline">BAS-U</Link> i paketlösningar.
         </p>
 
         <h2 className="flex items-center gap-2 text-2xl font-bold text-stone-800 mb-6 mt-10">
@@ -277,11 +277,11 @@ const KontrollansvarigTimprisGuide = () => {
             </li>
             <li className="flex items-start">
               <FileText className="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
-              <span>Upprättande av <Link to="/guider/kontrollplan" className="text-blue-600 hover:text-blue-700 underline">kontrollplan</Link> enligt PBL</span>
+              <span>Upprättande av <Link to="/guider/kontrollplan/" className="text-blue-600 hover:text-blue-700 underline">kontrollplan</Link> enligt PBL</span>
             </li>
             <li className="flex items-start">
               <FileText className="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
-              <span>Kallelse och genomförande av <Link to="/guider/tekniskt-samrad" className="text-blue-600 hover:text-blue-700 underline">tekniskt samråd</Link></span>
+              <span>Kallelse och genomförande av <Link to="/guider/tekniskt-samrad/" className="text-blue-600 hover:text-blue-700 underline">tekniskt samråd</Link></span>
             </li>
             <li className="flex items-start">
               <FileText className="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
@@ -297,7 +297,7 @@ const KontrollansvarigTimprisGuide = () => {
             </li>
             <li className="flex items-start">
               <FileText className="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
-              <span>Sammanställning av handlingar för <Link to="/guider/slutbesked" className="text-blue-600 hover:text-blue-700 underline">ansökan om slutbesked</Link></span>
+              <span>Sammanställning av handlingar för <Link to="/guider/slutbesked/" className="text-blue-600 hover:text-blue-700 underline">ansökan om slutbesked</Link></span>
             </li>
           </ul>
         </div>
@@ -355,7 +355,7 @@ const KontrollansvarigTimprisGuide = () => {
             </h3>
             <p className="text-stone-700">
               Erfarenhet, geografisk plats, omfattning av tjänsten och konkurrens påverkar priset. En billigare KA kan vara nyexaminerad 
-              och sakna erfarenhet, medan en dyrare är mer erfaren och hanterar komplexa projekt. Läs om <Link to="/guider/kontrollansvarig-certifiering" className="text-blue-600 hover:text-blue-700 underline">certifieringskrav</Link> för 
+              och sakna erfarenhet, medan en dyrare är mer erfaren och hanterar komplexa projekt. Läs om <Link to="/guider/kontrollansvarig-certifiering/" className="text-blue-600 hover:text-blue-700 underline">certifieringskrav</Link> för 
               mer information.
             </p>
           </div>
@@ -366,7 +366,7 @@ const KontrollansvarigTimprisGuide = () => {
             </h3>
             <p className="text-stone-700">
               Välj en erfaren och lokalkunnig kontrollansvarig som känner din kommun och byggnadsnämnd. Ha välförberedda handlingar, 
-              använd en kompetent entreprenör och undvik onödiga ändringar under byggtid. Läs mer om <Link to="/guider/kontrollansvarig-ansvar" className="text-blue-600 hover:text-blue-700 underline">KA:s ansvar</Link>.
+              använd en kompetent entreprenör och undvik onödiga ändringar under byggtid. Läs mer om <Link to="/guider/kontrollansvarig-ansvar/" className="text-blue-600 hover:text-blue-700 underline">KA:s ansvar</Link>.
             </p>
           </div>
         </div>
@@ -382,13 +382,13 @@ const KontrollansvarigTimprisGuide = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link 
-              to="/kontakt"
+              to="/kontakt/"
               className="inline-flex items-center justify-center px-6 py-3 bg-white text-orange-600 rounded-lg hover:bg-orange-50 transition-colors font-semibold"
             >
               Begär offert kostnadsfritt
             </Link>
             <Link 
-              to="/kontrollansvarig"
+              to="/kontrollansvarig/"
               className="inline-flex items-center justify-center px-6 py-3 border-2 border-white text-white rounded-lg hover:bg-orange-700 transition-colors font-semibold"
             >
               Läs mer om tjänsten

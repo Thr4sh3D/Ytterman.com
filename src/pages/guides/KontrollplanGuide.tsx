@@ -19,7 +19,7 @@ const KontrollplanGuide = () => {
         
         <p className="text-lg text-stone-700 mb-6 font-medium">
           Kontrollplan är ett centralt dokument i byggprocessen som beskriver vilka kontroller som ska utföras, när och av vem. 
-          Denna guide förklarar vad en kontrollplan är, vad den ska innehålla och hur <Link to="/kontrollansvarig" className="text-blue-600 hover:text-blue-700 font-medium underline">kontrollansvarig</Link> använder den.
+          Denna guide förklarar vad en kontrollplan är, vad den ska innehålla och hur <Link to="/kontrollansvarig/" className="text-blue-600 hover:text-blue-700 font-medium underline">kontrollansvarig</Link> använder den.
         </p>
 
         <div className="bg-blue-50 border-l-4 border-blue-400 p-6 mb-8">
@@ -70,7 +70,7 @@ const KontrollplanGuide = () => {
               <div>
                 <strong className="text-stone-800">Dokumentation för byggnadsnämnden:</strong>
                 <p className="text-stone-700 mt-1">
-                  Visar att projektet har kontrollerats enligt kraven, vilket krävs för <Link to="/guider/slutbesked" className="text-blue-600 hover:text-blue-700 underline">slutbesked</Link>
+                  Visar att projektet har kontrollerats enligt kraven, vilket krävs för <Link to="/guider/slutbesked/" className="text-blue-600 hover:text-blue-700 underline">slutbesked</Link>
                 </p>
               </div>
             </li>
@@ -262,7 +262,7 @@ const KontrollplanGuide = () => {
         </h3>
 
         <p className="mb-6">
-          Kontrollplanen presenteras vid <Link to="/guider/tekniskt-samrad" className="text-blue-600 hover:text-blue-700 underline">tekniskt samråd</Link> där 
+          Kontrollplanen presenteras vid <Link to="/guider/tekniskt-samrad/" className="text-blue-600 hover:text-blue-700 underline">tekniskt samråd</Link> där 
           byggnadsnämnden granskar och godkänner planen. Eventuella justeringar görs baserat på byggnadsnämndens synpunkter.
         </p>
 
@@ -376,7 +376,7 @@ const KontrollplanGuide = () => {
             <p className="text-stone-700">
               Kontrollplan krävs för de allra flesta byggprojekt som kräver bygglov eller anmälan. Endast för mycket små projekt 
               (t.ex. friggebodar under 15 m²) kan kontrollplan undvaras. I praktiken: om du behöver 
-              <Link to="/guider/kontrollansvarig-bygglov" className="text-blue-600 hover:text-blue-700 underline ml-1">kontrollansvarig</Link> behöver du också kontrollplan.
+              <Link to="/guider/kontrollansvarig-bygglov/" className="text-blue-600 hover:text-blue-700 underline ml-1">kontrollansvarig</Link> behöver du också kontrollplan.
             </p>
           </div>
 
@@ -407,7 +407,7 @@ const KontrollplanGuide = () => {
             <p className="text-stone-700">
               Om kontrollansvarig inte följer kontrollplanen eller om kritiska kontroller uteblir kan detta leda till att slutbesked nekas, 
               krav på extra kontroller i efterhand, eller i värsta fall byggsanktionsavgift. KA har ett 
-              <Link to="/guider/kontrollansvarig-ansvar" className="text-blue-600 hover:text-blue-700 underline ml-1">personligt ansvar</Link> för 
+              <Link to="/guider/kontrollansvarig-ansvar/" className="text-blue-600 hover:text-blue-700 underline ml-1">personligt ansvar</Link> för 
               att kontrollplanen följs.
             </p>
           </div>
@@ -436,13 +436,13 @@ const KontrollplanGuide = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link 
-              to="/kontakt"
+              to="/kontakt/"
               className="inline-flex items-center justify-center px-6 py-3 bg-white text-blue-600 rounded-lg hover:bg-blue-50 transition-colors font-semibold"
             >
               Kontakta mig
             </Link>
             <Link 
-              to="/kontrollansvarig"
+              to="/kontrollansvarig/"
               className="inline-flex items-center justify-center px-6 py-3 border-2 border-white text-white rounded-lg hover:bg-blue-800 transition-colors font-semibold"
             >
               Läs mer om kontrollansvarig

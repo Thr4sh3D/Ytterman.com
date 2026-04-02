@@ -52,14 +52,14 @@ const BygglovsguideVanligaMisstag = () => {
               <span className="flex-shrink-0 w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold mr-4">3</span>
               <div>
                 <strong className="text-stone-800">Bygglov beviljas</strong>
-                <p className="text-stone-700 mt-1">Om ansökan är godkänd får du ett bygglovsbeslut. Nu ska <Link to="/kontrollansvarig" className="text-blue-600 hover:text-blue-700 underline">kontrollansvarig (KA)</Link> utses om det inte redan är gjort.</p>
+                <p className="text-stone-700 mt-1">Om ansökan är godkänd får du ett bygglovsbeslut. Nu ska <Link to="/kontrollansvarig/" className="text-blue-600 hover:text-blue-700 underline">kontrollansvarig (KA)</Link> utses om det inte redan är gjort.</p>
               </div>
             </li>
             <li className="flex items-start">
               <span className="flex-shrink-0 w-10 h-10 bg-orange-600 text-white rounded-full flex items-center justify-center font-bold mr-4">4</span>
               <div>
                 <strong className="text-stone-800">Tekniskt samråd</strong>
-                <p className="text-stone-700 mt-1">KA kallar till <Link to="/guider/tekniskt-samrad" className="text-blue-600 hover:text-blue-700 underline">tekniskt samråd</Link> där byggnadsnämnden, entreprenör och andra parter går igenom projektet.</p>
+                <p className="text-stone-700 mt-1">KA kallar till <Link to="/guider/tekniskt-samrad/" className="text-blue-600 hover:text-blue-700 underline">tekniskt samråd</Link> där byggnadsnämnden, entreprenör och andra parter går igenom projektet.</p>
               </div>
             </li>
             <li className="flex items-start">
@@ -73,14 +73,14 @@ const BygglovsguideVanligaMisstag = () => {
               <span className="flex-shrink-0 w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold mr-4">6</span>
               <div>
                 <strong className="text-stone-800">Byggnation med kontroller</strong>
-                <p className="text-stone-700 mt-1">Bygget genomförs med kontinuerliga kontroller enligt <Link to="/guider/kontrollplan" className="text-blue-600 hover:text-blue-700 underline">kontrollplanen</Link>.</p>
+                <p className="text-stone-700 mt-1">Bygget genomförs med kontinuerliga kontroller enligt <Link to="/guider/kontrollplan/" className="text-blue-600 hover:text-blue-700 underline">kontrollplanen</Link>.</p>
               </div>
             </li>
             <li className="flex items-start">
               <span className="flex-shrink-0 w-10 h-10 bg-green-600 text-white rounded-full flex items-center justify-center font-bold mr-4">7</span>
               <div>
                 <strong className="text-stone-800">Slutbesked</strong>
-                <p className="text-stone-700 mt-1">Efter slutbesiktning ansöker KA om <Link to="/guider/slutbesked" className="text-blue-600 hover:text-blue-700 underline">slutbesked</Link>. När det beviljas får byggnaden tas i bruk.</p>
+                <p className="text-stone-700 mt-1">Efter slutbesiktning ansöker KA om <Link to="/guider/slutbesked/" className="text-blue-600 hover:text-blue-700 underline">slutbesked</Link>. När det beviljas får byggnaden tas i bruk.</p>
               </div>
             </li>
           </ol>
@@ -246,13 +246,13 @@ const BygglovsguideVanligaMisstag = () => {
           
           <h4 className="font-semibold text-stone-800 mb-2 mt-4">BAS-P (Projektering)</h4>
           <p className="text-stone-700 mb-3">
-            <Link to="/bas-p" className="text-blue-600 hover:text-blue-700 underline">BAS-P</Link> arbetar under planeringsfasen 
+            <Link to="/bas-p/" className="text-blue-600 hover:text-blue-700 underline">BAS-P</Link> arbetar under planeringsfasen 
             och upprättar en arbetsmiljöplan som beskriver risker och hur de ska hanteras.
           </p>
 
           <h4 className="font-semibold text-stone-800 mb-2">BAS-U (Utförande)</h4>
           <p className="text-stone-700">
-            <Link to="/bas-u" className="text-blue-600 hover:text-blue-700 underline">BAS-U</Link> arbetar under byggtiden och 
+            <Link to="/bas-u/" className="text-blue-600 hover:text-blue-700 underline">BAS-U</Link> arbetar under byggtiden och 
             samordnar arbetsmiljöfrågor mellan olika entreprenörer på plats.
           </p>
         </div>
@@ -517,13 +517,13 @@ const BygglovsguideVanligaMisstag = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link 
-              to="/kontakt"
+              to="/kontakt/"
               className="inline-flex items-center justify-center px-6 py-3 bg-white text-blue-600 rounded-lg hover:bg-blue-50 transition-colors font-semibold"
             >
               Kontakta mig för kostnadsfri konsultation
             </Link>
             <Link 
-              to="/kontrollansvarig"
+              to="/kontrollansvarig/"
               className="inline-flex items-center justify-center px-6 py-3 border-2 border-white text-white rounded-lg hover:bg-blue-800 transition-colors font-semibold"
             >
               Läs mer om tjänsterna

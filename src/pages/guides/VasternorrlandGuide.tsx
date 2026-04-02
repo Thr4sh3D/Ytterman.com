@@ -19,7 +19,7 @@ const VasternorrlandGuide = () => {
         
         <p className="text-lg text-stone-700 mb-6 font-medium">
           Västernorrland är ett expansivt län med varierande bygglovskrav och lokala regleringar mellan kommunerna. 
-          Denna guide ger dig specifik information om <Link to="/kontrollansvarig" className="text-blue-600 hover:text-blue-700 underline">kontrollansvarig</Link> och 
+          Denna guide ger dig specifik information om <Link to="/kontrollansvarig/" className="text-blue-600 hover:text-blue-700 underline">kontrollansvarig</Link> och 
           byggprocessen i var och en av Västernorrlands sex kommuner.
         </p>
 
@@ -63,7 +63,7 @@ const VasternorrlandGuide = () => {
               av grundläggning och fuktsäkerhet extra viktig på grund av närhet till vatten och lerjordar.
             </li>
             <li>
-              <strong>Digitala tjänster:</strong> Sundsvall har välutvecklat e-tjänstesystem. Ansökningar om <Link to="/guider/kontrollansvarig-bygglov" className="text-blue-600 hover:text-blue-700 underline">bygglov</Link> och 
+              <strong>Digitala tjänster:</strong> Sundsvall har välutvecklat e-tjänstesystem. Ansökningar om <Link to="/guider/kontrollansvarig-bygglov/" className="text-blue-600 hover:text-blue-700 underline">bygglov</Link> och 
               kommunikation med KA sker smidigt digitalt.
             </li>
             <li>
@@ -90,7 +90,7 @@ const VasternorrlandGuide = () => {
             <AlertTriangle className="w-5 h-5 text-amber-600 mt-1 mr-3 flex-shrink-0" />
             <div>
               <p className="text-amber-700">
-                <strong>Viktigt för Sundsvall:</strong> Kommunen är noggrann med <Link to="/guider/tekniskt-samrad" className="text-amber-800 hover:text-amber-900 underline">tekniskt samråd</Link> vid 
+                <strong>Viktigt för Sundsvall:</strong> Kommunen är noggrann med <Link to="/guider/tekniskt-samrad/" className="text-amber-800 hover:text-amber-900 underline">tekniskt samråd</Link> vid 
                 större projekt. Se till att KA är utsedd och kontrollplan godkänd innan du börjar bygga.
               </p>
             </div>
@@ -123,7 +123,7 @@ const VasternorrlandGuide = () => {
             </li>
             <li>
               <strong>Fjärrvärmeanslutning:</strong> Vid nybyggnation i centrala Härnösand krävs ofta anslutning till fjärrvärme. Detta påverkar 
-              <Link to="/guider/kontrollplan" className="text-blue-600 hover:text-blue-700 underline"> kontrollplanen</Link> och certifieringskrav för installationer.
+              <Link to="/guider/kontrollplan/" className="text-blue-600 hover:text-blue-700 underline"> kontrollplanen</Link> och certifieringskrav för installationer.
             </li>
             <li>
               <strong>Kustläge:</strong> Många byggnationer ligger nära havet. Korrosionsskydd, vindlaster och fuktsäkerhet är extra viktiga 
@@ -260,8 +260,8 @@ const VasternorrlandGuide = () => {
           <ul className="space-y-3 text-stone-700">
             <li>
               <strong>Nybyggnation och expansion:</strong> Timrå växer snabbt med många nya villaområden (Sörberge, Vivstad, Fagervik). 
-              Byggnadsnämnden har god vana att hantera nybyggnation och standardiserade <Link to="/guider/bas-p-guide" className="text-blue-600 hover:text-blue-700 underline">BAS-P</Link> och 
-              <Link to="/guider/bas-u-guide" className="text-blue-600 hover:text-blue-700 underline"> BAS-U</Link> processer.
+              Byggnadsnämnden har god vana att hantera nybyggnation och standardiserade <Link to="/guider/bas-p-guide/" className="text-blue-600 hover:text-blue-700 underline">BAS-P</Link> och 
+              <Link to="/guider/bas-u-guide/" className="text-blue-600 hover:text-blue-700 underline"> BAS-U</Link> processer.
             </li>
             <li>
               <strong>Markförhållanden:</strong> Många områden i Timrå har lös lera. <strong>Geoteknisk grundundersökning</strong> är 
@@ -313,12 +313,12 @@ const VasternorrlandGuide = () => {
             </li>
             <li>
               <strong>Industribyggnation:</strong> Örnsköldsvik har stor industri (MODO Hockey Arena, industritomter). Vid industri- och 
-              kommersiella projekt är<Link to="/guider/kontrollansvarig-certifiering" className="text-blue-600 hover:text-blue-700 underline"> certifierad kontrollansvarig</Link> ofta 
+              kommersiella projekt är<Link to="/guider/kontrollansvarig-certifiering/" className="text-blue-600 hover:text-blue-700 underline"> certifierad kontrollansvarig</Link> ofta 
               obligatorisk med erfarenhet av brandskydd och tillgänglighet.
             </li>
             <li>
               <strong>Högskoleområdet:</strong> Runt Mittuniversitetet och Domsjö pågår expansion. Studentbostäder och flerfamiljshus 
-              kräver mer omfattande <Link to="/guider/vad-ar-bas" className="text-blue-600 hover:text-blue-700 underline">BAS-samordning</Link> och brandsäkerhetskontroller.
+              kräver mer omfattande <Link to="/guider/vad-ar-bas/" className="text-blue-600 hover:text-blue-700 underline">BAS-samordning</Link> och brandsäkerhetskontroller.
             </li>
             <li>
               <strong>Digital hantering:</strong> Örnsköldsvik ligger långt fram med e-tjänster för bygglov och kontakt med KA. God digital 
@@ -392,8 +392,8 @@ const VasternorrlandGuide = () => {
                 rätt tid att kontakta KA för rådgivning. Detta sparar både tid och pengar genom hela byggprocessen.
               </p>
               <p className="text-amber-700">
-                Läs mer om <Link to="/guider/kontrollansvarig-ansvar" className="text-amber-800 hover:text-amber-900 underline">kontrollansvarigs ansvar</Link> och 
-                <Link to="/guider/kontrollansvarig-timpris" className="text-amber-800 hover:text-amber-900 underline"> vad det kostar</Link>.
+                Läs mer om <Link to="/guider/kontrollansvarig-ansvar/" className="text-amber-800 hover:text-amber-900 underline">kontrollansvarigs ansvar</Link> och 
+                <Link to="/guider/kontrollansvarig-timpris/" className="text-amber-800 hover:text-amber-900 underline"> vad det kostar</Link>.
               </p>
             </div>
           </div>
@@ -410,7 +410,7 @@ const VasternorrlandGuide = () => {
               Kan samma kontrollansvarig arbeta i flera kommuner i Västernorrland?
             </h3>
             <p className="text-stone-700">
-              Ja, absolut. En kontrollansvarig med lämplig <Link to="/guider/kontrollansvarig-certifiering" className="text-blue-600 hover:text-blue-700 underline">certifiering</Link> kan 
+              Ja, absolut. En kontrollansvarig med lämplig <Link to="/guider/kontrollansvarig-certifiering/" className="text-blue-600 hover:text-blue-700 underline">certifiering</Link> kan 
               arbeta i alla Sveriges kommuner. Fördelen med en lokal KA är erfarenhet av de specifika kommunernas rutiner och krav.
             </p>
           </div>
@@ -432,7 +432,7 @@ const VasternorrlandGuide = () => {
             <p className="text-stone-700">
               Timpriserna är relativt likartade i alla kommuner, vanligen <strong>800-1,200 kr/timme</strong> beroende på projektets komplexitet. 
               För en normalvilla räkna med totalt 40,000-80,000 kr för KA. Läs mer i vår detaljerade guide om 
-              <Link to="/guider/kontrollansvarig-timpris" className="text-blue-600 hover:text-blue-700 underline"> kontrollansvarigs priser</Link>.
+              <Link to="/guider/kontrollansvarig-timpris/" className="text-blue-600 hover:text-blue-700 underline"> kontrollansvarigs priser</Link>.
             </p>
           </div>
 
@@ -453,21 +453,21 @@ const VasternorrlandGuide = () => {
             Erfaren kontrollansvarig i hela Västernorrland
           </h2>
           <p className="text-lg mb-6 text-blue-50">
-            Med lång erfarenhet som <Link to="/kontrollansvarig" className="text-white underline font-semibold">kontrollansvarig</Link> i 
+            Med lång erfarenhet som <Link to="/kontrollansvarig/" className="text-white underline font-semibold">kontrollansvarig</Link> i 
             Sundsvall, Härnösand, Sollefteå, Kramfors, Timrå och Örnsköldsvik hjälper jag dig genom hela byggprocessen - från 
-            första planering till <Link to="/guider/slutbesked" className="text-white underline font-semibold">slutbesked</Link>. 
+            första planering till <Link to="/guider/slutbesked/" className="text-white underline font-semibold">slutbesked</Link>. 
             Jag känner de lokala byggnadsnämnderna väl och ser till att ditt projekt följer alla regler och krav. Kontakta mig 
             för professionell hjälp med ditt byggprojekt.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link 
-              to="/kontakt"
+              to="/kontakt/"
               className="inline-flex items-center justify-center px-6 py-3 bg-white text-blue-600 rounded-lg hover:bg-blue-50 transition-colors font-semibold"
             >
               Kontakta mig idag
             </Link>
             <Link 
-              to="/bas-samordning"
+              to="/bas-samordning/"
               className="inline-flex items-center justify-center px-6 py-3 border-2 border-white text-white rounded-lg hover:bg-blue-800 transition-colors font-semibold"
             >
               Läs mer om BAS-samordning

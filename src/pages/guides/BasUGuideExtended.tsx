@@ -19,7 +19,7 @@ const BasUGuideExtended = () => {
         
         <p className="text-lg text-stone-700 mb-6 font-medium">
           BAS-U (Byggarbetsmiljösamordnare Utförande) är den person som säkerställer arbetsmiljön på byggarbetsplatsen under byggtiden. 
-          Denna guide förklarar BAS-U:s roll, arbetsuppgifter och hur arbetsmiljösamordningen fungerar i praktiken. För information om projekteringsfasen, se vår guide om <Link to="/bas-p" className="text-blue-600 hover:text-blue-700 underline">BAS-P</Link>.
+          Denna guide förklarar BAS-U:s roll, arbetsuppgifter och hur arbetsmiljösamordningen fungerar i praktiken. För information om projekteringsfasen, se vår guide om <Link to="/bas-p/" className="text-blue-600 hover:text-blue-700 underline">BAS-P</Link>.
         </p>
 
         <div className="bg-orange-50 border-l-4 border-orange-400 p-6 mb-8">
@@ -69,7 +69,7 @@ const BasUGuideExtended = () => {
 
         <p className="mb-6">
           I praktiken innebär detta att <strong>nästan alla byggprojekt</strong> kräver BAS-U, förutom de allra minsta där endast 
-          en enda entreprenör arbetar helt ensam från start till slut. BAS-U arbetar ofta i samverkan med <Link to="/kontrollansvarig" className="text-blue-600 hover:text-blue-700 underline">kontrollansvarig</Link> för bestä resultat.
+          en enda entreprenör arbetar helt ensam från start till slut. BAS-U arbetar ofta i samverkan med <Link to="/kontrollansvarig/" className="text-blue-600 hover:text-blue-700 underline">kontrollansvarig</Link> för bestä resultat.
         </p>
 
         <h3 className="text-xl font-semibold text-stone-800 mb-4">
@@ -94,7 +94,7 @@ const BasUGuideExtended = () => {
         </h3>
 
         <p className="mb-4">
-          BAS-U tar över arbetsmiljöplanen från <Link to="/guider/bas-p-guide" className="text-blue-600 hover:text-blue-700 underline">BAS-P</Link> och 
+          BAS-U tar över arbetsmiljöplanen från <Link to="/guider/bas-p-guide/" className="text-blue-600 hover:text-blue-700 underline">BAS-P</Link> och 
           uppdaterar den kontinuerligt:
         </p>
 
@@ -263,7 +263,7 @@ const BasUGuideExtended = () => {
         </h2>
 
         <p className="mb-4">
-          BAS-U arbetar i <strong>utförandefasen</strong> medan <Link to="/guider/bas-p-guide" className="text-blue-600 hover:text-blue-700 underline">BAS-P</Link> arbetar 
+          BAS-U arbetar i <strong>utförandefasen</strong> medan <Link to="/guider/bas-p-guide/" className="text-blue-600 hover:text-blue-700 underline">BAS-P</Link> arbetar 
           i <strong>projekteringsfasen</strong>. Här är huvudskillnaderna:
         </p>
 
@@ -302,7 +302,7 @@ const BasUGuideExtended = () => {
 
         <p className="mb-6">
           I många projekt är det samma person som är både BAS-P och BAS-U, vilket ger bra kontinuitet. 
-          Läs mer om <Link to="/guider/vad-ar-bas" className="text-blue-600 hover:text-blue-700 underline">skillnaden mellan BAS-P och BAS-U</Link>.
+          Läs mer om <Link to="/guider/vad-ar-bas/" className="text-blue-600 hover:text-blue-700 underline">skillnaden mellan BAS-P och BAS-U</Link>.
         </p>
 
         <h2 className="flex items-center gap-2 text-2xl font-bold text-stone-800 mb-6 mt-10">
@@ -398,7 +398,7 @@ const BasUGuideExtended = () => {
             <p className="text-stone-700">
               Timpris för BAS-U ligger ofta mellan 1,000-1,400 kr/timme. För ett typiskt villabygge med 6-8 månaders byggtid 
               kan totalkostnaden ligga på 30,000-50,000 kr beroende på hur ofta BAS-U behöver vara på plats.
-              Se mer information om <Link to="/guider/kontrollansvarig-timpris" className="text-blue-600 hover:text-blue-700 underline">priser för kontrollansvarig och BAS</Link>.
+              Se mer information om <Link to="/guider/kontrollansvarig-timpris/" className="text-blue-600 hover:text-blue-700 underline">priser för kontrollansvarig och BAS</Link>.
             </p>
           </div>
 
@@ -408,7 +408,7 @@ const BasUGuideExtended = () => {
             </h3>
             <p className="text-stone-700">
               Ja, det är vanligt att samma person har både uppdragen. Detta ger effektiv samordning mellan Plan- och bygglagen (PBL) 
-              och Arbetsmiljölagen (AML). Läs mer om <Link to="/kontrollansvarig" className="text-blue-600 hover:text-blue-700 underline">kontrollansvarig</Link>.
+              och Arbetsmiljölagen (AML). Läs mer om <Link to="/kontrollansvarig/" className="text-blue-600 hover:text-blue-700 underline">kontrollansvarig</Link>.
             </p>
           </div>
         </div>
@@ -419,19 +419,19 @@ const BasUGuideExtended = () => {
             Erfaren BAS-U i Västernorrland
           </h2>
           <p className="text-lg mb-6 text-orange-50">
-            Jag erbjuder både <Link to="/guider/bas-p-guide" className="text-white underline font-semibold">BAS-P</Link> och BAS-U-tjänster, 
-            samt kan kombinera med <Link to="/kontrollansvarig" className="text-white underline font-semibold">kontrollansvarig</Link> för 
+            Jag erbjuder både <Link to="/guider/bas-p-guide/" className="text-white underline font-semibold">BAS-P</Link> och BAS-U-tjänster, 
+            samt kan kombinera med <Link to="/kontrollansvarig/" className="text-white underline font-semibold">kontrollansvarig</Link> för 
             smidig samordning genom hela ditt byggprojekt.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link 
-              to="/kontakt"
+              to="/kontakt/"
               className="inline-flex items-center justify-center px-6 py-3 bg-white text-orange-600 rounded-lg hover:bg-orange-50 transition-colors font-semibold"
             >
               Kontakta mig för BAS-U
             </Link>
             <Link 
-              to="/bas-samordning"
+              to="/bas-samordning/"
               className="inline-flex items-center justify-center px-6 py-3 border-2 border-white text-white rounded-lg hover:bg-orange-700 transition-colors font-semibold"
             >
               Läs mer om BAS-tjänster
