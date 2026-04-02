@@ -22,8 +22,8 @@ const KontrollansvarigGuide = () => {
         </h2>
         
         <p className="text-lg text-stone-700 mb-6">
-          En <Link to="/kontrollansvarig" className="text-amber-600 hover:text-amber-700 font-medium underline">kontrollansvarig</Link> är en certifierad expert som säkerställer att byggprojekt följer gällande lagar, 
-          föreskrifter och <Link to="/guider/bygglov" className="text-amber-600 hover:text-amber-700 font-medium underline">bygglov</Link>. Rollen är lagstadgad enligt Plan- och bygglagen (PBL) och är avgörande 
+          En <Link to="/kontrollansvarig/" className="text-amber-600 hover:text-amber-700 font-medium underline">kontrollansvarig</Link> är en certifierad expert som säkerställer att byggprojekt följer gällande lagar, 
+          föreskrifter och <Link to="/guider/bygglov/" className="text-amber-600 hover:text-amber-700 font-medium underline">bygglov</Link>. Rollen är lagstadgad enligt Plan- och bygglagen (PBL) och är avgörande 
           för att ditt projekt ska genomföras säkert och regelrätt.
         </p>
 
@@ -251,7 +251,7 @@ const KontrollansvarigGuide = () => {
         </h2>
 
         <p className="mb-4">
-          En kontrollansvarig krävs för följande typer av projekt. Ofta behövs även <Link to="/bas-p" className="text-amber-600 hover:text-amber-700 font-medium underline">BAS-P</Link> och <Link to="/bas-u" className="text-amber-600 hover:text-amber-700 font-medium underline">BAS-U</Link> för säkerhetssamordning:
+          En kontrollansvarig krävs för följande typer av projekt. Ofta behövs även <Link to="/bas-p/" className="text-amber-600 hover:text-amber-700 font-medium underline">BAS-P</Link> och <Link to="/bas-u/" className="text-amber-600 hover:text-amber-700 font-medium underline">BAS-U</Link> för säkerhetssamordning:
         </p>
 
         <div className="bg-stone-50 p-6 rounded-lg mb-8">
@@ -280,7 +280,7 @@ const KontrollansvarigGuide = () => {
         </h2>
 
         <p className="mb-4">
-          Kostnaden för en kontrollansvarig varierar beroende på projektets omfattning och komplexitet. Se även vår <Link to="/priser" className="text-amber-600 hover:text-amber-700 font-medium underline">kompletta prislista</Link> för alla tjänster:
+          Kostnaden för en kontrollansvarig varierar beroende på projektets omfattning och komplexitet. Se även vår <Link to="/priser/" className="text-amber-600 hover:text-amber-700 font-medium underline">kompletta prislista</Link> för alla tjänster:
         </p>
 
         <div className="grid md:grid-cols-3 gap-4 mb-8">
@@ -313,7 +313,7 @@ const KontrollansvarigGuide = () => {
             <li>• Konkurrenskraftiga priser med fast eller timpris</li>
           </ul>
           <div className="mt-4 pt-4 border-t border-green-300">
-            <Link to="/kontakt" className="inline-block bg-green-700 text-white px-6 py-3 rounded-lg hover:bg-green-800 transition-colors font-semibold">
+            <Link to="/kontakt/" className="inline-block bg-green-700 text-white px-6 py-3 rounded-lg hover:bg-green-800 transition-colors font-semibold">
               Kontakta mig för offert →
             </Link>
           </div>
@@ -322,9 +322,9 @@ const KontrollansvarigGuide = () => {
         <div className="mt-12 pt-8 border-t border-stone-200">
           <h3 className="text-xl font-semibold text-stone-800 mb-4">Relaterade guider</h3>
           <ul className="space-y-2 text-stone-700">
-            <li>• <Link to="/guider/bas" className="text-amber-600 hover:text-amber-700 font-medium underline">BAS-P och BAS-U Guide - Säkerhetssamordning</Link></li>
-            <li>• <Link to="/guider/bygglov" className="text-amber-600 hover:text-amber-700 font-medium underline">Bygglovsprocessen i Västernorrland</Link></li>
-            <li>• <Link to="/guider/kvalitetskontroll" className="text-amber-600 hover:text-amber-700 font-medium underline">Kvalitetskontroll i byggprojekt</Link></li>
+            <li>• <Link to="/guider/bas/" className="text-amber-600 hover:text-amber-700 font-medium underline">BAS-P och BAS-U Guide - Säkerhetssamordning</Link></li>
+            <li>• <Link to="/guider/bygglov/" className="text-amber-600 hover:text-amber-700 font-medium underline">Bygglovsprocessen i Västernorrland</Link></li>
+            <li>• <Link to="/guider/kvalitetskontroll/" className="text-amber-600 hover:text-amber-700 font-medium underline">Kvalitetskontroll i byggprojekt</Link></li>
           </ul>
         </div>
       </div>

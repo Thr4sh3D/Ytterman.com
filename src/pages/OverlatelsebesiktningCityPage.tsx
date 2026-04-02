@@ -288,7 +288,7 @@ const OverlatelsebesiktningCityPage = ({ cityData: city }: Overlatelsebesiktning
                 ))}
               </div>
               <div className="text-center mt-6">
-                <Link to="/overlatelsebesiktning" className="text-amber-600 hover:text-amber-800 font-medium underline">
+                <Link to="/overlatelsebesiktning/" className="text-amber-600 hover:text-amber-800 font-medium underline">
                   Läs mer om överlåtelsebesiktning →
                 </Link>
               </div>

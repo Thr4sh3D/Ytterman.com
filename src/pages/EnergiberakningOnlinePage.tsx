@@ -205,7 +205,7 @@ const EnergiberakningOnlinePage = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a 
-                href="/kontakt?service=energiberakning-online" 
+                href="/kontakt/?service=energiberakning-online" 
                 className="earth-gradient hover:opacity-90 text-white px-8 py-3 rounded-lg font-semibold transition-colors inline-flex items-center justify-center gap-2"
               >
                 <Mail className="w-5 h-5" />
@@ -237,7 +237,7 @@ const EnergiberakningOnlinePage = () => {
                   Komplett energideklaration för din fastighet med energiklass och åtgärdsförslag.
                 </CardDescription>
                 <a 
-                  href="/energideklaration" 
+                  href="/energideklaration/" 
                   className="text-blue-600 hover:text-blue-700 font-semibold inline-flex items-center gap-1"
                 >
                   Läs mer <ArrowRight className="w-4 h-4" />
@@ -254,7 +254,7 @@ const EnergiberakningOnlinePage = () => {
                   Professionell kontrollansvarig för ditt byggprojekt enligt gällande regelverk.
                 </CardDescription>
                 <a 
-                  href="/kontrollansvarig" 
+                  href="/kontrollansvarig/" 
                   className="text-blue-600 hover:text-blue-700 font-semibold inline-flex items-center gap-1"
                 >
                   Läs mer <ArrowRight className="w-4 h-4" />
@@ -271,7 +271,7 @@ const EnergiberakningOnlinePage = () => {
                   Säkerhetssamordning för projektering och utförande av ditt byggprojekt.
                 </CardDescription>
                 <a 
-                  href="/bas-p" 
+                  href="/bas-p/" 
                   className="text-blue-600 hover:text-blue-700 font-semibold inline-flex items-center gap-1"
                 >
                   Läs mer <ArrowRight className="w-4 h-4" />

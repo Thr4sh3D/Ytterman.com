@@ -148,7 +148,7 @@ const OverlatelsebesiktningGuide = () => {
               Besiktningen utförs av erfaren byggfackman och resulterar i en detaljerad 
               rapport som ger både säljare och köpare en objektiv bild av fastighetens synliga skick. 
               Detta skapar trygghet för båda parter och kan förebygga framtida tvister. 
-              Ofta kombineras överlåtelsebesiktning med en <Link to="/energideklaration" className="text-amber-600 hover:text-amber-700 font-medium underline">energideklaration</Link> för en komplett bild av fastigheten.
+              Ofta kombineras överlåtelsebesiktning med en <Link to="/energideklaration/" className="text-amber-600 hover:text-amber-700 font-medium underline">energideklaration</Link> för en komplett bild av fastigheten.
             </p>
           </div>
         </section>
@@ -395,7 +395,7 @@ const OverlatelsebesiktningGuide = () => {
             Redo att boka överlåtelsebesiktning?
           </h2>
           <p className="text-xl text-stone-600 mb-6">
-            Boka direkt online eller kontakta oss för mer information. Se även <Link to="/priser" className="text-amber-600 hover:text-amber-700 font-medium underline">våra priser</Link>.
+            Boka direkt online eller kontakta oss för mer information. Se även <Link to="/priser/" className="text-amber-600 hover:text-amber-700 font-medium underline">våra priser</Link>.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             {BOOKING_OVL_URL && (
@@ -410,13 +410,13 @@ const OverlatelsebesiktningGuide = () => {
               </a>
             )}
             <Link 
-              to="/kontakt" 
+              to="/kontakt/" 
               className="border-2 border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white px-8 py-3 rounded-lg font-semibold transition-colors"
             >
               Kontaktformulär
             </Link>
             <Link 
-              to="/overlatelsebesiktning" 
+              to="/overlatelsebesiktning/" 
               className="border-2 border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white px-8 py-3 rounded-lg font-semibold transition-colors"
             >
               Läs mer om tjänsten
@@ -427,9 +427,9 @@ const OverlatelsebesiktningGuide = () => {
         <div className="mt-12 pt-8 border-t border-stone-200">
           <h3 className="text-xl font-semibold text-stone-800 mb-4">Relaterade guider</h3>
           <ul className="space-y-2 text-stone-700">
-            <li>• <Link to="/guider/energi" className="text-amber-600 hover:text-amber-700 font-medium underline">Energideklaration - Komplett Guide</Link></li>
-            <li>• <Link to="/guider/kontrollansvarig" className="text-amber-600 hover:text-amber-700 font-medium underline">Kontrollansvarig vid nybyggnation</Link></li>
-            <li>• <Link to="/guider/kvalitetskontroll" className="text-amber-600 hover:text-amber-700 font-medium underline">Kvalitetskontroll i byggprojekt</Link></li>
+            <li>• <Link to="/guider/energi/" className="text-amber-600 hover:text-amber-700 font-medium underline">Energideklaration - Komplett Guide</Link></li>
+            <li>• <Link to="/guider/kontrollansvarig/" className="text-amber-600 hover:text-amber-700 font-medium underline">Kontrollansvarig vid nybyggnation</Link></li>
+            <li>• <Link to="/guider/kvalitetskontroll/" className="text-amber-600 hover:text-amber-700 font-medium underline">Kvalitetskontroll i byggprojekt</Link></li>
           </ul>
         </div>
       </div>

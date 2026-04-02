@@ -100,13 +100,13 @@ const SlutbeskedGuide = () => {
             <li className="flex items-start">
               <CheckCircle className="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
               <div>
-                <strong>Alla kontroller är genomförda</strong> - enligt <Link to="/guider/kontrollplan" className="text-blue-600 hover:text-blue-700 underline">kontrollplanen</Link>
+                <strong>Alla kontroller är genomförda</strong> - enligt <Link to="/guider/kontrollplan/" className="text-blue-600 hover:text-blue-700 underline">kontrollplanen</Link>
               </div>
             </li>
             <li className="flex items-start">
               <CheckCircle className="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
               <div>
-                <strong>Slutbesiktning är utförd</strong> - av <Link to="/kontrollansvarig" className="text-blue-600 hover:text-blue-700 underline">kontrollansvarig</Link>
+                <strong>Slutbesiktning är utförd</strong> - av <Link to="/kontrollansvarig/" className="text-blue-600 hover:text-blue-700 underline">kontrollansvarig</Link>
               </div>
             </li>
             <li className="flex items-start">
@@ -353,7 +353,7 @@ const SlutbeskedGuide = () => {
             <p className="text-stone-700">
               Byggnadsnämndens avgift för slutbesked varierar mellan kommuner men ligger vanligen på <strong>3,000-8,000 kr</strong>. 
               Denna avgift täcker byggnadsnämndens granskning och administration. Utöver detta tillkommer KA:s tid för slutbesiktning 
-              och sammanställning av sluthandlingar. Läs mer om <Link to="/guider/kontrollansvarig-timpris" className="text-blue-600 hover:text-blue-700 underline">priser för kontrollansvarig</Link>.
+              och sammanställning av sluthandlingar. Läs mer om <Link to="/guider/kontrollansvarig-timpris/" className="text-blue-600 hover:text-blue-700 underline">priser för kontrollansvarig</Link>.
             </p>
           </div>
 
@@ -394,20 +394,20 @@ const SlutbeskedGuide = () => {
             Smidig process till slutbesked i Västernorrland
           </h2>
           <p className="text-lg mb-6 text-green-50">
-            Som erfaren <Link to="/kontrollansvarig" className="text-white underline font-semibold">kontrollansvarig</Link> hjälper jag dig genom 
-            hela processen från <Link to="/guider/tekniskt-samrad" className="text-white underline font-semibold">tekniskt samråd</Link> till slutbesked. 
+            Som erfaren <Link to="/kontrollansvarig/" className="text-white underline font-semibold">kontrollansvarig</Link> hjälper jag dig genom 
+            hela processen från <Link to="/guider/tekniskt-samrad/" className="text-white underline font-semibold">tekniskt samråd</Link> till slutbesked. 
             Jag ser till att all dokumentation är korrekt och komplett så att slutbeskedet beviljas utan fördröjningar. Kontakta mig för 
             professionell hantering av ditt byggprojekt.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link 
-              to="/kontakt"
+              to="/kontakt/"
               className="inline-flex items-center justify-center px-6 py-3 bg-white text-green-600 rounded-lg hover:bg-green-50 transition-colors font-semibold"
             >
               Kontakta mig
             </Link>
             <Link 
-              to="/guider/kontrollansvarig-bygglov"
+              to="/guider/kontrollansvarig-bygglov/"
               className="inline-flex items-center justify-center px-6 py-3 border-2 border-white text-white rounded-lg hover:bg-green-800 transition-colors font-semibold"
             >
               Läs mer om bygglovsprocessen

@@ -21,28 +21,28 @@ export const RelatedServices = ({ currentService, className = "" }: RelatedServi
     {
       title: "Kontrollansvarig (KA)",
       description: "Teknisk kontroll och slutbesiktning enligt PBL",
-      url: "/kontrollansvarig",
+      url: "/kontrollansvarig/",
       icon: Shield,
       price: "Från 15,000 SEK"
     },
     {
       title: "BAS-P (Projektering)",
       description: "Arbetsmiljösamordning under projekteringsfasen",
-      url: "/bas-p",
+      url: "/bas-p/",
       icon: FileText,
       price: "Från 12,000 SEK"
     },
     {
       title: "BAS-U (Utförande)",
       description: "Arbetsmiljösamordning under byggfasen",
-      url: "/bas-u",
+      url: "/bas-u/",
       icon: Users,
       price: "Från 18,000 SEK"
     },
     {
       title: "Alla Tjänster",
       description: "Se alla våra byggtjänster och priser",
-      url: "/tjanster",
+      url: "/tjanster/",
       icon: Building,
       price: "Översikt"
     }
@@ -97,7 +97,7 @@ export const RelatedServices = ({ currentService, className = "" }: RelatedServi
           
           <div className="text-center mt-12">
             <Button 
-              onClick={() => navigate('/kontakt')}
+              onClick={() => navigate('/kontakt/')}
               className="earth-gradient text-white hover:opacity-90 px-8 py-4 text-lg"
             >
               Få kostnadsfri konsultation

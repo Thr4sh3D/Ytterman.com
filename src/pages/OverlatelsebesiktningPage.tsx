@@ -477,7 +477,7 @@ const OverlatelsebesiktningPage = () => {
                 </a>
               </Button>
               <Button size="lg" className="bg-transparent text-white border-2 border-white hover:bg-white hover:text-amber-600" asChild>
-                <Link to="/kontakt">
+                <Link to="/kontakt/">
                   Kontaktformulär
                 </Link>
               </Button>

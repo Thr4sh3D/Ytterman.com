@@ -79,7 +79,7 @@ export const PricingPackages = () => {
                 asChild
                 className={`w-full ${pkg.popular ? 'earth-gradient text-white' : 'bg-slate-900 text-white hover:bg-slate-800'}`}
               >
-                <a href="/kontakt" aria-label={`Be om offert för ${pkg.name}`}>
+                <a href="/kontakt/" aria-label={`Be om offert för ${pkg.name}`}>
                   {pkg.popular ? 'Starta med kostnadsfri konsultation' : 'Be om fast pris för detta paket'}
                 </a>
               </Button>
@@ -186,7 +186,7 @@ export const PricingPackages = () => {
               size="lg"
               className="earth-gradient text-white hover:opacity-90"
             >
-              <a href="/kontakt" aria-label="Boka kostnadsfri genomgång">
+              <a href="/kontakt/" aria-label="Boka kostnadsfri genomgång">
                 <Mail className="w-5 h-5 mr-2" />
                 Boka kostnadsfri genomgång
               </a>

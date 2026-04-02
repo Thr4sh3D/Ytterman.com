@@ -45,7 +45,7 @@ const OmradenPage = () => {
         'Samarbete med Härnösands byggnadsnämnd',
         'Specialkunskap om äldre byggnaders renoveringsbehov',
         'Återkommande uppdrag i både stadskärna och villaområden',
-        <>Läs om <Link to="/guider/bygglov" className="text-primary hover:text-primary/80 font-medium underline">bygglovsprocessen</Link> och kvalitetskrav</>
+        <>Läs om <Link to="/guider/bygglov/" className="text-primary hover:text-primary/80 font-medium underline">bygglovsprocessen</Link> och kvalitetskrav</>
       ],
       services: 'Kontrollansvarig, BAS-P, BAS-U, Överlåtelsebesiktning, Energideklaration',
       examples: 'Renovering av kulturhistoriska byggnader i centrum, nybyggnation i Sälsten, tillbyggnader i Häggdånger.',
@@ -61,7 +61,7 @@ const OmradenPage = () => {
         'Erfarenhet från både bostäder och industriprojekt',
         'Kunskap om lokala byggförutsättningar',
         'Flexibel tillgänglighet för snabba platsbesök',
-        <>Läs om skillnaden mellan <Link to="/guider/bas" className="text-primary hover:text-primary/80 font-medium underline">BAS-P och BAS-U</Link></>
+        <>Läs om skillnaden mellan <Link to="/guider/bas/" className="text-primary hover:text-primary/80 font-medium underline">BAS-P och BAS-U</Link></>
       ],
       services: 'Alla tjänster: Kontrollansvarig, BAS-P, BAS-U, Energideklaration, Överlåtelsebesiktning',
       examples: 'Villabyggen i Söråker och Bergeforsen, industribyggnader vid E4-stråket, renoveringar i centrala Timrå.',
@@ -75,7 +75,7 @@ const OmradenPage = () => {
       highlights: [
         'I tid för morgonmöten och platsbesök',
         'Erfarenhet från både tätort och landsbygd',
-        <>Kunskap om lokala utmaningar - läs om <Link to="/guider/miljo" className="text-primary hover:text-primary/80 font-medium underline">miljökrav vid byggande</Link></>,
+        <>Kunskap om lokala utmaningar - läs om <Link to="/guider/miljo/" className="text-primary hover:text-primary/80 font-medium underline">miljökrav vid byggande</Link></>,
         'Samordning med lokala byggföretag'
       ],
       services: 'Kontrollansvarig, BAS-P, BAS-U, Energideklaration, Överlåtelsebesiktning',
@@ -91,7 +91,7 @@ const OmradenPage = () => {
         'Erfaren med landsbygdens särskilda förutsättningar',
         'Kunskap om avståndets utmaningar och lösningar',
         'Flexibel planering för effektiva platsbesök',
-        <>Förståelse för <Link to="/guider/energi" className="text-primary hover:text-primary/80 font-medium underline">energikrav och klimatanpassat byggande</Link></>
+        <>Förståelse för <Link to="/guider/energi/" className="text-primary hover:text-primary/80 font-medium underline">energikrav och klimatanpassat byggande</Link></>
       ],
       services: 'Kontrollansvarig, BAS-P, BAS-U, Energideklaration',
       examples: 'Lantbruksbyggnader, fritidshus och permanentboenden på landsbygden, renoveringar i Sollefteå tätort.',
@@ -107,7 +107,7 @@ const OmradenPage = () => {
         'Specialerfarenhet av industribyggnation',
         'Samarbete med stora och små byggföretag',
         'Kunskap om lokala byggförhållanden och klimat',
-        <>Läs mer om <Link to="/guider/kvalitetskontroll" className="text-primary hover:text-primary/80 font-medium underline">kvalitetskontroll vid stora projekt</Link></>
+        <>Läs mer om <Link to="/guider/kvalitetskontroll/" className="text-primary hover:text-primary/80 font-medium underline">kvalitetskontroll vid stora projekt</Link></>
       ],
       services: 'Kontrollansvarig, BAS-P, BAS-U (för större projekt)',
       examples: 'Industribyggnader kopplade till process- och skogsindustri, bostadsprojekt i både tätort och mindre orter.',
@@ -188,7 +188,7 @@ const OmradenPage = () => {
                   </h1>
                 </div>
                 <p className="text-xl text-stone-600 mb-8 leading-relaxed">
-                  Från min bas i Sundsvall täcker jag hela Västernorrlands län med <Link to="/kontrollansvarig" className="text-primary hover:text-primary/80 font-medium underline">kontrollansvarig</Link>, <Link to="/bas-p" className="text-primary hover:text-primary/80 font-medium underline">BAS-P</Link> och <Link to="/bas-u" className="text-primary hover:text-primary/80 font-medium underline">BAS-U</Link> tjänster. 
+                  Från min bas i Sundsvall täcker jag hela Västernorrlands län med <Link to="/kontrollansvarig/" className="text-primary hover:text-primary/80 font-medium underline">kontrollansvarig</Link>, <Link to="/bas-p/" className="text-primary hover:text-primary/80 font-medium underline">BAS-P</Link> och <Link to="/bas-u/" className="text-primary hover:text-primary/80 font-medium underline">BAS-U</Link> tjänster. 
                   Samma höga kvalitet och snabba service oavsett var ditt projekt ligger.
                 </p>
                 <div className="bg-white rounded-lg shadow-md p-6 max-w-2xl mx-auto">
@@ -215,7 +215,7 @@ const OmradenPage = () => {
                 <p className="text-lg text-stone-600 mb-8 text-center leading-relaxed">
                   Med över 20 års erfarenhet från byggbranschen i Västernorrland känner jag till 
                   regionens särskilda förutsättningar, kommunala skillnader och lokala byggföretag. 
-                  Detta ger mig en unik fördel när det gäller att förenkla din <Link to="/guider/bygglov" className="text-primary hover:text-primary/80 font-medium underline">bygglovsprocess</Link> och säkerställa <Link to="/guider/kvalitetskontroll" className="text-primary hover:text-primary/80 font-medium underline">högsta kvalitet</Link> i varje projekt.
+                  Detta ger mig en unik fördel när det gäller att förenkla din <Link to="/guider/bygglov/" className="text-primary hover:text-primary/80 font-medium underline">bygglovsprocess</Link> och säkerställa <Link to="/guider/kvalitetskontroll/" className="text-primary hover:text-primary/80 font-medium underline">högsta kvalitet</Link> i varje projekt.
                 </p>
 
                 <div className="grid md:grid-cols-3 gap-6 mb-12">
@@ -299,32 +299,32 @@ const OmradenPage = () => {
                       {/* Area-specific guide links */}
                       {activeArea === 'sundsvall' && (
                         <p className="text-sm text-stone-600">
-                          Läs mer om <Link to="/guider/kontrollansvarig" className="text-primary hover:text-primary/80 font-medium underline">vad en kontrollansvarig gör</Link> och <Link to="/guider/kvalitetskontroll" className="text-primary hover:text-primary/80 font-medium underline">kvalitetskontrollens betydelse</Link>.
+                          Läs mer om <Link to="/guider/kontrollansvarig/" className="text-primary hover:text-primary/80 font-medium underline">vad en kontrollansvarig gör</Link> och <Link to="/guider/kvalitetskontroll/" className="text-primary hover:text-primary/80 font-medium underline">kvalitetskontrollens betydelse</Link>.
                         </p>
                       )}
                       {activeArea === 'harnosand' && (
                         <p className="text-sm text-stone-600">
-                          Läs om <Link to="/guider/bygglov" className="text-primary hover:text-primary/80 font-medium underline">bygglovsprocessen</Link> och <Link to="/guider/kvalitetskontroll" className="text-primary hover:text-primary/80 font-medium underline">kvalitetskrav vid renovering</Link>.
+                          Läs om <Link to="/guider/bygglov/" className="text-primary hover:text-primary/80 font-medium underline">bygglovsprocessen</Link> och <Link to="/guider/kvalitetskontroll/" className="text-primary hover:text-primary/80 font-medium underline">kvalitetskrav vid renovering</Link>.
                         </p>
                       )}
                       {activeArea === 'timra' && (
                         <p className="text-sm text-stone-600">
-                          Läs om skillnaden mellan <Link to="/guider/bas" className="text-primary hover:text-primary/80 font-medium underline">BAS-P och BAS-U</Link> för både bostäder och industriprojekt.
+                          Läs om skillnaden mellan <Link to="/guider/bas/" className="text-primary hover:text-primary/80 font-medium underline">BAS-P och BAS-U</Link> för både bostäder och industriprojekt.
                         </p>
                       )}
                       {activeArea === 'kramfors' && (
                         <p className="text-sm text-stone-600">
-                          Läs om <Link to="/guider/miljo" className="text-primary hover:text-primary/80 font-medium underline">miljökrav vid byggande</Link> och hur vi hanterar lokala utmaningar som radon och fukt.
+                          Läs om <Link to="/guider/miljo/" className="text-primary hover:text-primary/80 font-medium underline">miljökrav vid byggande</Link> och hur vi hanterar lokala utmaningar som radon och fukt.
                         </p>
                       )}
                       {activeArea === 'solleftea' && (
                         <p className="text-sm text-stone-600">
-                          Läs om <Link to="/guider/energi" className="text-primary hover:text-primary/80 font-medium underline">energikrav och klimatanpassat byggande</Link> på landsbygden.
+                          Läs om <Link to="/guider/energi/" className="text-primary hover:text-primary/80 font-medium underline">energikrav och klimatanpassat byggande</Link> på landsbygden.
                         </p>
                       )}
                       {activeArea === 'ornskoldsvik' && (
                         <p className="text-sm text-stone-600">
-                          Läs mer om <Link to="/guider/kvalitetskontroll" className="text-primary hover:text-primary/80 font-medium underline">kvalitetskontroll vid stora projekt</Link> och <Link to="/guider/bas" className="text-primary hover:text-primary/80 font-medium underline">BAS-krav för industriprojekt</Link>.
+                          Läs mer om <Link to="/guider/kvalitetskontroll/" className="text-primary hover:text-primary/80 font-medium underline">kvalitetskontroll vid stora projekt</Link> och <Link to="/guider/bas/" className="text-primary hover:text-primary/80 font-medium underline">BAS-krav för industriprojekt</Link>.
                         </p>
                       )}
                     </div>
@@ -361,7 +361,7 @@ const OmradenPage = () => {
                     <h4 className="font-bold text-stone-900 mb-3">Kontakta mig för projekt i {activeAreaData.name}</h4>
                     <p className="text-stone-700 mb-4">
                       Oavsett om det gäller nybyggnation, ombyggnad eller renovering i {activeAreaData.name} 
-                      står jag redo att hjälpa till. Läs mer i våra <Link to="/guider/kontrollansvarig" className="text-primary hover:text-primary/80 font-medium underline">guider</Link> eller kontakta mig för en kostnadsfri konsultation och offert.
+                      står jag redo att hjälpa till. Läs mer i våra <Link to="/guider/kontrollansvarig/" className="text-primary hover:text-primary/80 font-medium underline">guider</Link> eller kontakta mig för en kostnadsfri konsultation och offert.
                     </p>
                     <div className="flex flex-wrap gap-4">
                       <a 
@@ -429,13 +429,13 @@ const OmradenPage = () => {
                     </p>
                     <div className="flex flex-wrap gap-3">
                       <Link 
-                        to="/kontrollansvarig" 
+                        to="/kontrollansvarig/" 
                         className="text-blue-600 hover:text-blue-700 font-semibold text-sm inline-flex items-center"
                       >
                         Tjänsten i detalj →
                       </Link>
                       <Link 
-                        to="/guider/kontrollansvarig" 
+                        to="/guider/kontrollansvarig/" 
                         className="text-blue-600 hover:text-blue-700 font-semibold text-sm inline-flex items-center"
                       >
                         Läs guide →
@@ -451,19 +451,19 @@ const OmradenPage = () => {
                     </p>
                     <div className="flex flex-wrap gap-3">
                       <Link 
-                        to="/bas-p" 
+                        to="/bas-p/" 
                         className="text-green-600 hover:text-green-700 font-semibold text-sm"
                       >
                         BAS-P →
                       </Link>
                       <Link 
-                        to="/bas-u" 
+                        to="/bas-u/" 
                         className="text-green-600 hover:text-green-700 font-semibold text-sm"
                       >
                         BAS-U →
                       </Link>
                       <Link 
-                        to="/guider/bas" 
+                        to="/guider/bas/" 
                         className="text-green-600 hover:text-green-700 font-semibold text-sm"
                       >
                         BAS-guide →
@@ -479,13 +479,13 @@ const OmradenPage = () => {
                     </p>
                     <div className="flex flex-wrap gap-3">
                       <Link 
-                        to="/energideklaration" 
+                        to="/energideklaration/" 
                         className="text-amber-600 hover:text-amber-700 font-semibold text-sm inline-flex items-center"
                       >
                         Tjänsten →
                       </Link>
                       <Link 
-                        to="/guider/energi" 
+                        to="/guider/energi/" 
                         className="text-amber-600 hover:text-amber-700 font-semibold text-sm inline-flex items-center"
                       >
                         Energiguide →
@@ -501,13 +501,13 @@ const OmradenPage = () => {
                     </p>
                     <div className="flex flex-wrap gap-3">
                       <Link 
-                        to="/overlatelsebesiktning" 
+                        to="/overlatelsebesiktning/" 
                         className="text-amber-600 hover:text-amber-700 font-semibold text-sm inline-flex items-center"
                       >
                         Tjänsten →
                       </Link>
                       <Link 
-                        to="/guider/overlatelsebesiktning" 
+                        to="/guider/overlatelsebesiktning/" 
                         className="text-amber-600 hover:text-amber-700 font-semibold text-sm inline-flex items-center"
                       >
                         Besiktningsguide →
@@ -552,7 +552,7 @@ const OmradenPage = () => {
                 </h2>
                 <p className="text-lg text-stone-600 mb-6 leading-relaxed">
                   Som erfaren besiktningsman i Sundsvall och Västernorrland genomför jag professionella{' '}
-                  <Link to="/overlatelsebesiktning" className="text-primary hover:text-primary/80 font-medium underline">överlåtelsebesiktningar</Link> för
+                  <Link to="/overlatelsebesiktning/" className="text-primary hover:text-primary/80 font-medium underline">överlåtelsebesiktningar</Link> för
                   dig som köper eller säljer fastighet. Med över 20 års erfarenhet i byggbranschen erbjuder jag en
                   trygg och noggrann bedömning av fastighetens skick — i Sundsvall, Härnösand, Timrå, Kramfors, Sollefteå
                   och Örnsköldsvik.
@@ -567,8 +567,8 @@ const OmradenPage = () => {
                       I Härnösand utför jag besiktningar av både äldre kulturhistoriska byggnader och moderna villor.
                       Den unika bebyggelsen i Härnösands stadskärna kräver extra noggrannhet och erfarenhet.
                       Jag erbjuder{' '}
-                      <Link to="/overlatelsebesiktning" className="text-primary hover:text-primary/80 font-medium underline">överlåtelsebesiktning</Link> och{' '}
-                      <Link to="/energideklaration" className="text-primary hover:text-primary/80 font-medium underline">energideklaration</Link> i hela
+                      <Link to="/overlatelsebesiktning/" className="text-primary hover:text-primary/80 font-medium underline">överlåtelsebesiktning</Link> och{' '}
+                      <Link to="/energideklaration/" className="text-primary hover:text-primary/80 font-medium underline">energideklaration</Link> i hela
                       Härnösands kommun.
                     </p>
                   </div>
@@ -578,11 +578,11 @@ const OmradenPage = () => {
                     </h3>
                     <p className="text-stone-600 leading-relaxed">
                       Som byggkonsult i Sundsvall erbjuder jag helhetslösningar för ditt byggprojekt. Från{' '}
-                      <Link to="/kontrollansvarig" className="text-primary hover:text-primary/80 font-medium underline">kontrollansvarig</Link> och{' '}
-                      <Link to="/bas-p" className="text-primary hover:text-primary/80 font-medium underline">BAS-P</Link>/{' '}
-                      <Link to="/bas-u" className="text-primary hover:text-primary/80 font-medium underline">BAS-U</Link> till{' '}
-                      <Link to="/overlatelsebesiktning" className="text-primary hover:text-primary/80 font-medium underline">besiktning</Link> och{' '}
-                      <Link to="/energideklaration" className="text-primary hover:text-primary/80 font-medium underline">energideklaration</Link> — allt
+                      <Link to="/kontrollansvarig/" className="text-primary hover:text-primary/80 font-medium underline">kontrollansvarig</Link> och{' '}
+                      <Link to="/bas-p/" className="text-primary hover:text-primary/80 font-medium underline">BAS-P</Link>/{' '}
+                      <Link to="/bas-u/" className="text-primary hover:text-primary/80 font-medium underline">BAS-U</Link> till{' '}
+                      <Link to="/overlatelsebesiktning/" className="text-primary hover:text-primary/80 font-medium underline">besiktning</Link> och{' '}
+                      <Link to="/energideklaration/" className="text-primary hover:text-primary/80 font-medium underline">energideklaration</Link> — allt
                       samlat hos en och samma byggkonsult med bred kompetens.
                     </p>
                   </div>
@@ -635,27 +635,27 @@ const OmradenPage = () => {
                 <div className="mb-8">
                   <h3 className="text-lg font-semibold text-stone-800 mb-4">Tjänster</h3>
                   <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-                    <Link to="/kontrollansvarig" className="bg-white p-4 rounded-lg border border-stone-200 hover:border-primary transition-colors">
+                    <Link to="/kontrollansvarig/" className="bg-white p-4 rounded-lg border border-stone-200 hover:border-primary transition-colors">
                       <h4 className="font-semibold text-stone-900 mb-1">Kontrollansvarig</h4>
                       <p className="text-sm text-stone-600">Läs om KA-tjänsten i detalj</p>
                     </Link>
-                    <Link to="/bas-p" className="bg-white p-4 rounded-lg border border-stone-200 hover:border-primary transition-colors">
+                    <Link to="/bas-p/" className="bg-white p-4 rounded-lg border border-stone-200 hover:border-primary transition-colors">
                       <h4 className="font-semibold text-stone-900 mb-1">BAS-P</h4>
                       <p className="text-sm text-stone-600">Arbetsmiljösamordning projektering</p>
                     </Link>
-                    <Link to="/bas-u" className="bg-white p-4 rounded-lg border border-stone-200 hover:border-primary transition-colors">
+                    <Link to="/bas-u/" className="bg-white p-4 rounded-lg border border-stone-200 hover:border-primary transition-colors">
                       <h4 className="font-semibold text-stone-900 mb-1">BAS-U</h4>
                       <p className="text-sm text-stone-600">Arbetsmiljösamordning utförande</p>
                     </Link>
-                    <Link to="/energideklaration" className="bg-white p-4 rounded-lg border border-stone-200 hover:border-primary transition-colors">
+                    <Link to="/energideklaration/" className="bg-white p-4 rounded-lg border border-stone-200 hover:border-primary transition-colors">
                       <h4 className="font-semibold text-stone-900 mb-1">Energideklaration</h4>
                       <p className="text-sm text-stone-600">Lagstadgad energideklaration</p>
                     </Link>
-                    <Link to="/overlatelsebesiktning" className="bg-white p-4 rounded-lg border border-stone-200 hover:border-primary transition-colors">
+                    <Link to="/overlatelsebesiktning/" className="bg-white p-4 rounded-lg border border-stone-200 hover:border-primary transition-colors">
                       <h4 className="font-semibold text-stone-900 mb-1">Överlåtelsebesiktning</h4>
                       <p className="text-sm text-stone-600">Besiktning vid fastighetsförsäljning</p>
                     </Link>
-                    <Link to="/priser" className="bg-white p-4 rounded-lg border border-stone-200 hover:border-primary transition-colors">
+                    <Link to="/priser/" className="bg-white p-4 rounded-lg border border-stone-200 hover:border-primary transition-colors">
                       <h4 className="font-semibold text-stone-900 mb-1">Priser</h4>
                       <p className="text-sm text-stone-600">Se våra transparenta priser</p>
                     </Link>
@@ -665,39 +665,39 @@ const OmradenPage = () => {
                 <div>
                   <h3 className="text-lg font-semibold text-stone-800 mb-4">Kunskapsbank - Guider</h3>
                   <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-                    <Link to="/guider/kontrollansvarig" className="bg-white p-4 rounded-lg border border-stone-200 hover:border-primary transition-colors">
+                    <Link to="/guider/kontrollansvarig/" className="bg-white p-4 rounded-lg border border-stone-200 hover:border-primary transition-colors">
                       <h4 className="font-semibold text-stone-900 mb-1">Kontrollansvarig Guide</h4>
                       <p className="text-sm text-stone-600">Allt om KA-rollen och ansvar</p>
                     </Link>
-                    <Link to="/guider/bas" className="bg-white p-4 rounded-lg border border-stone-200 hover:border-primary transition-colors">
+                    <Link to="/guider/bas/" className="bg-white p-4 rounded-lg border border-stone-200 hover:border-primary transition-colors">
                       <h4 className="font-semibold text-stone-900 mb-1">BAS-P och BAS-U Guide</h4>
                       <p className="text-sm text-stone-600">Säkerhetssamordning i byggprojekt</p>
                     </Link>
-                    <Link to="/guider/bygglov" className="bg-white p-4 rounded-lg border border-stone-200 hover:border-primary transition-colors">
+                    <Link to="/guider/bygglov/" className="bg-white p-4 rounded-lg border border-stone-200 hover:border-primary transition-colors">
                       <h4 className="font-semibold text-stone-900 mb-1">Bygglovsprocessen</h4>
                       <p className="text-sm text-stone-600">Guide för Västernorrlands kommuner</p>
                     </Link>
-                    <Link to="/guider/kvalitetskontroll" className="bg-white p-4 rounded-lg border border-stone-200 hover:border-primary transition-colors">
+                    <Link to="/guider/kvalitetskontroll/" className="bg-white p-4 rounded-lg border border-stone-200 hover:border-primary transition-colors">
                       <h4 className="font-semibold text-stone-900 mb-1">Kvalitetskontroll Guide</h4>
                       <p className="text-sm text-stone-600">Säkerställ högsta byggkvalitet</p>
                     </Link>
-                    <Link to="/guider/energi" className="bg-white p-4 rounded-lg border border-stone-200 hover:border-primary transition-colors">
+                    <Link to="/guider/energi/" className="bg-white p-4 rounded-lg border border-stone-200 hover:border-primary transition-colors">
                       <h4 className="font-semibold text-stone-900 mb-1">Energideklaration Guide</h4>
                       <p className="text-sm text-stone-600">Komplett guide om energideklarationer</p>
                     </Link>
-                    <Link to="/guider/overlatelsebesiktning" className="bg-white p-4 rounded-lg border border-stone-200 hover:border-primary transition-colors">
+                    <Link to="/guider/overlatelsebesiktning/" className="bg-white p-4 rounded-lg border border-stone-200 hover:border-primary transition-colors">
                       <h4 className="font-semibold text-stone-900 mb-1">Överlåtelsebesiktning Guide</h4>
                       <p className="text-sm text-stone-600">Allt om fastighetsbesiktningar</p>
                     </Link>
-                    <Link to="/faq" className="bg-white p-4 rounded-lg border border-stone-200 hover:border-primary transition-colors">
+                    <Link to="/faq/" className="bg-white p-4 rounded-lg border border-stone-200 hover:border-primary transition-colors">
                       <h4 className="font-semibold text-stone-900 mb-1">Vanliga Frågor (FAQ)</h4>
                       <p className="text-sm text-stone-600">32+ svar på vanliga frågor</p>
                     </Link>
-                    <Link to="/kontakt" className="bg-white p-4 rounded-lg border border-stone-200 hover:border-primary transition-colors">
+                    <Link to="/kontakt/" className="bg-white p-4 rounded-lg border border-stone-200 hover:border-primary transition-colors">
                       <h4 className="font-semibold text-stone-900 mb-1">Kontakt</h4>
                       <p className="text-sm text-stone-600">Alla våra kontaktuppgifter</p>
                     </Link>
-                    <Link to="/om" className="bg-white p-4 rounded-lg border border-stone-200 hover:border-primary transition-colors">
+                    <Link to="/om/" className="bg-white p-4 rounded-lg border border-stone-200 hover:border-primary transition-colors">
                       <h4 className="font-semibold text-stone-900 mb-1">Om Tobias Ytterman</h4>
                       <p className="text-sm text-stone-600">Bakgrund och erfarenhet</p>
                     </Link>

@@ -659,9 +659,9 @@ RewriteRule ^(.*)$ /$1/ [R=301,L]`}
         <div className="mt-12 pt-8 border-t border-stone-200">
           <h3 className="text-xl font-semibold text-stone-800 mb-4">Relaterade guider</h3>
           <ul className="space-y-2 text-stone-700">
-            <li>• <Link to="/guider/bygglov" className="text-amber-600 hover:text-amber-700 font-medium underline">Bygglovsprocessen steg för steg</Link></li>
-            <li>• <Link to="/guider/energi" className="text-amber-600 hover:text-amber-700 font-medium underline">Energideklaration och energikrav</Link></li>
-            <li>• <Link to="/guider/digitala-verktyg" className="text-amber-600 hover:text-amber-700 font-medium underline">Digitala verktyg för byggprojekt</Link></li>
+            <li>• <Link to="/guider/bygglov/" className="text-amber-600 hover:text-amber-700 font-medium underline">Bygglovsprocessen steg för steg</Link></li>
+            <li>• <Link to="/guider/energi/" className="text-amber-600 hover:text-amber-700 font-medium underline">Energideklaration och energikrav</Link></li>
+            <li>• <Link to="/guider/digitala-verktyg/" className="text-amber-600 hover:text-amber-700 font-medium underline">Digitala verktyg för byggprojekt</Link></li>
           </ul>
         </div>
       </div>

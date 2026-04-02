@@ -287,7 +287,7 @@ const KontrollansvarigCityPage = ({ cityData: city }: KontrollansvarigCityPagePr
                 ))}
               </div>
               <div className="text-center mt-6">
-                <Link to="/kontrollansvarig" className="text-blue-600 hover:text-blue-800 font-medium underline">
+                <Link to="/kontrollansvarig/" className="text-blue-600 hover:text-blue-800 font-medium underline">
                   Läs mer om våra kontrollansvarig tjänster →
                 </Link>
               </div>
@@ -305,7 +305,7 @@ const KontrollansvarigCityPage = ({ cityData: city }: KontrollansvarigCityPagePr
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="bg-white text-slate-900 hover:bg-slate-100" asChild>
-                  <Link to="/kontakt">Skicka förfrågan</Link>
+                  <Link to="/kontakt/">Skicka förfrågan</Link>
                 </Button>
                 <Button size="lg" className="bg-transparent text-white border-2 border-white hover:bg-white hover:text-blue-600" asChild>
                   <a href="mailto:tobias@ytterman.com">

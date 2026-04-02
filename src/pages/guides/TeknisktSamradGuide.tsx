@@ -18,7 +18,7 @@ const TeknisktSamradGuide = () => {
       <div className="prose prose-stone max-w-none">
         
         <p className="text-lg text-stone-700 mb-6 font-medium">
-          Tekniskt samråd är ett obligatoriskt möte i byggprocessen där byggnadsnämnden, <Link to="/kontrollansvarig" className="text-blue-600 hover:text-blue-700 font-medium underline">kontrollansvarig</Link> och 
+          Tekniskt samråd är ett obligatoriskt möte i byggprocessen där byggnadsnämnden, <Link to="/kontrollansvarig/" className="text-blue-600 hover:text-blue-700 font-medium underline">kontrollansvarig</Link> och 
           andra viktiga aktörer går igenom projektet innan byggstart. Denna guide förklarar vad tekniskt samråd är, vad som behandlas och hur det går till.
         </p>
 
@@ -144,7 +144,7 @@ const TeknisktSamradGuide = () => {
               <div>
                 <strong className="text-stone-800">Kontrollansvarig (KA):</strong>
                 <p className="text-stone-700 mt-1">
-                  Kallar till och leder mötet. Presenterar <Link to="/guider/kontrollplan" className="text-blue-600 hover:text-blue-700 underline">kontrollplanen</Link> och 
+                  Kallar till och leder mötet. Presenterar <Link to="/guider/kontrollplan/" className="text-blue-600 hover:text-blue-700 underline">kontrollplanen</Link> och 
                   går igenom projektets förutsättningar.
                 </p>
               </div>
@@ -196,7 +196,7 @@ const TeknisktSamradGuide = () => {
           <li className="flex items-start">
             <span className="text-blue-600 mr-3 font-bold">→</span>
             <div>
-              <strong>BAS-U:</strong> Om annan person än KA, för att koordinera arbetsmiljöfrågor. Läs mer om <Link to="/guider/bas-u-guide" className="text-blue-600 hover:text-blue-700 underline">BAS-U</Link>.
+              <strong>BAS-U:</strong> Om annan person än KA, för att koordinera arbetsmiljöfrågor. Läs mer om <Link to="/guider/bas-u-guide/" className="text-blue-600 hover:text-blue-700 underline">BAS-U</Link>.
             </div>
           </li>
           <li className="flex items-start">
@@ -270,7 +270,7 @@ const TeknisktSamradGuide = () => {
         </h3>
 
         <p className="mb-6">
-          Om projekt kräver <Link to="/guider/vad-ar-bas" className="text-blue-600 hover:text-blue-700 underline">BAS (Byggarbetsmiljösamordnare)</Link> presenteras 
+          Om projekt kräver <Link to="/guider/vad-ar-bas/" className="text-blue-600 hover:text-blue-700 underline">BAS (Byggarbetsmiljösamordnare)</Link> presenteras 
           arbetsmiljöplanen och hur arbetsmiljön ska samordnas mellan olika entreprenörer.
         </p>
 
@@ -394,7 +394,7 @@ const TeknisktSamradGuide = () => {
             </h3>
             <p className="text-stone-700">
               Byggnadsnämnden tar vanligen ut en avgift för sin tid vid tekniskt samråd, ofta 1,500-3,000 kr beroende på kommun och projektets storlek. 
-              KA:s tid för att förbereda och genomföra samrådet ingår normalt i <Link to="/guider/kontrollansvarig-timpris" className="text-blue-600 hover:text-blue-700 underline">KA-uppdraget</Link>.
+              KA:s tid för att förbereda och genomföra samrådet ingår normalt i <Link to="/guider/kontrollansvarig-timpris/" className="text-blue-600 hover:text-blue-700 underline">KA-uppdraget</Link>.
             </p>
           </div>
 
@@ -414,7 +414,7 @@ const TeknisktSamradGuide = () => {
             </h3>
             <p className="text-stone-700">
               <strong>Nej!</strong> Du måste vänta på formellt startbesked från byggnadsnämnden. Att börja bygga innan startbesked beviljats 
-              är olagligt och kan leda till byggsanktionsavgift och krav på rivning. Läs mer om <Link to="/guider/kontrollansvarig-bygglov" className="text-blue-600 hover:text-blue-700 underline">bygglovsprocessen</Link>.
+              är olagligt och kan leda till byggsanktionsavgift och krav på rivning. Läs mer om <Link to="/guider/kontrollansvarig-bygglov/" className="text-blue-600 hover:text-blue-700 underline">bygglovsprocessen</Link>.
             </p>
           </div>
         </div>
@@ -425,19 +425,19 @@ const TeknisktSamradGuide = () => {
             Behöver du hjälp med tekniskt samråd?
           </h2>
           <p className="text-lg mb-6 text-blue-50">
-            Som erfaren <Link to="/kontrollansvarig" className="text-white underline font-semibold">kontrollansvarig</Link> hanterar jag hela processen 
+            Som erfaren <Link to="/kontrollansvarig/" className="text-white underline font-semibold">kontrollansvarig</Link> hanterar jag hela processen 
             från upprättande av kontrollplan, kallelse till tekniskt samråd, genomförande av mötet och ansökan om startbesked. Kontakta mig för 
             smidig hantering av ditt byggprojekt i Västernorrland.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link 
-              to="/kontakt"
+              to="/kontakt/"
               className="inline-flex items-center justify-center px-6 py-3 bg-white text-blue-600 rounded-lg hover:bg-blue-50 transition-colors font-semibold"
             >
               Kontakta mig
             </Link>
             <Link 
-              to="/kontrollansvarig"
+              to="/kontrollansvarig/"
               className="inline-flex items-center justify-center px-6 py-3 border-2 border-white text-white rounded-lg hover:bg-blue-800 transition-colors font-semibold"
             >
               Läs mer om tjänsten

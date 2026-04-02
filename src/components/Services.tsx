@@ -17,7 +17,7 @@ export const Services = ({ onServiceSelect }: ServicesProps) => {
       title: 'Kontrollansvarig (KA)',
       description: 'Teknisk kontroll enligt Plan- och bygglagen (PBL). Säkerställer att ditt byggprojekt följer gällande regler och föreskrifter.',
       features: ['Kontrollplan', 'Besiktningar', 'Slutbevis', 'Teknisk rådgivning'],
-      link: '/kontrollansvarig'
+      link: '/kontrollansvarig/'
     },
     {
       id: 'bas-p-service',
@@ -25,7 +25,7 @@ export const Services = ({ onServiceSelect }: ServicesProps) => {
       title: 'BAS-P (Projektering)',
       description: 'Byggarbetsmiljösamordnare under projekteringsfasen. Planerar för en säker arbetsmiljö redan från början.',
       features: ['Arbetsmiljöplan', 'Riskbedömning', 'Säkerhetsspecifikation', 'Samordning'],
-      link: '/bas-p'
+      link: '/bas-p/'
     },
     {
       id: 'bas-u-service',
@@ -33,7 +33,7 @@ export const Services = ({ onServiceSelect }: ServicesProps) => {
       title: 'BAS-U (Utförande)',
       description: 'Byggarbetsmiljösamordnare under utförandefasen. Övervakar och säkerställer arbetsmiljön på byggarbetsplatsen.',
       features: ['Arbetsmiljöuppföljning', 'Säkerhetsinspektioner', 'Incidenthantering', 'Utbildning'],
-      link: '/bas-u'
+      link: '/bas-u/'
     },
     {
       id: 'energideklaration-service',
@@ -41,7 +41,7 @@ export const Services = ({ onServiceSelect }: ServicesProps) => {
       title: 'Energideklaration',
       description: 'Professionell energideklaration för din fastighet. Energibesiktning, energiberäkning och åtgärdsförslag.',
       features: ['Energibesiktning', 'Energiberäkning', 'Energiklass', 'Åtgärdsförslag'],
-      link: '/energideklaration'
+      link: '/energideklaration/'
     },
     {
       id: 'overlatelsebesiktning-service',
@@ -49,7 +49,7 @@ export const Services = ({ onServiceSelect }: ServicesProps) => {
       title: 'Överlåtelsebesiktning',
       description: 'Okulär besiktning inför fastighetsförsäljning. Identifierar synliga fel och brister för en trygg affär. Boka direkt online – välj tid och betala vid bokning.',
       features: ['Visuell kontroll', 'Synliga installationer', 'Besiktningsrapport', 'Fotografisk dokumentation'],
-      link: '/overlatelsebesiktning'
+      link: '/overlatelsebesiktning/'
     },
     {
       id: 'kombinerade-paket-service',
@@ -87,7 +87,7 @@ export const Services = ({ onServiceSelect }: ServicesProps) => {
   ];
 
   const handleGetQuote = (serviceId: string) => {
-    navigate(`/kontakt?service=${serviceId}&source=services-page`);
+    navigate(`/kontakt/?service=${serviceId}&source=services-page`);
   };
 
   const handleLearnMore = (link: string) => {
@@ -95,7 +95,7 @@ export const Services = ({ onServiceSelect }: ServicesProps) => {
   };
 
   const handleStartOnlineCalculation = () => {
-    navigate('/energiberakning-online');
+    navigate('/energiberakning-online/');
   };
 
   return (

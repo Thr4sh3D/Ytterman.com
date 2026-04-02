@@ -47,7 +47,7 @@ export const RelatedPosts = ({ posts, currentCategory }: RelatedPostsProps) => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {posts.map((post) => (
               <article key={post.id} className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-                <Link to={`/blogg/${post.slug}`} className="block">
+                <Link to={`/blogg/${post.slug}/`} className="block">
                   <div className="relative h-48 overflow-hidden">
                     {post.featured_image ? (
                       <OptimizedImage
@@ -79,7 +79,7 @@ export const RelatedPosts = ({ posts, currentCategory }: RelatedPostsProps) => {
                     )}
                   </div>
                   
-                  <Link to={`/blogg/${post.slug}`} className="block">
+                  <Link to={`/blogg/${post.slug}/`} className="block">
                     <h3 className="text-xl font-bold text-slate-900 mb-3 hover:text-primary transition-colors line-clamp-2">
                       {post.title}
                     </h3>
@@ -89,7 +89,7 @@ export const RelatedPosts = ({ posts, currentCategory }: RelatedPostsProps) => {
                     {post.excerpt}
                   </p>
                   
-                  <Link to={`/blogg/${post.slug}`}>
+                  <Link to={`/blogg/${post.slug}/`}>
                     <span className="inline-flex items-center text-primary hover:text-primary/80 font-medium">
                       Läs mer <ArrowRight className="ml-2 w-4 h-4" />
                     </span>
@@ -100,7 +100,7 @@ export const RelatedPosts = ({ posts, currentCategory }: RelatedPostsProps) => {
           </div>
 
           <div className="text-center mt-12">
-            <Link to="/blogg">
+            <Link to="/blogg/">
               <button className="earth-gradient text-white px-8 py-3 rounded-lg font-semibold hover:opacity-90 transition-colors">
                 Se alla artiklar
               </button>

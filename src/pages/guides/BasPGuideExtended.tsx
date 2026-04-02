@@ -19,7 +19,7 @@ const BasPGuideExtended = () => {
         
         <p className="text-lg text-stone-700 mb-6 font-medium">
           BAS-P (Byggarbetsmiljösamordnare Projektering) är en central roll i byggprojekt som säkerställer att arbetsmiljöfrågor hanteras 
-          redan i projekteringsfasen. Denna guide förklarar BAS-P:s ansvar, skillnaden mot <Link to="/bas-u" className="text-blue-600 hover:text-blue-700 underline">BAS-U</Link> och hur rollen fungerar i praktiken.
+          redan i projekteringsfasen. Denna guide förklarar BAS-P:s ansvar, skillnaden mot <Link to="/bas-u/" className="text-blue-600 hover:text-blue-700 underline">BAS-U</Link> och hur rollen fungerar i praktiken.
         </p>
 
         <div className="bg-blue-50 border-l-4 border-blue-400 p-6 mb-8">
@@ -69,7 +69,7 @@ const BasPGuideExtended = () => {
 
         <p className="mb-6">
           I praktiken betyder detta att BAS-P behövs för <strong>nästan alla byggprojekt utom de allra minsta</strong> där endast en entreprenör 
-          arbetar och ingen projektering sker. För större projekt kombineras ofta BAS-P med <Link to="/kontrollansvarig" className="text-blue-600 hover:text-blue-700 underline">kontrollansvarig</Link> för att säkerställa både kvalitet och arbetsmiljö.
+          arbetar och ingen projektering sker. För större projekt kombineras ofta BAS-P med <Link to="/kontrollansvarig/" className="text-blue-600 hover:text-blue-700 underline">kontrollansvarig</Link> för att säkerställa både kvalitet och arbetsmiljö.
         </p>
 
         <h3 className="text-xl font-semibold text-stone-800 mb-4">
@@ -113,7 +113,7 @@ const BasPGuideExtended = () => {
             </li>
             <li className="flex items-start">
               <span className="text-blue-600 mr-3 font-bold">→</span>
-              <span><strong>Ger underlag till BAS-U:</strong> Dokumenterar information som behövs för <Link to="/bas-u" className="text-blue-600 hover:text-blue-700 underline">arbetsmiljösamordning under utförandet</Link></span>
+              <span><strong>Ger underlag till BAS-U:</strong> Dokumenterar information som behövs för <Link to="/bas-u/" className="text-blue-600 hover:text-blue-700 underline">arbetsmiljösamordning under utförandet</Link></span>
             </li>
           </ul>
         </div>
@@ -213,7 +213,7 @@ const BasPGuideExtended = () => {
         </h2>
 
         <p className="mb-4">
-          BAS-P och <Link to="/guider/bas-u-guide" className="text-blue-600 hover:text-blue-700 underline">BAS-U</Link> är två olika roller 
+          BAS-P och <Link to="/guider/bas-u-guide/" className="text-blue-600 hover:text-blue-700 underline">BAS-U</Link> är två olika roller 
           med olika ansvar beroende på projektfas:
         </p>
 
@@ -252,7 +252,7 @@ const BasPGuideExtended = () => {
 
         <p className="mb-6">
           I många projekt är det <strong>samma person</strong> som är både BAS-P och BAS-U, vilket skapar kontinuitet och effektiv samordning 
-          genom hela projektet. Läs mer om <Link to="/guider/vad-ar-bas" className="text-blue-600 hover:text-blue-700 underline">skillnaden mellan BAS-P och BAS-U</Link>.
+          genom hela projektet. Läs mer om <Link to="/guider/vad-ar-bas/" className="text-blue-600 hover:text-blue-700 underline">skillnaden mellan BAS-P och BAS-U</Link>.
         </p>
 
         <h2 className="flex items-center gap-2 text-2xl font-bold text-stone-800 mb-6 mt-10">
@@ -336,7 +336,7 @@ const BasPGuideExtended = () => {
             </h3>
             <p className="text-stone-700">
               Ja, det är vanligt att samma person har båda rollerna, särskilt i mindre projekt. Båda rollerna kräver teknisk kompetens 
-              och förståelse för byggprocessen. Läs mer om <Link to="/kontrollansvarig" className="text-blue-600 hover:text-blue-700 underline">kontrollansvarig</Link>.
+              och förståelse för byggprocessen. Läs mer om <Link to="/kontrollansvarig/" className="text-blue-600 hover:text-blue-700 underline">kontrollansvarig</Link>.
             </p>
           </div>
 
@@ -377,19 +377,19 @@ const BasPGuideExtended = () => {
             Anlita erfaren BAS-P och BAS-U i Västernorrland
           </h2>
           <p className="text-lg mb-6 text-blue-50">
-            Jag erbjuder både BAS-P och <Link to="/guider/bas-u-guide" className="text-white underline font-semibold">BAS-U-tjänster</Link> samt 
-            kan kombinera med <Link to="/kontrollansvarig" className="text-white underline font-semibold">kontrollansvarig</Link> för smidig 
+            Jag erbjuder både BAS-P och <Link to="/guider/bas-u-guide/" className="text-white underline font-semibold">BAS-U-tjänster</Link> samt 
+            kan kombinera med <Link to="/kontrollansvarig/" className="text-white underline font-semibold">kontrollansvarig</Link> för smidig 
             samordning genom hela projektet.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link 
-              to="/kontakt"
+              to="/kontakt/"
               className="inline-flex items-center justify-center px-6 py-3 bg-white text-blue-600 rounded-lg hover:bg-blue-50 transition-colors font-semibold"
             >
               Kontakta mig för BAS-P
             </Link>
             <Link 
-              to="/bas-samordning"
+              to="/bas-samordning/"
               className="inline-flex items-center justify-center px-6 py-3 border-2 border-white text-white rounded-lg hover:bg-blue-800 transition-colors font-semibold"
             >
               Läs mer om BAS-tjänster

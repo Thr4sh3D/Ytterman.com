@@ -143,7 +143,7 @@ const GuidesPage = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a 
-                  href="/kontakt"
+                  href="/kontakt/"
                   className="inline-flex items-center justify-center px-8 py-4 earth-gradient text-white rounded-lg hover:opacity-90 transition-opacity text-lg font-semibold"
                 >
                   Kontakta oss

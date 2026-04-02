@@ -18,7 +18,7 @@ const KontrollansvarigCertifieringGuide = () => {
       <div className="prose prose-stone max-w-none">
         
         <p className="text-lg text-stone-700 mb-6 font-medium">
-          Att arbeta som <Link to="/kontrollansvarig" className="text-blue-600 hover:text-blue-700 font-medium underline">kontrollansvarig</Link> kräver certifiering enligt Plan- och bygglagen (PBL). 
+          Att arbeta som <Link to="/kontrollansvarig/" className="text-blue-600 hover:text-blue-700 font-medium underline">kontrollansvarig</Link> kräver certifiering enligt Plan- och bygglagen (PBL). 
           Denna guide förklarar kraven, processen och hur du blir certifierad kontrollansvarig enligt Boverkets regler.
         </p>
 
@@ -28,13 +28,13 @@ const KontrollansvarigCertifieringGuide = () => {
         </h2>
 
         <p className="mb-4">
-          Certifiering av kontrollansvariga är ett system för att säkerställa att de som utövar <Link to="/kontrollansvarig" className="text-blue-600 hover:text-blue-700 underline">kontrollansvarigrollen</Link> har tillräcklig 
+          Certifiering av kontrollansvariga är ett system för att säkerställa att de som utövar <Link to="/kontrollansvarig/" className="text-blue-600 hover:text-blue-700 underline">kontrollansvarigrollen</Link> har tillräcklig 
           kompetens och erfarenhet för att säkerställa att byggprojekt följer bygglagstiftningen och byggreglerna.
         </p>
 
         <p className="mb-6">
           Sedan 2011 är det obligatoriskt för kontrollansvariga att inneha giltig certifiering från ett ackrediterat certifieringsorgan. 
-          Detta regleras genom förordningen (2011:338) om harmoniserade besiktnings- och kontrollorganisationer. För mer information om <Link to="/guider/kontrollansvarig-ansvar" className="text-blue-600 hover:text-blue-700 underline">kontrollansvarigs ansvar</Link>, se vår dedicerade guide.
+          Detta regleras genom förordningen (2011:338) om harmoniserade besiktnings- och kontrollorganisationer. För mer information om <Link to="/guider/kontrollansvarig-ansvar/" className="text-blue-600 hover:text-blue-700 underline">kontrollansvarigs ansvar</Link>, se vår dedicerade guide.
         </p>
 
         <div className="bg-blue-50 border-l-4 border-blue-400 p-6 mb-8">
@@ -122,15 +122,15 @@ const KontrollansvarigCertifieringGuide = () => {
           <li className="flex items-start">
             <CheckCircle className="w-5 h-5 text-green-600 mr-3 flex-shrink-0" />
             <div>
-              <strong>Kontrollmetodik:</strong> Hur man upprättar <Link to="/guider/kontrollplan" className="text-blue-600 hover:text-blue-700 underline">kontrollplaner</Link>, 
+              <strong>Kontrollmetodik:</strong> Hur man upprättar <Link to="/guider/kontrollplan/" className="text-blue-600 hover:text-blue-700 underline">kontrollplaner</Link>, 
               genomför kontroller och dokumenterar resultat
             </div>
           </li>
           <li className="flex items-start">
             <CheckCircle className="w-5 h-5 text-green-600 mr-3 flex-shrink-0" />
             <div>
-              <strong>Byggprocessen:</strong> Från <Link to="/guider/kontrollansvarig-bygglov" className="text-blue-600 hover:text-blue-700 underline">bygglovsansökan</Link> till 
-              slutbesked, inklusive <Link to="/guider/tekniskt-samrad" className="text-blue-600 hover:text-blue-700 underline">tekniskt samråd</Link>
+              <strong>Byggprocessen:</strong> Från <Link to="/guider/kontrollansvarig-bygglov/" className="text-blue-600 hover:text-blue-700 underline">bygglovsansökan</Link> till 
+              slutbesked, inklusive <Link to="/guider/tekniskt-samrad/" className="text-blue-600 hover:text-blue-700 underline">tekniskt samråd</Link>
             </div>
           </li>
           <li className="flex items-start">
@@ -366,17 +366,17 @@ const KontrollansvarigCertifieringGuide = () => {
           </h2>
           <p className="text-lg mb-6 text-blue-50">
             Som certifierad kontrollansvarig (KA enligt PBL) med över 20 års erfarenhet i byggbranschen säkerställer jag att ditt projekt uppfyller alla krav. 
-            Läs mer om mitt <Link to="/guider/kontrollansvarig-ansvar" className="text-white underline font-semibold">ansvar som kontrollansvarig</Link>.
+            Läs mer om mitt <Link to="/guider/kontrollansvarig-ansvar/" className="text-white underline font-semibold">ansvar som kontrollansvarig</Link>.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link 
-              to="/kontakt"
+              to="/kontakt/"
               className="inline-flex items-center justify-center px-6 py-3 bg-white text-blue-600 rounded-lg hover:bg-blue-50 transition-colors font-semibold"
             >
               Boka kostnadsfri konsultation
             </Link>
             <Link 
-              to="/kontrollansvarig"
+              to="/kontrollansvarig/"
               className="inline-flex items-center justify-center px-6 py-3 border-2 border-white text-white rounded-lg hover:bg-blue-800 transition-colors font-semibold"
             >
               Läs mer om tjänsten

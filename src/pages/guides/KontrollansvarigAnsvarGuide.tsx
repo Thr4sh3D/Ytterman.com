@@ -18,7 +18,7 @@ const KontrollansvarigAnsvarGuide = () => {
       <div className="prose prose-stone max-w-none">
         
         <p className="text-lg text-stone-700 mb-6 font-medium">
-          Som <Link to="/kontrollansvarig" className="text-blue-600 hover:text-blue-700 font-medium underline">kontrollansvarig (KA)</Link> har du ett omfattande ansvar 
+          Som <Link to="/kontrollansvarig/" className="text-blue-600 hover:text-blue-700 font-medium underline">kontrollansvarig (KA)</Link> har du ett omfattande ansvar 
           för att säkerställa att byggprojekt genomförs enligt gällande regler. Denna guide förklarar ditt juridiska ansvar, skyldigheter och vad som händer vid fel.
         </p>
 
@@ -66,7 +66,7 @@ const KontrollansvarigAnsvarGuide = () => {
               <div>
                 <strong className="text-stone-800">Upprätta och följa kontrollplan</strong>
                 <p className="text-stone-700 mt-1">
-                  Du ska ta fram en <Link to="/guider/kontrollplan" className="text-blue-600 hover:text-blue-700 underline">kontrollplan</Link> som 
+                  Du ska ta fram en <Link to="/guider/kontrollplan/" className="text-blue-600 hover:text-blue-700 underline">kontrollplan</Link> som 
                   anger vilka kontroller som ska göras, när de ska utföras och av vem. Du ansvarar för att planen följs.
                 </p>
               </div>
@@ -76,7 +76,7 @@ const KontrollansvarigAnsvarGuide = () => {
               <div>
                 <strong className="text-stone-800">Leda tekniskt samråd</strong>
                 <p className="text-stone-700 mt-1">
-                  Du är ansvarig för att kalla till och leda <Link to="/guider/tekniskt-samrad" className="text-blue-600 hover:text-blue-700 underline">tekniskt samråd</Link> där 
+                  Du är ansvarig för att kalla till och leda <Link to="/guider/tekniskt-samrad/" className="text-blue-600 hover:text-blue-700 underline">tekniskt samråd</Link> där 
                   byggnadsnämnden och alla relevanta parter går igenom projektet innan byggstart.
                 </p>
               </div>
@@ -97,7 +97,7 @@ const KontrollansvarigAnsvarGuide = () => {
                 <strong className="text-stone-800">Utfärda intyg för slutbesked</strong>
                 <p className="text-stone-700 mt-1">
                   Du ansvarar för att genomföra slutbesiktning och utfärda kontrollansvarigs intyg som krävs för att 
-                  få <Link to="/guider/slutbesked" className="text-blue-600 hover:text-blue-700 underline">slutbesked</Link> från byggnadsnämnden.
+                  få <Link to="/guider/slutbesked/" className="text-blue-600 hover:text-blue-700 underline">slutbesked</Link> från byggnadsnämnden.
                 </p>
               </div>
             </li>
@@ -140,7 +140,7 @@ const KontrollansvarigAnsvarGuide = () => {
         </ul>
 
         <p className="mb-6">
-          Brott mot oberoendekravet kan leda till att startbesked och slutbesked inte beviljas, samt att du kan förlora din <Link to="/guider/kontrollansvarig-certifiering" className="text-blue-600 hover:text-blue-700 underline">certifiering</Link>.
+          Brott mot oberoendekravet kan leda till att startbesked och slutbesked inte beviljas, samt att du kan förlora din <Link to="/guider/kontrollansvarig-certifiering/" className="text-blue-600 hover:text-blue-700 underline">certifiering</Link>.
         </p>
 
         <h2 className="flex items-center gap-2 text-2xl font-bold text-stone-800 mb-6 mt-10">
@@ -289,7 +289,7 @@ const KontrollansvarigAnsvarGuide = () => {
               <h3 className="font-semibold text-blue-800 mb-2">Din skyldighet</h3>
               <p className="text-blue-700">
                 Om du inte agerar på en avvikelse kan <strong>du</strong> bli ansvarig för följdskadorna, även om det var entreprenören 
-                som utförde det felaktiga arbetet. Ditt ansvar är att stoppa och korrigera. Behöver du stöd med ditt uppdrag som KA? <Link to="/kontakt" className="text-blue-600 hover:text-blue-700 underline">Kontakta oss</Link> för rådgivning.
+                som utförde det felaktiga arbetet. Ditt ansvar är att stoppa och korrigera. Behöver du stöd med ditt uppdrag som KA? <Link to="/kontakt/" className="text-blue-600 hover:text-blue-700 underline">Kontakta oss</Link> för rådgivning.
               </p>
             </div>
           </div>
@@ -407,7 +407,7 @@ const KontrollansvarigAnsvarGuide = () => {
             </h3>
             <p className="text-stone-700">
               Skadeståndsanspråk kan i värsta fall riktas mot dig upp till <strong>10 år</strong> efter att slutbesked beviljats. 
-              Detta beror på preskriptionsregler. Därför är retroaktiv försäkring viktig. Läs mer om <Link to="/guider/kontrollansvarig-timpris" className="text-blue-600 hover:text-blue-700 underline">timpris och kostnad för kontrollansvarig</Link>.
+              Detta beror på preskriptionsregler. Därför är retroaktiv försäkring viktig. Läs mer om <Link to="/guider/kontrollansvarig-timpris/" className="text-blue-600 hover:text-blue-700 underline">timpris och kostnad för kontrollansvarig</Link>.
             </p>
           </div>
         </div>
@@ -418,18 +418,18 @@ const KontrollansvarigAnsvarGuide = () => {
             Erfaren kontrollansvarig som tar ansvar
           </h2>
           <p className="text-lg mb-6 text-blue-50">
-            Med över 20 års erfarenhet och fullständig ansvarsförsäkring säkerställer jag att ditt projekt genomförs korrekt från start till <Link to="/guider/slutbesked" className="text-white underline font-semibold">slutbesked</Link>. 
-            Läs mer om hur jag hanterar <Link to="/guider/kontrollansvarig-bygglov" className="text-white underline font-semibold">bygglovsprocessen</Link>.
+            Med över 20 års erfarenhet och fullständig ansvarsförsäkring säkerställer jag att ditt projekt genomförs korrekt från start till <Link to="/guider/slutbesked/" className="text-white underline font-semibold">slutbesked</Link>. 
+            Läs mer om hur jag hanterar <Link to="/guider/kontrollansvarig-bygglov/" className="text-white underline font-semibold">bygglovsprocessen</Link>.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link 
-              to="/kontakt"
+              to="/kontakt/"
               className="inline-flex items-center justify-center px-6 py-3 bg-white text-blue-600 rounded-lg hover:bg-blue-50 transition-colors font-semibold"
             >
               Kontakta mig för uppdrag
             </Link>
             <Link 
-              to="/kontrollansvarig"
+              to="/kontrollansvarig/"
               className="inline-flex items-center justify-center px-6 py-3 border-2 border-white text-white rounded-lg hover:bg-blue-800 transition-colors font-semibold"
             >
               Om Tobias Ytterman

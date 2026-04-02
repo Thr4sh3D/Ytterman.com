@@ -13,15 +13,15 @@ import { BOOKING_OVL_URL } from '@/config/booking';
 const TjansterPage = () => {
   const navigate = useNavigate();
   const scrollToContact = () => {
-    navigate('/kontakt?source=tjanster-page');
+    navigate('/kontakt/?source=tjanster-page');
   };
 
   const handleServiceQuote = (serviceId: string) => {
-    navigate(`/kontakt?service=${serviceId}&source=tjanster-page`);
+    navigate(`/kontakt/?service=${serviceId}&source=tjanster-page`);
   };
 
   const handleStartOnlineCalculation = () => {
-    navigate('/energiberakning-online');
+    navigate('/energiberakning-online/');
   };
 
   const services = [
@@ -37,7 +37,7 @@ const TjansterPage = () => {
         "Samordning med byggkontroll"
       ],
       icon: Shield,
-      link: "/kontrollansvarig"
+      link: "/kontrollansvarig/"
     },
     {
       id: 'bas-p-service',
@@ -51,7 +51,7 @@ const TjansterPage = () => {
         "Dokumentation enligt AML"
       ],
       icon: FileText,
-      link: "/bas-p"
+      link: "/bas-p/"
     },
     {
       id: 'bas-u-service',
@@ -65,7 +65,7 @@ const TjansterPage = () => {
         "Incidentrapportering"
       ],
       icon: Users,
-      link: "/bas-u"
+      link: "/bas-u/"
     },
     {
       id: 'energiberakning-online-service',
@@ -79,7 +79,7 @@ const TjansterPage = () => {
         "24/7 tillgänglighet"
       ],
       icon: Calculator,
-      link: "/energiberakning-online",
+      link: "/energiberakning-online/",
       isNew: true
     },
     {
@@ -94,7 +94,7 @@ const TjansterPage = () => {
         "Energiberäkningar"
       ],
       icon: Building,
-      link: "/bygglovshandlingar"
+      link: "/bygglovshandlingar/"
     },
     {
       id: 'energideklaration-service',
@@ -108,7 +108,7 @@ const TjansterPage = () => {
         "Officiell energideklaration"
       ],
       icon: Zap,
-      link: "/energideklaration"
+      link: "/energideklaration/"
     },
     {
       id: 'overlatelsebesiktning-service',
@@ -122,7 +122,7 @@ const TjansterPage = () => {
         "Detaljerad besiktningsrapport"
       ],
       icon: Search,
-      link: "/overlatelsebesiktning"
+      link: "/overlatelsebesiktning/"
     }
   ];
 
@@ -335,7 +335,7 @@ const TjansterPage = () => {
                 
                 <div className="grid md:grid-cols-3 gap-6">
                   <a 
-                    href="/kontrollansvarig"
+                    href="/kontrollansvarig/"
                     className="bg-slate-50 p-6 rounded-lg hover:shadow-lg transition-shadow group"
                     aria-label="Läs mer om kontrollansvarig-tjänster"
                   >
@@ -349,7 +349,7 @@ const TjansterPage = () => {
                   </a>
                   
                   <a 
-                    href="/bas-p"
+                    href="/bas-p/"
                     className="bg-slate-50 p-6 rounded-lg hover:shadow-lg transition-shadow group"
                     aria-label="Läs mer om BAS-P tjänster"
                   >
@@ -363,7 +363,7 @@ const TjansterPage = () => {
                   </a>
                   
                   <a 
-                    href="/bas-u"
+                    href="/bas-u/"
                     className="bg-slate-50 p-6 rounded-lg hover:shadow-lg transition-shadow group"
                     aria-label="Läs mer om BAS-U tjänster"
                   >

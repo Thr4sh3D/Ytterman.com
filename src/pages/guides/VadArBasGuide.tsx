@@ -61,7 +61,7 @@ const VadArBasGuide = () => {
             <p className="text-stone-700 mb-4">
               Arbetar i <strong>planeringsfasen</strong> innan bygget startar. BAS-P ser till att arbetsmiljöfrågor beaktas redan när bygget planeras och ritas.
             </p>
-            <Link to="/guider/bas-p-guide" className="inline-flex items-center text-blue-600 hover:text-blue-700 font-semibold">
+            <Link to="/guider/bas-p-guide/" className="inline-flex items-center text-blue-600 hover:text-blue-700 font-semibold">
               Läs mer om BAS-P <ArrowRight className="w-4 h-4 ml-2" />
             </Link>
           </div>
@@ -75,7 +75,7 @@ const VadArBasGuide = () => {
             <p className="text-stone-700 mb-4">
               Arbetar när <strong>bygget pågår</strong>. BAS-U är på plats regelbundet, samordnar entreprenörer och ser till att arbetsmiljön är säker varje dag.
             </p>
-            <Link to="/guider/bas-u-guide" className="inline-flex items-center text-orange-600 hover:text-orange-700 font-semibold">
+            <Link to="/guider/bas-u-guide/" className="inline-flex items-center text-orange-600 hover:text-orange-700 font-semibold">
               Läs mer om BAS-U <ArrowRight className="w-4 h-4 ml-2" />
             </Link>
           </div>
@@ -264,7 +264,7 @@ const VadArBasGuide = () => {
               Är BAS samma sak som kontrollansvarig?
             </h3>
             <p className="text-stone-700">
-              Nej, det är två olika roller. <Link to="/kontrollansvarig" className="text-blue-600 hover:text-blue-700 underline">Kontrollansvarig (KA)</Link> kontrollerar 
+              Nej, det är två olika roller. <Link to="/kontrollansvarig/" className="text-blue-600 hover:text-blue-700 underline">Kontrollansvarig (KA)</Link> kontrollerar 
               att bygget följer Plan- och bygglagen (PBL) och bygglovet, medan BAS säkerställer arbetsmiljön enligt Arbetsmiljölagen (AML). 
               Dock är det vanligt att samma person har båda uppdragen i ett projekt.
             </p>
@@ -293,7 +293,7 @@ const VadArBasGuide = () => {
               <li>• <strong>Timpris:</strong> Vanligen 1,000-1,400 kr/timme</li>
             </ul>
             <p className="text-stone-700 mt-2">
-              Läs mer om <Link to="/guider/kontrollansvarig-timpris" className="text-blue-600 hover:text-blue-700 underline">priser för BAS och kontrollansvarig</Link>.
+              Läs mer om <Link to="/guider/kontrollansvarig-timpris/" className="text-blue-600 hover:text-blue-700 underline">priser för BAS och kontrollansvarig</Link>.
             </p>
           </div>
 
@@ -318,7 +318,7 @@ const VadArBasGuide = () => {
             </h3>
             <p className="text-stone-700">
               Nej, BAS är kopplat till Arbetsmiljölagen och Arbetsmiljöverket, inte till byggnadsnämnden. Däremot kan byggnadsnämnden 
-              vid <Link to="/guider/tekniskt-samrad" className="text-blue-600 hover:text-blue-700 underline">tekniskt samråd</Link> fråga 
+              vid <Link to="/guider/tekniskt-samrad/" className="text-blue-600 hover:text-blue-700 underline">tekniskt samråd</Link> fråga 
               vem som är BAS-U för projektet.
             </p>
           </div>
@@ -373,20 +373,20 @@ const VadArBasGuide = () => {
             Behöver du BAS för ditt projekt i Västernorrland?
           </h2>
           <p className="text-lg mb-6 text-blue-50">
-            Jag erbjuder både <Link to="/guider/bas-p-guide" className="text-white underline font-semibold">BAS-P</Link> och 
-            <Link to="/guider/bas-u-guide" className="text-white underline font-semibold ml-1">BAS-U</Link>, 
-            samt kan kombinera med <Link to="/kontrollansvarig" className="text-white underline font-semibold ml-1">kontrollansvarig</Link> för 
+            Jag erbjuder både <Link to="/guider/bas-p-guide/" className="text-white underline font-semibold">BAS-P</Link> och 
+            <Link to="/guider/bas-u-guide/" className="text-white underline font-semibold ml-1">BAS-U</Link>, 
+            samt kan kombinera med <Link to="/kontrollansvarig/" className="text-white underline font-semibold ml-1">kontrollansvarig</Link> för 
             effektiv samordning genom hela byggprocessen. Kostnadsfri konsultation där vi går igenom ditt projekts behov.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link 
-              to="/kontakt"
+              to="/kontakt/"
               className="inline-flex items-center justify-center px-6 py-3 bg-white text-blue-600 rounded-lg hover:bg-blue-50 transition-colors font-semibold"
             >
               Kontakta mig för BAS
             </Link>
             <Link 
-              to="/bas-samordning"
+              to="/bas-samordning/"
               className="inline-flex items-center justify-center px-6 py-3 border-2 border-white text-white rounded-lg hover:bg-blue-800 transition-colors font-semibold"
             >
               Läs mer om BAS-tjänster
