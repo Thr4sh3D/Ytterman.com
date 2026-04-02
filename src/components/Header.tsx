@@ -7,10 +7,10 @@ export const Header = () => {
 
   const navigation = [
     { name: 'Hem', href: '/' },
-    { name: 'Tjänster', href: '/tjanster/' },
-    { name: 'Guider', href: '/guider/' },
-    { name: 'FAQ', href: '/faq/' },
-    { name: 'Kontakt', href: '/kontakt/' },
+    { name: 'Tjänster', href: '/tjanster' },
+    { name: 'Guider', href: '/guider' },
+    { name: 'FAQ', href: '/faq' },
+    { name: 'Kontakt', href: '/kontakt' },
   ];
 
   const scrollToContact = () => {

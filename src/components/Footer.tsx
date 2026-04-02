@@ -46,32 +46,32 @@ export const Footer = () => {
             <h4 className="text-lg font-semibold mb-4">Tjänster</h4>
             <ul className="space-y-2">
               <li>
-                <a href="/kontrollansvarig/" className="text-gray-300 hover:text-white transition-colors">
+                <a href="/kontrollansvarig" className="text-gray-300 hover:text-white transition-colors">
                   Kontrollansvarig
                 </a>
               </li>
               <li>
-                <a href="/bas-p/" className="text-gray-300 hover:text-white transition-colors">
+                <a href="/bas-p" className="text-gray-300 hover:text-white transition-colors">
                   BAS-P
                 </a>
               </li>
               <li>
-                <a href="/bas-u/" className="text-gray-300 hover:text-white transition-colors">
+                <a href="/bas-u" className="text-gray-300 hover:text-white transition-colors">
                   BAS-U
                 </a>
               </li>
               <li>
-                <a href="/bygglovshandlingar/" className="text-gray-300 hover:text-white transition-colors">
+                <a href="/bygglovshandlingar" className="text-gray-300 hover:text-white transition-colors">
                   Bygglovshandlingar
                 </a>
               </li>
               <li>
-                <a href="/energideklaration/" className="text-gray-300 hover:text-white transition-colors">
+                <a href="/energideklaration" className="text-gray-300 hover:text-white transition-colors">
                   Energideklaration
                 </a>
               </li>
               <li>
-                <a href="/overlatelsebesiktning/" className="text-gray-300 hover:text-white transition-colors">
+                <a href="/overlatelsebesiktning" className="text-gray-300 hover:text-white transition-colors">
                   Överlåtelsebesiktning
                 </a>
               </li>
@@ -96,10 +96,10 @@ export const Footer = () => {
             © {currentYear} Ytterman. Alla rättigheter förbehållna.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="/guider/" className="text-gray-400 hover:text-white transition-colors text-sm">
+            <a href="/guider" className="text-gray-400 hover:text-white transition-colors text-sm">
               Guider
             </a>
-            <a href="/integritetspolicy/" className="text-gray-400 hover:text-white transition-colors text-sm">
+            <a href="/integritetspolicy" className="text-gray-400 hover:text-white transition-colors text-sm">
               Integritetspolicy
             </a>
             <a href="/#kontakt" className="text-gray-400 hover:text-white transition-colors text-sm">

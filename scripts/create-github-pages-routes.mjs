@@ -39,20 +39,6 @@ const routes = [
   'bygglovshandlingar',
   'integritetspolicy',
   'tack',
-  // City-specific Kontrollansvarig pages
-  'kontrollansvarig-sundsvall',
-  'kontrollansvarig-harnosand',
-  'kontrollansvarig-timra',
-  'kontrollansvarig-kramfors',
-  'kontrollansvarig-solleftea',
-  // City-specific Överlåtelsebesiktning pages
-  'overlatelsebesiktning-sundsvall',
-  'overlatelsebesiktning-harnosand',
-  'overlatelsebesiktning-timra',
-  'overlatelsebesiktning-kramfors',
-  'overlatelsebesiktning-solleftea',
-  'overlatelsebesiktning-ornskoldsvik',
-  'overlatelsebesiktning-ange',
   // Guide pages
   'guider/kontrollansvarig',
   'guider/bas',
@@ -74,7 +60,6 @@ const routes = [
   'guider/slutbesked',
   'guider/vasternorrland',
   'guider/bygglovsguide-vanliga-misstag-husbygge',
-  'guider/seo-felsokning',
 ];
 
 let created = 0;
