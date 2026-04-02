@@ -232,35 +232,35 @@ const KontrollansvarigPage = () => {
               Vi erbjuder kontrollansvarig tjänster i hela Västernorrland. Läs mer om vår lokala närvaro i din kommun:
             </p>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              <Link to="/kontrollansvarig-sundsvall" className="flex items-center justify-between p-5 bg-white rounded-lg border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all group">
+              <Link to="/kontrollansvarig-sundsvall/" className="flex items-center justify-between p-5 bg-white rounded-lg border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all group">
                 <div>
                   <span className="font-semibold text-gray-900 group-hover:text-blue-600">Kontrollansvarig Sundsvall</span>
                   <span className="block text-sm text-gray-500">Hembas – direkt tillgänglig</span>
                 </div>
                 <MapPin className="h-5 w-5 text-gray-400 group-hover:text-blue-600" />
               </Link>
-              <Link to="/kontrollansvarig-harnosand" className="flex items-center justify-between p-5 bg-white rounded-lg border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all group">
+              <Link to="/kontrollansvarig-harnosand/" className="flex items-center justify-between p-5 bg-white rounded-lg border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all group">
                 <div>
                   <span className="font-semibold text-gray-900 group-hover:text-blue-600">Kontrollansvarig Härnösand</span>
                   <span className="block text-sm text-gray-500">30 min från Sundsvall</span>
                 </div>
                 <MapPin className="h-5 w-5 text-gray-400 group-hover:text-blue-600" />
               </Link>
-              <Link to="/kontrollansvarig-timra" className="flex items-center justify-between p-5 bg-white rounded-lg border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all group">
+              <Link to="/kontrollansvarig-timra/" className="flex items-center justify-between p-5 bg-white rounded-lg border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all group">
                 <div>
                   <span className="font-semibold text-gray-900 group-hover:text-blue-600">Kontrollansvarig Timrå</span>
                   <span className="block text-sm text-gray-500">20 min från Sundsvall</span>
                 </div>
                 <MapPin className="h-5 w-5 text-gray-400 group-hover:text-blue-600" />
               </Link>
-              <Link to="/kontrollansvarig-kramfors" className="flex items-center justify-between p-5 bg-white rounded-lg border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all group">
+              <Link to="/kontrollansvarig-kramfors/" className="flex items-center justify-between p-5 bg-white rounded-lg border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all group">
                 <div>
                   <span className="font-semibold text-gray-900 group-hover:text-blue-600">Kontrollansvarig Kramfors</span>
                   <span className="block text-sm text-gray-500">40 min från Sundsvall</span>
                 </div>
                 <MapPin className="h-5 w-5 text-gray-400 group-hover:text-blue-600" />
               </Link>
-              <Link to="/kontrollansvarig-solleftea" className="flex items-center justify-between p-5 bg-white rounded-lg border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all group">
+              <Link to="/kontrollansvarig-solleftea/" className="flex items-center justify-between p-5 bg-white rounded-lg border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all group">
                 <div>
                   <span className="font-semibold text-gray-900 group-hover:text-blue-600">Kontrollansvarig Sollefteå</span>
                   <span className="block text-sm text-gray-500">45 min från Sundsvall</span>
@@ -292,7 +292,7 @@ const KontrollansvarigPage = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-white text-slate-900 hover:bg-slate-100" asChild>
-                <Link to="/kontakt">Skicka förfrågan</Link>
+                <Link to="/kontakt/">Skicka förfrågan</Link>
               </Button>
               <Button size="lg" className="bg-transparent text-white border-2 border-white hover:bg-white hover:text-blue-600" asChild>
                 <a href="mailto:tobias@ytterman.com">
