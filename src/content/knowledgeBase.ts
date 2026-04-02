@@ -32,7 +32,7 @@ export const knowledgeBase: GuideMetadata[] = [
       description: 'Komplett guide om kontrollansvarigs roll, ansvar och när du behöver en. Expert råd från certifierad kontrollansvarig Tobias Ytterman i Västernorrland.'
     },
     keywords: ['kontrollansvarig', 'byggkontroll', 'PBL', 'plan- och bygglagen', 'bygglov', 'teknisk kontroll', 'slutbevis', 'kontrollplan', 'Västernorrland'],
-    link: '/guider/kontrollansvarig'
+    link: '/guider/kontrollansvarig/'
   },
   {
     slug: 'bas',
@@ -46,7 +46,7 @@ export const knowledgeBase: GuideMetadata[] = [
       description: 'Komplett guide om BAS-P och BAS-U roller, skillnader och lagkrav enligt AFS 1999:3. Expert råd från certifierad säkerhetssamordnare Tobias Ytterman i Västernorrland.'
     },
     keywords: ['BAS-P', 'BAS-U', 'säkerhetssamordnare', 'arbetsmiljö', 'AFS 1999:3', 'byggarbetsmiljö', 'arbetsmiljöplan', 'Västernorrland'],
-    link: '/guider/bas'
+    link: '/guider/bas/'
   },
   {
     slug: 'bygglov',
@@ -60,7 +60,7 @@ export const knowledgeBase: GuideMetadata[] = [
       description: 'Komplett guide för bygglovsprocessen i Västernorrlands kommuner. Handläggningstider, krav och tips från expert Tobias Ytterman.'
     },
     keywords: ['bygglov', 'bygglovsansökan', 'bygglovsprocess', 'Västernorrland', 'Sundsvall', 'Härnösand', 'Sollefteå', 'Kramfors', 'Timrå'],
-    link: '/guider/bygglov'
+    link: '/guider/bygglov/'
   },
   {
     slug: 'kvalitetskontroll',
@@ -74,7 +74,7 @@ export const knowledgeBase: GuideMetadata[] = [
       description: 'Komplett guide om kvalitetskontroll i byggprojekt. Kritiska kontrollpunkter, dokumentation och slutbesiktning. Expert råd från Tobias Ytterman.'
     },
     keywords: ['kvalitetskontroll', 'byggkvalitet', 'kontrollpunkter', 'slutbesiktning', 'byggdokumentation', 'kvalitetssäkring'],
-    link: '/guider/kvalitetskontroll'
+    link: '/guider/kvalitetskontroll/'
   },
   {
     slug: 'overlatelsebesiktning',
@@ -88,7 +88,7 @@ export const knowledgeBase: GuideMetadata[] = [
       description: 'Komplett guide om överlåtelsebesiktning vid fastighetsförsäljning. Processen, kostnad och vad som ingår. Expert råd från Tobias Ytterman i Västernorrland.'
     },
     keywords: ['överlåtelsebesiktning', 'fastighetsbesiktning', 'försäljningsbesiktning', 'köpebesiktning', 'husbesiktning', 'fastighetsförsäljning', 'Västernorrland'],
-    link: '/guider/overlatelsebesiktning'
+    link: '/guider/overlatelsebesiktning/'
   },
   {
     slug: 'energi',
@@ -102,7 +102,7 @@ export const knowledgeBase: GuideMetadata[] = [
       description: 'Komplett guide om energideklaration för fastigheter. Energiklasser, lagkrav, besparingstips och processen. Expert råd från Tobias Ytterman i Västernorrland.'
     },
     keywords: ['energideklaration', 'energiklass', 'energiprestanda', 'energibesiktning', 'energibesparing', 'fastighetsenergideklaration', 'Västernorrland'],
-    link: '/guider/energi'
+    link: '/guider/energi/'
   },
   {
     slug: 'miljo',
@@ -116,7 +116,7 @@ export const knowledgeBase: GuideMetadata[] = [
       description: 'Guide till hållbart byggande och miljötänk. BREEAM, LEED, energieffektivisering och miljöcertifiering. Expert råd från Tobias Ytterman.'
     },
     keywords: ['hållbart byggande', 'miljötänk', 'BREEAM', 'LEED', 'energieffektivisering', 'miljöcertifiering', 'grön byggnad'],
-    link: '/guider/miljo'
+    link: '/guider/miljo/'
   },
   {
     slug: 'digitala-verktyg',
@@ -130,7 +130,7 @@ export const knowledgeBase: GuideMetadata[] = [
       description: 'Guide till moderna digitala verktyg för byggprojekt. Projekthantering, dokumentation och kommunikation. Expert råd från Tobias Ytterman.'
     },
     keywords: ['digitala verktyg', 'byggprojekt', 'projekthantering', 'digital dokumentation', 'byggappar', 'kommunikation'],
-    link: '/guider/digitala-verktyg'
+    link: '/guider/digitala-verktyg/'
   },
   // Nya djupgående artiklar
   {
@@ -145,7 +145,7 @@ export const knowledgeBase: GuideMetadata[] = [
       description: 'Komplett guide om kontrollansvarigs roll vid bygglov. När KA behövs, ansvar i processen och hur vi hjälper dig. Expert råd från Tobias Ytterman i Västernorrland.'
     },
     keywords: ['kontrollansvarig bygglov', 'KA bygglov', 'bygglovsprocess', 'kontrollansvarig ansökan', 'startbesked', 'Västernorrland'],
-    link: '/guider/kontrollansvarig-bygglov'
+    link: '/guider/kontrollansvarig-bygglov/'
   },
   {
     slug: 'kontrollansvarig-certifiering',
@@ -159,7 +159,7 @@ export const knowledgeBase: GuideMetadata[] = [
       description: 'Allt om certifiering för kontrollansvarig: Boverkets krav, certifieringsorgan, utbildning, prov och förnyelse. Expert guide från certifierad KA Tobias Ytterman.'
     },
     keywords: ['kontrollansvarig certifiering', 'KA certifikat', 'Boverket certifiering', 'certifieringsorgan', 'KA utbildning', 'certifieringskrav'],
-    link: '/guider/kontrollansvarig-certifiering'
+    link: '/guider/kontrollansvarig-certifiering/'
   },
   {
     slug: 'kontrollansvarig-ansvar',
@@ -173,7 +173,7 @@ export const knowledgeBase: GuideMetadata[] = [
       description: 'Komplett guide om kontrollansvarigs ansvar enligt PBL. Juridiskt ansvar, skyldigheter, befogenheter och ansvarsförsäkring. Expert råd från Tobias Ytterman.'
     },
     keywords: ['kontrollansvarig ansvar', 'KA skyldigheter', 'juridiskt ansvar', 'PBL ansvar', 'ansvarsförsäkring', 'befogenheter'],
-    link: '/guider/kontrollansvarig-ansvar'
+    link: '/guider/kontrollansvarig-ansvar/'
   },
   {
     slug: 'kontrollansvarig-timpris',
@@ -187,7 +187,7 @@ export const knowledgeBase: GuideMetadata[] = [
       description: 'Transparent prissättning för kontrollansvarig. Timpris, fast pris, genomsnittskostnader och vad som påverkar priset. Kostnadsfri offert från Ytterman.'
     },
     keywords: ['kontrollansvarig timpris', 'kontrollansvarig pris', 'KA kostnad', 'vad kostar kontrollansvarig', 'prissättning', 'fast pris'],
-    link: '/guider/kontrollansvarig-timpris'
+    link: '/guider/kontrollansvarig-timpris/'
   },
   {
     slug: 'bas-p-guide',
@@ -201,7 +201,7 @@ export const knowledgeBase: GuideMetadata[] = [
       description: 'Omfattande guide om BAS-P enligt AFS 1999:3. Roll, ansvar, arbetsmiljöplan, riskbedömning och samordning. Expert råd från certifierad BAS-P Tobias Ytterman.'
     },
     keywords: ['BAS-P', 'arbetsmiljösamordnare projektering', 'arbetsmiljöplan', 'riskbedömning', 'AFS 1999:3', 'projekteringsfas'],
-    link: '/guider/bas-p-guide'
+    link: '/guider/bas-p-guide/'
   },
   {
     slug: 'bas-u-guide',
@@ -215,7 +215,7 @@ export const knowledgeBase: GuideMetadata[] = [
       description: 'Omfattande guide om BAS-U enligt AFS 1999:3. Roll, säkerhetsronder, samordningsmöten och byggarbetsplatssäkerhet. Expert råd från certifierad BAS-U Tobias Ytterman.'
     },
     keywords: ['BAS-U', 'arbetsmiljösamordnare utförande', 'säkerhetsronder', 'byggarbetsplats', 'arbetsmiljö byggplats', 'samordningsmöten'],
-    link: '/guider/bas-u-guide'
+    link: '/guider/bas-u-guide/'
   },
   {
     slug: 'vad-ar-bas',
@@ -229,7 +229,7 @@ export const knowledgeBase: GuideMetadata[] = [
       description: 'Enkelt förklarad guide om BAS: vad är byggarbetsmiljösamordnare, skillnad mellan BAS-P och BAS-U, lagkrav och när du behöver BAS. Expert råd från Tobias Ytterman.'
     },
     keywords: ['vad är BAS', 'byggarbetsmiljösamordnare', 'BAS förklaring', 'BAS-P BAS-U skillnad', 'när behövs BAS', 'AFS 1999:3'],
-    link: '/guider/vad-ar-bas'
+    link: '/guider/vad-ar-bas/'
   },
   {
     slug: 'tekniskt-samrad',
@@ -243,7 +243,7 @@ export const knowledgeBase: GuideMetadata[] = [
       description: 'Allt om tekniskt samråd i byggprocessen: när det krävs, vem deltar, hur det genomförs och vad som dokumenteras. Expert råd från Tobias Ytterman i Västernorrland.'
     },
     keywords: ['tekniskt samråd', 'samråd bygglov', 'PBL samråd', 'byggsamråd', 'byggmöte', 'samrådsmöte'],
-    link: '/guider/tekniskt-samrad'
+    link: '/guider/tekniskt-samrad/'
   },
   {
     slug: 'kontrollplan',
@@ -257,7 +257,7 @@ export const knowledgeBase: GuideMetadata[] = [
       description: 'Komplett guide om kontrollplan enligt PBL: vad den ska innehålla, kritiska kontrollpunkter, uppföljning och dokumentation. Expert råd från KA Tobias Ytterman.'
     },
     keywords: ['kontrollplan', 'kontrollplan bygglov', 'kontrollpunkter', 'teknisk kontroll', 'kvalitetsplan', 'PBL kontroll'],
-    link: '/guider/kontrollplan'
+    link: '/guider/kontrollplan/'
   },
   {
     slug: 'slutbesked',
@@ -271,7 +271,7 @@ export const knowledgeBase: GuideMetadata[] = [
       description: 'Allt om slutbesked och slutbevis: krav för slutbesked, ansökan, handlingar, kontrollansvarigs intyg och när byggnaden får tas i bruk. Expert guide från Tobias Ytterman.'
     },
     keywords: ['slutbesked', 'slutbevis', 'slutbesked bygglov', 'ibrukt agande', 'PBL slutbesked', 'byggnadsnämnd'],
-    link: '/guider/slutbesked'
+    link: '/guider/slutbesked/'
   },
   {
     slug: 'vasternorrland',
@@ -285,7 +285,7 @@ export const knowledgeBase: GuideMetadata[] = [
       description: 'Kontrollansvarig och BAS-tjänster i Västernorrland. Lokala byggkrav, handläggningstider och erfarenhet från Sundsvall, Härnösand, Sollefteå, Kramfors, Timrå, Örnsköldsvik. Expert Tobias Ytterman.'
     },
     keywords: ['kontrollansvarig Västernorrland', 'BAS Sundsvall', 'kontrollansvarig Härnösand', 'bygglov Timrå', 'kontrollansvarig Sollefteå', 'BAS Kramfors', 'Örnsköldsvik'],
-    link: '/guider/vasternorrland'
+    link: '/guider/vasternorrland/'
   },
   {
     slug: 'bygglovsguide-vanliga-misstag-husbygge',
@@ -299,7 +299,7 @@ export const knowledgeBase: GuideMetadata[] = [
       description: 'Komplett bygglovsguide för husbygge i Västernorrland: processen, kontrollplan, tekniskt samråd, KA-krav och de 12 vanligaste misstagen. Expert råd från Tobias Ytterman.'
     },
     keywords: ['bygglovsguide', 'vanliga misstag husbygge', 'kontrollansvarig bygglov', 'kontrollplan', 'tekniskt samråd', 'slutbesked', 'BAS-P', 'BAS-U', 'nybyggnad', 'tillbyggnad', 'Västernorrland'],
-    link: '/guider/bygglovsguide-vanliga-misstag-husbygge'
+    link: '/guider/bygglovsguide-vanliga-misstag-husbygge/'
   },
   {
     slug: 'seo-felsokning',
@@ -313,7 +313,7 @@ export const knowledgeBase: GuideMetadata[] = [
       description: 'Komplett felsökningsguide för misslyckad validering i Google Search Console. Prioriterad checklista, curl-kommandon, HTML-exempel och vanliga felkonfigurationer.'
     },
     keywords: ['Google Search Console', 'indexering', 'validering misslyckats', 'teknisk SEO', 'canonical', 'robots.txt', 'sitemap', 'felsökning', 'noindex'],
-    link: '/guider/seo-felsokning'
+    link: '/guider/seo-felsokning/'
   }
 ];
 

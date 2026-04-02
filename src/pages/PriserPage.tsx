@@ -289,7 +289,7 @@ const PriserPage = () => {
                     </div>
 
                     <a 
-                      href="/bas-p" 
+                      href="/bas-p/" 
                       className="text-green-600 hover:text-green-700 font-semibold text-sm inline-flex items-center"
                     >
                       Läs mer om BAS-P →
@@ -318,7 +318,7 @@ const PriserPage = () => {
                     </div>
 
                     <a 
-                      href="/bas-u" 
+                      href="/bas-u/" 
                       className="text-green-600 hover:text-green-700 font-semibold text-sm inline-flex items-center"
                     >
                       Läs mer om BAS-U →
@@ -589,27 +589,27 @@ const PriserPage = () => {
               <div className="max-w-4xl mx-auto">
                 <h2 className="text-2xl font-bold text-stone-900 mb-6 text-center">Relaterade tjänster och guider</h2>
                 <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-                  <a href="/kontrollansvarig" className="bg-white p-4 rounded-lg border border-stone-200 hover:border-primary transition-colors">
+                  <a href="/kontrollansvarig/" className="bg-white p-4 rounded-lg border border-stone-200 hover:border-primary transition-colors">
                     <h3 className="font-semibold text-stone-900 mb-1">Kontrollansvarig</h3>
                     <p className="text-sm text-stone-600">Läs om KA-tjänsten i detalj</p>
                   </a>
-                  <a href="/bas-p" className="bg-white p-4 rounded-lg border border-stone-200 hover:border-primary transition-colors">
+                  <a href="/bas-p/" className="bg-white p-4 rounded-lg border border-stone-200 hover:border-primary transition-colors">
                     <h3 className="font-semibold text-stone-900 mb-1">BAS-P</h3>
                     <p className="text-sm text-stone-600">Arbetsmiljösamordning i projekteringsfasen</p>
                   </a>
-                  <a href="/bas-u" className="bg-white p-4 rounded-lg border border-stone-200 hover:border-primary transition-colors">
+                  <a href="/bas-u/" className="bg-white p-4 rounded-lg border border-stone-200 hover:border-primary transition-colors">
                     <h3 className="font-semibold text-stone-900 mb-1">BAS-U</h3>
                     <p className="text-sm text-stone-600">Arbetsmiljösamordning under byggandet</p>
                   </a>
-                  <a href="/guider/kontrollansvarig" className="bg-white p-4 rounded-lg border border-stone-200 hover:border-primary transition-colors">
+                  <a href="/guider/kontrollansvarig/" className="bg-white p-4 rounded-lg border border-stone-200 hover:border-primary transition-colors">
                     <h3 className="font-semibold text-stone-900 mb-1">Guide: Kontrollansvarig</h3>
                     <p className="text-sm text-stone-600">Allt du behöver veta om KA</p>
                   </a>
-                  <a href="/guider/bas" className="bg-white p-4 rounded-lg border border-stone-200 hover:border-primary transition-colors">
+                  <a href="/guider/bas/" className="bg-white p-4 rounded-lg border border-stone-200 hover:border-primary transition-colors">
                     <h3 className="font-semibold text-stone-900 mb-1">Guide: BAS</h3>
                     <p className="text-sm text-stone-600">Komplett guide om BAS-P och BAS-U</p>
                   </a>
-                  <a href="/kontakt" className="bg-white p-4 rounded-lg border border-stone-200 hover:border-primary transition-colors">
+                  <a href="/kontakt/" className="bg-white p-4 rounded-lg border border-stone-200 hover:border-primary transition-colors">
                     <h3 className="font-semibold text-stone-900 mb-1">Kontakta oss</h3>
                     <p className="text-sm text-stone-600">Alla kontaktvägar på ett ställe</p>
                   </a>

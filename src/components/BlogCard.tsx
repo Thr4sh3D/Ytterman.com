@@ -71,7 +71,7 @@ export const BlogCard = ({ post }: BlogCardProps) => {
           <Button 
             variant="ghost" 
             size="sm"navigate(`/blogg/${post.slug}`)
-            onClick={() => window.location.href = `/blogg/${post.slug}`}
+            onClick={() => window.location.href = `/blogg/${post.slug}/`}
             className="text-primary hover:text-primary/80"
           >
             Läs mer

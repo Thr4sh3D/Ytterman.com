@@ -69,7 +69,7 @@ const About = () => {
                 
                 <div className="text-center">
                   <a 
-                    href="/kontakt" 
+                    href="/kontakt/" 
                     className="inline-flex items-center px-6 py-3 earth-gradient text-white font-medium rounded-lg hover:opacity-90 transition-colors"
                   >
                     Kontakta oss
