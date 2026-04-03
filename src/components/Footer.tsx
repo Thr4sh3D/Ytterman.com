@@ -46,6 +46,11 @@ export const Footer = () => {
             <h4 className="text-lg font-semibold mb-4">Tjänster</h4>
             <ul className="space-y-2">
               <li>
+                <a href="/kontrollansvarig-i-fjallen/" className="text-gray-300 hover:text-white transition-colors">
+                  KA i fjällvärlden
+                </a>
+              </li>
+              <li>
                 <a href="/kontrollansvarig/" className="text-gray-300 hover:text-white transition-colors">
                   Kontrollansvarig
                 </a>

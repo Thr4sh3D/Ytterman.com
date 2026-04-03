@@ -77,6 +77,30 @@ const Index = () => {
           <Services onServiceSelect={() => {}} />
           <PricingPackages />
           <About />
+          <section className="py-16 bg-gradient-to-br from-slate-50 to-blue-50">
+            <div className="container mx-auto px-4 text-center max-w-4xl">
+              <div className="flex justify-center mb-6">
+                <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-slate-700 rounded-xl flex items-center justify-center">
+                  <Shield className="w-8 h-8 text-white" />
+                </div>
+              </div>
+              <h2 className="text-3xl font-bold text-slate-900 mb-4">
+                Kontrollansvarig i fjällvärlden
+              </h2>
+              <p className="text-lg text-slate-600 mb-8 max-w-2xl mx-auto">
+                Planerar du ett fjällhus eller fritidshus i Åre, Härjedalen eller Västerbottensfjällen? Jag är certifierad KA och BAS-P/BAS-U med bas i Västernorrland och tar uppdrag längs hela fjällkedjan – med paketerade platsbesök och digital uppföljning.
+              </p>
+              <Button
+                asChild
+                size="lg"
+                className="earth-gradient text-white hover:opacity-90"
+              >
+                <a href="/kontrollansvarig-i-fjallen/">
+                  Läs mer om fjäll-KA
+                </a>
+              </Button>
+            </div>
+          </section>
           <section className="py-16 bg-gradient-to-br from-slate-50 to-amber-50">
             <div className="container mx-auto px-4 text-center max-w-4xl">
               <div className="flex justify-center mb-6">

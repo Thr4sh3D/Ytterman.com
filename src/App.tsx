@@ -22,6 +22,9 @@ const OverlatelsebesiktningPage = lazy(() => import('@/pages/Overlatelsebesiktni
 const EnergiberakningOnlinePage = lazy(() => import('@/pages/EnergiberakningOnlinePage'));
 const BygglovshandlingarPage = lazy(() => import('@/pages/BygglovshandlingarPage'));
 
+// Fjäll landing page
+const KontrollansvarigFjallPage = lazy(() => import('@/pages/KontrollansvarigFjallPage'));
+
 // City-specific Kontrollansvarig Pages
 const KontrollansvarigSundsvall = lazy(() => import('@/pages/KontrollansvarigSundsvall'));
 const KontrollansvarigHarnosand = lazy(() => import('@/pages/KontrollansvarigHarnosand'));
@@ -108,6 +111,7 @@ function App() {
                             
                             {/* Service Pages */}
                             <Route path="/kontrollansvarig" element={<KontrollansvarigPage />} />
+                            <Route path="/kontrollansvarig-i-fjallen" element={<KontrollansvarigFjallPage />} />
                             <Route path="/bas-p" element={<BasPPage />} />
                             <Route path="/bas-u" element={<BasUPage />} />
                             <Route path="/energideklaration" element={<EnergiDeklarationPage />} />
