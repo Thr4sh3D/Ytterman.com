@@ -47,7 +47,7 @@ const PRODUCTS: DigitalProduct[] = [
     name: 'Byggstart-planerare',
     tagline: 'Planera din byggstart – offline, i din webbläsare',
     description:
-      'En fristående interaktiv HTML-fil som täcker hela planeringsprocessen: projektinfo, lov och handlingar, entreprenörer, budget, tidsplan, kontrollpunkter och sammanfattning.',
+      'Ett interaktivt digitalt verktyg som täcker hela planeringsprocessen: projektinfo, lov och handlingar, entreprenörer, budget, tidsplan, kontrollpunkter och sammanfattning.',
     price: '497 kr',
     features: [
       'Fungerar offline – ingen internet krävs',
@@ -89,7 +89,7 @@ const ProdukterPage = () => {
       <AdvancedSEO
         title="Digitala produkter för byggprojekt | Ytterman"
         description="Nedladdningsbara interaktiva verktyg för privatpersoner och proffs. Planera din byggstart offline med Yttermans digitala produkter."
-        keywords="digitala produkter, byggprojekt verktyg, byggstart planerare, nedladdningsbar HTML, Ytterman"
+        keywords="digitala produkter, byggprojekt verktyg, byggstart planerare, nedladdningsbart digitalt verktyg, Ytterman"
         url="https://ytterman.com/produkter"
         type="website"
         breadcrumbs={breadcrumbs}
@@ -116,8 +116,8 @@ const ProdukterPage = () => {
               Verktyg som hjälper dig bygga smartare
             </h1>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              Nedladdningsbara interaktiva HTML-filer – inga abonnemang, ingen inloggning.
-              Öppna lokalt i din webbläsare och jobba offline.
+              Nedladdningsbara digitala verktyg – inga abonnemang, ingen inloggning.
+              Öppna direkt i din webbläsare och jobba offline.
             </p>
 
             {/* USPs */}
@@ -216,9 +216,9 @@ const ProdukterPage = () => {
               Vad är en digital produkt från Ytterman?
             </h2>
             <p className="text-slate-600 mb-4 leading-relaxed">
-              Varje digital produkt är en fristående interaktiv HTML-fil. Du laddar ned den,
-              öppnar den i din webbläsare och jobbar lokalt utan att behöva internet, konto
-              eller abonnemang.
+              Varje digital produkt är ett interaktivt verktyg du laddar ned och öppnar direkt
+              i din webbläsare – utan internet, utan konto och utan abonnemang.
+              Dina uppgifter sparas lokalt på din enhet.
             </p>
             <p className="text-slate-600 mb-6 leading-relaxed">
               Produkterna är skapade av Tobias Ytterman – certifierad kontrollansvarig, BAS-P/U
