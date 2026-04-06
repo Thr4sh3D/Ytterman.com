@@ -186,7 +186,12 @@ const ByggstartPlanerare = () => {
                       size="lg"
                       className="w-full earth-gradient text-white hover:opacity-90 mb-2"
                     >
-                      {/* Köpknapp – koppla in extern checkoutlänk eller Stripe här */}
+                      {/*
+                        Köpknapp – nuvarande flöde: kontaktformulär med förifylld produkt.
+                        Framtida alternativ: ersätt href med en extern checkout-länk (t.ex.
+                        Stripe Payment Link, Gumroad, eller Lemon Squeezy) för automatisk
+                        betalning och omedelbar filleverans utan manuell hantering.
+                      */}
                       <Link to="/kontakt?produkt=byggstart-planerare">
                         <Download className="w-4 h-4 mr-2" />
                         Köp och ladda ned

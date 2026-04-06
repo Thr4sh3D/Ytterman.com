@@ -839,6 +839,10 @@ let saveTimer = null;
 
 // ── UUID helper ────────────────────────────────────────────────────────────
 function uid() {
+  if (typeof crypto !== 'undefined' && crypto.randomUUID) {
+    return crypto.randomUUID();
+  }
+  // Fallback for very old browsers (should rarely be hit in modern environments)
   return Date.now().toString(36) + Math.random().toString(36).slice(2);
 }
 
