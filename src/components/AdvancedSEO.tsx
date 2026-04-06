@@ -49,7 +49,7 @@ export const AdvancedSEO = ({
   reviews = []
 }: AdvancedSEOProps) => {
   // Ensure trailing slash for GitHub Pages compatibility (avoids 301 redirects)
-  const url = rawUrl && !rawUrl.endsWith('/') && rawUrl !== 'https://ytterman.com' ? rawUrl + '/' : rawUrl;
+  const url = rawUrl && !rawUrl.endsWith('/') ? rawUrl + '/' : rawUrl;
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": ["LocalBusiness", "ProfessionalService"],
