@@ -24,7 +24,7 @@ const KontrollansvarigPage = () => {
     },
     {
       question: "Vad kostar en kontrollansvarig?",
-      answer: "Kostnaden varierar beroende på projektets storlek och komplexitet. Kontakta oss för en kostnadsfri offert anpassad efter ditt specifika projekt."
+      answer: "Priset beror på projekttyp. KA Bas för en tillbyggnad kostar från 29 500 kr inkl. moms, ombyggnation från 32 500 kr och nybyggnad från 34 500 kr. Kontakta oss för en kostnadsfri offert anpassad efter ditt specifika projekt."
     },
     {
       question: "Hur lång tid tar kontrollprocessen?",
