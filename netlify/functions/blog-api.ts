@@ -65,4 +65,5 @@ export default async (req: Request) => {
 
 export const config = {
   path: '/api/blog-posts',
+  methods: ['GET'],
 };
