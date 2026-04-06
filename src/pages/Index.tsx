@@ -7,7 +7,6 @@ import { Contact } from '@/components/Contact';
 import { FAQ } from '@/components/FAQ';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { AdvancedSEO } from '@/components/AdvancedSEO';
-import { CanonicalUrl } from '@/components/CanonicalUrl';
 import { JsonLdSchema } from '@/components/JsonLdSchema';
 import { PricingPackages } from '@/components/PricingPackages';
 import { Helmet } from 'react-helmet-async';
@@ -48,13 +47,11 @@ const Index = () => {
         title="Kontrollansvarig & BAS-P/BAS-U Västernorrland | Ytterman"
         description="Certifierad kontrollansvarig och BAS med 20+ års erfarenhet. Trygg byggprocess med fast pris. Sundsvall, Härnösand, Sollefteå. Ring 076-111 84 47!"
         keywords="kontrollansvarig, BAS-P, BAS-U, byggarbetsmiljösamordnare, byggkontroll, energiberäkning online, Sundsvall, Härnösand, Sollefteå, Timrå, Kramfors, Västernorrland, bygglov, Tobias Ytterman"
-        url="https://ytterman.com"
+        url="https://ytterman.com/"
         type="website"
         organization={true}
         faq={homeFaq}
       />
-      
-      <CanonicalUrl path="/" />
       <JsonLdSchema type="ProfessionalService" />
       <Helmet>
         <script type="application/ld+json">
