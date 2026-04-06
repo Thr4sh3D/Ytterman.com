@@ -64,7 +64,7 @@ const GuidesPage = () => {
   return (
     <>
       <AdvancedSEO 
-        title="Byggguider - Kontrollansvarig, BAS, Bygglov & Mer | Ytterman"
+        title="Bygguider - Kontrollansvarig, BAS, Bygglov & Mer | Ytterman"
         description="Omfattande guider om byggprocessen: Kontrollansvarig, BAS-P/BAS-U, bygglov, energideklaration, överlåtelsebesiktning. Expertråd från certifierad byggkonsult i Västernorrland."
         keywords="byggguide, kontrollansvarig guide, BAS-P guide, BAS-U guide, bygglov guide, energideklaration, överlåtelsebesiktning, byggprocess, Västernorrland"
         url="https://ytterman.com/guider"
@@ -92,7 +92,7 @@ const GuidesPage = () => {
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto text-center">
                 <h1 className="text-5xl font-bold text-slate-900 mb-6">
-                  Byggguider från Ytterman
+                  Bygguider från Ytterman
                 </h1>
                 <p className="text-xl text-slate-600 mb-8">
                   Lär dig allt om byggprocessen från en erfaren kontrollansvarig och 
