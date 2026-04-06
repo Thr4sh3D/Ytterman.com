@@ -80,6 +80,11 @@ export const Footer = () => {
                   Överlåtelsebesiktning
                 </a>
               </li>
+              <li>
+                <a href="/byggstart-planerare/" className="text-gray-300 hover:text-white transition-colors">
+                  Byggstart-planerare
+                </a>
+              </li>
             </ul>
           </div>
 
