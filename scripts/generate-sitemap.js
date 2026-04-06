@@ -34,6 +34,7 @@ const ROUTE_PRIORITIES = {
   '/tack': { priority: '0.2', changefreq: 'yearly' },
   '/produkter': { priority: '0.8', changefreq: 'monthly' },
   '/byggstart-planerare': { priority: '0.8', changefreq: 'monthly' },
+  '/blogg': { priority: '0.8', changefreq: 'daily' },
 };
 
 // Get default priority for a route
@@ -58,8 +59,8 @@ function extractRoutes() {
 
   while ((match = routeRegex.exec(content)) !== null) {
     const route = match[1];
-    // Skip wildcard routes (404)
-    if (route !== '*') {
+    // Skip wildcard routes (404) and dynamic routes with params
+    if (route !== '*' && !route.includes(':')) {
       routes.push(route);
     }
   }
