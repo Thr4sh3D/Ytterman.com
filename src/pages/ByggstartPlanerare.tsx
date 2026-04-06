@@ -2,7 +2,7 @@
  * Byggstart-planerare – produktsida (säljlager)
  *
  * Denna sida marknadsför och säljer den digitala produkten "Byggstart-planerare".
- * Själva produkten är en fristående interaktiv HTML-fil som kunden laddar ned
+ * Själva produkten är ett fristående interaktivt digitalt verktyg som kunden laddar ned
  * efter köp.  Produktfilen finns under:
  *   public/products/byggstart-planerare/byggstart-planerare-v1.html
  */
@@ -52,7 +52,7 @@ const PRODUCT_SECTIONS = [
 ];
 
 const PRODUCT_FEATURES = [
-  'Fristående HTML-fil – fungerar utan internet',
+  'Öppnas direkt i webbläsaren – ingen installation krävs',
   'Autosparning via localStorage i din webbläsare',
   'Export och import av projektdata som JSON',
   'Mobilanpassad och datorvänlig',
@@ -63,11 +63,11 @@ const PRODUCT_FEATURES = [
 const productFaq = [
   {
     question: 'Vad är Byggstart-planerare?',
-    answer: 'Det är en fristående interaktiv HTML-fil du laddar ned efter köp. Du öppnar den lokalt i din webbläsare och arbetar offline – ingen inloggning, ingen abonnemang.',
+    answer: 'Det är ett interaktivt digitalt verktyg du laddar ned efter köp. Du öppnar det direkt i din webbläsare och arbetar offline – ingen inloggning, ingen abonnemang.',
   },
   {
     question: 'Vad ingår i produkten?',
-    answer: 'En zip-fil med HTML-verktyget. Verktyget innehåller 7 sektioner: projektinfo, lov/handlingar, entreprenörer, budget, tidsplan, kontrollpunkter och sammanfattning.',
+    answer: 'En zip-fil med det digitala verktyget. Verktyget innehåller 7 sektioner: projektinfo, lov/handlingar, entreprenörer, budget, tidsplan, kontrollpunkter och sammanfattning.',
   },
   {
     question: 'Ersätter verktyget en kontrollansvarig?',
@@ -98,7 +98,7 @@ const ByggstartPlanerare = () => {
     <>
       <AdvancedSEO
         title="Byggstart-planerare – Digital produkt för byggplanering | Ytterman"
-        description="Ladda ned ett interaktivt HTML-verktyg för att planera din byggstart. Samla projektinfo, lov, handlingar, entreprenörer, budget och kontrollpunkter offline."
+        description="Ladda ned ett interaktivt digitalt verktyg för att planera din byggstart. Samla projektinfo, lov, handlingar, entreprenörer, budget och kontrollpunkter – öppnas direkt i webbläsaren."
         keywords="byggstart planerare, byggprojekt verktyg, digital produkt, kontrollansvarig, BAS-P, BAS-U, bygglov, Ytterman"
         url="https://ytterman.com/byggstart-planerare"
         type="website"
@@ -135,7 +135,7 @@ const ByggstartPlanerare = () => {
                   Byggstart-planerare
                 </h1>
                 <p className="text-lg text-slate-600 mb-6 max-w-xl leading-relaxed">
-                  En fristående interaktiv HTML-fil som du laddar ned, öppnar lokalt i din webbläsare och använder helt offline. Planera din byggstart strukturerat – från lov och handlingar till budget och kontrollpunkter.
+                  Ett interaktivt digitalt verktyg som du laddar ned, öppnar direkt i din webbläsare och använder helt offline. Planera din byggstart strukturerat – från lov och handlingar till budget och kontrollpunkter.
                 </p>
                 <ul className="space-y-2 mb-8">
                   {PRODUCT_FEATURES.map((f, i) => (
@@ -160,7 +160,7 @@ const ByggstartPlanerare = () => {
                     <ul className="text-sm text-slate-600 space-y-1.5 mt-2">
                       <li className="flex items-center gap-2">
                         <CheckCircle className="w-3.5 h-3.5 text-green-500 flex-shrink-0" />
-                        Interaktiv HTML-fil (offline-klar)
+                        Interaktivt digitalt verktyg (offline-klart)
                       </li>
                       <li className="flex items-center gap-2">
                         <CheckCircle className="w-3.5 h-3.5 text-green-500 flex-shrink-0" />
@@ -247,7 +247,7 @@ const ByggstartPlanerare = () => {
             </h2>
             <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
               {[
-                { step: '1', icon: Download, label: 'Köp och ladda ned', desc: 'Betala och få HTML-filen direkt.' },
+                { step: '1', icon: Download, label: 'Köp och ladda ned', desc: 'Betala och ladda ned verktyget direkt.' },
                 { step: '2', icon: Wifi, label: 'Öppna lokalt', desc: 'Dubbelklicka på filen – fungerar offline.' },
                 { step: '3', icon: RefreshCw, label: 'Fyll i och spara', desc: 'Autosparning sker löpande i webbläsaren.' },
                 { step: '4', icon: FileText, label: 'Exportera', desc: 'Exportera din planering som JSON när du vill.' },
