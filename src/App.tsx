@@ -72,8 +72,9 @@ const VasternorrlandGuide = lazy(() => import('@/pages/guides/VasternorrlandGuid
 const BygglovsguideVanligaMisstag = lazy(() => import('@/pages/guides/BygglovsguideVanligaMisstag'));
 const SeoFelsokningGuide = lazy(() => import('@/pages/guides/SeoFelsokningGuide'));
 
-// Interaktiva verktyg
+// Interaktiva verktyg / digitala produkter
 const ByggstartPlanerare = lazy(() => import('@/pages/ByggstartPlanerare'));
+const ProdukterPage = lazy(() => import('@/pages/ProdukterPage'));
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -162,7 +163,8 @@ function App() {
                             <Route path="/guider/bygglovsguide-vanliga-misstag-husbygge" element={<BygglovsguideVanligaMisstag />} />
                             <Route path="/guider/seo-felsokning" element={<SeoFelsokningGuide />} />
 
-                            {/* Interaktiva verktyg */}
+                            {/* Digitala produkter */}
+                            <Route path="/produkter" element={<ProdukterPage />} />
                             <Route path="/byggstart-planerare" element={<ByggstartPlanerare />} />
                             
                             {/* 404 - Must be last */}

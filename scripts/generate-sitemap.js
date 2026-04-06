@@ -32,6 +32,8 @@ const ROUTE_PRIORITIES = {
   '/guider/*': { priority: '0.7', changefreq: 'monthly' }, // Default for guide pages
   '/integritetspolicy': { priority: '0.3', changefreq: 'yearly' },
   '/tack': { priority: '0.2', changefreq: 'yearly' },
+  '/produkter': { priority: '0.8', changefreq: 'monthly' },
+  '/byggstart-planerare': { priority: '0.8', changefreq: 'monthly' },
 };
 
 // Get default priority for a route

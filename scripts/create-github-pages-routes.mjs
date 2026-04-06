@@ -75,6 +75,9 @@ const routes = [
   'guider/vasternorrland',
   'guider/bygglovsguide-vanliga-misstag-husbygge',
   'guider/seo-felsokning',
+  // Digitala produkter
+  'produkter',
+  'byggstart-planerare',
 ];
 
 let created = 0;
