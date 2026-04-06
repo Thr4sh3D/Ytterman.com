@@ -118,4 +118,5 @@ export default async (req: Request) => {
 
 export const config = {
   path: '/api/blogseo-webhook',
+  methods: ['POST'],
 };

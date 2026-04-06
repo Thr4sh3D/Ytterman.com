@@ -33,14 +33,9 @@
   status = 301
   force = true
 
-# Exclude API paths from SPA fallback so edge functions can handle them
-[[redirects]]
-  from = "/api/*"
-  to = "/api/:splat"
-  status = 200
-  force = false
-
 # SPA fallback - must be last
+# Netlify Functions v2 with custom path configs are matched before redirects,
+# so /api/* routes handled by functions will not be affected by this rule.
 [[redirects]]
   from = "/*"
   to = "/index.html"
