@@ -1,12 +1,14 @@
+import { useState, useEffect } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { AdvancedSEO } from '@/components/AdvancedSEO';
 import { CanonicalUrl } from '@/components/CanonicalUrl';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
-import { BookOpen, Shield, Users, FileText, Building, Zap, Leaf, Laptop, CheckCircle, MapPin, AlertTriangle, LucideIcon } from 'lucide-react';
+import { BookOpen, Shield, Users, FileText, Building, Zap, Leaf, Laptop, CheckCircle, MapPin, AlertTriangle, ArrowRight, Calendar, LucideIcon } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { knowledgeBase } from '@/content/knowledgeBase';
+import type { BlogPostMeta } from '@/types/blog';
 
 // Icon mapping for dynamic icon resolution
 const iconMap: Record<string, LucideIcon> = {
@@ -29,6 +31,15 @@ const GuidesPage = () => {
     ...guide,
     icon: iconMap[guide.icon] || FileText
   }));
+
+  // Fetch recent blog posts for the blog preview section
+  const [recentPosts, setRecentPosts] = useState<BlogPostMeta[]>([]);
+  useEffect(() => {
+    fetch('/api/blog-posts')
+      .then(res => res.ok ? res.json() : [])
+      .then(data => setRecentPosts(Array.isArray(data) ? data.slice(0, 3) : []))
+      .catch(() => setRecentPosts([]));
+  }, []);
 
   const breadcrumbs = [
     { name: 'Hem', url: 'https://ytterman.com' },
@@ -127,6 +138,82 @@ const GuidesPage = () => {
                     );
                   })}
                 </div>
+              </div>
+            </div>
+          </section>
+
+          {/* SEO Blogg Section */}
+          <section className="py-20 bg-slate-50">
+            <div className="container mx-auto px-4">
+              <div className="max-w-6xl mx-auto">
+                <div className="flex items-center justify-between mb-10">
+                  <div>
+                    <h2 className="text-3xl font-bold text-slate-900 mb-2">SEO Blogg</h2>
+                    <p className="text-slate-600">Dagliga expertartiklar om byggprocessen</p>
+                  </div>
+                  <a
+                    href="/blogg/"
+                    className="inline-flex items-center gap-2 text-primary font-semibold hover:underline"
+                  >
+                    Se alla inlägg
+                    <ArrowRight className="w-4 h-4" />
+                  </a>
+                </div>
+
+                {recentPosts.length > 0 ? (
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {recentPosts.map(post => (
+                      <a
+                        key={post.id}
+                        href={`/blogg/${post.slug}/`}
+                        className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-md transition-shadow block"
+                      >
+                        {post.main_image_url && (
+                          <div className="aspect-video overflow-hidden">
+                            <img
+                              src={post.main_image_url}
+                              alt={post.title}
+                              className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                            />
+                          </div>
+                        )}
+                        <div className="p-6">
+                          {post.keyword && (
+                            <span className="bg-primary/10 text-primary text-xs font-semibold px-3 py-1 rounded-full">
+                              {post.keyword}
+                            </span>
+                          )}
+                          <h3 className="text-lg font-bold text-slate-900 mt-3 mb-2 line-clamp-2">
+                            {post.title}
+                          </h3>
+                          <p className="text-slate-600 text-sm line-clamp-2 mb-3">{post.meta_description}</p>
+                          <div className="flex items-center gap-1 text-xs text-slate-500">
+                            <Calendar className="w-3 h-3" />
+                            <span>
+                              {new Date(post.published_at).toLocaleDateString('sv-SE', {
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric',
+                              })}
+                            </span>
+                          </div>
+                        </div>
+                      </a>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="text-center py-12 bg-white rounded-xl border border-slate-200">
+                    <BookOpen className="w-12 h-12 text-slate-300 mx-auto mb-3" />
+                    <p className="text-slate-500 mb-4">Inga inlägg publicerade än – kom tillbaka snart!</p>
+                    <a
+                      href="/blogg/"
+                      className="inline-flex items-center gap-2 text-primary font-semibold hover:underline"
+                    >
+                      Gå till bloggen
+                      <ArrowRight className="w-4 h-4" />
+                    </a>
+                  </div>
+                )}
               </div>
             </div>
           </section>

@@ -72,6 +72,10 @@ const VasternorrlandGuide = lazy(() => import('@/pages/guides/VasternorrlandGuid
 const BygglovsguideVanligaMisstag = lazy(() => import('@/pages/guides/BygglovsguideVanligaMisstag'));
 const SeoFelsokningGuide = lazy(() => import('@/pages/guides/SeoFelsokningGuide'));
 
+// Blogg
+const BlogPage = lazy(() => import('@/pages/BlogPage'));
+const BlogPostPage = lazy(() => import('@/pages/BlogPostPage'));
+
 // Interaktiva verktyg / digitala produkter
 const ByggstartPlanerare = lazy(() => import('@/pages/ByggstartPlanerare'));
 const ProdukterPage = lazy(() => import('@/pages/ProdukterPage'));
@@ -162,6 +166,10 @@ function App() {
                             <Route path="/guider/vasternorrland" element={<VasternorrlandGuide />} />
                             <Route path="/guider/bygglovsguide-vanliga-misstag-husbygge" element={<BygglovsguideVanligaMisstag />} />
                             <Route path="/guider/seo-felsokning" element={<SeoFelsokningGuide />} />
+
+                            {/* Blogg */}
+                            <Route path="/blogg" element={<BlogPage />} />
+                            <Route path="/blogg/:slug" element={<BlogPostPage />} />
 
                             {/* Digitala produkter */}
                             <Route path="/produkter" element={<ProdukterPage />} />

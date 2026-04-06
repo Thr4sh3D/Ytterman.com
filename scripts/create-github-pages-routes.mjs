@@ -78,6 +78,8 @@ const routes = [
   // Digitala produkter
   'produkter',
   'byggstart-planerare',
+  // Blogg
+  'blogg',
 ];
 
 let created = 0;
