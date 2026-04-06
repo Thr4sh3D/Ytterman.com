@@ -142,13 +142,13 @@ const GuidesPage = () => {
             </div>
           </section>
 
-          {/* SEO Blogg Section */}
+          {/* Blogg Section */}
           <section className="py-20 bg-slate-50">
             <div className="container mx-auto px-4">
               <div className="max-w-6xl mx-auto">
                 <div className="flex items-center justify-between mb-10">
                   <div>
-                    <h2 className="text-3xl font-bold text-slate-900 mb-2">SEO Blogg</h2>
+                    <h2 className="text-3xl font-bold text-slate-900 mb-2">Blogg</h2>
                     <p className="text-slate-600">Dagliga expertartiklar om byggprocessen</p>
                   </div>
                   <a
