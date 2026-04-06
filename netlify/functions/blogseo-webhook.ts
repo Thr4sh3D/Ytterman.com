@@ -75,32 +75,40 @@ export default async (req: Request) => {
 
   const store = getStore('blog-posts');
 
-  // Store the full article
-  await store.set(article.id, JSON.stringify(article));
+  try {
+    // Store the full article
+    await store.set(article.id, JSON.stringify(article));
 
-  // Update the index
-  const indexRaw = await store.get('__index');
-  const index: ArticleIndex = indexRaw ? JSON.parse(indexRaw) : { articles: [] };
+    // Update the index
+    const indexRaw = await store.get('__index');
+    const index: ArticleIndex = indexRaw ? JSON.parse(indexRaw) : { articles: [] };
 
-  const entry: ArticleIndexEntry = {
-    id: article.id,
-    slug: article.slug,
-    title: article.title,
-    published_at: article.published_at,
-    main_image_url: article.main_image_url,
-    meta_description: article.meta_description,
-    keyword: article.keyword,
-  };
+    const entry: ArticleIndexEntry = {
+      id: article.id,
+      slug: article.slug,
+      title: article.title,
+      published_at: article.published_at,
+      main_image_url: article.main_image_url,
+      meta_description: article.meta_description,
+      keyword: article.keyword,
+    };
 
-  const existingIndex = index.articles.findIndex((a) => a.id === article.id);
-  if (existingIndex >= 0) {
-    index.articles[existingIndex] = entry;
-  } else {
-    // Insert newest first
-    index.articles.unshift(entry);
+    const existingIndex = index.articles.findIndex((a) => a.id === article.id);
+    if (existingIndex >= 0) {
+      index.articles[existingIndex] = entry;
+    } else {
+      // Insert newest first
+      index.articles.unshift(entry);
+    }
+
+    await store.set('__index', JSON.stringify(index));
+  } catch (err) {
+    console.error('Failed to store article in Netlify Blobs:', err);
+    return new Response(JSON.stringify({ error: 'Storage error, please retry' }), {
+      status: 503,
+      headers: { 'Content-Type': 'application/json' },
+    });
   }
-
-  await store.set('__index', JSON.stringify(index));
 
   return new Response(JSON.stringify({ success: true }), {
     status: 200,

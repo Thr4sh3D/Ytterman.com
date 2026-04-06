@@ -10,7 +10,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { BookOpen } from 'lucide-react';
 import type { BlogPostMeta } from '@/types/blog';
 
-const estimateReadingTime = (description: string) =>
+const estimateReadingTimeFromDescription = (description: string) =>
   Math.max(3, Math.ceil(description.split(' ').length / 50));
 
 const BlogPage = () => {
@@ -113,7 +113,7 @@ const BlogPage = () => {
                           featured_image: post.main_image_url,
                           category: post.keyword ?? 'Byggkunskap',
                           author: 'Tobias Ytterman',
-                          reading_time: estimateReadingTime(post.meta_description),
+                          reading_time: estimateReadingTimeFromDescription(post.meta_description),
                           created_at: post.published_at,
                           tags: post.keyword ? [post.keyword] : [],
                         }}
