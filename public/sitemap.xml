@@ -25,6 +25,12 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://ytterman.com/byggstart-planerare/</loc>
+    <lastmod>2026-04-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://ytterman.com/energiberakning-online/</loc>
     <lastmod>2026-04-06</lastmod>
     <changefreq>monthly</changefreq>
@@ -293,6 +299,12 @@
     <lastmod>2026-04-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://ytterman.com/produkter/</loc>
+    <lastmod>2026-04-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ytterman.com/tack/</loc>

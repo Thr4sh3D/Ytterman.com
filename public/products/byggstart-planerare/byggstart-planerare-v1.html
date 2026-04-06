@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Byggstart-planerare v1 – Ytterman</title>
+  <meta name="description" content="Interaktiv planerare för din byggstart. Samla projektinfo, lov, handlingar, entreprenörer, budget och kontrollpunkter offline." />
+  <style>
+    /* ── Reset & Base ─────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f8fafc;
+      color: #1e293b;
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+    button { cursor: pointer; font-family: inherit; font-size: inherit; }
+    input, textarea, select { font-family: inherit; font-size: 0.875rem; }
+    a { color: #c2782f; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Colours & tokens ─────────────────────────────────────────────── */
+    :root {
+      --primary:   #c2782f;
+      --primary-d: #a3621f;
+      --slate-50:  #f8fafc;
+      --slate-100: #f1f5f9;
+      --slate-200: #e2e8f0;
+      --slate-300: #cbd5e1;
+      --slate-400: #94a3b8;
+      --slate-500: #64748b;
+      --slate-600: #475569;
+      --slate-700: #334155;
+      --slate-800: #1e293b;
+      --slate-900: #0f172a;
+      --green-100: #dcfce7;
+      --green-600: #16a34a;
+      --amber-50:  #fffbeb;
+      --amber-100: #fef3c7;
+      --amber-600: #d97706;
+      --amber-800: #92400e;
+      --blue-50:   #eff6ff;
+      --blue-100:  #dbeafe;
+      --blue-500:  #3b82f6;
+      --blue-800:  #1e40af;
+      --red-100:   #fee2e2;
+      --red-500:   #ef4444;
+      --red-600:   #dc2626;
+    }
+
+    /* ── Layout ───────────────────────────────────────────────────────── */
+    .container { max-width: 1024px; margin: 0 auto; padding: 0 1rem; }
+
+    /* ── Header ───────────────────────────────────────────────────────── */
+    #app-header {
+      background: #fff;
+      border-bottom: 1px solid var(--slate-200);
+      position: sticky; top: 0; z-index: 100;
+      padding: 0.75rem 1rem;
+    }
+    .header-inner {
+      max-width: 1024px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    }
+    .logo { font-size: 1.25rem; font-weight: 700; color: var(--primary); }
+    .save-indicator {
+      display: flex; align-items: center; gap: 0.375rem;
+      font-size: 0.75rem; color: var(--slate-500);
+    }
+    .save-indicator.saved { color: var(--green-600); }
+
+    /* ── Hero / progress bar ──────────────────────────────────────────── */
+    #hero {
+      background: #fff; border-bottom: 1px solid var(--slate-200);
+      padding: 1.5rem 1rem 1.25rem;
+    }
+    .hero-inner { max-width: 1024px; margin: 0 auto; }
+    .badge {
+      display: inline-block;
+      background: var(--amber-100); color: var(--amber-800);
+      font-size: 0.75rem; font-weight: 600;
+      padding: 0.2rem 0.6rem; border-radius: 999px; margin-bottom: 0.5rem;
+    }
+    #hero h1 { font-size: 1.5rem; font-weight: 700; color: var(--slate-900); }
+    @media (min-width: 640px) { #hero h1 { font-size: 1.875rem; } }
+    #hero p { margin-top: 0.375rem; color: var(--slate-600); font-size: 0.9375rem; }
+    .progress-wrap { margin-top: 1rem; }
+    .progress-label {
+      display: flex; justify-content: space-between;
+      font-size: 0.75rem; color: var(--slate-500); margin-bottom: 0.375rem;
+    }
+    .progress-bar-outer {
+      height: 8px; background: var(--slate-200); border-radius: 999px; overflow: hidden;
+    }
+    .progress-bar-inner {
+      height: 100%; background: var(--primary); border-radius: 999px;
+      transition: width 0.4s ease;
+    }
+
+    /* ── Disclaimer ───────────────────────────────────────────────────── */
+    .disclaimer {
+      display: flex; gap: 0.75rem; padding: 0.875rem 1rem;
+      background: var(--blue-50); border: 1px solid var(--blue-100);
+      border-radius: 0.5rem; font-size: 0.8125rem; color: var(--blue-800);
+      margin: 1rem 0;
+    }
+    .disclaimer svg { flex-shrink: 0; margin-top: 0.125rem; }
+
+    /* ── Main layout ──────────────────────────────────────────────────── */
+    #main-wrap {
+      display: flex; gap: 1.25rem;
+      padding: 1.25rem 1rem 4rem;
+      max-width: 1024px; margin: 0 auto;
+      flex-direction: column;
+    }
+    @media (min-width: 1024px) {
+      #main-wrap { flex-direction: row; }
+    }
+
+    /* ── Sidebar nav ──────────────────────────────────────────────────── */
+    #sidebar { flex-shrink: 0; }
+    @media (min-width: 1024px) { #sidebar { width: 220px; } }
+
+    .nav-sticky { position: sticky; top: 80px; }
+
+    .nav-btn {
+      display: flex; align-items: center; gap: 0.625rem;
+      width: 100%; padding: 0.625rem 0.75rem;
+      border: none; background: transparent;
+      border-radius: 0.5rem; font-size: 0.875rem; font-weight: 500;
+      color: var(--slate-700); text-align: left;
+      transition: background 0.15s, color 0.15s;
+    }
+    .nav-btn:hover { background: var(--slate-100); }
+    .nav-btn.active { background: var(--primary); color: #fff; }
+
+    .tool-btns { border-top: 1px solid var(--slate-200); margin-top: 0.5rem; padding-top: 0.75rem; display: flex; flex-direction: column; gap: 0.375rem; }
+    .tool-btn {
+      display: flex; align-items: center; gap: 0.5rem;
+      padding: 0.375rem 0.625rem; border-radius: 0.375rem;
+      border: 1px solid var(--slate-200); background: #fff;
+      font-size: 0.75rem; color: var(--slate-600);
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .tool-btn:hover { border-color: var(--primary); color: var(--primary); }
+    .tool-btn.danger { border-color: var(--red-100); color: var(--red-600); }
+    .tool-btn.danger:hover { background: var(--red-100); }
+
+    /* ── Mobile nav (horizontal scroll) ──────────────────────────────── */
+    #mobile-nav {
+      overflow-x: auto; display: flex; gap: 0.5rem;
+      padding-bottom: 0.5rem; -webkit-overflow-scrolling: touch;
+    }
+    @media (min-width: 1024px) { #mobile-nav { display: none; } }
+    .mob-nav-btn {
+      display: flex; align-items: center; gap: 0.375rem;
+      flex-shrink: 0; padding: 0.5rem 0.75rem;
+      border-radius: 0.5rem; border: 1px solid var(--slate-200);
+      background: #fff; font-size: 0.75rem; font-weight: 500; color: var(--slate-700);
+      transition: background 0.15s, color 0.15s;
+    }
+    .mob-nav-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+    /* ── Sidebar desktop only ─────────────────────────────────────────── */
+    #sidebar-desktop { display: none; }
+    @media (min-width: 1024px) { #sidebar-desktop { display: block; } }
+
+    /* ── Content card ─────────────────────────────────────────────────── */
+    #content-area { flex: 1; min-width: 0; }
+    .card {
+      background: #fff; border: 1px solid var(--slate-200);
+      border-radius: 0.75rem; box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+      padding: 1.5rem;
+    }
+    .section-pane { display: none; }
+    .section-pane.active { display: block; }
+
+    /* ── Section header ───────────────────────────────────────────────── */
+    .section-title { font-size: 1.125rem; font-weight: 600; color: var(--slate-900); margin-bottom: 0.25rem; }
+    .section-desc { font-size: 0.8125rem; color: var(--slate-500); margin-bottom: 1.5rem; }
+
+    /* ── Form fields ──────────────────────────────────────────────────── */
+    .form-group { margin-bottom: 1.25rem; }
+    .grid-2 { display: grid; gap: 1rem; }
+    @media (min-width: 640px) { .grid-2 { grid-template-columns: 1fr 1fr; } }
+    .grid-3 { display: grid; gap: 1rem; }
+    @media (min-width: 640px) { .grid-3 { grid-template-columns: 1fr 1fr 1fr; } }
+
+    label { display: block; font-size: 0.8125rem; font-weight: 500; color: var(--slate-700); margin-bottom: 0.3rem; }
+    label .req { color: var(--red-500); margin-left: 0.125rem; }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="tel"],
+    input[type="email"],
+    input[type="date"],
+    textarea,
+    select {
+      display: block; width: 100%;
+      padding: 0.5rem 0.75rem;
+      border: 1px solid var(--slate-200); border-radius: 0.5rem;
+      background: #fff; color: var(--slate-800);
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(194,120,47,0.12);
+    }
+    textarea { resize: vertical; }
+
+    /* ── Checkbox row ─────────────────────────────────────────────────── */
+    .check-row { display: flex; align-items: flex-start; gap: 0.625rem; padding: 0.5rem 0; }
+    .check-row + .check-row { border-top: 1px solid var(--slate-100); }
+    .check-row input[type="checkbox"] { width: 1rem; height: 1rem; accent-color: var(--primary); flex-shrink: 0; margin-top: 0.125rem; }
+    .check-label { font-size: 0.875rem; font-weight: 500; color: var(--slate-700); cursor: pointer; }
+    .check-desc { font-size: 0.75rem; color: var(--slate-500); margin-top: 0.125rem; }
+
+    /* ── Sectional divider ────────────────────────────────────────────── */
+    .divider { border: none; border-top: 1px solid var(--slate-100); margin: 1.25rem 0; }
+    .subsection-title { font-size: 0.9375rem; font-weight: 600; color: var(--slate-800); margin-bottom: 0.75rem; }
+
+    /* ── Card entity (entrepreneur / budget / milestone) ─────────────── */
+    .entity-card {
+      border: 1px solid var(--slate-200); border-radius: 0.5rem; overflow: hidden; margin-bottom: 0.75rem;
+    }
+    .entity-card-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.625rem 0.875rem; background: var(--slate-50);
+      border-bottom: 1px solid var(--slate-200);
+    }
+    .entity-card-title { font-size: 0.875rem; font-weight: 600; color: var(--slate-800); }
+    .entity-card-body { padding: 0.875rem; }
+    .btn-remove {
+      background: none; border: none;
+      color: var(--slate-400); padding: 0.25rem;
+      border-radius: 0.25rem; transition: color 0.15s;
+      display: flex; align-items: center;
+    }
+    .btn-remove:hover { color: var(--red-500); }
+
+    /* ── Empty state ──────────────────────────────────────────────────── */
+    .empty-state {
+      text-align: center; padding: 2rem;
+      border: 2px dashed var(--slate-200); border-radius: 0.5rem;
+      color: var(--slate-400); font-size: 0.875rem; margin-bottom: 0.75rem;
+    }
+
+    /* ── Add button ───────────────────────────────────────────────────── */
+    .btn-add {
+      display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+      width: 100%; padding: 0.625rem 1rem;
+      border: 1px dashed var(--slate-300); border-radius: 0.5rem;
+      background: #fff; color: var(--slate-600); font-size: 0.875rem;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .btn-add:hover { border-color: var(--primary); color: var(--primary); }
+
+    /* ── Budget row ───────────────────────────────────────────────────── */
+    .budget-row { display: grid; gap: 0.5rem; align-items: center; margin-bottom: 0.5rem; }
+    @media (min-width: 640px) { .budget-row { grid-template-columns: 2fr 3fr 2fr 2fr auto; } }
+    .budget-sum-row { display: flex; gap: 0.5rem; font-size: 0.875rem; font-weight: 600; color: var(--slate-800); border-top: 1px solid var(--slate-200); padding-top: 0.5rem; margin-top: 0.25rem; }
+
+    /* ── Milestone row ────────────────────────────────────────────────── */
+    .milestone-row {
+      display: flex; align-items: center; gap: 0.5rem;
+      padding: 0.625rem 0.75rem; border: 1px solid var(--slate-200);
+      border-radius: 0.5rem; background: #fff; margin-bottom: 0.375rem;
+    }
+    .milestone-row input[type="checkbox"] { flex-shrink: 0; accent-color: var(--primary); width: 1rem; height: 1rem; }
+    .milestone-desc-input {
+      flex: 1; border: none; border-bottom: 1px solid var(--slate-200);
+      border-radius: 0; padding: 0.25rem 0;
+      background: transparent;
+    }
+    .milestone-desc-input:focus { border-bottom-color: var(--primary); box-shadow: none; }
+    .milestone-done .milestone-desc-input { text-decoration: line-through; color: var(--slate-400); }
+    .milestone-date-input { width: 9rem; flex-shrink: 0; padding: 0.25rem 0.5rem; height: 2rem; }
+
+    /* ── CTA box ──────────────────────────────────────────────────────── */
+    .cta-box {
+      display: flex; flex-wrap: wrap; gap: 0.75rem;
+      align-items: flex-start; margin-top: 1.5rem;
+      padding: 0.875rem 1rem;
+      background: var(--amber-50); border: 1px solid var(--amber-100);
+      border-radius: 0.5rem; font-size: 0.8125rem; color: var(--amber-800);
+    }
+    .cta-box p { flex: 1; min-width: 0; }
+    .btn-cta {
+      flex-shrink: 0;
+      padding: 0.375rem 0.875rem;
+      border: 1px solid #d4a163; border-radius: 0.375rem;
+      background: #fff; color: var(--amber-800); font-size: 0.8125rem; font-weight: 500;
+      transition: background 0.15s;
+    }
+    .btn-cta:hover { background: var(--amber-100); }
+
+    /* ── Summary cards ────────────────────────────────────────────────── */
+    .summary-grid { display: grid; gap: 1rem; }
+    @media (min-width: 640px) { .summary-grid { grid-template-columns: 1fr 1fr; } }
+    .summary-card { border: 1px solid var(--slate-200); border-radius: 0.5rem; overflow: hidden; }
+    .summary-card-header { padding: 0.625rem 0.875rem; background: var(--slate-50); border-bottom: 1px solid var(--slate-200); display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; font-weight: 600; color: var(--slate-800); }
+    .summary-card-body { padding: 0.875rem; font-size: 0.8125rem; color: var(--slate-700); }
+    .summary-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.25rem 1rem; margin-bottom: 0.25rem; }
+    .summary-label { color: var(--slate-500); }
+    .status-row { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.375rem; }
+    .dot-ok  { width: 8px; height: 8px; border-radius: 50%; background: var(--green-600); flex-shrink: 0; }
+    .dot-warn { width: 8px; height: 8px; border-radius: 50%; background: var(--amber-600); flex-shrink: 0; }
+
+    /* ── CTA block in summary ─────────────────────────────────────────── */
+    .cta-block {
+      margin-top: 1.25rem; padding: 1.25rem;
+      border-radius: 0.75rem; color: #fff;
+      background: linear-gradient(135deg, #c2782f 0%, #8b5a1c 100%);
+    }
+    .cta-block h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.375rem; }
+    .cta-block p { font-size: 0.875rem; opacity: 0.9; margin-bottom: 1rem; }
+    .cta-btns { display: flex; flex-wrap: wrap; gap: 0.625rem; }
+    .btn-white { padding: 0.5rem 1rem; border-radius: 0.375rem; border: none; background: #fff; color: var(--slate-900); font-size: 0.875rem; font-weight: 500; cursor: pointer; }
+    .btn-white:hover { background: #f1f5f9; }
+    .btn-outline-white { padding: 0.5rem 1rem; border-radius: 0.375rem; border: 1px solid rgba(255,255,255,0.6); background: transparent; color: #fff; font-size: 0.875rem; font-weight: 500; cursor: pointer; }
+    .btn-outline-white:hover { background: rgba(255,255,255,0.15); }
+
+    /* ── Navigation buttons (prev / next) ────────────────────────────── */
+    .section-nav { display: flex; justify-content: space-between; margin-top: 1rem; }
+    .btn-nav {
+      display: flex; align-items: center; gap: 0.25rem;
+      padding: 0.5rem 0.875rem; border-radius: 0.375rem;
+      border: 1px solid var(--slate-200); background: #fff;
+      color: var(--slate-700); font-size: 0.8125rem; font-weight: 500;
+      transition: border-color 0.15s;
+    }
+    .btn-nav:hover:not(:disabled) { border-color: var(--primary); color: var(--primary); }
+    .btn-nav:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    /* ── Mini-progress in kontrollpunkter ────────────────────────────── */
+    .mini-progress-wrap { display: flex; align-items: center; gap: 0.75rem; padding: 0.625rem 0.875rem; background: var(--slate-50); border-radius: 0.5rem; margin-bottom: 1rem; }
+    .mini-progress-wrap .progress-bar-outer { flex: 1; height: 6px; }
+    .mini-progress-label { font-size: 0.8125rem; font-weight: 500; color: var(--slate-700); flex-shrink: 0; }
+
+    /* ── Modal overlay ────────────────────────────────────────────────── */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.4);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 200; padding: 1rem;
+    }
+    .modal-overlay.hidden { display: none; }
+    .modal { background: #fff; border-radius: 0.75rem; padding: 1.5rem; max-width: 28rem; width: 100%; }
+    .modal h2 { font-size: 1.125rem; font-weight: 600; color: var(--slate-900); margin-bottom: 0.5rem; }
+    .modal p { font-size: 0.875rem; color: var(--slate-600); margin-bottom: 1.25rem; }
+    .modal-btns { display: flex; gap: 0.625rem; justify-content: flex-end; }
+    .btn-cancel { padding: 0.5rem 1rem; border-radius: 0.375rem; border: 1px solid var(--slate-200); background: #fff; color: var(--slate-700); font-size: 0.875rem; }
+    .btn-cancel:hover { background: var(--slate-100); }
+    .btn-confirm { padding: 0.5rem 1rem; border-radius: 0.375rem; border: none; background: var(--red-600); color: #fff; font-size: 0.875rem; font-weight: 500; }
+    .btn-confirm:hover { background: #b91c1c; }
+
+    /* ── Footer ───────────────────────────────────────────────────────── */
+    #app-footer {
+      background: var(--slate-800); color: var(--slate-400);
+      text-align: center; padding: 1.25rem 1rem;
+      font-size: 0.75rem;
+    }
+    #app-footer a { color: var(--primary); }
+
+    /* ── Utility ──────────────────────────────────────────────────────── */
+    .hidden { display: none !important; }
+    .icon { display: inline-block; width: 1em; height: 1em; vertical-align: middle; }
+    .badge-green { display: inline-block; background: var(--green-100); color: var(--green-600); font-size: 0.75rem; font-weight: 600; padding: 0.1rem 0.5rem; border-radius: 999px; }
+    .badge-amber { display: inline-block; background: var(--amber-100); color: var(--amber-800); font-size: 0.75rem; font-weight: 600; padding: 0.1rem 0.5rem; border-radius: 999px; }
+    .badge-slate { display: inline-block; background: var(--slate-100); color: var(--slate-700); font-size: 0.75rem; font-weight: 600; padding: 0.1rem 0.5rem; border-radius: 999px; }
+    .pl-indent { padding-left: 2rem; }
+  </style>
+</head>
+<body>
+
+<!-- ── Header ───────────────────────────────────────────────────────────── -->
+<header id="app-header">
+  <div class="header-inner">
+    <span class="logo">Ytterman</span>
+    <div class="save-indicator" id="save-indicator">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+      <span>Autosparning aktiv</span>
+    </div>
+  </div>
+</header>
+
+<!-- ── Hero ─────────────────────────────────────────────────────────────── -->
+<section id="hero">
+  <div class="hero-inner">
+    <span class="badge">Digital produkt – Ytterman</span>
+    <h1>Byggstart-planerare</h1>
+    <p>Samla projektinfo, lov, handlingar, entreprenörer, budget och kontrollpunkter – sparas automatiskt lokalt i din webbläsare.</p>
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <span>Planeringsgrad</span>
+        <span id="progress-pct">0 %</span>
+      </div>
+      <div class="progress-bar-outer">
+        <div class="progress-bar-inner" id="progress-bar" style="width:0%"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Main ──────────────────────────────────────────────────────────────── -->
+<div id="main-wrap">
+
+  <!-- Disclaimer (above the layout columns) -->
+  <div class="disclaimer" style="margin: 0 0 0.25rem; width: 100%;">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    <span><strong>Information:</strong> Detta verktyg är ett praktiskt stöd för planering och dokumentation. Det ersätter inte projektspecifik bedömning, kontrollansvarig (KA), BAS-P/U eller annan professionell rådgivning där sådan krävs enligt lag.</span>
+  </div>
+
+  <!-- Mobile nav -->
+  <div id="mobile-nav" style="width:100%">
+    <!-- populated by JS -->
+  </div>
+
+  <!-- Sidebar (desktop) -->
+  <aside id="sidebar-desktop">
+    <div class="nav-sticky">
+      <nav id="sidebar-nav">
+        <!-- populated by JS -->
+      </nav>
+      <div class="tool-btns">
+        <button class="tool-btn" onclick="exportJSON()">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Exportera (JSON)
+        </button>
+        <button class="tool-btn" onclick="document.getElementById('import-file').click()">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          Importera (JSON)
+        </button>
+        <input type="file" id="import-file" accept=".json,application/json" class="hidden" onchange="importJSON(event)" />
+        <button class="tool-btn danger" onclick="showClearModal()">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+          Rensa allt
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Content -->
+  <div id="content-area">
+
+    <!-- SECTION 0: Projektinfo -->
+    <div id="pane-0" class="section-pane active">
+      <div class="card">
+        <div class="section-title">Projektinformation</div>
+        <div class="section-desc">Grundläggande information om ditt byggprojekt.</div>
+
+        <div class="grid-2">
+          <div class="form-group">
+            <label for="projektnamn">Projektnamn <span class="req">*</span></label>
+            <input type="text" id="projektnamn" placeholder="t.ex. Tillbyggnad villa Skogsvägen 4" oninput="update('projektnamn',this.value)" />
+          </div>
+          <div class="form-group">
+            <label for="projekttyp">Typ av projekt</label>
+            <select id="projekttyp" onchange="update('projekttyp',this.value)">
+              <option value="">Välj projekttyp…</option>
+              <option value="nybyggnad">Nybyggnad</option>
+              <option value="tillbyggnad">Tillbyggnad</option>
+              <option value="ombyggnad">Ombyggnad / renovering</option>
+              <option value="attefall">Attefallsåtgärd</option>
+              <option value="annat">Annat</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="form-group">
+            <label for="adress">Adress <span class="req">*</span></label>
+            <input type="text" id="adress" placeholder="Gatuadress, postnummer och ort" oninput="update('adress',this.value)" />
+          </div>
+          <div class="form-group">
+            <label for="fastighetsbeteckning">Fastighetsbeteckning</label>
+            <input type="text" id="fastighetsbeteckning" placeholder="t.ex. Viksjö 1:23" oninput="update('fastighetsbeteckning',this.value)" />
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="form-group">
+            <label for="byggherre">Byggherre / beställare <span class="req">*</span></label>
+            <input type="text" id="byggherre" placeholder="Namn eller företagsnamn" oninput="update('byggherre',this.value)" />
+          </div>
+          <div class="form-group">
+            <label for="storlek">Uppskattad storlek (m²)</label>
+            <input type="number" id="storlek" placeholder="t.ex. 45" oninput="update('storlek',this.value)" />
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="form-group">
+            <label for="telefon">Telefon</label>
+            <input type="tel" id="telefon" placeholder="07X-XXX XX XX" oninput="update('telefon',this.value)" />
+          </div>
+          <div class="form-group">
+            <label for="epost">E-post</label>
+            <input type="email" id="epost" placeholder="din@epost.se" oninput="update('epost',this.value)" />
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="form-group">
+            <label for="startdatum">Planerat startdatum</label>
+            <input type="date" id="startdatum" oninput="update('startdatum',this.value)" />
+          </div>
+          <div class="form-group">
+            <label for="slutdatum">Planerat slutdatum</label>
+            <input type="date" id="slutdatum" oninput="update('slutdatum',this.value)" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="projektbeskrivning">Projektbeskrivning</label>
+          <textarea id="projektbeskrivning" rows="4" placeholder="Beskriv vad du planerar att bygga, varför och eventuella särskilda förutsättningar…" oninput="update('projektbeskrivning',this.value)"></textarea>
+        </div>
+
+        <div class="cta-box">
+          <p>Funderar du på om ditt projekt kräver bygglov eller anmälan? Tobias Ytterman hjälper dig snabbt reda ut det.</p>
+          <a href="https://ytterman.com/kontakt" target="_blank" rel="noopener" class="btn-cta">Kontakta Tobias →</a>
+        </div>
+      </div>
+      <div class="section-nav">
+        <button class="btn-nav" disabled>← Föregående</button>
+        <button class="btn-nav" onclick="goTo(1)">Nästa →</button>
+      </div>
+    </div>
+
+    <!-- SECTION 1: Lov & handlingar -->
+    <div id="pane-1" class="section-pane">
+      <div class="card">
+        <div class="section-title">Lov, anmälan och handlingar</div>
+        <div class="section-desc">Dokumentera tillstånd och vilka handlingar som finns på plats.</div>
+
+        <div class="grid-2">
+          <div class="form-group">
+            <label for="lovTyp">Typ av tillstånd</label>
+            <select id="lovTyp" onchange="update('lovTyp',this.value)">
+              <option value="">Välj tillståndstyp…</option>
+              <option value="bygglov">Bygglov</option>
+              <option value="anmalan">Anmälan (Attefallsåtgärd)</option>
+              <option value="inget">Inget tillstånd krävs</option>
+              <option value="oklart">Oklart – behöver utredas</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="lovNummer">Ärende-/lovnummer</label>
+            <input type="text" id="lovNummer" placeholder="Kommunens diarienummer" oninput="update('lovNummer',this.value)" />
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="form-group">
+            <label for="lovDatum">Beslutsdatum</label>
+            <input type="date" id="lovDatum" onchange="update('lovDatum',this.value)" />
+          </div>
+          <div class="form-group">
+            <label for="startbeskedDatum">Startbesked – datum</label>
+            <input type="date" id="startbeskedDatum" onchange="update('startbeskedDatum',this.value)" />
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="check-row" style="padding:0.25rem 0">
+            <input type="checkbox" id="startbesked" onchange="update('startbesked',this.checked)" />
+            <div>
+              <label class="check-label" for="startbesked">Startbesked beviljat</label>
+              <div class="check-desc">Byggstart får inte ske utan startbesked.</div>
+            </div>
+          </div>
+          <div class="check-row" style="padding:0.25rem 0">
+            <input type="checkbox" id="kontrollplan" onchange="update('kontrollplan',this.checked)" />
+            <div>
+              <label class="check-label" for="kontrollplan">Kontrollplan upprättad</label>
+              <div class="check-desc">Krävs för projekt med kontrollansvarig.</div>
+            </div>
+          </div>
+        </div>
+
+        <hr class="divider" />
+
+        <div class="check-row" style="padding:0.25rem 0">
+          <input type="checkbox" id="harKontrollansvarig" onchange="update('harKontrollansvarig',this.checked);toggleKA()" />
+          <div>
+            <label class="check-label" for="harKontrollansvarig">Kontrollansvarig (KA) utsedd</label>
+            <div class="check-desc">Krävs vid de flesta åtgärder som kräver bygglov.</div>
+          </div>
+        </div>
+        <div id="ka-fields" class="pl-indent grid-2 hidden">
+          <div class="form-group">
+            <label for="kontrollansvarigNamn">KA – namn</label>
+            <input type="text" id="kontrollansvarigNamn" placeholder="Namn" oninput="update('kontrollansvarigNamn',this.value)" />
+          </div>
+          <div class="form-group">
+            <label for="kontrollansvarigKontakt">KA – kontaktuppgifter</label>
+            <input type="text" id="kontrollansvarigKontakt" placeholder="Telefon eller e-post" oninput="update('kontrollansvarigKontakt',this.value)" />
+          </div>
+        </div>
+
+        <hr class="divider" />
+        <div class="subsection-title">Handlingar – finns dessa på plats?</div>
+        <div class="grid-2">
+          <div class="check-row"><input type="checkbox" id="hSituation" onchange="update('handlingSituationsplan',this.checked)" /><div><label class="check-label" for="hSituation">Situationsplan</label></div></div>
+          <div class="check-row"><input type="checkbox" id="hPlan" onchange="update('handlingPlanritning',this.checked)" /><div><label class="check-label" for="hPlan">Planritning</label></div></div>
+          <div class="check-row"><input type="checkbox" id="hFasad" onchange="update('handlingFasadritning',this.checked)" /><div><label class="check-label" for="hFasad">Fasadritning</label></div></div>
+          <div class="check-row"><input type="checkbox" id="hSektion" onchange="update('handlingSektionsritning',this.checked)" /><div><label class="check-label" for="hSektion">Sektionsritning</label></div></div>
+          <div class="check-row"><input type="checkbox" id="hKonstr" onchange="update('handlingKonstruktionsritning',this.checked)" /><div><label class="check-label" for="hKonstr">Konstruktionsritning</label></div></div>
+          <div class="check-row"><input type="checkbox" id="hEnergi" onchange="update('handlingEnergyCalc',this.checked)" /><div><label class="check-label" for="hEnergi">Energiberäkning</label></div></div>
+          <div class="check-row"><input type="checkbox" id="hBrand" onchange="update('handlingBrandskydd',this.checked)" /><div><label class="check-label" for="hBrand">Brandskyddsdokumentation</label></div></div>
+          <div class="check-row"><input type="checkbox" id="hTillgang" onchange="update('handlingTillganglighet',this.checked)" /><div><label class="check-label" for="hTillgang">Tillgänglighetsdokumentation</label></div></div>
+        </div>
+
+        <div class="form-group" style="margin-top:1rem">
+          <label for="lovAnteckningar">Anteckningar och övriga uppgifter</label>
+          <textarea id="lovAnteckningar" rows="3" placeholder="Noteringar om villkor, avvikelser, kontakter med kommunen…" oninput="update('lovAnteckningar',this.value)"></textarea>
+        </div>
+
+        <div class="cta-box">
+          <p>Behöver du hjälp av en certifierad kontrollansvarig? Tobias Ytterman är certifierad KA enligt PBL.</p>
+          <a href="https://ytterman.com/kontrollansvarig" target="_blank" rel="noopener" class="btn-cta">Läs om KA-tjänsten →</a>
+        </div>
+      </div>
+      <div class="section-nav">
+        <button class="btn-nav" onclick="goTo(0)">← Föregående</button>
+        <button class="btn-nav" onclick="goTo(2)">Nästa →</button>
+      </div>
+    </div>
+
+    <!-- SECTION 2: Entreprenörer -->
+    <div id="pane-2" class="section-pane">
+      <div class="card">
+        <div class="section-title">Entreprenörer och kontakter</div>
+        <div class="section-desc">Samla alla viktiga kontaktuppgifter på ett ställe.</div>
+
+        <div id="entrepreneurs-list"></div>
+        <button class="btn-add" onclick="addEntrepreneur()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Lägg till entreprenör
+        </button>
+
+        <div class="cta-box">
+          <p>Behöver du stöd med BAS-P (planering) eller BAS-U (utförande)? Tobias Ytterman är certifierad Byggarbetsmiljösamordnare.</p>
+          <a href="https://ytterman.com/bas-p" target="_blank" rel="noopener" class="btn-cta">Läs om BAS-P/U →</a>
+        </div>
+      </div>
+      <div class="section-nav">
+        <button class="btn-nav" onclick="goTo(1)">← Föregående</button>
+        <button class="btn-nav" onclick="goTo(3)">Nästa →</button>
+      </div>
+    </div>
+
+    <!-- SECTION 3: Budget -->
+    <div id="pane-3" class="section-pane">
+      <div class="card">
+        <div class="section-title">Budget och kostnadsöversikt</div>
+        <div class="section-desc">Håll koll på kostnader och jämför budget mot utfall.</div>
+
+        <div class="form-group">
+          <label for="totalbudget">Total budget (kr inkl. moms)</label>
+          <input type="number" id="totalbudget" placeholder="t.ex. 850000" oninput="update('totalbudget',this.value)" />
+        </div>
+
+        <hr class="divider" />
+        <div class="subsection-title">Kostnadsposter</div>
+
+        <div id="budget-col-labels" class="hidden" style="display:none">
+          <div style="display:grid;grid-template-columns:2fr 3fr 2fr 2fr auto;gap:0.5rem;font-size:0.75rem;font-weight:500;color:var(--slate-500);padding:0 0 0.25rem 0;">
+            <span>Kategori</span><span>Beskrivning</span><span>Budget (kr)</span><span>Utfall (kr)</span><span></span>
+          </div>
+        </div>
+
+        <div id="budget-list"></div>
+        <div id="budget-sum" class="hidden"></div>
+
+        <button class="btn-add" onclick="addBudgetPost()" style="margin-top:0.5rem">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Lägg till kostnadspost
+        </button>
+
+        <div class="form-group" style="margin-top:1rem">
+          <label for="budgetAnteckningar">Anteckningar</label>
+          <textarea id="budgetAnteckningar" rows="3" placeholder="Noteringar om offerter, prisjusteringar, osäkerheter…" oninput="update('budgetAnteckningar',this.value)"></textarea>
+        </div>
+      </div>
+      <div class="section-nav">
+        <button class="btn-nav" onclick="goTo(2)">← Föregående</button>
+        <button class="btn-nav" onclick="goTo(4)">Nästa →</button>
+      </div>
+    </div>
+
+    <!-- SECTION 4: Tidsplan -->
+    <div id="pane-4" class="section-pane">
+      <div class="card">
+        <div class="section-title">Tidsplan och milstolpar</div>
+        <div class="section-desc">Lägg upp viktiga datum och håll koll på vad som är klart.</div>
+
+        <div id="milestone-list"></div>
+        <button class="btn-add" onclick="addMilestone()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Lägg till milstolpe
+        </button>
+
+        <div class="form-group" style="margin-top:1rem">
+          <label for="tidsplanAnteckningar">Anteckningar om tidsplanen</label>
+          <textarea id="tidsplanAnteckningar" rows="3" placeholder="Noteringar om beroenden, leveranstider, säsongsproblem…" oninput="update('tidsplanAnteckningar',this.value)"></textarea>
+        </div>
+      </div>
+      <div class="section-nav">
+        <button class="btn-nav" onclick="goTo(3)">← Föregående</button>
+        <button class="btn-nav" onclick="goTo(5)">Nästa →</button>
+      </div>
+    </div>
+
+    <!-- SECTION 5: Kontrollpunkter -->
+    <div id="pane-5" class="section-pane">
+      <div class="card">
+        <div class="section-title">Kontrollpunkter före byggstart</div>
+        <div class="section-desc">Gå igenom dessa punkter innan du ger klartecken för byggstart.</div>
+
+        <div class="mini-progress-wrap">
+          <div class="progress-bar-outer"><div class="progress-bar-inner" id="kp-bar" style="width:0%"></div></div>
+          <span class="mini-progress-label" id="kp-label">0/12 klara</span>
+        </div>
+
+        <div id="control-points-list"></div>
+
+        <div class="form-group" style="margin-top:1rem">
+          <label for="kontrollAnteckningar">Anteckningar</label>
+          <textarea id="kontrollAnteckningar" rows="3" placeholder="Ytterligare kontrollpunkter specifika för ditt projekt…" oninput="update('kontrollAnteckningar',this.value)"></textarea>
+        </div>
+
+        <div class="cta-box">
+          <p>Behöver du hjälp att säkerställa att alla kontrollpunkter är uppfyllda? Boka ett rådgivningsmöte med Tobias Ytterman.</p>
+          <a href="https://ytterman.com/kontakt" target="_blank" rel="noopener" class="btn-cta">Boka rådgivning →</a>
+        </div>
+      </div>
+      <div class="section-nav">
+        <button class="btn-nav" onclick="goTo(4)">← Föregående</button>
+        <button class="btn-nav" onclick="goTo(6)">Nästa →</button>
+      </div>
+    </div>
+
+    <!-- SECTION 6: Sammanfattning -->
+    <div id="pane-6" class="section-pane">
+      <div class="card">
+        <div class="section-title">Sammanfattning</div>
+        <div class="section-desc">Översikt över ditt projekt och planeringsläget.</div>
+        <div id="summary-content"></div>
+      </div>
+      <div class="section-nav">
+        <button class="btn-nav" onclick="goTo(5)">← Föregående</button>
+        <button class="btn-nav" disabled>Nästa →</button>
+      </div>
+    </div>
+
+  </div><!-- /content-area -->
+</div><!-- /main-wrap -->
+
+<!-- ── Clear modal ────────────────────────────────────────────────────────── -->
+<div class="modal-overlay hidden" id="clear-modal">
+  <div class="modal">
+    <h2>Rensa all data?</h2>
+    <p>All information i planeraren raderas och kan inte återställas (om du inte har exporterat en JSON-fil). Är du säker?</p>
+    <div class="modal-btns">
+      <button class="btn-cancel" onclick="hideClearModal()">Avbryt</button>
+      <button class="btn-confirm" onclick="clearAll()">Ja, rensa allt</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Footer ─────────────────────────────────────────────────────────────── -->
+<footer id="app-footer">
+  <p>Byggstart-planerare v1 &nbsp;·&nbsp; En digital produkt från <a href="https://ytterman.com" target="_blank" rel="noopener">Ytterman</a></p>
+  <p style="margin-top:0.25rem">Tobias Ytterman &nbsp;·&nbsp; <a href="tel:+46761118447">076-111 84 47</a> &nbsp;·&nbsp; <a href="mailto:tobias@ytterman.com">tobias@ytterman.com</a></p>
+</footer>
+
+<script>
+// ── Data model & storage ───────────────────────────────────────────────────
+const STORAGE_KEY = 'ytterman_byggstart_v1';
+
+const SECTIONS = [
+  { label: 'Projektinfo',      icon: '📋' },
+  { label: 'Lov & handlingar', icon: '📄' },
+  { label: 'Entreprenörer',    icon: '👷' },
+  { label: 'Budget',           icon: '💰' },
+  { label: 'Tidsplan',         icon: '📅' },
+  { label: 'Kontrollpunkter',  icon: '✅' },
+  { label: 'Sammanfattning',   icon: '📊' },
+];
+
+const CONTROL_POINTS = [
+  { key:'kpStartbesked',      label:'Startbesked finns och är beviljat',                       desc:'Byggnadsarbeten får inte påbörjas utan startbesked.' },
+  { key:'kpKontrollansvarig', label:'Kontrollansvarig är utsedd och informerad',                desc:'KA ska vara anmäld till kommunen och ha fått ta del av handlingarna.' },
+  { key:'kpGrannar',          label:'Grannar notifierade (om tillämpligt)',                     desc:'Informera grannar tidigt för att undvika konflikter.' },
+  { key:'kpEl',               label:'Elarbeten anmälda / behörig elinstallatör anlitad',        desc:'' },
+  { key:'kpVaV',              label:'VA-anslutning planerad eller anmäld',                      desc:'' },
+  { key:'kpAvfall',           label:'Byggavfallshantering planerad',                            desc:'Upprätta avfallsplan vid mer än 1 tons material.' },
+  { key:'kpArbetsplatsplan',  label:'Arbetsplatsplan upprättad',                               desc:'Visar placering av bodar, upplag och transporter.' },
+  { key:'kpSakerhet',         label:'Säkerhets- och skyddsanordningar på plats',               desc:'Räcken, skyddsfall, säkerhetsväst m.m.' },
+  { key:'kpForsakring',       label:'Försäkringar kontrollerade',                              desc:'Kontrollera att alla parter har relevanta ansvarsförsäkringar.' },
+  { key:'kpSkyddsombud',      label:'Skyddsombud utsett (vid fler än 5 sysselsatta)',          desc:'' },
+  { key:'kpBasPU',            label:'BAS-P och BAS-U utsedda (vid tillämpliga projekt)',        desc:'Krävs om flera företag utför arbeten på arbetsplatsen.' },
+  { key:'kpBilder',           label:'Dokumentationsbilder tagna innan byggstart',               desc:'Fotografera befintligt skick för att undvika framtida tvister.' },
+];
+
+const defaultData = () => ({
+  // Section 0
+  projektnamn: '', adress: '', fastighetsbeteckning: '', byggherre: '',
+  telefon: '', epost: '', projektbeskrivning: '', projekttyp: '',
+  storlek: '', startdatum: '', slutdatum: '',
+  // Section 1
+  lovTyp: '', lovNummer: '', lovDatum: '', startbeskedDatum: '',
+  startbesked: false, kontrollplan: false,
+  harKontrollansvarig: false, kontrollansvarigNamn: '', kontrollansvarigKontakt: '',
+  handlingSituationsplan: false, handlingPlanritning: false,
+  handlingFasadritning: false, handlingSektionsritning: false,
+  handlingKonstruktionsritning: false, handlingEnergyCalc: false,
+  handlingBrandskydd: false, handlingTillganglighet: false,
+  lovAnteckningar: '',
+  // Section 2
+  entreprenorer: [],
+  // Section 3
+  totalbudget: '', budgetPoster: [], budgetAnteckningar: '',
+  // Section 4
+  milstolpar: [], tidsplanAnteckningar: '',
+  // Section 5
+  kpStartbesked: false, kpKontrollansvarig: false, kpGrannar: false,
+  kpEl: false, kpVaV: false, kpAvfall: false, kpArbetsplatsplan: false,
+  kpSakerhet: false, kpForsakring: false, kpSkyddsombud: false,
+  kpBasPU: false, kpBilder: false, kontrollAnteckningar: '',
+});
+
+let state = defaultData();
+let activeSection = 0;
+let saveTimer = null;
+
+// ── UUID helper ────────────────────────────────────────────────────────────
+function uid() {
+  if (typeof crypto !== 'undefined' && crypto.randomUUID) {
+    return crypto.randomUUID();
+  }
+  // Fallback for very old browsers (should rarely be hit in modern environments)
+  return Date.now().toString(36) + Math.random().toString(36).slice(2);
+}
+
+// ── Load from localStorage ─────────────────────────────────────────────────
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      state = Object.assign(defaultData(), parsed);
+    }
+  } catch(e) { /* ignore */ }
+}
+
+// ── Save to localStorage (debounced) ──────────────────────────────────────
+function scheduleAutoSave() {
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(() => {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      showSaved();
+    } catch(e) { /* ignore */ }
+  }, 500);
+}
+
+function showSaved() {
+  const el = document.getElementById('save-indicator');
+  el.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>Sparat</span>`;
+  el.className = 'save-indicator saved';
+  setTimeout(() => {
+    el.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg><span>Autosparning aktiv</span>`;
+    el.className = 'save-indicator';
+  }, 2000);
+}
+
+// ── Generic field update ───────────────────────────────────────────────────
+function update(key, value) {
+  state[key] = value;
+  scheduleAutoSave();
+  updateProgress();
+  if (activeSection === 6) renderSummary();
+}
+
+// ── Navigation ─────────────────────────────────────────────────────────────
+function goTo(idx) {
+  document.getElementById('pane-' + activeSection).classList.remove('active');
+  activeSection = idx;
+  document.getElementById('pane-' + activeSection).classList.add('active');
+  updateNavButtons();
+  if (idx === 6) renderSummary();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function updateNavButtons() {
+  document.querySelectorAll('.nav-btn').forEach((btn, i) => {
+    btn.classList.toggle('active', i === activeSection);
+  });
+  document.querySelectorAll('.mob-nav-btn').forEach((btn, i) => {
+    btn.classList.toggle('active', i === activeSection);
+  });
+}
+
+// ── Build sidebar & mobile nav ─────────────────────────────────────────────
+function buildNav() {
+  const sidebar = document.getElementById('sidebar-nav');
+  const mobile = document.getElementById('mobile-nav');
+  sidebar.innerHTML = '';
+  mobile.innerHTML = '';
+  SECTIONS.forEach((s, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'nav-btn' + (i === activeSection ? ' active' : '');
+    btn.textContent = s.label;
+    btn.setAttribute('data-nav-index', i);
+    btn.onclick = () => goTo(i);
+    sidebar.appendChild(btn);
+
+    const mBtn = document.createElement('button');
+    mBtn.className = 'mob-nav-btn' + (i === activeSection ? ' active' : '');
+    mBtn.textContent = s.icon + ' ' + s.label;
+    mBtn.onclick = () => goTo(i);
+    mobile.appendChild(mBtn);
+  });
+  sidebar.querySelectorAll('.nav-btn').forEach((b,i) => b.setAttribute('data-nav-index', i));
+}
+
+// ── Populate form from state ───────────────────────────────────────────────
+function populateForm() {
+  const fields = [
+    'projektnamn','adress','fastighetsbeteckning','byggherre','telefon','epost',
+    'projektbeskrivning','projekttyp','storlek','startdatum','slutdatum',
+    'lovTyp','lovNummer','lovDatum','startbeskedDatum','lovAnteckningar',
+    'kontrollansvarigNamn','kontrollansvarigKontakt',
+    'totalbudget','budgetAnteckningar','tidsplanAnteckningar','kontrollAnteckningar',
+  ];
+  fields.forEach(f => {
+    const el = document.getElementById(f);
+    if (el) el.value = state[f] || '';
+  });
+
+  const boolFields = [
+    'startbesked','kontrollplan','harKontrollansvarig',
+    'handlingSituationsplan','handlingPlanritning','handlingFasadritning',
+    'handlingSektionsritning','handlingKonstruktionsritning','handlingEnergyCalc',
+    'handlingBrandskydd','handlingTillganglighet',
+  ];
+  const boolMap = {
+    startbesked:'startbesked', kontrollplan:'kontrollplan',
+    harKontrollansvarig:'harKontrollansvarig',
+    handlingSituationsplan:'hSituation', handlingPlanritning:'hPlan',
+    handlingFasadritning:'hFasad', handlingSektionsritning:'hSektion',
+    handlingKonstruktionsritning:'hKonstr', handlingEnergyCalc:'hEnergi',
+    handlingBrandskydd:'hBrand', handlingTillganglighet:'hTillgang',
+  };
+  boolFields.forEach(f => {
+    const elId = boolMap[f] || f;
+    const el = document.getElementById(elId);
+    if (el) el.checked = !!state[f];
+  });
+
+  toggleKA();
+  renderEntrepreneurs();
+  renderBudget();
+  renderMilestones();
+  renderControlPoints();
+}
+
+// ── KA toggle ─────────────────────────────────────────────────────────────
+function toggleKA() {
+  const kaFields = document.getElementById('ka-fields');
+  if (state.harKontrollansvarig) {
+    kaFields.classList.remove('hidden');
+    kaFields.style.display = 'grid';
+  } else {
+    kaFields.classList.add('hidden');
+    kaFields.style.display = 'none';
+  }
+}
+
+// ── Entrepreneurs ─────────────────────────────────────────────────────────
+function addEntrepreneur() {
+  state.entreprenorer.push({
+    id: uid(), roll: '', foretag: '', kontaktperson: '',
+    telefon: '', epost: '', ansvarsomrade: '', kontrakt: false, anteckningar: '',
+  });
+  scheduleAutoSave();
+  renderEntrepreneurs();
+}
+
+function removeEntrepreneur(id) {
+  state.entreprenorer = state.entreprenorer.filter(e => e.id !== id);
+  scheduleAutoSave();
+  renderEntrepreneurs();
+}
+
+function updateEntrepreneur(id, field, value) {
+  const e = state.entreprenorer.find(x => x.id === id);
+  if (e) { e[field] = value; scheduleAutoSave(); }
+}
+
+function renderEntrepreneurs() {
+  const list = document.getElementById('entrepreneurs-list');
+  if (state.entreprenorer.length === 0) {
+    list.innerHTML = `<div class="empty-state">👷 Inga entreprenörer tillagda ännu.</div>`;
+    return;
+  }
+  const rollLabels = {
+    generalentreprenor:'Generalentreprenör', totalentreprenor:'Totalentreprenör',
+    underentreprenor:'Underentreprenör', konstruktor:'Konstruktör',
+    arkitekt:'Arkitekt', ror:'Rörläggare / VVS', el:'Elektriker',
+    mark:'Markentreprenör', annat:'Annat',
+  };
+  list.innerHTML = state.entreprenorer.map((e, idx) => `
+    <div class="entity-card">
+      <div class="entity-card-header">
+        <span class="entity-card-title">Entreprenör ${idx+1}${e.foretag ? ' – '+e.foretag : ''}</span>
+        <button class="btn-remove" onclick="removeEntrepreneur('${e.id}')" aria-label="Ta bort">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="entity-card-body">
+        <div class="grid-2">
+          <div class="form-group">
+            <label>Roll</label>
+            <select onchange="updateEntrepreneur('${e.id}','roll',this.value)">
+              <option value="">Välj roll…</option>
+              ${Object.entries(rollLabels).map(([v,l]) => `<option value="${v}"${e.roll===v?' selected':''}>${l}</option>`).join('')}
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Företagsnamn</label>
+            <input type="text" value="${esc(e.foretag)}" placeholder="Företagsnamn" oninput="updateEntrepreneur('${e.id}','foretag',this.value)" />
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="form-group">
+            <label>Kontaktperson</label>
+            <input type="text" value="${esc(e.kontaktperson)}" placeholder="Namn" oninput="updateEntrepreneur('${e.id}','kontaktperson',this.value)" />
+          </div>
+          <div class="form-group">
+            <label>Telefon</label>
+            <input type="tel" value="${esc(e.telefon)}" placeholder="07X-XXX XX XX" oninput="updateEntrepreneur('${e.id}','telefon',this.value)" />
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="form-group">
+            <label>E-post</label>
+            <input type="email" value="${esc(e.epost)}" placeholder="epost@foretag.se" oninput="updateEntrepreneur('${e.id}','epost',this.value)" />
+          </div>
+          <div class="form-group">
+            <label>Ansvarsområde</label>
+            <input type="text" value="${esc(e.ansvarsomrade)}" placeholder="t.ex. Grundläggning och stomme" oninput="updateEntrepreneur('${e.id}','ansvarsomrade',this.value)" />
+          </div>
+        </div>
+        <div class="check-row" style="border:none">
+          <input type="checkbox" id="kontrakt-${e.id}" ${e.kontrakt?'checked':''} onchange="updateEntrepreneur('${e.id}','kontrakt',this.checked)" />
+          <label class="check-label" for="kontrakt-${e.id}">Kontrakt signerat</label>
+        </div>
+        <div class="form-group">
+          <label>Anteckningar</label>
+          <textarea rows="2" placeholder="Övriga noteringar…" oninput="updateEntrepreneur('${e.id}','anteckningar',this.value)">${esc(e.anteckningar)}</textarea>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ── Budget ────────────────────────────────────────────────────────────────
+function addBudgetPost() {
+  state.budgetPoster.push({ id: uid(), kategori: '', beskrivning: '', budgeterat: '', utfall: '' });
+  scheduleAutoSave();
+  renderBudget();
+}
+
+function removeBudgetPost(id) {
+  state.budgetPoster = state.budgetPoster.filter(p => p.id !== id);
+  scheduleAutoSave();
+  renderBudget();
+}
+
+function updateBudgetPost(id, field, value) {
+  const p = state.budgetPoster.find(x => x.id === id);
+  if (p) { p[field] = value; scheduleAutoSave(); renderBudgetSum(); }
+}
+
+const KATEGORIER = [
+  ['mark','Mark & grundläggning'],['stomme','Stomme & konstruktion'],
+  ['tak','Tak'],['fasad','Fasad'],['invandiga','Invändiga arbeten'],
+  ['el','El & belysning'],['vvs','VVS'],['ventilation','Ventilation'],
+  ['konsulter','Konsulter & handlingar'],['avgifter','Avgifter & anslutningar'],['ovrigt','Övrigt'],
+];
+
+function renderBudget() {
+  const list = document.getElementById('budget-list');
+  const sumEl = document.getElementById('budget-sum');
+  if (state.budgetPoster.length === 0) {
+    list.innerHTML = `<div class="empty-state">💰 Inga kostnadsposter tillagda ännu.</div>`;
+    sumEl.classList.add('hidden'); sumEl.style.display='none';
+    return;
+  }
+  list.innerHTML = state.budgetPoster.map(p => `
+    <div class="budget-row" style="margin-bottom:0.5rem">
+      <select style="font-size:0.8125rem;padding:0.375rem 0.5rem" onchange="updateBudgetPost('${p.id}','kategori',this.value)">
+        <option value="">Kategori…</option>
+        ${KATEGORIER.map(([v,l]) => `<option value="${v}"${p.kategori===v?' selected':''}>${l}</option>`).join('')}
+      </select>
+      <input type="text" value="${esc(p.beskrivning)}" placeholder="Beskrivning" style="font-size:0.8125rem;padding:0.375rem 0.5rem" oninput="updateBudgetPost('${p.id}','beskrivning',this.value)" />
+      <input type="number" value="${esc(p.budgeterat)}" placeholder="0" style="font-size:0.8125rem;padding:0.375rem 0.5rem" oninput="updateBudgetPost('${p.id}','budgeterat',this.value)" />
+      <input type="number" value="${esc(p.utfall)}" placeholder="0" style="font-size:0.8125rem;padding:0.375rem 0.5rem" oninput="updateBudgetPost('${p.id}','utfall',this.value)" />
+      <button class="btn-remove" onclick="removeBudgetPost('${p.id}')" aria-label="Ta bort">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+  `).join('');
+  renderBudgetSum();
+}
+
+function renderBudgetSum() {
+  const sumEl = document.getElementById('budget-sum');
+  const tot = state.budgetPoster.reduce((s,p) => s + (parseFloat(p.budgeterat)||0), 0);
+  const utfall = state.budgetPoster.reduce((s,p) => s + (parseFloat(p.utfall)||0), 0);
+  sumEl.className = 'budget-sum-row';
+  sumEl.innerHTML = `<span style="flex:3">Summa</span><span style="flex:2">${tot.toLocaleString('sv-SE')} kr</span><span style="flex:2">${utfall.toLocaleString('sv-SE')} kr</span><span style="flex:0;width:24px"></span>`;
+  sumEl.style.display = '';
+}
+
+// ── Milestones ────────────────────────────────────────────────────────────
+function addMilestone() {
+  state.milstolpar.push({ id: uid(), beskrivning: '', datum: '', klar: false });
+  scheduleAutoSave();
+  renderMilestones();
+}
+
+function removeMilestone(id) {
+  state.milstolpar = state.milstolpar.filter(m => m.id !== id);
+  scheduleAutoSave();
+  renderMilestones();
+}
+
+function updateMilestone(id, field, value) {
+  const m = state.milstolpar.find(x => x.id === id);
+  if (m) { m[field] = value; scheduleAutoSave(); renderMilestones(); }
+}
+
+function renderMilestones() {
+  const list = document.getElementById('milestone-list');
+  if (state.milstolpar.length === 0) {
+    list.innerHTML = `<div class="empty-state">📅 Inga milstolpar tillagda ännu.</div>`;
+    return;
+  }
+  list.innerHTML = state.milstolpar.map((m, idx) => `
+    <div class="milestone-row${m.klar?' milestone-done':''}">
+      <input type="checkbox" ${m.klar?'checked':''} onchange="updateMilestone('${m.id}','klar',this.checked)" />
+      <span style="font-size:0.75rem;color:var(--slate-400);width:1.25rem;text-align:center;flex-shrink:0">${idx+1}</span>
+      <input class="milestone-desc-input" type="text" value="${esc(m.beskrivning)}" placeholder="Beskriv milstolpen…" oninput="updateMilestone('${m.id}','beskrivning',this.value)" />
+      <input class="milestone-date-input" type="date" value="${esc(m.datum)}" onchange="updateMilestone('${m.id}','datum',this.value)" />
+      <button class="btn-remove" onclick="removeMilestone('${m.id}')" aria-label="Ta bort">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+  `).join('');
+}
+
+// ── Control points ────────────────────────────────────────────────────────
+function renderControlPoints() {
+  const list = document.getElementById('control-points-list');
+  list.innerHTML = CONTROL_POINTS.map(kp => `
+    <div class="check-row">
+      <input type="checkbox" id="${kp.key}" ${state[kp.key]?'checked':''} onchange="updateKP('${kp.key}',this.checked)" />
+      <div>
+        <label class="check-label" for="${kp.key}">${kp.label}</label>
+        ${kp.desc ? `<div class="check-desc">${kp.desc}</div>` : ''}
+      </div>
+    </div>
+  `).join('');
+  updateKPProgress();
+}
+
+function updateKP(key, value) {
+  state[key] = value;
+  scheduleAutoSave();
+  updateKPProgress();
+  if (activeSection === 6) renderSummary();
+}
+
+function updateKPProgress() {
+  const done = CONTROL_POINTS.filter(kp => state[kp.key]).length;
+  const pct = Math.round(done / CONTROL_POINTS.length * 100);
+  document.getElementById('kp-bar').style.width = pct + '%';
+  document.getElementById('kp-label').textContent = `${done}/${CONTROL_POINTS.length} klara`;
+}
+
+// ── Progress calculation ───────────────────────────────────────────────────
+function updateProgress() {
+  const keys = ['projektnamn','adress','byggherre','lovTyp','totalbudget','kpStartbesked','kpKontrollansvarig'];
+  let filled = keys.filter(k => {
+    const v = state[k];
+    return typeof v === 'string' ? v.trim() !== '' : !!v;
+  }).length;
+  if (state.entreprenorer.length > 0) filled++;
+  if (state.milstolpar.length > 0) filled++;
+  const pct = Math.round(filled / (keys.length + 2) * 100);
+  document.getElementById('progress-bar').style.width = pct + '%';
+  document.getElementById('progress-pct').textContent = pct + ' %';
+}
+
+// ── Summary ───────────────────────────────────────────────────────────────
+function renderSummary() {
+  const done = CONTROL_POINTS.filter(kp => state[kp.key]).length;
+  const kpPct = Math.round(done / CONTROL_POINTS.length * 100);
+  const progKeys = ['projektnamn','adress','byggherre','lovTyp','totalbudget','kpStartbesked','kpKontrollansvarig'];
+  let progFilled = progKeys.filter(k => { const v = state[k]; return typeof v==='string'?v.trim()!=='':!!v; }).length;
+  if (state.entreprenorer.length>0) progFilled++;
+  if (state.milstolpar.length>0) progFilled++;
+  const overallPct = Math.round(progFilled/(progKeys.length+2)*100);
+
+  const handlingarKlara = [
+    state.handlingSituationsplan, state.handlingPlanritning,
+    state.handlingFasadritning, state.handlingSektionsritning,
+  ].filter(Boolean).length;
+
+  const totBudget = state.budgetPoster.reduce((s,p)=>s+(parseFloat(p.budgeterat)||0),0);
+  const totUtfall = state.budgetPoster.reduce((s,p)=>s+(parseFloat(p.utfall)||0),0);
+  const milDone = state.milstolpar.filter(m=>m.klar).length;
+
+  const dot = ok => ok
+    ? '<span class="dot-ok"></span>'
+    : '<span class="dot-warn"></span>';
+
+  document.getElementById('summary-content').innerHTML = `
+    <div class="summary-card" style="margin-bottom:1rem">
+      <div class="summary-card-header">📋 Projekt</div>
+      <div class="summary-card-body">
+        <div class="summary-row"><span class="summary-label">Namn:</span><span>${esc(state.projektnamn)||'–'}</span></div>
+        <div class="summary-row"><span class="summary-label">Typ:</span><span>${esc(state.projekttyp)||'–'}</span></div>
+        <div class="summary-row"><span class="summary-label">Adress:</span><span>${esc(state.adress)||'–'}</span></div>
+        <div class="summary-row"><span class="summary-label">Byggherre:</span><span>${esc(state.byggherre)||'–'}</span></div>
+        <div class="summary-row"><span class="summary-label">Storlek:</span><span>${state.storlek?state.storlek+' m²':'–'}</span></div>
+        <div class="summary-row"><span class="summary-label">Period:</span><span>${esc(state.startdatum)||'?'} → ${esc(state.slutdatum)||'?'}</span></div>
+      </div>
+    </div>
+
+    <div class="summary-grid">
+      <div class="summary-card">
+        <div class="summary-card-header">📄 Lov och handlingar</div>
+        <div class="summary-card-body">
+          <div class="status-row">${dot(state.lovTyp)}<span>Tillståndstyp: ${esc(state.lovTyp)||'Ej angiven'}</span></div>
+          <div class="status-row">${dot(state.startbesked)}<span>Startbesked: ${state.startbesked?'Beviljat':'Saknas'}</span></div>
+          <div class="status-row">${dot(handlingarKlara>=3)}<span>Grundhandlingar: ${handlingarKlara}/4 på plats</span></div>
+        </div>
+      </div>
+      <div class="summary-card">
+        <div class="summary-card-header">✅ Byggstartberedskap</div>
+        <div class="summary-card-body">
+          <div class="status-row">
+            ${dot(done===CONTROL_POINTS.length)}
+            <span>Kontrollpunkter: <span class="${done===CONTROL_POINTS.length?'badge-green':'badge-amber'}">${done}/${CONTROL_POINTS.length}</span></span>
+          </div>
+          <div class="status-row">
+            <span class="dot-ok" style="background:var(--slate-300)"></span>
+            <span>Entreprenörer: <span class="badge-slate">${state.entreprenorer.length} tillagda</span></span>
+          </div>
+          <div class="status-row">
+            <span class="dot-ok" style="background:var(--slate-300)"></span>
+            <span>Milstolpar: <span class="badge-slate">${milDone}/${state.milstolpar.length} klara</span></span>
+          </div>
+        </div>
+      </div>
+      <div class="summary-card">
+        <div class="summary-card-header">💰 Budget</div>
+        <div class="summary-card-body">
+          <div class="summary-row"><span class="summary-label">Total budget:</span><span>${state.totalbudget?parseInt(state.totalbudget).toLocaleString('sv-SE')+' kr':'–'}</span></div>
+          <div class="summary-row"><span class="summary-label">Budgeterat:</span><span>${totBudget>0?totBudget.toLocaleString('sv-SE')+' kr':'–'}</span></div>
+          <div class="summary-row"><span class="summary-label">Utfall hittills:</span><span>${totUtfall>0?totUtfall.toLocaleString('sv-SE')+' kr':'–'}</span></div>
+        </div>
+      </div>
+      <div class="summary-card">
+        <div class="summary-card-header">📊 Övergripande progress</div>
+        <div class="summary-card-body">
+          <div style="display:flex;justify-content:space-between;font-size:0.875rem;margin-bottom:0.375rem">
+            <span>Planeringsgrad</span><span style="font-weight:600">${overallPct}%</span>
+          </div>
+          <div class="progress-bar-outer"><div class="progress-bar-inner" style="width:${overallPct}%"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-block" style="margin-top:1rem">
+      <h3>Redo att ta nästa steg?</h3>
+      <p>Planeraren ger dig en god överblick – men ett verkligt byggprojekt kräver projektspecifik bedömning, certifierade roller och erfarenhet. Tobias Ytterman hjälper dig med det.</p>
+      <div class="cta-btns">
+        <a href="https://ytterman.com/kontakt" target="_blank" rel="noopener"><button class="btn-white">Kontakta Tobias</button></a>
+        <a href="tel:+46761118447"><button class="btn-outline-white">📞 076-111 84 47</button></a>
+      </div>
+    </div>
+  `;
+}
+
+// ── Export / Import ────────────────────────────────────────────────────────
+function exportJSON() {
+  const json = JSON.stringify(state, null, 2);
+  const blob = new Blob([json], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `byggstart-${state.projektnamn||'projekt'}-${new Date().toISOString().slice(0,10)}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function importJSON(event) {
+  const file = event.target.files && event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    try {
+      const parsed = JSON.parse(e.target.result);
+      state = Object.assign(defaultData(), parsed);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      populateForm();
+      updateProgress();
+      updateKPProgress();
+      goTo(0);
+    } catch(err) {
+      alert('Filen kunde inte läsas. Kontrollera att det är en giltig JSON-fil.');
+    }
+  };
+  reader.readAsText(file);
+  event.target.value = '';
+}
+
+// ── Clear ─────────────────────────────────────────────────────────────────
+function showClearModal() { document.getElementById('clear-modal').classList.remove('hidden'); }
+function hideClearModal() { document.getElementById('clear-modal').classList.add('hidden'); }
+function clearAll() {
+  state = defaultData();
+  localStorage.removeItem(STORAGE_KEY);
+  hideClearModal();
+  populateForm();
+  updateProgress();
+  updateKPProgress();
+  goTo(0);
+}
+
+// ── HTML escape ────────────────────────────────────────────────────────────
+function esc(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;');
+}
+
+// ── Init ───────────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  loadState();
+  buildNav();
+  populateForm();
+  updateProgress();
+  updateKPProgress();
+});
+</script>
+</body>
+</html>
