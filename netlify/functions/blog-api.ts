@@ -21,7 +21,7 @@ export default async (req: Request) => {
 
   const corsHeaders = {
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Origin': 'https://ytterman.com',
   };
 
   const store = getStore('blog-posts');

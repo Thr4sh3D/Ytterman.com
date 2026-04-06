@@ -1,4 +1,5 @@
 import { getStore } from '@netlify/blobs';
+import { timingSafeEqual } from 'crypto';
 
 interface BlogSeoArticle {
   id: string;
@@ -40,7 +41,14 @@ export default async (req: Request) => {
   }
 
   const secret = req.headers.get('x-webhook-secret');
-  if (!secret || secret !== process.env.BLOGSEO_WEBHOOK_SECRET) {
+  const expectedSecret = process.env.BLOGSEO_WEBHOOK_SECRET;
+
+  if (
+    !secret ||
+    !expectedSecret ||
+    secret.length !== expectedSecret.length ||
+    !timingSafeEqual(Buffer.from(secret), Buffer.from(expectedSecret))
+  ) {
     return new Response(JSON.stringify({ error: 'Invalid signature' }), {
       status: 401,
       headers: { 'Content-Type': 'application/json' },

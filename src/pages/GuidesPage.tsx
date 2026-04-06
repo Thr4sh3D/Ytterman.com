@@ -8,6 +8,7 @@ import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { BookOpen, Shield, Users, FileText, Building, Zap, Leaf, Laptop, CheckCircle, MapPin, AlertTriangle, ArrowRight, Calendar, LucideIcon } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { knowledgeBase } from '@/content/knowledgeBase';
+import type { BlogPostMeta } from '@/types/blog';
 
 // Icon mapping for dynamic icon resolution
 const iconMap: Record<string, LucideIcon> = {
@@ -32,7 +33,7 @@ const GuidesPage = () => {
   }));
 
   // Fetch recent blog posts for the blog preview section
-  const [recentPosts, setRecentPosts] = useState<{ id: string; slug: string; title: string; published_at: string; meta_description: string; main_image_url: string; keyword: string | null }[]>([]);
+  const [recentPosts, setRecentPosts] = useState<BlogPostMeta[]>([]);
   useEffect(() => {
     fetch('/api/blog-posts')
       .then(res => res.ok ? res.json() : [])

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import DOMPurify from 'dompurify';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
@@ -10,18 +11,7 @@ import { CanonicalUrl } from '@/components/CanonicalUrl';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Calendar, ArrowLeft, Tag } from 'lucide-react';
-
-interface BlogArticle {
-  id: string;
-  slug: string;
-  title: string;
-  content: string;
-  format: 'markdown' | 'html';
-  published_at: string;
-  main_image_url: string;
-  meta_description: string;
-  keyword: string | null;
-}
+import type { BlogArticle } from '@/types/blog';
 
 const BlogPostPage = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -160,7 +150,7 @@ const BlogPostPage = () => {
                 ) : (
                   <div
                     className="prose prose-slate prose-lg max-w-none"
-                    dangerouslySetInnerHTML={{ __html: article.content }}
+                    dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(article.content) }}
                   />
                 )}
 

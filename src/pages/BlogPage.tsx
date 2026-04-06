@@ -8,16 +8,7 @@ import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { BlogCard } from '@/components/BlogCard';
 import { Skeleton } from '@/components/ui/skeleton';
 import { BookOpen } from 'lucide-react';
-
-interface BlogPostMeta {
-  id: string;
-  slug: string;
-  title: string;
-  published_at: string;
-  main_image_url: string;
-  meta_description: string;
-  keyword: string | null;
-}
+import type { BlogPostMeta } from '@/types/blog';
 
 const estimateReadingTime = (description: string) =>
   Math.max(3, Math.ceil(description.split(' ').length / 50));
