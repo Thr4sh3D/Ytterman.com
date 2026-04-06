@@ -427,11 +427,11 @@
       <div class="tool-btns">
         <button class="tool-btn" onclick="exportJSON()">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Exportera (JSON)
+          Ladda ner projekt
         </button>
         <button class="tool-btn" onclick="document.getElementById('import-file').click()">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-          Importera (JSON)
+          Importera sparad kopia
         </button>
         <input type="file" id="import-file" accept=".json,application/json" class="hidden" onchange="importJSON(event)" />
         <button class="tool-btn danger" onclick="showClearModal()">
@@ -763,7 +763,7 @@
 <div class="modal-overlay hidden" id="clear-modal">
   <div class="modal">
     <h2>Rensa all data?</h2>
-    <p>All information i planeraren raderas och kan inte återställas (om du inte har exporterat en JSON-fil). Är du säker?</p>
+    <p>All information i planeraren raderas och kan inte återställas (om du inte har laddat ner en sparad kopia). Är du säker?</p>
     <div class="modal-btns">
       <button class="btn-cancel" onclick="hideClearModal()">Avbryt</button>
       <button class="btn-confirm" onclick="clearAll()">Ja, rensa allt</button>
@@ -1326,7 +1326,7 @@ function importJSON(event) {
       updateKPProgress();
       goTo(0);
     } catch(err) {
-      alert('Filen kunde inte läsas. Kontrollera att det är en giltig JSON-fil.');
+      alert('Filen kunde inte läsas. Kontrollera att du har valt en giltig sparad kopia.');
     }
   };
   reader.readAsText(file);
