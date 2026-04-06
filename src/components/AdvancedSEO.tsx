@@ -52,7 +52,7 @@ export const AdvancedSEO = ({
   const url = rawUrl && !rawUrl.endsWith('/') && rawUrl !== 'https://ytterman.com' ? rawUrl + '/' : rawUrl;
   const organizationSchema = {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
+    "@type": ["LocalBusiness", "ProfessionalService"],
     "name": "Ytterman – Kontrollansvarig & BAS",
     "alternateName": "Tobias Ytterman",
     "description": "Certifierad kontrollansvarig (KA) och BAS-P/BAS-U i Västernorrland. Över 20 års erfarenhet inom byggteknik.",
