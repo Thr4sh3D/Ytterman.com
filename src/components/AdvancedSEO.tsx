@@ -20,6 +20,7 @@ interface AdvancedSEOProps {
   url: string;
   image?: string;
   type?: string;
+  robots?: string;
   organization?: boolean;
   breadcrumbs?: Breadcrumb[];
   article?: Article;
@@ -42,6 +43,7 @@ export const AdvancedSEO = ({
   url: rawUrl, 
   image = "/og-image.png",
   type = "website",
+  robots = "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
   organization = false,
   breadcrumbs = [],
   article,
@@ -210,7 +212,7 @@ export const AdvancedSEO = ({
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
       <meta name="author" content="Tobias Ytterman" />
-      <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+      <meta name="robots" content={robots} />
       <meta name="language" content="Swedish" />
       <meta name="geo.region" content="SE-Y" />
       <meta name="geo.placename" content="Västernorrland" />

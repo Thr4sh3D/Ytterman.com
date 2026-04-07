@@ -117,6 +117,7 @@ const TackPage = () => {
         description="Tack för din förfrågan om kontrollansvarig, BAS-P eller BAS-U. Vi återkommer inom 24 timmar med kostnadsfri konsultation och fast prisoffert."
         keywords="tack, förfrågan skickad, kontrollansvarig offert, BAS konsultation"
         url="https://ytterman.com/tack"
+        robots="noindex, follow"
       />
       
       <CanonicalUrl path="/tack" />

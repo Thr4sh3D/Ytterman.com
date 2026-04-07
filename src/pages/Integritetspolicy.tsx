@@ -10,7 +10,7 @@ const Integritetspolicy = () => {
         <title>Integritetspolicy - MTY Konsult | Ytterman</title>
         <meta name="description" content="Läs vår integritetspolicy för MTY Konsult. Vi värnar om din integritet och personuppgifter enligt GDPR." />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://ytterman.com/integritetspolicy" />
+        <link rel="canonical" href="https://ytterman.com/integritetspolicy/" />
       </Helmet>
       
       <div className="min-h-screen">
