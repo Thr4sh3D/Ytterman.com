@@ -25,6 +25,18 @@ const iconMap: Record<string, LucideIcon> = {
   AlertTriangle
 };
 
+const formatPublishedDate = (publishedAt: string) => {
+  const date = new Date(publishedAt);
+
+  return Number.isNaN(date.getTime())
+    ? 'Datum ej tillgängligt'
+    : date.toLocaleDateString('sv-SE', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      });
+};
+
 const GuidesPage = () => {
   // Use guides from centralized data source
   const guides = knowledgeBase.map(guide => ({
@@ -162,7 +174,7 @@ const GuidesPage = () => {
 
                 {recentPosts.length > 0 ? (
                   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {recentPosts.map(post => (
+                    {recentPosts.filter(post => post.slug && post.title).map(post => (
                       <a
                         key={post.id}
                         href={`/blogg/${post.slug}/`}
@@ -186,16 +198,10 @@ const GuidesPage = () => {
                           <h3 className="text-lg font-bold text-slate-900 mt-3 mb-2 line-clamp-2">
                             {post.title}
                           </h3>
-                          <p className="text-slate-600 text-sm line-clamp-2 mb-3">{post.meta_description}</p>
+                          <p className="text-slate-600 text-sm line-clamp-2 mb-3">{post.meta_description || ''}</p>
                           <div className="flex items-center gap-1 text-xs text-slate-500">
                             <Calendar className="w-3 h-3" />
-                            <span>
-                              {new Date(post.published_at).toLocaleDateString('sv-SE', {
-                                year: 'numeric',
-                                month: 'long',
-                                day: 'numeric',
-                              })}
-                            </span>
+                            <span>{formatPublishedDate(post.published_at)}</span>
                           </div>
                         </div>
                       </a>

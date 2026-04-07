@@ -14,6 +14,77 @@ interface ArticleIndex {
   articles: ArticleIndexEntry[];
 }
 
+interface StoredBlogArticle extends Partial<ArticleIndexEntry> {
+  content?: string;
+  format?: 'markdown' | 'html' | string;
+}
+
+const normalizeString = (value: unknown) =>
+  typeof value === 'string' ? value.trim() : '';
+
+const normalizeKeyword = (value: unknown) => {
+  const keyword = normalizeString(value);
+  return keyword || null;
+};
+
+const normalizePublishedAt = (value: unknown) => {
+  const publishedAt = normalizeString(value);
+  return publishedAt && !Number.isNaN(new Date(publishedAt).getTime())
+    ? publishedAt
+    : new Date(0).toISOString();
+};
+
+const normalizeIndexEntry = (entry: Partial<ArticleIndexEntry>): ArticleIndexEntry | null => {
+  const id = normalizeString(entry.id);
+  const slug = normalizeString(entry.slug);
+  const title = normalizeString(entry.title);
+
+  if (!id || !slug || !title) {
+    return null;
+  }
+
+  return {
+    id,
+    slug,
+    title,
+    published_at: normalizePublishedAt(entry.published_at),
+    main_image_url: normalizeString(entry.main_image_url),
+    meta_description: normalizeString(entry.meta_description),
+    keyword: normalizeKeyword(entry.keyword),
+  };
+};
+
+const parseIndex = (indexRaw: string | null) => {
+  if (!indexRaw) {
+    return [];
+  }
+
+  try {
+    const parsed = JSON.parse(indexRaw) as Partial<ArticleIndex>;
+    const articles = Array.isArray(parsed.articles) ? parsed.articles : [];
+
+    return articles
+      .map((entry) => normalizeIndexEntry(entry))
+      .filter((entry): entry is ArticleIndexEntry => Boolean(entry))
+      .sort((a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime());
+  } catch (error) {
+    console.error('Failed to parse blog index:', error);
+    return [];
+  }
+};
+
+const normalizeArticle = (article: StoredBlogArticle, meta: ArticleIndexEntry) => ({
+  id: normalizeString(article.id) || meta.id,
+  slug: normalizeString(article.slug) || meta.slug,
+  title: normalizeString(article.title) || meta.title,
+  content: normalizeString(article.content),
+  format: article.format === 'html' ? 'html' : 'markdown',
+  published_at: normalizePublishedAt(article.published_at || meta.published_at),
+  main_image_url: normalizeString(article.main_image_url) || meta.main_image_url,
+  meta_description: normalizeString(article.meta_description) || meta.meta_description,
+  keyword: normalizeKeyword(article.keyword ?? meta.keyword),
+});
+
 export default async (req: Request) => {
   if (req.method !== 'GET') {
     return new Response('Method Not Allowed', { status: 405 });
@@ -31,9 +102,8 @@ export default async (req: Request) => {
 
   if (slug) {
     // Return a single post by slug
-    const indexRaw = await store.get('__index');
-    const index: ArticleIndex = indexRaw ? JSON.parse(indexRaw) : { articles: [] };
-    const meta = index.articles.find((a) => a.slug === slug);
+    const index = parseIndex(await store.get('__index'));
+    const meta = index.find((a) => a.slug === slug);
 
     if (!meta) {
       return new Response(JSON.stringify({ error: 'Not found' }), {
@@ -50,14 +120,24 @@ export default async (req: Request) => {
       });
     }
 
-    return new Response(articleRaw, { status: 200, headers: corsHeaders });
+    try {
+      const article = normalizeArticle(JSON.parse(articleRaw) as StoredBlogArticle, meta);
+
+      return new Response(JSON.stringify(article), { status: 200, headers: corsHeaders });
+    } catch (error) {
+      console.error(`Failed to parse blog article ${meta.id}:`, error);
+
+      return new Response(JSON.stringify({ error: 'Not found' }), {
+        status: 404,
+        headers: corsHeaders,
+      });
+    }
   }
 
   // Return the index (metadata only, no content)
-  const indexRaw = await store.get('__index');
-  const index: ArticleIndex = indexRaw ? JSON.parse(indexRaw) : { articles: [] };
+  const index = parseIndex(await store.get('__index'));
 
-  return new Response(JSON.stringify(index.articles), {
+  return new Response(JSON.stringify(index), {
     status: 200,
     headers: corsHeaders,
   });

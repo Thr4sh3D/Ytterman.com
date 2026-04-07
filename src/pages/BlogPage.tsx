@@ -10,8 +10,18 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { BookOpen } from 'lucide-react';
 import type { BlogPostMeta } from '@/types/blog';
 
-const estimateReadingTimeFromDescription = (description: string) =>
-  Math.max(3, Math.ceil(description.split(' ').length / 50));
+const MIN_READING_TIME_MINUTES = 3;
+const DESCRIPTION_WORDS_PER_MINUTE = 50;
+
+const estimateReadingTimeFromDescription = (description?: string) => {
+  const safeDescription = typeof description === 'string' ? description : '';
+  const wordCount = (safeDescription.match(/\S+/g) || []).length;
+
+  return Math.max(
+    MIN_READING_TIME_MINUTES,
+    Math.ceil(wordCount / DESCRIPTION_WORDS_PER_MINUTE),
+  );
+};
 
 const BlogPage = () => {
   const [posts, setPosts] = useState<BlogPostMeta[]>([]);
@@ -102,14 +112,16 @@ const BlogPage = () => {
                   </div>
                 ) : (
                   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {posts.map((post) => (
+                    {posts
+                      .filter((post) => post.slug && post.title)
+                      .map((post) => (
                       <BlogCard
                         key={post.id}
                         post={{
                           id: post.id,
                           title: post.title,
                           slug: post.slug,
-                          excerpt: post.meta_description,
+                          excerpt: post.meta_description || '',
                           featured_image: post.main_image_url,
                           category: post.keyword ?? 'Byggkunskap',
                           author: 'Tobias Ytterman',
