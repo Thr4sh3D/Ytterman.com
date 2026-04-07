@@ -8,7 +8,14 @@ const __dirname = path.dirname(__filename);
 // Configuration
 const DOMAIN = 'https://ytterman.com';
 const APP_TSX_PATH = path.join(__dirname, '../src/App.tsx');
-const OUTPUT_PATH = path.join(__dirname, '../public/sitemap.xml');
+const STATIC_SITEMAP_OUTPUT_PATH = path.join(__dirname, '../public/sitemap-static.xml');
+const SITEMAP_INDEX_OUTPUT_PATH = path.join(__dirname, '../public/sitemap.xml');
+const DYNAMIC_SITEMAPS = [
+  `${DOMAIN}/sitemap-blog.xml`,
+];
+const EXCLUDED_ROUTES = new Set([
+  '/tack',
+]);
 
 // Route priorities based on importance
 const ROUTE_PRIORITIES = {
@@ -50,6 +57,15 @@ function getRoutePriority(route) {
   return { priority: '0.5', changefreq: 'monthly' };
 }
 
+function escapeXml(value) {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;');
+}
+
 // Extract routes from App.tsx
 function extractRoutes() {
   const content = fs.readFileSync(APP_TSX_PATH, 'utf-8');
@@ -60,7 +76,7 @@ function extractRoutes() {
   while ((match = routeRegex.exec(content)) !== null) {
     const route = match[1];
     // Skip wildcard routes (404) and dynamic routes with params
-    if (route !== '*' && !route.includes(':')) {
+    if (route !== '*' && !route.includes(':') && !EXCLUDED_ROUTES.has(route)) {
       routes.push(route);
     }
   }
@@ -68,8 +84,8 @@ function extractRoutes() {
   return routes.sort();
 }
 
-// Generate sitemap XML
-function generateSitemap(routes) {
+// Generate static sitemap XML
+function generateStaticSitemap(routes) {
   const today = new Date().toISOString().split('T')[0];
   
   let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
@@ -82,14 +98,32 @@ function generateSitemap(routes) {
     const url = route === '/' ? DOMAIN + '/' : DOMAIN + route + '/';
     
     xml += '  <url>\n';
-    xml += `    <loc>${url}</loc>\n`;
-    xml += `    <lastmod>${today}</lastmod>\n`;
-    xml += `    <changefreq>${changefreq}</changefreq>\n`;
-    xml += `    <priority>${priority}</priority>\n`;
+    xml += `    <loc>${escapeXml(url)}</loc>\n`;
+    xml += `    <lastmod>${escapeXml(today)}</lastmod>\n`;
+    xml += `    <changefreq>${escapeXml(changefreq)}</changefreq>\n`;
+    xml += `    <priority>${escapeXml(priority)}</priority>\n`;
     xml += '  </url>\n';
   });
 
   xml += '</urlset>\n';
+  return xml;
+}
+
+function generateSitemapIndex() {
+  const today = new Date().toISOString().split('T')[0];
+  const sitemapUrls = [`${DOMAIN}/sitemap-static.xml`, ...DYNAMIC_SITEMAPS];
+
+  let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
+  xml += '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
+
+  sitemapUrls.forEach((url) => {
+    xml += '  <sitemap>\n';
+    xml += `    <loc>${escapeXml(url)}</loc>\n`;
+    xml += `    <lastmod>${escapeXml(today)}</lastmod>\n`;
+    xml += '  </sitemap>\n';
+  });
+
+  xml += '</sitemapindex>\n';
   return xml;
 }
 
@@ -100,11 +134,14 @@ function main() {
   
   console.log(`✅ Found ${routes.length} routes:\n${routes.map(r => '  - ' + r).join('\n')}`);
   
-  console.log('\n📝 Generating sitemap.xml...');
-  const sitemap = generateSitemap(routes);
+  console.log('\n📝 Generating sitemap-static.xml...');
+  const staticSitemap = generateStaticSitemap(routes);
+  const sitemapIndex = generateSitemapIndex();
   
-  fs.writeFileSync(OUTPUT_PATH, sitemap, 'utf-8');
-  console.log(`✅ Sitemap generated successfully at: ${OUTPUT_PATH}`);
+  fs.writeFileSync(STATIC_SITEMAP_OUTPUT_PATH, staticSitemap, 'utf-8');
+  fs.writeFileSync(SITEMAP_INDEX_OUTPUT_PATH, sitemapIndex, 'utf-8');
+  console.log(`✅ Static sitemap generated successfully at: ${STATIC_SITEMAP_OUTPUT_PATH}`);
+  console.log(`✅ Sitemap index generated successfully at: ${SITEMAP_INDEX_OUTPUT_PATH}`);
   console.log(`📊 Total URLs: ${routes.length}`);
 }
 
