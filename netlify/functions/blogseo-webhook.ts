@@ -35,6 +35,62 @@ interface ArticleIndex {
   articles: ArticleIndexEntry[];
 }
 
+const normalizeString = (value: unknown) =>
+  typeof value === 'string' ? value.trim() : '';
+
+const normalizeKeyword = (value: unknown) => {
+  const keyword = normalizeString(value);
+  return keyword || null;
+};
+
+const normalizePublishedAt = (...candidates: unknown[]) => {
+  for (const candidate of candidates) {
+    const value = normalizeString(candidate);
+    if (value && !Number.isNaN(new Date(value).getTime())) {
+      return value;
+    }
+  }
+
+  return new Date().toISOString();
+};
+
+const stripMarkup = (value: string) =>
+  value
+    .replace(/<[^>]*>/g, ' ')
+    .replace(/[#_*`>\-\[\]()]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+const buildMetaDescription = (article: BlogSeoArticle) => {
+  const metaDescription = normalizeString(article.meta_description);
+  if (metaDescription) {
+    return metaDescription;
+  }
+
+  const contentPreview = stripMarkup(normalizeString(article.content)).slice(0, 157).trim();
+  if (contentPreview) {
+    return `${contentPreview}${contentPreview.length >= 157 ? '...' : ''}`;
+  }
+
+  return normalizeString(article.title);
+};
+
+const parseIndex = (indexRaw: string | null): ArticleIndex => {
+  if (!indexRaw) {
+    return { articles: [] };
+  }
+
+  try {
+    const parsed = JSON.parse(indexRaw) as Partial<ArticleIndex>;
+    return {
+      articles: Array.isArray(parsed.articles) ? parsed.articles : [],
+    };
+  } catch (error) {
+    console.error('Failed to parse existing blog index, recreating it:', error);
+    return { articles: [] };
+  }
+};
+
 export default async (req: Request) => {
   if (req.method !== 'POST') {
     return new Response('Method Not Allowed', { status: 405 });
@@ -74,32 +130,54 @@ export default async (req: Request) => {
   }
 
   const store = getStore('blog-posts');
+  const normalizedArticle: BlogSeoArticle = {
+    ...article,
+    id: normalizeString(article.id),
+    slug: normalizeString(article.slug),
+    title: normalizeString(article.title),
+    content: normalizeString(article.content),
+    format: article.format === 'html' ? 'html' : 'markdown',
+    published_at: normalizePublishedAt(article.published_at, payload.published_at, payload.timestamp),
+    main_image_url: normalizeString(article.main_image_url || payload.main_image?.url),
+    meta_description: buildMetaDescription(article),
+    keyword: normalizeKeyword(article.keyword),
+  };
+
+  if (!normalizedArticle.id || !normalizedArticle.slug || !normalizedArticle.title) {
+    return new Response(JSON.stringify({ error: 'Missing required normalized article fields' }), {
+      status: 400,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
 
   try {
     // Store the full article
-    await store.set(article.id, JSON.stringify(article));
+    await store.set(normalizedArticle.id, JSON.stringify(normalizedArticle));
 
     // Update the index
-    const indexRaw = await store.get('__index');
-    const index: ArticleIndex = indexRaw ? JSON.parse(indexRaw) : { articles: [] };
+    const index = parseIndex(await store.get('__index'));
 
     const entry: ArticleIndexEntry = {
-      id: article.id,
-      slug: article.slug,
-      title: article.title,
-      published_at: article.published_at,
-      main_image_url: article.main_image_url,
-      meta_description: article.meta_description,
-      keyword: article.keyword,
+      id: normalizedArticle.id,
+      slug: normalizedArticle.slug,
+      title: normalizedArticle.title,
+      published_at: normalizedArticle.published_at,
+      main_image_url: normalizedArticle.main_image_url,
+      meta_description: normalizedArticle.meta_description,
+      keyword: normalizedArticle.keyword,
     };
 
-    const existingIndex = index.articles.findIndex((a) => a.id === article.id);
+    const existingIndex = index.articles.findIndex((a) => a.id === normalizedArticle.id);
     if (existingIndex >= 0) {
       index.articles[existingIndex] = entry;
     } else {
       // Insert newest first
       index.articles.unshift(entry);
     }
+
+    index.articles.sort(
+      (a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime(),
+    );
 
     await store.set('__index', JSON.stringify(index));
   } catch (err) {
