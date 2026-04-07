@@ -57,7 +57,8 @@ const normalizePublishedAt = (...candidates: unknown[]) => {
 const stripMarkup = (value: string) =>
   value
     .replace(/<[^>]*>/g, ' ')
-    .replace(/[[\]#_*`()>-]/g, ' ')
+    .replace(/[#[\]_*`()>]/g, ' ')
+    .replace(/-/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();
 

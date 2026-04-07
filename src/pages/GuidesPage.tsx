@@ -25,6 +25,18 @@ const iconMap: Record<string, LucideIcon> = {
   AlertTriangle
 };
 
+const formatPublishedDate = (publishedAt: string) => {
+  const date = new Date(publishedAt);
+
+  return Number.isNaN(date.getTime())
+    ? 'Nyligen publicerad'
+    : date.toLocaleDateString('sv-SE', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      });
+};
+
 const GuidesPage = () => {
   // Use guides from centralized data source
   const guides = knowledgeBase.map(guide => ({
@@ -40,18 +52,6 @@ const GuidesPage = () => {
       .then(data => setRecentPosts(Array.isArray(data) ? data.slice(0, 3) : []))
       .catch(() => setRecentPosts([]));
   }, []);
-
-  const formatPublishedDate = (publishedAt: string) => {
-    const date = new Date(publishedAt);
-
-    return Number.isNaN(date.getTime())
-      ? 'Nyligen publicerad'
-      : date.toLocaleDateString('sv-SE', {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric',
-        });
-  };
 
   const breadcrumbs = [
     { name: 'Hem', url: 'https://ytterman.com' },
