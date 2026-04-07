@@ -300,20 +300,6 @@ export const knowledgeBase: GuideMetadata[] = [
     },
     keywords: ['bygglovsguide', 'vanliga misstag husbygge', 'kontrollansvarig bygglov', 'kontrollplan', 'tekniskt samråd', 'slutbesked', 'BAS-P', 'BAS-U', 'nybyggnad', 'tillbyggnad', 'Västernorrland'],
     link: '/guider/bygglovsguide-vanliga-misstag-husbygge/'
-  },
-  {
-    slug: 'seo-felsokning',
-    title: 'Felsök indexeringsproblem i Google Search Console',
-    description: 'Konkret felsökningsplan för misslyckad validering i Google Search Console. Checklista, curl-kommandon och vanliga felkonfigurationer.',
-    category: 'Teknisk SEO',
-    readTime: '15 min',
-    icon: 'AlertTriangle',
-    seo: {
-      title: 'Felsök Google Search Console Validering - Teknisk SEO Guide | Ytterman',
-      description: 'Komplett felsökningsguide för misslyckad validering i Google Search Console. Prioriterad checklista, curl-kommandon, HTML-exempel och vanliga felkonfigurationer.'
-    },
-    keywords: ['Google Search Console', 'indexering', 'validering misslyckats', 'teknisk SEO', 'canonical', 'robots.txt', 'sitemap', 'felsökning', 'noindex'],
-    link: '/guider/seo-felsokning/'
   }
 ];
 
