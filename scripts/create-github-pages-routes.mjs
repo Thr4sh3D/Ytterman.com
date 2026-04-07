@@ -74,7 +74,6 @@ const routes = [
   'guider/slutbesked',
   'guider/vasternorrland',
   'guider/bygglovsguide-vanliga-misstag-husbygge',
-  'guider/seo-felsokning',
   // Digitala produkter
   'produkter',
   'byggstart-planerare',
