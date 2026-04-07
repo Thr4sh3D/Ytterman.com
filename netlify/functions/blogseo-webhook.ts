@@ -35,6 +35,8 @@ interface ArticleIndex {
   articles: ArticleIndexEntry[];
 }
 
+const MAX_META_DESCRIPTION_LENGTH = 160;
+
 const normalizeString = (value: unknown) =>
   typeof value === 'string' ? value.trim() : '';
 
@@ -68,9 +70,11 @@ const buildMetaDescription = (article: BlogSeoArticle) => {
     return metaDescription;
   }
 
-  const contentPreview = stripMarkup(normalizeString(article.content)).slice(0, 157).trim();
+  const contentPreview = stripMarkup(normalizeString(article.content))
+    .slice(0, MAX_META_DESCRIPTION_LENGTH - 3)
+    .trim();
   if (contentPreview) {
-    return `${contentPreview}${contentPreview.length >= 157 ? '...' : ''}`;
+    return `${contentPreview}${contentPreview.length >= MAX_META_DESCRIPTION_LENGTH - 3 ? '...' : ''}`;
   }
 
   return normalizeString(article.title);

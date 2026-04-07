@@ -10,9 +10,15 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { BookOpen } from 'lucide-react';
 import type { BlogPostMeta } from '@/types/blog';
 
+const MIN_READING_TIME_MINUTES = 3;
+const DESCRIPTION_WORDS_PER_MINUTE = 50;
+
 const estimateReadingTimeFromDescription = (description?: string) => {
   const safeDescription = typeof description === 'string' ? description : '';
-  return Math.max(3, Math.ceil(safeDescription.split(' ').filter(Boolean).length / 50));
+  return Math.max(
+    MIN_READING_TIME_MINUTES,
+    Math.ceil(safeDescription.split(' ').filter(Boolean).length / DESCRIPTION_WORDS_PER_MINUTE),
+  );
 };
 
 const BlogPage = () => {
