@@ -29,7 +29,7 @@ const formatPublishedDate = (publishedAt: string) => {
   const date = new Date(publishedAt);
 
   return Number.isNaN(date.getTime())
-    ? 'Nyligen publicerad'
+    ? 'Datum ej tillgängligt'
     : date.toLocaleDateString('sv-SE', {
         year: 'numeric',
         month: 'long',

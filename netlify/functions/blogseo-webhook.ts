@@ -70,11 +70,12 @@ const buildMetaDescription = (article: BlogSeoArticle) => {
     return metaDescription;
   }
 
-  const contentPreview = stripMarkup(normalizeString(article.content))
+  const plainTextContent = stripMarkup(normalizeString(article.content));
+  const contentPreview = plainTextContent
     .slice(0, MAX_META_DESCRIPTION_LENGTH - 3)
     .trim();
   if (contentPreview) {
-    return `${contentPreview}${contentPreview.length >= MAX_META_DESCRIPTION_LENGTH - 3 ? '...' : ''}`;
+    return `${contentPreview}${plainTextContent.length > MAX_META_DESCRIPTION_LENGTH - 3 ? '...' : ''}`;
   }
 
   return normalizeString(article.title);
