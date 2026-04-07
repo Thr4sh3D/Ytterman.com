@@ -75,7 +75,7 @@ const buildMetaDescription = (article: BlogSeoArticle) => {
     .slice(0, MAX_META_DESCRIPTION_LENGTH - 3)
     .trim();
   if (contentPreview) {
-    return `${contentPreview}${plainTextContent.length > MAX_META_DESCRIPTION_LENGTH - 3 ? '...' : ''}`;
+    return `${contentPreview}${plainTextContent.length > MAX_META_DESCRIPTION_LENGTH ? '...' : ''}`;
   }
 
   return normalizeString(article.title);

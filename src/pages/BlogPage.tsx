@@ -15,9 +15,11 @@ const DESCRIPTION_WORDS_PER_MINUTE = 50;
 
 const estimateReadingTimeFromDescription = (description?: string) => {
   const safeDescription = typeof description === 'string' ? description : '';
+  const wordCount = (safeDescription.match(/\S+/g) || []).length;
+
   return Math.max(
     MIN_READING_TIME_MINUTES,
-    Math.ceil(safeDescription.split(' ').filter(Boolean).length / DESCRIPTION_WORDS_PER_MINUTE),
+    Math.ceil(wordCount / DESCRIPTION_WORDS_PER_MINUTE),
   );
 };
 
