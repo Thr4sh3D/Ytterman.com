@@ -35,9 +35,20 @@ export const UrlCanonicalizer = () => {
     normalizeCurrentUrl();
     normalizeDocumentLinks();
 
-    const observer = new MutationObserver((mutations) => {
-      normalizeCurrentUrl();
+    const originalPushState = window.history.pushState.bind(window.history);
+    const originalReplaceState = window.history.replaceState.bind(window.history);
 
+    window.history.pushState = (...args) => {
+      originalPushState(...args);
+      normalizeCurrentUrl();
+    };
+
+    window.history.replaceState = (...args) => {
+      originalReplaceState(...args);
+      normalizeCurrentUrl();
+    };
+
+    const observer = new MutationObserver((mutations) => {
       for (const mutation of mutations) {
         if (mutation.type === 'attributes' && mutation.target instanceof HTMLAnchorElement) {
           normalizeAnchorHref(mutation.target);
@@ -69,6 +80,8 @@ export const UrlCanonicalizer = () => {
 
     return () => {
       observer.disconnect();
+      window.history.pushState = originalPushState;
+      window.history.replaceState = originalReplaceState;
       window.removeEventListener('popstate', normalizeCurrentUrl);
     };
   }, []);

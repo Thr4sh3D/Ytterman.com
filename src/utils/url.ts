@@ -15,7 +15,7 @@ export const normalizeInternalPath = (input: string) => {
     return input;
   }
 
-  if (input.startsWith(SITE_ORIGIN)) {
+  if (/^https?:\/\//i.test(input)) {
     return normalizeSiteUrl(input);
   }
 
