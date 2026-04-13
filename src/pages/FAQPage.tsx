@@ -8,6 +8,7 @@ import { FAQ, faqData } from '@/components/FAQ';
 import { Helmet } from 'react-helmet-async';
 import { Button } from '@/components/ui/button';
 import { HelpCircle } from 'lucide-react';
+import { normalizeInternalPath } from '@/utils/url';
 
 const FAQPage = () => {
   const breadcrumbs = [
@@ -79,7 +80,7 @@ const FAQPage = () => {
                   och andra byggtjänster. Hittar du inte svar på din fråga? Kontakta oss!
                 </p>
                 <Button 
-                  onClick={() => window.location.href = '/kontakt'}
+                  onClick={() => window.location.href = normalizeInternalPath('/kontakt')}
                   className="earth-gradient text-white hover:opacity-90"
                   size="lg"
                 >
@@ -199,7 +200,7 @@ const FAQPage = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button 
-                  onClick={() => window.location.href = '/kontakt'}
+                  onClick={() => window.location.href = normalizeInternalPath('/kontakt')}
                   size="lg"
                   className="earth-gradient text-white hover:opacity-90"
                 >

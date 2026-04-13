@@ -7,6 +7,7 @@ import { CanonicalUrl } from '@/components/CanonicalUrl';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { Clock, Tag } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { normalizeInternalPath } from '@/utils/url';
 
 interface GuideLayoutProps {
   title: string;
@@ -105,7 +106,7 @@ export const GuideLayout = ({
                   </div>
                   
                   <Button 
-                    onClick={() => window.location.href = '/kontakt'}
+                    onClick={() => window.location.href = normalizeInternalPath('/kontakt')}
                     className="earth-gradient text-white hover:opacity-90"
                   >
                     Kontakta oss
@@ -135,7 +136,7 @@ export const GuideLayout = ({
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button 
-                  onClick={() => window.location.href = '/kontakt'}
+                  onClick={() => window.location.href = normalizeInternalPath('/kontakt')}
                   size="lg"
                   className="earth-gradient text-white hover:opacity-90"
                 >

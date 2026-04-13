@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import { normalizeSiteUrl } from '@/utils/url';
 
 interface Breadcrumb {
   name: string;
@@ -51,7 +52,7 @@ export const AdvancedSEO = ({
   reviews = []
 }: AdvancedSEOProps) => {
   // Ensure trailing slash for GitHub Pages compatibility (avoids 301 redirects)
-  const url = rawUrl && !rawUrl.endsWith('/') ? rawUrl + '/' : rawUrl;
+  const url = normalizeSiteUrl(rawUrl);
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": ["LocalBusiness", "ProfessionalService"],
@@ -160,7 +161,7 @@ export const AdvancedSEO = ({
       "@type": "ListItem",
       "position": index + 1,
       "name": crumb.name,
-      "item": crumb.url
+      "item": normalizeSiteUrl(crumb.url)
     }))
   } : null;
 

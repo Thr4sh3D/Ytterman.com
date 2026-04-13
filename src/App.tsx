@@ -4,6 +4,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { Toaster } from '@/components/ui/sonner';
 import { ScrollToTop } from '@/components/ScrollToTop';
 import { GoogleSearchConsole } from '@/components/GoogleSearchConsole';
+import { UrlCanonicalizer } from '@/components/UrlCanonicalizer';
 import { lazy, Suspense } from 'react';
 
 // Critical Pages (eager load for fast initial render)
@@ -93,6 +94,7 @@ function App() {
         <HelmetProvider>
             <QueryClientProvider client={queryClient}>
                 <Router>
+                    <UrlCanonicalizer />
                     <GoogleSearchConsole />
                     <ScrollToTop />
                     <div className="min-h-screen">
