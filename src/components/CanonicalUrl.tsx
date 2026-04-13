@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import { normalizeSiteUrl } from '@/utils/url';
 
 interface CanonicalUrlProps {
   path?: string;
@@ -15,12 +16,7 @@ export const CanonicalUrl = ({ path, fullUrl }: CanonicalUrlProps) => {
   const baseDomain = "https://ytterman.com";
   
   // Use fullUrl if provided, otherwise construct from path
-  let canonicalUrl = fullUrl || (path ? `${baseDomain}${path.startsWith('/') ? path : `/${path}`}` : baseDomain);
-
-  // Ensure trailing slash for GitHub Pages compatibility (avoids 301 redirects)
-  if (canonicalUrl !== baseDomain && !canonicalUrl.endsWith('/')) {
-    canonicalUrl += '/';
-  }
+  const canonicalUrl = normalizeSiteUrl(fullUrl || (path ? `${baseDomain}${path.startsWith('/') ? path : `/${path}`}` : baseDomain));
 
   return (
     <Helmet>

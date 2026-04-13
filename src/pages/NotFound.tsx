@@ -4,6 +4,7 @@ import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { Button } from '@/components/ui/button';
 import { Home, Phone, ArrowLeft, MapPin } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
+import { normalizeInternalPath } from '@/utils/url';
 
 const NotFound = () => {
   const popularPages = [
@@ -153,7 +154,7 @@ const NotFound = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button 
-                  onClick={() => window.location.href = '/kontakt'}
+                  onClick={() => window.location.href = normalizeInternalPath('/kontakt')}
                   className="earth-gradient text-white hover:opacity-90 px-8 py-4 text-lg"
                   aria-label="Gå till kontaktsidan"
                 >

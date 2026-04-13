@@ -7,6 +7,7 @@ import { AdvancedSEO } from '@/components/AdvancedSEO';
 import { CanonicalUrl } from '@/components/CanonicalUrl';
 import { CheckCircle, Phone, Mail, Calendar, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { normalizeInternalPath } from '@/utils/url';
 
 const TackPage = () => {
   const [searchParams] = useSearchParams();
@@ -224,7 +225,7 @@ const TackPage = () => {
                       Teknisk kontroll enligt PBL för ditt byggprojekt.
                     </p>
                     <Button 
-                      onClick={() => window.location.href = '/kontrollansvarig'}
+                      onClick={() => window.location.href = normalizeInternalPath('/kontrollansvarig')}
                       variant="outline"
                       className="w-full"
                     >
@@ -241,7 +242,7 @@ const TackPage = () => {
                       Byggarbetsmiljösamordning för säkra byggarbetsplatser.
                     </p>
                     <Button 
-                      onClick={() => window.location.href = '/tjanster'}
+                      onClick={() => window.location.href = normalizeInternalPath('/tjanster')}
                       variant="outline"
                       className="w-full"
                     >
@@ -258,7 +259,7 @@ const TackPage = () => {
                       Ritningar och handlingar för bygglovsansökan.
                     </p>
                     <Button 
-                      onClick={() => window.location.href = '/tjanster'}
+                      onClick={() => window.location.href = normalizeInternalPath('/tjanster')}
                       variant="outline"
                       className="w-full"
                     >
