@@ -1,3 +1,4 @@
+import { isValidElement, type ReactNode } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { normalizeSiteUrl } from '@/utils/url';
 
@@ -27,7 +28,7 @@ interface AdvancedSEOProps {
   article?: Article;
   faq?: Array<{
     question: string;
-    answer: string;
+    answer: string | ReactNode;
   }>;
   reviews?: Array<{
     author: string;
@@ -53,9 +54,39 @@ export const AdvancedSEO = ({
 }: AdvancedSEOProps) => {
   // Ensure trailing slash for GitHub Pages compatibility (avoids 301 redirects)
   const url = normalizeSiteUrl(rawUrl);
+  const extractTextFromNode = (node: ReactNode): string => {
+    if (node == null || typeof node === 'boolean') {
+      return '';
+    }
+
+    if (typeof node === 'string' || typeof node === 'number') {
+      return String(node);
+    }
+
+    if (Array.isArray(node)) {
+      return node.map(extractTextFromNode).join(' ');
+    }
+
+    if (isValidElement(node)) {
+      return extractTextFromNode((node.props as { children?: ReactNode }).children);
+    }
+
+    return '';
+  };
+
+  const normalizeFaqAnswer = (answer: string | ReactNode) => {
+    if (typeof answer === 'string') {
+      return answer;
+    }
+
+    return extractTextFromNode(answer)
+      .replace(/\s+/g, ' ')
+      .trim();
+  };
+
   const organizationSchema = {
     "@context": "https://schema.org",
-    "@type": ["LocalBusiness", "ProfessionalService"],
+    "@type": "ProfessionalService",
     "name": "Ytterman – Kontrollansvarig & BAS",
     "alternateName": "Tobias Ytterman",
     "description": "Certifierad kontrollansvarig (KA) och BAS-P/BAS-U i Västernorrland. Över 20 års erfarenhet inom byggteknik.",
@@ -173,7 +204,7 @@ export const AdvancedSEO = ({
       "name": item.question,
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": item.answer
+        "text": normalizeFaqAnswer(item.answer)
       }
     }))
   } : null;
