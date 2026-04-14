@@ -1,5 +1,4 @@
-import { type ReactNode } from 'react';
-import { renderToStaticMarkup } from 'react-dom/server';
+import { isValidElement, type ReactNode } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { normalizeSiteUrl } from '@/utils/url';
 
@@ -55,13 +54,32 @@ export const AdvancedSEO = ({
 }: AdvancedSEOProps) => {
   // Ensure trailing slash for GitHub Pages compatibility (avoids 301 redirects)
   const url = normalizeSiteUrl(rawUrl);
+  const extractTextFromNode = (node: ReactNode): string => {
+    if (node == null || typeof node === 'boolean') {
+      return '';
+    }
+
+    if (typeof node === 'string' || typeof node === 'number') {
+      return String(node);
+    }
+
+    if (Array.isArray(node)) {
+      return node.map(extractTextFromNode).join(' ');
+    }
+
+    if (isValidElement(node)) {
+      return extractTextFromNode((node.props as { children?: ReactNode }).children);
+    }
+
+    return '';
+  };
+
   const normalizeFaqAnswer = (answer: string | ReactNode) => {
     if (typeof answer === 'string') {
       return answer;
     }
 
-    return renderToStaticMarkup(<>{answer}</>)
-      .replace(/<[^>]+>/g, ' ')
+    return extractTextFromNode(answer)
       .replace(/\s+/g, ' ')
       .trim();
   };
