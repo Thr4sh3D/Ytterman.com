@@ -10,9 +10,7 @@ const DOMAIN = 'https://ytterman.com';
 const APP_TSX_PATH = path.join(__dirname, '../src/App.tsx');
 const STATIC_SITEMAP_OUTPUT_PATH = path.join(__dirname, '../public/sitemap-static.xml');
 const SITEMAP_INDEX_OUTPUT_PATH = path.join(__dirname, '../public/sitemap.xml');
-const DYNAMIC_SITEMAPS = [
-  `${DOMAIN}/sitemap-blog.xml`,
-];
+const DYNAMIC_SITEMAPS = [];
 const EXCLUDED_ROUTES = new Set([
   '/tack',
 ]);
