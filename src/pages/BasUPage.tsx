@@ -6,6 +6,7 @@ import { FAQ } from "@/components/FAQ";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ServiceHero } from "@/components/ServiceHero";
+import { TYSafetyLinks } from "@/components/TYSafetyLinks";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -228,6 +229,12 @@ const BasUPage = () => {
               Vanliga frågor om BAS-U
             </h2>
             <FAQ items={basUFAQ} />
+          </div>
+        </section>
+
+        <section className="py-16 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto">
+            <TYSafetyLinks description="Vill du läsa mer om BAS-rollerna och relevanta utbildningar finns fler resurser hos vår systersite TY Safety." />
           </div>
         </section>
 

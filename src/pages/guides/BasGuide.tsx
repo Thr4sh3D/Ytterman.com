@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { GuideLayout } from '@/components/GuideLayout';
+import { TYSafetyLinks } from '@/components/TYSafetyLinks';
 import { CheckCircle, AlertTriangle, Shield, Users, FileText } from 'lucide-react';
 
 const BasGuide = () => {
@@ -226,6 +227,8 @@ const BasGuide = () => {
             <li>• <Link to="/guider/kvalitetskontroll/" className="text-amber-600 hover:text-amber-700 font-medium underline">Kvalitetskontroll: säkerställ högsta byggkvalitet</Link></li>
           </ul>
         </div>
+
+        <TYSafetyLinks description="För ytterligare BAS-relaterad läsning och utbildningsspår kan du också besöka vår systersite TY Safety." />
       </div>
     </GuideLayout>
   );

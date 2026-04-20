@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { GuideLayout } from '@/components/GuideLayout';
+import { TYSafetyLinks } from '@/components/TYSafetyLinks';
 import { Users, HelpCircle, FileText, CheckCircle, ArrowRight } from 'lucide-react';
 
 const VadArBasGuide = () => {
@@ -393,6 +394,8 @@ const VadArBasGuide = () => {
             </Link>
           </div>
         </div>
+
+        <TYSafetyLinks description="Vill du läsa mer om BAS-P, BAS-U och utbildning inom arbetsmiljösamordning finns även relevanta sidor hos vår systersite TY Safety." />
 
       </div>
     </GuideLayout>
