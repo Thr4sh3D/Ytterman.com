@@ -24,6 +24,7 @@ import {
   ArrowRight,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { normalizeInternalPath } from '@/utils/url';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Produktkatalog – lägg till fler produkter här i takt med att de lanseras
@@ -79,6 +80,9 @@ const PRODUCTS: DigitalProduct[] = [
 // ─────────────────────────────────────────────────────────────────────────────
 
 const ProdukterPage = () => {
+  const contactPath = normalizeInternalPath('/kontakt') || '/kontakt/';
+  const servicesPath = normalizeInternalPath('/tjanster') || '/tjanster/';
+
   const breadcrumbs = [
     { name: 'Hem', url: 'https://ytterman.com' },
     { name: 'Produkter', url: 'https://ytterman.com/produkter' },
@@ -187,7 +191,7 @@ const ProdukterPage = () => {
                           </div>
                         )}
                         <Button asChild className="w-full earth-gradient text-white hover:opacity-90">
-                          <Link to={product.slug}>
+                          <Link to={normalizeInternalPath(product.slug) || product.slug}>
                             Läs mer & köp
                             <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
                           </Link>
@@ -199,7 +203,7 @@ const ProdukterPage = () => {
                         variant="outline"
                         className="w-full border-slate-200 text-slate-500"
                       >
-                        <Link to="/kontakt">Anmäl intresse</Link>
+                        <Link to={contactPath}>Anmäl intresse</Link>
                       </Button>
                     )}
                   </CardContent>
@@ -227,7 +231,7 @@ const ProdukterPage = () => {
               byggprocess.
             </p>
             <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary/5">
-              <Link to="/tjanster">
+              <Link to={servicesPath}>
                 Se Tobias konsulttjänster
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Link>

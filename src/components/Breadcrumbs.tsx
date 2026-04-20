@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
+import { normalizeInternalPath } from '@/utils/url';
 
 interface BreadcrumbItem {
   label: string;
@@ -27,7 +28,7 @@ export const Breadcrumbs = ({ items }: BreadcrumbsProps) => {
               <span className="text-slate-900 font-medium">{item.label}</span>
             ) : (
               <Link 
-                to={item.href} 
+                to={normalizeInternalPath(item.href) || item.href}
                 className="text-slate-500 hover:text-primary transition-colors"
               >
                 {item.label}

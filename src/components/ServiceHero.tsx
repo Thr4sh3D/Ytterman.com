@@ -3,6 +3,7 @@ import { Badge } from '@/components/ui/badge';
 import { CheckCircle, Phone, Award, Shield, Clock, MessageCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { LucideIcon } from 'lucide-react';
+import { normalizeInternalPath } from '@/utils/url';
 
 interface ServiceHeroProps {
   badge: string;
@@ -51,6 +52,10 @@ export const ServiceHero = ({
   ];
 
   const displayStats = stats || defaultStats;
+  const primaryHref = ctaPrimary ? normalizeInternalPath(ctaPrimary.href) || ctaPrimary.href : undefined;
+  const secondaryHref = ctaSecondary && !ctaSecondary.phone
+    ? normalizeInternalPath(ctaSecondary.href) || ctaSecondary.href
+    : ctaSecondary?.href;
 
   return (
     <section className="pt-24 pb-16 bg-gradient-to-br from-background via-secondary/20 to-accent/10">
@@ -92,7 +97,7 @@ export const ServiceHero = ({
                   className="earth-gradient text-white hover:opacity-90 text-lg px-8 py-6"
                   asChild
                 >
-                  <Link to={ctaPrimary.href}>{ctaPrimary.text}</Link>
+                  <Link to={primaryHref || ctaPrimary.href}>{ctaPrimary.text}</Link>
                 </Button>
               )}
               {ctaSecondary && (
@@ -108,7 +113,7 @@ export const ServiceHero = ({
                       {ctaSecondary.text}
                     </a>
                   ) : (
-                    <Link to={ctaSecondary.href}>{ctaSecondary.text}</Link>
+                    <Link to={secondaryHref || ctaSecondary.href}>{ctaSecondary.text}</Link>
                   )}
                 </Button>
               )}
