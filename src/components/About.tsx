@@ -1,5 +1,6 @@
 import { OptimizedImage } from '@/components/OptimizedImage';
 import { Certifications } from '@/components/Certifications';
+import { ExternalSiteLink } from '@/components/ExternalSiteLink';
 import { CheckCircle, Award, Users, Clock, Shield, Zap, HeartHandshake, MapPin } from 'lucide-react';
 
 export const About = () => {
@@ -86,6 +87,17 @@ export const About = () => {
               <p className="text-lg text-slate-600 mb-8">
                 Jag är stolt över att kunna erbjuda trygghet och kvalitetssäkring för 
                 ditt byggprojekt med fast pris och tydlig kommunikation genom hela processen.
+              </p>
+              <p className="text-lg text-slate-600 mb-8">
+                Tobias driver även{' '}
+                <ExternalSiteLink
+                  href="https://www.tysafety.se"
+                  ariaLabel="TY Safety – extern länk"
+                  className="text-primary"
+                >
+                  TY Safety
+                </ExternalSiteLink>{' '}
+                – certifierad utbildare inom HLR, Första Hjälpen, Brandskydd, Heta Arbeten® och Arbetsmiljö i Västernorrland. Aktiv Gruppledare vid Räddningstjänsten och tidigare Stridssjukvårdare i Försvarsmakten.
               </p>
               
               <div className="grid sm:grid-cols-2 gap-6">

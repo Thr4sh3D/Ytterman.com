@@ -130,7 +130,9 @@ export const AdvancedSEO = ({
         "name": "Örnsköldsvik"
       }
     ],
-    "sameAs": [],
+    "sameAs": [
+      "https://www.tysafety.se"
+    ],
     "serviceType": [
       "Kontrollansvarig enligt PBL",
       "BAS-P (Byggarbetsmiljösamordnare under projektering)",
@@ -146,6 +148,9 @@ export const AdvancedSEO = ({
       "@type": "Person",
       "name": "Tobias Ytterman",
       "jobTitle": "Kontrollansvarig & Byggarbetsmiljösamordnare",
+      "sameAs": [
+        "https://www.tysafety.se"
+      ],
       "hasCredential": [
         {
           "@type": "EducationalOccupationalCredential",
@@ -184,6 +189,27 @@ export const AdvancedSEO = ({
       "datePublished": review.datePublished
     }))
   };
+
+  const personSchema = organization ? {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Tobias Ytterman",
+    "sameAs": [
+      "https://www.tysafety.se"
+    ],
+    "worksFor": [
+      {
+        "@type": "Organization",
+        "name": "Ytterman Bygg & Konsult",
+        "url": "https://ytterman.com"
+      },
+      {
+        "@type": "Organization",
+        "name": "TY Safety",
+        "url": "https://www.tysafety.se"
+      }
+    ]
+  } : null;
 
   const breadcrumbSchema = breadcrumbs.length > 0 ? {
     "@context": "https://schema.org",
@@ -305,6 +331,12 @@ export const AdvancedSEO = ({
       {organization && (
         <script type="application/ld+json">
           {JSON.stringify(organizationSchema)}
+        </script>
+      )}
+
+      {personSchema && (
+        <script type="application/ld+json">
+          {JSON.stringify(personSchema)}
         </script>
       )}
       

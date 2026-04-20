@@ -5,6 +5,7 @@ import { Helmet } from 'react-helmet-async';
 import { FAQ } from "@/components/FAQ";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { ExternalSiteLink } from "@/components/ExternalSiteLink";
 import { ServiceHero } from "@/components/ServiceHero";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -282,6 +283,29 @@ const BygglovshandlingarPage = () => {
               Vanliga frågor om bygglovshandlingar
             </h2>
             <FAQ items={bygglovFAQ} />
+          </div>
+        </section>
+
+        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold text-gray-900 mb-6">
+              Relaterade digitala tjänster
+            </h2>
+            <p className="text-lg text-gray-600 mb-4">
+              Driver ni systematiskt arbetsmiljöarbete? Komplettera med digitala säkerhetsverktyg från TY Safety – riskbedömningar och brandskyddsronder direkt i mobilen.
+            </p>
+            <ul className="space-y-3 text-gray-700">
+              <li>
+                <ExternalSiteLink
+                  href="https://www.tysafety.se/digitala-verktyg"
+                  ariaLabel="Digitala säkerhetsverktyg riskbedömning brandskyddsrond – extern länk"
+                  showIcon={true}
+                  className="font-semibold text-blue-700 hover:text-blue-800"
+                >
+                  Digitala säkerhetsverktyg (riskbedömning, brandskyddsrond)
+                </ExternalSiteLink>
+              </li>
+            </ul>
           </div>
         </section>
 

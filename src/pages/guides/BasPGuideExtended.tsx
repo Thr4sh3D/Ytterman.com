@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { GuideLayout } from '@/components/GuideLayout';
-import { TYSafetyLinks } from '@/components/TYSafetyLinks';
 import { Users, CheckCircle, FileText, Building, AlertTriangle, Briefcase } from 'lucide-react';
 
 const BasPGuideExtended = () => {
@@ -397,8 +396,6 @@ const BasPGuideExtended = () => {
             </Link>
           </div>
         </div>
-
-        <TYSafetyLinks description="Vill du jämföra med fler resurser om BAS-P, BAS-U och utbildning kan du läsa vidare hos vår systersite TY Safety." />
 
       </div>
     </GuideLayout>

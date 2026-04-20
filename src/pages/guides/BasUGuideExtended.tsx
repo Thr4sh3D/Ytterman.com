@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { GuideLayout } from '@/components/GuideLayout';
-import { TYSafetyLinks } from '@/components/TYSafetyLinks';
 import { Users, HardHat, AlertCircle, CheckCircle, Shield, FileCheck } from 'lucide-react';
 
 const BasUGuideExtended = () => {
@@ -439,8 +438,6 @@ const BasUGuideExtended = () => {
             </Link>
           </div>
         </div>
-
-        <TYSafetyLinks description="För fler förklaringar kring BAS-rollerna och kompletterande utbildning kan du även besöka vår systersite TY Safety." />
 
       </div>
     </GuideLayout>
