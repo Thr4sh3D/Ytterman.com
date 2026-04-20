@@ -6,6 +6,7 @@ import { FAQ } from "@/components/FAQ";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ServiceHero } from "@/components/ServiceHero";
+import { ExternalSiteLink } from "@/components/ExternalSiteLink";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -219,6 +220,25 @@ const KontrollansvarigPage = () => {
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold text-gray-900 mb-6">
+              Vad ingår inte i KA-uppdraget?
+            </h2>
+            <p className="text-lg text-gray-600 leading-relaxed">
+              Som Kontrollansvarig granskar vi att projektet följer PBL – men tillstånd för Heta Arbeten®, brandvakt och certifierade utförare ligger utanför KA-rollen. Behöver entreprenören{' '}
+              <ExternalSiteLink
+                href="https://www.tysafety.se/heta-arbeten"
+                ariaLabel="Heta Arbeten-tillstånd och brandvakt via TY Safety – extern länk"
+                className="text-blue-700"
+              >
+                Heta Arbeten®-tillstånd och brandvakt via TY Safety
+              </ExternalSiteLink>
+              ? Tobias driver även den utbildningen.
+            </p>
           </div>
         </section>
 

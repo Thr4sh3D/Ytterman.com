@@ -5,6 +5,7 @@ import { Helmet } from 'react-helmet-async';
 import { FAQ } from "@/components/FAQ";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { ExternalSiteLink } from "@/components/ExternalSiteLink";
 import { ServiceHero } from "@/components/ServiceHero";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -270,6 +271,25 @@ const KontrollansvarigFjallPage = () => {
                   </div>
                 </div>
               </div>
+            </div>
+          </section>
+
+          <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                Brandskydd i fjällmiljö
+              </h2>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                Bygger du i fjällen? Brandskydd och utrymning är extra kritiskt långt från räddningstjänsten. TY Safety erbjuder även{' '}
+                <ExternalSiteLink
+                  href="https://www.tysafety.se/sakerhetshelg-fjallen"
+                  ariaLabel="Säkerhetsresor i fjällen via TY Safety – extern länk"
+                  className="text-blue-700"
+                >
+                  Säkerhetsresor i fjällen via TY Safety
+                </ExternalSiteLink>{' '}
+                – kombinerade HLR- och brandskyddsutbildningar för företagsgrupper.
+              </p>
             </div>
           </section>
 

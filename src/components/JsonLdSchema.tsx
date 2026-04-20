@@ -5,10 +5,10 @@ interface JsonLdSchemaProps {
 }
 
 export const JsonLdSchema = ({ type = 'ProfessionalService' }: JsonLdSchemaProps) => {
-  const structuredData = {
+  const organizationSchema = {
     "@context": "https://schema.org",
     "@type": type,
-    "name": "Ytterman",
+    "name": "Ytterman Bygg & Konsult",
     "alternateName": "Ytterman - Kontrollansvarig & BAS",
     "description": "Certifierad kontrollansvarig (KA) och Byggarbetsmiljösamordnare (BAS-P/BAS-U) med över 20 års erfarenhet i byggbranschen i Västernorrland",
     "url": "https://ytterman.com",
@@ -62,12 +62,18 @@ export const JsonLdSchema = ({ type = 'ProfessionalService' }: JsonLdSchemaProps
     ],
     "priceRange": "Från 2,999 SEK",
     "openingHours": "Mo-Fr 08:00-17:00",
+    "sameAs": [
+      "https://www.tysafety.se"
+    ],
     "founder": {
       "@type": "Person",
       "name": "Tobias Ytterman",
       "jobTitle": "Kontrollansvarig & Byggarbetsmiljösamordnare",
       "email": "tobias@ytterman.com",
-      "telephone": "+46761118447"
+      "telephone": "+46761118447",
+      "sameAs": [
+        "https://www.tysafety.se"
+      ]
     },
     "hasCredential": [
       {
@@ -93,10 +99,34 @@ export const JsonLdSchema = ({ type = 'ProfessionalService' }: JsonLdSchemaProps
     "slogan": "Trygg byggprocess med fast pris"
   };
 
+  const personSchema = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Tobias Ytterman",
+    "sameAs": [
+      "https://www.tysafety.se"
+    ],
+    "worksFor": [
+      {
+        "@type": "Organization",
+        "name": "Ytterman Bygg & Konsult",
+        "url": "https://ytterman.com"
+      },
+      {
+        "@type": "Organization",
+        "name": "TY Safety",
+        "url": "https://www.tysafety.se"
+      }
+    ]
+  };
+
   return (
     <Helmet>
       <script type="application/ld+json">
-        {JSON.stringify(structuredData)}
+        {JSON.stringify(organizationSchema)}
+      </script>
+      <script type="application/ld+json">
+        {JSON.stringify(personSchema)}
       </script>
     </Helmet>
   );

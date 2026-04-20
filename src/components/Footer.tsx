@@ -1,4 +1,5 @@
 import { Phone, Mail, MapPin } from 'lucide-react';
+import { ExternalSiteLink } from '@/components/ExternalSiteLink';
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -6,7 +7,7 @@ export const Footer = () => {
   return (
     <footer className="bg-slate-900 text-white">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid md:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-5 gap-8">
           {/* Company Info */}
           <div className="md:col-span-2">
             <h3 className="text-2xl font-bold earth-gradient bg-clip-text text-transparent mb-4">
@@ -97,6 +98,23 @@ export const Footer = () => {
               <li>Sollefteå</li>
               <li>Timrå</li>
               <li>Kramfors</li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-semibold mb-4">Systerföretag</h4>
+            <ul className="space-y-2">
+              <li>
+                <ExternalSiteLink
+                  href="https://www.tysafety.se"
+                  ariaLabel="TY Safety – HLR, Brandskydd, Heta Arbeten och Arbetsmiljö – extern länk"
+                  underline={false}
+                  showIcon={true}
+                  className="text-gray-300 hover:text-white"
+                >
+                  TY Safety – HLR, Brandskydd, Heta Arbeten® & Arbetsmiljö
+                </ExternalSiteLink>
+              </li>
             </ul>
           </div>
         </div>

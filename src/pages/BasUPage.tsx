@@ -6,6 +6,7 @@ import { FAQ } from "@/components/FAQ";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ServiceHero } from "@/components/ServiceHero";
+import { ExternalSiteLink } from "@/components/ExternalSiteLink";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -228,6 +229,27 @@ const BasUPage = () => {
               Vanliga frågor om BAS-U
             </h2>
             <FAQ items={basUFAQ} />
+          </div>
+        </section>
+
+        <section className="py-16 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto">
+            <div className="rounded-2xl border border-orange-100 bg-orange-50 p-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">
+                Brandskyddsansvar under utförandefasen
+              </h2>
+              <p className="text-lg text-gray-700 leading-relaxed">
+                BAS-U samordnar arbetsmiljön under utförandet enligt AFS 2023:1 – men det operativa systematiska brandskyddsarbetet (SBA) är en separat roll med eget kompetenskrav. Behöver ert projekt en namngiven brandskyddsansvarig? Anlita{' '}
+                <ExternalSiteLink
+                  href="https://www.tysafety.se/sba-byggarbetsplats"
+                  ariaLabel="extern brandskyddsansvarig SBA via TY Safety – extern länk"
+                  className="text-orange-700"
+                >
+                  extern brandskyddsansvarig (SBA) via TY Safety
+                </ExternalSiteLink>{' '}
+                – Tobias systerföretag som tar SBA-uppdrag i hela Västernorrland.
+              </p>
+            </div>
           </div>
         </section>
 

@@ -2,6 +2,7 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { AdvancedSEO } from '@/components/AdvancedSEO';
 import { CanonicalUrl } from '@/components/CanonicalUrl';
+import { ExternalSiteLink } from '@/components/ExternalSiteLink';
 
 const About = () => {
   return (
@@ -42,6 +43,17 @@ const About = () => {
                     Jag är certifierad enligt Plan- och bygglagen (PBL) och har gedigen 
                     erfarenhet av att säkerställa att byggprojekt genomförs enligt gällande 
                     regelverk och med högsta kvalitet.
+                  </p>
+                  <p className="text-slate-600 mb-4">
+                    Tobias driver även{' '}
+                    <ExternalSiteLink
+                      href="https://www.tysafety.se"
+                      ariaLabel="TY Safety – extern länk"
+                      className="text-primary"
+                    >
+                      TY Safety
+                    </ExternalSiteLink>{' '}
+                    – certifierad utbildare inom HLR, Första Hjälpen, Brandskydd, Heta Arbeten® och Arbetsmiljö i Västernorrland. Aktiv Gruppledare vid Räddningstjänsten och tidigare Stridssjukvårdare i Försvarsmakten.
                   </p>
                 </div>
                 
