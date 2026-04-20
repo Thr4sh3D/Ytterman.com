@@ -35,6 +35,7 @@ import {
   Package,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { normalizeInternalPath } from '@/utils/url';
 
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -88,6 +89,8 @@ const productFaq = [
 // ─────────────────────────────────────────────────────────────────────────────
 
 const ByggstartPlanerare = () => {
+  const contactProductPath = normalizeInternalPath('/kontakt?produkt=byggstart-planerare') || '/kontakt/?produkt=byggstart-planerare';
+
   const breadcrumbs = [
     { name: 'Hem', url: 'https://ytterman.com' },
     { name: 'Produkter', url: 'https://ytterman.com/produkter' },
@@ -192,7 +195,7 @@ const ByggstartPlanerare = () => {
                         Stripe Payment Link, Gumroad, eller Lemon Squeezy) för automatisk
                         betalning och omedelbar filleverans utan manuell hantering.
                       */}
-                      <Link to="/kontakt?produkt=byggstart-planerare">
+                      <Link to={contactProductPath}>
                         <Download className="w-4 h-4 mr-2" />
                         Köp och ladda ned
                       </Link>
@@ -313,7 +316,7 @@ const ByggstartPlanerare = () => {
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
               <Button asChild size="lg" className="earth-gradient text-white hover:opacity-90">
-                <Link to="/kontakt?produkt=byggstart-planerare">
+                <Link to={contactProductPath}>
                   <Download className="w-4 h-4 mr-2" />
                   Köp nu – 497 kr
                 </Link>
