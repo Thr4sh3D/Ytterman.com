@@ -10,9 +10,9 @@ export const Footer = () => {
         <div className="grid md:grid-cols-5 gap-8">
           {/* Company Info */}
           <div className="md:col-span-2">
-            <h3 className="text-2xl font-bold earth-gradient bg-clip-text text-transparent mb-4">
+            <p className="text-2xl font-bold earth-gradient bg-clip-text text-transparent mb-4">
               Ytterman
-            </h3>
+            </p>
             <p className="text-gray-300 mb-6">
               Certifierad Kontrollansvarig och Byggarbetsmiljösamordnare med över 20 års 
               erfarenhet i byggbranschen. Vi hjälper dig genom hela byggprocessen i Västernorrland.
@@ -44,7 +44,7 @@ export const Footer = () => {
 
           {/* Services */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Tjänster</h4>
+            <p className="text-lg font-semibold mb-4">Tjänster</p>
             <ul className="space-y-2">
               <li>
                 <a href="/kontrollansvarig-i-fjallen/" className="text-gray-300 hover:text-white transition-colors">
@@ -91,7 +91,7 @@ export const Footer = () => {
 
           {/* Areas */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Verksamhetsområden</h4>
+            <p className="text-lg font-semibold mb-4">Verksamhetsområden</p>
             <ul className="space-y-2 text-gray-300">
               <li>Sundsvall</li>
               <li>Härnösand</li>
@@ -102,7 +102,7 @@ export const Footer = () => {
           </div>
 
           <div>
-            <h4 className="text-lg font-semibold mb-4">Systerföretag</h4>
+            <p className="text-lg font-semibold mb-4">Systerföretag</p>
             <ul className="space-y-2">
               <li>
                 <ExternalSiteLink
