@@ -31,6 +31,9 @@ jobs:
         run: npm ci
 
       - name: Build
+        env:
+          VITE_GIT_COMMIT_SHA: ${{ github.sha }}
+          VITE_BUILD_TIME: ${{ github.run_started_at }}
         run: npm run build
 
       - name: Copy .nojekyll to dist

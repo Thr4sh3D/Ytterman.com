@@ -1,8 +1,10 @@
 import { Phone, Mail, MapPin } from 'lucide-react';
 import { ExternalSiteLink } from '@/components/ExternalSiteLink';
+import { buildTimeIso, shortCommitSha } from '@/lib/buildInfo';
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const buildTimeLabel = buildTimeIso ? new Date(buildTimeIso).toLocaleString('sv-SE') : null;
 
   return (
     <footer className="bg-slate-900 text-white">
@@ -125,9 +127,12 @@ export const Footer = () => {
           </section>
         </div>
 
-        <div className="border-t border-slate-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400 text-sm">
+        <div className="border-t border-slate-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center gap-3">
+          <p className="text-gray-400 text-sm text-center md:text-left">
             © {currentYear} Ytterman. Alla rättigheter förbehållna.
+          </p>
+          <p className="text-gray-500 text-xs font-mono text-center">
+            Build: {shortCommitSha ?? 'local'}{buildTimeLabel ? ` • ${buildTimeLabel}` : ''}
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <a href="/guider/" className="text-gray-400 hover:text-white transition-colors text-sm">

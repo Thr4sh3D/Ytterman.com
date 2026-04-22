@@ -3,9 +3,14 @@ import { Certifications } from '@/components/Certifications';
 import { ExternalSiteLink } from '@/components/ExternalSiteLink';
 import profileImage512 from '@/assets/images/tobias-ytterman-profile-512.webp';
 import profileImage900 from '@/assets/images/tobias-ytterman-profile-900.webp';
+import { buildStamp } from '@/lib/buildInfo';
 import { CheckCircle, Award, Users, Clock, Shield, Zap, HeartHandshake, MapPin } from 'lucide-react';
 
 export const About = () => {
+  const cacheBuster = encodeURIComponent(buildStamp);
+  const profileImage512Src = `${profileImage512}?v=${cacheBuster}`;
+  const profileImage900Src = `${profileImage900}?v=${cacheBuster}`;
+
   const achievements = [
     {
       icon: Award,
@@ -126,8 +131,8 @@ export const About = () => {
             
             <div className="relative">
               <OptimizedImage
-                src={profileImage900}
-                srcSet={`${profileImage512} 512w, ${profileImage900} 900w`}
+                src={profileImage900Src}
+                srcSet={`${profileImage512Src} 512w, ${profileImage900Src} 900w`}
                 alt="Tobias Ytterman - Certifierad Kontrollansvarig och Byggarbetsmiljösamordnare i Västernorrland"
                 className="rounded-xl shadow-lg w-full h-auto"
                 width={900}
