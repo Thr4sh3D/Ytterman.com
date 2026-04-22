@@ -386,7 +386,7 @@ const VadArBasGuide = () => {
               Kontakta mig för BAS
             </Link>
             <Link 
-              to="/bas-samordning/"
+              to="/guider/vad-ar-bas/"
               className="inline-flex items-center justify-center px-6 py-3 border-2 border-white text-white rounded-lg hover:bg-blue-800 transition-colors font-semibold"
             >
               Läs mer om BAS-tjänster
