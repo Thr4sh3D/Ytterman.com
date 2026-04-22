@@ -90,6 +90,34 @@ const KontaktPage = () => {
           {/* Contact Info & Form */}
           <section className="py-20 bg-white" aria-labelledby="contact-section-heading">
             <div className="container mx-auto px-4">
+              <div className="max-w-5xl mx-auto mb-12">
+                <div className="grid md:grid-cols-3 gap-6">
+                  <div className="rounded-xl border border-slate-200 p-6">
+                    <h2 className="text-xl font-bold text-slate-900 mb-3">Inför första kontakten</h2>
+                    <p className="text-slate-600">
+                      Beskriv gärna vilken typ av projekt du planerar, var fastigheten ligger och om du
+                      redan har ritningar, beslut eller en tidplan. Det gör det enklare att snabbt avgöra
+                      vilken tjänst som passar bäst.
+                    </p>
+                  </div>
+                  <div className="rounded-xl border border-slate-200 p-6">
+                    <h2 className="text-xl font-bold text-slate-900 mb-3">När i processen du bör höra av dig</h2>
+                    <p className="text-slate-600">
+                      Ju tidigare du kontaktar Ytterman, desto lättare är det att planera kontrollansvar,
+                      arbetsmiljösamordning, energifrågor och bygglovshandlingar utan att projektet tappar
+                      fart längre fram.
+                    </p>
+                  </div>
+                  <div className="rounded-xl border border-slate-200 p-6">
+                    <h2 className="text-xl font-bold text-slate-900 mb-3">Vad du kan förvänta dig</h2>
+                    <p className="text-slate-600">
+                      Du får en snabb första bedömning, tydlig återkoppling om nästa steg och besked om
+                      hur uppdraget kan läggas upp utifrån projektets omfattning, plats och tidsram.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
               <h2 id="contact-section-heading" className="sr-only">
                 Kontaktinformation och kontaktformulär
               </h2>

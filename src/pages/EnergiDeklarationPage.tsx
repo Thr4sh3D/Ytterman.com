@@ -253,6 +253,58 @@ const EnergiDeklarationPage = () => {
           </div>
         </section>
 
+        <section className="py-16 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-10">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                När är det rätt läge att beställa energideklaration?
+              </h2>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                Många fastighetsägare beställer energideklaration först när ett datum för försäljning
+                eller uthyrning redan är satt. Då blir tidsmarginalerna onödigt små. Genom att boka i
+                god tid får du bättre underlag, mer tid att samla handlingar och möjlighet att förstå
+                vilka åtgärder som faktiskt kan förbättra fastighetens energiprestanda.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-lg">Inför försäljning</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-600">
+                    Se till att energiklass, energianvändning och eventuella förbättringsförslag är
+                    klara innan bostaden eller lokalen går ut på marknaden.
+                  </p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-lg">Vid uthyrning eller ägarbyte</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-600">
+                    Få hjälp att uppfylla kraven med rätt dokumentation och en tydlig process från
+                    platsbesök till färdig deklaration.
+                  </p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-lg">Som beslutsunderlag</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-600">
+                    Använd energideklarationen för att prioritera investeringar i klimatskal,
+                    ventilation, uppvärmning och driftkostnader på ett mer träffsäkert sätt.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
         {/* FAQ Section */}
         <section className="py-16 px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">

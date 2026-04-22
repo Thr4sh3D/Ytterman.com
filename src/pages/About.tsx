@@ -78,6 +78,41 @@ const About = () => {
                     </p>
                   </div>
                 </div>
+
+                <div className="bg-slate-50 rounded-lg p-8 mb-8">
+                  <h2 className="text-2xl font-semibold text-slate-900 mb-4">
+                    Så arbetar jag i byggprojekt
+                  </h2>
+                  <p className="text-slate-600 mb-4">
+                    Mitt arbetssätt bygger på att skapa struktur tidigt. Oavsett om uppdraget gäller
+                    kontrollansvarig, BAS-P, BAS-U, energideklaration eller rådgivning börjar jag med
+                    att förstå projektets förutsättningar, tidplan, aktörer och vilka beslut som måste
+                    fattas för att processen ska flyta vidare utan onödiga hinder.
+                  </p>
+                  <p className="text-slate-600">
+                    Jag lägger stor vikt vid tydlig kommunikation, praktiska rekommendationer och att
+                    dokumentation ska vara användbar i verkligheten. För dig som kund betyder det
+                    snabbare återkoppling, bättre överblick och en tryggare byggprocess från start till
+                    avslut.
+                  </p>
+                </div>
+
+                <div className="bg-white rounded-lg shadow-sm border p-8 mb-8">
+                  <h2 className="text-2xl font-semibold text-slate-900 mb-4">
+                    Varför kunder anlitar Ytterman
+                  </h2>
+                  <p className="text-slate-600 mb-4">
+                    Kunder anlitar mig när de vill ha en erfaren kontaktperson som kan kombinera
+                    regelkunskap med praktisk förståelse för hur byggprojekt faktiskt fungerar på plats.
+                    Det gäller både privatpersoner som bygger nytt och företag som behöver stöd i större
+                    eller mer samordningskrävande uppdrag.
+                  </p>
+                  <p className="text-slate-600">
+                    Basen i erbjudandet är lokal förankring i Västernorrland, lång erfarenhet och ett
+                    fokus på att leverera tydliga besked. Det gör det lättare att planera rätt resurser,
+                    minska risken för förseningar och skapa en process som känns trygg för alla parter.
+                  </p>
+                </div>
                 
                 <div className="text-center">
                   <a 

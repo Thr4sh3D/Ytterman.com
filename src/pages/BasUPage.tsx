@@ -222,6 +222,55 @@ const BasUPage = () => {
           </div>
         </section>
 
+        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+          <div className="max-w-5xl mx-auto">
+            <div className="max-w-3xl mx-auto text-center mb-10">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                BAS-U som håller ihop arbetsmiljöarbetet på byggarbetsplatsen
+              </h2>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                När flera entreprenörer delar arbetsplats ökar behovet av tydlig samordning. BAS-U är
+                inte bara en formell roll på pappret, utan en central funktion för att skapa ordning i
+                dagliga rutiner, säkerhetsronder, avvikelser och uppföljning under hela byggskedet.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-xl">Tryggare arbetsplats i praktiken</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4 text-gray-600">
+                  <p>
+                    Med löpande kontroll av etablering, skyddsåtgärder, ordning och samordning blir
+                    det lättare att upptäcka risker innan de leder till incidenter eller driftstörningar.
+                  </p>
+                  <p>
+                    Jag arbetar med tydlig dialog mot både byggherre och entreprenörer så att det är
+                    klart vem som ansvarar för vad och vilka frågor som måste hanteras direkt på plats.
+                  </p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-xl">Kontinuitet från start till avslut</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4 text-gray-600">
+                  <p>
+                    Ett fungerande BAS-U-upplägg skapar bättre flyt i produktionen eftersom uppföljning,
+                    dokumentation och kommunikation sker löpande istället för först när problem redan har
+                    uppstått.
+                  </p>
+                  <p>
+                    För projekt där jag även medverkar som BAS-P eller kontrollansvarig blir övergången
+                    mellan planering och utförande extra tydlig och effektiv för alla inblandade.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
         {/* FAQ Section */}
         <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
           <div className="max-w-4xl mx-auto">

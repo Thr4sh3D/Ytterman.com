@@ -75,6 +75,24 @@ const PRODUCTS: DigitalProduct[] = [
   },
 ];
 
+const PRODUCT_AUDIENCES = [
+  {
+    title: 'Privatpersoner som vill komma igång rätt',
+    description:
+      'För dig som planerar nybyggnation, tillbyggnad eller en större renovering och vill samla beslut, dokument och kontrollpunkter på ett ställe innan projektet drar i gång.',
+  },
+  {
+    title: 'Små byggföretag och entreprenörer',
+    description:
+      'För mindre team som behöver ett enkelt planeringsstöd utan abonnemang, inloggning eller onödigt administrationstungt system för varje nytt projekt.',
+  },
+  {
+    title: 'Projektledare som vill ha bättre överblick',
+    description:
+      'För dig som vill följa upp tidplan, ansvarsfördelning, handlingar och nästa steg i byggprocessen med ett verktyg som fungerar direkt i webbläsaren.',
+  },
+];
+
 // ─────────────────────────────────────────────────────────────────────────────
 // Komponent
 // ─────────────────────────────────────────────────────────────────────────────
@@ -206,6 +224,41 @@ const ProdukterPage = () => {
                         <Link to={contactPath}>Anmäl intresse</Link>
                       </Button>
                     )}
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-white border-y py-12 md:py-16">
+          <div className="container mx-auto px-4 max-w-5xl">
+            <div className="max-w-3xl mb-10">
+              <h2 className="text-2xl font-bold text-slate-900 mb-4">
+                För vem passar Yttermans digitala produkter?
+              </h2>
+              <p className="text-slate-600 leading-relaxed mb-4">
+                Våra digitala produkter är framtagna för att lösa konkreta utmaningar i byggprojekt:
+                att få struktur, minska missade moment och göra det lättare att planera innan pengar
+                och tid börjar rinna iväg. Fokus ligger på praktisk nytta snarare än avancerade
+                systemfunktioner.
+              </p>
+              <p className="text-slate-600 leading-relaxed">
+                Därför passar produkterna både dig som privat beställare och dig som arbetar
+                professionellt med projektledning, entreprenad eller samordning. Du laddar ned
+                verktyget, arbetar i din egen takt och behåller kontrollen över informationen på
+                din egen enhet.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              {PRODUCT_AUDIENCES.map((audience) => (
+                <Card key={audience.title} className="border-slate-200">
+                  <CardHeader>
+                    <CardTitle className="text-lg text-slate-900">{audience.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-slate-600 leading-relaxed">{audience.description}</p>
                   </CardContent>
                 </Card>
               ))}

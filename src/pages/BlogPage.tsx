@@ -83,10 +83,59 @@ const BlogPage = () => {
             </div>
           </section>
 
+          <section className="py-16 bg-white border-y border-slate-100">
+            <div className="container mx-auto px-4">
+              <div className="max-w-5xl mx-auto grid lg:grid-cols-2 gap-10 items-start">
+                <div>
+                  <h2 className="text-3xl font-bold text-slate-900 mb-4">
+                    Kunskap för dig som planerar, bygger eller förvaltar
+                  </h2>
+                  <p className="text-slate-600 leading-relaxed mb-4">
+                    I bloggen samlar Tobias Ytterman artiklar om kontrollansvarig, BAS-P, BAS-U,
+                    bygglov, energifrågor och vanliga misstag i byggprocessen. Innehållet är skrivet
+                    för att hjälpa både privatpersoner, fastighetsägare och professionella aktörer att
+                    fatta bättre beslut tidigare i projektet.
+                  </p>
+                  <p className="text-slate-600 leading-relaxed">
+                    Målet är att göra komplexa regler och tekniska frågor mer begripliga. Du får
+                    praktiska förklaringar, checklistor och resonemang som går att använda när du ska
+                    planera nästa steg, jämföra lösningar eller förbereda dialogen med kommunen,
+                    entreprenörer och andra konsulter.
+                  </p>
+                </div>
+
+                <div className="bg-slate-50 rounded-2xl p-8">
+                  <h3 className="text-xl font-semibold text-slate-900 mb-4">
+                    Det här hittar du i bloggen
+                  </h3>
+                  <ul className="space-y-3 text-slate-600">
+                    <li>Guider om kontrollansvarig, kontrollplaner och tekniskt samråd</li>
+                    <li>Artiklar om BAS-P, BAS-U och arbetsmiljö i byggprojekt</li>
+                    <li>Tips kring bygglov, handlingar, tidsplanering och projektstyrning</li>
+                    <li>Innehåll om energiberäkning, energideklaration och byggteknik</li>
+                    <li>Lokalt relevanta råd för projekt i Västernorrland och närliggande områden</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+
           {/* Posts grid */}
           <section className="py-20 bg-white">
             <div className="container mx-auto px-4">
               <div className="max-w-6xl mx-auto">
+                <div className="max-w-3xl mb-10">
+                  <h2 className="text-3xl font-bold text-slate-900 mb-4">
+                    Senaste artiklar och guider
+                  </h2>
+                  <p className="text-slate-600 leading-relaxed">
+                    Här hittar du löpande publicerade inlägg om byggprocessen, vanliga frågor från
+                    kunder och fördjupningar inom kontrollansvar, BAS, energifrågor och bygglov. Nya
+                    artiklar fylls på efter hand och hjälper dig att orientera dig i både små och stora
+                    beslut längs vägen.
+                  </p>
+                </div>
+
                 {loading ? (
                   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {[1, 2, 3, 4, 5, 6].map((i) => (

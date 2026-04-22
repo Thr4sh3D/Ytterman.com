@@ -222,6 +222,57 @@ const BasPPage = () => {
           </div>
         </section>
 
+        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+          <div className="max-w-5xl mx-auto">
+            <div className="max-w-3xl mx-auto text-center mb-10">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                Därför gör en tydlig BAS-P-insats skillnad tidigt i projektet
+              </h2>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                En väl genomförd BAS-P-process minskar risken för sena omtag när produktionen ska
+                starta. När arbetsmiljörisker identifieras redan under projekteringen blir det lättare
+                att fatta rätt beslut om ansvar, metodval, logistik och skyddsåtgärder innan de blir
+                dyra att ändra.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-xl">Stöd för byggherren</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4 text-gray-600">
+                  <p>
+                    Som byggherre behöver du kunna visa att arbetsmiljöfrågorna hanteras strukturerat.
+                    Jag hjälper till att samla risker, krav och ansvar i ett upplägg som fungerar i
+                    praktiken för projektörer, entreprenörer och övriga aktörer.
+                  </p>
+                  <p>
+                    Resultatet blir en arbetsmiljöplan och dokumentation som går att använda vidare
+                    när projektet lämnas över till utförandefasen och BAS-U tar vid.
+                  </p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-xl">Bättre flyt mellan projektering och byggstart</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4 text-gray-600">
+                  <p>
+                    När risker för fall, transporter, samordning och tillträde är genomgångna i tid
+                    blir både upphandling och byggstart mer förutsägbar. Det minskar risken för
+                    stopp, missförstånd och extra administration senare i projektet.
+                  </p>
+                  <p>
+                    För många projekt är det också en fördel att samordna BAS-P med andra roller som
+                    kontrollansvarig eller BAS-U för att få en mer sammanhållen process.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
         {/* FAQ Section */}
         <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
           <div className="max-w-4xl mx-auto">
