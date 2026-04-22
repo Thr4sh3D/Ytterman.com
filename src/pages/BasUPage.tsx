@@ -92,7 +92,7 @@ const BasUPage = () => {
   return (
     <>
       <AdvancedSEO
-        title="BAS-U i Västernorrland - Byggarbetsmiljösamordnare Utförande | Ytterman"
+        title="BAS-U i Västernorrland | Ytterman"
         description="Behöver du BAS-U? Certifierad byggarbetsmiljösamordnare under utförande med 20+ års erfarenhet i Sundsvall, Härnösand, Sollefteå, Timrå, Kramfors."
         keywords="BAS-U, byggarbetsmiljösamordnare, säkerhetsronder, BAS-U Sundsvall, BAS-U Härnösand, BAS-U Västernorrland, arbetsmiljö byggarbetsplats"
         url="https://ytterman.com/bas-u"

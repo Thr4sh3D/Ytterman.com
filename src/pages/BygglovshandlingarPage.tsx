@@ -105,7 +105,7 @@ const BygglovshandlingarPage = () => {
   return (
     <>
       <AdvancedSEO
-        title="Bygglovshandlingar Västernorrland - Planritningar & Teknisk Beskrivning | Ytterman"
+        title="Bygglovshandlingar i Västernorrland | Ytterman"
         description="Behöver du bygglovshandlingar? Vi tar fram kompletta handlingar för bygglov: planritningar, fasadritningar, sektioner och energiberäkningar. Från 8,000 kr."
         keywords="bygglovshandlingar, planritningar, bygglov, fasadritningar, teknisk beskrivning, situationsplan, Sundsvall, Härnösand, Västernorrland"
         url="https://ytterman.com/bygglovshandlingar"

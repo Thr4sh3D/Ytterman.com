@@ -10,7 +10,7 @@ const DigitalaVerktygGuide = () => {
       description="Moderna digitala lösningar som effektiviserar byggprocessen och förbättrar kommunikationen."
       category="Digitalisering"
       readTime="7 min"
-      seoTitle="Digitala Verktyg Byggprojekt - Effektivisering & Kommunikation | Ytterman"
+      seoTitle="Digitala verktyg för byggprojekt | Ytterman"
       seoDescription="Guide till moderna digitala verktyg för byggprojekt. Projekthantering, dokumentation och kommunikation. Expert råd från Tobias Ytterman."
       keywords="digitala verktyg, byggprojekt, projekthantering, digital dokumentation, byggappar, kommunikation"
       canonicalPath="/guider/digitala-verktyg"

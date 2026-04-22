@@ -45,7 +45,7 @@ const EnergiberakningOnlinePage = () => {
   return (
     <>
       <AdvancedSEO
-        title="Energiberäkning Online Västernorrland - Snabb & Professionell | Ytterman"
+        title="Energiberäkning online för bygglov | Ytterman"
         description="Gör din energiberäkning online snabbt och enkelt. Professionell kvalitet till fast pris 2,999 kr. Sundsvall, Härnösand, Sollefteå. Svar inom minuter!"
         keywords="energiberäkning online, energiberäkning bygglov, energiberäkning pris, energiberäkning snabb, energiberäkning Västernorrland, Sundsvall, Härnösand"
         url="https://ytterman.com/energiberakning-online"

@@ -93,7 +93,7 @@ const KontrollansvarigFjallPage = () => {
   return (
     <>
       <AdvancedSEO
-        title="Kontrollansvarig i fjällvärlden – Åre, Härjedalen & Västerbottensfjällen | Ytterman"
+        title="Kontrollansvarig i fjällen | Ytterman"
         description="Certifierad kontrollansvarig (KA) och BAS-P/BAS-U för fjällhus och fritidshus. Täcker Åre, Vemdalen, Funäsdalen, Hemavan och hela fjällkedjan. Digital uppföljning + paketerade platsbesök."
         keywords="kontrollansvarig fjäll, kontrollansvarig Åre, kontrollansvarig Vemdalen, kontrollansvarig Funäsdalen, kontrollansvarig Hemavan, kontrollansvarig fritidshus, KA fjällhus, byggkontroll fjäll, BAS-P fjäll, Härjedalen, Västerbottensfjällen"
         url="https://ytterman.com/kontrollansvarig-i-fjallen"

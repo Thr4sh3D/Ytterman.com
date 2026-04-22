@@ -92,7 +92,7 @@ const BasPPage = () => {
   return (
     <>
       <AdvancedSEO
-        title="BAS-P i Västernorrland - Byggarbetsmiljösamordnare Projektering | Ytterman"
+        title="BAS-P i Västernorrland | Ytterman"
         description="Behöver du BAS-P? Certifierad byggarbetsmiljösamordnare under projektering med 20+ års erfarenhet i Sundsvall, Härnösand, Sollefteå, Timrå, Kramfors."
         keywords="BAS-P, byggarbetsmiljösamordnare, arbetsmiljöplan, BAS-P Sundsvall, BAS-P Härnösand, BAS-P Västernorrland, arbetsmiljö byggprojekt"
         url="https://ytterman.com/bas-p"
