@@ -15,6 +15,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const distPath = join(__dirname, '..', 'dist');
 const indexPath = join(distPath, 'index.html');
 const DOMAIN = 'https://ytterman.com';
+const DEFAULT_TITLE = 'Trygg Byggprocess med Ytterman - Kontrollansvarig & BAS i Västernorrland';
+const DEFAULT_DESCRIPTION = 'Certifierad kontrollansvarig och BAS-P/BAS-U i Västernorrland. Över 20 års erfarenhet i byggbranschen. Snabb hantering, digitala verktyg och trygg byggprocess.';
 
 if (!existsSync(indexPath)) {
   console.error('❌ dist/index.html not found – run "npm run build" first.');
@@ -336,8 +338,10 @@ for (const route of routes) {
     console.warn(`⚠️  Missing SEO metadata for route: ${route}`);
   }
 
-  const pageTitle = escapeHtml(seoData?.title ?? 'Trygg Byggprocess med Ytterman - Kontrollansvarig & BAS i Västernorrland');
-  const pageDescription = escapeHtml(seoData?.description ?? 'Certifierad kontrollansvarig och BAS-P/BAS-U i Västernorrland. Över 20 års erfarenhet i byggbranschen. Snabb hantering, digitala verktyg och trygg byggprocess.');
+  const rawPageTitle = seoData?.title ?? DEFAULT_TITLE;
+  const rawPageDescription = seoData?.description ?? DEFAULT_DESCRIPTION;
+  const pageTitle = escapeHtml(rawPageTitle);
+  const pageDescription = escapeHtml(rawPageDescription);
 
   routeHtml = upsertTag(
     routeHtml,
@@ -353,7 +357,7 @@ for (const route of routes) {
     '<meta property="og:description" content="Certifierad kontrollansvarig och BAS-P/BAS-U i Västernorrland. Över 20 års erfarenhet i byggbranschen. Snabb hantering, digitala verktyg och trygg byggprocess." />'
   );
 
-  routeHtml = updateTitleTag(routeHtml, seoData?.title ?? 'Trygg Byggprocess med Ytterman - Kontrollansvarig & BAS i Västernorrland');
+  routeHtml = updateTitleTag(routeHtml, rawPageTitle);
 
   routeHtml = upsertTag(
     routeHtml,
