@@ -158,7 +158,8 @@ export default async (req: Request) => {
 
   // Return the index (metadata only, no content)
   const index = parseIndex(await store.get('__index'));
-  const paginatedIndex = limit ? index.slice(offset, offset + limit) : index;
+  const safeOffset = Math.min(offset, index.length);
+  const paginatedIndex = limit ? index.slice(safeOffset, safeOffset + limit) : index;
 
   return new Response(JSON.stringify(paginatedIndex), {
     status: 200,

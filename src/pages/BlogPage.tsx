@@ -28,6 +28,7 @@ const BlogPage = () => {
   const [posts, setPosts] = useState<BlogPostMeta[]>([]);
   const [loading, setLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
+  const [paginationError, setPaginationError] = useState('');
   const [totalPosts, setTotalPosts] = useState(0);
 
   useEffect(() => {
@@ -56,22 +57,17 @@ const BlogPage = () => {
 
   const loadMorePosts = () => {
     setLoadingMore(true);
+    setPaginationError('');
 
     fetch(`/api/blog-posts?limit=${POSTS_BATCH_SIZE}&offset=${posts.length}`)
       .then(async (res) => {
         const data = res.ok ? ((await res.json()) as BlogPostMeta[]) : [];
         const total = Number.parseInt(res.headers.get('X-Total-Count') || '0', 10);
 
-        setPosts((currentPosts) => {
-          const existingIds = new Set(currentPosts.map((post) => post.id));
-          const nextPosts = Array.isArray(data)
-            ? data.filter((post) => post.id && !existingIds.has(post.id))
-            : [];
-
-          return [...currentPosts, ...nextPosts];
-        });
+        setPosts((currentPosts) => [...currentPosts, ...(Array.isArray(data) ? data : [])]);
         setTotalPosts(Number.isFinite(total) ? total : 0);
       })
+      .catch(() => setPaginationError('Kunde inte ladda fler artiklar just nu. Försök igen om en liten stund.'))
       .finally(() => setLoadingMore(false));
   };
 
@@ -227,6 +223,9 @@ const BlogPage = () => {
                     >
                       {loadingMore ? 'Laddar fler artiklar...' : 'Visa fler artiklar'}
                     </button>
+                    {paginationError && (
+                      <p className="mt-4 text-sm text-rose-600">{paginationError}</p>
+                    )}
                   </div>
                 )}
               </div>
