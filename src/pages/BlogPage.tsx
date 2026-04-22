@@ -12,8 +12,7 @@ import type { BlogPostMeta } from '@/types/blog';
 
 const MIN_READING_TIME_MINUTES = 3;
 const DESCRIPTION_WORDS_PER_MINUTE = 50;
-const INITIAL_VISIBLE_POSTS = 9;
-const VISIBLE_POSTS_STEP = 9;
+const POSTS_BATCH_SIZE = 9;
 
 const estimateReadingTimeFromDescription = (description?: string) => {
   const safeDescription = typeof description === 'string' ? description : '';
@@ -28,13 +27,22 @@ const estimateReadingTimeFromDescription = (description?: string) => {
 const BlogPage = () => {
   const [posts, setPosts] = useState<BlogPostMeta[]>([]);
   const [loading, setLoading] = useState(true);
-  const [visiblePostCount, setVisiblePostCount] = useState(INITIAL_VISIBLE_POSTS);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [totalPosts, setTotalPosts] = useState(0);
 
   useEffect(() => {
-    fetch('/api/blog-posts')
-      .then((res) => (res.ok ? res.json() : []))
-      .then((data: BlogPostMeta[]) => setPosts(Array.isArray(data) ? data : []))
-      .catch(() => setPosts([]))
+    fetch(`/api/blog-posts?limit=${POSTS_BATCH_SIZE}`)
+      .then(async (res) => {
+        const data = res.ok ? ((await res.json()) as BlogPostMeta[]) : [];
+        const total = Number.parseInt(res.headers.get('X-Total-Count') || '0', 10);
+
+        setPosts(Array.isArray(data) ? data : []);
+        setTotalPosts(Number.isFinite(total) ? total : 0);
+      })
+      .catch(() => {
+        setPosts([]);
+        setTotalPosts(0);
+      })
       .finally(() => setLoading(false));
   }, []);
 
@@ -44,6 +52,28 @@ const BlogPage = () => {
     { name: 'Blogg', url: 'https://ytterman.com/blogg' },
   ];
   const publishedPosts = posts.filter((post) => post.slug && post.title);
+  const hasMorePosts = posts.length < totalPosts;
+
+  const loadMorePosts = () => {
+    setLoadingMore(true);
+
+    fetch(`/api/blog-posts?limit=${POSTS_BATCH_SIZE}&offset=${posts.length}`)
+      .then(async (res) => {
+        const data = res.ok ? ((await res.json()) as BlogPostMeta[]) : [];
+        const total = Number.parseInt(res.headers.get('X-Total-Count') || '0', 10);
+
+        setPosts((currentPosts) => {
+          const existingIds = new Set(currentPosts.map((post) => post.id));
+          const nextPosts = Array.isArray(data)
+            ? data.filter((post) => post.id && !existingIds.has(post.id))
+            : [];
+
+          return [...currentPosts, ...nextPosts];
+        });
+        setTotalPosts(Number.isFinite(total) ? total : 0);
+      })
+      .finally(() => setLoadingMore(false));
+  };
 
   return (
     <>
@@ -166,7 +196,6 @@ const BlogPage = () => {
                 ) : (
                   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {publishedPosts
-                      .slice(0, visiblePostCount)
                       .map((post, index) => (
                         <BlogCard
                           key={post.id}
@@ -188,14 +217,15 @@ const BlogPage = () => {
                   </div>
                 )}
 
-                {!loading && publishedPosts.length > visiblePostCount && (
+                {!loading && hasMorePosts && (
                   <div className="mt-12 text-center">
                     <button
                       type="button"
-                      onClick={() => setVisiblePostCount((count) => count + VISIBLE_POSTS_STEP)}
-                      className="inline-flex items-center justify-center px-6 py-3 border border-slate-300 text-slate-900 rounded-lg hover:border-slate-400 hover:bg-slate-50 transition-colors font-semibold"
+                      onClick={loadMorePosts}
+                      disabled={loadingMore}
+                      className="inline-flex items-center justify-center px-6 py-3 border border-slate-300 text-slate-900 rounded-lg hover:border-slate-400 hover:bg-slate-50 transition-colors font-semibold disabled:cursor-not-allowed disabled:opacity-60"
                     >
-                      Visa fler artiklar
+                      {loadingMore ? 'Laddar fler artiklar...' : 'Visa fler artiklar'}
                     </button>
                   </div>
                 )}

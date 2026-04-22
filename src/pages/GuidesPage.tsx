@@ -47,9 +47,9 @@ const GuidesPage = () => {
   // Fetch recent blog posts for the blog preview section
   const [recentPosts, setRecentPosts] = useState<BlogPostMeta[]>([]);
   useEffect(() => {
-    fetch('/api/blog-posts')
+    fetch('/api/blog-posts?limit=3')
       .then(res => res.ok ? res.json() : [])
-      .then(data => setRecentPosts(Array.isArray(data) ? data.slice(0, 3) : []))
+      .then(data => setRecentPosts(Array.isArray(data) ? data : []))
       .catch(() => setRecentPosts([]));
   }, []);
 
