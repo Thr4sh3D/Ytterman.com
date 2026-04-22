@@ -11,8 +11,7 @@ interface OptimizedImageProps {
   sizes?: string;
 }
 
-const DEFAULT_REMOTE_IMAGE_QUALITY = '80';
-const SUPABASE_IMAGE_QUALITY = '75';
+const SUPABASE_IMAGE_QUALITY = 75;
 
 const optimizeImageSrc = (src: string, width?: number) => {
   if (!src || !src.startsWith('http')) {
@@ -29,19 +28,13 @@ const optimizeImageSrc = (src: string, width?: number) => {
         url.searchParams.set('width', width.toString());
       }
 
-      url.searchParams.set('quality', SUPABASE_IMAGE_QUALITY);
+      url.searchParams.set('quality', SUPABASE_IMAGE_QUALITY.toString());
       url.searchParams.set('format', 'webp');
 
       return url.toString();
     }
-
-    if (width) {
-      url.searchParams.set('w', width.toString());
-    }
-
-    url.searchParams.set('q', DEFAULT_REMOTE_IMAGE_QUALITY);
-
-    return url.toString();
+    
+    return src;
   } catch {
     return src;
   }
