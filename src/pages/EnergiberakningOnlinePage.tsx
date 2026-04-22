@@ -156,6 +156,47 @@ const EnergiberakningOnlinePage = () => {
               <span>✓ Direkt nedladdning</span>
             </div>
           </div>
+
+          <div className="grid lg:grid-cols-2 gap-8 mb-16">
+            <Card className="border-stone-200">
+              <CardHeader>
+                <CardTitle className="text-2xl text-stone-800">
+                  När passar energiberäkning online bäst?
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4 text-stone-700">
+                <p>
+                  Tjänsten passar dig som behöver ett snabbt och tydligt underlag inför bygglov,
+                  nyproduktion, tillbyggnad eller större energirelaterade beslut. Du får en smidig
+                  digital process där du själv fyller i uppgifterna när det passar dig.
+                </p>
+                <p>
+                  För många projekt är onlineformatet ett effektivt alternativ när du redan har god
+                  koll på bostadens eller byggnadens grunddata och vill komma vidare utan att vänta på
+                  en traditionell manuell beställningsprocess.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-stone-200">
+              <CardHeader>
+                <CardTitle className="text-2xl text-stone-800">
+                  Förberedelser som ger bättre resultat
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4 text-stone-700">
+                <p>
+                  Innan du startar är det bra att ha ritningar, uppgifter om isolering, fönster,
+                  uppvärmningssystem och ventilationslösning till hands. Ju bättre underlag du matar in,
+                  desto mer träffsäker blir energiberäkningen.
+                </p>
+                <p>
+                  Om du är osäker på vilka värden som ska användas kan du alltid kontakta Tobias
+                  Ytterman för vägledning kring hur uppgifterna bör tolkas för just ditt projekt.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
         </div>
 
         {/* Online Tool Section */}

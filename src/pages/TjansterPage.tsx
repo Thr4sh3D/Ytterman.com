@@ -320,6 +320,49 @@ const TjansterPage = () => {
             </div>
           </section>
 
+          <section className="py-20 bg-white">
+            <div className="container mx-auto px-4">
+              <div className="max-w-5xl mx-auto">
+                <div className="text-center mb-12">
+                  <h2 className="text-4xl font-bold text-slate-900 mb-4">
+                    Vilken tjänst passar ditt projekt?
+                  </h2>
+                  <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+                    Behoven ser olika ut beroende på om du står inför bygglov, projektering,
+                    produktionsstart eller försäljning av en fastighet. Därför hjälper Ytterman dig
+                    att välja rätt kombination av tjänster istället för att du själv ska gissa vad som
+                    behövs först.
+                  </p>
+                </div>
+
+                <div className="grid md:grid-cols-3 gap-6">
+                  <div className="rounded-xl bg-slate-50 p-8">
+                    <h3 className="text-2xl font-bold text-slate-900 mb-3">Inför byggstart</h3>
+                    <p className="text-slate-600">
+                      Kontrollansvarig, bygglovshandlingar och energiberäkning hjälper dig skapa rätt
+                      underlag tidigt, så att projektet får en tydligare väg framåt från planering till
+                      beslut.
+                    </p>
+                  </div>
+                  <div className="rounded-xl bg-slate-50 p-8">
+                    <h3 className="text-2xl font-bold text-slate-900 mb-3">Under projektering och byggtid</h3>
+                    <p className="text-slate-600">
+                      BAS-P och BAS-U bidrar med struktur i arbetsmiljöarbetet, bättre samordning mellan
+                      aktörer och tydligare ansvar när flera entreprenörer är inblandade i samma projekt.
+                    </p>
+                  </div>
+                  <div className="rounded-xl bg-slate-50 p-8">
+                    <h3 className="text-2xl font-bold text-slate-900 mb-3">Vid fastighetsaffär och drift</h3>
+                    <p className="text-slate-600">
+                      Energideklaration och överlåtelsebesiktning ger underlag för försäljning, köp och
+                      långsiktiga beslut kring fastighetens skick, energiprestanda och möjliga åtgärder.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
           <ServiceFAQ items={serviceFaq} />
 
           <section className="py-20 bg-white">
