@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils';
 interface OptimizedImageProps {
   src: string;
   alt: string;
+  srcSet?: string;
   width?: number;
   height?: number;
   className?: string;
@@ -43,6 +44,7 @@ const optimizeImageSrc = (src: string, width?: number) => {
 export const OptimizedImage = ({
   src,
   alt,
+  srcSet,
   width,
   height,
   className,
@@ -56,6 +58,7 @@ export const OptimizedImage = ({
     <img
       src={optimizedSrc}
       alt={alt}
+      srcSet={srcSet}
       width={width}
       height={height}
       sizes={sizes}

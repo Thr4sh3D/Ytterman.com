@@ -1,6 +1,8 @@
 import { OptimizedImage } from '@/components/OptimizedImage';
 import { Certifications } from '@/components/Certifications';
 import { ExternalSiteLink } from '@/components/ExternalSiteLink';
+import profileImage512 from '@/assets/images/tobias-ytterman-profile-512.webp';
+import profileImage900 from '@/assets/images/tobias-ytterman-profile-900.webp';
 import { CheckCircle, Award, Users, Clock, Shield, Zap, HeartHandshake, MapPin } from 'lucide-react';
 
 export const About = () => {
@@ -124,11 +126,13 @@ export const About = () => {
             
             <div className="relative">
               <OptimizedImage
-                src="https://ellprnxjjzatijdxcogk.supabase.co/storage/v1/object/public/superdev-project-images/1a9c4603-3de4-4ce7-b4df-b42fb67a7f27/aorpjse3ulohvjtaxgvsp/1751541461385-profile_pic_color_square.png"
+                src={profileImage900}
+                srcSet={`${profileImage512} 512w, ${profileImage900} 900w`}
                 alt="Tobias Ytterman - Certifierad Kontrollansvarig och Byggarbetsmiljösamordnare i Västernorrland"
                 className="rounded-xl shadow-lg w-full h-auto"
-                width={500}
-                height={600}
+                width={900}
+                height={1352}
+                sizes="(min-width: 1024px) 34rem, 100vw"
               />
             </div>
           </div>
