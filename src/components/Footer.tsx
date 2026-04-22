@@ -9,11 +9,8 @@ export const Footer = () => {
       <div className="container mx-auto px-4 py-12">
         <div className="grid md:grid-cols-5 gap-8">
           {/* Company Info */}
-          <section className="md:col-span-2" aria-labelledby="footer-company-title">
-            <p
-              id="footer-company-title"
-              className="text-2xl font-bold earth-gradient bg-clip-text text-transparent mb-4"
-            >
+          <section className="md:col-span-2" aria-label="Ytterman">
+            <p className="text-2xl font-bold earth-gradient bg-clip-text text-transparent mb-4">
               Ytterman
             </p>
             <p className="text-gray-300 mb-6">
@@ -46,8 +43,8 @@ export const Footer = () => {
           </section>
 
           {/* Services */}
-          <nav aria-labelledby="footer-services-title">
-            <p id="footer-services-title" className="text-lg font-semibold mb-4">
+          <nav aria-label="Tjänster">
+            <p className="text-lg font-semibold mb-4">
               Tjänster
             </p>
             <ul className="space-y-2">
@@ -95,8 +92,8 @@ export const Footer = () => {
           </nav>
 
           {/* Areas */}
-          <section aria-labelledby="footer-areas-title">
-            <p id="footer-areas-title" className="text-lg font-semibold mb-4">
+          <section aria-label="Verksamhetsområden">
+            <p className="text-lg font-semibold mb-4">
               Verksamhetsområden
             </p>
             <ul className="space-y-2 text-gray-300">
@@ -108,8 +105,8 @@ export const Footer = () => {
             </ul>
           </section>
 
-          <section aria-labelledby="footer-sister-company-title">
-            <p id="footer-sister-company-title" className="text-lg font-semibold mb-4">
+          <section aria-label="Systerföretag">
+            <p className="text-lg font-semibold mb-4">
               Systerföretag
             </p>
             <ul className="space-y-2">
