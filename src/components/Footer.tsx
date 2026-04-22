@@ -9,16 +9,15 @@ export const Footer = () => {
       <div className="container mx-auto px-4 py-12">
         <div className="grid md:grid-cols-5 gap-8">
           {/* Company Info */}
-          <div className="md:col-span-2">
+          <section className="md:col-span-2" aria-labelledby="footer-company-title">
             <p
+              id="footer-company-title"
               className="text-2xl font-bold earth-gradient bg-clip-text text-transparent mb-4"
-              role="heading"
-              aria-level={3}
             >
               Ytterman
             </p>
             <p className="text-gray-300 mb-6">
-              Certifierad Kontrollansvarig och Byggarbetsmiljösamordnare med över 20 års 
+              Certifierad Kontrollansvarig och Byggarbetsmiljösamordnare med över 20 års
               erfarenhet i byggbranschen. Vi hjälper dig genom hela byggprocessen i Västernorrland.
             </p>
             <div className="space-y-3">
@@ -39,16 +38,16 @@ export const Footer = () => {
                 <span>Västernorrland, Sverige</span>
               </div>
             </div>
-            
+
             {/* Bygglov.se Kvalitetsbadge */}
             <div className="mt-6">
               <div id="bygglov-badge-container" style={{ width: '160px' }} />
             </div>
-          </div>
+          </section>
 
           {/* Services */}
-          <div>
-            <p className="text-lg font-semibold mb-4" role="heading" aria-level={4}>
+          <nav aria-labelledby="footer-services-title">
+            <p id="footer-services-title" className="text-lg font-semibold mb-4">
               Tjänster
             </p>
             <ul className="space-y-2">
@@ -93,11 +92,11 @@ export const Footer = () => {
                 </a>
               </li>
             </ul>
-          </div>
+          </nav>
 
           {/* Areas */}
-          <div>
-            <p className="text-lg font-semibold mb-4" role="heading" aria-level={4}>
+          <section aria-labelledby="footer-areas-title">
+            <p id="footer-areas-title" className="text-lg font-semibold mb-4">
               Verksamhetsområden
             </p>
             <ul className="space-y-2 text-gray-300">
@@ -107,10 +106,10 @@ export const Footer = () => {
               <li>Timrå</li>
               <li>Kramfors</li>
             </ul>
-          </div>
+          </section>
 
-          <div>
-            <p className="text-lg font-semibold mb-4" role="heading" aria-level={4}>
+          <section aria-labelledby="footer-sister-company-title">
+            <p id="footer-sister-company-title" className="text-lg font-semibold mb-4">
               Systerföretag
             </p>
             <ul className="space-y-2">
@@ -126,7 +125,7 @@ export const Footer = () => {
                 </ExternalSiteLink>
               </li>
             </ul>
-          </div>
+          </section>
         </div>
 
         <div className="border-t border-slate-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
