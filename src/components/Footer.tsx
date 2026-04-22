@@ -10,7 +10,11 @@ export const Footer = () => {
         <div className="grid md:grid-cols-5 gap-8">
           {/* Company Info */}
           <div className="md:col-span-2">
-            <p className="text-2xl font-bold earth-gradient bg-clip-text text-transparent mb-4">
+            <p
+              className="text-2xl font-bold earth-gradient bg-clip-text text-transparent mb-4"
+              role="heading"
+              aria-level={3}
+            >
               Ytterman
             </p>
             <p className="text-gray-300 mb-6">
@@ -44,7 +48,7 @@ export const Footer = () => {
 
           {/* Services */}
           <div>
-            <p className="text-lg font-semibold mb-4" role="heading" aria-level={2}>
+            <p className="text-lg font-semibold mb-4" role="heading" aria-level={4}>
               Tjänster
             </p>
             <ul className="space-y-2">
@@ -93,7 +97,7 @@ export const Footer = () => {
 
           {/* Areas */}
           <div>
-            <p className="text-lg font-semibold mb-4" role="heading" aria-level={2}>
+            <p className="text-lg font-semibold mb-4" role="heading" aria-level={4}>
               Verksamhetsområden
             </p>
             <ul className="space-y-2 text-gray-300">
@@ -106,7 +110,7 @@ export const Footer = () => {
           </div>
 
           <div>
-            <p className="text-lg font-semibold mb-4" role="heading" aria-level={2}>
+            <p className="text-lg font-semibold mb-4" role="heading" aria-level={4}>
               Systerföretag
             </p>
             <ul className="space-y-2">
