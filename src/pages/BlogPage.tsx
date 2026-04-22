@@ -12,6 +12,8 @@ import type { BlogPostMeta } from '@/types/blog';
 
 const MIN_READING_TIME_MINUTES = 3;
 const DESCRIPTION_WORDS_PER_MINUTE = 50;
+const INITIAL_VISIBLE_POSTS = 9;
+const VISIBLE_POSTS_STEP = 9;
 
 const estimateReadingTimeFromDescription = (description?: string) => {
   const safeDescription = typeof description === 'string' ? description : '';
@@ -26,6 +28,7 @@ const estimateReadingTimeFromDescription = (description?: string) => {
 const BlogPage = () => {
   const [posts, setPosts] = useState<BlogPostMeta[]>([]);
   const [loading, setLoading] = useState(true);
+  const [visiblePostCount, setVisiblePostCount] = useState(INITIAL_VISIBLE_POSTS);
 
   useEffect(() => {
     fetch('/api/blog-posts')
@@ -40,6 +43,7 @@ const BlogPage = () => {
     { name: 'Guider', url: 'https://ytterman.com/guider' },
     { name: 'Blogg', url: 'https://ytterman.com/blogg' },
   ];
+  const publishedPosts = posts.filter((post) => post.slug && post.title);
 
   return (
     <>
@@ -149,7 +153,7 @@ const BlogPage = () => {
                       </div>
                     ))}
                   </div>
-                ) : posts.length === 0 ? (
+                ) : publishedPosts.length === 0 ? (
                   <div className="text-center py-20">
                     <BookOpen className="w-16 h-16 text-slate-300 mx-auto mb-4" />
                     <h2 className="text-2xl font-semibold text-slate-700 mb-3">
@@ -161,25 +165,38 @@ const BlogPage = () => {
                   </div>
                 ) : (
                   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {posts
-                      .filter((post) => post.slug && post.title)
-                      .map((post) => (
-                      <BlogCard
-                        key={post.id}
-                        post={{
-                          id: post.id,
-                          title: post.title,
-                          slug: post.slug,
-                          excerpt: post.meta_description || '',
-                          featured_image: post.main_image_url,
-                          category: post.keyword ?? 'Byggkunskap',
-                          author: 'Tobias Ytterman',
-                          reading_time: estimateReadingTimeFromDescription(post.meta_description),
-                          created_at: post.published_at,
-                          tags: post.keyword ? [post.keyword] : [],
-                        }}
-                      />
-                    ))}
+                    {publishedPosts
+                      .slice(0, visiblePostCount)
+                      .map((post, index) => (
+                        <BlogCard
+                          key={post.id}
+                          priority={index < 3}
+                          post={{
+                            id: post.id,
+                            title: post.title,
+                            slug: post.slug,
+                            excerpt: post.meta_description || '',
+                            featured_image: post.main_image_url,
+                            category: post.keyword ?? 'Byggkunskap',
+                            author: 'Tobias Ytterman',
+                            reading_time: estimateReadingTimeFromDescription(post.meta_description),
+                            created_at: post.published_at,
+                            tags: post.keyword ? [post.keyword] : [],
+                          }}
+                        />
+                     ))}
+                  </div>
+                )}
+
+                {!loading && publishedPosts.length > visiblePostCount && (
+                  <div className="mt-12 text-center">
+                    <button
+                      type="button"
+                      onClick={() => setVisiblePostCount((count) => count + VISIBLE_POSTS_STEP)}
+                      className="inline-flex items-center justify-center px-6 py-3 border border-slate-300 text-slate-900 rounded-lg hover:border-slate-400 hover:bg-slate-50 transition-colors font-semibold"
+                    >
+                      Visa fler artiklar
+                    </button>
                   </div>
                 )}
               </div>

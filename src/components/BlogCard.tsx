@@ -1,6 +1,7 @@
 import { Calendar, Clock, User, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { OptimizedImage } from '@/components/OptimizedImage';
 
 interface BlogCardProps {
   post: {
@@ -15,9 +16,10 @@ interface BlogCardProps {
     created_at: string;
     tags?: string[];
   };
+  priority?: boolean;
 }
 
-export const BlogCard = ({ post }: BlogCardProps) => {
+export const BlogCard = ({ post, priority = false }: BlogCardProps) => {
   const navigate = useNavigate();
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('sv-SE', {
@@ -31,10 +33,14 @@ export const BlogCard = ({ post }: BlogCardProps) => {
     <article className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-md transition-shadow">
       {post.featured_image && (
         <div className="aspect-video overflow-hidden">
-          <img 
+          <OptimizedImage
             src={post.featured_image} 
             alt={post.title}
             className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+            width={640}
+            height={360}
+            sizes="(min-width: 1024px) 384px, (min-width: 768px) 50vw, 100vw"
+            priority={priority}
           />
         </div>
       )}
