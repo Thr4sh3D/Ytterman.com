@@ -40,14 +40,10 @@ const ContactForm = () => {
       return;
     }
 
-    setFormData((prev) =>
-      prev.project === requestedProject
-        ? prev
-        : {
-            ...prev,
-            project: requestedProject,
-          }
-    );
+    setFormData((prev) => ({
+      ...prev,
+      project: requestedProject,
+    }));
   }, [searchParams]);
 
   const handleInputChange = (field: string, value: string) => {
