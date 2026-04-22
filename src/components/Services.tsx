@@ -187,11 +187,9 @@ export const Services = ({ onServiceSelect }: ServicesProps) => {
                   <Button
                     asChild
                     className="flex-1 earth-gradient text-white hover:opacity-90"
-                  >
+                    >
                     <a 
-                      href={BOOKING_OVL_URL} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
+                      href={BOOKING_OVL_URL}
                     >
                       <CalendarCheck className="w-4 h-4 mr-2" />
                       Boka online

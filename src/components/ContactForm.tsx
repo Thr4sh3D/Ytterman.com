@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -8,6 +8,16 @@ import { Phone, Mail, MapPin, Clock, CheckCircle, AlertCircle } from 'lucide-rea
 import { useToast } from '@/hooks/use-toast';
 import { sendContactEmail } from '@/lib/emailjs';
 import { useGoogleAdsTracking } from '@/hooks/useGoogleAdsTracking';
+import { useSearchParams } from 'react-router-dom';
+
+const VALID_PROJECT_TYPES = new Set([
+  'kontrollansvarig',
+  'bas-p',
+  'bas-u',
+  'energideklaration',
+  'overlatelsebesiktning',
+  'annat',
+]);
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -19,8 +29,26 @@ const ContactForm = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [searchParams] = useSearchParams();
   const { toast } = useToast();
   const { trackFormSubmission, trackPhoneClick } = useGoogleAdsTracking();
+
+  useEffect(() => {
+    const requestedProject = searchParams.get('project')?.trim().toLowerCase();
+
+    if (!requestedProject || !VALID_PROJECT_TYPES.has(requestedProject)) {
+      return;
+    }
+
+    setFormData((prev) =>
+      prev.project === requestedProject
+        ? prev
+        : {
+            ...prev,
+            project: requestedProject,
+          }
+    );
+  }, [searchParams]);
 
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({

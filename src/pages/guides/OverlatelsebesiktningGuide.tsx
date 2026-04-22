@@ -401,8 +401,6 @@ const OverlatelsebesiktningGuide = () => {
             {BOOKING_OVL_URL && (
               <a 
                 href={BOOKING_OVL_URL}
-                target="_blank"
-                rel="noopener noreferrer"
                 className="earth-gradient hover:opacity-90 text-white px-8 py-3 rounded-lg font-semibold transition-colors inline-flex items-center justify-center gap-2"
               >
                 <CalendarCheck className="w-5 h-5" />

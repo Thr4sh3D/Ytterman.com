@@ -461,9 +461,7 @@ const OverlatelsebesiktningPage = () => {
               {BOOKING_OVL_URL && (
                 <Button size="lg" className="bg-white text-slate-900 hover:bg-slate-100" asChild>
                   <a 
-                    href={BOOKING_OVL_URL} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
+                    href={BOOKING_OVL_URL}
                   >
                     <CalendarCheck className="mr-2 h-4 w-4" />
                     Boka online
