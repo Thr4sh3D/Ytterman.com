@@ -247,9 +247,7 @@ const TjansterPage = () => {
                               aria-label="Boka överlåtelsebesiktning online"
                             >
                               <a 
-                                href={BOOKING_OVL_URL} 
-                                target="_blank" 
-                                rel="noopener noreferrer"
+                                href={BOOKING_OVL_URL}
                               >
                                 <CalendarCheck className="w-4 h-4 mr-2" aria-hidden="true" />
                                 Boka online
