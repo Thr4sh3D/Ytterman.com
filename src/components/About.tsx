@@ -3,13 +3,12 @@ import { Certifications } from '@/components/Certifications';
 import { ExternalSiteLink } from '@/components/ExternalSiteLink';
 import profileImage512 from '@/assets/images/tobias-ytterman-profile-512.webp';
 import profileImage900 from '@/assets/images/tobias-ytterman-profile-900.webp';
-import { buildStamp } from '@/lib/buildInfo';
+import { cacheBusterToken } from '@/lib/buildInfo';
 import { CheckCircle, Award, Users, Clock, Shield, Zap, HeartHandshake, MapPin } from 'lucide-react';
 
 export const About = () => {
-  const cacheBuster = encodeURIComponent(buildStamp);
-  const profileImage512Src = `${profileImage512}?v=${cacheBuster}`;
-  const profileImage900Src = `${profileImage900}?v=${cacheBuster}`;
+  const profileImage512Src = `${profileImage512}?v=${cacheBusterToken}`;
+  const profileImage900Src = `${profileImage900}?v=${cacheBusterToken}`;
 
   const achievements = [
     {

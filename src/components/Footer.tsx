@@ -2,9 +2,11 @@ import { Phone, Mail, MapPin } from 'lucide-react';
 import { ExternalSiteLink } from '@/components/ExternalSiteLink';
 import { buildTimeIso, shortCommitSha } from '@/lib/buildInfo';
 
+const FOOTER_DATE_LOCALE = 'sv-SE';
+
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
-  const buildTimeLabel = buildTimeIso ? new Date(buildTimeIso).toLocaleString('sv-SE') : null;
+  const buildTimeLabel = buildTimeIso ? new Date(buildTimeIso).toLocaleString(FOOTER_DATE_LOCALE) : null;
 
   return (
     <footer className="bg-slate-900 text-white">
