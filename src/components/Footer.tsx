@@ -44,7 +44,9 @@ export const Footer = () => {
 
           {/* Services */}
           <div>
-            <p className="text-lg font-semibold mb-4">Tjänster</p>
+            <p className="text-lg font-semibold mb-4" role="heading" aria-level={2}>
+              Tjänster
+            </p>
             <ul className="space-y-2">
               <li>
                 <a href="/kontrollansvarig-i-fjallen/" className="text-gray-300 hover:text-white transition-colors">
@@ -91,7 +93,9 @@ export const Footer = () => {
 
           {/* Areas */}
           <div>
-            <p className="text-lg font-semibold mb-4">Verksamhetsområden</p>
+            <p className="text-lg font-semibold mb-4" role="heading" aria-level={2}>
+              Verksamhetsområden
+            </p>
             <ul className="space-y-2 text-gray-300">
               <li>Sundsvall</li>
               <li>Härnösand</li>
@@ -102,7 +106,9 @@ export const Footer = () => {
           </div>
 
           <div>
-            <p className="text-lg font-semibold mb-4">Systerföretag</p>
+            <p className="text-lg font-semibold mb-4" role="heading" aria-level={2}>
+              Systerföretag
+            </p>
             <ul className="space-y-2">
               <li>
                 <ExternalSiteLink
