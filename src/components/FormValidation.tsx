@@ -38,7 +38,7 @@ export const useFormValidation = () => {
 
     // Validera telefon (valfritt men om angivet ska det vara giltigt)
     if (data.phone.trim()) {
-      const phoneRegex = /^[\+]?[0-9\s\-\(\)]{8,}$/;
+      const phoneRegex = /^[+]?[0-9\s\-()]{8,}$/;
       if (!phoneRegex.test(data.phone.replace(/\s/g, ''))) {
         newErrors.phone = 'Ange ett giltigt telefonnummer';
       }

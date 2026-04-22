@@ -1,11 +1,3 @@
-// Google Ads conversion tracking utility
-declare global {
-  interface Window {
-    gtag?: (...args: any[]) => void;
-    dataLayer?: any[];
-  }
-}
-
 export interface ConversionConfig {
   conversionId?: string;
   conversionLabel?: string;
@@ -28,7 +20,7 @@ export const trackConversion = (config: ConversionConfig = {}) => {
     } = config;
 
     // Base conversion event
-    const conversionData: any = {
+    const conversionData: Record<string, unknown> = {
       send_to: conversionId ? `AW-17296101730/${conversionId}` : 'AW-17296101730'
     };
 

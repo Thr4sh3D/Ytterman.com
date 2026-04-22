@@ -2,13 +2,6 @@ import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { X, Cookie, Shield, BarChart3 } from 'lucide-react';
 
-declare global {
-  interface Window {
-    gtag: (...args: any[]) => void;
-    dataLayer: any[];
-  }
-}
-
 interface ConsentState {
   analytics_storage: 'granted' | 'denied';
   ad_storage: 'granted' | 'denied';
@@ -27,9 +20,9 @@ const GoogleConsentMode = () => {
     // Initialize Google Consent Mode v2
     if (typeof window !== 'undefined') {
       window.dataLayer = window.dataLayer || [];
-      window.gtag = window.gtag || function() {
-        window.dataLayer.push(arguments);
-      };
+      window.gtag = window.gtag || ((...args: unknown[]) => {
+        window.dataLayer.push(args);
+      });
 
       // Set default consent state (denied by default for GDPR compliance)
       window.gtag('consent', 'default', {
