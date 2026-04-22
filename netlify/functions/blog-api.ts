@@ -34,6 +34,26 @@ const normalizePublishedAt = (value: unknown) => {
     : new Date(0).toISOString();
 };
 
+const parsePositiveInteger = (value: string | null) => {
+  if (!value) {
+    return null;
+  }
+
+  const parsed = Number.parseInt(value, 10);
+
+  return Number.isInteger(parsed) && parsed > 0 ? parsed : null;
+};
+
+const parseNonNegativeInteger = (value: string | null) => {
+  if (!value) {
+    return 0;
+  }
+
+  const parsed = Number.parseInt(value, 10);
+
+  return Number.isInteger(parsed) && parsed >= 0 ? parsed : 0;
+};
+
 const normalizeIndexEntry = (entry: Partial<ArticleIndexEntry>): ArticleIndexEntry | null => {
   const id = normalizeString(entry.id);
   const slug = normalizeString(entry.slug);
@@ -99,6 +119,8 @@ export default async (req: Request) => {
 
   const url = new URL(req.url);
   const slug = url.searchParams.get('slug');
+  const limit = parsePositiveInteger(url.searchParams.get('limit'));
+  const offset = parseNonNegativeInteger(url.searchParams.get('offset'));
 
   if (slug) {
     // Return a single post by slug
@@ -136,10 +158,16 @@ export default async (req: Request) => {
 
   // Return the index (metadata only, no content)
   const index = parseIndex(await store.get('__index'));
+  const safeOffset = Math.min(offset, index.length);
+  const paginatedIndex = limit ? index.slice(safeOffset, safeOffset + limit) : index;
 
-  return new Response(JSON.stringify(index), {
+  return new Response(JSON.stringify(paginatedIndex), {
     status: 200,
-    headers: corsHeaders,
+    headers: {
+      ...corsHeaders,
+      'Cache-Control': 'public, max-age=300',
+      'X-Total-Count': String(index.length),
+    },
   });
 };
 

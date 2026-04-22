@@ -12,6 +12,7 @@ import type { BlogPostMeta } from '@/types/blog';
 
 const MIN_READING_TIME_MINUTES = 3;
 const DESCRIPTION_WORDS_PER_MINUTE = 50;
+const POSTS_BATCH_SIZE = 9;
 
 const estimateReadingTimeFromDescription = (description?: string) => {
   const safeDescription = typeof description === 'string' ? description : '';
@@ -26,12 +27,23 @@ const estimateReadingTimeFromDescription = (description?: string) => {
 const BlogPage = () => {
   const [posts, setPosts] = useState<BlogPostMeta[]>([]);
   const [loading, setLoading] = useState(true);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [paginationError, setPaginationError] = useState('');
+  const [totalPosts, setTotalPosts] = useState(0);
 
   useEffect(() => {
-    fetch('/api/blog-posts')
-      .then((res) => (res.ok ? res.json() : []))
-      .then((data: BlogPostMeta[]) => setPosts(Array.isArray(data) ? data : []))
-      .catch(() => setPosts([]))
+    fetch(`/api/blog-posts?limit=${POSTS_BATCH_SIZE}`)
+      .then(async (res) => {
+        const data = res.ok ? ((await res.json()) as BlogPostMeta[]) : [];
+        const total = Number.parseInt(res.headers.get('X-Total-Count') || '0', 10);
+
+        setPosts(Array.isArray(data) ? data : []);
+        setTotalPosts(Number.isFinite(total) ? total : 0);
+      })
+      .catch(() => {
+        setPosts([]);
+        setTotalPosts(0);
+      })
       .finally(() => setLoading(false));
   }, []);
 
@@ -40,6 +52,24 @@ const BlogPage = () => {
     { name: 'Guider', url: 'https://ytterman.com/guider' },
     { name: 'Blogg', url: 'https://ytterman.com/blogg' },
   ];
+  const publishedPosts = posts.filter((post) => post.slug && post.title);
+  const hasMorePosts = posts.length < totalPosts;
+
+  const loadMorePosts = () => {
+    setLoadingMore(true);
+    setPaginationError('');
+
+    fetch(`/api/blog-posts?limit=${POSTS_BATCH_SIZE}&offset=${posts.length}`)
+      .then(async (res) => {
+        const data = res.ok ? ((await res.json()) as BlogPostMeta[]) : [];
+        const total = Number.parseInt(res.headers.get('X-Total-Count') || '0', 10);
+
+        setPosts((currentPosts) => [...currentPosts, ...(Array.isArray(data) ? data : [])]);
+        setTotalPosts(Number.isFinite(total) ? total : 0);
+      })
+      .catch(() => setPaginationError('Kunde inte ladda fler artiklar just nu. Försök igen om en liten stund.'))
+      .finally(() => setLoadingMore(false));
+  };
 
   return (
     <>
@@ -149,7 +179,7 @@ const BlogPage = () => {
                       </div>
                     ))}
                   </div>
-                ) : posts.length === 0 ? (
+                ) : publishedPosts.length === 0 ? (
                   <div className="text-center py-20">
                     <BookOpen className="w-16 h-16 text-slate-300 mx-auto mb-4" />
                     <h2 className="text-2xl font-semibold text-slate-700 mb-3">
@@ -161,25 +191,41 @@ const BlogPage = () => {
                   </div>
                 ) : (
                   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {posts
-                      .filter((post) => post.slug && post.title)
-                      .map((post) => (
-                      <BlogCard
-                        key={post.id}
-                        post={{
-                          id: post.id,
-                          title: post.title,
-                          slug: post.slug,
-                          excerpt: post.meta_description || '',
-                          featured_image: post.main_image_url,
-                          category: post.keyword ?? 'Byggkunskap',
-                          author: 'Tobias Ytterman',
-                          reading_time: estimateReadingTimeFromDescription(post.meta_description),
-                          created_at: post.published_at,
-                          tags: post.keyword ? [post.keyword] : [],
-                        }}
-                      />
-                    ))}
+                    {publishedPosts
+                      .map((post, index) => (
+                        <BlogCard
+                          key={post.id}
+                          priority={index < 3}
+                          post={{
+                            id: post.id,
+                            title: post.title,
+                            slug: post.slug,
+                            excerpt: post.meta_description || '',
+                            featured_image: post.main_image_url,
+                            category: post.keyword ?? 'Byggkunskap',
+                            author: 'Tobias Ytterman',
+                            reading_time: estimateReadingTimeFromDescription(post.meta_description),
+                            created_at: post.published_at,
+                            tags: post.keyword ? [post.keyword] : [],
+                          }}
+                        />
+                     ))}
+                  </div>
+                )}
+
+                {!loading && hasMorePosts && (
+                  <div className="mt-12 text-center">
+                    <button
+                      type="button"
+                      onClick={loadMorePosts}
+                      disabled={loadingMore}
+                      className="inline-flex items-center justify-center px-6 py-3 border border-slate-300 text-slate-900 rounded-lg hover:border-slate-400 hover:bg-slate-50 transition-colors font-semibold disabled:cursor-not-allowed disabled:opacity-60"
+                    >
+                      {loadingMore ? 'Laddar fler artiklar...' : 'Visa fler artiklar'}
+                    </button>
+                    {paginationError && (
+                      <p className="mt-4 text-sm text-rose-600">{paginationError}</p>
+                    )}
                   </div>
                 )}
               </div>
