@@ -44,7 +44,7 @@ const Index = () => {
   return (
     <>
       <AdvancedSEO 
-        title="Kontrollansvarig & BAS-P/BAS-U Västernorrland | Ytterman"
+        title="Kontrollansvarig & BAS i Västernorrland | Ytterman"
         description="Certifierad kontrollansvarig och BAS med 20+ års erfarenhet. Trygg byggprocess med fast pris. Sundsvall, Härnösand, Sollefteå. Ring 076-111 84 47!"
         keywords="kontrollansvarig, BAS-P, BAS-U, byggarbetsmiljösamordnare, byggkontroll, energiberäkning online, Sundsvall, Härnösand, Sollefteå, Timrå, Kramfors, Västernorrland, bygglov, Tobias Ytterman"
         url="https://ytterman.com/"

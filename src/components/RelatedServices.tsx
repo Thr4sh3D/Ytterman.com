@@ -1,4 +1,4 @@
-import { ArrowRight, Shield, Users, FileText, Building } from 'lucide-react';
+import { ArrowRight, Shield, Users, FileText, Building, type LucideIcon } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 
@@ -6,7 +6,7 @@ interface Service {
   title: string;
   description: string;
   url: string;
-  icon: any;
+  icon: LucideIcon;
   price: string;
 }
 
@@ -82,8 +82,8 @@ export const RelatedServices = ({ currentService, className = "" }: RelatedServi
                   
                   <p className="text-slate-600 mb-6">{service.description}</p>
                   
-                  <Button navigate(service.url)
-                    onClick={() => window.location.href = service.url}
+                  <Button
+                    onClick={() => navigate(service.url)}
                     variant="outline"
                     className="w-full hover:bg-primary hover:text-white"
                   >

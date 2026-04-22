@@ -12,7 +12,7 @@ const OverlatelsebesiktningGuide = () => {
     description: "Allt du behöver veta om överlåtelsebesiktning inför fastighetsförsäljning",
     readTime: "10 min",
     category: "Fastighetsbesiktning",
-    seoTitle: "Överlåtelsebesiktning Guide - Fastighetsbesiktning Försäljning | Ytterman",
+    seoTitle: "Guide: Överlåtelsebesiktning | Ytterman",
     seoDescription: "Komplett guide om överlåtelsebesiktning vid fastighetsförsäljning. Processen, kostnad och vad som ingår. Expert råd från Tobias Ytterman i Västernorrland.",
     keywords: "överlåtelsebesiktning, fastighetsbesiktning, försäljningsbesiktning, köpebesiktning, husbesiktning, fastighetsförsäljning, Västernorrland",
     canonicalPath: "/guider/overlatelsebesiktning"

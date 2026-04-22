@@ -148,7 +148,7 @@ Ge en strukturerad analys som kan användas för att jämföra med en befintlig 
   }
 };
 
-export const compareWithCurrentSite = (originalSite: SiteAnalysisResult, currentImplementation: any) => {
+export const compareWithCurrentSite = (originalSite: SiteAnalysisResult, currentImplementation: unknown) => {
   return {
     layoutDifferences: {
       missing: [],

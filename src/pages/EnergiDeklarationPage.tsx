@@ -91,7 +91,7 @@ const EnergiDeklarationPage = () => {
   return (
     <>
       <AdvancedSEO
-        title="Energideklaration i Västernorrland - Certifierad Energiexpert | Ytterman"
+        title="Energideklaration i Västernorrland | Ytterman"
         description="Behöver du energideklaration? Certifierad energiexpert med 20+ års erfarenhet i Sundsvall, Härnösand, Sollefteå, Timrå, Kramfors. Snabb handläggning."
         keywords="energideklaration, energideklaration Sundsvall, energideklaration Härnösand, energideklaration Västernorrland, energiklass, energibesiktning"
         url="https://ytterman.com/energideklaration"

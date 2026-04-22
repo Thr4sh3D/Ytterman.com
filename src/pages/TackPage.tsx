@@ -16,8 +16,8 @@ const TackPage = () => {
 
   useEffect(() => {
     // Google Ads konverteringsmätning med din riktiga konverteringskod
-    if (typeof window !== 'undefined' && (window as any).gtag) {
-      (window as any).gtag('event', 'conversion', {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'conversion', {
         'send_to': 'AW-17296101730/I1ieCMvrqvoaEOKitrdA'
       });
       
@@ -30,8 +30,8 @@ const TackPage = () => {
     }
 
     // Facebook Pixel (om du använder det)
-    if (typeof window !== 'undefined' && (window as any).fbq) {
-      (window as any).fbq('track', 'Lead', {
+    if (typeof window !== 'undefined' && window.fbq) {
+      window.fbq('track', 'Lead', {
         content_name: service,
         content_category: 'Kontakt',
         value: 1.0,
@@ -40,8 +40,8 @@ const TackPage = () => {
     }
 
     // Google Analytics 4 event
-    if (typeof window !== 'undefined' && (window as any).gtag) {
-      (window as any).gtag('event', 'generate_lead', {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'generate_lead', {
         'event_category': 'Contact',
         'event_label': service,
         'value': 1

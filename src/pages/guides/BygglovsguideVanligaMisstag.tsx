@@ -10,7 +10,7 @@ const BygglovsguideVanligaMisstag = () => {
       description="Omfattande guide om bygglovsprocessen och de 12 vanligaste misstagen vid nybyggnad och tillbyggnad. Lär dig om kontrollplan, tekniskt samråd, KA och BAS-krav."
       category="Bygglov"
       readTime="12 min"
-      seoTitle="Bygglovsguide 2025 - 12 Vanliga Misstag & Hur Du Undviker Dem | Ytterman"
+      seoTitle="Bygglovsguide: 12 vanliga misstag | Ytterman"
       seoDescription="Komplett bygglovsguide för husbygge i Västernorrland. Lär dig processen, kontrollplan, tekniskt samråd, KA-krav och undvik de 12 vanligaste misstagen. Expert råd från Tobias Ytterman."
       keywords="bygglovsguide, vanliga misstag husbygge, kontrollansvarig bygglov, kontrollplan, tekniskt samråd, slutbesked, BAS-P, BAS-U, nybyggnad, tillbyggnad, Västernorrland, Sundsvall, Timrå, Härnösand"
       canonicalPath="/guider/bygglovsguide-vanliga-misstag-husbygge"

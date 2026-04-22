@@ -24,8 +24,8 @@ export const ConversionTracking = ({
 
       // Initiera gtag
       window.dataLayer = window.dataLayer || [];
-      window.gtag = function() {
-        window.dataLayer.push(arguments);
+      window.gtag = (...args: unknown[]) => {
+        window.dataLayer.push(args);
       };
       window.gtag('js', new Date());
       window.gtag('config', conversionId);
@@ -60,11 +60,3 @@ export const trackConversion = (
     console.warn('Google Ads gtag inte tillgängligt för konverteringsspårning');
   }
 };
-
-// TypeScript deklarationer för gtag
-declare global {
-  interface Window {
-    gtag: (...args: any[]) => void;
-    dataLayer: any[];
-  }
-}

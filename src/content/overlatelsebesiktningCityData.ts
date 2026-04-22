@@ -45,7 +45,7 @@ export const overlatelsebesiktningCityData: Record<string, Overlatelsebesiktning
     heroSubtitle: 'Trygg fastighetsaffär med professionell besiktning',
     heroDescription: 'Behöver du en överlåtelsebesiktning i Sundsvall? Med kontor i Viksjö och över 20 års erfarenhet i byggbranschen genomför jag grundliga besiktningar av villor, bostadsrätter och fastigheter i hela Sundsvall. Du får en detaljerad rapport med fotografisk dokumentation inom 48 timmar.',
     seo: {
-      title: 'Överlåtelsebesiktning Sundsvall - Certifierad Besiktningsman | Ytterman',
+      title: 'Överlåtelsebesiktning i Sundsvall | Ytterman',
       description: 'Överlåtelsebesiktning i Sundsvall. Kontor i Viksjö, 20+ års erfarenhet. Detaljerad rapport inom 48 timmar. Villor, bostadsrätter och fastigheter. Boka din besiktning idag.',
       keywords: 'överlåtelsebesiktning Sundsvall, besiktning Sundsvall, besiktningsman Sundsvall, husbesiktning Sundsvall, fastighetsbesiktning Sundsvall, besiktning hus Sundsvall, överlåtelsebesiktning villa Sundsvall, köpbesiktning Sundsvall, säljbesiktning Sundsvall, besiktningsprotokoll Sundsvall'
     },
@@ -202,7 +202,7 @@ export const overlatelsebesiktningCityData: Record<string, Overlatelsebesiktning
     heroSubtitle: 'Professionell besiktning i hela Kramfors kommun',
     heroDescription: 'Letar du efter en besiktningsman i Kramfors? Med erfarenhet av fastigheter i både Kramfors tätort och på landsbygden genomför jag professionella överlåtelsebesiktningar i hela kommunen. Detaljerad rapport inom 48 timmar, inga extra reskostnader.',
     seo: {
-      title: 'Överlåtelsebesiktning Kramfors - Professionell Besiktningsman | Ytterman',
+      title: 'Överlåtelsebesiktning i Kramfors | Ytterman',
       description: 'Överlåtelsebesiktning i Kramfors. Erfarenhet av tätort och landsbygd. 20+ års erfarenhet, inga reskostnader. Rapport inom 48 timmar. Boka besiktning.',
       keywords: 'överlåtelsebesiktning Kramfors, besiktning Kramfors, besiktningsman Kramfors, husbesiktning Kramfors, fastighetsbesiktning Kramfors, besiktning hus Kramfors, överlåtelsebesiktning villa Kramfors, köpbesiktning Kramfors, säljbesiktning Kramfors, besiktningsprotokoll Kramfors'
     },
@@ -304,7 +304,7 @@ export const overlatelsebesiktningCityData: Record<string, Overlatelsebesiktning
     heroSubtitle: 'Professionell besiktning för hela Örnsköldsvik',
     heroDescription: 'Söker du en besiktningsman i Örnsköldsvik? Med över 20 års erfarenhet i byggbranschen genomför jag professionella överlåtelsebesiktningar i hela Örnsköldsviks kommun. Från kustnära villor till centrala fastigheter – du får en detaljerad rapport inom 48 timmar.',
     seo: {
-      title: 'Överlåtelsebesiktning Örnsköldsvik - Professionell Besiktning | Ytterman',
+      title: 'Överlåtelsebesiktning i Örnsköldsvik | Ytterman',
       description: 'Överlåtelsebesiktning i Örnsköldsvik. 20+ års erfarenhet, detaljerad rapport inom 48 timmar. Villor, bostadsrätter och fastigheter i hela kommunen. Boka besiktning.',
       keywords: 'överlåtelsebesiktning Örnsköldsvik, besiktning Örnsköldsvik, besiktningsman Örnsköldsvik, husbesiktning Örnsköldsvik, fastighetsbesiktning Örnsköldsvik, besiktning hus Örnsköldsvik, överlåtelsebesiktning villa Örnsköldsvik, köpbesiktning Örnsköldsvik, säljbesiktning Örnsköldsvik, besiktningsprotokoll Örnsköldsvik'
     },

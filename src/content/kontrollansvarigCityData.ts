@@ -45,7 +45,7 @@ export const cityData: Record<string, CityData> = {
     heroSubtitle: 'Certifierad kontrollansvarig med lokal närvaro i Sundsvall',
     heroDescription: 'Behöver du en kontrollansvarig i Sundsvall? Som certifierad kontrollansvarig (KA enligt PBL) med kontor i Viksjö och över 20 års erfarenhet i byggbranschen är jag din lokala expert. Jag hjälper dig genom hela byggprocessen – från kontrollplan till slutbevis – med snabb service och personligt engagemang.',
     seo: {
-      title: 'Kontrollansvarig Sundsvall - Certifierad KA med Lokal Närvaro | Ytterman',
+      title: 'Kontrollansvarig i Sundsvall | Ytterman',
       description: 'Certifierad kontrollansvarig i Sundsvall. Kontor i Viksjö med 20+ års erfarenhet. Fast pris, snabb service för villor, tillbyggnader och kommersiella projekt. Boka kostnadsfri konsultation.',
       keywords: 'kontrollansvarig Sundsvall, kontrollansvarig Sundsvalls kommun, KA Sundsvall, byggkontroll Sundsvall, kontrollplan Sundsvall, slutbevis Sundsvall, kontrollansvarig villa Sundsvall, kontrollansvarig bygglov Sundsvall, certifierad kontrollansvarig Sundsvall, PBL kontroll Sundsvall'
     },
@@ -198,7 +198,7 @@ export const cityData: Record<string, CityData> = {
     heroSubtitle: 'Certifierad kontrollansvarig för Kramfors kommun',
     heroDescription: 'Letar du efter en kontrollansvarig i Kramfors? Som certifierad kontrollansvarig (KA enligt PBL) med erfarenhet av byggprojekt i hela Kramfors kommun hjälper jag dig genom byggprocessen. Över 20 års erfarenhet, inga extra reskostnader och personlig service från kontrollplan till slutbevis.',
     seo: {
-      title: 'Kontrollansvarig Kramfors - Certifierad KA för Hela Kommunen | Ytterman',
+      title: 'Kontrollansvarig i Kramfors | Ytterman',
       description: 'Certifierad kontrollansvarig i Kramfors. Erfarenhet av tätort och landsbygd, inga reskostnader. 20+ års erfarenhet, fast pris. Boka kostnadsfri konsultation.',
       keywords: 'kontrollansvarig Kramfors, kontrollansvarig Kramfors kommun, KA Kramfors, byggkontroll Kramfors, kontrollplan Kramfors, slutbevis Kramfors, kontrollansvarig villa Kramfors, kontrollansvarig bygglov Kramfors, certifierad kontrollansvarig Kramfors, PBL kontroll Kramfors'
     },
@@ -249,7 +249,7 @@ export const cityData: Record<string, CityData> = {
     heroSubtitle: 'Certifierad kontrollansvarig för Sollefteå kommun',
     heroDescription: 'Behöver du en kontrollansvarig i Sollefteå? Med erfarenhet av landsbygdsbyggnation och klimatanpassat byggande är jag din certifierade kontrollansvarig (KA enligt PBL) för Sollefteå kommun. Över 20 års erfarenhet, inga extra reskostnader och trygg service från kontrollplan till slutbevis.',
     seo: {
-      title: 'Kontrollansvarig Sollefteå - Certifierad KA för Landsbygd & Tätort | Ytterman',
+      title: 'Kontrollansvarig i Sollefteå | Ytterman',
       description: 'Certifierad kontrollansvarig i Sollefteå. Erfarenhet av landsbygdsbyggnation och klimatanpassat byggande. 20+ års erfarenhet, inga reskostnader. Boka kostnadsfri konsultation.',
       keywords: 'kontrollansvarig Sollefteå, kontrollansvarig Sollefteå kommun, KA Sollefteå, byggkontroll Sollefteå, kontrollplan Sollefteå, slutbevis Sollefteå, kontrollansvarig villa Sollefteå, kontrollansvarig bygglov Sollefteå, certifierad kontrollansvarig Sollefteå, PBL kontroll Sollefteå'
     },

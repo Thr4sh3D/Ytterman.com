@@ -1,5 +1,11 @@
 import { useEffect } from 'react';
 
+interface FormSubmissionData {
+  name?: string;
+  project?: string;
+  has_phone?: boolean;
+}
+
 // GTM tracking hook
 export const useGoogleAdsTracking = () => {
   useEffect(() => {
@@ -34,7 +40,7 @@ export const useGoogleAdsTracking = () => {
     }
   };
 
-  const trackFormSubmission = (formType: string, formData?: any) => {
+  const trackFormSubmission = (formType: string, formData?: FormSubmissionData) => {
     console.log('Tracking form submission:', formType, formData);
     
     // Skicka event till GTM dataLayer
@@ -152,11 +158,3 @@ export const useGoogleAdsTracking = () => {
     trackDownload
   };
 };
-
-// TypeScript declarations för global dataLayer och gtag
-declare global {
-  interface Window {
-    gtag?: (...args: any[]) => void;
-    dataLayer: any[];
-  }
-}
