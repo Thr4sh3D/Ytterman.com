@@ -42,7 +42,21 @@ export const Footer = () => {
 
             {/* Bygglov.se Kvalitetsbadge */}
             <div className="mt-6">
-              <div id="bygglov-badge-container" style={{ width: '160px' }} />
+              <div id="bygglov-badge-container" className="w-40">
+                <ExternalSiteLink
+                  href="https://bygglov.se/"
+                  ariaLabel="Bygglov.se verifierad ansluten sedan 2025 – extern länk"
+                  underline={false}
+                  className="block"
+                >
+                  <img
+                    src="https://github.com/user-attachments/assets/ccf961d8-a3a5-47fe-bc0b-c2c5b912ece9"
+                    alt="Bygglov.se verifierad ansluten sedan 2025"
+                    className="block h-auto w-full"
+                    loading="lazy"
+                  />
+                </ExternalSiteLink>
+              </div>
             </div>
           </section>
 
