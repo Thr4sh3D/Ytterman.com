@@ -80,7 +80,6 @@ const OverlatelsebesiktningPage = () => {
         "addressRegion": "Västernorrland",
         "addressCountry": "SE"
       },
-      "telephone": "+46761118447",
       "email": "tobias@ytterman.com"
     },
     "areaServed": [
@@ -139,9 +138,8 @@ const OverlatelsebesiktningPage = () => {
             href: BOOKING_OVL_URL
           } : undefined}
           ctaSecondary={{
-            text: "076-111 84 47",
-            href: "tel:+46761118447",
-            phone: true
+            text: "tobias@ytterman.com",
+            href: "/kontakt/?contact=callback",
           }}
           bannerContent={{
             icon: Home,

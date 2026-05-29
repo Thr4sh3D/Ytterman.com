@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin, Clock, CheckCircle } from 'lucide-react';
+import { CalendarCheck2, Mail, MapPin, Clock, CheckCircle, MessageCircle } from 'lucide-react';
 
 interface ContactInfoProps {
   className?: string;
@@ -7,18 +7,25 @@ interface ContactInfoProps {
 export const ContactInfo = ({ className = '' }: ContactInfoProps) => {
   const contactInfo = [
     {
-      icon: Phone,
-      title: "Telefon",
-      value: "076-111 84 47",
-      link: "tel:+46761118447",
-      description: "Ring för akuta frågor"
-    },
-    {
       icon: Mail,
       title: "E-post",
       value: "tobias@ytterman.com",
       link: "mailto:tobias@ytterman.com",
       description: "Skicka dina frågor"
+    },
+    {
+      icon: CalendarCheck2,
+      title: "Boka samtal",
+      value: "Boka tid eller bli uppringd",
+      link: "/kontakt/?contact=callback",
+      description: "Vi återkopplar snabbt"
+    },
+    {
+      icon: MessageCircle,
+      title: "WhatsApp",
+      value: "Skriv på WhatsApp",
+      link: "https://wa.me/46761118447",
+      description: "Snabb kontakt via meddelande"
     },
     {
       icon: MapPin,

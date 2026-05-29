@@ -197,9 +197,9 @@ export const PricingPackages = () => {
               variant="outline"
               className="border-2 border-primary text-primary hover:bg-primary hover:text-white"
             >
-              <a href="tel:+46761118447" aria-label="Ring oss">
+              <a href="/kontakt/?contact=callback" aria-label="Begär återuppringning">
                 <Phone className="w-5 h-5 mr-2" />
-                076-111 84 47
+                tobias@ytterman.com
               </a>
             </Button>
           </div>

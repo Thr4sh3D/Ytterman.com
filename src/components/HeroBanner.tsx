@@ -51,7 +51,7 @@ export const HeroBanner = () => {
               <p className="text-xs text-muted-foreground mb-1">Kontakta mig direkt</p>
               <div className="flex items-center space-x-2">
                 <Phone className="w-4 h-4 text-accent" />
-                <span className="font-semibold text-foreground">076-111 84 47</span>
+                <span className="font-semibold text-foreground">tobias@ytterman.com</span>
               </div>
             </div>
             

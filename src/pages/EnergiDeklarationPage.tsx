@@ -74,7 +74,6 @@ const EnergiDeklarationPage = () => {
         "addressRegion": "Västernorrland",
         "addressCountry": "SE"
       },
-      "telephone": "+46761118447",
       "email": "tobias@ytterman.com"
     },
     "areaServed": [
@@ -133,9 +132,8 @@ const EnergiDeklarationPage = () => {
             href: "/kontakt"
           }}
           ctaSecondary={{
-            text: "Ring direkt",
-            href: "tel:+46761118447",
-            phone: true
+            text: "Bli uppringd",
+            href: "/kontakt/?contact=callback",
           }}
           bannerContent={{
             icon: Zap,

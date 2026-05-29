@@ -174,17 +174,17 @@ const TackPage = () => {
                   <div className="bg-slate-50 p-8 rounded-xl text-center">
                     <Phone className="w-12 h-12 text-primary mx-auto mb-4" />
                     <h3 className="text-xl font-bold text-slate-900 mb-2">
-                      Ring direkt
+                      Bli uppringd
                     </h3>
                     <p className="text-slate-600 mb-4">
                       För akuta frågor eller snabb kontakt
                     </p>
                     <a 
-                      href="tel:+46761118447"
+                      href="/kontakt/?contact=callback"
                       className="inline-flex items-center px-6 py-3 earth-gradient text-white rounded-lg hover:opacity-90 transition-opacity"
                     >
                       <Phone className="w-5 h-5 mr-2" />
-                      076-111 84 47
+                      tobias@ytterman.com
                     </a>
                   </div>
                   

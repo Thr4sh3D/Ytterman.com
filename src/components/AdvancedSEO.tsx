@@ -91,7 +91,6 @@ export const AdvancedSEO = ({
     "alternateName": "Tobias Ytterman",
     "description": "Certifierad kontrollansvarig (KA) och BAS-P/BAS-U i Västernorrland. Över 20 års erfarenhet inom byggteknik.",
     "url": "https://ytterman.com",
-    "telephone": "+46761118447",
     "email": "tobias@ytterman.com",
     "address": {
       "@type": "PostalAddress",
@@ -325,7 +324,7 @@ export const AdvancedSEO = ({
       
       {/* Mobile and Viewport */}
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <meta name="format-detection" content="telephone=yes" />
+      <meta name="format-detection" content="telephone=no" />
       
       {/* Structured Data */}
       {organization && (

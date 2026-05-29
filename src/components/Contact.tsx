@@ -72,7 +72,7 @@ export const Contact = ({ selectedPackage = '', prefilledMessage = '' }: Contact
       console.error('Error sending message:', error);
       toast({
         title: "Fel vid skickning",
-        description: "Ett fel uppstod. Försök igen eller ring direkt på 076-111 84 47.",
+        description: "Ett fel uppstod. Försök igen eller mejla oss på tobias@ytterman.com.",
         variant: "destructive"
       });
     } finally {
@@ -90,9 +90,9 @@ export const Contact = ({ selectedPackage = '', prefilledMessage = '' }: Contact
   const contactInfo = [
     {
       icon: Phone,
-      title: "Telefon",
-      value: "076-111 84 47",
-      action: () => window.open('tel:+46761118447')
+      title: "Bli uppringd",
+      value: "Begär återuppringning",
+      action: () => window.open('/kontakt/?contact=callback')
     },
     {
       icon: Mail,
@@ -158,7 +158,7 @@ export const Contact = ({ selectedPackage = '', prefilledMessage = '' }: Contact
               <p className="text-muted-foreground">
                 Jag erbjuder alltid en kostnadsfri första konsultation där vi går igenom 
                 ditt projekt och diskuterar vilka tjänster som behövs. Du får ett fast 
-                prisförslag utan förbindelser. Ring eller skicka ett meddelande så 
+                prisförslag utan förbindelser. Mejla eller begär återuppringning så 
                 bokar vi ett möte redan idag.
               </p>
             </div>

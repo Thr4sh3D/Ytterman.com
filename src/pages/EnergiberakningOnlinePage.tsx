@@ -253,11 +253,11 @@ const EnergiberakningOnlinePage = () => {
                 Kontakta mig
               </a>
               <a 
-                href="tel:+46706424242" 
+                href="/kontakt/?contact=callback" 
                 className="border-2 border-stone-300 hover:border-stone-400 text-stone-700 px-8 py-3 rounded-lg font-semibold transition-colors inline-flex items-center justify-center gap-2"
               >
                 <Phone className="w-5 h-5" />
-                Ring direkt
+                Bli uppringd
               </a>
             </div>
           </div>

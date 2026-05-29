@@ -7,7 +7,6 @@ export const SEOEnhancements = () => {
     "name": "Ytterman - Kontrollansvarig & BAS",
     "description": "Certifierad Kontrollansvarig och Byggarbetsmiljösamordnare (BAS-P/BAS-U) i Västernorrland. Över 20 års erfarenhet inom byggbranschen.",
     "url": "https://ytterman.com",
-    "telephone": "+46761118447",
     "email": "tobias@ytterman.com",
     "address": {
       "@type": "PostalAddress",

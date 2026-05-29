@@ -21,7 +21,7 @@ const PriserPage = () => {
     <>
       <AdvancedSEO 
         title="Priser Kontrollansvarig & BAS 2025 - Timpris & Fastpris | Ytterman"
-        description="Transparenta priser för kontrollansvarig, BAS-P och BAS-U. Timpris 1,200-1,800 kr/h eller fastpris från 19,999 kr. Kostnadsfri offert - Ring 076-111 84 47!"
+        description="Transparenta priser för kontrollansvarig, BAS-P och BAS-U. Timpris 1,200-1,800 kr/h eller fastpris från 19,999 kr. Kostnadsfri offert - Mejla tobias@ytterman.com!"
         keywords="kontrollansvarig pris, kontrollansvarig timpris, kontrollansvarig kostnad, vad kostar kontrollansvarig, BAS-P pris, BAS-U pris, byggsamordnare pris, Västernorrland"
         url="https://ytterman.com/priser"
         breadcrumbs={breadcrumbs}
@@ -72,10 +72,10 @@ const PriserPage = () => {
                     Få kostnadsfri offert
                   </a>
                   <a 
-                    href="tel:0761118447" 
+                    href="/kontakt/?contact=callback" 
                     className="inline-block bg-white text-primary px-8 py-4 rounded-lg font-semibold hover:bg-stone-50 transition-colors border-2 border-primary"
                   >
-                    Ring: 076-111 84 47
+                    E-post: tobias@ytterman.com
                   </a>
                 </div>
               </div>
@@ -444,10 +444,10 @@ const PriserPage = () => {
                       Begär offert nu
                     </a>
                     <a 
-                      href="tel:0761118447" 
+                      href="/kontakt/?contact=callback" 
                       className="inline-block bg-white text-primary px-8 py-3 rounded-lg font-semibold hover:bg-stone-50 transition-colors border-2 border-primary"
                     >
-                      Ring för snabbt svar
+                      Begär återuppringning
                     </a>
                   </div>
                 </div>
@@ -565,10 +565,10 @@ const PriserPage = () => {
                   <p className="text-stone-600 mb-4">Eller kontakta mig direkt:</p>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                     <a 
-                      href="tel:0761118447" 
+                      href="/kontakt/?contact=callback" 
                       className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-semibold"
                     >
-                      📞 076-111 84 47
+                      🔁 Bli uppringd
                     </a>
                     <span className="hidden sm:inline text-stone-400">|</span>
                     <a 

@@ -62,7 +62,6 @@ const KontrollansvarigCityPage = ({ cityData: city }: KontrollansvarigCityPagePr
         "addressRegion": "Västernorrland",
         "addressCountry": "SE"
       },
-      "telephone": "+46761118447",
       "email": "tobias@ytterman.com",
       "geo": {
         "@type": "GeoCoordinates",
@@ -131,9 +130,8 @@ const KontrollansvarigCityPage = ({ cityData: city }: KontrollansvarigCityPagePr
             href: "/kontakt"
           }}
           ctaSecondary={{
-            text: "Ring direkt",
-            href: "tel:+46761118447",
-            phone: true
+            text: "Bli uppringd",
+            href: "/kontakt/?contact=callback",
           }}
           bannerContent={{
             icon: Shield,

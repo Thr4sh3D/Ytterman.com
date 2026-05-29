@@ -365,10 +365,10 @@ const OmradenPage = () => {
                     </p>
                     <div className="flex flex-wrap gap-4">
                       <a 
-                        href="tel:0761118447" 
+                        href="/kontakt/?contact=callback" 
                         className="earth-gradient text-white px-6 py-2 rounded-lg font-semibold hover:opacity-90 transition-colors inline-block"
                       >
-                        Ring: 076-111 84 47
+                        E-post: tobias@ytterman.com
                       </a>
                       <a 
                         href="#kontakt" 
@@ -526,10 +526,10 @@ const OmradenPage = () => {
                   </p>
                   <div className="flex flex-wrap gap-4 justify-center">
                     <a 
-                      href="tel:0761118447" 
+                      href="/kontakt/?contact=callback" 
                       className="earth-gradient text-white px-8 py-3 rounded-lg font-semibold hover:opacity-90 transition-colors shadow-lg inline-block"
                     >
-                      📞 076-111 84 47
+                      🔁 Bli uppringd
                     </a>
                     <a 
                       href="#kontakt" 
@@ -615,10 +615,10 @@ const OmradenPage = () => {
                 <div className="text-center">
                   <p className="text-stone-600 mb-4">Eller ring direkt för snabbast svar:</p>
                   <a 
-                    href="tel:0761118447" 
+                    href="/kontakt/?contact=callback" 
                     className="inline-block text-2xl font-bold text-primary hover:text-primary/80"
                   >
-                    076-111 84 47
+                    tobias@ytterman.com
                   </a>
                   <p className="text-sm text-stone-500 mt-2">Vardagar 8-17, övrig tid via mail</p>
                 </div>

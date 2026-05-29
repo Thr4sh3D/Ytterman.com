@@ -22,7 +22,7 @@ const KontaktPage = () => {
     <>
       <AdvancedSEO 
         title="Kontakta Ytterman - Kontrollansvarig & BAS Västernorrland"
-        description="Behöver du kontrollansvarig eller BAS? Ring 076-111 84 47 eller mejla tobias@ytterman.com. Kostnadsfri konsultation. Svar inom 24h!"
+        description="Behöver du kontrollansvarig eller BAS? Mejla oss, boka samtal eller begär återuppringning. Snabb återkoppling inom 24h."
         keywords="kontakt kontrollansvarig, BAS-P BAS-U Västernorrland, byggkonsult Sundsvall, Härnösand, Sollefteå, Timrå, Kramfors, tobias ytterman"
         url="https://ytterman.com/kontakt"
         breadcrumbs={breadcrumbs}
@@ -67,12 +67,12 @@ const KontaktPage = () => {
                 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <a 
-                    href="tel:+46761118447"
+                    href="/kontakt/?contact=callback"
                     className="inline-flex items-center px-8 py-4 earth-gradient text-white rounded-lg hover:opacity-90 transition-opacity text-lg font-semibold focus:ring-4 focus:ring-primary/20 focus:outline-none"
-                    aria-label="Ring direkt till Ytterman på telefonnummer 076-111 84 47"
+                    aria-label="Begär att bli uppringd av Ytterman"
                   >
                     <Phone className="w-5 h-5 mr-2" aria-hidden="true" />
-                    Ring direkt: 076-111 84 47
+                    Bli uppringd
                   </a>
                   <a 
                     href="mailto:tobias@ytterman.com"

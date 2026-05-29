@@ -171,10 +171,10 @@ const BlogPostPage = () => {
                       Kontakta oss
                     </a>
                     <a
-                      href="tel:+46761118447"
+                      href="/kontakt/?contact=callback"
                       className="inline-flex items-center justify-center px-6 py-3 border-2 border-slate-300 text-slate-900 rounded-lg hover:border-slate-400 transition-colors font-semibold"
                     >
-                      Ring: 076-111 84 47
+                      E-post: tobias@ytterman.com
                     </a>
                   </div>
                 </div>

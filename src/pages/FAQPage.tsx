@@ -207,12 +207,12 @@ const FAQPage = () => {
                   Kontakta oss
                 </Button>
                 <Button 
-                  onClick={() => window.location.href = 'tel:+46761118447'}
+                  onClick={() => window.location.href = '/kontakt/?contact=callback'}
                   size="lg"
                   variant="outline"
                   className="border-white text-white hover:bg-white hover:text-slate-900"
                 >
-                  Ring: 076-111 84 47
+                  E-post: tobias@ytterman.com
                 </Button>
               </div>
             </div>

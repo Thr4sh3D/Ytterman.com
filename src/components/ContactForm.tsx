@@ -53,8 +53,8 @@ const ContactForm = () => {
     }));
   };
 
-  const handlePhoneClick = (phoneNumber: string) => {
-    trackPhoneClick(phoneNumber);
+  const handlePhoneClick = () => {
+    trackPhoneClick('callback_request');
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -107,7 +107,7 @@ const ContactForm = () => {
       
       toast({
         title: "Kunde inte skicka meddelandet",
-        description: "Försök igen eller ring oss direkt på 076-111 84 47.",
+        description: "Försök igen eller mejla oss på tobias@ytterman.com.",
         variant: "destructive",
       });
     } finally {
@@ -231,7 +231,7 @@ const ContactForm = () => {
               {submitStatus === 'error' && (
                 <div className="flex items-center gap-2 text-red-600 bg-red-50 p-3 rounded-lg">
                   <AlertCircle className="w-5 h-5" />
-                  <span>Kunde inte skicka meddelandet. Försök igen eller ring direkt.</span>
+                  <span>Kunde inte skicka meddelandet. Försök igen eller mejla oss.</span>
                 </div>
               )}
             </form>
@@ -248,13 +248,13 @@ const ContactForm = () => {
               <div className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-blue-600" />
                 <div>
-                  <p className="font-medium text-slate-800">Telefon</p>
+                  <p className="font-medium text-slate-800">Bli uppringd</p>
                   <a 
-                    href="tel:+46761118447" 
+                    href="/kontakt/?contact=callback" 
                     className="text-blue-600 hover:text-blue-700 transition-colors"
-                    onClick={() => handlePhoneClick('+46761118447')}
+                    onClick={handlePhoneClick}
                   >
-                    076-111 84 47
+                    Begär återuppringning
                   </a>
                 </div>
               </div>
@@ -295,18 +295,18 @@ const ContactForm = () => {
             <CardContent className="p-6">
               <h3 className="font-semibold text-slate-800 mb-2">Snabb kontakt</h3>
               <p className="text-slate-600 mb-4">
-                Behöver du svar direkt? Ring oss så svarar vi inom kontorstid.
+                Behöver du svar direkt? Begär en återuppringning så återkommer vi inom kontorstid.
               </p>
               <Button 
                 asChild 
                 className="w-full earth-gradient hover:opacity-90 text-white"
               >
                 <a 
-                  href="tel:+46761118447"
-                  onClick={() => handlePhoneClick('+46761118447')}
+                  href="/kontakt/?contact=callback"
+                  onClick={handlePhoneClick}
                 >
                   <Phone className="w-4 h-4 mr-2" />
-                  Ring nu: 076-111 84 47
+                  Begär återuppringning
                 </a>
               </Button>
             </CardContent>

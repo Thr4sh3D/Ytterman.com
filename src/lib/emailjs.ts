@@ -46,7 +46,7 @@ export const sendContactEmail = async (formData: ContactFormData): Promise<{ suc
     console.error('EmailJS Error:', error);
     return { 
       success: false, 
-      error: 'Kunde inte skicka meddelandet. Försök igen eller ring direkt på 076-111 84 47.' 
+      error: 'Kunde inte skicka meddelandet. Försök igen eller mejla oss på tobias@ytterman.com.' 
     };
   }
 };

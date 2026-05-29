@@ -322,9 +322,9 @@ const ByggstartPlanerare = () => {
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="border-slate-300">
-                <a href="tel:+46761118447">
+                <a href="/kontakt/?contact=callback">
                   <Phone className="w-4 h-4 mr-2" />
-                  Ring Tobias
+                  Bli uppringd
                 </a>
               </Button>
               <Button asChild size="lg" variant="outline" className="border-slate-300">

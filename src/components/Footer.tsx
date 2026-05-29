@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin } from 'lucide-react';
+import { CalendarCheck2, Mail, MapPin, MessageCircle } from 'lucide-react';
 import { ExternalSiteLink } from '@/components/ExternalSiteLink';
 import { buildTimeIso, shortCommitSha } from '@/lib/buildInfo';
 
@@ -23,15 +23,21 @@ export const Footer = () => {
             </p>
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
-                <Phone className="w-5 h-5 text-primary" />
-                <a href="tel:+46761118447" className="hover:text-primary transition-colors">
-                  076-111 84 47
-                </a>
-              </div>
-              <div className="flex items-center space-x-3">
                 <Mail className="w-5 h-5 text-primary" />
                 <a href="mailto:tobias@ytterman.com" className="hover:text-primary transition-colors">
                   tobias@ytterman.com
+                </a>
+              </div>
+              <div className="flex items-center space-x-3">
+                <CalendarCheck2 className="w-5 h-5 text-primary" />
+                <a href="/kontakt/?contact=callback" className="hover:text-primary transition-colors">
+                  Boka samtal / bli uppringd
+                </a>
+              </div>
+              <div className="flex items-center space-x-3">
+                <MessageCircle className="w-5 h-5 text-primary" />
+                <a href="https://wa.me/46761118447" className="hover:text-primary transition-colors">
+                  WhatsApp
                 </a>
               </div>
               <div className="flex items-center space-x-3">

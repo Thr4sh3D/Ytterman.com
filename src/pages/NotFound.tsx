@@ -162,11 +162,11 @@ const NotFound = () => {
                   Kontakta oss
                 </Button>
                 <a 
-                  href="tel:+46761118447"
+                  href="/kontakt/?contact=callback"
                   className="inline-flex items-center px-8 py-4 border-2 border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-colors text-lg font-semibold focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-                  aria-label="Ring direkt till 076-111 84 47"
+                  aria-label="Begär att bli uppringd"
                 >
-                  Ring direkt: 076-111 84 47
+                  Bli uppringd
                 </a>
               </div>
             </div>

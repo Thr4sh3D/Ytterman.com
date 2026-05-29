@@ -38,7 +38,6 @@ const Integritetspolicy = () => {
                     <p><strong>MTY Konsult</strong></p>
                     <p>Organisationsnummer: 8809134672</p>
                     <p>E-post: tobias@ytterman.com</p>
-                    <p>Telefon: 076-111 84 47</p>
                   </div>
                 </section>
 
@@ -110,7 +109,7 @@ const Integritetspolicy = () => {
                     <li><strong>Dataportabilitet</strong> - få ut dina uppgifter i strukturerat format</li>
                   </ul>
                   <p className="mt-4">
-                    För att utöva dina rättigheter, kontakta oss på tobias@ytterman.com eller 076-111 84 47.
+                    För att utöva dina rättigheter, kontakta oss på tobias@ytterman.com.
                   </p>
                 </section>
 
@@ -150,7 +149,6 @@ const Integritetspolicy = () => {
                   <div className="bg-stone-50 p-6 rounded-lg mt-4">
                     <p><strong>MTY Konsult</strong></p>
                     <p>E-post: tobias@ytterman.com</p>
-                    <p>Telefon: 076-111 84 47</p>
                     <p className="mt-4">
                       Du har också rätt att lämna klagomål till Integritetsskyddsmyndigheten (IMY) 
                       om du anser att vi behandlar dina personuppgifter på ett felaktigt sätt.

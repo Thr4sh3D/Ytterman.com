@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { CheckCircle, Phone, Award, Shield, Clock, MessageCircle } from 'lucide-react';
+import { CheckCircle, Mail, Award, Shield, Clock, MessageCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { LucideIcon } from 'lucide-react';
 import { normalizeInternalPath } from '@/utils/url';
@@ -18,7 +18,6 @@ interface ServiceHeroProps {
   ctaSecondary?: {
     text: string;
     href: string;
-    phone?: boolean;
   };
   stats?: {
     icon: LucideIcon;
@@ -53,9 +52,7 @@ export const ServiceHero = ({
 
   const displayStats = stats || defaultStats;
   const primaryHref = ctaPrimary ? normalizeInternalPath(ctaPrimary.href) || ctaPrimary.href : undefined;
-  const secondaryHref = ctaSecondary && !ctaSecondary.phone
-    ? normalizeInternalPath(ctaSecondary.href) || ctaSecondary.href
-    : ctaSecondary?.href;
+  const secondaryHref = ctaSecondary ? normalizeInternalPath(ctaSecondary.href) || ctaSecondary.href : undefined;
 
   return (
     <section className="pt-24 pb-16 bg-gradient-to-br from-background via-secondary/20 to-accent/10">
@@ -107,14 +104,7 @@ export const ServiceHero = ({
                   className="border-accent text-accent hover:bg-accent hover:text-white text-lg px-8 py-6"
                   asChild
                 >
-                  {ctaSecondary.phone ? (
-                    <a href={ctaSecondary.href}>
-                      <Phone className="w-5 h-5 mr-2" />
-                      {ctaSecondary.text}
-                    </a>
-                  ) : (
-                    <Link to={secondaryHref || ctaSecondary.href}>{ctaSecondary.text}</Link>
-                  )}
+                  <Link to={secondaryHref || ctaSecondary.href}>{ctaSecondary.text}</Link>
                 </Button>
               )}
             </div>
@@ -165,8 +155,8 @@ export const ServiceHero = ({
                         <div>
                           <p className="text-xs text-muted-foreground mb-1">Kontakta mig direkt</p>
                           <div className="flex items-center space-x-2">
-                            <Phone className="w-4 h-4 text-accent" />
-                            <span className="font-semibold text-foreground">076-111 84 47</span>
+                            <Mail className="w-4 h-4 text-accent" />
+                            <span className="font-semibold text-foreground">tobias@ytterman.com</span>
                           </div>
                         </div>
                         

@@ -64,7 +64,7 @@ export const ContactFormExample: React.FC = () => {
   const handlePhoneClick = () => {
     // Track phone call conversion when user clicks phone number
     trackPhoneCall();
-    window.location.href = 'tel:+46761118447';
+    window.location.href = '/kontakt/?contact=callback';
   };
 
   const handleEmailClick = () => {
@@ -80,12 +80,12 @@ export const ContactFormExample: React.FC = () => {
       {/* Contact info with tracking */}
       <div className="mb-6 p-4 bg-stone-50 rounded-lg">
         <p className="mb-2">
-          <strong>Telefon:</strong>{' '}
+          <strong>Bli uppringd:</strong>{' '}
           <button 
             onClick={handlePhoneClick}
             className="text-amber-600 hover:text-amber-700 underline"
           >
-            076-111 84 47
+            Begär återuppringning
           </button>
         </p>
         <p>

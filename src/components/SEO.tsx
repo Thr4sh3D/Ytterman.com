@@ -24,7 +24,6 @@ export const SEO = ({
     "alternateName": "Tobias Ytterman",
     "description": "Certifierad Kontrollansvarig och Byggarbetsmiljösamordnare med över 20 års erfarenhet i byggbranschen i Västernorrland",
     "url": url,
-    "telephone": "+46761118447",
     "email": "tobias@ytterman.com",
     "address": {
       "@type": "PostalAddress",
