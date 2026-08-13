@@ -9,11 +9,13 @@ export const DynamicSitemap = () => {
         
         // Check if the response indicates no domain (development environment)
         if (response && typeof response === 'object' && 'error' in response) {
-          if (response.error === 'No domain found for deployment') {
+          const message = typeof response.error === 'string' ? response.error : '';
+
+          if (message === 'No domain found for deployment') {
             console.log('Sitemap generation skipped - app not yet deployed');
             return;
           }
-          throw new Error(response.error);
+          throw new Error(message || 'Sitemap generation failed');
         }
         
         console.log('Sitemap generated successfully');
@@ -25,7 +27,7 @@ export const DynamicSitemap = () => {
         }
         
         // Check if the error is related to no domain found (development environment)
-        if (error?.message?.includes('No domain found for deployment')) {
+        if (error instanceof Error && error.message.includes('No domain found for deployment')) {
           console.log('Sitemap generation skipped - app not yet deployed');
           return;
         }

@@ -30,6 +30,16 @@ const createMockClient = () => ({
     deleteBlogPosts: async () => ({ success: true, message: 'Mock blog posts deleted' }),
     updateBlogPostImage: async () => ({ success: true, message: 'Mock blog post image updated' })
   },
+  integrations: {
+    core: {
+      uploadFile: async () => null,
+      invokeLLM: async () => ({}),
+      generateImage: async () => null,
+      getUploadedFile: async () => null,
+      sendEmail: async () => ({ success: true, message: 'Mock email sent' }),
+      extractDataFromUploadedFile: async () => null
+    }
+  },
   initialize: () => Promise.resolve(),
   auth: {
     me: async () => null,
