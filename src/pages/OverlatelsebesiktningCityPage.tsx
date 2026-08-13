@@ -97,7 +97,8 @@ const OverlatelsebesiktningCityPage = ({ cityData: city }: Overlatelsebesiktning
             ]} />
           </div>
         </section>
-        
+
+        <main id="main-content">
         <ServiceHero
           badge="Överlåtelsebesiktning"
           title={city.heroTitle}
@@ -313,6 +314,7 @@ const OverlatelsebesiktningCityPage = ({ cityData: city }: Overlatelsebesiktning
             </div>
           </section>
         </div>
+        </main>
 
         <Footer />
       </div>

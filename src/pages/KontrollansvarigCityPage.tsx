@@ -104,7 +104,8 @@ const KontrollansvarigCityPage = ({ cityData: city }: KontrollansvarigCityPagePr
             ]} />
           </div>
         </section>
-        
+
+        <main id="main-content">
         <ServiceHero
           badge="Certifierad Kontrollansvarig"
           title={city.heroTitle}
@@ -318,6 +319,7 @@ const KontrollansvarigCityPage = ({ cityData: city }: KontrollansvarigCityPagePr
             </div>
           </section>
         </div>
+        </main>
 
         <Footer />
       </div>

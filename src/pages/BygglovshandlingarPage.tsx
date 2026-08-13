@@ -117,7 +117,8 @@ const BygglovshandlingarPage = () => {
             <Breadcrumbs items={[{ label: 'Bygglovshandlingar', href: '/bygglovshandlingar' }]} />
           </div>
         </section>
-        
+
+        <main id="main-content">
         <ServiceHero
           badge="Professionella Handlingar"
           title="Bygglovshandlingar i Västernorrland"
@@ -308,6 +309,7 @@ const BygglovshandlingarPage = () => {
         </section>
 
         </div> {/* Close bg-gradient div */}
+        </main>
 
         <Footer />
       </div>

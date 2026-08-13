@@ -5,11 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node scripts/copy-404.mjs && node scripts/create-github-pages-routes.mjs && node scripts/generate-sitemap.js && node scripts/check-business-facts.mjs",
+    "build": "node scripts/generate-sitemap.js && vite build && vite build --ssr src/entry-server.tsx --outDir dist-ssr && node scripts/create-github-pages-routes.mjs && node scripts/check-business-facts.mjs && node scripts/check-prerendered-html.mjs",
     "build:dev": "vite build --mode development",
-    "build:prod": "vite build && node scripts/copy-404.mjs && node scripts/create-github-pages-routes.mjs && node scripts/generate-sitemap.js && node scripts/check-business-facts.mjs",
+    "build:prod": "node scripts/generate-sitemap.js && vite build && vite build --ssr src/entry-server.tsx --outDir dist-ssr && node scripts/create-github-pages-routes.mjs && node scripts/check-business-facts.mjs && node scripts/check-prerendered-html.mjs",
     "lint": "eslint .",
     "test:content": "node scripts/check-business-facts.mjs",
+    "test:prerender": "node scripts/check-prerendered-html.mjs",
     "typecheck": "tsc -b --pretty false",
     "preview": "vite preview",
     "generate:sitemap": "node scripts/generate-sitemap.js"

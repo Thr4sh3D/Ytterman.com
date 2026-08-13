@@ -1,10 +1,10 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { QueryClientProvider } from '@tanstack/react-query';
 import { HelmetProvider } from 'react-helmet-async';
 import { Toaster } from '@/components/ui/sonner';
 import { ScrollToTop } from '@/components/ScrollToTop';
-import { GoogleSearchConsole } from '@/components/GoogleSearchConsole';
 import { UrlCanonicalizer } from '@/components/UrlCanonicalizer';
+import { createAppQueryClient } from '@/lib/queryClient';
 import { lazy, Suspense } from 'react';
 
 // Critical Pages (eager load for fast initial render)
@@ -80,22 +80,10 @@ const BlogPostPage = lazy(() => import('@/pages/BlogPostPage'));
 const ByggstartPlanerare = lazy(() => import('@/pages/ByggstartPlanerare'));
 const ProdukterPage = lazy(() => import('@/pages/ProdukterPage'));
 
-const queryClient = new QueryClient({
-    defaultOptions: {
-        queries: {
-            staleTime: 1000 * 60 * 5,
-            retry: 1,
-        },
-    },
-});
-
-function App() {
+export function AppRoutes() {
     return (
-        <HelmetProvider>
-            <QueryClientProvider client={queryClient}>
-                <Router>
+        <>
                     <UrlCanonicalizer />
-                    <GoogleSearchConsole />
                     <ScrollToTop />
                     <div className="min-h-screen">
                         <Suspense fallback={
@@ -181,7 +169,19 @@ function App() {
                         </Suspense>
                         <Toaster />
                     </div>
-                </Router>
+        </>
+    );
+}
+
+const queryClient = createAppQueryClient();
+
+function App() {
+    return (
+        <HelmetProvider>
+            <QueryClientProvider client={queryClient}>
+                <BrowserRouter>
+                    <AppRoutes />
+                </BrowserRouter>
             </QueryClientProvider>
         </HelmetProvider>
     );

@@ -111,6 +111,7 @@ const OverlatelsebesiktningPage = () => {
       </section>
       
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-amber-50/30 to-slate-50">
+        <main id="main-content">
         <ServiceHero
           badge="Överlåtelsebesiktning"
           title="Överlåtelsebesiktning i Västernorrland"
@@ -482,6 +483,7 @@ const OverlatelsebesiktningPage = () => {
           </div>
         </section>
 
+        </main>
         <Footer />
       </div>
     </>

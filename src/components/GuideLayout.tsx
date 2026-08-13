@@ -51,7 +51,6 @@ export const GuideLayout = ({
         organization={true}
         breadcrumbs={breadcrumbs}
         article={{
-          publishedTime: new Date().toISOString(),
           author: 'Tobias Ytterman',
           section: 'Guider',
           tags: keywords.split(', ')

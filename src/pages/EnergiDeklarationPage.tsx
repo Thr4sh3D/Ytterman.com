@@ -104,7 +104,8 @@ const EnergiDeklarationPage = () => {
             <Breadcrumbs items={[{ label: 'Energideklaration', href: '/energideklaration' }]} />
           </div>
         </section>
-        
+
+        <main id="main-content">
         <ServiceHero
           badge="Partnertjänst"
           title="Energideklaration i Västernorrland"
@@ -332,6 +333,7 @@ const EnergiDeklarationPage = () => {
         </section>
 
         </div> {/* Close bg-gradient div */}
+        </main>
 
         <Footer />
       </div>

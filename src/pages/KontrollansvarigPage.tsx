@@ -107,7 +107,8 @@ const KontrollansvarigPage = () => {
             <Breadcrumbs items={[{ label: 'Kontrollansvarig', href: '/kontrollansvarig' }]} />
           </div>
         </section>
-        
+
+        <main id="main-content">
         <ServiceHero
           badge="Certifierad Kontrollansvarig"
           title="Kontrollansvarig i Västernorrland"
@@ -298,6 +299,7 @@ const KontrollansvarigPage = () => {
         </section>
 
         </div> {/* Close bg-gradient div */}
+        </main>
 
         <Footer />
       </div>
