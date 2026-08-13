@@ -6,52 +6,52 @@ import { FAQ } from "@/components/FAQ";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ServiceHero } from "@/components/ServiceHero";
-import { ExternalSiteLink } from "@/components/ExternalSiteLink";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { CheckCircle, Phone, Mail, MapPin, Clock, Award, Shield, FileText } from "lucide-react";
+import { CheckCircle, Mail, MapPin, Clock, Award, Shield, FileText } from "lucide-react";
 import { Link } from "react-router-dom";
+import { BUSINESS_COPY, COMPANY, KA_CERT, PRICE_LABELS, PRICING, formatSek } from '@/config/company';
+import { cityData } from '@/content/kontrollansvarigCityData';
 
 const KontrollansvarigPage = () => {
   const kontrollansvarigFAQ = [
     {
       question: "Vad gör en kontrollansvarig?",
-      answer: "En kontrollansvarig säkerställer att byggprojektet följer gällande byggregler, kontrollerar att alla tekniska egenskapskrav uppfylls och utfärdar slutbevis när byggnaden är klar."
+      answer: BUSINESS_COPY.kaScope
     },
     {
       question: "När behövs en kontrollansvarig?",
-      answer: "En kontrollansvarig krävs för alla bygglov enligt Plan- och bygglagen (PBL). Detta gäller både nybyggnation, tillbyggnader och större renoveringar."
+      answer: "En certifierad kontrollansvarig krävs i många lov- och anmälningspliktiga projekt. Byggnadsnämnden bedömer behovet utifrån åtgärden och anger det i ärendet."
     },
     {
       question: "Vad kostar en kontrollansvarig?",
-      answer: "Priset beror på projekttyp. KA Bas för en tillbyggnad kostar från 29 500 kr inkl. moms, ombyggnation från 32 500 kr och nybyggnad från 34 500 kr. Kontakta oss för en kostnadsfri offert anpassad efter ditt specifika projekt."
+      answer: `För ${PRICING.year} kostar KA Bas för tillbyggnad ${formatSek(PRICING.ka.extension.bas)}, ombyggnation ${formatSek(PRICING.ka.renovation.bas)} och nyproduktion av fritidshus ${formatSek(PRICING.ka.newVacationHome.bas)} inklusive moms.`
     },
     {
       question: "Hur lång tid tar kontrollprocessen?",
-      answer: "Tidsåtgången beror på projektets omfattning. Vi arbetar effektivt för att minimera förseningar och håller dig informerad genom hela processen."
+      answer: "Tidsåtgången beror på projektets omfattning, byggtid, kontrollplan och underlag. Upplägg, kontaktvägar och tidplan bekräftas för det aktuella uppdraget."
     }
   ];
 
   const services = [
     {
       title: "Kontrollplan",
-      description: "Upprättande av detaljerad kontrollplan för ditt byggprojekt",
+      description: "Biträde till byggherren med ett projektspecifikt förslag till kontrollplan",
       icon: <FileText className="h-6 w-6" />
     },
     {
       title: "Teknisk kontroll",
-      description: "Kontroll av tekniska egenskapskrav och byggnadstekniska lösningar",
+      description: "Uppföljning av kontrollplan, gällande villkor och att nödvändiga kontroller utförs",
       icon: <Shield className="h-6 w-6" />
     },
     {
-      title: "Slutbesiktning",
-      description: "Genomförande av slutbesiktning och utfärdande av slutbevis",
+      title: "Utlåtande inför slutbesked",
+      description: "Sammanställning av dokumentation och kontrollansvarigs utlåtande till byggherren",
       icon: <CheckCircle className="h-6 w-6" />
     },
     {
       title: "Rådgivning",
-      description: "Kontinuerlig rådgivning genom hela byggprocessen",
+      description: "Avstämningar och information inom det avtalade KA-uppdraget",
       icon: <Award className="h-6 w-6" />
     }
   ];
@@ -64,28 +64,19 @@ const KontrollansvarigPage = () => {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "name": "Kontrollansvarig tjänster",
-    "description": "Professionella kontrollansvarig tjänster i Västernorrland. Certifierad kontrollansvarig med över 20 års erfarenhet i byggbranschen.",
+    "name": "Kontrollansvarig enligt PBL",
+    "description": `${KA_CERT.title} med ${KA_CERT.authorizationLabel.toLowerCase()} och ${COMPANY.experienceLabel.toLowerCase()} i byggbranschen.`,
     "provider": {
       "@type": "LocalBusiness",
-      "name": "Ytterman",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Viksjö",
-        "addressRegion": "Västernorrland",
-        "addressCountry": "SE"
-      },
-      "telephone": "+46761118447",
-      "email": "tobias@ytterman.com"
+      "name": COMPANY.brandName,
+      "email": COMPANY.email
     },
-    "areaServed": [
-      "Sundsvall", "Härnösand", "Sollefteå", "Timrå", "Kramfors"
-    ],
+    "areaServed": COMPANY.areaServed,
     "serviceType": "Kontrollansvarig",
     "offers": {
       "@type": "Offer",
-      "description": "Kontrollansvarig tjänster från 19,999 SEK",
-      "priceRange": "Från 19,999 SEK"
+      "description": `Paketpriser ${PRICING.year}, inklusive moms`,
+      "priceRange": PRICE_LABELS.schemaRange
     }
   };
 
@@ -93,8 +84,8 @@ const KontrollansvarigPage = () => {
     <>
       <AdvancedSEO
         title="Kontrollansvarig i Västernorrland - Certifierad & Erfaren | Ytterman"
-        description="Behöver du en kontrollansvarig? Certifierad kontrollansvarig med 20+ års erfarenhet i Sundsvall, Härnösand, Timrå, Kramfors och Sollefteå. Fast pris, trygg process."
-        keywords="kontrollansvarig, kontrollansvarig Sundsvall, kontrollansvarig Härnösand, kontrollansvarig Timrå, kontrollansvarig Kramfors, kontrollansvarig Sollefteå, kontrollansvarig Västernorrland, byggkontroll, slutbevis, kontrollplan, PBL"
+        description={`${KA_CERT.title} med ${KA_CERT.authorizationLabel.toLowerCase()} och ${COMPANY.experienceLabel.toLowerCase()} i byggbranschen. Se paketpriser för ${PRICING.year} och begär offert.`}
+        keywords="kontrollansvarig, kontrollansvarig Sundsvall, kontrollansvarig Härnösand, kontrollansvarig Timrå, kontrollansvarig Kramfors, kontrollansvarig Sollefteå, kontrollansvarig Västernorrland, byggkontroll, slutbesked, kontrollplan, PBL"
         url="https://ytterman.com/kontrollansvarig"
         type="website"
         breadcrumbs={breadcrumbs}
@@ -121,31 +112,31 @@ const KontrollansvarigPage = () => {
           badge="Certifierad Kontrollansvarig"
           title="Kontrollansvarig i Västernorrland"
           subtitle="Trygg byggprocess med erfaren kontrollansvarig"
-          description="Säkerställ att ditt byggprojekt följer alla regler och krav. Som certifierad kontrollansvarig (KA enligt PBL) med över 20 års erfarenhet i byggbranschen hjälper jag dig genom hela processen - från kontrollplan till slutbevis."
+          description={BUSINESS_COPY.kaScope}
           features={[
-            "Kontrollplan och teknisk kontroll enligt PBL",
-            "Slutbesiktning och utfärdande av slutbevis",
-            "Erfaren och certifierad kontrollansvarig",
-            "Fast pris eller tydlig timdebitering",
-            "Digital hantering och snabb återkoppling"
+            "Biträde med förslag till kontrollplan enligt PBL",
+            "Dokumentation och utlåtande inför slutbesked",
+            KA_CERT.authorizationLabel,
+            `${PRICE_LABELS.kaBasFrom} inkl. moms för tillbyggnad Bas`,
+            "Omfattning och tidsplan bekräftas i offerten"
           ]}
           ctaPrimary={{
             text: "Begär offert",
             href: "/kontakt"
           }}
           ctaSecondary={{
-            text: "Ring direkt",
-            href: "tel:+46761118447",
-            phone: true
+            text: "Mejla direkt",
+            href: COMPANY.emailHref,
+            external: true
           }}
           bannerContent={{
             icon: Shield,
-            title: "Certifierad Expert",
+            title: "Certifierad kontrollansvarig",
             subtitle: "Kontrollansvarig enligt PBL",
             certifications: [
               "Medlem i SBR - Svenska Byggingenjörers Riksförbund",
-              "Certifierad enligt nya regelverket 2025",
-              "Digital hantering och snabb återkoppling"
+              `${KA_CERT.issuer}, ${KA_CERT.certificateNumber}`,
+              `Giltigt till ${KA_CERT.validUntil}`
             ]
           }}
         />
@@ -189,7 +180,7 @@ const KontrollansvarigPage = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Kontakt & Offert</h3>
-                  <p className="text-gray-600">Vi diskuterar ditt projekt och ger dig en kostnadsfri offert.</p>
+                  <p className="text-gray-600">Vi går igenom projektets art, underlag, preliminära tidplan och möjlig omfattning innan offert lämnas.</p>
                 </div>
               </div>
               <div className="flex items-start space-x-4">
@@ -198,7 +189,7 @@ const KontrollansvarigPage = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Kontrollplan</h3>
-                  <p className="text-gray-600">Jag upprättar en detaljerad kontrollplan anpassad för ditt projekt.</p>
+                  <p className="text-gray-600">Jag biträder dig som byggherre med att upprätta ett projektspecifikt förslag till kontrollplan.</p>
                 </div>
               </div>
               <div className="flex items-start space-x-4">
@@ -207,7 +198,7 @@ const KontrollansvarigPage = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Kontroll & Uppföljning</h3>
-                  <p className="text-gray-600">Kontinuerlig kontroll och uppföljning under byggprocessen.</p>
+                  <p className="text-gray-600">Jag följer upp kontrollplanen och dokumenterar mina byggplatsbesök. Respektive namngiven kontrollant utför sina kontroller.</p>
                 </div>
               </div>
               <div className="flex items-start space-x-4">
@@ -215,8 +206,8 @@ const KontrollansvarigPage = () => {
                   4
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Slutbevis</h3>
-                  <p className="text-gray-600">Slutbesiktning och utfärdande av slutbevis när allt är klart.</p>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Underlag inför slutbesked</h3>
+                  <p className="text-gray-600">Jag sammanställer dokumentation och lämnar mitt utlåtande. Byggnadsnämnden beslutar om slutbesked.</p>
                 </div>
               </div>
             </div>
@@ -229,15 +220,9 @@ const KontrollansvarigPage = () => {
               Vad ingår inte i KA-uppdraget?
             </h2>
             <p className="text-lg text-gray-600 leading-relaxed">
-              Som Kontrollansvarig granskar vi att projektet följer PBL – men tillstånd för Heta Arbeten®, brandvakt och certifierade utförare ligger utanför KA-rollen. Behöver entreprenören{' '}
-              <ExternalSiteLink
-                href="https://www.tysafety.se/heta-arbeten"
-                ariaLabel="Heta Arbeten-tillstånd och brandvakt via TY Safety – extern länk"
-                className="text-blue-700"
-              >
-                Heta Arbeten®-tillstånd och brandvakt via TY Safety
-              </ExternalSiteLink>
-              ? Tobias driver även den utbildningen.
+              KA tar inte över byggherrens ansvar, projektörernas tekniska ansvar eller
+              entreprenörernas arbetsgivar- och utförandeansvar. Entreprenadrättslig slutbesiktning,
+              byggledning och projektering ingår endast om de avtalas som separata uppdrag.
             </p>
           </div>
         </section>
@@ -249,44 +234,22 @@ const KontrollansvarigPage = () => {
               Kontrollansvarig i din kommun
             </h2>
             <p className="text-lg text-gray-600 text-center mb-8">
-              Vi erbjuder kontrollansvarig tjänster i hela Västernorrland. Läs mer om vår lokala närvaro i din kommun:
+              Följande sidor innehåller lokal information. De innebär inte garanterad tillgänglighet eller bestämda resevillkor:
             </p>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              <Link to="/kontrollansvarig-sundsvall/" className="flex items-center justify-between p-5 bg-white rounded-lg border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all group">
-                <div>
-                  <span className="font-semibold text-gray-900 group-hover:text-blue-600">Kontrollansvarig Sundsvall</span>
-                  <span className="block text-sm text-gray-500">Hembas – direkt tillgänglig</span>
-                </div>
-                <MapPin className="h-5 w-5 text-gray-400 group-hover:text-blue-600" />
-              </Link>
-              <Link to="/kontrollansvarig-harnosand/" className="flex items-center justify-between p-5 bg-white rounded-lg border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all group">
-                <div>
-                  <span className="font-semibold text-gray-900 group-hover:text-blue-600">Kontrollansvarig Härnösand</span>
-                  <span className="block text-sm text-gray-500">30 min från Sundsvall</span>
-                </div>
-                <MapPin className="h-5 w-5 text-gray-400 group-hover:text-blue-600" />
-              </Link>
-              <Link to="/kontrollansvarig-timra/" className="flex items-center justify-between p-5 bg-white rounded-lg border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all group">
-                <div>
-                  <span className="font-semibold text-gray-900 group-hover:text-blue-600">Kontrollansvarig Timrå</span>
-                  <span className="block text-sm text-gray-500">20 min från Sundsvall</span>
-                </div>
-                <MapPin className="h-5 w-5 text-gray-400 group-hover:text-blue-600" />
-              </Link>
-              <Link to="/kontrollansvarig-kramfors/" className="flex items-center justify-between p-5 bg-white rounded-lg border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all group">
-                <div>
-                  <span className="font-semibold text-gray-900 group-hover:text-blue-600">Kontrollansvarig Kramfors</span>
-                  <span className="block text-sm text-gray-500">40 min från Sundsvall</span>
-                </div>
-                <MapPin className="h-5 w-5 text-gray-400 group-hover:text-blue-600" />
-              </Link>
-              <Link to="/kontrollansvarig-solleftea/" className="flex items-center justify-between p-5 bg-white rounded-lg border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all group">
-                <div>
-                  <span className="font-semibold text-gray-900 group-hover:text-blue-600">Kontrollansvarig Sollefteå</span>
-                  <span className="block text-sm text-gray-500">45 min från Sundsvall</span>
-                </div>
-                <MapPin className="h-5 w-5 text-gray-400 group-hover:text-blue-600" />
-              </Link>
+              {Object.values(cityData).map((city) => (
+                <Link
+                  key={city.id}
+                  to={`/${city.slug}/`}
+                  className="flex items-center justify-between p-5 bg-white rounded-lg border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all group"
+                >
+                  <div>
+                    <span className="font-semibold text-gray-900 group-hover:text-blue-600">Kontrollansvarig {city.name}</span>
+                    <span className="block text-sm text-gray-500">{city.travelTime}</span>
+                  </div>
+                  <MapPin className="h-5 w-5 text-gray-400 group-hover:text-blue-600" />
+                </Link>
+              ))}
             </div>
           </div>
         </section>
@@ -308,27 +271,27 @@ const KontrollansvarigPage = () => {
               Behöver du en kontrollansvarig?
             </h2>
             <p className="text-xl mb-8 opacity-90">
-              Kontakta mig idag för en kostnadsfri konsultation och offert.
+              Skicka projektets underlag så återkommer jag med nästa steg och offert.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-white text-slate-900 hover:bg-slate-100" asChild>
                 <Link to="/kontakt/">Skicka förfrågan</Link>
               </Button>
               <Button size="lg" className="bg-transparent text-white border-2 border-white hover:bg-white hover:text-blue-600" asChild>
-                <a href="mailto:tobias@ytterman.com">
+                <a href={`mailto:${COMPANY.email}`}>
                   <Mail className="mr-2 h-4 w-4" />
-                  tobias@ytterman.com
+                  {COMPANY.email}
                 </a>
               </Button>
             </div>
             <div className="mt-8 flex items-center justify-center space-x-6 text-sm opacity-80">
               <div className="flex items-center">
                 <MapPin className="mr-2 h-4 w-4" />
-                Verksam i hela Västernorrland
+                Förfrågningar från {COMPANY.region}
               </div>
               <div className="flex items-center">
                 <Clock className="mr-2 h-4 w-4" />
-                Snabb handläggning
+                Tidplan bekräftas i offerten
               </div>
             </div>
           </div>

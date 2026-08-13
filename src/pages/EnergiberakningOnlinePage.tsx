@@ -1,327 +1,107 @@
-import React from 'react';
+import { Link } from 'react-router-dom';
+import { Calculator, CheckCircle, FileQuestion, Mail } from 'lucide-react';
 import { AdvancedSEO } from '@/components/AdvancedSEO';
-import { CanonicalUrl } from "@/components/CanonicalUrl";
 import { Breadcrumbs } from '@/components/Breadcrumbs';
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { CheckCircle, Calculator, Clock, Zap, Home, ArrowRight, Phone, Mail } from 'lucide-react';
+import { CanonicalUrl } from '@/components/CanonicalUrl';
+import { Footer } from '@/components/Footer';
+import { Header } from '@/components/Header';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { BUSINESS_COPY, SERVICES } from '@/config/company';
+
+const service = SERVICES.energyCalculation;
 
 const EnergiberakningOnlinePage = () => {
-  const benefits = [
-    {
-      title: "Snabb och enkel",
-      description: "Få din energiberäkning klar på bara några minuter direkt online",
-      icon: <Clock className="w-8 h-8 text-blue-600" />
-    },
-    {
-      title: "Professionell kvalitet",
-      description: "Samma noggrannhet som traditionella energiberäkningar",
-      icon: <Calculator className="w-8 h-8 text-green-600" />
-    },
-    {
-      title: "Kostnadeffektivt",
-      description: "Betydligt lägre kostnad än traditionella energiberäkningar",
-      icon: <Zap className="w-8 h-8 text-amber-600" />
-    }
-  ];
-
-  const features = [
-    "Automatiserad beräkning baserat på dina uppgifter",
-    "Professionell rapport som uppfyller alla krav",
-    "Direkt nedladdning när beräkningen är klar",
-    "Stöd för alla typer av byggnader",
-    "Kvalitetssäkrad av certifierade experter",
-    "24/7 tillgänglighet - beräkna när det passar dig"
-  ];
-
   const breadcrumbs = [
     { name: 'Hem', url: 'https://ytterman.com' },
-    { name: 'Energiberäkning Online', url: 'https://ytterman.com/energiberakning-online' }
+    { name: service.name, url: `https://ytterman.com${service.path}` },
   ];
 
   return (
     <>
       <AdvancedSEO
-        title="Energiberäkning online för bygglov | Ytterman"
-        description="Gör din energiberäkning online snabbt och enkelt. Professionell kvalitet till fast pris 2,999 kr. Sundsvall, Härnösand, Sollefteå. Svar inom minuter!"
-        keywords="energiberäkning online, energiberäkning bygglov, energiberäkning pris, energiberäkning snabb, energiberäkning Västernorrland, Sundsvall, Härnösand"
-        url="https://ytterman.com/energiberakning-online"
+        title="Energiberäkning online – intresseanmälan | Ytterman"
+        description="Skicka en intresseanmälan för digital energiberäkning. Underlag, pris och leverans bekräftas innan en beställning görs."
+        keywords="energiberäkning online, energiberäkning bygglov, energiberäkning intresseanmälan, Västernorrland"
+        url={`https://ytterman.com${service.path}`}
         type="website"
         breadcrumbs={breadcrumbs}
       />
-      
-      <CanonicalUrl path="/energiberakning-online" />
+      <CanonicalUrl path={service.path} />
 
-      <Header />
-      <section className="py-4 bg-white border-b">
-        <div className="container mx-auto px-4">
-          <Breadcrumbs items={[{ label: 'Energiberäkning Online', href: '/energiberakning-online' }]} />
-        </div>
-      </section>
-      
-      <div className="min-h-screen bg-gradient-to-br from-stone-50 via-blue-50/30 to-stone-50">
-
-        {/* Hero Section */}
-        <div className="bg-gradient-to-r from-blue-800 to-amber-800 text-white py-16">
+      <div className="min-h-screen bg-slate-50">
+        <Header />
+        <section className="border-b bg-white py-4">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <Badge className="bg-white/20 text-white border-white/30 mb-4">
-                Ny tjänst
-              </Badge>
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                Energiberäkning Online
-              </h1>
-              <p className="text-xl md:text-2xl text-blue-100 mb-8">
-                Snabb, enkel och professionell energiberäkning direkt online. 
-                Perfekt för bygglov, energideklarationer och renoveringsprojekt.
+            <Breadcrumbs items={[{ label: service.name, href: service.path }]} />
+          </div>
+        </section>
+
+        <main>
+          <section className="bg-gradient-to-br from-slate-900 to-blue-900 py-16 text-white">
+            <div className="container mx-auto max-w-4xl px-4 text-center">
+              <span className="mb-5 inline-flex rounded-full bg-white/10 px-4 py-2 text-sm font-medium">
+                Intresseanmälan
+              </span>
+              <h1 className="mb-6 text-4xl font-bold md:text-5xl">{service.name}</h1>
+              <p className="mx-auto mb-8 max-w-2xl text-xl text-blue-100">
+                {service.shortDescription}
               </p>
-              <div className="flex flex-wrap justify-center gap-6 text-sm">
-                <div className="flex items-center gap-2">
-                  <Clock className="w-5 h-5" />
-                  <span>Klar på minuter</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Calculator className="w-5 h-5" />
-                  <span>Professionell kvalitet</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Zap className="w-5 h-5" />
-                  <span>Endast 2,999 kr</span>
-                </div>
+              <Button asChild size="lg" className="bg-white text-blue-900 hover:bg-blue-50">
+                <Link to="/kontakt/?service=energiberakning-online">
+                  <Mail className="mr-2 h-5 w-5" />
+                  Anmäl intresse
+                </Link>
+              </Button>
+            </div>
+          </section>
+
+          <section className="py-16">
+            <div className="container mx-auto max-w-5xl px-4">
+              <div className="grid gap-8 md:grid-cols-2">
+                <Card>
+                  <CardHeader>
+                    <Calculator className="mb-2 h-9 w-9 text-blue-700" />
+                    <CardTitle>Så hanteras din förfrågan</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-3">
+                      {service.features.map((feature) => (
+                        <li key={feature} className="flex gap-3 text-slate-700">
+                          <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-green-600" />
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <FileQuestion className="mb-2 h-9 w-9 text-amber-700" />
+                    <CardTitle>Ha gärna detta underlag redo</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4 text-slate-700">
+                    <p>
+                      Ritningar samt uppgifter om isolering, fönster, uppvärmning och
+                      ventilation gör det lättare att bedöma omfattningen.
+                    </p>
+                    <p>
+                      Vi bekräftar vilket underlag som krävs, priset och hur leveransen sker
+                      innan du tar ställning till en beställning.
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
+
+              <div className="mt-10 rounded-xl border border-amber-200 bg-amber-50 p-6 text-amber-950">
+                <h2 className="mb-2 text-xl font-semibold">Tydligt läge före beställning</h2>
+                <p>{BUSINESS_COPY.digitalInterest}</p>
               </div>
             </div>
-          </div>
-        </div>
+          </section>
+        </main>
 
-        {/* Benefits Section */}
-        <div className="container mx-auto px-4 py-16">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-stone-800 mb-4">
-              Varför välja vår online-tjänst?
-            </h2>
-            <p className="text-xl text-stone-600 max-w-3xl mx-auto">
-              Samma professionella kvalitet som traditionella energiberäkningar, 
-              men snabbare, enklare och mer kostnadseffektivt.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
-            {benefits.map((benefit, index) => (
-              <Card key={index} className="text-center border-stone-200 hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <div className="mx-auto mb-4">
-                    {benefit.icon}
-                  </div>
-                  <CardTitle className="text-xl">{benefit.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-base">{benefit.description}</CardDescription>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          {/* Features */}
-          <div className="bg-white rounded-xl p-8 shadow-sm border border-stone-200 mb-16">
-            <h3 className="text-2xl font-bold text-stone-800 mb-6 text-center">
-              Vad ingår i tjänsten?
-            </h3>
-            <div className="grid md:grid-cols-2 gap-4">
-              {features.map((feature, index) => (
-                <div key={index} className="flex items-start gap-3">
-                  <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                  <span className="text-stone-700">{feature}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Price Section */}
-          <div className="bg-gradient-to-r from-blue-50 to-amber-50 rounded-xl p-8 text-center mb-16">
-            <h3 className="text-2xl font-bold text-stone-800 mb-4">
-              Transparent prissättning
-            </h3>
-            <div className="text-4xl font-bold text-blue-600 mb-2">
-              2,999 kr
-            </div>
-            <p className="text-stone-600 mb-6">
-              Fast pris oavsett byggnadens storlek eller komplexitet
-            </p>
-            <div className="flex flex-wrap justify-center gap-4 text-sm text-stone-600">
-              <span>✓ Inga dolda kostnader</span>
-              <span>✓ Professionell rapport</span>
-              <span>✓ Direkt nedladdning</span>
-            </div>
-          </div>
-
-          <div className="grid lg:grid-cols-2 gap-8 mb-16">
-            <Card className="border-stone-200">
-              <CardHeader>
-                <CardTitle className="text-2xl text-stone-800">
-                  När passar energiberäkning online bäst?
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4 text-stone-700">
-                <p>
-                  Tjänsten passar dig som behöver ett snabbt och tydligt underlag inför bygglov,
-                  nyproduktion, tillbyggnad eller större energirelaterade beslut. Du får en smidig
-                  digital process där du själv fyller i uppgifterna när det passar dig.
-                </p>
-                <p>
-                  För många projekt är onlineformatet ett effektivt alternativ när du redan har god
-                  koll på bostadens eller byggnadens grunddata och vill komma vidare utan att vänta på
-                  en traditionell manuell beställningsprocess.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-stone-200">
-              <CardHeader>
-                <CardTitle className="text-2xl text-stone-800">
-                  Förberedelser som ger bättre resultat
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4 text-stone-700">
-                <p>
-                  Innan du startar är det bra att ha ritningar, uppgifter om isolering, fönster,
-                  uppvärmningssystem och ventilationslösning till hands. Ju bättre underlag du matar in,
-                  desto mer träffsäker blir energiberäkningen.
-                </p>
-                <p>
-                  Om du är osäker på vilka värden som ska användas kan du alltid kontakta Tobias
-                  Ytterman för vägledning kring hur uppgifterna bör tolkas för just ditt projekt.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-
-        {/* Online Tool Section */}
-        <div className="bg-white py-16">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-stone-800 mb-4">
-                Starta din energiberäkning nu
-              </h2>
-              <p className="text-xl text-stone-600 mb-6">
-                Fyll i dina uppgifter nedan så får du din professionella energiberäkning på bara några minuter.
-              </p>
-            </div>
-
-            {/* Embedded Tool */}
-            <div className="max-w-6xl mx-auto">
-              <div className="bg-stone-50 rounded-lg p-4 mb-4">
-                <div className="flex items-center justify-center gap-2 text-stone-600 mb-2">
-                  <Calculator className="w-5 h-5" />
-                  <span className="font-medium">Energiberäkning Online</span>
-                </div>
-              </div>
-              
-              <div className="rounded-lg overflow-hidden shadow-lg border border-stone-200">
-                <iframe 
-                  src="https://energi.holidaygroup.se/?utm_source=ytterman&pr=2999" 
-                  width="100%" 
-                  height="2200" 
-                  style={{border: 0, display: 'block'}}
-                  title="Energiberäkning Online"
-                  loading="lazy"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Support Section */}
-        <div className="bg-stone-100 py-16">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold text-stone-800 mb-6">
-              Behöver du hjälp?
-            </h2>
-            <p className="text-xl text-stone-600 mb-8 max-w-2xl mx-auto">
-              Har du frågor om energiberäkningen eller behöver personlig rådgivning? 
-              Kontakta mig så hjälper jag dig gärna.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a 
-                href="/kontakt/?service=energiberakning-online" 
-                className="earth-gradient hover:opacity-90 text-white px-8 py-3 rounded-lg font-semibold transition-colors inline-flex items-center justify-center gap-2"
-              >
-                <Mail className="w-5 h-5" />
-                Kontakta mig
-              </a>
-              <a 
-                href="tel:+46706424242" 
-                className="border-2 border-stone-300 hover:border-stone-400 text-stone-700 px-8 py-3 rounded-lg font-semibold transition-colors inline-flex items-center justify-center gap-2"
-              >
-                <Phone className="w-5 h-5" />
-                Ring direkt
-              </a>
-            </div>
-          </div>
-        </div>
-
-        {/* Related Services */}
-        <div className="container mx-auto px-4 py-16">
-          <h2 className="text-3xl font-bold text-stone-800 mb-8 text-center">
-            Relaterade tjänster
-          </h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            <Card className="hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <CardTitle className="text-lg">Energideklaration</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="mb-4">
-                  Komplett energideklaration för din fastighet med energiklass och åtgärdsförslag.
-                </CardDescription>
-                <a 
-                  href="/energideklaration/" 
-                  className="text-blue-600 hover:text-blue-700 font-semibold inline-flex items-center gap-1"
-                >
-                  Läs mer <ArrowRight className="w-4 h-4" />
-                </a>
-              </CardContent>
-            </Card>
-
-            <Card className="hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <CardTitle className="text-lg">Kontrollansvarig</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="mb-4">
-                  Professionell kontrollansvarig för ditt byggprojekt enligt gällande regelverk.
-                </CardDescription>
-                <a 
-                  href="/kontrollansvarig/" 
-                  className="text-blue-600 hover:text-blue-700 font-semibold inline-flex items-center gap-1"
-                >
-                  Läs mer <ArrowRight className="w-4 h-4" />
-                </a>
-              </CardContent>
-            </Card>
-
-            <Card className="hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <CardTitle className="text-lg">BAS-P & BAS-U</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="mb-4">
-                  Säkerhetssamordning för projektering och utförande av ditt byggprojekt.
-                </CardDescription>
-                <a 
-                  href="/bas-p/" 
-                  className="text-blue-600 hover:text-blue-700 font-semibold inline-flex items-center gap-1"
-                >
-                  Läs mer <ArrowRight className="w-4 h-4" />
-                </a>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-        
         <Footer />
       </div>
     </>

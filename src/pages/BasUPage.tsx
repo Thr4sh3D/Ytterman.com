@@ -6,37 +6,37 @@ import { FAQ } from "@/components/FAQ";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ServiceHero } from "@/components/ServiceHero";
-import { ExternalSiteLink } from "@/components/ExternalSiteLink";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle, Phone, Mail, MapPin, Clock, Award, Shield, FileText, Users, HardHat, Eye } from "lucide-react";
 import { Link } from "react-router-dom";
+import { BAS, COMPANY, SERVICES } from '@/config/company';
 
 const BasUPage = () => {
   const basUFAQ = [
     {
       question: "Vad är BAS-U?",
-      answer: "BAS-U (Byggarbetsmiljösamordnare under utförande) ansvarar för att samordna arbetsmiljöfrågor under byggfasen och säkerställer att arbetsmiljöplanen följs."
+      answer: "BAS-U är byggarbetsmiljösamordnare under utförandet. Rollen samordnar arbetsmiljöarbetet och följer upp arbetsmiljöplanen när en sådan krävs."
     },
     {
       question: "När behövs en BAS-U?",
-      answer: "BAS-U krävs när flera entreprenörer arbetar samtidigt på byggarbetsplatsen, eller när projektet beräknas ta mer än 30 arbetsdagar eller 500 persondagar."
+      answer: "Byggherren ska se till att en lämplig BAS-U utses för utförandet av bygg- och anläggningsarbetet. Ansvarsfördelningen bedöms för det aktuella projektet."
     },
     {
       question: "Vad ingår i BAS-U tjänsten?",
-      answer: "Arbetsmiljöuppföljning, säkerhetsronder, samordning av entreprenörer, incidentrapportering och säkerställande av att alla säkerhetsrutiner följs."
+      answer: "Arbetsmiljöuppföljning, samordning, riskhantering och dokumentation planeras efter projektets riskbild och framgår av uppdragsbeskrivningen."
     },
     {
       question: "Kan samma person vara både BAS-P och BAS-U?",
-      answer: "Ja, samma person kan vara både BAS-P och BAS-U, vilket ger kontinuitet och djup förståelse för projektets arbetsmiljöaspekter."
+      answer: "Ja, om byggherren utser personen och personen är lämplig för båda uppdragen. Roller, skeden och överlämning behöver ändå vara tydligt dokumenterade."
     }
   ];
 
   const services = [
     {
       title: "Säkerhetsronder",
-      description: "Regelbundna säkerhetsronder och kontroller på byggarbetsplatsen",
+      description: "Ronder och uppföljning enligt projektets riskbild och uppdrag",
       icon: <Eye className="h-6 w-6" />
     },
     {
@@ -46,7 +46,7 @@ const BasUPage = () => {
     },
     {
       title: "Incidenthantering",
-      description: "Hantering och rapportering av arbetsmiljöincidenter",
+      description: "Samordning av rutiner för avvikelser och incidenter",
       icon: <Shield className="h-6 w-6" />
     },
     {
@@ -65,35 +65,22 @@ const BasUPage = () => {
     "@context": "https://schema.org",
     "@type": "Service",
     "name": "BAS-U tjänster - Byggarbetsmiljösamordnare under utförande",
-    "description": "Professionella BAS-U tjänster i Västernorrland. Certifierad byggarbetsmiljösamordnare med över 20 års erfarenhet i byggbranschen.",
+    "description": `${SERVICES.basU.shortDescription} ${BAS.description}`,
     "provider": {
       "@type": "LocalBusiness",
-      "name": "Ytterman",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Viksjö",
-        "addressRegion": "Västernorrland",
-        "addressCountry": "SE"
-      },
-      "telephone": "+46761118447",
-      "email": "tobias@ytterman.com"
+      "name": COMPANY.brandName,
+      "url": COMPANY.siteUrl,
+      "email": COMPANY.email
     },
-    "areaServed": [
-      "Sundsvall", "Härnösand", "Sollefteå", "Timrå", "Kramfors"
-    ],
-    "serviceType": "BAS-U (Byggarbetsmiljösamordnare under utförande)",
-    "offers": {
-      "@type": "Offer",
-      "description": "BAS-U tjänster från 15,000 SEK",
-      "priceRange": "Från 15,000 SEK"
-    }
+    "areaServed": COMPANY.areaServed,
+    "serviceType": "BAS-U (Byggarbetsmiljösamordnare under utförande)"
   };
 
   return (
     <>
       <AdvancedSEO
         title="BAS-U i Västernorrland | Ytterman"
-        description="Behöver du BAS-U? Certifierad byggarbetsmiljösamordnare under utförande med 20+ års erfarenhet i Sundsvall, Härnösand, Sollefteå, Timrå, Kramfors."
+        description={`BAS-U i Västernorrland med ${COMPANY.experienceLabel.toLowerCase()}. Utbildning, kompetens och erfarenhet för arbetsmiljösamordning enligt ${BAS.regulation}.`}
         keywords="BAS-U, byggarbetsmiljösamordnare, säkerhetsronder, BAS-U Sundsvall, BAS-U Härnösand, BAS-U Västernorrland, arbetsmiljö byggarbetsplats"
         url="https://ytterman.com/bas-u"
         type="website"
@@ -118,33 +105,27 @@ const BasUPage = () => {
         </section>
         
         <ServiceHero
-          badge="Certifierad BAS-U"
+          badge="BAS-U – utbildad och erfaren"
           title="BAS-U i Västernorrland"
           subtitle="Säker arbetsmiljö under byggfasen"
-          description="Säkerställ en trygg arbetsmiljö under hela byggfasen. Som certifierad BAS-U (Byggarbetsmiljösamordnare under utförande) övervakar jag säkerheten på byggarbetsplatsen och samordnar alla entreprenörer."
-          features={[
-            "Säkerhetsronder och arbetsmiljökontroll",
-            "Samordning mellan entreprenörer",
-            "Certifierad enligt AFS 1999:3",
-            "Fast pris eller tydlig timdebitering",
-            "Kan kombineras med BAS-P och KA"
-          ]}
+          description="Som BAS-U samordnar jag arbetsmiljöarbetet under utförandet och följer upp att arbetsmiljöplanen och beslutade åtgärder används i projektet."
+          features={[...SERVICES.basU.features, "Kan kombineras med BAS-P och KA"]}
           ctaPrimary={{
             text: "Begär offert",
             href: "/kontakt"
           }}
           ctaSecondary={{
-            text: "Ring direkt",
-            href: "tel:+46761118447",
-            phone: true
+            text: "Mejla direkt",
+            href: COMPANY.emailHref,
+            external: true
           }}
           bannerContent={{
             icon: Eye,
-            title: "Certifierad BAS-U",
+            title: "Utbildad för BAS-U",
             subtitle: "Byggarbetsmiljösamordnare",
             certifications: [
-              "Certifierad enligt AFS 1999:3",
-              "Regelbundna säkerhetsronder på plats",
+              `Aktuellt regelverk: ${BAS.regulation}`,
+              "Ronder planeras utifrån projektets riskbild",
               "Kan kombineras med BAS-P och Kontrollansvarig"
             ]
           }}
@@ -197,7 +178,7 @@ const BasUPage = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Löpande kontroll</h3>
-                  <p className="text-gray-600">Regelbundna säkerhetsronder och kontroller på byggarbetsplatsen.</p>
+                  <p className="text-gray-600">Ronder och uppföljning planeras utifrån projektets riskbild och avtalade upplägg.</p>
                 </div>
               </div>
               <div className="flex items-start space-x-4">
@@ -215,7 +196,7 @@ const BasUPage = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Avslut</h3>
-                  <p className="text-gray-600">Slutrapport och dokumentation av arbetsmiljöarbetet.</p>
+                  <p className="text-gray-600">Sammanställning och överlämning enligt den avtalade uppdragsbeskrivningen.</p>
                 </div>
               </div>
             </div>
@@ -229,21 +210,21 @@ const BasUPage = () => {
                 BAS-U som håller ihop arbetsmiljöarbetet på byggarbetsplatsen
               </h2>
               <p className="text-lg text-gray-600 leading-relaxed">
-                När flera entreprenörer delar arbetsplats ökar behovet av tydlig samordning. BAS-U är
-                inte bara en formell roll på pappret, utan en central funktion för att skapa ordning i
-                dagliga rutiner, säkerhetsronder, avvikelser och uppföljning under hela byggskedet.
+                BAS-U samordnar aktörernas arbetsmiljöarbete under utförandet. Upplägget behöver
+                anpassas till projektets aktörer, riskbild, arbetsmiljöplan och förändringar under
+                byggskedet.
               </p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-xl">Tryggare arbetsplats i praktiken</CardTitle>
+                  <CardTitle className="text-xl">Strukturerad samordning i praktiken</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4 text-gray-600">
                   <p>
-                    Med löpande kontroll av etablering, skyddsåtgärder, ordning och samordning blir
-                    det lättare att upptäcka risker innan de leder till incidenter eller driftstörningar.
+                    Ronder och uppföljning av etablering, skyddsåtgärder, ordning och samordning
+                    planeras utifrån riskerna och den avtalade uppdragsbeskrivningen.
                   </p>
                   <p>
                     Jag arbetar med tydlig dialog mot både byggherre och entreprenörer så att det är
@@ -257,13 +238,12 @@ const BasUPage = () => {
                 </CardHeader>
                 <CardContent className="space-y-4 text-gray-600">
                   <p>
-                    Ett fungerande BAS-U-upplägg skapar bättre flyt i produktionen eftersom uppföljning,
-                    dokumentation och kommunikation sker löpande istället för först när problem redan har
-                    uppstått.
+                    Ett tydligt BAS-U-upplägg anger hur uppföljning, dokumentation och kommunikation
+                    ska fungera under utförandet.
                   </p>
                   <p>
-                    För projekt där jag även medverkar som BAS-P eller kontrollansvarig blir övergången
-                    mellan planering och utförande extra tydlig och effektiv för alla inblandade.
+                    Om samma person har flera uppdrag ska rollerna hållas isär och varje uppdrags
+                    omfattning dokumenteras tydligt.
                   </p>
                 </CardContent>
               </Card>
@@ -285,18 +265,13 @@ const BasUPage = () => {
           <div className="max-w-4xl mx-auto">
             <div className="rounded-2xl border border-orange-100 bg-orange-50 p-8">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                Brandskyddsansvar under utförandefasen
+                Samordning utan att ta över arbetsgivaransvaret
               </h2>
               <p className="text-lg text-gray-700 leading-relaxed">
-                BAS-U samordnar arbetsmiljön under utförandet enligt AFS 2023:1 – men det operativa systematiska brandskyddsarbetet (SBA) är en separat roll med eget kompetenskrav. Behöver ert projekt en namngiven brandskyddsansvarig? Anlita{' '}
-                <ExternalSiteLink
-                  href="https://www.tysafety.se/sba-byggarbetsplats"
-                  ariaLabel="extern brandskyddsansvarig SBA via TY Safety – extern länk"
-                  className="text-orange-700"
-                >
-                  extern brandskyddsansvarig (SBA) via TY Safety
-                </ExternalSiteLink>{' '}
-                – Tobias systerföretag som tar SBA-uppdrag i hela Västernorrland.
+                BAS-U samordnar arbetsmiljöarbetet under utförandet utifrån bland annat{' '}
+                {BAS.regulation}. Rollen ersätter inte arbetsgivarnas ansvar för egen personal,
+                utrustning och arbetsmetoder. Mandat, aktiviteter, uppföljning och dokumentation
+                ska anpassas till projektets faktiska riskbild.
               </p>
             </div>
           </div>
@@ -309,27 +284,27 @@ const BasUPage = () => {
               Behöver du BAS-U för ditt projekt?
             </h2>
             <p className="text-xl mb-8 opacity-90">
-              Kontakta mig idag för en kostnadsfri konsultation och offert.
+              Skicka projektets underlag så återkommer jag med nästa steg och offert.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-white text-slate-900 hover:bg-slate-100" asChild>
                 <Link to="/kontakt/">Skicka förfrågan</Link>
               </Button>
               <Button size="lg" className="bg-transparent text-white border-2 border-white hover:bg-white hover:text-orange-600" asChild>
-                <a href="mailto:tobias@ytterman.com">
+                <a href={`mailto:${COMPANY.email}`}>
                   <Mail className="mr-2 h-4 w-4" />
-                  tobias@ytterman.com
+                  {COMPANY.email}
                 </a>
               </Button>
             </div>
             <div className="mt-8 flex items-center justify-center space-x-6 text-sm opacity-80">
               <div className="flex items-center">
                 <MapPin className="mr-2 h-4 w-4" />
-                Verksam i hela Västernorrland
+                Förfrågningar från {COMPANY.region}
               </div>
               <div className="flex items-center">
                 <Clock className="mr-2 h-4 w-4" />
-                Snabb handläggning
+                Tidplan bekräftas i offerten
               </div>
             </div>
           </div>

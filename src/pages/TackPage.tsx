@@ -2,12 +2,12 @@ import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { AdvancedSEO } from '@/components/AdvancedSEO';
 import { CanonicalUrl } from '@/components/CanonicalUrl';
-import { CheckCircle, Phone, Mail, Calendar, ArrowRight } from 'lucide-react';
+import { CheckCircle, Mail, Calendar, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { normalizeInternalPath } from '@/utils/url';
+import { BUSINESS_COPY, COMPANY } from '@/config/company';
 
 const TackPage = () => {
   const [searchParams] = useSearchParams();
@@ -54,12 +54,12 @@ const TackPage = () => {
       case 'kontrollansvarig':
         return {
           title: 'Kontrollansvarig',
-          description: 'Vi återkommer inom 24 timmar med information om kontrollansvarig för ditt projekt.',
+          description: 'Vi går igenom uppgifterna och återkommer med nästa steg för ditt KA-projekt.',
           nextSteps: [
             'Genomgång av ditt projekt',
-            'Kostnadsfri konsultation',
-            'Fast prisoffert',
-            'Uppstart inom 1-2 veckor'
+            'Bedömning av underlag och omfattning',
+            'Offert med tydliga villkor',
+            'Tillgänglighet och möjlig start bekräftas'
           ]
         };
       case 'bas-p':
@@ -86,8 +86,8 @@ const TackPage = () => {
         };
       case 'paket-villa':
         return {
-          title: 'Komplett Villapaket',
-          description: 'Tack för ditt intresse av vårt kompletta villapaket.',
+          title: 'Villapaket – förfrågan',
+          description: 'Tack för din förfrågan om ett samordnat upplägg för villaprojektet.',
           nextSteps: [
             'Projektgenomgång',
             'Anpassad offert',
@@ -98,11 +98,11 @@ const TackPage = () => {
       default:
         return {
           title: 'Kontakt',
-          description: 'Tack för ditt meddelande. Vi återkommer så snart som möjligt.',
+          description: BUSINESS_COPY.defaultResponse,
           nextSteps: [
             'Genomgång av din förfrågan',
-            'Kostnadsfri konsultation',
-            'Skräddarsydd lösning',
+            'Bedömning av underlag och omfattning',
+            'Förslag på nästa steg',
             'Uppföljning'
           ]
         };
@@ -114,8 +114,8 @@ const TackPage = () => {
   return (
     <>
       <AdvancedSEO 
-        title="Tack för din förfrågan - Vi återkommer inom 24h | Ytterman"
-        description="Tack för din förfrågan om kontrollansvarig, BAS-P eller BAS-U. Vi återkommer inom 24 timmar med kostnadsfri konsultation och fast prisoffert."
+        title="Tack för din förfrågan | Ytterman"
+        description="Tack för din förfrågan om kontrollansvarig, BAS-P eller BAS-U. Vi går igenom uppgifterna och återkommer med nästa steg."
         keywords="tack, förfrågan skickad, kontrollansvarig offert, BAS konsultation"
         url="https://ytterman.com/tack"
         robots="noindex, follow"
@@ -172,19 +172,19 @@ const TackPage = () => {
                 
                 <div className="grid md:grid-cols-2 gap-8">
                   <div className="bg-slate-50 p-8 rounded-xl text-center">
-                    <Phone className="w-12 h-12 text-primary mx-auto mb-4" />
+                    <ArrowRight className="w-12 h-12 text-primary mx-auto mb-4" />
                     <h3 className="text-xl font-bold text-slate-900 mb-2">
-                      Ring direkt
+                      Kontaktformulär
                     </h3>
                     <p className="text-slate-600 mb-4">
-                      För akuta frågor eller snabb kontakt
+                      Komplettera din inskickade förfrågan
                     </p>
                     <a 
-                      href="tel:+46761118447"
+                      href={normalizeInternalPath('/kontakt')}
                       className="inline-flex items-center px-6 py-3 earth-gradient text-white rounded-lg hover:opacity-90 transition-opacity"
                     >
-                      <Phone className="w-5 h-5 mr-2" />
-                      076-111 84 47
+                      <ArrowRight className="w-5 h-5 mr-2" />
+                      Öppna formuläret
                     </a>
                   </div>
                   
@@ -197,11 +197,11 @@ const TackPage = () => {
                       Skicka ytterligare information
                     </p>
                     <a 
-                      href="mailto:tobias@ytterman.com"
+                      href={COMPANY.emailHref}
                       className="inline-flex items-center px-6 py-3 border-2 border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-colors"
                     >
                       <Mail className="w-5 h-5 mr-2" />
-                      tobias@ytterman.com
+                      {COMPANY.email}
                     </a>
                   </div>
                 </div>
@@ -288,7 +288,6 @@ const TackPage = () => {
         </main>
         
         <Footer />
-        <WhatsAppButton />
       </div>
     </>
   );

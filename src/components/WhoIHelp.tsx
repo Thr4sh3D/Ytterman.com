@@ -14,19 +14,19 @@ export const WhoIHelp = () => {
       icon: Home,
       title: "Privatpersoner som bygger villa",
       problem: "Du bygger ditt drömhus men känner dig osäker på regelverket. Du vill inte göra några misstag som kan kosta tid och pengar.",
-      solution: "Jag guidar dig genom hela processen med tydlig kommunikation. Du får en erfaren KA som känner kommunerna i Västernorrland väl och vet exakt vad som krävs för att få ditt projekt godkänt snabbt."
+      solution: "Jag kan ta rollen som kontrollansvarig när projektet ryms inom min behörighet och biträder då dig som byggherre inom det avtalade KA-uppdraget."
     },
     {
       icon: Building2,
       title: "BRF:er och bostadsrättsföreningar",
       description: "Ni planerar renovering eller tillbyggnad av er fastighet och behöver säkerställa att allt sker enligt PBL och arbetsmiljölagen.",
-      solution: "Jag erbjuder både KA och BAS-U/P i samma paket – perfekt för BRF-projekt. Ni får en samordnare som hanterar både teknisk kontroll och arbetsmiljö, vilket sparar både tid och administration."
+      solution: "KA och BAS-P/BAS-U kan kombineras när kompetens, mandat, kapacitet och rollfördelning är lämpliga och uttryckligen anges i offerten."
     },
     {
       icon: Users,
       title: "Fastighetsägare och byggföretag",
       description: "Ni behöver en pålitlig KA som kan hantera flera projekt samtidigt och som förstår kommersiella krav på tidseffektivitet.",
-      solution: "Med 20+ års erfarenhet och digital hantering kan jag hantera både stora och små projekt parallellt. Jag levererar snabbt, kommunicerar tydligt och sköter all dokumentation professionellt."
+      solution: "Jag bedömer varje förfrågan mot behörighet N, uppdragets omfattning och aktuell kapacitet. Arbetssätt och dokumentation anpassas till det avtalade uppdraget."
     }
   ];
 
@@ -40,7 +40,7 @@ export const WhoIHelp = () => {
               <span className="text-gradient">hur jag hjälper dig</span>
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Oavsett om du är privatperson, BRF eller byggföretag får du samma höga kvalitet och personliga engagemang.
+              Varje förfrågan bedöms utifrån projektets art, roller, underlag och aktuell kapacitet.
             </p>
           </div>
 
@@ -99,14 +99,14 @@ export const WhoIHelp = () => {
               Passar jag för ditt projekt?
             </h3>
             <p className="text-lg text-slate-600 mb-8 max-w-2xl mx-auto">
-              Tveka inte att höra av dig även om ditt projekt inte passar perfekt i kategorierna ovan. Jag tar gärna en snabb diskussion för att se om vi är en bra match.
+              Hör gärna av dig även om projektet inte passar perfekt i kategorierna ovan. Skicka grunduppgifterna så bedömer jag om uppdraget är en bra match.
             </p>
             <Button 
               onClick={scrollToContact}
               size="lg"
               className="earth-gradient text-white hover:opacity-90 text-lg px-8 py-6"
             >
-              Boka kostnadsfri konsultation
+              Beskriv projektet
             </Button>
           </div>
         </div>

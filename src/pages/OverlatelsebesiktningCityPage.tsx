@@ -12,6 +12,7 @@ import { CheckCircle, Mail, MapPin, Clock, Home, Search, Camera, ClipboardCheck,
 import { Link } from "react-router-dom";
 import { BOOKING_OVL_URL } from "@/config/booking";
 import { type OverlatelsebesiktningCityData, getOtherOverlatelsebesiktningCities } from '@/content/overlatelsebesiktningCityData';
+import { COMPANY, SERVICES } from '@/config/company';
 
 interface OverlatelsebesiktningCityPageProps {
   cityData: OverlatelsebesiktningCityData;
@@ -22,23 +23,23 @@ const OverlatelsebesiktningCityPage = ({ cityData: city }: Overlatelsebesiktning
 
   const services = [
     {
-      title: "Teknisk besiktning",
-      description: `Grundlig okulär kontroll av byggnadens konstruktion och skick i ${city.name}`,
+      title: "Okulär besiktning",
+      description: `Visuell undersökning av avtalade, synliga och åtkomliga delar i fastigheten i ${city.name}`,
       icon: <Search className="h-6 w-6" />
     },
     {
-      title: "Installationskontroll",
-      description: "Kontroll av synliga el-, VVS- och ventilationsinstallationer",
+      title: "Iakttagelser och risker",
+      description: "Synliga tecken kan noteras, men besiktningen ersätter inte fackmässig installationskontroll eller funktionsprovning",
       icon: <ClipboardCheck className="h-6 w-6" />
     },
     {
       title: "Dokumentation",
-      description: "Detaljerad fotografisk dokumentation av alla iakttagelser",
+      description: "Fotografisk dokumentation i den omfattning som anges i uppdragsbekräftelsen",
       icon: <Camera className="h-6 w-6" />
     },
     {
       title: "Besiktningsrapport",
-      description: "Professionell rapport med fynd och rekommendationer inom 48 timmar",
+      description: "Rapport med innehåll och leveranstid enligt uppdragsbekräftelsen",
       icon: <FileText className="h-6 w-6" />
     }
   ];
@@ -56,32 +57,14 @@ const OverlatelsebesiktningCityPage = ({ cityData: city }: Overlatelsebesiktning
     "description": city.seo.description,
     "provider": {
       "@type": "LocalBusiness",
-      "name": "Ytterman",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": city.structuredData.addressLocality,
-        "addressRegion": "Västernorrland",
-        "addressCountry": "SE"
-      },
-      "telephone": "+46761118447",
-      "email": "tobias@ytterman.com",
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": city.structuredData.latitude,
-        "longitude": city.structuredData.longitude
-      }
+      "name": COMPANY.brandName,
+      "email": COMPANY.email
     },
     "areaServed": {
-      "@type": "City",
-      "name": city.name
+      "@type": "AdministrativeArea",
+      "name": COMPANY.region
     },
-    "serviceType": "Överlåtelsebesiktning",
-    "offers": {
-      "@type": "Offer",
-      "description": `Överlåtelsebesiktning i ${city.name} från 12,000 SEK`,
-      "priceCurrency": "SEK",
-      "priceRange": "Från 12,000 SEK"
-    }
+    "serviceType": SERVICES.inspection.name
   };
 
   return (
@@ -116,34 +99,34 @@ const OverlatelsebesiktningCityPage = ({ cityData: city }: Overlatelsebesiktning
         </section>
         
         <ServiceHero
-          badge="Certifierad Besiktningsman"
+          badge="Överlåtelsebesiktning"
           title={city.heroTitle}
           subtitle={city.heroSubtitle}
           description={city.heroDescription}
           features={[
-            `Lokal närvaro – ${city.travelTime}`,
-            "Okulär besiktning av alla synliga byggnadsdelar",
-            "Detaljerad fotografisk dokumentation",
-            "Professionell rapport inom 48 timmar",
-            "Prioriterade åtgärdsförslag och rekommendationer"
+            `Förfrågningar från ${city.name} – ${city.travelTime}`,
+            "Okulär besiktning av avtalade, synliga och åtkomliga delar",
+            "Fotografisk dokumentation enligt uppdragsbekräftelsen",
+            "Rapportens innehåll och leveranstid bekräftas vid bokning",
+            "Rekommendation om fortsatt teknisk utredning vid behov"
           ]}
           ctaPrimary={BOOKING_OVL_URL ? {
-            text: "Boka online",
+            text: "Skicka förfrågan",
             href: BOOKING_OVL_URL
           } : undefined}
           ctaSecondary={{
-            text: "076-111 84 47",
-            href: "tel:+46761118447",
-            phone: true
+            text: "Mejla direkt",
+            href: COMPANY.emailHref,
+            external: true
           }}
           bannerContent={{
             icon: Home,
-            title: "Certifierad Besiktningsman",
+            title: "Överlåtelsebesiktning",
             subtitle: `Överlåtelsebesiktning i ${city.name}`,
             certifications: [
               "Över 20 års erfarenhet i byggbranschen",
-              "Detaljerade rapporter inom 48 timmar",
-              `Verksam i ${city.name} och hela Västernorrland`
+              "Tydligt avtalad omfattning och leveranstid",
+              `Förfrågningar från ${city.name} och ${COMPANY.region}`
             ]
           }}
         />
@@ -153,7 +136,7 @@ const OverlatelsebesiktningCityPage = ({ cityData: city }: Overlatelsebesiktning
           <section className="py-16 px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                Överlåtelsebesiktning i {city.name} – Lokal Expertis
+                Överlåtelsebesiktning i {city.name} – lokal information
               </h2>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
                 {city.localContent.intro}
@@ -164,7 +147,7 @@ const OverlatelsebesiktningCityPage = ({ cityData: city }: Overlatelsebesiktning
               
               <div className="grid md:grid-cols-2 gap-4 mb-8">
                 <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Fastighetstyper i {city.name}</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Vanliga fastighetstyper</h3>
                   <ul className="space-y-2">
                     {city.localContent.propertyTypes.map((type, index) => (
                       <li key={index} className="flex items-start gap-2">
@@ -223,28 +206,28 @@ const OverlatelsebesiktningCityPage = ({ cityData: city }: Overlatelsebesiktning
                   <div className="flex-shrink-0 w-8 h-8 bg-amber-600 text-white rounded-full flex items-center justify-center font-semibold">1</div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">Bokning</h3>
-                    <p className="text-gray-600">Boka din besiktning online eller ring oss. Vi hittar en tid som passar dig i {city.name}.</p>
+                    <p className="text-gray-600">Skicka en bokningsförfrågan. Tillgänglighet, underlag och villkor bekräftas för fastigheten i {city.name}.</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
                   <div className="flex-shrink-0 w-8 h-8 bg-amber-600 text-white rounded-full flex items-center justify-center font-semibold">2</div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">Besiktning på plats</h3>
-                    <p className="text-gray-600">Jag genomför en grundlig okulär besiktning av fastigheten (2–4 timmar beroende på storlek).</p>
+                    <p className="text-gray-600">Jag genomför den okulära besiktning som beskrivs i uppdragsbekräftelsen. Omfattning och tidsåtgång beror på fastigheten.</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
                   <div className="flex-shrink-0 w-8 h-8 bg-amber-600 text-white rounded-full flex items-center justify-center font-semibold">3</div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Rapport inom 48 timmar</h3>
-                    <p className="text-gray-600">Du får en detaljerad rapport med fotografisk dokumentation och prioriterade åtgärdsförslag.</p>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Besiktningsrapport</h3>
+                    <p className="text-gray-600">Rapportens innehåll, dokumentation och leveranstid framgår av uppdragsbekräftelsen.</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
                   <div className="flex-shrink-0 w-8 h-8 bg-amber-600 text-white rounded-full flex items-center justify-center font-semibold">4</div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">Uppföljning</h3>
-                    <p className="text-gray-600">Jag finns tillgänglig för frågor om rapporten och kan rekommendera vidare utredning vid behov.</p>
+                    <p className="text-gray-600">Eventuell genomgång av rapporten och rekommendation om fortsatt teknisk utredning följer det avtalade upplägget.</p>
                   </div>
                 </div>
               </div>
@@ -268,7 +251,7 @@ const OverlatelsebesiktningCityPage = ({ cityData: city }: Overlatelsebesiktning
                 Överlåtelsebesiktning i övriga kommuner
               </h2>
               <p className="text-gray-600 text-center mb-8">
-                Vi erbjuder överlåtelsebesiktning i hela Västernorrland. Läs mer om vår lokala närvaro:
+                Se informationssidor för fler orter. Tillgänglighet och resor bekräftas alltid vid bokning:
               </p>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {otherCities.map((otherCity) => (
@@ -302,18 +285,18 @@ const OverlatelsebesiktningCityPage = ({ cityData: city }: Overlatelsebesiktning
                 Behöver du överlåtelsebesiktning i {city.name}?
               </h2>
               <p className="text-xl mb-8 opacity-90">
-                Kontakta mig idag för att boka din besiktning i {city.name}. Detaljerad rapport inom 48 timmar.
+                Kontakta mig för att boka en besiktning i {city.name}. Omfattning, pris och leveranstid bekräftas vid bokning.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 {BOOKING_OVL_URL && (
                   <Button size="lg" className="bg-white text-slate-900 hover:bg-slate-100" asChild>
-                    <a href={BOOKING_OVL_URL}>Boka online</a>
+                    <a href={BOOKING_OVL_URL}>Skicka förfrågan</a>
                   </Button>
                 )}
                 <Button size="lg" className="bg-transparent text-white border-2 border-white hover:bg-white hover:text-amber-600" asChild>
-                  <a href="mailto:tobias@ytterman.com">
+                  <a href={`mailto:${COMPANY.email}`}>
                     <Mail className="mr-2 h-4 w-4" />
-                    tobias@ytterman.com
+                    {COMPANY.email}
                   </a>
                 </Button>
               </div>
@@ -324,7 +307,7 @@ const OverlatelsebesiktningCityPage = ({ cityData: city }: Overlatelsebesiktning
                 </div>
                 <div className="flex items-center">
                   <Clock className="mr-2 h-4 w-4" />
-                  Rapport inom 48 timmar
+                  Leveranstid bekräftas vid bokning
                 </div>
               </div>
             </div>

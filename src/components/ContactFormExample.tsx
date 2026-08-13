@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
+import { COMPANY } from '@/config/company';
 
 /**
  * Example contact form component with Google Ads conversion tracking
@@ -19,7 +20,7 @@ export const ContactFormExample: React.FC = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   
-  const { trackFormSubmission, trackPhoneCall, trackEmailClick } = useGoogleAdsTracking();
+  const { trackFormSubmission, trackButtonClick } = useGoogleAdsTracking();
   const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -34,11 +35,15 @@ export const ContactFormExample: React.FC = () => {
       await new Promise(resolve => setTimeout(resolve, 1000));
       
       // Track the conversion after successful form submission
-      trackFormSubmission('contact_form', 1000); // Optional value in SEK
+      trackFormSubmission('contact_form', {
+        name: formData.name,
+        project: formData.serviceType,
+        has_phone: Boolean(formData.phone),
+      });
       
       toast({
         title: "Meddelande skickat!",
-        description: "Tack för ditt meddelande. Vi återkommer inom 24 timmar.",
+        description: "Tack för ditt meddelande. Vi går igenom uppgifterna och återkommer med nästa steg.",
       });
       
       // Reset form
@@ -61,16 +66,10 @@ export const ContactFormExample: React.FC = () => {
     }
   };
 
-  const handlePhoneClick = () => {
-    // Track phone call conversion when user clicks phone number
-    trackPhoneCall();
-    window.location.href = 'tel:+46761118447';
-  };
-
   const handleEmailClick = () => {
     // Track email click conversion when user clicks email
-    trackEmailClick();
-    window.location.href = 'mailto:tobias@ytterman.com';
+    trackButtonClick('email_link', 'contact_form_example');
+    window.location.href = COMPANY.emailHref;
   };
 
   return (
@@ -79,22 +78,13 @@ export const ContactFormExample: React.FC = () => {
       
       {/* Contact info with tracking */}
       <div className="mb-6 p-4 bg-stone-50 rounded-lg">
-        <p className="mb-2">
-          <strong>Telefon:</strong>{' '}
-          <button 
-            onClick={handlePhoneClick}
-            className="text-amber-600 hover:text-amber-700 underline"
-          >
-            076-111 84 47
-          </button>
-        </p>
         <p>
           <strong>E-post:</strong>{' '}
           <button 
             onClick={handleEmailClick}
             className="text-amber-600 hover:text-amber-700 underline"
           >
-            tobias@ytterman.com
+            {COMPANY.email}
           </button>
         </p>
       </div>

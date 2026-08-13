@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { BAS, COMPANY, KA_CERT } from '@/config/company';
 
 interface SEOOptimizerProps {
   title: string;
@@ -72,33 +73,21 @@ export const SEOOptimizer: React.FC<SEOOptimizerProps> = ({
         {JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Organization",
-          "name": "Ytterman - Kontrollansvarig & BAS",
-          "url": "https://ytterman.com",
-          "logo": "https://ytterman.com/logo.png",
-          "description": "Certifierad kontrollansvarig och byggarbetsmiljösamordnare (BAS-P/BAS-U) i Västernorrland med över 20 års erfarenhet i byggbranschen.",
+          "name": `${COMPANY.brandName} - Kontrollansvarig & BAS`,
+          "url": COMPANY.siteUrl,
+          "logo": `${COMPANY.siteUrl}/favicon.svg`,
+          "description": `${KA_CERT.title} och ${BAS.qualificationLabel.toLowerCase()} i ${COMPANY.region} med ${COMPANY.experienceLabel.toLowerCase()} i byggbranschen.`,
           "areaServed": {
             "@type": "State",
-            "name": "Västernorrland"
-          },
-          "serviceArea": {
-            "@type": "GeoCircle",
-            "geoMidpoint": {
-              "@type": "GeoCoordinates",
-              "latitude": 62.3908,
-              "longitude": 17.3069
-            },
-            "geoRadius": "100000"
+            "name": COMPANY.region
           },
           "contactPoint": {
             "@type": "ContactPoint",
             "contactType": "customer service",
-            "areaServed": "SE",
+            "email": COMPANY.email,
+            "areaServed": COMPANY.countryCode,
             "availableLanguage": "Swedish"
-          },
-          "sameAs": [
-            "https://www.linkedin.com/company/ytterman",
-            "https://www.facebook.com/ytterman"
-          ]
+          }
         })}
       </script>
     </Helmet>

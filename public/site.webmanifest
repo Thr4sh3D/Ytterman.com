@@ -1,7 +1,7 @@
 {
   "name": "Ytterman - Kontrollansvarig & BAS i Västernorrland",
   "short_name": "Ytterman",
-  "description": "Certifierad kontrollansvarig, BAS-P och BAS-U i Västernorrland. Över 20 års erfarenhet i byggbranschen inom byggkontroll och arbetsmiljösamordning.",
+  "description": "Certifierad kontrollansvarig enligt PBL och uppdrag som BAS-P och BAS-U i Västernorrland. Över 20 års erfarenhet.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
@@ -12,18 +12,6 @@
       "src": "/favicon.svg",
       "sizes": "any",
       "type": "image/svg+xml"
-    },
-    {
-      "src": "/favicon-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "maskable any"
-    },
-    {
-      "src": "/favicon-512x512.png", 
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "maskable any"
     }
   ],
   "categories": ["business", "productivity"],

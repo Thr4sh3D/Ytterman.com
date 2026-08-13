@@ -1,13 +1,13 @@
 import { ReactNode } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { AdvancedSEO } from '@/components/AdvancedSEO';
 import { CanonicalUrl } from '@/components/CanonicalUrl';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { Clock, Tag } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { normalizeInternalPath } from '@/utils/url';
+import { BAS, COMPANY, KA_CERT } from '@/config/company';
 
 interface GuideLayoutProps {
   title: string;
@@ -35,9 +35,9 @@ export const GuideLayout = ({
   // Ensure trailing slash for GitHub Pages compatibility
   const trailingCanonical = canonicalPath && !canonicalPath.endsWith('/') ? canonicalPath + '/' : canonicalPath;
   const breadcrumbs = [
-    { name: 'Hem', url: 'https://ytterman.com' },
-    { name: 'Guider', url: 'https://ytterman.com/guider/' },
-    { name: title, url: trailingCanonical ? `https://ytterman.com${trailingCanonical}` : '' }
+    { name: 'Hem', url: COMPANY.siteUrl },
+    { name: 'Guider', url: `${COMPANY.siteUrl}/guider/` },
+    { name: title, url: trailingCanonical ? `${COMPANY.siteUrl}${trailingCanonical}` : '' }
   ];
 
   return (
@@ -46,7 +46,7 @@ export const GuideLayout = ({
         title={seoTitle}
         description={seoDescription}
         keywords={keywords}
-        url={trailingCanonical ? `https://ytterman.com${trailingCanonical}` : 'https://ytterman.com/guider/'}
+        url={trailingCanonical ? `${COMPANY.siteUrl}${trailingCanonical}` : `${COMPANY.siteUrl}/guider/`}
         type="article"
         organization={true}
         breadcrumbs={breadcrumbs}
@@ -101,7 +101,9 @@ export const GuideLayout = ({
                     </div>
                     <div>
                       <p className="font-semibold text-slate-900">Tobias Ytterman</p>
-                      <p className="text-sm text-slate-600">Certifierad KA & BAS-P/BAS-U</p>
+                      <p className="text-sm text-slate-600">
+                        {KA_CERT.authorizationLabel} · Utbildad för {BAS.rolesLabel}
+                      </p>
                     </div>
                   </div>
                   
@@ -132,7 +134,7 @@ export const GuideLayout = ({
                 Behöver du hjälp med ditt byggprojekt?
               </h2>
               <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-                Kontakta oss för en kostnadsfri konsultation och fast prisoffert.
+                Skicka projektets underlag så återkommer vi med nästa steg och offert.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button 
@@ -140,15 +142,15 @@ export const GuideLayout = ({
                   size="lg"
                   className="earth-gradient text-white hover:opacity-90"
                 >
-                  Få kostnadsfri offert
+                  Be om offert
                 </Button>
                 <Button 
-                  onClick={() => window.location.href = 'tel:+46761118447'}
+                  onClick={() => window.location.href = COMPANY.emailHref}
                   size="lg"
                   variant="outline"
                   className="border-white text-slate-900 hover:bg-white hover:text-slate-900"
                 >
-                  Ring direkt: 076-111 84 47
+                  Mejla Tobias
                 </Button>
               </div>
             </div>
@@ -156,7 +158,6 @@ export const GuideLayout = ({
         </main>
         
         <Footer />
-        <WhatsAppButton />
       </div>
     </>
   );

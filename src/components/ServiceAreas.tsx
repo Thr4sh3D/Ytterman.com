@@ -1,16 +1,14 @@
+import { COMPANY } from '@/config/company';
+
 interface ServiceAreasProps {
   className?: string;
 }
 
 export const ServiceAreas = ({ className = '' }: ServiceAreasProps) => {
-  const areas = [
-    { city: "Sundsvall", description: "Huvudkontor och primärt verksamhetsområde" },
-    { city: "Härnösand", description: "Regelbunden service och snabb respons" },
-    { city: "Sollefteå", description: "Omfattande erfarenhet av lokala projekt" },
-    { city: "Timrå", description: "Nära samarbete med lokala entreprenörer" },
-    { city: "Kramfors", description: "Etablerade kontakter och referenser" },
-    { city: "Övriga Västernorrland", description: "Flexibel service i hela regionen" }
-  ];
+  const areas = COMPANY.localPageAreas.map((city) => ({
+    city,
+    description: 'Lokal informationssida – tillgänglighet och resor bekräftas per projekt',
+  }));
 
   return (
     <section className={`py-20 bg-white ${className}`} aria-labelledby="service-areas-heading">
@@ -20,7 +18,8 @@ export const ServiceAreas = ({ className = '' }: ServiceAreasProps) => {
             Våra verksamhetsområden
           </h2>
           <p className="text-xl text-slate-600 mb-12">
-            Vi verkar i hela Västernorrland och erbjuder våra tjänster i följande områden:
+            Ytterman tar emot förfrågningar från {COMPANY.region}. Ortslistan innebär inte
+            garanterad tillgänglighet eller bestämda resevillkor.
           </p>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6" role="list">

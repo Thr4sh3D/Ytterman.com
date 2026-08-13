@@ -1,6 +1,5 @@
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { AdvancedSEO } from '@/components/AdvancedSEO';
 import { ServiceFAQ } from '@/components/ServiceFAQ';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
@@ -9,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { CanonicalUrl } from '@/components/CanonicalUrl';
 import { BOOKING_OVL_URL } from '@/config/booking';
+import { BUSINESS_COPY, COMPANY, PRICE_LABELS, PRICING, SERVICES } from '@/config/company';
 
 const TjansterPage = () => {
   const navigate = useNavigate();
@@ -20,128 +20,88 @@ const TjansterPage = () => {
     navigate(`/kontakt/?service=${serviceId}&source=tjanster-page`);
   };
 
-  const handleStartOnlineCalculation = () => {
-    navigate('/energiberakning-online/');
-  };
-
   const services = [
     {
-      id: 'kontrollansvarig-service',
-      title: "Kontrollansvarig (KA)",
-      description: "Certifierad kontrollansvarig enligt PBL för teknisk kontroll och slutbesiktning",
-      price: "Från 19,999 SEK",
-      features: [
-        "Kontrollplan och teknisk kontroll",
-        "Slutbesiktning och slutbevis",
-        "Dokumentation enligt PBL",
-        "Samordning med byggkontroll"
-      ],
+      ...SERVICES.kontrollansvarig,
+      title: SERVICES.kontrollansvarig.name,
+      description: SERVICES.kontrollansvarig.shortDescription,
+      price: SERVICES.kontrollansvarig.priceLabel,
       icon: Shield,
-      link: "/kontrollansvarig/"
+      link: SERVICES.kontrollansvarig.path,
+      isNew: false,
     },
     {
-      id: 'bas-p-service',
-      title: "BAS-P (Projektering)",
-      description: "Byggarbetsmiljösamordnare under projekteringsfasen",
-      price: "Från 15,000 SEK",
-      features: [
-        "Arbetsmiljöplan för projektet",
-        "Riskbedömning och säkerhetsanalys",
-        "Samordning mellan projektörer",
-        "Dokumentation enligt AML"
-      ],
+      ...SERVICES.basP,
+      title: SERVICES.basP.name,
+      description: SERVICES.basP.shortDescription,
+      price: SERVICES.basP.priceLabel,
       icon: FileText,
-      link: "/bas-p/"
+      link: SERVICES.basP.path,
+      isNew: false,
     },
     {
-      id: 'bas-u-service',
-      title: "BAS-U (Utförande)",
-      description: "Byggarbetsmiljösamordnare under byggfasen",
-      price: "Från 20,000 SEK",
-      features: [
-        "Säkerhetsronder på byggarbetsplats",
-        "Samordning mellan entreprenörer",
-        "Arbetsmiljöuppföljning",
-        "Incidentrapportering"
-      ],
+      ...SERVICES.basU,
+      title: SERVICES.basU.name,
+      description: SERVICES.basU.shortDescription,
+      price: SERVICES.basU.priceLabel,
       icon: Users,
-      link: "/bas-u/"
+      link: SERVICES.basU.path,
+      isNew: false,
     },
     {
-      id: 'energiberakning-online-service',
-      title: "Energiberäkning Online",
-      description: "Snabb och enkel energiberäkning direkt online",
-      price: "2,999 SEK",
-      features: [
-        "Automatiserad beräkning online",
-        "Professionell rapport direkt",
-        "Perfekt för bygglov",
-        "24/7 tillgänglighet"
-      ],
+      ...SERVICES.energyCalculation,
+      title: SERVICES.energyCalculation.name,
+      description: SERVICES.energyCalculation.shortDescription,
+      price: SERVICES.energyCalculation.priceLabel,
       icon: Calculator,
-      link: "/energiberakning-online/",
-      isNew: true
+      link: SERVICES.energyCalculation.path,
+      isNew: false,
     },
     {
-      id: 'bygglovshandlingar',
-      title: "Bygglovshandlingar",
-      description: "Kompletta bygglovshandlingar för ditt projekt",
-      price: "Från 8,000 SEK",
-      features: [
-        "Planritningar och sektioner",
-        "Situationsplan",
-        "Teknisk beskrivning",
-        "Energiberäkningar"
-      ],
+      ...SERVICES.buildingPermitDocuments,
+      title: SERVICES.buildingPermitDocuments.name,
+      description: SERVICES.buildingPermitDocuments.shortDescription,
+      price: SERVICES.buildingPermitDocuments.priceLabel,
       icon: Building,
-      link: "/bygglovshandlingar/"
+      link: SERVICES.buildingPermitDocuments.path,
+      isNew: false,
     },
     {
-      id: 'energideklaration-service',
-      title: "Energideklaration",
-      description: "Professionell energideklaration för din fastighet",
-      price: "Från 8,000 SEK",
-      features: [
-        "Energibesiktning på plats",
-        "Energiberäkning och klassning",
-        "Åtgärdsförslag för energibesparing",
-        "Officiell energideklaration"
-      ],
+      ...SERVICES.energyDeclaration,
+      title: SERVICES.energyDeclaration.name,
+      description: SERVICES.energyDeclaration.shortDescription,
+      price: SERVICES.energyDeclaration.priceLabel,
       icon: Zap,
-      link: "/energideklaration/"
+      link: SERVICES.energyDeclaration.path,
+      isNew: false,
     },
     {
-      id: 'overlatelsebesiktning-service',
-      title: "Överlåtelsebesiktning",
-      description: "Okulär besiktning inför fastighetesförsäljning",
-      price: "Från 12,000 SEK",
-      features: [
-        "Visuell kontroll av fastigheten",
-        "Kontroll av synliga installationer",
-        "Fotografisk dokumentation",
-        "Detaljerad besiktningsrapport"
-      ],
+      ...SERVICES.inspection,
+      title: SERVICES.inspection.name,
+      description: SERVICES.inspection.shortDescription,
+      price: SERVICES.inspection.priceLabel,
       icon: Search,
-      link: "/overlatelsebesiktning/"
-    }
+      link: SERVICES.inspection.path,
+      isNew: false,
+    },
   ];
 
   const serviceFaq = [
     {
       question: "Vilka tjänster erbjuder Ytterman?",
-      answer: "Vi erbjuder kontrollansvarig (KA), BAS-P, BAS-U, energiberäkning online, bygglovshandlingar, energideklaration och överlåtelsebesiktning för byggprojekt i Västernorrland. Alla tjänster utförs av certifierad personal med över 20 års erfarenhet."
+      answer: `Ytterman erbjuder kontrollansvarig, BAS-P, BAS-U, bygglovshandlingar och överlåtelsebesiktning. Energideklaration erbjuds och samordnas av Ytterman men utförs via behörig partner av certifierad energiexpert. Digital energiberäkning tar tills vidare emot intresseanmälningar. ${COMPANY.experienceLabel}.`
     },
     {
       question: "Vad kostar era tjänster?",
-      answer: "Priserna varierar beroende på projektets omfattning. KA från 19,999 kr, BAS-P från 15,000 kr, BAS-U från 20,000 kr, energiberäkning online 2,999 kr, bygglovshandlingar från 8,000 kr, energideklaration från 8,000 kr och överlåtelsebesiktning från 12,000 kr. Vi ger alltid fast pris efter kostnadsfri konsultation."
+      answer: `KA Bas kostar ${PRICE_LABELS.kaBasFrom.toLowerCase()} inklusive moms och paketet KA + BAS-P/U kostar ${PRICE_LABELS.kaBasPackage.toLowerCase()}. Övriga tjänster prissätts efter genomgång av underlaget.`
     },
     {
       question: "Vilka områden täcker ni?",
-      answer: "Vi verkar i hela Västernorrland med fokus på Sundsvall, Härnösand, Sollefteå, Timrå och Kramfors. Vi hjälper även kunder i övriga delar av regionen."
+      answer: `Ytterman tar emot förfrågningar från ${COMPANY.region}. Tillgänglighet, platsbesök, resor och eventuella resekostnader bekräftas för varje projekt.`
     },
     {
       question: "Hur snabbt kan ni starta ett uppdrag?",
-      answer: "Vi strävar efter att kunna starta inom 1-2 veckor efter bekräftad beställning. För akuta ärenden kan vi ofta ordna snabbare start beroende på vår aktuella arbetsbelastning. Energiberäkning online är tillgänglig direkt 24/7."
+      answer: BUSINESS_COPY.defaultResponse
     }
   ];
 
@@ -154,7 +114,7 @@ const TjansterPage = () => {
     <>
       <AdvancedSEO 
         title="Byggtjänster Västernorrland - KA, BAS, Energiberäkning | Ytterman"
-        description="Kontrollansvarig, BAS-P, BAS-U, energiberäkning online och bygglovshandlingar. 20+ års erfarenhet. Fast pris. Sundsvall, Härnösand, Sollefteå. Offert på 24h!"
+        description={`Kontrollansvarig, BAS-P och BAS-U i Västernorrland. Energideklaration samordnas av Ytterman och utförs av certifierad energiexpert hos behörig partner. Priser ${PRICING.year}.`}
         keywords="kontrollansvarig tjänster, BAS-P, BAS-U, energiberäkning online, bygglovshandlingar, energideklaration, överlåtelsebesiktning, byggtjänster Västernorrland, Sundsvall, Härnösand, byggkontroll"
         url="https://ytterman.com/tjanster"
         breadcrumbs={breadcrumbs}
@@ -181,16 +141,16 @@ const TjansterPage = () => {
                   Våra Tjänster
                 </h1>
                 <p className="text-xl text-slate-600 mb-8">
-                  Kompletta byggtjänster för ditt projekt. Från kontrollansvarig till 
-                  arbetsmiljösamordning - vi hjälper dig genom hela byggprocessen.
+                  Kontrollansvarig, BAS-P, BAS-U och andra byggtjänster med tydlig
+                  leveransmodell, omfattning och offert för det aktuella projektet.
                 </p>
                 <Button 
                   onClick={scrollToContact}
                   className="earth-gradient text-white hover:opacity-90 px-8 py-4 text-lg"
-                  aria-label="Få kostnadsfri offert för byggtjänster"
+                  aria-label="Skicka förfrågan om byggtjänster"
                 >
                   <Phone className="w-5 h-5 mr-2" aria-hidden="true" />
-                  Få kostnadsfri offert
+                  Skicka projektförfrågan
                 </Button>
               </div>
             </div>
@@ -233,24 +193,24 @@ const TjansterPage = () => {
                         <div className="flex gap-3">
                           {service.id !== 'overlatelsebesiktning-service' && (
                             <Button 
-                              onClick={() => service.id === 'energiberakning-online-service' ? handleStartOnlineCalculation() : handleServiceQuote(service.id)}
+                              onClick={() => handleServiceQuote(service.id)}
                               className="flex-1 earth-gradient text-white hover:opacity-90"
-                              aria-label={`${service.id === 'energiberakning-online-service' ? 'Starta' : 'Få offert för'} ${service.title}`}
+                              aria-label={`${service.publicationStatus === 'interest-only' ? 'Anmäl intresse för' : 'Få offert för'} ${service.title}`}
                             >
-                              {service.id === 'energiberakning-online-service' ? 'Starta nu' : 'Få offert'}
+                              {service.publicationStatus === 'interest-only' ? 'Anmäl intresse' : 'Få offert'}
                             </Button>
                           )}
                           {service.id === 'overlatelsebesiktning-service' && BOOKING_OVL_URL && (
                             <Button 
                               asChild
                               className="flex-1 earth-gradient text-white hover:opacity-90"
-                              aria-label="Boka överlåtelsebesiktning online"
+                              aria-label="Skicka förfrågan om överlåtelsebesiktning"
                             >
                               <a 
                                 href={BOOKING_OVL_URL}
                               >
                                 <CalendarCheck className="w-4 h-4 mr-2" aria-hidden="true" />
-                                Boka online
+                                Skicka förfrågan
                               </a>
                             </Button>
                           )}
@@ -283,22 +243,22 @@ const TjansterPage = () => {
                     {
                       step: "1",
                       title: "Kontakt",
-                      description: "Du kontaktar oss för en kostnadsfri konsultation"
+                      description: "Du skickar projektets ort, omfattning och tillgängliga underlag"
                     },
                     {
                       step: "2",
                       title: "Offert",
-                      description: "Vi ger dig en fast offert baserat på ditt projekt"
+                      description: "Vi tar fram ett upplägg och prisförslag baserat på ditt projekt"
                     },
                     {
                       step: "3",
                       title: "Genomförande",
-                      description: "Vi utför tjänsten professionellt och enligt tidsplan"
+                      description: "Tjänsten utförs enligt avtalad omfattning och tydlig rollfördelning"
                     },
                     {
                       step: "4",
                       title: "Leverans",
-                      description: "Du får all dokumentation och kan fortsätta ditt projekt"
+                      description: "Du får den dokumentation och uppföljning som anges i uppdraget"
                     }
                   ].map((item, index) => (
                     <div key={index} className="text-center">
@@ -352,8 +312,8 @@ const TjansterPage = () => {
                   <div className="rounded-xl bg-slate-50 p-8">
                     <h3 className="text-2xl font-bold text-slate-900 mb-3">Vid fastighetsaffär och drift</h3>
                     <p className="text-slate-600">
-                      Energideklaration och överlåtelsebesiktning ger underlag för försäljning, köp och
-                      långsiktiga beslut kring fastighetens skick, energiprestanda och möjliga åtgärder.
+                      Energideklaration samordnas av Ytterman och utförs av certifierad energiexpert hos
+                      behörig partner. Överlåtelsebesiktning ger separat underlag om fastighetens skick.
                     </p>
                   </div>
                 </div>
@@ -427,25 +387,25 @@ const TjansterPage = () => {
                 Redo att starta ditt projekt?
               </h2>
               <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-                Kontakta oss idag för en kostnadsfri konsultation. Vi hjälper dig 
-                att välja rätt tjänster för ditt byggprojekt.
+                Skicka projektets underlag så hjälper vi dig att bedöma rätt tjänst,
+                möjlig omfattning och nästa steg.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button 
                   onClick={scrollToContact}
                   className="earth-gradient text-white hover:opacity-90 px-8 py-4 text-lg"
-                  aria-label="Få kostnadsfri offert"
+                  aria-label="Skicka projektförfrågan"
                 >
                   <Phone className="w-5 h-5 mr-2" aria-hidden="true" />
-                  Få kostnadsfri offert
+                  Skicka projektförfrågan
                 </Button>
                 <a 
-                  href="mailto:tobias@ytterman.com"
+                  href={`mailto:${COMPANY.email}`}
                   className="inline-flex items-center px-8 py-4 border-2 border-white text-white rounded-lg hover:bg-white hover:text-slate-900 transition-colors text-lg font-semibold"
-                  aria-label="Skicka e-post till tobias@ytterman.com"
+                  aria-label={`Skicka e-post till ${COMPANY.email}`}
                 >
                   <Mail className="w-5 h-5 mr-2" aria-hidden="true" />
-                  tobias@ytterman.com
+                  {COMPANY.email}
                 </a>
               </div>
             </div>
@@ -453,7 +413,6 @@ const TjansterPage = () => {
         </main>
         
         <Footer />
-        <WhatsAppButton />
       </div>
     </>
   );

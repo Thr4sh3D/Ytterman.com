@@ -1,6 +1,7 @@
 import { CheckCircle, MessageCircle, Shield, Award } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { HeroBanner } from './HeroBanner';
+import { BAS, COMPANY, KA_CERT } from '@/config/company';
 
 export const Hero = () => {
   const scrollToContact = () => {
@@ -8,10 +9,6 @@ export const Hero = () => {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
-  };
-
-  const openWhatsApp = () => {
-    window.open('https://wa.me/46761118447?text=Hej! Jag är intresserad av dina tjänster som kontrollansvarig och BAS.', '_blank');
   };
 
   return (
@@ -22,26 +19,28 @@ export const Hero = () => {
           <div className="animate-fade-in">
             <div className="inline-flex items-center space-x-2 bg-accent/20 px-4 py-2 rounded-full mb-6">
               <Shield className="w-5 h-5 text-accent" />
-              <span className="text-sm font-medium text-accent">Certifierad & Erfaren</span>
+              <span className="text-sm font-medium text-accent">{KA_CERT.authorizationLabel}</span>
             </div>
             
             <h1 className="text-4xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
-              Bygglov och slutbesked utan strul – certifierad{' '}
-              <span className="text-gradient">Kontrollansvarig & BAS i Västernorrland</span>
+              Kontrollansvarig och BAS för{' '}
+              <span className="text-gradient">byggprojekt i {COMPANY.region}</span>
             </h1>
             
             <p className="text-xl text-muted-foreground mb-4 leading-relaxed">
-              Jag hjälper dig med kontrollansvar, BAS P/BAS U och kontakten med kommunen så att ditt projekt går igenom smidigt och i tid.
+              Certifierad kontrollansvarig enligt PBL och utbildad för uppdrag som {BAS.rolesLabel}.
+              Uppdragets roller, omfattning och tidplan bekräftas före start.
             </p>
             
             <p className="text-lg text-muted-foreground mb-8">
-              Verksam i Sundsvall, Härnösand, Sollefteå, Kramfors, Timrå och hela Västernorrland – över 20 års erfarenhet från byggsektorn
+              {COMPANY.experienceLabel} i byggbranschen. Förfrågningar tas emot från {COMPANY.region};
+              tillgänglighet och resor bekräftas per projekt.
             </p>
             
             <div className="space-y-4 mb-8">
               <div className="flex items-center space-x-3">
                 <CheckCircle className="w-6 h-6 text-accent flex-shrink-0" />
-                <span className="text-lg">Certifierad och erfaren – med bred och praktisk kompetens</span>
+                <span className="text-lg">Kiwa {KA_CERT.certificateNumber} · {KA_CERT.authorizationLabel}</span>
               </div>
               <div className="flex items-center space-x-3">
                 <CheckCircle className="w-6 h-6 text-accent flex-shrink-0" />
@@ -49,15 +48,15 @@ export const Hero = () => {
               </div>
               <div className="flex items-center space-x-3">
                 <CheckCircle className="w-6 h-6 text-accent flex-shrink-0" />
-                <span className="text-lg">Digital hantering, platsbesök och snabb återkoppling</span>
+                <span className="text-lg">Digital hantering och platsbesök enligt uppdragets upplägg</span>
               </div>
               <div className="flex items-center space-x-3">
                 <CheckCircle className="w-6 h-6 text-accent flex-shrink-0" />
-                <span className="text-lg">Trygga paket för nybyggnation, ombyggnad eller BRF‑projekt</span>
+                <span className="text-lg">Tydliga paketpriser för angivna projekttyper</span>
               </div>
               <div className="flex items-center space-x-3">
                 <CheckCircle className="w-6 h-6 text-accent flex-shrink-0" />
-                <span className="text-lg">Möjlighet att kombinera KA + BAS‑P/U i ett komplett paket</span>
+                <span className="text-lg">KA och BAS‑P/U kan kombineras med tydlig rollfördelning</span>
               </div>
             </div>
             
@@ -67,7 +66,7 @@ export const Hero = () => {
                 size="lg"
                 className="earth-gradient text-white hover:opacity-90 text-lg px-8 py-6"
               >
-                Boka kostnadsfri genomgång
+                Skicka projektförfrågan
               </Button>
               <Button 
                 onClick={scrollToContact}
@@ -75,7 +74,7 @@ export const Hero = () => {
                 size="lg"
                 className="border-accent text-accent hover:bg-accent hover:text-white text-lg px-8 py-6"
               >
-                Få fast prisförslag
+                Se priser och be om offert
               </Button>
             </div>
           </div>
@@ -95,8 +94,8 @@ export const Hero = () => {
                 </div>
                 <div className="bg-white rounded-xl p-4 shadow-lg">
                   <Shield className="w-6 h-6 text-accent mb-2" />
-                  <h3 className="font-bold text-lg mb-1">Certifierad</h3>
-                  <p className="text-xs text-muted-foreground">KA, BAS-P & BAS-U</p>
+                  <h3 className="font-bold text-lg mb-1">Certifierad KA</h3>
+                  <p className="text-xs text-muted-foreground">Behörighet N · normal art</p>
                 </div>
                 <div className="bg-white rounded-xl p-4 shadow-lg">
                   <CheckCircle className="w-6 h-6 text-accent mb-2" />
@@ -105,8 +104,8 @@ export const Hero = () => {
                 </div>
                 <div className="bg-white rounded-xl p-4 shadow-lg">
                   <MessageCircle className="w-6 h-6 text-accent mb-2" />
-                  <h3 className="font-bold text-lg mb-1">Snabb Kontakt</h3>
-                  <p className="text-xs text-muted-foreground">Digital hantering</p>
+                  <h3 className="font-bold text-lg mb-1">Tydlig kontakt</h3>
+                  <p className="text-xs text-muted-foreground">Svar utifrån aktuell kapacitet</p>
                 </div>
               </div>
             </div>

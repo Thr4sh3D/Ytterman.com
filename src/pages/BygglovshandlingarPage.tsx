@@ -5,66 +5,68 @@ import { Helmet } from 'react-helmet-async';
 import { FAQ } from "@/components/FAQ";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { ExternalSiteLink } from "@/components/ExternalSiteLink";
 import { ServiceHero } from "@/components/ServiceHero";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle, Phone, Mail, MapPin, Clock, FileText, Building, Ruler, Zap, Image } from "lucide-react";
 import { Link } from "react-router-dom";
+import { COMPANY, SERVICES } from '@/config/company';
+
+const documentService = SERVICES.buildingPermitDocuments;
 
 const BygglovshandlingarPage = () => {
   const bygglovFAQ = [
     {
       question: "Vad ingår i bygglovshandlingar?",
-      answer: "Kompletta bygglovshandlingar inkluderar planritningar, sektioner, fasadritningar, situationsplan, teknisk beskrivning och energiberäkningar. Vi tar fram alla handlingar som behövs för din bygglovsansökan."
+      answer: "Vilka handlingar som behövs beror på åtgärden och byggnadsnämndens krav. Omfattningen bekräftas efter genomgång av projektet och kommunens besked."
     },
     {
       question: "Hur lång tid tar det att ta fram bygglovshandlingar?",
-      answer: "Beroende på projektets omfattning tar det vanligtvis 2-4 veckor att ta fram kompletta bygglovshandlingar. Vid enklare projekt kan det gå snabbare, medan större och mer komplexa projekt kan ta längre tid."
+      answer: "Leveranstiden beror på projektets omfattning, befintligt underlag och kommunens krav. Den bekräftas efter genomgång av handlingarna."
     },
     {
       question: "Vad behöver jag förbereda?",
-      answer: "Du behöver ha en tydlig bild av vad du vill bygga, befintliga ritningar om det finns, samt uppgifter om fastigheten. Vi hjälper dig sedan att samla in övrig nödvändig information och tar fram alla erforderliga handlingar."
+      answer: "Beskriv vad du vill bygga och skicka befintliga ritningar samt uppgifter om fastigheten om de finns. Efter genomgång får du besked om vilket ytterligare underlag Ytterman kan ta fram och vad som behöver komma från andra projektörer eller sakkunniga."
     },
     {
       question: "Hjälper ni även med bygglovsansökan?",
-      answer: "Ja, vi hjälper dig genom hela processen - från framtagande av handlingar till att skicka in ansökan till kommunen. Vi kan också svara på eventuella kompletteringar från byggnadsnämnden."
+      answer: "Stöd med ansökan och kompletteringar kan avtalas. Exakt omfattning framgår av offerten."
     },
     {
       question: "Vad kostar bygglovshandlingar?",
-      answer: "Priset beror på projektets omfattning. För ett standardprojekt (t.ex. tillbyggnad på 30-50 kvm) är priset från 8,000 kr. Vi ger alltid en kostnadsfri offert efter att ha bedömt ditt projekt."
+      answer: `${documentService.priceLabel}. Omfattning och pris bekräftas efter att underlaget har granskats.`
     }
   ];
 
   const services = [
     {
       title: "Planritningar",
-      description: "Detaljerade planritningar i skala 1:100 med alla mått och detaljer",
+      description: "Planritningar med omfattning och skala anpassad till projektets och kommunens krav",
       icon: <Ruler className="h-6 w-6" />
     },
     {
       title: "Fasadritningar",
-      description: "Fasadritningar från alla sidor som visar byggnadens utseende",
+      description: "Fasadritningar för de vyer och uppgifter som ingår i uppdraget",
       icon: <Building className="h-6 w-6" />
     },
     {
       title: "Sektionsritningar",
-      description: "Sektioner som visar hur byggnaden ser ut i genomskärning",
+      description: "Sektioner när de behövs för åtgärden och ingår i offerten",
       icon: <FileText className="h-6 w-6" />
     },
     {
       title: "Situationsplan",
-      description: "Situationsplan som visar byggnadens placering på tomten",
+      description: "Situationsplan baserad på det kartunderlag som krävs för ärendet",
       icon: <Image className="h-6 w-6" />
     },
     {
       title: "Teknisk beskrivning",
-      description: "Utförlig teknisk beskrivning av material och konstruktion",
+      description: "Teknisk beskrivning i avtalad omfattning och med tydligt projektörsansvar",
       icon: <FileText className="h-6 w-6" />
     },
     {
       title: "Energiberäkning",
-      description: "Energiberäkningar enligt gällande BBR-krav",
+      description: "Energiberäkning enligt de krav och förutsättningar som gäller för projektet",
       icon: <Zap className="h-6 w-6" />
     }
   ];
@@ -78,35 +80,21 @@ const BygglovshandlingarPage = () => {
     "@context": "https://schema.org",
     "@type": "Service",
     "name": "Bygglovshandlingar",
-    "description": "Professionella bygglovshandlingar för bygglov i Västernorrland. Planritningar, fasadritningar, teknisk beskrivning och energiberäkningar.",
+    "description": "Bygglovshandlingar med omfattning anpassad efter projektets underlag och byggnadsnämndens krav.",
     "provider": {
       "@type": "LocalBusiness",
-      "name": "Ytterman",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Viksjö",
-        "addressRegion": "Västernorrland",
-        "addressCountry": "SE"
-      },
-      "telephone": "+46761118447",
-      "email": "tobias@ytterman.com"
+      "name": COMPANY.brandName,
+      "email": COMPANY.email
     },
-    "areaServed": [
-      "Sundsvall", "Härnösand", "Sollefteå", "Timrå", "Kramfors"
-    ],
-    "serviceType": "Bygglovshandlingar",
-    "offers": {
-      "@type": "Offer",
-      "description": "Bygglovshandlingar från 8,000 SEK",
-      "priceRange": "Från 8,000 SEK"
-    }
+    "areaServed": COMPANY.areaServed,
+    "serviceType": documentService.name
   };
 
   return (
     <>
       <AdvancedSEO
         title="Bygglovshandlingar i Västernorrland | Ytterman"
-        description="Behöver du bygglovshandlingar? Vi tar fram kompletta handlingar för bygglov: planritningar, fasadritningar, sektioner och energiberäkningar. Från 8,000 kr."
+        description="Bygglovshandlingar anpassade efter projektets och kommunens krav. Omfattning, pris och leveranstid bekräftas efter genomgång av underlaget."
         keywords="bygglovshandlingar, planritningar, bygglov, fasadritningar, teknisk beskrivning, situationsplan, Sundsvall, Härnösand, Västernorrland"
         url="https://ytterman.com/bygglovshandlingar"
         type="website"
@@ -133,32 +121,32 @@ const BygglovshandlingarPage = () => {
         <ServiceHero
           badge="Professionella Handlingar"
           title="Bygglovshandlingar i Västernorrland"
-          subtitle="Kompletta handlingar för ditt bygglov"
-          description="Vi tar fram alla handlingar som behövs för din bygglovsansökan. Med över 20 års erfarenhet hjälper vi dig genom hela processen - från idé till godkänt bygglov. Planritningar, fasadritningar, sektioner, teknisk beskrivning och energiberäkningar."
+          subtitle="Handlingar utifrån projektets och kommunens krav"
+          description="Efter genomgång av projektet identifierar vi vilka handlingar som kan ingå. Omfattning, pris och leveranstid bekräftas i offerten."
           features={[
-            "Planritningar i skala 1:100 med alla mått",
-            "Fasadritningar och sektioner",
-            "Situationsplan och teknisk beskrivning",
-            "Energiberäkningar enligt BBR",
-            "Hjälp med bygglovsansökan"
+            "Planritningar, fasadritningar och sektioner efter behov",
+            "Situationsplan utifrån rätt kartunderlag",
+            "Teknisk beskrivning i avtalad omfattning",
+            "Energiberäkning när den ingår i offerten",
+            "Stöd med ansökan kan avtalas separat"
           ]}
           ctaPrimary={{
             text: "Begär offert",
             href: "/kontakt"
           }}
           ctaSecondary={{
-            text: "076-111 84 47",
-            href: "tel:+46761118447",
-            phone: true
+            text: "Mejla direkt",
+            href: COMPANY.emailHref,
+            external: true
           }}
           bannerContent={{
             icon: Building,
             title: "Bygglovshandlingar",
             subtitle: "Från ritningar till färdigt bygglov",
             certifications: [
-              "Över 20 års erfarenhet av bygglovshandlingar",
-              "Uppfyller alla krav från kommunen",
-              "Snabb handläggning - klart inom 2-4 veckor"
+              COMPANY.experienceLabel + " i byggbranschen",
+              "Handlingar utifrån projektets och kommunens underlag",
+              "Omfattning och leveranstid bekräftas före uppdrag"
             ]
           }}
         />
@@ -256,21 +244,21 @@ const BygglovshandlingarPage = () => {
                   <CheckCircle className="h-8 w-8 text-white" />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">20+ års erfarenhet</h3>
-                <p className="text-gray-600">Vi har många års erfarenhet av att ta fram bygglovshandlingar och vet exakt vad kommunerna kräver.</p>
+                <p className="text-gray-600">Över 20 års erfarenhet i byggbranschen ger en praktisk grund för att förstå projektets handlingar och tekniska sammanhang.</p>
               </div>
               <div className="text-center">
                 <div className="w-16 h-16 earth-gradient rounded-full flex items-center justify-center mx-auto mb-4">
                   <Clock className="h-8 w-8 text-white" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">Snabb handläggning</h3>
-                <p className="text-gray-600">Vi tar fram handlingarna snabbt så att du kan lämna in din ansökan inom 2-4 veckor.</p>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Tydlig leveransplan</h3>
+                <p className="text-gray-600">Underlag, omfattning och leveranstid gås igenom innan uppdraget bekräftas.</p>
               </div>
               <div className="text-center">
                 <div className="w-16 h-16 earth-gradient rounded-full flex items-center justify-center mx-auto mb-4">
                   <FileText className="h-8 w-8 text-white" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">Kompletta handlingar</h3>
-                <p className="text-gray-600">Du får alla handlingar som behövs för ditt bygglov i ett paket - inga dolda kostnader.</p>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Avtalad omfattning</h3>
+                <p className="text-gray-600">Offerten beskriver vilka handlingar som ingår och vilka underlag eller kompletteringar som ligger utanför uppdraget.</p>
               </div>
             </div>
           </div>
@@ -286,29 +274,6 @@ const BygglovshandlingarPage = () => {
           </div>
         </section>
 
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">
-              Relaterade digitala tjänster
-            </h2>
-            <p className="text-lg text-gray-600 mb-4">
-              Driver ni systematiskt arbetsmiljöarbete? Komplettera med digitala säkerhetsverktyg från TY Safety – riskbedömningar och brandskyddsronder direkt i mobilen.
-            </p>
-            <ul className="space-y-3 text-gray-700">
-              <li>
-                <ExternalSiteLink
-                  href="https://www.tysafety.se/digitala-verktyg"
-                  ariaLabel="Digitala säkerhetsverktyg riskbedömning brandskyddsrond – extern länk"
-                  showIcon={true}
-                  className="font-semibold text-blue-700 hover:text-blue-800"
-                >
-                  Digitala säkerhetsverktyg (riskbedömning, brandskyddsrond)
-                </ExternalSiteLink>
-              </li>
-            </ul>
-          </div>
-        </section>
-
         {/* Contact CTA */}
         <section className="py-16 px-4 sm:px-6 lg:px-8 earth-gradient text-white">
           <div className="max-w-4xl mx-auto text-center">
@@ -316,27 +281,27 @@ const BygglovshandlingarPage = () => {
               Behöver du bygglovshandlingar?
             </h2>
             <p className="text-xl mb-8 opacity-90">
-              Kontakta mig idag för en kostnadsfri konsultation och offert.
+              Skicka projektets underlag så återkommer jag med nästa steg och offert.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-white text-slate-900 hover:bg-slate-100" asChild>
                 <Link to="/kontakt/">Skicka förfrågan</Link>
               </Button>
               <Button size="lg" className="bg-transparent text-white border-2 border-white hover:bg-white hover:text-blue-600" asChild>
-                <a href="mailto:tobias@ytterman.com">
+                <a href={`mailto:${COMPANY.email}`}>
                   <Mail className="mr-2 h-4 w-4" />
-                  tobias@ytterman.com
+                  {COMPANY.email}
                 </a>
               </Button>
             </div>
             <div className="mt-8 flex items-center justify-center space-x-6 text-sm opacity-80">
               <div className="flex items-center">
                 <MapPin className="mr-2 h-4 w-4" />
-                Verksam i hela Västernorrland
+                Förfrågningar från {COMPANY.region}
               </div>
               <div className="flex items-center">
                 <Clock className="mr-2 h-4 w-4" />
-                Snabb handläggning
+                Tidplan bekräftas i offerten
               </div>
             </div>
           </div>

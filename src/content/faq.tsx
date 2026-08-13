@@ -2,6 +2,7 @@
 // Centraliserad source of truth för alla FAQ-items
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { BUSINESS_COPY, COMPANY, KA_CERT, PRICE_LABELS, PRICING, formatSek } from '@/config/company';
 
 export interface FAQItem {
   question: string;
@@ -27,25 +28,25 @@ export const faqItems: FAQItem[] = [
   {
     category: 'kontrollansvarig',
     question: "Vad gör en kontrollansvarig (KA)?",
-    answer: "En kontrollansvarig ansvarar för teknisk kontroll under byggprocessen, upprättar kontrollplan, genomför slutbesiktning och utfärdar slutbevis enligt Plan- och bygglagen (PBL).",
+    answer: BUSINESS_COPY.kaScope,
     keywords: ['kontrollansvarig', 'KA', 'byggkontroll', 'PBL']
   },
   {
     category: 'kontrollansvarig',
     question: "När behövs en kontrollansvarig?",
-    answer: "Kontrollansvarig krävs för de flesta byggprojekt enligt PBL, särskilt för nybyggnation, större ombyggnader och när bygglov krävs. Vi hjälper dig bedöma om ditt projekt kräver KA.",
+    answer: "Byggnadsnämnden avgör om projektet behöver en kontrollansvarig. Kravet är vanligt i lov- och anmälningspliktiga projekt, men det finns undantag. Kontrollera kommunens beslut för det enskilda ärendet.",
     keywords: ['kontrollansvarig', 'lagkrav', 'bygglov']
   },
   {
     category: 'kontrollansvarig',
     question: "Vad kostar kontrollansvarig-tjänster?",
-    answer: "Våra KA-tjänster börjar från 15,000 SEK beroende på projektets omfattning och komplexitet. Vi ger alltid fast pris efter en kostnadsfri konsultation.",
+    answer: `${PRICE_LABELS.kaBasFrom} inklusive moms gäller KA Bas för tillbyggnad. Se prissidan för samtliga paketpriser ${PRICING.year}.`,
     keywords: ['pris', 'kostnad', 'kontrollansvarig']
   },
   {
     category: 'kontrollansvarig',
     question: "Hur lång tid tar kontrollprocessen?",
-    answer: "Tiden varierar beroende på projektets storlek, men en typisk kontrollprocess tar 2-4 veckor från kontrollplan till slutbevis. Vi arbetar effektivt för att inte försena ditt projekt.",
+    answer: "Tiden beror på projektets omfattning, byggtid, kontrollplan och om underlagen är kompletta. Tidsplanen bekräftas för det aktuella uppdraget.",
     keywords: ['tid', 'process', 'kontrollansvarig']
   },
 
@@ -53,13 +54,13 @@ export const faqItems: FAQItem[] = [
   {
     category: 'basP',
     question: "Vad är BAS-P och när behövs det?",
-    answer: "BAS-P (Byggarbetsmiljösamordnare under Projektering) krävs när flera entreprenörer ska arbeta på samma byggarbetsplats. BAS-P ansvarar för arbetsmiljösamordning under projekteringsfasen.",
+    answer: "BAS-P är byggarbetsmiljösamordnare under planering och projektering. Byggherren ska se till att en lämplig BAS-P utses för bygg- och anläggningsarbetet; ansvarsfördelningen behöver bedömas för det aktuella projektet.",
     keywords: ['BAS-P', 'projektering', 'arbetsmiljö']
   },
   {
     category: 'basP',
     question: "Vad ingår i BAS-P tjänsten?",
-    answer: "BAS-P inkluderar upprättande av arbetsmiljöplan, riskbedömning, samordning mellan projektörer och säkerställande av att arbetsmiljöaspekter beaktas redan i projekteringsfasen.",
+    answer: "BAS-P samordnar arbetsmiljöfrågorna under planering och projektering, följer upp projektörernas riskarbete och medverkar till arbetsmiljöplan när en sådan krävs. Exakt omfattning framgår av uppdraget.",
     keywords: ['BAS-P', 'arbetsmiljöplan', 'riskbedömning']
   },
   {
@@ -73,19 +74,19 @@ export const faqItems: FAQItem[] = [
   {
     category: 'basU',
     question: "Vad gör BAS-U på byggarbetsplatsen?",
-    answer: "BAS-U genomför regelbundna säkerhetsronder, samordnar arbetsmiljöarbetet mellan entreprenörer, följer upp arbetsmiljöplanen och rapporterar incidenter.",
+    answer: "BAS-U samordnar arbetsmiljöarbetet under utförandet, följer upp arbetsmiljöplanen när en sådan krävs och hanterar risker och avvikelser inom sitt mandat. Aktiviteterna planeras efter projektets riskbild.",
     keywords: ['BAS-U', 'säkerhetsronder', 'byggarbetsplats']
   },
   {
     category: 'basU',
     question: "Hur ofta besöker BAS-U byggarbetsplatsen?",
-    answer: "Besöksfrekvensen beror på projektets omfattning och riskbild, men vanligtvis 1-2 gånger per vecka under aktiva byggfaser. Vi anpassar schemat efter projektets behov.",
+    answer: "Besöksfrekvensen bestäms utifrån projektets omfattning, skeden och riskbild. Planerade besök och övrig uppföljning dokumenteras i uppdragsbeskrivningen.",
     keywords: ['BAS-U', 'besöksfrekvens', 'platsbesök']
   },
   {
     category: 'basU',
     question: "Vad händer om arbetsmiljöbrister upptäcks?",
-    answer: "BAS-U rapporterar brister direkt till ansvarig entreprenör och följer upp att åtgärder vidtas. Vid allvarliga brister kan arbetet stoppas tills säkerheten är återställd.",
+    answer: "BAS-U uppmärksammar brister, samordnar berörda aktörer och följer upp beslutade åtgärder enligt arbetsmiljöplan, projektets rutiner och tilldelat mandat.",
     keywords: ['BAS-U', 'brister', 'säkerhet']
   },
 
@@ -93,19 +94,19 @@ export const faqItems: FAQItem[] = [
   {
     category: 'general',
     question: "Vilka områden täcker ni?",
-    answer: "Vi verkar i hela Västernorrland med fokus på Sundsvall, Härnösand, Sollefteå, Timrå och Kramfors. Vi hjälper även kunder i övriga delar av regionen.",
+    answer: `Ytterman tar emot förfrågningar från ${COMPANY.region}. Tillgänglighet, platsbesök, resor och eventuella resekostnader bekräftas för varje projekt.`,
     keywords: ['område', 'Västernorrland', 'geografisk täckning']
   },
   {
     category: 'general',
     question: "Hur snabbt kan ni starta ett uppdrag?",
-    answer: "Vi strävar efter att kunna starta inom 1-2 veckor efter bekräftad beställning. För akuta ärenden kan vi ofta ordna snabbare start.",
+    answer: BUSINESS_COPY.defaultResponse,
     keywords: ['starttid', 'snabb', 'akut']
   },
   {
     category: 'general',
-    question: "Erbjuder ni kostnadsfri konsultation?",
-    answer: "Ja, vi erbjuder alltid en kostnadsfri första konsultation där vi går igenom ditt projekt och ger råd om vilka tjänster som behövs.",
+    question: "Hur börjar en förfrågan?",
+    answer: "Skicka projektets ort, typ, tidplan och tillgängliga handlingar. Ytterman bedömer därefter möjlig omfattning, kapacitet och nästa steg innan offert lämnas.",
     keywords: ['konsultation', 'gratis', 'kostnadsfri']
   },
 
@@ -113,31 +114,31 @@ export const faqItems: FAQItem[] = [
   {
     category: 'pricing',
     question: "Vad kostar en kontrollansvarig?",
-    answer: "Kostnaden för kontrollansvarig varierar mellan 19,999-80,000 kr beroende på projektets omfattning och komplexitet. För större projekt arbetar vi ofta med fast pris, medan mindre uppdrag kan debiteras per timme (1,200-1,800 kr/h). Kontakta oss för en kostnadsfri offert anpassad till ditt specifika projekt.",
+    answer: `För ${PRICING.year} kostar KA Bas för tillbyggnad ${formatSek(PRICING.ka.extension.bas)}, ombyggnation ${formatSek(PRICING.ka.renovation.bas)} och nyproduktion av fritidshus ${formatSek(PRICING.ka.newVacationHome.bas)} inklusive moms.`,
     keywords: ['pris', 'kostnad', 'kontrollansvarig', 'offert']
   },
   {
     category: 'pricing',
     question: "Fast pris eller timpris - vad är bäst?",
-    answer: "Fast pris rekommenderas för projekt där omfattningen är tydlig, såsom nybyggnation eller större ombyggnader. Timpris passar för mindre, avgränsade uppdrag, konsultationer eller när projektets omfattning är svår att förutse. Vi hjälper dig välja det mest ekonomiska alternativet baserat på ditt projekts förutsättningar.",
+    answer: "Prisformen beror på hur tydligt uppdraget kan avgränsas. Paket- eller fast pris kan användas för definierad omfattning, medan löpande debitering kan avtalas för tillägg eller svårbedömda moment. Offerten anger vad som gäller.",
     keywords: ['fast pris', 'timpris', 'prissättning']
   },
   {
     category: 'pricing',
     question: "Vad ingår i priset för kontrollansvarig?",
-    answer: "Priset inkluderar granskning av ritningar och handlingar, upprättande av kontrollplan, tekniska kontroller på bygget enligt kontrollplanen, löpande dokumentation, samordning med byggledning och projektörer samt utfärdande av slutbevis. Resor inom Västernorrland ingår utan extra kostnad.",
+    answer: `Paketens omfattning framgår på prissidan och i offerten. KA-uppdraget omfattar kontrollplan, uppföljning och dokumentation samt utlåtande inför slutbesked enligt avtalad nivå. ${PRICING.supplementRule} Resor specificeras i offerten.`,
     keywords: ['ingår', 'kontrollansvarig', 'tjänster']
   },
   {
     category: 'pricing',
     question: "Vad kostar BAS-P och BAS-U?",
-    answer: "BAS-P och BAS-U prissätts vanligtvis per timme (1,200-1,500 kr/h) eller som fast pris beroende på projektets längd och omfattning. En mindre villa kan kosta från 15,000 kr medan större byggprojekt prissätts individuellt. Kontakta oss för exakt prisbedömning.",
+    answer: `Fristående BAS-P- och BAS-U-uppdrag prissätts efter genomgång av projektet. Paket med KA och BAS-P/U ligger från ${formatSek(PRICING.kaBasPackage.from)} till ${formatSek(PRICING.kaBasPackage.to)} inklusive moms.`,
     keywords: ['BAS-P', 'BAS-U', 'pris', 'kostnad']
   },
   {
     category: 'pricing',
     question: "Kan jag kombinera tjänster för bättre pris?",
-    answer: "Ja, när du anlitar oss för flera tjänster samtidigt, till exempel kontrollansvarig och BAS-P, kan vi ofta erbjuda paketpriser som ger dig bättre ekonomi. Vi ser alltid över möjligheterna att optimera kostnaden för hela projektet.",
+    answer: `Paket med KA och BAS-P/U erbjuds från ${formatSek(PRICING.kaBasPackage.from)} till ${formatSek(PRICING.kaBasPackage.to)} inklusive moms. Vilka roller och moment som ingår bekräftas i offerten.`,
     keywords: ['paketpris', 'kombination', 'rabatt']
   },
 
@@ -145,25 +146,25 @@ export const faqItems: FAQItem[] = [
   {
     category: 'bygglov',
     question: "Behövs kontrollansvarig för bygglov?",
-    answer: "Ja, kontrollansvarig krävs för de flesta projekt som kräver bygglov enligt Plan- och bygglagen. KA ska utses innan byggstart och ansvarar för att bygget följer godkända ritningar och gällande byggregler. Kommunen kan kräva att kontrollansvarig är utsedd redan vid bygglovsansökan.",
+    answer: "Byggnadsnämnden avgör om en kontrollansvarig krävs i lov- eller anmälningsärendet. När KA krävs ska personen ha rätt behörighet och godtas i ärendet. KA:s uppgifter omfattar bland annat förslag till kontrollplan, uppföljning och utlåtande.",
     keywords: ['bygglov', 'kontrollansvarig', 'lagkrav']
   },
   {
     category: 'bygglov',
     question: "När i bygglovsprocessen ska man anlita kontrollansvarig?",
-    answer: "Kontrollansvarig ska utses så tidigt som möjligt, helst redan under projekteringsfasen. Vi kan granska ritningar innan bygglovsansökan för att upptäcka eventuella brister tidigt. Senast måste KA vara utsedd vid ansökan om startbesked från kommunen.",
+    answer: "När byggnadsnämnden kräver KA behöver byggherren föreslå en certifierad person i ärendet. Tidpunkten och vilket underlag som ska lämnas framgår av kommunens process. Tidig kontakt kan underlätta planeringen.",
     keywords: ['bygglov', 'när', 'tidpunkt']
   },
   {
     category: 'bygglov',
     question: "Kan kontrollansvarig hjälpa med bygglovsansökan?",
-    answer: "Ja, som kontrollansvarig granskar jag ritningar och tekniska handlingar innan bygglovsansökan. Jag identifierar brister som kan leda till avslag och säkerställer att allt uppfyller PBL och BBR. Detta ökar chansen för snabbt godkännande och undviker kostsamma omarbetningar.",
+    answer: "Hjälp med bygglovshandlingar kan avtalas som en separat tjänst. KA-rollen ska hållas tydlig: kontrollansvarig hjälper byggherren att ta fram förslag till kontrollplan och följer kontrollerna, medan byggherren ansvarar för ansökan och byggnadsnämnden prövar ärendet.",
     keywords: ['bygglov', 'ansökan', 'granskning']
   },
   {
     category: 'bygglov',
     question: "Vad händer om man bygger utan kontrollansvarig?",
-    answer: "Att bygga utan kontrollansvarig när det krävs är lagbrott som kan leda till byggförbud, byggsanktionsavgift upp till flera hundra tusen kronor och krav på rivning i värsta fall. Dessutom får du inget slutbevis vilket gör fastigheten juridiskt otillåten att använda eller sälja.",
+    answer: "Om byggnadsnämnden har krävt en kontrollansvarig måste den rollen vara utsedd och godkänd i ärendet. Att starta utan nödvändigt startbesked kan leda till tillsyn och byggsanktionsavgift. Kontakta byggnadsnämnden för besked i det enskilda ärendet.",
     keywords: ['lagbrott', 'sanktion', 'byggförbud']
   },
 
@@ -171,19 +172,19 @@ export const faqItems: FAQItem[] = [
   {
     category: 'certifiering',
     question: "Hur vet jag att en kontrollansvarig är certifierad?",
-    answer: "En certifierad kontrollansvarig har ett personligt certifikat utfärdat av godkänt certifieringsorgan (SBUF, RISE eller SP). Certifikatet visar namn, giltighetstid och omfattning. Du har rätt att begära att se certifikatet och kan verifiera äktheten genom att kontakta certifieringsorganet.",
+    answer: `Begär certifikatets nummer, behörighetsnivå, certifieringsorgan och giltighetstid. Tobias Yttermans certifikat är utfärdat av ${KA_CERT.issuer}, nummer ${KA_CERT.certificateNumber}, med ${KA_CERT.authorizationLabel.toLowerCase()} och giltighet till ${KA_CERT.validUntil}.`,
     keywords: ['certifiering', 'certifikat', 'verifiering']
   },
   {
     category: 'certifiering',
     question: "Måste kontrollansvarig vara certifierad?",
-    answer: "Ja, enligt Boverkets föreskrifter måste kontrollansvarig ha personlig certifiering för att få utföra uppdraget. Certifieringen kräver högskoleutbildning, minst 3 års yrkesrfarenhet och godkänt prov. Kommunen kontrollerar att KA är certifierad innan startbesked ges.",
+    answer: "En kontrollansvarig ska vara certifierad enligt gällande regler och ha rätt behörighet för projektets art. Kontrollera alltid certifieringsorgan, certifikatsnummer, behörighetsnivå och giltighetstid.",
     keywords: ['certifiering', 'lagkrav', 'Boverket']
   },
   {
     category: 'certifiering',
     question: "Hur lång tid gäller en KA-certifiering?",
-    answer: "KA-certifikatet gäller i 5 år och måste sedan förnyas. Förnyelsen kräver dokumenterad verksamhet som kontrollansvarig, kontinuerlig fortbildning samt godkänt återcertifieringsprov. Detta säkerställer att kontrollansvariga håller sig uppdaterade om nya regler och metoder.",
+    answer: `Giltighetstiden framgår av det personliga certifikatet. Tobias Yttermans certifikat ${KA_CERT.certificateNumber} är giltigt till och med ${KA_CERT.validUntil}.`,
     keywords: ['certifiering', 'giltighetstid', 'förnyelse']
   },
 
@@ -191,19 +192,19 @@ export const faqItems: FAQItem[] = [
   {
     category: 'overlatelsebesiktning',
     question: "Vad är skillnaden mellan överlåtelsebesiktning och kontrollansvarig?",
-    answer: "Överlåtelsebesiktning görs vid fastighetsförsäljning för att identifiera synliga fel och brister. Kontrollansvarig arbetar under byggprocessen för att säkerställa att bygget följer lagar och bygglov. Överlåtelsebesiktning är objektiv värdering, KA är kvalitetssäkring under byggande.",
+    answer: "En överlåtelsebesiktning är en avtalad, normalt okulär undersökning inför en fastighetsöverlåtelse. KA är en separat PBL-roll under byggprocessen med uppgifter kring kontrollplan, uppföljning och utlåtande. Besiktningen är inte en fastighetsvärdering.",
     keywords: ['överlåtelsebesiktning', 'kontrollansvarig', 'skillnad']
   },
   {
     category: 'overlatelsebesiktning',
     question: "Behövs överlåtelsebesiktning vid försäljning av nybyggt hus?",
-    answer: "Överlåtelsebesiktning är inte lagkrav men starkt rekommenderat även för nybyggda hus. Även nya hus kan ha dolda brister från byggfasen. Besiktningen ger köparen trygghet och säljer kan undvika framtida reklamationer genom att dokumentera fastighetens skick vid försäljning.",
+    answer: "Behovet beror på affären, avtal, tidigare besiktningar och vilket underlag parterna redan har. En överlåtelsebesiktning ersätter inte juridisk rådgivning eller köparens ansvar att undersöka fastigheten. Bestäm omfattningen med besiktningsmannen före uppdraget.",
     keywords: ['överlåtelsebesiktning', 'nybyggt', 'försäljning']
   },
   {
     category: 'overlatelsebesiktning',
     question: "Hur lång tid tar en överlåtelsebesiktning?",
-    answer: "En överlåtelsebesiktning av normalstort hus (150-200 kvm) tar vanligtvis 2-3 timmar på plats. Därefter tar det 2-4 dagar att färdigställa den skriftliga rapporten. Rapporten innehåller genomgång av alla ytor, installationer och konstruktioner med foton och prioriterade åtgärdsförslag.",
+    answer: "Tidsåtgången beror på fastighetens storlek, ålder, åtkomlighet och avtalad omfattning. Tid på plats, rapportinnehåll och leveranstid bekräftas vid bokning.",
     keywords: ['överlåtelsebesiktning', 'tid', 'process']
   },
 
@@ -211,25 +212,25 @@ export const faqItems: FAQItem[] = [
   {
     category: 'lokalt',
     question: "Finns det kontrollansvarig i Sundsvall?",
-    answer: "Ja, jag är baserad i Sundsvall (Viksjö) och har över 20 års erfarenhet från byggprojekt i Sundsvall och övriga Västernorrland. Jag känner till kommunens bygglovskrav och har etablerade kontakter med byggnadsnämnden, vilket ger smidigare processer för dina projekt.",
+    answer: `Ytterman tar emot förfrågningar från Sundsvall och övriga ${COMPANY.region}. ${COMPANY.experienceLabel} i byggbranschen. Tillgänglighet och resor bekräftas i offerten.`,
     keywords: ['Sundsvall', 'lokal', 'kontrollansvarig']
   },
   {
     category: 'lokalt',
     question: "Tar ni uppdrag i Härnösand och Timrå?",
-    answer: "Absolut! Härnösand ligger 30 min från vårt kontor och Timrå endast 20 min, vilket gör att vi kan vara på plats samma dag vid behov. Vi har stor erfarenhet från projekt i både Härnösands K-märkta stadskärna och Timrås växande villaområden och industriprojekt.",
+    answer: "Ytterman tar emot förfrågningar från både Härnösand och Timrå. Tillgänglighet, platsbesök och resor bekräftas efter genomgång av projektet.",
     keywords: ['Härnösand', 'Timrå', 'lokal']
   },
   {
     category: 'lokalt',
     question: "Arbetar ni i Kramfors, Sollefteå och Örnsköldsvik?",
-    answer: "Ja, vi täcker hela Västernorrland. Kramfors (40 min), Sollefteå (45 min) och Örnsköldsvik (1 timme) ligger inom vårt normala verksamhetsområde. Resor inom länet ingår i priset utan extra kostnad. Vi planerar platsbesök effektivt för att ge samma service överallt.",
+    answer: "Ytterman tar emot förfrågningar från Kramfors, Sollefteå och Örnsköldsvik. Tillgänglighet, platsbesök och eventuella resekostnader bekräftas i offerten.",
     keywords: ['Kramfors', 'Sollefteå', 'Örnsköldsvik', 'lokal']
   },
   {
     category: 'lokalt',
     question: "Kostar det mer att anlita er utanför Sundsvall?",
-    answer: "Nej, vi tar inte ut extra reskostnader för uppdrag inom Västernorrland. Du betalar samma pris oavsett om projektet ligger i Sundsvall centrum eller på landsbygden i Sollefteå. Vi vill göra kvalificerade byggtjänster tillgängliga i hela länet till rättvisa priser.",
+    answer: "Resor och eventuella resekostnader beror på projektets läge och planerade platsbesök. De specificeras i offerten innan uppdraget startar.",
     keywords: ['pris', 'reskostnad', 'lokal']
   },
 
@@ -239,7 +240,7 @@ export const faqItems: FAQItem[] = [
     question: "Hur fungerar kontrollansvarig vid bygglovsprocessen?",
     answer: (
       <>
-        Kontrollansvarig medverkar i alla faser från bygglovsansökan till slutbesked. KA granskar ritningar, upprättar kontrollplan, genomför tekniska kontroller under byggfasen och säkerställer att bygget följer godkänt bygglov och gällande byggregler. <Link to="/guider/kontrollansvarig-bygglov/" className="text-blue-600 hover:text-blue-700 underline">Läs mer om KA vid bygglov</Link>
+        Kontrollansvarig medverkar i de skeden som hör till uppdraget, hjälper byggherren att ta fram förslag till kontrollplan och följer att kontrollerna utförs. KA lämnar sitt utlåtande som underlag; byggnadsnämnden fattar beslut om slutbesked. <Link to="/guider/kontrollansvarig-bygglov/" className="text-blue-600 hover:text-blue-700 underline">Läs mer om KA vid bygglov</Link>
       </>
     ),
     keywords: ['kontrollansvarig bygglov', 'KA bygglov', 'bygglovsprocess', 'vad gör kontrollansvarig']
@@ -249,7 +250,7 @@ export const faqItems: FAQItem[] = [
     question: "Vilka krav finns för certifiering av kontrollansvarig?",
     answer: (
       <>
-        För att bli certifierad kontrollansvarig krävs högskoleutbildning inom bygg/teknik, minst 3 års yrkesrfarenhet från byggprojekt, godkänt certifieringsprov samt personlig certifiering från godkänt certifieringsorgan (SBUF, RISE eller SP). Certifikatet gäller i 5 år och måste sedan förnyas. <Link to="/guider/kontrollansvarig-certifiering/" className="text-blue-600 hover:text-blue-700 underline">Läs mer om KA-certifiering</Link>
+        Kraven på utbildning, erfarenhet och kunskap beror på sökt behörighetsnivå och prövas av ett ackrediterat certifieringsorgan. Kontrollera alltid det aktuella certifikatets behörighet och giltighetstid. <Link to="/guider/kontrollansvarig-certifiering/" className="text-blue-600 hover:text-blue-700 underline">Läs mer om KA-certifiering</Link>
       </>
     ),
     keywords: ['certifiering kontrollansvarig', 'KA certifikat', 'krav certifiering', 'bli kontrollansvarig']
@@ -259,7 +260,7 @@ export const faqItems: FAQItem[] = [
     question: "Vad är kontrollansvarigs juridiska ansvar?",
     answer: (
       <>
-        Kontrollansvarig har omfattande juridiskt ansvar enligt PBL. Om KA missar brister eller fel som leder till skador kan både civilrättsligt och straffrättsligt ansvar aktualiseras. Kontrollansvarig måste ha ansvarsförsäkring på minst 5 miljoner kronor per skada för att täcka eventuella skadeståndsanspråk. <Link to="/guider/kontrollansvarig-ansvar/" className="text-blue-600 hover:text-blue-700 underline">Läs mer om KA:s ansvar</Link>
+        KA:s lagstadgade uppgifter framgår av PBL och ska skiljas från byggherrens, projektörernas och entreprenörernas ansvar. Avtal, försäkring och omständigheterna i det enskilda fallet påverkar eventuellt skadeståndsansvar. <Link to="/guider/kontrollansvarig-ansvar/" className="text-blue-600 hover:text-blue-700 underline">Läs mer om KA:s ansvar</Link>
       </>
     ),
     keywords: ['kontrollansvarig ansvar', 'KA juridiskt ansvar', 'skadeståndsansvar', 'vad händer om KA gör fel']
@@ -269,7 +270,7 @@ export const faqItems: FAQItem[] = [
     question: "Vad kostar kontrollansvarig per timme i Västernorrland?",
     answer: (
       <>
-        Timpriset för kontrollansvarig i Västernorrland ligger vanligtvis mellan 800-1,200 kr exkl. moms beroende på projektets komplexitet och KA:s erfarenhet. För större projekt är fast pris ofta mer ekonomiskt. En normalvilla kostar totalt 40,000-80,000 kr för fullständig KA-tjänst från start till slutbesked. <Link to="/guider/kontrollansvarig-timpris/" className="text-blue-600 hover:text-blue-700 underline">Läs mer om KA-priser</Link>
+        Ytterman publicerar paketpriser inklusive moms i stället för ett generellt timpris. Tillbyggnad Bas kostar {formatSek(PRICING.ka.extension.bas)}, ombyggnation Bas {formatSek(PRICING.ka.renovation.bas)} och nyproduktion av fritidshus Bas {formatSek(PRICING.ka.newVacationHome.bas)}. <Link to="/priser/" className="text-blue-600 hover:text-blue-700 underline">Se aktuella priser</Link>
       </>
     ),
     keywords: ['kontrollansvarig timpris', 'KA kostnad per timme', 'vad kostar KA', 'timpris västernorrland']
@@ -279,7 +280,7 @@ export const faqItems: FAQItem[] = [
     question: "När krävs BAS-U på byggarbetsplatsen?",
     answer: (
       <>
-        BAS-U krävs enligt arbetsmiljölagen när byggnaden är avsedd för arbete och det samtidigt kommer att arbeta mer än en entreprenör (underentreprenörer, konsulter etc) på byggarbetsplatsen. Detta gäller alla kommersiella byggnader, flerbostadshus och de flesta villor där flera hantverkare samverkar. <Link to="/guider/bas-u-guide/" className="text-blue-600 hover:text-blue-700 underline">Läs fullständig BAS-U guide</Link>
+        Byggherren ska se till att en lämplig BAS-U utses för utförandet av bygg- och anläggningsarbetet. Vem som bär byggherreansvaret och hur uppdraget ska avgränsas behöver bedömas för det aktuella projektet. <Link to="/guider/bas-u-guide/" className="text-blue-600 hover:text-blue-700 underline">Läs BAS-U-guiden</Link>
       </>
     ),
     keywords: ['när krävs BAS-U', 'BAS-U obligatorisk', 'behövs BAS-U', 'BAS-U lagkrav']
@@ -289,7 +290,7 @@ export const faqItems: FAQItem[] = [
     question: "Vad ansvarar BAS-P för under projekteringen?",
     answer: (
       <>
-        BAS-P ansvarar för att upprätta arbetsmiljöplan, genomföra riskbedömningar, samordna arbetsmiljöaspekter mellan projektörer och konsulter samt säkerställa att byggnadens utformning inte skapar onödiga arbetsmiljörisker under byggfasen. BAS-P arbetar nära arkitekter och konstruktörer för att bygga in säkerhet redan i designen. <Link to="/guider/bas-p-guide/" className="text-blue-600 hover:text-blue-700 underline">Läs fullständig BAS-P guide</Link>
+        BAS-P samordnar arbetsmiljöfrågorna under planering och projektering och följer upp hur projektörerna förebygger risker i sina lösningar. Arbetsmiljöplan tas fram när reglerna kräver det. <Link to="/guider/bas-p-guide/" className="text-blue-600 hover:text-blue-700 underline">Läs BAS-P-guiden</Link>
       </>
     ),
     keywords: ['BAS-P ansvar', 'vad gör BAS-P', 'BAS-P uppgifter', 'arbetsmiljösamordnare projektering']
@@ -309,7 +310,7 @@ export const faqItems: FAQItem[] = [
     question: "Vad händer på tekniskt samråd?",
     answer: (
       <>
-        Tekniskt samråd är ett obligatoriskt möte mellan byggnadsnämnden, byggherren, kontrollansvarig och eventuellt andra sakkunniga. Mötet hålls innan byggstart för att gå igenom kontrollplanen, klarlägga bygglovets förutsättningar, diskutera tekniska lösningar och säkerställa att alla är överens om kraven. Efter godkänt samråd utfärdas startbesked. <Link to="/guider/tekniskt-samrad/" className="text-blue-600 hover:text-blue-700 underline">Läs mer om tekniskt samråd</Link>
+        När byggnadsnämnden kallar till tekniskt samråd går parterna bland annat igenom arbetets planering, förslaget till kontrollplan och de tekniska handlingar som behövs inför ett eventuellt startbesked. Nämnden avgör deltagare, underlag och beslut. <Link to="/guider/tekniskt-samrad/" className="text-blue-600 hover:text-blue-700 underline">Läs mer om tekniskt samråd</Link>
       </>
     ),
     keywords: ['tekniskt samråd', 'vad händer tekniskt samråd', 'samråd bygglov', 'startbesked']
@@ -319,7 +320,7 @@ export const faqItems: FAQItem[] = [
     question: "Hur länge tar tekniskt samråd?",
     answer: (
       <>
-        Själva samrådsmötet tar vanligtvis 30-60 minuter. Från att ansökan om tekniskt samråd skickas in till att mötet hålls tar det normalt 2-4 veckor beroende på byggnadsnämndens belastning. Efter mötet tar det ytterligare 1-2 veckor innan startbesked utfärdas om allt är korrekt. <Link to="/guider/tekniskt-samrad/" className="text-blue-600 hover:text-blue-700 underline">Läs mer om tekniskt samråd</Link>
+        Mötets längd och byggnadsnämndens handläggningstid varierar mellan projekt och kommuner. Nämnden anger vilket underlag som krävs och kan fatta beslut om startbesked när ärendet är komplett. <Link to="/guider/tekniskt-samrad/" className="text-blue-600 hover:text-blue-700 underline">Läs mer om tekniskt samråd</Link>
       </>
     ),
     keywords: ['tekniskt samråd tid', 'hur lång tid samråd', 'samråd varaktighet']
@@ -329,7 +330,7 @@ export const faqItems: FAQItem[] = [
     question: "Behövs tekniskt samråd vid renovering?",
     answer: (
       <>
-        Tekniskt samråd krävs endast för projekt där kontrollansvarig är obligatorisk och bygglov har beviljats. För mindre renoveringar som inte kräver bygglov eller KA behövs inget tekniskt samråd. Men för omfattande ombyggnader med bärande konstruktioner, stambyten eller utökad boyta krävs vanligtvis både bygglov och tekniskt samråd. <Link to="/guider/tekniskt-samrad/" className="text-blue-600 hover:text-blue-700 underline">Läs mer om tekniskt samråd</Link>
+        Byggnadsnämnden avgör om tekniskt samråd behövs utifrån åtgärden och ärendet. Beskedet framgår av kommunens handläggning; utgå inte enbart från projektets storlek. <Link to="/guider/tekniskt-samrad/" className="text-blue-600 hover:text-blue-700 underline">Läs mer om tekniskt samråd</Link>
       </>
     ),
     keywords: ['tekniskt samråd renovering', 'ombyggnad samråd', 'behövs samråd']
@@ -339,20 +340,20 @@ export const faqItems: FAQItem[] = [
     question: "Vilka dokument behövs för slutbesked?",
     answer: (
       <>
-        För slutbesked krävs: kontrollansvarigs slutintyg, komplett kontrollplan med alla protokoll, sakkunnigutlåtanden (konstruktör, VVS, el, fuktsäkerhet, OVK), eventuella relationsritningar och driftsinstruktioner. Byggnadsnämnden granskar dokumentationen och kan kräva kompletteringar innan slutbesked beviljas. <Link to="/guider/slutbesked/" className="text-blue-600 hover:text-blue-700 underline">Läs mer om slutbesked</Link>
+        Vilka dokument som krävs beror på projektet och byggnadsnämndens beslut. Underlaget kan omfatta signerad kontrollplan, kontrollansvarigs utlåtande, intyg och andra handlingar som nämnden har begärt. Byggnadsnämnden prövar om slutbesked kan ges. <Link to="/guider/slutbesked/" className="text-blue-600 hover:text-blue-700 underline">Läs mer om slutbesked</Link>
       </>
     ),
-    keywords: ['slutbesked dokument', 'handlingar slutbesked', 'vad krävs slutbesked', 'slutbevis krav']
+    keywords: ['slutbesked dokument', 'handlingar slutbesked', 'vad krävs slutbesked']
   },
   {
     category: 'bygglov',
     question: "Hur lång tid tar det att få slutbesked?",
     answer: (
       <>
-        Från att komplett ansökan om slutbesked skickas in till byggnadsnämnden tar det normalt 2-4 veckor att få slutbeskedet beviljat. I vissa kommuner går det snabbare (1-2 veckor) medan det i andra eller vid komplexa projekt kan ta upp till 6-8 veckor. Ofullständig dokumentation försenar processen ytterligare. <Link to="/guider/slutbesked/" className="text-blue-600 hover:text-blue-700 underline">Läs mer om slutbesked</Link>
+        Handläggningstiden varierar mellan projekt och byggnadsnämnder. Ett komplett underlag minskar risken för kompletteringar, men nämnden avgör när slutbesked kan beslutas. <Link to="/guider/slutbesked/" className="text-blue-600 hover:text-blue-700 underline">Läs mer om slutbesked</Link>
       </>
     ),
-    keywords: ['slutbesked tid', 'hur lång tid slutbesked', 'slutbevis handläggningstid']
+    keywords: ['slutbesked tid', 'hur lång tid slutbesked', 'slutbesked handläggningstid']
   },
   {
     category: 'kontrollansvarig',
@@ -369,7 +370,7 @@ export const faqItems: FAQItem[] = [
     question: "När ska kontrollplanen godkännas?",
     answer: (
       <>
-        Kontrollplanen ska vara upprättad av kontrollansvarig och godkänd av byggnadsnämnden innan byggstart. Godkännandet sker vanligtvis vid eller strax efter tekniskt samråd. Att börja bygga utan godkänd kontrollplan är lagbrott och kan leda till byggförbud och byggsanktionsavgift. <Link to="/guider/kontrollplan/" className="text-blue-600 hover:text-blue-700 underline">Läs mer om kontrollplan</Link>
+        Kontrollansvarig hjälper byggherren att ta fram ett förslag när projektet har KA. Byggnadsnämnden fastställer kontrollplanen i startbeskedet. Arbeten som omfattas av startbesked får inte påbörjas innan nämnden har gett besked. <Link to="/guider/kontrollplan/" className="text-blue-600 hover:text-blue-700 underline">Läs mer om kontrollplan</Link>
       </>
     ),
     keywords: ['kontrollplan godkännande', 'när godkänns kontrollplan', 'kontrollplan tidpunkt']
@@ -379,7 +380,7 @@ export const faqItems: FAQItem[] = [
     question: "Kan vem som helst bli kontrollansvarig?",
     answer: (
       <>
-        Nej, för att bli kontrollansvarig krävs högskoleutbildning inom bygg/teknik (minst 120 hp), dokumenterad yrkesrfarenhet från minst 3 års byggprojekt, fördjupade kunskaper om PBL och BBR samt godkänt certifieringsprov hos godkänt organ. Certifieringen är personlig och kräver kontinuerlig fortbildning. Det är en reglerad yrkesroll med höga krav. <Link to="/guider/kontrollansvarig-certifiering/" className="text-blue-600 hover:text-blue-700 underline">Läs mer om certifiering</Link>
+        Nej. Ett ackrediterat certifieringsorgan prövar utbildning, erfarenhet och kunskap mot kraven för sökt behörighet. Kontrollera certifikatets nivå och giltighet för det aktuella uppdraget. <Link to="/guider/kontrollansvarig-certifiering/" className="text-blue-600 hover:text-blue-700 underline">Läs mer om certifiering</Link>
       </>
     ),
     keywords: ['bli kontrollansvarig', 'KA utbildning', 'krav på KA', 'certifiering kontrollansvarig']
@@ -389,7 +390,7 @@ export const faqItems: FAQItem[] = [
     question: "Vad händer om kontrollansvarig gör fel?",
     answer: (
       <>
-        Om kontrollansvarig missar brister som leder till skador på byggnaden kan KA bli skadeståndsskyldig både gentemot byggherren och framtida köpare. I allvarliga fall kan även straffrättsligt ansvar aktualiseras (brott mot PBL). Därför måste KA ha ansvarsförsäkring och arbeta systematiskt enligt kontrollplanen. <Link to="/guider/kontrollansvarig-ansvar/" className="text-blue-600 hover:text-blue-700 underline">Läs mer om KA:s ansvar</Link>
+        Avvikelser ska dokumenteras och hanteras inom KA-uppdraget. Om någon anser att uppdraget utförts felaktigt behöver avtal, faktisk skada, ansvarsfördelning och försäkringsvillkor bedömas i det enskilda fallet. <Link to="/guider/kontrollansvarig-ansvar/" className="text-blue-600 hover:text-blue-700 underline">Läs mer om KA:s ansvar</Link>
       </>
     ),
     keywords: ['KA gör fel', 'fel av kontrollansvarig', 'skadestånd KA', 'ansvar kontrollansvarig']
@@ -409,7 +410,7 @@ export const faqItems: FAQItem[] = [
     question: "Vilka bygglovsregler gäller i Sundsvall?",
     answer: (
       <>
-        Sundsvall har särskilda krav i Stenstaden där kulturhistoriska värden måste beaktas. I övriga kommunen gäller standardregler enligt PBL. Bygglovstiden är normalt 4-6 veckor och kommunen har välutvecklade e-tjänster för ansökningar. Sundsvalls byggnadsnämnd är noggrann med tekniskt samråd och kontrollplaner vid större projekt. <Link to="/guider/vasternorrland/" className="text-blue-600 hover:text-blue-700 underline">Läs mer om byggande i Västernorrland</Link>
+        Nationella regler kompletteras av detaljplan, områdesbestämmelser och projektspecifika kommunala beslut. Kontrollera alltid fastigheten och aktuell information direkt med Sundsvalls kommun. <Link to="/guider/vasternorrland/" className="text-blue-600 hover:text-blue-700 underline">Läs mer om byggande i Västernorrland</Link>
       </>
     ),
     keywords: ['bygglov Sundsvall', 'Sundsvall regler', 'bygga i Sundsvall', 'Stenstaden bygglov']
@@ -419,7 +420,7 @@ export const faqItems: FAQItem[] = [
     question: "Hur är det att bygga i Härnösand och Timrå?",
     answer: (
       <>
-        Härnösand har kulturmiljöskydd i centrala delar vilket innebär extra hänsyn vid bygglov. Timrå är en expansiv kommun med många nya villaområden och snabb bygglovshantering (3-5 veckor). Båda kommuner kräver geoteknisk undersökning på lerjordar vilket är vanligt i kustnära områden. Vi har stor erfarenhet från båda kommunerna. <Link to="/guider/vasternorrland/" className="text-blue-600 hover:text-blue-700 underline">Läs mer om byggande i Västernorrland</Link>
+        Förutsättningarna styrs av fastigheten, detaljplanen och projektets tekniska underlag. Kontrollera krav och aktuell handläggningstid direkt med respektive kommun innan du planerar tidplanen. <Link to="/guider/vasternorrland/" className="text-blue-600 hover:text-blue-700 underline">Läs mer om byggande i Västernorrland</Link>
       </>
     ),
     keywords: ['bygga Härnösand', 'bygga Timrå', 'Härnösand bygglov', 'Timrå bygglov']
@@ -429,7 +430,7 @@ export const faqItems: FAQItem[] = [
     question: "Vilka särskilda regler finns i Kramfors och Sollefteå?",
     answer: (
       <>
-        Kramfors har Höga Kusten världsarv där mycket restriktiva regler gäller - ofta krävs förhandsbesked och samråd med länsstyrelsen. Sollefteå har högre snölastzoner och många fritidshus vilket påverkar konstruktionskrav och isolering. Båda kommuner har kuperad berggrund vilket kräver noggrann grundläggningskontroll. <Link to="/guider/vasternorrland/" className="text-blue-600 hover:text-blue-700 underline">Läs mer om byggande i Västernorrland</Link>
+        Kraven beror på fastighetens planförhållanden, skyddsvärden, mark och projektets konstruktion. Be kommunen och projektörerna bekräfta vilka undersökningar, samråd och tekniska handlingar som behövs. <Link to="/guider/vasternorrland/" className="text-blue-600 hover:text-blue-700 underline">Läs mer om byggande i Västernorrland</Link>
       </>
     ),
     keywords: ['bygga Kramfors', 'bygga Sollefteå', 'Höga Kusten bygglov', 'Sollefteå regler']

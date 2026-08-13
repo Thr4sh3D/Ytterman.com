@@ -1,6 +1,16 @@
 import { isValidElement, type ReactNode } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { normalizeSiteUrl } from '@/utils/url';
+import {
+  ACTIVE_SERVICE_NAMES,
+  BAS,
+  BUSINESS_COPY,
+  COMPANY,
+  KA_CREDENTIAL_SCHEMA,
+  KA_CERT,
+  PRICE_LABELS,
+  SERVICES,
+} from '@/config/company';
 
 interface Breadcrumb {
   name: string;
@@ -87,84 +97,33 @@ export const AdvancedSEO = ({
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    "name": "Ytterman – Kontrollansvarig & BAS",
-    "alternateName": "Tobias Ytterman",
-    "description": "Certifierad kontrollansvarig (KA) och BAS-P/BAS-U i Västernorrland. Över 20 års erfarenhet inom byggteknik.",
-    "url": "https://ytterman.com",
-    "telephone": "+46761118447",
-    "email": "tobias@ytterman.com",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Härnösand",
-      "addressRegion": "Västernorrland",
-      "addressCountry": "SE"
+    "name": `${COMPANY.brandName} – Kontrollansvarig & BAS`,
+    "alternateName": COMPANY.publicName,
+    "description": `${KA_CERT.title}, ${BAS.rolesLabel} och andra byggtjänster i ${COMPANY.region}. ${BUSINESS_COPY.energyPartner}`,
+    "url": COMPANY.siteUrl,
+    "email": COMPANY.email,
+    "areaServed": COMPANY.areaServed.map(name => ({ "@type": "AdministrativeArea", name })),
+    "serviceType": ACTIVE_SERVICE_NAMES,
+    "priceRange": PRICE_LABELS.schemaRange,
+    "hasCredential": [KA_CREDENTIAL_SCHEMA],
+    "knowsAbout": [BAS.rolesLabel, BAS.regulation],
+    "memberOf": {
+      "@type": "Organization",
+      "name": COMPANY.membership.name
     },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 62.6323,
-      "longitude": 17.9409
-    },
-    "areaServed": [
-      {
-        "@type": "City",
-        "name": "Härnösand"
-      },
-      {
-        "@type": "City",
-        "name": "Sundsvall"
-      },
-      {
-        "@type": "City",
-        "name": "Sollefteå"
-      },
-      {
-        "@type": "City",
-        "name": "Kramfors"
-      },
-      {
-        "@type": "City",
-        "name": "Timrå"
-      },
-      {
-        "@type": "City",
-        "name": "Örnsköldsvik"
-      }
-    ],
-    "sameAs": [
-      "https://www.tysafety.se"
-    ],
-    "serviceType": [
-      "Kontrollansvarig enligt PBL",
-      "BAS-P (Byggarbetsmiljösamordnare under projektering)",
-      "BAS-U (Byggarbetsmiljösamordnare under utförande)",
-      "Bygglovshandlingar",
-      "Planritningar",
-      "Situationsplaner",
-      "Sektionsritningar"
-    ],
-    "priceRange": "Från 12,000 SEK",
-    "openingHours": "Mo-Fr 08:00-17:00",
-    "founder": {
-      "@type": "Person",
-      "name": "Tobias Ytterman",
-      "jobTitle": "Kontrollansvarig & Byggarbetsmiljösamordnare",
-      "sameAs": [
-        "https://www.tysafety.se"
-      ],
-      "hasCredential": [
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Tjänster",
+      "itemListElement": [
         {
-          "@type": "EducationalOccupationalCredential",
-          "name": "Certifierad Kontrollansvarig"
-        },
-        {
-          "@type": "EducationalOccupationalCredential", 
-          "name": "Certifierad BAS-P/BAS-U"
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": SERVICES.energyDeclaration.name,
+            "description": SERVICES.energyDeclaration.shortDescription
+          }
         }
       ]
-    },
-    "memberOf": {
-      "@type": "Organization", 
-      "name": "Svenska Byggingenjörers Riksförbund"
     },
     "aggregateRating": reviews.length > 0 ? {
       "@type": "AggregateRating",
@@ -193,22 +152,14 @@ export const AdvancedSEO = ({
   const personSchema = organization ? {
     "@context": "https://schema.org",
     "@type": "Person",
-    "name": "Tobias Ytterman",
-    "sameAs": [
-      "https://www.tysafety.se"
-    ],
-    "worksFor": [
-      {
-        "@type": "Organization",
-        "name": "Ytterman Bygg & Konsult",
-        "url": "https://ytterman.com"
-      },
-      {
-        "@type": "Organization",
-        "name": "TY Safety",
-        "url": "https://www.tysafety.se"
-      }
-    ]
+    "name": COMPANY.publicName,
+    "hasCredential": [KA_CREDENTIAL_SCHEMA],
+    "knowsAbout": [BAS.rolesLabel, BAS.regulation],
+    "worksFor": {
+      "@type": "Organization",
+      "name": COMPANY.brandName,
+      "url": COMPANY.siteUrl
+    }
   } : null;
 
   const breadcrumbSchema = breadcrumbs.length > 0 ? {
@@ -243,14 +194,14 @@ export const AdvancedSEO = ({
     "image": image,
     "author": {
       "@type": "Person",
-      "name": article.author || "Tobias Ytterman"
+      "name": article.author || COMPANY.publicName
     },
     "publisher": {
       "@type": "Organization",
-      "name": "Ytterman",
+      "name": COMPANY.brandName,
       "logo": {
         "@type": "ImageObject",
-        "url": "https://ytterman.com/logo.png"
+        "url": `${COMPANY.siteUrl}/favicon.svg`
       }
     },
     "datePublished": article.publishedTime,
@@ -269,13 +220,11 @@ export const AdvancedSEO = ({
       <title>{title}</title>
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
-      <meta name="author" content="Tobias Ytterman" />
+      <meta name="author" content={COMPANY.publicName} />
       <meta name="robots" content={robots} />
       <meta name="language" content="Swedish" />
       <meta name="geo.region" content="SE-Y" />
-      <meta name="geo.placename" content="Västernorrland" />
-      <meta name="geo.position" content="62.3908;17.3069" />
-      <meta name="ICBM" content="62.3908, 17.3069" />
+      <meta name="geo.placename" content={COMPANY.region} />
       
       {/* Open Graph Tags */}
       <meta property="og:type" content={type} />
@@ -287,14 +236,14 @@ export const AdvancedSEO = ({
       <meta property="og:image:height" content="630" />
       <meta property="og:image:alt" content={title} />
       <meta property="og:locale" content="sv_SE" />
-      <meta property="og:site_name" content="Ytterman" />
+      <meta property="og:site_name" content={COMPANY.brandName} />
       
       {/* Article specific Open Graph */}
       {article && (
         <>
           <meta property="article:published_time" content={article.publishedTime} />
           <meta property="article:modified_time" content={article.modifiedTime || article.publishedTime} />
-          <meta property="article:author" content={article.author || "Tobias Ytterman"} />
+          <meta property="article:author" content={article.author || COMPANY.publicName} />
           <meta property="article:section" content={article.section} />
           {article.tags?.map((tag, index) => (
             <meta key={index} property="article:tag" content={tag} />
@@ -308,8 +257,6 @@ export const AdvancedSEO = ({
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />
       <meta name="twitter:image:alt" content={title} />
-      <meta name="twitter:site" content="@ytterman" />
-      <meta name="twitter:creator" content="@tobiasytterman" />
 
       {/* Canonical URL */}
       <link rel="canonical" href={url} />
@@ -318,14 +265,14 @@ export const AdvancedSEO = ({
       <meta name="DC.title" content={title} />
       <meta name="DC.description" content={description} />
       <meta name="DC.subject" content="Kontrollansvarig, BAS-P, BAS-U, Byggkontroll" />
-      <meta name="DC.coverage" content="Västernorrland, Sverige" />
+      <meta name="DC.coverage" content={`${COMPANY.region}, Sverige`} />
       <meta name="DC.type" content="Service" />
       <meta name="DC.format" content="text/html" />
       <meta name="DC.language" content="sv" />
       
       {/* Mobile and Viewport */}
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <meta name="format-detection" content="telephone=yes" />
+      <meta name="format-detection" content="telephone=no" />
       
       {/* Structured Data */}
       {organization && (

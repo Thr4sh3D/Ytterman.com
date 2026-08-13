@@ -5,39 +5,39 @@ import { Services } from '@/components/Services';
 import { About } from '@/components/About';
 import { Contact } from '@/components/Contact';
 import { FAQ } from '@/components/FAQ';
-import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { AdvancedSEO } from '@/components/AdvancedSEO';
 import { JsonLdSchema } from '@/components/JsonLdSchema';
 import { PricingPackages } from '@/components/PricingPackages';
 import { Helmet } from 'react-helmet-async';
 import { Button } from '@/components/ui/button';
 import { Award, Shield } from 'lucide-react';
+import { BAS, BUSINESS_COPY, COMPANY, KA_CERT, PRICE_LABELS } from '@/config/company';
 
 const Index = () => {
   const homeFaq = [
     {
       question: "Vad kostar en kontrollansvarig?",
-      answer: "Priset beror på projekttyp. KA Bas för en tillbyggnad kostar från 29 500 kr inkl. moms, ombyggnation från 32 500 kr och nybyggnad från 34 500 kr. Kontakta oss för en offert anpassad till ditt projekt."
+      answer: `Priset beror på projekttyp. ${PRICE_LABELS.kaBasFrom} inkl. moms gäller KA Bas för tillbyggnad. Ombyggnation och nyproduktion av fritidshus har egna paketpriser. Kontakta oss för en projektspecifik offert.`
     },
     {
       question: "Behöver jag en kontrollansvarig för mitt bygglov?",
-      answer: "Ja, enligt Plan- och bygglagen (PBL) krävs en certifierad kontrollansvarig för de flesta bygglovspliktiga åtgärder. Undantag kan gälla för enklare åtgärder som attefallshus."
+      answer: "Huvudregeln är att kontroll som omfattas av en kontrollplan ska ha en certifierad kontrollansvarig, men det finns undantag för vissa mindre åtgärder. Byggnadsnämnden avgör vad som gäller i ärendet."
     },
     {
       question: "Vad är skillnaden mellan BAS-P och BAS-U?",
-      answer: "BAS-P (Byggarbetsmiljösamordnare för Projektering) ansvarar för arbetsmiljöfrågor under projekteringsfasen. BAS-U (Utförande) ansvarar under själva byggskedet. Båda rollerna krävs enligt Arbetsmiljöverkets föreskrifter."
+      answer: `BAS-P samordnar arbetsmiljöfrågorna under planering och projektering. BAS-U samordnar dem under utförandet. Byggherren ska utse lämpliga personer för rollerna och ge dem rätt förutsättningar enligt bland annat ${BAS.regulation}.`
     },
     {
       question: "Vilka områden täcker Ytterman?",
-      answer: "Vi verkar i hela Västernorrland — Härnösand, Sundsvall, Sollefteå, Kramfors och Örnsköldsvik. Vi kan även ta uppdrag i angränsande kommuner."
+      answer: `Ytterman tar emot förfrågningar från ${COMPANY.region}. Tillgänglighet, platsbesök, resor och eventuella resekostnader bekräftas för varje projekt.`
     },
     {
       question: "Hur snabbt kan jag få en kontrollansvarig?",
-      answer: "Vanligtvis kan vi starta inom en vecka efter kontakt. Fyll i kontaktformuläret så återkommer vi inom 24 timmar med förslag på upplägg och pris."
+      answer: BUSINESS_COPY.defaultResponse
     },
     {
       question: "Vad gör en besiktningsman vid en överlåtelsebesiktning?",
-      answer: "En besiktningsman gör en okulär och teknisk genomgång av fastigheten inför en försäljning. Syftet är att identifiera byggtekniska brister, fuktskador och andra fel som kan påverka köpbeslutet."
+      answer: "En överlåtelsebesiktning är en avtalad, normalt okulär undersökning av synliga och åtkomliga delar. Exakt omfattning, begränsningar och rapportinnehåll framgår av uppdragsbekräftelsen."
     }
   ];
 
@@ -45,7 +45,7 @@ const Index = () => {
     <>
       <AdvancedSEO 
         title="Kontrollansvarig & BAS i Västernorrland | Ytterman"
-        description="Certifierad kontrollansvarig och BAS med 20+ års erfarenhet. Trygg byggprocess med fast pris. Sundsvall, Härnösand, Sollefteå. Ring 076-111 84 47!"
+        description={`${KA_CERT.title} och utbildad för uppdrag som ${BAS.rolesLabel}. ${COMPANY.experienceLabel}, tydliga paket och verksamhet i ${COMPANY.region}.`}
         keywords="kontrollansvarig, BAS-P, BAS-U, byggarbetsmiljösamordnare, byggkontroll, energiberäkning online, Sundsvall, Härnösand, Sollefteå, Timrå, Kramfors, Västernorrland, bygglov, Tobias Ytterman"
         url="https://ytterman.com/"
         type="website"
@@ -82,10 +82,11 @@ const Index = () => {
                 </div>
               </div>
               <h2 className="text-3xl font-bold text-slate-900 mb-4">
-                Kontrollansvarig i fjällvärlden
+                Förfrågan för fjällprojekt
               </h2>
               <p className="text-lg text-slate-600 mb-8 max-w-2xl mx-auto">
-                Planerar du ett fjällhus eller fritidshus i Åre, Härjedalen eller Västerbottensfjällen? Jag är certifierad KA och BAS-P/BAS-U med bas i Västernorrland och tar uppdrag längs hela fjällkedjan – med paketerade platsbesök och digital uppföljning.
+                Planerar du ett fjällhus eller fritidshus? Jag bedömer uppdraget utifrån plats,
+                kontrollbehov, behörighet och aktuell kapacitet. Resor och platsbesök specificeras i offerten.
               </p>
               <Button
                 asChild
@@ -93,7 +94,7 @@ const Index = () => {
                 className="earth-gradient text-white hover:opacity-90"
               >
                 <a href="/kontrollansvarig-i-fjallen/">
-                  Läs mer om fjäll-KA
+                  Läs om upplägget för fjällprojekt
                 </a>
               </Button>
             </div>
@@ -106,10 +107,10 @@ const Index = () => {
                 </div>
               </div>
               <h2 className="text-3xl font-bold text-slate-900 mb-4">
-                Officiellt Certifierad Kontrollansvarig
+                KA-certifikat och BAS-utbildning
               </h2>
               <p className="text-lg text-slate-600 mb-8 max-w-2xl mx-auto">
-                Kontrollera mina officiella certifieringar som kontrollansvarig enligt Plan- och bygglagen samt BAS-P och BAS-U certifikat.
+                Kontrollera mitt Kiwa-certifikat som kontrollansvarig samt utbildningsintyg för rollerna BAS-P och BAS-U.
               </p>
               <Button 
                 asChild
@@ -127,7 +128,6 @@ const Index = () => {
           <Contact selectedPackage="" prefilledMessage="" />
         </main>
         <Footer />
-        <WhatsAppButton />
       </div>
     </>
   );

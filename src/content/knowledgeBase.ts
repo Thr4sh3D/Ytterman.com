@@ -1,8 +1,6 @@
 // Knowledge Base Content Data
 // Centraliserad metadata för alla guider i kunskapsbanken
 
-import { LucideIcon } from 'lucide-react';
-
 export interface GuideMetadata {
   slug: string;
   title: string;
@@ -23,15 +21,15 @@ export const knowledgeBase: GuideMetadata[] = [
   {
     slug: 'kontrollansvarig',
     title: 'Kontrollansvarigs roll i byggprocessen',
-    description: 'En komplett guide om vad en kontrollansvarig gör och varför det är viktigt för ditt byggprojekt.',
+    description: 'Guide till KA-rollens uppgifter, gränser och underlag från kontrollplan till slutbesked.',
     category: 'Kontrollansvarig',
     readTime: '8 min',
     icon: 'Shield',
     seo: {
-      title: 'Kontrollansvarig Guide - Allt du behöver veta 2025 | Ytterman',
-      description: 'Komplett guide om kontrollansvarigs roll, ansvar och när du behöver en. Expert råd från certifierad kontrollansvarig Tobias Ytterman i Västernorrland.'
+      title: 'Kontrollansvarig guide 2026 | Ytterman',
+      description: 'Guide till kontrollansvarigs roll enligt PBL, kontrollplan, byggplatsbesök, avvikelser och utlåtande inför slutbesked.'
     },
-    keywords: ['kontrollansvarig', 'byggkontroll', 'PBL', 'plan- och bygglagen', 'bygglov', 'teknisk kontroll', 'slutbevis', 'kontrollplan', 'Västernorrland'],
+    keywords: ['kontrollansvarig', 'byggkontroll', 'PBL', 'plan- och bygglagen', 'bygglov', 'teknisk kontroll', 'slutbesked', 'kontrollplan', 'Västernorrland'],
     link: '/guider/kontrollansvarig/'
   },
   {
@@ -42,10 +40,10 @@ export const knowledgeBase: GuideMetadata[] = [
     readTime: '6 min',
     icon: 'Users',
     seo: {
-      title: 'BAS-P och BAS-U Guide - Säkerhetssamordning 2025 | Ytterman',
-      description: 'Komplett guide om BAS-P och BAS-U roller, skillnader och lagkrav enligt AFS 1999:3. Expert råd från certifierad säkerhetssamordnare Tobias Ytterman i Västernorrland.'
+      title: 'BAS-P och BAS-U guide 2026 | Ytterman',
+      description: 'Guide om BAS-P och BAS-U, skillnader och aktuellt regelverk enligt AFS 2023:3. Praktiska råd från Tobias Ytterman i Västernorrland.'
     },
-    keywords: ['BAS-P', 'BAS-U', 'säkerhetssamordnare', 'arbetsmiljö', 'AFS 1999:3', 'byggarbetsmiljö', 'arbetsmiljöplan', 'Västernorrland'],
+    keywords: ['BAS-P', 'BAS-U', 'säkerhetssamordnare', 'arbetsmiljö', 'AFS 2023:3', 'byggarbetsmiljö', 'arbetsmiljöplan', 'Västernorrland'],
     link: '/guider/bas/'
   },
   {
@@ -56,64 +54,64 @@ export const knowledgeBase: GuideMetadata[] = [
     readTime: '10 min',
     icon: 'FileText',
     seo: {
-      title: 'Bygglov Guide Västernorrland - Sundsvall, Härnösand | Ytterman',
-      description: 'Komplett guide för bygglovsprocessen i Västernorrlands kommuner. Handläggningstider, krav och tips från expert Tobias Ytterman.'
+      title: 'Bygglovsprocessen – lov, startbesked och slutbesked | Ytterman',
+      description: 'Praktisk guide till bygglovsprocessens beslut, handlingar, kontrollplan, tekniskt samråd, startbesked och slutbesked.'
     },
     keywords: ['bygglov', 'bygglovsansökan', 'bygglovsprocess', 'Västernorrland', 'Sundsvall', 'Härnösand', 'Sollefteå', 'Kramfors', 'Timrå'],
     link: '/guider/bygglov/'
   },
   {
     slug: 'kvalitetskontroll',
-    title: 'Kvalitetskontroll i byggprojekt',
-    description: 'Lär dig om kvalitetskontrollens betydelse och hur den genomförs i byggprojekt.',
+    title: 'Kontroller och kvalitet i byggprojekt',
+    description: 'Skillnaden mellan projekteringskontroll, kontrollplan, egenkontroll, sakkunnigkontroll och besiktning.',
     category: 'Kvalitetskontroll',
     readTime: '7 min',
     icon: 'Building',
     seo: {
-      title: 'Kvalitetskontroll Guide - Byggkvalitet & Kontrollpunkter | Ytterman',
-      description: 'Komplett guide om kvalitetskontroll i byggprojekt. Kritiska kontrollpunkter, dokumentation och slutbesiktning. Expert råd från Tobias Ytterman.'
+      title: 'Kvalitetskontroll i byggprojekt – roller och dokumentation | Ytterman',
+      description: 'Guide till projekteringskontroll, kontrollplan enligt PBL, entreprenörens egenkontroll, sakkunnigkontroll och separat besiktning.'
     },
     keywords: ['kvalitetskontroll', 'byggkvalitet', 'kontrollpunkter', 'slutbesiktning', 'byggdokumentation', 'kvalitetssäkring'],
     link: '/guider/kvalitetskontroll/'
   },
   {
     slug: 'overlatelsebesiktning',
-    title: 'Överlåtelsebesiktning - Vad du behöver veta',
-    description: 'Komplett guide om överlåtelsebesiktning vid fastighetsförsäljning.',
+    title: 'Överlåtelsebesiktning – omfattning och begränsningar',
+    description: 'Vad en okulär överlåtelsebesiktning kan omfatta och vad som behöver avtalas före uppdraget.',
     category: 'Besiktning',
     readTime: '5 min',
     icon: 'BookOpen',
     seo: {
-      title: 'Överlåtelsebesiktning Guide - Fastighetsbesiktning Försäljning | Ytterman',
-      description: 'Komplett guide om överlåtelsebesiktning vid fastighetsförsäljning. Processen, kostnad och vad som ingår. Expert råd från Tobias Ytterman i Västernorrland.'
+      title: 'Överlåtelsebesiktning – omfattning och rapport | Ytterman',
+      description: 'Guide till okulär överlåtelsebesiktning, åtkomlighet, begränsningar, rapport och fortsatt teknisk utredning.'
     },
     keywords: ['överlåtelsebesiktning', 'fastighetsbesiktning', 'försäljningsbesiktning', 'köpebesiktning', 'husbesiktning', 'fastighetsförsäljning', 'Västernorrland'],
     link: '/guider/overlatelsebesiktning/'
   },
   {
     slug: 'energi',
-    title: 'Energideklaration och energikrav',
-    description: 'Allt om energideklaration, energikrav och hur du förbättrar din fastighets energiprestanda.',
+    title: 'Energideklaration – ansvar och partnerleverans',
+    description: 'Vad en energideklaration innehåller och hur Ytterman samordnar tjänsten via behörig partner.',
     category: 'Energi',
     readTime: '9 min',
     icon: 'Zap',
     seo: {
-      title: 'Energideklaration Guide - Energiklass & Besparingspotential | Ytterman',
-      description: 'Komplett guide om energideklaration för fastigheter. Energiklasser, lagkrav, besparingstips och processen. Expert råd från Tobias Ytterman i Västernorrland.'
+      title: 'Energideklaration – certifierad energiexpert via partner | Ytterman',
+      description: 'Guide till energideklaration, energiprestanda, underlag och partnerleverans. Ytterman samordnar; certifierad energiexpert utför och registrerar.'
     },
     keywords: ['energideklaration', 'energiklass', 'energiprestanda', 'energibesiktning', 'energibesparing', 'fastighetsenergideklaration', 'Västernorrland'],
     link: '/guider/energi/'
   },
   {
     slug: 'miljo',
-    title: 'Miljökrav i byggprocessen',
-    description: 'Guide om miljökrav, hållbarhet och miljöcertifieringar i byggbranschen.',
+    title: 'Miljöarbete i byggprojekt',
+    description: 'Checklista för mål, ansvar, energi, material, återbruk och verifierbar dokumentation.',
     category: 'Miljö',
     readTime: '8 min',
     icon: 'Leaf',
     seo: {
-      title: 'Miljötänk Byggprocess - Hållbart Byggande & Certifiering | Ytterman',
-      description: 'Guide till hållbart byggande och miljötänk. BREEAM, LEED, energieffektivisering och miljöcertifiering. Expert råd från Tobias Ytterman.'
+      title: 'Miljöarbete i byggprojekt – mål och verifiering | Ytterman',
+      description: 'Guide till strukturerat miljöarbete i byggprojekt: energi, material, återbruk, avfall, innemiljö och spårbar verifiering.'
     },
     keywords: ['hållbart byggande', 'miljötänk', 'BREEAM', 'LEED', 'energieffektivisering', 'miljöcertifiering', 'grön byggnad'],
     link: '/guider/miljo/'
@@ -126,8 +124,8 @@ export const knowledgeBase: GuideMetadata[] = [
     readTime: '6 min',
     icon: 'Laptop',
     seo: {
-      title: 'Digitala Verktyg Byggprojekt - Effektivisering & Kommunikation | Ytterman',
-      description: 'Guide till moderna digitala verktyg för byggprojekt. Projekthantering, dokumentation och kommunikation. Expert råd från Tobias Ytterman.'
+      title: 'Digitala verktyg för byggprojekt | Ytterman',
+      description: 'Översikt över digitala verktyg för projekthantering, dokumentation och kommunikation i byggprojekt.'
     },
     keywords: ['digitala verktyg', 'byggprojekt', 'projekthantering', 'digital dokumentation', 'byggappar', 'kommunikation'],
     link: '/guider/digitala-verktyg/'
@@ -135,84 +133,84 @@ export const knowledgeBase: GuideMetadata[] = [
   // Nya djupgående artiklar
   {
     slug: 'kontrollansvarig-bygglov',
-    title: 'Kontrollansvarig och Bygglov - Komplett Guide',
-    description: 'Allt du behöver veta om kontrollansvarigs roll i bygglovsprocessen, från ansökan till slutbesked.',
+    title: 'Kontrollansvarig i bygglovsprocessen',
+    description: 'Rollfördelningen från första underlag till byggnadsnämndens beslut om slutbesked.',
     category: 'Kontrollansvarig',
     readTime: '9 min',
     icon: 'FileText',
     seo: {
-      title: 'Kontrollansvarig Bygglov - Roll, Ansvar & Process 2025 | Ytterman',
-      description: 'Komplett guide om kontrollansvarigs roll vid bygglov. När KA behövs, ansvar i processen och hur vi hjälper dig. Expert råd från Tobias Ytterman i Västernorrland.'
+      title: 'Kontrollansvarig och bygglov – roll och process | Ytterman',
+      description: 'Guide till när kontrollansvarig kan krävas, förslag till kontrollplan, tekniskt samråd, uppföljning och underlag inför slutbesked.'
     },
     keywords: ['kontrollansvarig bygglov', 'KA bygglov', 'bygglovsprocess', 'kontrollansvarig ansökan', 'startbesked', 'Västernorrland'],
     link: '/guider/kontrollansvarig-bygglov/'
   },
   {
     slug: 'kontrollansvarig-certifiering',
-    title: 'Certifiering för Kontrollansvarig - Krav och Process',
-    description: 'Omfattande guide om KA-certifiering: utbildningskrav, certifieringsorgan, förnyelse och hur du verifierar certifikat.',
+    title: 'Certifiering för kontrollansvarig – verifiera KA',
+    description: 'Så kontrollerar du certifikat, behörighet, certifieringsorgan och giltighetstid för en kontrollansvarig.',
     category: 'Kontrollansvarig',
     readTime: '8 min',
     icon: 'Shield',
     seo: {
-      title: 'Kontrollansvarig Certifiering - Krav, Process & Förnyelse | Ytterman',
-      description: 'Allt om certifiering för kontrollansvarig: Boverkets krav, certifieringsorgan, utbildning, prov och förnyelse. Expert guide från certifierad KA Tobias Ytterman.'
+      title: 'Kontrollansvarig certifiering – verifiera KA | Ytterman',
+      description: 'Guide till hur du verifierar en kontrollansvarigs certifikat, behörighet och giltighetstid. Tobias Ytterman: Kiwa KA11926, behörighet N.'
     },
     keywords: ['kontrollansvarig certifiering', 'KA certifikat', 'Boverket certifiering', 'certifieringsorgan', 'KA utbildning', 'certifieringskrav'],
     link: '/guider/kontrollansvarig-certifiering/'
   },
   {
     slug: 'kontrollansvarig-ansvar',
-    title: 'Kontrollansvarigs Ansvar och Skyldigheter',
-    description: 'Detaljerad genomgång av kontrollansvarigs juridiska och praktiska ansvar enligt PBL och BBR.',
+    title: 'Kontrollansvarigs roll och ansvar',
+    description: 'Praktisk avgränsning av KA-rollen enligt PBL och vad som ligger kvar hos byggherre, entreprenör och byggnadsnämnd.',
     category: 'Kontrollansvarig',
     readTime: '10 min',
     icon: 'Shield',
     seo: {
-      title: 'Kontrollansvarigs Ansvar - Juridik, Skyldigheter & Befogenheter | Ytterman',
-      description: 'Komplett guide om kontrollansvarigs ansvar enligt PBL. Juridiskt ansvar, skyldigheter, befogenheter och ansvarsförsäkring. Expert råd från Tobias Ytterman.'
+      title: 'Kontrollansvarigs roll enligt PBL – ansvar och avgränsning | Ytterman',
+      description: 'Guide till kontrollansvarigs uppgifter: kontrollplan, uppföljning, avvikelser och utlåtande inför slutbesked.'
     },
     keywords: ['kontrollansvarig ansvar', 'KA skyldigheter', 'juridiskt ansvar', 'PBL ansvar', 'ansvarsförsäkring', 'befogenheter'],
     link: '/guider/kontrollansvarig-ansvar/'
   },
   {
     slug: 'kontrollansvarig-timpris',
-    title: 'Priser och Timpris för Kontrollansvarig',
-    description: 'Transparent prissättning för kontrollansvarig: timpris, fast pris, vad som påverkar kostnaden och hur du får bästa värdet.',
+    title: 'Pris för kontrollansvarig 2026',
+    description: 'Yttermans paketpriser inklusive moms och vad du bör kontrollera när du jämför offerter.',
     category: 'Kontrollansvarig',
     readTime: '7 min',
     icon: 'FileText',
     seo: {
-      title: 'Kontrollansvarig Timpris & Priser 2025 - Vad Kostar Det? | Ytterman',
-      description: 'Transparent prissättning för kontrollansvarig. Timpris, fast pris, genomsnittskostnader och vad som påverkar priset. Kostnadsfri offert från Ytterman.'
+      title: 'Kontrollansvarig pris 2026 – paket och villkor | Ytterman',
+      description: 'Paketpriser 2026 för kontrollansvarig: tillbyggnad, ombyggnation, fritidshus och paket med BAS-P/U. Alla belopp inklusive moms.'
     },
     keywords: ['kontrollansvarig timpris', 'kontrollansvarig pris', 'KA kostnad', 'vad kostar kontrollansvarig', 'prissättning', 'fast pris'],
     link: '/guider/kontrollansvarig-timpris/'
   },
   {
     slug: 'bas-p-guide',
-    title: 'BAS-P Guide - Projektering och Arbetsmiljösamordning',
-    description: 'Komplett guide om BAS-P: roll, ansvar, arbetsmiljöplan, riskbedömning och samordning under projekteringsfasen.',
+    title: 'BAS-P – projektering och arbetsmiljösamordning',
+    description: 'Guide till BAS-P:s samordningsuppgifter, arbetsmiljöplan, riskarbete och överlämning under projekteringen.',
     category: 'Säkerhetssamordning',
     readTime: '9 min',
     icon: 'Users',
     seo: {
-      title: 'BAS-P Guide - Arbetsmiljösamordnare Projektering 2025 | Ytterman',
-      description: 'Omfattande guide om BAS-P enligt AFS 1999:3. Roll, ansvar, arbetsmiljöplan, riskbedömning och samordning. Expert råd från certifierad BAS-P Tobias Ytterman.'
+      title: 'BAS-P guide – arbetsmiljösamordning 2026 | Ytterman',
+      description: 'Omfattande guide om BAS-P enligt AFS 2023:3. Roll, ansvar, arbetsmiljöplan, riskbedömning och samordning. Praktiska råd från Tobias Ytterman.'
     },
-    keywords: ['BAS-P', 'arbetsmiljösamordnare projektering', 'arbetsmiljöplan', 'riskbedömning', 'AFS 1999:3', 'projekteringsfas'],
+    keywords: ['BAS-P', 'arbetsmiljösamordnare projektering', 'arbetsmiljöplan', 'riskbedömning', 'AFS 2023:3', 'projekteringsfas'],
     link: '/guider/bas-p-guide/'
   },
   {
     slug: 'bas-u-guide',
-    title: 'BAS-U Guide - Utförande och Byggsäkerhet',
-    description: 'Komplett guide om BAS-U: roll på byggarbetsplatsen, säkerhetsronder, samordningsmöten och uppföljning av arbetsmiljö.',
+    title: 'BAS-U – samordning under utförandet',
+    description: 'Guide till BAS-U:s samordningsuppgifter, arbetsmiljöplan, riskuppföljning och ansvarsfördelning under utförandet.',
     category: 'Säkerhetssamordning',
     readTime: '9 min',
     icon: 'Users',
     seo: {
-      title: 'BAS-U Guide - Byggarbetsmiljösamordnare Utförande 2025 | Ytterman',
-      description: 'Omfattande guide om BAS-U enligt AFS 1999:3. Roll, säkerhetsronder, samordningsmöten och byggarbetsplatssäkerhet. Expert råd från certifierad BAS-U Tobias Ytterman.'
+      title: 'BAS-U guide – arbetsmiljösamordning 2026 | Ytterman',
+      description: 'Omfattande guide om BAS-U enligt AFS 2023:3. Roll, säkerhetsronder, samordningsmöten och byggarbetsplatssäkerhet. Praktiska råd från Tobias Ytterman.'
     },
     keywords: ['BAS-U', 'arbetsmiljösamordnare utförande', 'säkerhetsronder', 'byggarbetsplats', 'arbetsmiljö byggplats', 'samordningsmöten'],
     link: '/guider/bas-u-guide/'
@@ -220,27 +218,27 @@ export const knowledgeBase: GuideMetadata[] = [
   {
     slug: 'vad-ar-bas',
     title: 'Vad är BAS? - Skillnad mellan BAS-P och BAS-U',
-    description: 'Förklaring av BAS-roller: vad är byggarbetsmiljösamordnare, när behövs BAS-P och BAS-U, och lagkrav enligt AFS 1999:3.',
+    description: 'Förklaring av BAS-roller: vad är byggarbetsmiljösamordnare, när behövs BAS-P och BAS-U, och lagkrav enligt AFS 2023:3.',
     category: 'Säkerhetssamordning',
     readTime: '7 min',
     icon: 'Users',
     seo: {
-      title: 'Vad är BAS? BAS-P & BAS-U Förklarat - Lagkrav & Skillnader | Ytterman',
-      description: 'Enkelt förklarad guide om BAS: vad är byggarbetsmiljösamordnare, skillnad mellan BAS-P och BAS-U, lagkrav och när du behöver BAS. Expert råd från Tobias Ytterman.'
+      title: 'Vad är BAS? BAS-P och BAS-U förklarat | Ytterman',
+      description: 'Guide till BAS-P och BAS-U, rollernas skeden, ansvarsfördelning och aktuellt regelverk AFS 2023:3.'
     },
-    keywords: ['vad är BAS', 'byggarbetsmiljösamordnare', 'BAS förklaring', 'BAS-P BAS-U skillnad', 'när behövs BAS', 'AFS 1999:3'],
+    keywords: ['vad är BAS', 'byggarbetsmiljösamordnare', 'BAS förklaring', 'BAS-P BAS-U skillnad', 'när behövs BAS', 'AFS 2023:3'],
     link: '/guider/vad-ar-bas/'
   },
   {
     slug: 'tekniskt-samrad',
-    title: 'Tekniskt Samråd i Byggprocessen',
-    description: 'Komplett guide om tekniskt samråd: syfte, deltagare, genomförande och dokumentation enligt PBL.',
+    title: 'Tekniskt samråd i byggprocessen',
+    description: 'Guide till tekniskt samråd: syfte, deltagare, byggnadsnämndens genomgång och projektets underlag.',
     category: 'Bygglov',
     readTime: '8 min',
     icon: 'Users',
     seo: {
-      title: 'Tekniskt Samråd - Syfte, Process & Krav enligt PBL | Ytterman',
-      description: 'Allt om tekniskt samråd i byggprocessen: när det krävs, vem deltar, hur det genomförs och vad som dokumenteras. Expert råd från Tobias Ytterman i Västernorrland.'
+      title: 'Tekniskt samråd – syfte och process enligt PBL | Ytterman',
+      description: 'Guide till när tekniskt samråd hålls, vilka som deltar och vad byggnadsnämnden går igenom inför beslut om startbesked.'
     },
     keywords: ['tekniskt samråd', 'samråd bygglov', 'PBL samråd', 'byggsamråd', 'byggmöte', 'samrådsmöte'],
     link: '/guider/tekniskt-samrad/'
@@ -253,8 +251,8 @@ export const knowledgeBase: GuideMetadata[] = [
     readTime: '10 min',
     icon: 'FileText',
     seo: {
-      title: 'Kontrollplan Byggprojekt - Upprättande, Innehåll & Krav | Ytterman',
-      description: 'Komplett guide om kontrollplan enligt PBL: vad den ska innehålla, kritiska kontrollpunkter, uppföljning och dokumentation. Expert råd från KA Tobias Ytterman.'
+      title: 'Kontrollplan i byggprojekt – innehåll och användning | Ytterman',
+      description: 'Guide till förslag till kontrollplan enligt PBL, kontrollpunkter, ansvar, verifiering och uppföljning.'
     },
     keywords: ['kontrollplan', 'kontrollplan bygglov', 'kontrollpunkter', 'teknisk kontroll', 'kvalitetsplan', 'PBL kontroll'],
     link: '/guider/kontrollplan/'
@@ -267,36 +265,36 @@ export const knowledgeBase: GuideMetadata[] = [
     readTime: '8 min',
     icon: 'CheckCircle',
     seo: {
-      title: 'Slutbesked Bygglov - Krav, Process & Slutbevis enligt PBL | Ytterman',
-      description: 'Allt om slutbesked och slutbevis: krav för slutbesked, ansökan, handlingar, kontrollansvarigs intyg och när byggnaden får tas i bruk. Expert guide från Tobias Ytterman.'
+      title: 'Slutbesked bygglov – krav och process enligt PBL | Ytterman',
+      description: 'Allt om slutbesked: underlag, byggherrens begäran, kontrollansvarigs utlåtande och byggnadsnämndens beslut.'
     },
-    keywords: ['slutbesked', 'slutbevis', 'slutbesked bygglov', 'ibrukt agande', 'PBL slutbesked', 'byggnadsnämnd'],
+    keywords: ['slutbesked', 'slutbesked bygglov', 'ibruktagande', 'PBL slutbesked', 'byggnadsnämnd'],
     link: '/guider/slutbesked/'
   },
   {
     slug: 'vasternorrland',
-    title: 'Kontrollansvarig & BAS i Västernorrland',
-    description: 'Lokal guide för kontrollansvarig och BAS-tjänster i Västernorrlands kommuner: Sundsvall, Härnösand, Sollefteå, Kramfors, Timrå och Örnsköldsvik.',
+    title: 'Byggprojekt i Västernorrland',
+    description: 'Praktisk guide till vilka kommunala uppgifter du behöver kontrollera inför ett byggprojekt i Västernorrland.',
     category: 'Lokalt',
     readTime: '11 min',
     icon: 'MapPin',
     seo: {
-      title: 'Kontrollansvarig Västernorrland - Sundsvall, Härnösand, Sollefteå | Ytterman',
-      description: 'Kontrollansvarig och BAS-tjänster i Västernorrland. Lokala byggkrav, handläggningstider och erfarenhet från Sundsvall, Härnösand, Sollefteå, Kramfors, Timrå, Örnsköldsvik. Expert Tobias Ytterman.'
+      title: 'Byggprojekt i Västernorrland – kontrollansvarig och kommun',
+      description: 'Guide till kontrollansvarig, kommunala beslut och projektunderlag i Västernorrland. Aktuella krav och handläggningstider kontrolleras alltid med kommunen.'
     },
     keywords: ['kontrollansvarig Västernorrland', 'BAS Sundsvall', 'kontrollansvarig Härnösand', 'bygglov Timrå', 'kontrollansvarig Sollefteå', 'BAS Kramfors', 'Örnsköldsvik'],
     link: '/guider/vasternorrland/'
   },
   {
     slug: 'bygglovsguide-vanliga-misstag-husbygge',
-    title: 'Bygglovsguide och vanliga misstag vid husbygge',
-    description: 'Omfattande guide om bygglovsprocessen och de 12 vanligaste misstagen vid nybyggnad och tillbyggnad. Praktiska råd om kontrollplan, tekniskt samråd och BAS-krav.',
+    title: 'Bygglovsguide – vanliga misstag att förebygga',
+    description: 'Praktisk checklista för beslut, roller, underlag, kontrollplan och dokumentation i byggprocessen.',
     category: 'Bygglov',
     readTime: '12 min',
     icon: 'AlertTriangle',
     seo: {
-      title: 'Bygglovsguide 2025 - 12 Vanliga Misstag & Undvik Dem | Ytterman',
-      description: 'Komplett bygglovsguide för husbygge i Västernorrland: processen, kontrollplan, tekniskt samråd, KA-krav och de 12 vanligaste misstagen. Expert råd från Tobias Ytterman.'
+      title: 'Bygglovsguide – vanliga misstag och rollfördelning | Ytterman',
+      description: 'Undvik missförstånd om lov, startbesked, kontrollansvarig, BAS, kontrollplan, ändringar och slutbesked.'
     },
     keywords: ['bygglovsguide', 'vanliga misstag husbygge', 'kontrollansvarig bygglov', 'kontrollplan', 'tekniskt samråd', 'slutbesked', 'BAS-P', 'BAS-U', 'nybyggnad', 'tillbyggnad', 'Västernorrland'],
     link: '/guider/bygglovsguide-vanliga-misstag-husbygge/'

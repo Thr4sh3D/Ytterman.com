@@ -1,8 +1,9 @@
-import { ArrowRight, Shield, Users, FileText, Building, type LucideIcon } from 'lucide-react';
+import { ArrowRight, Building, FileText, Shield, Users, type LucideIcon } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { SERVICES } from '@/config/company';
 
-interface Service {
+interface ServiceLink {
   title: string;
   description: string;
   url: string;
@@ -15,94 +16,70 @@ interface RelatedServicesProps {
   className?: string;
 }
 
-export const RelatedServices = ({ currentService, className = "" }: RelatedServicesProps) => {
-  const navigate = useNavigate();
-  const allServices: Service[] = [
-    {
-      title: "Kontrollansvarig (KA)",
-      description: "Teknisk kontroll och slutbesiktning enligt PBL",
-      url: "/kontrollansvarig/",
-      icon: Shield,
-      price: "Från 15,000 SEK"
-    },
-    {
-      title: "BAS-P (Projektering)",
-      description: "Arbetsmiljösamordning under projekteringsfasen",
-      url: "/bas-p/",
-      icon: FileText,
-      price: "Från 12,000 SEK"
-    },
-    {
-      title: "BAS-U (Utförande)",
-      description: "Arbetsmiljösamordning under byggfasen",
-      url: "/bas-u/",
-      icon: Users,
-      price: "Från 18,000 SEK"
-    },
-    {
-      title: "Alla Tjänster",
-      description: "Se alla våra byggtjänster och priser",
-      url: "/tjanster/",
-      icon: Building,
-      price: "Översikt"
-    }
-  ];
+const related: ServiceLink[] = [
+  {
+    title: SERVICES.kontrollansvarig.name,
+    description: SERVICES.kontrollansvarig.shortDescription,
+    url: SERVICES.kontrollansvarig.path,
+    icon: Shield,
+    price: SERVICES.kontrollansvarig.priceLabel,
+  },
+  {
+    title: SERVICES.basP.name,
+    description: SERVICES.basP.shortDescription,
+    url: SERVICES.basP.path,
+    icon: FileText,
+    price: SERVICES.basP.priceLabel,
+  },
+  {
+    title: SERVICES.basU.name,
+    description: SERVICES.basU.shortDescription,
+    url: SERVICES.basU.path,
+    icon: Users,
+    price: SERVICES.basU.priceLabel,
+  },
+  {
+    title: 'Alla tjänster',
+    description: 'Se tjänster, leveransmodell och aktuell offertväg.',
+    url: '/tjanster/',
+    icon: Building,
+    price: 'Översikt',
+  },
+];
 
-  // Filter out current service
-  const relatedServices = allServices.filter(service => 
-    !currentService || !service.url.includes(currentService)
-  );
+export const RelatedServices = ({ currentService, className = '' }: RelatedServicesProps) => {
+  const navigate = useNavigate();
+  const visibleServices = related.filter((service) => !currentService || !service.url.includes(currentService));
 
   return (
-    <section className={`py-20 bg-slate-50 ${className}`}>
+    <section className={`bg-slate-50 py-20 ${className}`}>
       <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-slate-900 mb-4 text-center">
-            Relaterade tjänster
-          </h2>
-          <p className="text-xl text-slate-600 mb-12 text-center max-w-3xl mx-auto">
-            Upptäck våra andra byggtjänster som kan komplettera ditt projekt. 
-            Vi erbjuder kompletta lösningar för hela byggprocessen.
+        <div className="mx-auto max-w-6xl">
+          <h2 className="mb-4 text-center text-4xl font-bold text-slate-900">Relaterade tjänster</h2>
+          <p className="mx-auto mb-12 max-w-3xl text-center text-xl text-slate-600">
+            Jämför tjänsternas omfattning och begär offert för det aktuella projektet.
           </p>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {relatedServices.slice(0, 3).map((service, index) => {
-              const IconComponent = service.icon;
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {visibleServices.slice(0, 3).map((service) => {
+              const Icon = service.icon;
               return (
-                <div key={index} className="bg-white rounded-xl p-6 shadow-sm hover:shadow-lg transition-shadow">
-                  <div className="flex items-center mb-4">
-                    <div className="w-12 h-12 earth-gradient rounded-lg flex items-center justify-center mr-4">
-                      <IconComponent className="w-6 h-6 text-white" />
+                <article key={service.url} className="rounded-xl bg-white p-6 shadow-sm">
+                  <div className="mb-4 flex items-center">
+                    <div className="earth-gradient mr-4 flex h-12 w-12 items-center justify-center rounded-lg">
+                      <Icon className="h-6 w-6 text-white" />
                     </div>
                     <div>
                       <h3 className="text-xl font-bold text-slate-900">{service.title}</h3>
-                      <p className="text-primary font-semibold text-sm">{service.price}</p>
+                      <p className="text-sm font-semibold text-primary">{service.price}</p>
                     </div>
                   </div>
-                  
-                  <p className="text-slate-600 mb-6">{service.description}</p>
-                  
-                  <Button
-                    onClick={() => navigate(service.url)}
-                    variant="outline"
-                    className="w-full hover:bg-primary hover:text-white"
-                  >
-                    Läs mer
-                    <ArrowRight className="w-4 h-4 ml-2" />
+                  <p className="mb-6 text-slate-600">{service.description}</p>
+                  <Button onClick={() => navigate(service.url)} variant="outline" className="w-full">
+                    Läs mer <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
-                </div>
+                </article>
               );
             })}
-          </div>
-          
-          <div className="text-center mt-12">
-            <Button 
-              onClick={() => navigate('/kontakt/')}
-              className="earth-gradient text-white hover:opacity-90 px-8 py-4 text-lg"
-            >
-              Få kostnadsfri konsultation
-              <ArrowRight className="w-5 h-5 ml-2" />
-            </Button>
           </div>
         </div>
       </div>

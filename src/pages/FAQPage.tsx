@@ -1,6 +1,5 @@
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { AdvancedSEO } from '@/components/AdvancedSEO';
 import { CanonicalUrl } from '@/components/CanonicalUrl';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
@@ -9,6 +8,7 @@ import { Helmet } from 'react-helmet-async';
 import { Button } from '@/components/ui/button';
 import { HelpCircle } from 'lucide-react';
 import { normalizeInternalPath } from '@/utils/url';
+import { COMPANY } from '@/config/company';
 
 const FAQPage = () => {
   const breadcrumbs = [
@@ -31,8 +31,8 @@ const FAQPage = () => {
   return (
     <>
       <AdvancedSEO 
-        title="FAQ Kontrollansvarig & BAS - 32+ Frågor & Svar | Västernorrland"
-        description="Komplett FAQ om kontrollansvarig, BAS-P, BAS-U, bygglov, certifiering, priser och lokala tjänster i Sundsvall, Härnösand, Timrå. Expertråd från Tobias Ytterman. Svar på alla dina frågor!"
+        title="Vanliga frågor om kontrollansvarig och BAS | Ytterman"
+        description="Svar om kontrollansvarig, BAS-P, BAS-U, bygglov, certifiering, priser, energideklaration via partner och lokala förfrågningar."
         keywords="FAQ kontrollansvarig, vanliga frågor BAS, kontrollansvarig bygglov, certifiering KA, pris kontrollansvarig, kontrollansvarig Sundsvall, BAS Härnösand, bygglov frågor, Västernorrland"
         url="https://ytterman.com/faq"
         type="website"
@@ -77,7 +77,7 @@ const FAQPage = () => {
                 </h1>
                 <p className="text-xl text-slate-600 mb-8">
                   Här hittar du svar på de vanligaste frågorna om kontrollansvarig, BAS-P, BAS-U 
-                  och andra byggtjänster. Hittar du inte svar på din fråga? Kontakta oss!
+                  och andra byggtjänster. Regler och krav kan bero på projektet och kommunens beslut.
                 </p>
                 <Button 
                   onClick={() => window.location.href = normalizeInternalPath('/kontakt')}
@@ -207,12 +207,12 @@ const FAQPage = () => {
                   Kontakta oss
                 </Button>
                 <Button 
-                  onClick={() => window.location.href = 'tel:+46761118447'}
+                  onClick={() => window.location.href = COMPANY.emailHref}
                   size="lg"
                   variant="outline"
                   className="border-white text-white hover:bg-white hover:text-slate-900"
                 >
-                  Ring: 076-111 84 47
+                  Mejla Tobias
                 </Button>
               </div>
             </div>
@@ -220,7 +220,6 @@ const FAQPage = () => {
         </main>
         
         <Footer />
-        <WhatsAppButton />
       </div>
     </>
   );

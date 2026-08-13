@@ -1,280 +1,129 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
+import { AlertTriangle, CheckCircle, FileText } from 'lucide-react';
 import { GuideLayout } from '@/components/GuideLayout';
-import { CheckCircle, AlertTriangle, FileText, Clock, MapPin } from 'lucide-react';
+import { BUSINESS_COPY, COMPANY, SERVICES } from '@/config/company';
 
 const BygglovGuide = () => {
+  const steps = [
+    {
+      title: 'Kontrollera fastighet och åtgärd',
+      text: 'Be kommunen bekräfta om åtgärden kräver lov eller anmälan och vilka planbestämmelser, skyddsvärden och underlag som gäller.',
+    },
+    {
+      title: 'Ta fram rätt handlingar',
+      text: 'Ritningar, situationsplan, teknisk beskrivning och utredningar ska anpassas efter åtgärden och kommunens besked.',
+    },
+    {
+      title: 'Lämna in ärendet',
+      text: 'Byggherren eller dennes ombud lämnar ansökan eller anmälan. Byggnadsnämnden prövar ärendet och kan begära kompletteringar.',
+    },
+    {
+      title: 'Planera inför startbesked',
+      text: 'Om nämnden kräver kontrollansvarig föreslår byggherren en certifierad KA. Nämnden avgör om tekniskt samråd hålls och vilket underlag som krävs.',
+    },
+    {
+      title: 'Genomför och dokumentera',
+      text: 'Arbete som omfattas av startbesked får påbörjas först efter beslutet. Kontroller och intyg dokumenteras enligt den fastställda kontrollplanen.',
+    },
+    {
+      title: 'Underlag inför slutbesked',
+      text: BUSINESS_COPY.kaScope,
+    },
+  ];
+
   return (
     <GuideLayout
-      title="Bygglovsprocessen i Västernorrland"
-      description="Steg-för-steg guide genom bygglovsprocessen för kommunerna i Västernorrland."
+      title="Bygglovsprocessen steg för steg"
+      description="En praktisk översikt över bygglov, tekniskt underlag, kontrollplan, startbesked och slutbesked."
       category="Bygglov"
-      readTime="10 min"
-      seoTitle="Bygglov Guide Västernorrland - Sundsvall, Härnösand | Ytterman"
-      seoDescription="Komplett guide för bygglovsprocessen i Västernorrlands kommuner. Handläggningstider, krav och tips från expert Tobias Ytterman."
-      keywords="bygglov, Västernorrland, Sundsvall, Härnösand, Sollefteå, Kramfors, Timrå, bygglovsansökan"
+      readTime="7 min"
+      seoTitle="Bygglovsprocessen steg för steg | Ytterman"
+      seoDescription="Guide till bygglovsprocessen: kommunens prövning, handlingar, kontrollansvarig, startbesked och slutbesked. Aktuella krav kontrolleras med kommunen."
+      keywords="bygglov, bygglovsprocess, startbesked, slutbesked, kontrollplan, kontrollansvarig, Västernorrland"
       canonicalPath="/guider/bygglov"
     >
       <div className="prose prose-stone max-w-none">
-        <h2 className="flex items-center gap-2 text-2xl font-bold text-stone-800 mb-6">
-          <FileText className="w-6 h-6 text-green-600" />
-          Förberedelser inför bygglovsansökan
-        </h2>
-        
-        <p className="text-lg text-stone-700 mb-6">
-          En välförberedd bygglovsansökan är nyckeln till en smidig process. Genom att ha alla 
-          handlingar i ordning från början undviker du förseningar och kompletteringskrav.
+        <p className="text-lg font-medium text-stone-700">
+          Bygglov, startbesked och slutbesked är olika beslut. Ett beviljat lov innebär inte i sig
+          att arbetet får starta. Följ alltid beslutet och den aktuella informationen från
+          byggnadsnämnden för din fastighet.
         </p>
 
-        <div className="bg-green-50 border-l-4 border-green-400 p-6 mb-8">
-          <div className="flex items-start">
-            <CheckCircle className="w-5 h-5 text-green-600 mt-1 mr-3 flex-shrink-0" />
+        <div className="not-prose my-8 rounded-lg border-l-4 border-amber-500 bg-amber-50 p-6">
+          <div className="flex items-start gap-3">
+            <AlertTriangle className="mt-1 h-5 w-5 shrink-0 text-amber-700" />
             <div>
-              <h3 className="font-semibold text-green-800 mb-2">Professionell hjälp lönar sig</h3>
-              <p className="text-green-700">
-                Med över 20 års erfarenhet i byggbranschen som certifierad <Link to="/kontrollansvarig/" className="text-green-800 hover:text-green-900 font-medium underline">kontrollansvarig</Link> (KA enligt PBL) hjälper jag dig navigera bygglovsprocessen effektivt 
-                och undvika vanliga fallgropar som kan förlänga handläggningstiden.
+              <h2 className="text-lg font-semibold text-amber-950">Undvik generella tidslöften</h2>
+              <p className="mt-2 text-amber-900">
+                Handläggningstid beror på ärendet, om ansökan är komplett, remisser och kommunens
+                aktuella belastning. Be kommunen bekräfta tidplanen och lägg in marginal för kompletteringar.
               </p>
             </div>
           </div>
         </div>
 
-        <h3 className="text-xl font-semibold text-stone-800 mb-4">Grundläggande förberedelser:</h3>
-        
-        <ul className="space-y-3 mb-8">
-          <li className="flex items-start">
-            <CheckCircle className="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
-            <span><strong>Kontrollera detaljplan:</strong> Undersök vad som är tillåtet på din fastighet</span>
-          </li>
-          <li className="flex items-start">
-            <CheckCircle className="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
-            <span><strong>Grannskapskontroll:</strong> Informera grannar i god tid innan ansökan</span>
-          </li>
-          <li className="flex items-start">
-            <CheckCircle className="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
-            <span><strong>Mät upp fastigheten:</strong> Säkerställ korrekta mått och avstånd</span>
-          </li>
-          <li className="flex items-start">
-            <CheckCircle className="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
-            <span><strong>Kontakta VA-huvudman:</strong> Kontrollera möjligheter för vatten och avlopp</span>
-          </li>
+        <h2>Processens sex delar</h2>
+        <div className="not-prose my-8 space-y-4">
+          {steps.map((step, index) => (
+            <div key={step.title} className="flex gap-4 rounded-lg border bg-white p-5">
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-blue-700 font-bold text-white">
+                {index + 1}
+              </span>
+              <div>
+                <h3 className="font-semibold text-stone-900">{step.title}</h3>
+                <p className="mt-1 text-stone-600">{step.text}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <h2>Vanliga underlag</h2>
+        <p>
+          Vilka handlingar som behövs varierar. Följande är exempel som kommunen kan efterfråga,
+          men listan ersätter inte ett projektspecifikt besked:
+        </p>
+        <ul>
+          <li>situationsplan samt plan-, fasad- och sektionsritningar,</li>
+          <li>teknisk beskrivning och konstruktionsunderlag,</li>
+          <li>förslag till kontrollplan när det ska finnas,</li>
+          <li>energi-, brand-, geoteknik- eller andra utredningar när de behövs,</li>
+          <li>intyg och verifieringar som byggnadsnämnden anger i beslutet.</li>
         </ul>
 
-        <h2 className="flex items-center gap-2 text-2xl font-bold text-stone-800 mb-6">
-          <FileText className="w-6 h-6 text-blue-600" />
-          Nödvändiga handlingar
-        </h2>
-
-        <p className="mb-4">
-          En komplett bygglovsansökan kräver flera olika handlingar. Här är en checklista 
-          över vad som vanligtvis behövs:
-        </p>
-
-        <div className="grid md:grid-cols-2 gap-6 mb-8">
-          <div className="bg-blue-50 p-6 rounded-lg">
-            <h3 className="font-semibold text-blue-800 mb-4">Grundläggande handlingar</h3>
-            <ul className="space-y-2 text-blue-700 text-sm">
-              <li>• Ansökningsblankett (ifylld och undertecknad)</li>
-              <li>• Situationsplan (skala 1:400 eller 1:1000)</li>
-              <li>• Planritningar (skala 1:100)</li>
-              <li>• Fasadritningar (skala 1:100)</li>
-              <li>• Sektionsritningar (skala 1:100)</li>
-              <li>• Teknisk beskrivning</li>
-            </ul>
-          </div>
-          
-          <div className="bg-amber-50 p-6 rounded-lg">
-            <h3 className="font-semibold text-amber-800 mb-4">Kompletterande handlingar</h3>
-            <ul className="space-y-2 text-amber-700 text-sm">
-              <li>• Konstruktionsritningar (vid behov)</li>
-              <li>• Energiberäkning</li>
-              <li>• Geoteknisk utredning (vid behov)</li>
-              <li>• Miljöutredning (vid behov)</li>
-              <li>• Brandskyddsbeskrivning</li>
-              <li>• Kontrollplan (upprättas av <Link to="/kontrollansvarig/" className="text-amber-800 hover:text-amber-900 font-medium underline">kontrollansvarig</Link>)</li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="bg-amber-50 border border-amber-200 p-6 rounded-lg mb-8">
-          <h3 className="font-semibold text-amber-800 mb-3">Tips för bättre ritningar</h3>
-          <ul className="space-y-2 text-amber-700">
-            <li>• Använd tydliga mått och beskrivningar</li>
-            <li>• Markera alla fönster och dörrar</li>
-            <li>• Ange material och färger</li>
-            <li>• Visa befintliga byggnader och anläggningar</li>
-            <li>• Inkludera höjdangivelser</li>
-          </ul>
-        </div>
-
-        <h2 className="flex items-center gap-2 text-2xl font-bold text-stone-800 mb-6">
-          <MapPin className="w-6 h-6 text-red-600" />
-          Kommunala skillnader i Västernorrland
-        </h2>
-
-        <p className="mb-6">
-          Varje kommun i Västernorrland har sina egna rutiner och krav. Här är en översikt 
-          över de största kommunerna:
-        </p>
-
-        <div className="space-y-6 mb-8">
-          <div className="bg-white border border-stone-200 p-6 rounded-lg">
-            <h3 className="font-semibold text-stone-800 mb-3 flex items-center">
-              <MapPin className="w-5 h-5 text-red-600 mr-2" />
-              Sundsvalls kommun
-            </h3>
-            <div className="grid md:grid-cols-2 gap-4">
-              <div>
-                <h4 className="font-medium text-stone-700 mb-2">Särskilda krav:</h4>
-                <ul className="text-sm text-stone-600 space-y-1">
-                  <li>• Stenstadsområdet har särskilda bestämmelser</li>
-                  <li>• Krav på kulturhistorisk hänsyn</li>
-                  <li>• Detaljerade fasadritningar krävs ofta</li>
-                </ul>
+        <h2>Vad Ytterman kan offerera</h2>
+        <div className="not-prose my-6 grid gap-4 sm:grid-cols-2">
+          {[SERVICES.kontrollansvarig, SERVICES.buildingPermitDocuments].map((service) => (
+            <Link key={service.id} to={service.path} className="rounded-lg border bg-white p-5 hover:border-blue-400">
+              <div className="flex items-start gap-3">
+                {service.id === SERVICES.kontrollansvarig.id ? (
+                  <CheckCircle className="mt-1 h-5 w-5 shrink-0 text-green-700" />
+                ) : (
+                  <FileText className="mt-1 h-5 w-5 shrink-0 text-blue-700" />
+                )}
+                <div>
+                  <h3 className="font-semibold text-stone-900">{service.name}</h3>
+                  <p className="mt-1 text-sm text-stone-600">{service.shortDescription}</p>
+                  <p className="mt-2 text-sm font-medium text-blue-700">{service.priceLabel}</p>
+                </div>
               </div>
-              <div>
-                <h4 className="font-medium text-stone-700 mb-2">Handläggningstid:</h4>
-                <p className="text-sm text-stone-600">6-10 veckor för standardärenden</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white border border-stone-200 p-6 rounded-lg">
-            <h3 className="font-semibold text-stone-800 mb-3 flex items-center">
-              <MapPin className="w-5 h-5 text-red-600 mr-2" />
-              Härnösands kommun
-            </h3>
-            <div className="grid md:grid-cols-2 gap-4">
-              <div>
-                <h4 className="font-medium text-stone-700 mb-2">Särskilda krav:</h4>
-                <ul className="text-sm text-stone-600 space-y-1">
-                  <li>• Världsarvsområdet har strikta regler</li>
-                  <li>• Krav på traditionella material</li>
-                  <li>• Höjdbegränsningar i centrala delar</li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-medium text-stone-700 mb-2">Handläggningstid:</h4>
-                <p className="text-sm text-stone-600">8-12 veckor för standardärenden</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white border border-stone-200 p-6 rounded-lg">
-            <h3 className="font-semibold text-stone-800 mb-3 flex items-center">
-              <MapPin className="w-5 h-5 text-red-600 mr-2" />
-              Sollefteå, Kramfors & Timrå
-            </h3>
-            <div className="grid md:grid-cols-2 gap-4">
-              <div>
-                <h4 className="font-medium text-stone-700 mb-2">Särskilda krav:</h4>
-                <ul className="text-sm text-stone-600 space-y-1">
-                  <li>• Generellt mer flexibla regler</li>
-                  <li>• Fokus på praktiska lösningar</li>
-                  <li>• Mindre byråkrati för mindre projekt</li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-medium text-stone-700 mb-2">Handläggningstid:</h4>
-                <p className="text-sm text-stone-600">4-8 veckor för standardärenden</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <h2 className="flex items-center gap-2 text-2xl font-bold text-stone-800 mb-6">
-          <Clock className="w-6 h-6 text-amber-600" />
-          Handläggningstider
-        </h2>
-
-        <p className="mb-4">
-          Handläggningstiderna varierar beroende på projektets komplexitet och kommunens arbetsbelastning:
-        </p>
-
-        <div className="grid md:grid-cols-3 gap-4 mb-8">
-          <div className="bg-green-50 border border-green-200 p-4 rounded-lg text-center">
-            <h3 className="font-semibold text-green-800 mb-2">Enkla projekt</h3>
-            <p className="text-2xl font-bold text-green-600 mb-2">4-6 veckor</p>
-            <p className="text-sm text-green-700">Mindre tillbyggnader, carport, förråd</p>
-          </div>
-          
-          <div className="bg-amber-50 border border-amber-200 p-4 rounded-lg text-center">
-            <h3 className="font-semibold text-amber-800 mb-2">Medelkomplexa</h3>
-            <p className="text-2xl font-bold text-amber-600 mb-2">6-10 veckor</p>
-            <p className="text-sm text-amber-700">Villor, större tillbyggnader</p>
-          </div>
-          
-          <div className="bg-red-50 border border-red-200 p-4 rounded-lg text-center">
-            <h3 className="font-semibold text-red-800 mb-2">Komplexa projekt</h3>
-            <p className="text-2xl font-bold text-red-600 mb-2">10-16 veckor</p>
-            <p className="text-sm text-red-700">Flerbostadshus, kommersiella byggnader</p>
-          </div>
-        </div>
-
-        <h2 className="text-2xl font-bold text-stone-800 mb-6">
-          Vanliga fallgropar att undvika
-        </h2>
-
-        <div className="space-y-4 mb-8">
-          <div className="bg-red-50 border-l-4 border-red-400 p-4">
-            <h3 className="font-semibold text-red-800 mb-2">Ofullständiga handlingar</h3>
-            <p className="text-red-700 text-sm">
-              Den vanligaste orsaken till förseningar. Kontrollera att alla ritningar är kompletta 
-              och att tekniska beskrivningar är detaljerade.
-            </p>
-          </div>
-
-          <div className="bg-red-50 border-l-4 border-red-400 p-4">
-            <h3 className="font-semibold text-red-800 mb-2">Bristande grannskapskontakt</h3>
-            <p className="text-red-700 text-sm">
-              Informera grannar i god tid. Invändningar från grannar kan förlänga processen avsevärt.
-            </p>
-          </div>
-
-          <div className="bg-red-50 border-l-4 border-red-400 p-4">
-            <h3 className="font-semibold text-red-800 mb-2">Felaktiga mått och avstånd</h3>
-            <p className="text-red-700 text-sm">
-              Kontrollera alla mått noggrant. Fel avstånd till tomtgränser är en vanlig orsak 
-              till avslag eller krav på ändringar.
-            </p>
-          </div>
-
-          <div className="bg-red-50 border-l-4 border-red-400 p-4">
-            <h3 className="font-semibold text-red-800 mb-2">Ignorera lokala bestämmelser</h3>
-            <p className="text-red-700 text-sm">
-              Varje kommun har sina egna regler. Det som fungerar i en kommun kanske inte 
-              godkänns i en annan.
-            </p>
-          </div>
-        </div>
-
-        <div className="bg-green-50 border border-green-200 p-6 rounded-lg">
-          <h3 className="font-semibold text-green-800 mb-3">Låt mig hjälpa dig med bygglovet</h3>
-          <p className="text-green-700 mb-3">
-            Med djup kunskap om alla kommuner i Västernorrland kan jag hjälpa dig:
-          </p>
-          <ul className="space-y-2 text-green-700">
-            <li>• Förbereda kompletta bygglovshandlingar</li>
-            <li>• Navigera lokala bestämmelser och krav</li>
-            <li>• Undvika vanliga fallgropar som försenar processen</li>
-            <li>• Kommunicera effektivt med bygglovsmyndigheten</li>
-            <li>• Hantera eventuella kompletteringskrav</li>
-            <li>• Samordna med <Link to="/bas-p/" className="text-green-800 hover:text-green-900 font-medium underline">BAS-P</Link> och <Link to="/bas-u/" className="text-green-800 hover:text-green-900 font-medium underline">BAS-U</Link> för arbetsmiljö</li>
-          </ul>
-          <div className="mt-4 pt-4 border-t border-green-300">
-            <Link to="/kontakt/" className="inline-block bg-green-700 text-white px-6 py-3 rounded-lg hover:bg-green-800 transition-colors font-semibold">
-              Få hjälp med ditt bygglov →
             </Link>
-          </div>
+          ))}
         </div>
 
-        <div className="mt-12 pt-8 border-t border-stone-200">
-          <h3 className="text-xl font-semibold text-stone-800 mb-4">Relaterade guider</h3>
-          <ul className="space-y-2 text-stone-700">
-            <li>• <Link to="/guider/kontrollansvarig/" className="text-amber-600 hover:text-amber-700 font-medium underline">Kontrollansvarig Guide - Allt du behöver veta</Link></li>
-            <li>• <Link to="/guider/kvalitetskontroll/" className="text-amber-600 hover:text-amber-700 font-medium underline">Kvalitetskontroll i byggprojekt</Link></li>
-            <li>• <Link to="/guider/bas/" className="text-amber-600 hover:text-amber-700 font-medium underline">BAS-P och BAS-U: Säkerhetssamordning</Link></li>
-          </ul>
+        <p>
+          Ytterman tar emot förfrågningar från {COMPANY.region}. Uppdragets omfattning,
+          tillgänglighet, resor och leveranstid bekräftas efter underlagsgranskning.
+        </p>
+
+        <div className="not-prose mt-10 rounded-xl bg-slate-900 p-8 text-white">
+          <h2 className="text-2xl font-bold">Be om en projektspecifik offert</h2>
+          <p className="mt-3 max-w-2xl text-slate-200">
+            Skicka fastighet, åtgärd, preliminär tidplan och befintliga handlingar. Då kan omfattning,
+            ansvar och nästa steg bedömas utan generella antaganden.
+          </p>
+          <Link to="/kontakt/" className="mt-6 inline-flex rounded-lg bg-white px-6 py-3 font-semibold text-slate-900">
+            Skicka förfrågan
+          </Link>
         </div>
       </div>
     </GuideLayout>

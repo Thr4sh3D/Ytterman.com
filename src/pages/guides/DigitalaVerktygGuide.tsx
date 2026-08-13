@@ -11,7 +11,7 @@ const DigitalaVerktygGuide = () => {
       category="Digitalisering"
       readTime="7 min"
       seoTitle="Digitala verktyg för byggprojekt | Ytterman"
-      seoDescription="Guide till moderna digitala verktyg för byggprojekt. Projekthantering, dokumentation och kommunikation. Expert råd från Tobias Ytterman."
+      seoDescription="Översikt över digitala verktyg för projekthantering, dokumentation och kommunikation i byggprojekt."
       keywords="digitala verktyg, byggprojekt, projekthantering, digital dokumentation, byggappar, kommunikation"
       canonicalPath="/guider/digitala-verktyg"
     >
@@ -22,9 +22,8 @@ const DigitalaVerktygGuide = () => {
         </h2>
         
         <p className="text-lg text-stone-700 mb-6">
-          Moderna projekthanteringsverktyg revolutionerar hur vi arbetar med byggprojekt. 
-          Genom att digitalisera planering, uppföljning och kommunikation kan <Link to="/kontrollansvarig/" className="text-orange-600 hover:text-orange-700 font-medium underline">kontrollansvariga</Link> och <Link to="/bas-p/" className="text-orange-600 hover:text-orange-700 font-medium underline">BAS</Link> dramatiskt 
-          förbättra effektiviteten och minska risken för missförstånd.
+          Digitala projekthanteringsverktyg kan ge bättre struktur för planering, uppföljning och
+          kommunikation. De kan hjälpa <Link to="/kontrollansvarig/" className="text-orange-600 hover:text-orange-700 font-medium underline">kontrollansvariga</Link>, <Link to="/bas-p/" className="text-orange-600 hover:text-orange-700 font-medium underline">BAS</Link> och andra projektparter att arbeta med samma aktuella underlag.
         </p>
 
         <div className="bg-orange-50 border-l-4 border-orange-400 p-6 mb-8">
@@ -33,8 +32,8 @@ const DigitalaVerktygGuide = () => {
             <div>
               <h3 className="font-semibold text-orange-800 mb-2">Digital transformation</h3>
               <p className="text-orange-700">
-                Byggbranschen genomgår en digital revolution. De som anpassar sig tidigt får 
-                betydande konkurrensfördelar genom ökad effektivitet och bättre kvalitet.
+                Nyttan beror på projektets arbetssätt, behörigheter och hur konsekvent informationen
+                hålls uppdaterad. Börja med ett tydligt behov och välj minsta verktyg som löser det.
               </p>
             </div>
           </div>

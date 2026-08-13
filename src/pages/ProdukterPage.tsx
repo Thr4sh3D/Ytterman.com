@@ -1,299 +1,105 @@
-/**
- * ProdukterPage – lista över digitala produkter på ytterman.com
- *
- * Denna sida är säljlagret för digitala produkter (nedladdningsbara verktyg).
- * Varje produkt har en egen produktsida med köpknapp.
- * Lägg till fler produkter i PRODUCTS-arrayen när de finns tillgängliga.
- */
-
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
-import { AdvancedSEO } from '@/components/AdvancedSEO';
-import { CanonicalUrl } from '@/components/CanonicalUrl';
-import { Breadcrumbs } from '@/components/Breadcrumbs';
-import { WhatsAppButton } from '@/components/WhatsAppButton';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import {
-  Download,
-  ClipboardList,
-  Wifi,
-  Package,
-  ChevronRight,
-  ArrowRight,
-} from 'lucide-react';
+import { ArrowRight, ClipboardList, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { normalizeInternalPath } from '@/utils/url';
+import { AdvancedSEO } from '@/components/AdvancedSEO';
+import { Breadcrumbs } from '@/components/Breadcrumbs';
+import { CanonicalUrl } from '@/components/CanonicalUrl';
+import { Footer } from '@/components/Footer';
+import { Header } from '@/components/Header';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { BAS, BUSINESS_COPY, COMPANY, KA_CERT, SERVICES } from '@/config/company';
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Produktkatalog – lägg till fler produkter här i takt med att de lanseras
-// ─────────────────────────────────────────────────────────────────────────────
-
-interface DigitalProduct {
-  slug: string;
-  name: string;
-  tagline: string;
-  description: string;
-  price: string;
-  features: string[];
-  badge?: string;
-  icon: React.ReactNode;
-  available: boolean;
-}
-
-const PRODUCTS: DigitalProduct[] = [
-  {
-    slug: '/byggstart-planerare',
-    name: 'Byggstart-planerare',
-    tagline: 'Planera din byggstart – offline, i din webbläsare',
-    description:
-      'Ett interaktivt digitalt verktyg som täcker hela planeringsprocessen: projektinfo, lov och handlingar, entreprenörer, budget, tidsplan, kontrollpunkter och sammanfattning.',
-    price: '497 kr',
-    features: [
-      'Fungerar offline – ingen internet krävs',
-      'Autosparning via localStorage',
-      'Export/import som JSON',
-      '7 planeringsmoduler',
-      'Mobilanpassad',
-    ],
-    badge: 'Ny',
-    icon: <ClipboardList className="w-6 h-6 text-primary" />,
-    available: true,
-  },
-  // Platshållare – kommande produkter
-  {
-    slug: '#',
-    name: 'Mer på väg',
-    tagline: 'Fler digitala verktyg lanseras inom kort',
-    description:
-      'Vi arbetar på fler nedladdningsbara verktyg för byggprojektets olika faser. Anmäl ditt intresse via kontaktformuläret.',
-    price: '',
-    features: [],
-    icon: <Package className="w-6 h-6 text-slate-400" />,
-    available: false,
-  },
-];
-
-const PRODUCT_AUDIENCES = [
-  {
-    title: 'Privatpersoner som vill komma igång rätt',
-    description:
-      'För dig som planerar nybyggnation, tillbyggnad eller en större renovering och vill samla beslut, dokument och kontrollpunkter på ett ställe innan projektet drar i gång.',
-  },
-  {
-    title: 'Små byggföretag och entreprenörer',
-    description:
-      'För mindre team som behöver ett enkelt planeringsstöd utan abonnemang, inloggning eller onödigt administrationstungt system för varje nytt projekt.',
-  },
-  {
-    title: 'Projektledare som vill ha bättre överblick',
-    description:
-      'För dig som vill följa upp tidplan, ansvarsfördelning, handlingar och nästa steg i byggprocessen med ett verktyg som fungerar direkt i webbläsaren.',
-  },
-];
-
-// ─────────────────────────────────────────────────────────────────────────────
-// Komponent
-// ─────────────────────────────────────────────────────────────────────────────
+const planner = SERVICES.buildingStartPlanner;
 
 const ProdukterPage = () => {
-  const contactPath = normalizeInternalPath('/kontakt') || '/kontakt/';
-  const servicesPath = normalizeInternalPath('/tjanster') || '/tjanster/';
-
   const breadcrumbs = [
-    { name: 'Hem', url: 'https://ytterman.com' },
-    { name: 'Produkter', url: 'https://ytterman.com/produkter' },
+    { name: 'Hem', url: COMPANY.siteUrl },
+    { name: 'Digitala verktyg', url: `${COMPANY.siteUrl}/produkter/` },
   ];
 
   return (
     <>
       <AdvancedSEO
-        title="Digitala produkter för byggprojekt | Ytterman"
-        description="Nedladdningsbara interaktiva verktyg för privatpersoner och proffs. Planera din byggstart offline med Yttermans digitala produkter."
-        keywords="digitala produkter, byggprojekt verktyg, byggstart planerare, nedladdningsbart digitalt verktyg, Ytterman"
-        url="https://ytterman.com/produkter"
+        title="Digitala verktyg – intresseanmälan | Ytterman"
+        description="Ytterman utvecklar praktiska digitala planeringsverktyg för byggprojekt. Se innehållet och anmäl intresse innan försäljning öppnas."
+        keywords="digitala verktyg byggprojekt, byggstart planerare, intresseanmälan, Ytterman"
+        url={`${COMPANY.siteUrl}/produkter/`}
         type="website"
         breadcrumbs={breadcrumbs}
       />
-      <CanonicalUrl path="/produkter" />
+      <CanonicalUrl path="/produkter/" />
 
       <div className="min-h-screen bg-slate-50">
         <Header />
-
-        {/* Breadcrumb */}
-        <section className="py-4 bg-white border-b">
+        <section className="border-b bg-white py-4">
           <div className="container mx-auto px-4">
-            <Breadcrumbs items={[{ label: 'Produkter', href: '/produkter' }]} />
+            <Breadcrumbs items={[{ label: 'Digitala verktyg', href: '/produkter/' }]} />
           </div>
         </section>
 
-        {/* Hero */}
-        <section className="bg-white border-b py-12 md:py-16">
-          <div className="container mx-auto px-4 max-w-5xl text-center">
-            <Badge className="bg-amber-100 text-amber-800 hover:bg-amber-100 mb-4">
-              Digitala produkter
-            </Badge>
-            <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-              Verktyg som hjälper dig bygga smartare
-            </h1>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              Nedladdningsbara digitala verktyg – inga abonnemang, ingen inloggning.
-              Öppna direkt i din webbläsare och jobba offline.
-            </p>
-
-            {/* USPs */}
-            <div className="flex flex-wrap justify-center gap-6 mt-8">
-              {[
-                { icon: <Download className="w-5 h-5 text-primary" />, label: 'Ladda ned direkt' },
-                { icon: <Wifi className="w-5 h-5 text-primary" />, label: 'Fungerar offline' },
-                { icon: <Package className="w-5 h-5 text-primary" />, label: 'Ingen prenumeration' },
-              ].map(({ icon, label }) => (
-                <div key={label} className="flex items-center gap-2 text-slate-700 font-medium text-sm">
-                  {icon}
-                  <span>{label}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Products */}
-        <section className="py-12 md:py-16">
-          <div className="container mx-auto px-4 max-w-5xl">
-            <h2 className="text-xl font-bold text-slate-900 mb-6">Tillgängliga produkter</h2>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {PRODUCTS.map((product) => (
-                <Card
-                  key={product.slug}
-                  className={`border-slate-200 flex flex-col ${product.available ? 'hover:border-primary/40 transition-colors' : 'opacity-60'}`}
-                >
-                  <CardHeader className="pb-3">
-                    <div className="flex items-start justify-between gap-2 mb-2">
-                      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                        {product.icon}
-                      </div>
-                      {product.badge && (
-                        <Badge className="bg-green-100 text-green-800 hover:bg-green-100 text-xs">
-                          {product.badge}
-                        </Badge>
-                      )}
-                    </div>
-                    <CardTitle className="text-base font-semibold text-slate-800">
-                      {product.name}
-                    </CardTitle>
-                    <CardDescription className="text-xs text-slate-500">
-                      {product.tagline}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="flex flex-col flex-1">
-                    <p className="text-sm text-slate-600 mb-4 leading-relaxed flex-1">
-                      {product.description}
-                    </p>
-                    {product.features.length > 0 && (
-                      <ul className="space-y-1 mb-4">
-                        {product.features.map((f) => (
-                          <li key={f} className="flex items-center gap-1.5 text-xs text-slate-600">
-                            <ChevronRight className="w-3 h-3 text-primary flex-shrink-0" />
-                            {f}
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                    {product.available ? (
-                      <div>
-                        {product.price && (
-                          <div className="font-bold text-slate-900 mb-3">
-                            {product.price}{' '}
-                            <span className="text-slate-500 font-normal text-xs">inkl. moms</span>
-                          </div>
-                        )}
-                        <Button asChild className="w-full earth-gradient text-white hover:opacity-90">
-                          <Link to={normalizeInternalPath(product.slug) || product.slug}>
-                            Läs mer & köp
-                            <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
-                          </Link>
-                        </Button>
-                      </div>
-                    ) : (
-                      <Button
-                        asChild
-                        variant="outline"
-                        className="w-full border-slate-200 text-slate-500"
-                      >
-                        <Link to={contactPath}>Anmäl intresse</Link>
-                      </Button>
-                    )}
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="bg-white border-y py-12 md:py-16">
-          <div className="container mx-auto px-4 max-w-5xl">
-            <div className="max-w-3xl mb-10">
-              <h2 className="text-2xl font-bold text-slate-900 mb-4">
-                För vem passar Yttermans digitala produkter?
-              </h2>
-              <p className="text-slate-600 leading-relaxed mb-4">
-                Våra digitala produkter är framtagna för att lösa konkreta utmaningar i byggprojekt:
-                att få struktur, minska missade moment och göra det lättare att planera innan pengar
-                och tid börjar rinna iväg. Fokus ligger på praktisk nytta snarare än avancerade
-                systemfunktioner.
-              </p>
-              <p className="text-slate-600 leading-relaxed">
-                Därför passar produkterna både dig som privat beställare och dig som arbetar
-                professionellt med projektledning, entreprenad eller samordning. Du laddar ned
-                verktyget, arbetar i din egen takt och behåller kontrollen över informationen på
-                din egen enhet.
+        <main>
+          <section className="border-b bg-white py-16">
+            <div className="container mx-auto max-w-4xl px-4 text-center">
+              <span className="mb-5 inline-flex rounded-full bg-amber-100 px-4 py-2 text-sm font-semibold text-amber-900">
+                Under utveckling
+              </span>
+              <h1 className="mb-5 text-4xl font-bold text-slate-900 md:text-5xl">
+                Digitala verktyg för bättre byggplanering
+              </h1>
+              <p className="mx-auto max-w-2xl text-xl text-slate-600">
+                Här visar vi verktyg som är under utveckling. Försäljning öppnas först när
+                betalning, villkor och automatisk leverans är verifierade.
               </p>
             </div>
+          </section>
 
-            <div className="grid md:grid-cols-3 gap-6">
-              {PRODUCT_AUDIENCES.map((audience) => (
-                <Card key={audience.title} className="border-slate-200">
-                  <CardHeader>
-                    <CardTitle className="text-lg text-slate-900">{audience.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm text-slate-600 leading-relaxed">{audience.description}</p>
-                  </CardContent>
-                </Card>
-              ))}
+          <section className="py-16">
+            <div className="container mx-auto max-w-4xl px-4">
+              <Card className="overflow-hidden border-slate-200">
+                <CardHeader className="bg-white">
+                  <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
+                    <ClipboardList className="h-6 w-6 text-primary" />
+                  </div>
+                  <CardTitle className="text-2xl">{planner.name}</CardTitle>
+                </CardHeader>
+                <CardContent className="p-6">
+                  <p className="mb-6 text-slate-600">{planner.shortDescription}</p>
+                  <ul className="mb-8 grid gap-3 sm:grid-cols-2">
+                    {planner.features.map((feature) => (
+                      <li key={feature} className="text-sm text-slate-700">• {feature}</li>
+                    ))}
+                  </ul>
+                  <div className="flex flex-wrap gap-3">
+                    <Button asChild className="earth-gradient text-white hover:opacity-90">
+                      <Link to={planner.path}>
+                        Läs om verktyget
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
+                    </Button>
+                    <Button asChild variant="outline">
+                      <Link to="/kontakt/?produkt=byggstart-planerare">
+                        <Mail className="mr-2 h-4 w-4" />
+                        Anmäl intresse
+                      </Link>
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <div className="mt-10 rounded-xl border border-amber-200 bg-amber-50 p-6 text-amber-950">
+                <h2 className="mb-2 text-xl font-semibold">Tydligt före köp</h2>
+                <p>{BUSINESS_COPY.digitalInterest}</p>
+              </div>
+
+              <p className="mt-10 text-center text-slate-600">
+                Verktygen utvecklas av {COMPANY.publicName}, {KA_CERT.title.toLowerCase()} och
+                utbildad för uppdrag som {BAS.rolesLabel}, med {COMPANY.experienceLabel.toLowerCase()}.
+              </p>
             </div>
-          </div>
-        </section>
-
-        {/* About digital products */}
-        <section className="bg-white border-y py-12 md:py-16">
-          <div className="container mx-auto px-4 max-w-3xl text-center">
-            <h2 className="text-2xl font-bold text-slate-900 mb-4">
-              Vad är en digital produkt från Ytterman?
-            </h2>
-            <p className="text-slate-600 mb-4 leading-relaxed">
-              Varje digital produkt är ett interaktivt verktyg du laddar ned och öppnar direkt
-              i din webbläsare – utan internet, utan konto och utan abonnemang.
-              Dina uppgifter sparas lokalt på din enhet.
-            </p>
-            <p className="text-slate-600 mb-6 leading-relaxed">
-              Produkterna är skapade av Tobias Ytterman – certifierad kontrollansvarig, BAS-P/U
-              och byggkonsult med 20+ års erfarenhet. De kompletterar Tobias konsulttjänster
-              och är framtagna för privatpersoner och proffs som vill ha ordning på sin
-              byggprocess.
-            </p>
-            <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary/5">
-              <Link to={servicesPath}>
-                Se Tobias konsulttjänster
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Link>
-            </Button>
-          </div>
-        </section>
+          </section>
+        </main>
 
         <Footer />
-        <WhatsAppButton />
       </div>
     </>
   );

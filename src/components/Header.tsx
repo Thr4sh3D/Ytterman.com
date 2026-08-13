@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { Menu, X, Phone } from 'lucide-react';
+import { Menu, X, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { COMPANY } from '@/config/company';
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -53,11 +54,11 @@ export const Header = () => {
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center space-x-4">
             <a 
-              href="tel:+46761118447"
+              href={COMPANY.emailHref}
               className="flex items-center space-x-2 text-slate-700 hover:text-primary transition-colors"
             >
-              <Phone className="w-4 h-4" />
-              <span className="font-medium">076-111 84 47</span>
+              <Mail className="w-4 h-4" />
+              <span className="font-medium">{COMPANY.email}</span>
             </a>
             <Button 
               onClick={scrollToContact}
@@ -94,12 +95,12 @@ export const Header = () => {
               ))}
               <div className="pt-4 border-t border-slate-200 space-y-3">
                 <a 
-                  href="tel:+46761118447"
+                  href={COMPANY.emailHref}
                   className="flex items-center space-x-2 text-slate-700 hover:text-primary transition-colors"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  <Phone className="w-4 h-4" />
-                  <span className="font-medium">076-111 84 47</span>
+                  <Mail className="w-4 h-4" />
+                  <span className="font-medium">{COMPANY.email}</span>
                 </a>
                 <Button 
                   onClick={scrollToContact}

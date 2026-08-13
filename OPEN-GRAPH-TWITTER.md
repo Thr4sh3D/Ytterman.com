@@ -289,7 +289,7 @@ Innehåll:
   - Logotyp/Brand name
   - Tagline: "Certifierad Kontrollansvarig & BAS"
   - Location: "Västernorrland"
-  - CTA: "076-111 84 47"
+  - CTA: "tobias@ytterman.com"
 Safe zone: 20px margin från alla kanter (vissa plattformar croppar)
 ```
 
@@ -303,7 +303,7 @@ Safe zone: 20px margin från alla kanter (vissa plattformar croppar)
 │                                     │
 │  Västernorrland · 20+ års erfarenhet│
 │                                     │
-│  📞 076-111 84 47                  │
+│  ✉ tobias@ytterman.com             │
 └─────────────────────────────────────┘
 ```
 

@@ -1,5 +1,6 @@
 import { OptimizedImage } from '@/components/OptimizedImage';
 import { Shield, Award, CheckCircle, HardHat, ExternalLink } from 'lucide-react';
+import { BAS, KA_CERT } from '@/config/company';
 
 interface CertificationsProps {
   showTitle?: boolean;
@@ -15,9 +16,8 @@ export const Certifications = ({ showTitle = true, compact = false }: Certificat
             Certifieringar & Kvalifikationer
           </h3>
           <p className="text-slate-600 max-w-2xl mx-auto">
-            Officiellt certifierad kontrollansvarig enligt Plan- och bygglagen med 
-            fullständig behörighet för teknisk kontroll och slutbesiktning samt 
-            uppdaterade BAS-P och BAS-U certifikat.
+            Certifierad kontrollansvarig enligt Plan- och bygglagen med behörighet N.
+            BAS-P och BAS-U redovisas separat som utbildning och kompetens för rollerna.
           </p>
         </div>
       )}
@@ -32,22 +32,22 @@ export const Certifications = ({ showTitle = true, compact = false }: Certificat
               </div>
               <div>
                 <h4 className="text-xl font-bold text-slate-900">Kontrollansvarig</h4>
-                <p className="text-sm text-slate-500">Kiwa Certification AB</p>
+                <p className="text-sm text-slate-500">{KA_CERT.issuer}</p>
               </div>
             </div>
             
             <div className="space-y-3 mb-6">
               <div className="flex justify-between">
                 <span className="text-slate-600">Certifikatsnummer:</span>
-                <span className="font-semibold">KA11926</span>
+                <span className="font-semibold">{KA_CERT.certificateNumber}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-slate-600">Behörighet:</span>
-                <span className="font-semibold">N (Normal art)</span>
+                <span className="font-semibold">{KA_CERT.authorization} (normal art)</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-slate-600">Giltigt till:</span>
-                <span className="font-semibold text-green-600">2030-07-03</span>
+                <span className="font-semibold text-green-600">{KA_CERT.validUntil}</span>
               </div>
             </div>
             
@@ -66,7 +66,7 @@ export const Certifications = ({ showTitle = true, compact = false }: Certificat
 
             {/* KIWA Certifikat Länk */}
             <a 
-              href="https://idun.kiwa.se/certificates/25642"
+              href={KA_CERT.verificationUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center w-full earth-gradient hover:opacity-90 text-white px-4 py-2 rounded-lg font-semibold transition-colors text-sm"
@@ -77,7 +77,7 @@ export const Certifications = ({ showTitle = true, compact = false }: Certificat
           </div>
         </div>
 
-        {/* BAS-P & BAS-U Certifikat */}
+        {/* BAS-P & BAS-U utbildningsintyg */}
         <div className="bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden">
           <div className="p-6">
             <div className="flex items-center mb-4">
@@ -85,8 +85,8 @@ export const Certifications = ({ showTitle = true, compact = false }: Certificat
                 <HardHat className="w-6 h-6 text-orange-600" />
               </div>
               <div>
-                <h4 className="text-xl font-bold text-slate-900">BAS-P & BAS-U</h4>
-                <p className="text-sm text-slate-500">UtbildningsKraft</p>
+                <h4 className="text-xl font-bold text-slate-900">BAS-P & BAS-U – utbildning</h4>
+                <p className="text-sm text-slate-500">{BAS.trainingProvider}</p>
               </div>
             </div>
             
@@ -97,21 +97,21 @@ export const Certifications = ({ showTitle = true, compact = false }: Certificat
               </div>
               <div className="flex justify-between">
                 <span className="text-slate-600">Genomförd:</span>
-                <span className="font-semibold">25/6 2025</span>
+                <span className="font-semibold">{BAS.completedOn}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-slate-600">Giltigt till:</span>
-                <span className="font-semibold text-green-600">24/6 2030</span>
+                <span className="font-semibold text-green-600">{BAS.validUntil}</span>
               </div>
               <div className="text-xs text-slate-500 mt-2">
-                Kursen omfattar gällande AFS från 1 jan 2025
+                Kursen omfattar aktuellt regelverk, däribland {BAS.regulation}
               </div>
             </div>
             
             <div className="relative">
               <OptimizedImage
                 src="https://ellprnxjjzatijdxcogk.supabase.co/storage/v1/object/public/superdev-project-images/1a9c4603-3de4-4ce7-b4df-b42fb67a7f27/aorpjse3ulohvjtaxgvsp/1751537157850-BASUP_copyright.png"
-                alt="Kursintyg BAS-P & BAS-U - Tobias Ytterman, UtbildningsKraft"
+                alt={`Kursintyg BAS-P och BAS-U – Tobias Ytterman, ${BAS.trainingProvider}`}
                 className="rounded-lg w-full h-auto border border-slate-200"
                 width={400}
                 height={500}
@@ -130,9 +130,9 @@ export const Certifications = ({ showTitle = true, compact = false }: Certificat
             <Shield className="w-5 h-5 text-primary" />
           </div>
           <div>
-            <h5 className="font-semibold text-slate-900 mb-1">Fullständig Behörighet</h5>
+            <h5 className="font-semibold text-slate-900 mb-1">Behörighet N</h5>
             <p className="text-sm text-slate-600">
-              Certifierad för teknisk kontroll och slutbesiktning enligt Plan- och bygglagen.
+              Certifierad kontrollansvarig för projekt av normal art enligt Plan- och bygglagen.
             </p>
           </div>
         </div>
@@ -144,7 +144,7 @@ export const Certifications = ({ showTitle = true, compact = false }: Certificat
           <div>
             <h5 className="font-semibold text-slate-900 mb-1">Uppdaterad Säkerhetsutbildning</h5>
             <p className="text-sm text-slate-600">
-              Senaste BAS-P och BAS-U enligt gällande AFS från 2025.
+              Genomförd utbildning för BAS-P och BAS-U enligt aktuellt regelverk.
             </p>
           </div>
         </div>

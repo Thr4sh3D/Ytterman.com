@@ -302,7 +302,6 @@ Already implemented in AdvancedSEO component:
   "name": "Ytterman",
   "description": "Certifierad Kontrollansvarig och Byggarbetsmiljösamordnare...",
   "url": "https://ytterman.com",
-  "telephone": "+46761118447",
   "email": "tobias@ytterman.com",
   "areaServed": ["Sundsvall", "Härnösand", "Sollefteå", "Kramfors", "Timrå"]
 }

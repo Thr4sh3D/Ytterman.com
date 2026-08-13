@@ -4,11 +4,12 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Phone, Mail, MapPin, Clock, CheckCircle, AlertCircle } from 'lucide-react';
+import { Mail, MapPin, Clock, CheckCircle, AlertCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { sendContactEmail } from '@/lib/emailjs';
 import { useGoogleAdsTracking } from '@/hooks/useGoogleAdsTracking';
 import { useSearchParams } from 'react-router-dom';
+import { BUSINESS_COPY, COMPANY } from '@/config/company';
 
 const VALID_PROJECT_TYPES = new Set([
   'kontrollansvarig',
@@ -31,7 +32,7 @@ const ContactForm = () => {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [searchParams] = useSearchParams();
   const { toast } = useToast();
-  const { trackFormSubmission, trackPhoneClick } = useGoogleAdsTracking();
+  const { trackFormSubmission } = useGoogleAdsTracking();
 
   useEffect(() => {
     const requestedProject = searchParams.get('project')?.trim().toLowerCase();
@@ -51,10 +52,6 @@ const ContactForm = () => {
       ...prev,
       [field]: value
     }));
-  };
-
-  const handlePhoneClick = (phoneNumber: string) => {
-    trackPhoneClick(phoneNumber);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -87,7 +84,7 @@ const ContactForm = () => {
         
         toast({
           title: "Meddelande skickat!",
-          description: "Tack för ditt meddelande. Vi återkommer inom 24 timmar.",
+          description: "Tack för ditt meddelande. Vi går igenom uppgifterna och återkommer med nästa steg.",
         });
         
         // Rensa formuläret
@@ -107,7 +104,7 @@ const ContactForm = () => {
       
       toast({
         title: "Kunde inte skicka meddelandet",
-        description: "Försök igen eller ring oss direkt på 076-111 84 47.",
+        description: `Försök igen eller mejla ${COMPANY.email}.`,
         variant: "destructive",
       });
     } finally {
@@ -123,7 +120,7 @@ const ContactForm = () => {
           <CardHeader>
             <CardTitle className="text-2xl text-slate-800">Kontakta oss</CardTitle>
             <CardDescription>
-              Berätta om ditt projekt så återkommer vi med en kostnadsfri offert inom 24 timmar.
+              Berätta om ditt projekt så går vi igenom underlaget och återkommer med nästa steg.
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -224,14 +221,14 @@ const ContactForm = () => {
               {submitStatus === 'success' && (
                 <div className="flex items-center gap-2 text-green-600 bg-green-50 p-3 rounded-lg">
                   <CheckCircle className="w-5 h-5" />
-                  <span>Meddelande skickat! Vi återkommer inom 24 timmar.</span>
+                  <span>Meddelande skickat! Vi går igenom uppgifterna och återkommer med nästa steg.</span>
                 </div>
               )}
 
               {submitStatus === 'error' && (
                 <div className="flex items-center gap-2 text-red-600 bg-red-50 p-3 rounded-lg">
                   <AlertCircle className="w-5 h-5" />
-                  <span>Kunde inte skicka meddelandet. Försök igen eller ring direkt.</span>
+                  <span>Kunde inte skicka meddelandet. Försök igen eller mejla {COMPANY.email}.</span>
                 </div>
               )}
             </form>
@@ -246,28 +243,14 @@ const ContactForm = () => {
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-blue-600" />
-                <div>
-                  <p className="font-medium text-slate-800">Telefon</p>
-                  <a 
-                    href="tel:+46761118447" 
-                    className="text-blue-600 hover:text-blue-700 transition-colors"
-                    onClick={() => handlePhoneClick('+46761118447')}
-                  >
-                    076-111 84 47
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-blue-600" />
                 <div>
                   <p className="font-medium text-slate-800">E-post</p>
                   <a 
-                    href="mailto:tobias@ytterman.com" 
+                    href={COMPANY.emailHref}
                     className="text-blue-600 hover:text-blue-700 transition-colors"
                   >
-                    tobias@ytterman.com
+                    {COMPANY.email}
                   </a>
                 </div>
               </div>
@@ -276,16 +259,16 @@ const ContactForm = () => {
                 <MapPin className="w-5 h-5 text-blue-600" />
                 <div>
                   <p className="font-medium text-slate-800">Verksamhetsområde</p>
-                  <p className="text-slate-600">Västernorrland</p>
-                  <p className="text-sm text-slate-500">Sundsvall, Härnösand, Sollefteå, Kramfors, Timrå</p>
+                  <p className="text-slate-600">{COMPANY.region}</p>
+                  <p className="text-sm text-slate-500">{COMPANY.localPageAreas.join(', ')}</p>
                 </div>
               </div>
 
               <div className="flex items-center gap-3">
                 <Clock className="w-5 h-5 text-blue-600" />
                 <div>
-                  <p className="font-medium text-slate-800">Svarstid</p>
-                  <p className="text-slate-600">Inom 24 timmar</p>
+                  <p className="font-medium text-slate-800">Återkoppling</p>
+                  <p className="text-slate-600">{BUSINESS_COPY.defaultResponse}</p>
                 </div>
               </div>
             </CardContent>
@@ -293,20 +276,19 @@ const ContactForm = () => {
 
           <Card className="bg-blue-50 border-blue-200">
             <CardContent className="p-6">
-              <h3 className="font-semibold text-slate-800 mb-2">Snabb kontakt</h3>
+              <h3 className="font-semibold text-slate-800 mb-2">Kontakta Ytterman</h3>
               <p className="text-slate-600 mb-4">
-                Behöver du svar direkt? Ring oss så svarar vi inom kontorstid.
+                {BUSINESS_COPY.preferredContact} Skicka gärna med projektets typ, ort och önskad start.
               </p>
               <Button 
                 asChild 
                 className="w-full earth-gradient hover:opacity-90 text-white"
               >
                 <a 
-                  href="tel:+46761118447"
-                  onClick={() => handlePhoneClick('+46761118447')}
+                  href={COMPANY.emailHref}
                 >
-                  <Phone className="w-4 h-4 mr-2" />
-                  Ring nu: 076-111 84 47
+                  <Mail className="w-4 h-4 mr-2" />
+                  Mejla {COMPANY.email}
                 </a>
               </Button>
             </CardContent>

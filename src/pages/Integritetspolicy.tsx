@@ -1,14 +1,14 @@
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { Helmet } from 'react-helmet-async';
+import { COMPANY } from '@/config/company';
 
 const Integritetspolicy = () => {
   return (
     <>
       <Helmet>
-        <title>Integritetspolicy - MTY Konsult | Ytterman</title>
-        <meta name="description" content="Läs vår integritetspolicy för MTY Konsult. Vi värnar om din integritet och personuppgifter enligt GDPR." />
+        <title>Integritetspolicy | {COMPANY.brandName}</title>
+        <meta name="description" content={`Läs hur ${COMPANY.brandName} behandlar personuppgifter i samband med webbplats och projektförfrågningar.`} />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://ytterman.com/integritetspolicy/" />
       </Helmet>
@@ -19,14 +19,14 @@ const Integritetspolicy = () => {
           <div className="container mx-auto px-4 py-12">
             <div className="max-w-4xl mx-auto">
               <h1 className="text-4xl font-bold text-slate-900 mb-8">
-                Integritetspolicy – MTY Konsult
+                Integritetspolicy – {COMPANY.brandName}
               </h1>
               
               <div className="prose prose-lg max-w-none text-slate-700 space-y-8">
                 <section>
                   <h2 className="text-2xl font-semibold text-slate-900 mb-4">1. Inledning</h2>
                   <p>
-                    Denna integritetspolicy beskriver hur MTY Konsult (organisationsnummer: 8809134672) 
+                    Denna integritetspolicy beskriver hur verksamheten under varumärket {COMPANY.brandName}
                     samlar in, använder och skyddar dina personuppgifter när du besöker vår webbplats 
                     eller använder våra tjänster.
                   </p>
@@ -35,10 +35,8 @@ const Integritetspolicy = () => {
                 <section>
                   <h2 className="text-2xl font-semibold text-slate-900 mb-4">2. Personuppgiftsansvarig</h2>
                   <div className="bg-stone-50 p-6 rounded-lg">
-                    <p><strong>MTY Konsult</strong></p>
-                    <p>Organisationsnummer: 8809134672</p>
-                    <p>E-post: tobias@ytterman.com</p>
-                    <p>Telefon: 076-111 84 47</p>
+                    <p><strong>{COMPANY.brandName}</strong></p>
+                    <p>E-post: {COMPANY.email}</p>
                   </div>
                 </section>
 
@@ -92,9 +90,9 @@ const Integritetspolicy = () => {
                 <section>
                   <h2 className="text-2xl font-semibold text-slate-900 mb-4">7. Lagring av personuppgifter</h2>
                   <p>
-                    Vi lagrar dina personuppgifter endast så länge det är nödvändigt för att uppfylla 
-                    de ändamål som beskrivs i denna policy. Projektrelaterade handlingar sparas enligt 
-                    branschpraxis och juridiska krav, vanligtvis 10 år efter projektets slutförande.
+                    Vi lagrar personuppgifter så länge de behövs för det aktuella ändamålet och därefter
+                    så länge som krävs för avtal, rättsliga skyldigheter eller för att hantera rättsliga anspråk.
+                    Lagringstiden bedöms utifrån uppgiftstyp och relation.
                   </p>
                 </section>
 
@@ -110,16 +108,15 @@ const Integritetspolicy = () => {
                     <li><strong>Dataportabilitet</strong> - få ut dina uppgifter i strukturerat format</li>
                   </ul>
                   <p className="mt-4">
-                    För att utöva dina rättigheter, kontakta oss på tobias@ytterman.com eller 076-111 84 47.
+                    För att utöva dina rättigheter, kontakta oss på {COMPANY.email}.
                   </p>
                 </section>
 
                 <section>
                   <h2 className="text-2xl font-semibold text-slate-900 mb-4">9. Säkerhet</h2>
                   <p>
-                    Vi vidtar lämpliga tekniska och organisatoriska åtgärder för att skydda dina 
-                    personuppgifter mot obehörig åtkomst, förlust eller missbruk. Detta inkluderar 
-                    kryptering, säkra servrar och begränsad åtkomst till personuppgifter.
+                    Vi arbetar med tekniska och organisatoriska skyddsåtgärder som anpassas efter
+                    uppgifternas art, behandlingens omfattning och aktuell risk.
                   </p>
                 </section>
 
@@ -148,9 +145,8 @@ const Integritetspolicy = () => {
                     personuppgifter, kontakta oss:
                   </p>
                   <div className="bg-stone-50 p-6 rounded-lg mt-4">
-                    <p><strong>MTY Konsult</strong></p>
-                    <p>E-post: tobias@ytterman.com</p>
-                    <p>Telefon: 076-111 84 47</p>
+                    <p><strong>{COMPANY.brandName}</strong></p>
+                    <p>E-post: {COMPANY.email}</p>
                     <p className="mt-4">
                       Du har också rätt att lämna klagomål till Integritetsskyddsmyndigheten (IMY) 
                       om du anser att vi behandlar dina personuppgifter på ett felaktigt sätt.
@@ -160,7 +156,7 @@ const Integritetspolicy = () => {
 
                 <section className="border-t pt-8 mt-12">
                   <p className="text-sm text-slate-600">
-                    <strong>Senast uppdaterad:</strong> {new Date().toLocaleDateString('sv-SE')}
+                    <strong>Senast uppdaterad:</strong> 13 augusti 2026
                   </p>
                 </section>
               </div>
@@ -168,7 +164,6 @@ const Integritetspolicy = () => {
           </div>
         </main>
         <Footer />
-        <WhatsAppButton />
       </div>
     </>
   );
