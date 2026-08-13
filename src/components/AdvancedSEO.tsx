@@ -241,8 +241,12 @@ export const AdvancedSEO = ({
       {/* Article specific Open Graph */}
       {article && (
         <>
-          <meta property="article:published_time" content={article.publishedTime} />
-          <meta property="article:modified_time" content={article.modifiedTime || article.publishedTime} />
+          {article.publishedTime && (
+            <meta property="article:published_time" content={article.publishedTime} />
+          )}
+          {(article.modifiedTime || article.publishedTime) && (
+            <meta property="article:modified_time" content={article.modifiedTime || article.publishedTime} />
+          )}
           <meta property="article:author" content={article.author || COMPANY.publicName} />
           <meta property="article:section" content={article.section} />
           {article.tags?.map((tag, index) => (

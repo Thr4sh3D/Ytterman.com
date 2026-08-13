@@ -53,9 +53,13 @@ export const OptimizedImage = ({
 }: OptimizedImageProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const optimizedSrc = optimizeImageSrc(src, width);
+  const fetchPriorityAttribute = {
+    fetchpriority: priority ? 'high' : 'auto',
+  };
 
   return (
     <img
+      {...fetchPriorityAttribute}
       src={optimizedSrc}
       alt={alt}
       srcSet={srcSet}
@@ -63,7 +67,6 @@ export const OptimizedImage = ({
       height={height}
       sizes={sizes}
       loading={priority ? 'eager' : 'lazy'}
-      fetchPriority={priority ? 'high' : 'auto'}
       decoding="async"
       onLoad={() => setIsLoaded(true)}
       className={cn(

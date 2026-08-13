@@ -2,7 +2,7 @@ import { defineConfig } from "vite"
 import react from "@vitejs/plugin-react-swc"
 import path from "path"
 
-export default defineConfig({
+export default defineConfig(({ isSsrBuild }) => ({
   base: "/",
   plugins: [react()],
   resolve: {
@@ -11,9 +11,17 @@ export default defineConfig({
     },
   },
 
+  ssr: {
+    noExternal: ["react-helmet-async"],
+  },
+
   build: {
     rollupOptions: {
-      output: {
+      output: isSsrBuild ? {
+        entryFileNames: 'entry-server.js',
+        chunkFileNames: 'chunks/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash][extname]',
+      } : {
         manualChunks: {
           // Separate vendor libraries for better caching
           "react-vendor": ["react", "react-dom"],
@@ -69,4 +77,4 @@ export default defineConfig({
       "react-helmet-async",
     ],
   },
-})
+}))

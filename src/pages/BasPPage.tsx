@@ -103,7 +103,8 @@ const BasPPage = () => {
             <Breadcrumbs items={[{ label: 'BAS-P', href: '/bas-p' }]} />
           </div>
         </section>
-        
+
+        <main id="main-content">
         <ServiceHero
           badge="BAS-P – utbildad och erfaren"
           title="BAS-P i Västernorrland"
@@ -313,6 +314,7 @@ const BasPPage = () => {
         </section>
 
         </div> {/* Close bg-gradient div */}
+        </main>
 
         <Footer />
       </div>

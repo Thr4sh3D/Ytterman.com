@@ -5,11 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- 
-    NOTE: This file is overwritten during build by scripts/copy-404.mjs
-    The build process copies dist/index.html to dist/404.html for proper SPA routing on GitHub Pages
-    
-    This ensures that when GitHub Pages serves 404.html for unknown routes,
-    it actually serves the full React app, allowing React Router to handle the routing client-side.
+    NOTE: This fallback is overwritten during build by the React prerender step.
+    The generated dist/404.html contains the real 404 page and hydrates client-side.
   -->
   
   <!-- Prevent indexing of 404 page -->

@@ -113,6 +113,7 @@ const KontrollansvarigFjallPage = () => {
           </div>
         </section>
 
+        <main id="main-content">
         <ServiceHero
           badge="Förfrågan för fjällprojekt"
           title="Kontrollansvarig för fjällhus och fritidshus"
@@ -322,6 +323,7 @@ const KontrollansvarigFjallPage = () => {
           </section>
 
         </div>
+        </main>
 
         <Footer />
       </div>

@@ -103,7 +103,8 @@ const BasUPage = () => {
             <Breadcrumbs items={[{ label: 'BAS-U', href: '/bas-u' }]} />
           </div>
         </section>
-        
+
+        <main id="main-content">
         <ServiceHero
           badge="BAS-U – utbildad och erfaren"
           title="BAS-U i Västernorrland"
@@ -311,6 +312,7 @@ const BasUPage = () => {
         </section>
 
         </div> {/* Close bg-gradient div */}
+        </main>
 
         <Footer />
       </div>
