@@ -43,9 +43,9 @@ export const knowledgeBase: GuideMetadata[] = [
     icon: 'Users',
     seo: {
       title: 'BAS-P och BAS-U Guide - Säkerhetssamordning 2025 | Ytterman',
-      description: 'Komplett guide om BAS-P och BAS-U roller, skillnader och lagkrav enligt AFS 1999:3. Expert råd från certifierad säkerhetssamordnare Tobias Ytterman i Västernorrland.'
+      description: 'Komplett guide om BAS-P och BAS-U roller, skillnader och lagkrav enligt AFS 2023:3. Expert råd från Tobias Ytterman i Västernorrland.'
     },
-    keywords: ['BAS-P', 'BAS-U', 'säkerhetssamordnare', 'arbetsmiljö', 'AFS 1999:3', 'byggarbetsmiljö', 'arbetsmiljöplan', 'Västernorrland'],
+    keywords: ['BAS-P', 'BAS-U', 'säkerhetssamordnare', 'arbetsmiljö', 'AFS 2023:3', 'byggarbetsmiljö', 'arbetsmiljöplan', 'Västernorrland'],
     link: '/guider/bas/'
   },
   {
@@ -198,9 +198,9 @@ export const knowledgeBase: GuideMetadata[] = [
     icon: 'Users',
     seo: {
       title: 'BAS-P Guide - Arbetsmiljösamordnare Projektering 2025 | Ytterman',
-      description: 'Omfattande guide om BAS-P enligt AFS 1999:3. Roll, ansvar, arbetsmiljöplan, riskbedömning och samordning. Expert råd från certifierad BAS-P Tobias Ytterman.'
+      description: 'Omfattande guide om BAS-P enligt AFS 2023:3. Roll, ansvar, arbetsmiljöplan, riskbedömning och samordning. Expert råd från Tobias Ytterman (erbjuder uppdrag som BAS-P).'
     },
-    keywords: ['BAS-P', 'arbetsmiljösamordnare projektering', 'arbetsmiljöplan', 'riskbedömning', 'AFS 1999:3', 'projekteringsfas'],
+    keywords: ['BAS-P', 'arbetsmiljösamordnare projektering', 'arbetsmiljöplan', 'riskbedömning', 'AFS 2023:3', 'projekteringsfas'],
     link: '/guider/bas-p-guide/'
   },
   {
@@ -212,7 +212,7 @@ export const knowledgeBase: GuideMetadata[] = [
     icon: 'Users',
     seo: {
       title: 'BAS-U Guide - Byggarbetsmiljösamordnare Utförande 2025 | Ytterman',
-      description: 'Omfattande guide om BAS-U enligt AFS 1999:3. Roll, säkerhetsronder, samordningsmöten och byggarbetsplatssäkerhet. Expert råd från certifierad BAS-U Tobias Ytterman.'
+      description: 'Omfattande guide om BAS-U enligt AFS 2023:3. Roll, säkerhetsronder, samordningsmöten och byggarbetsplatssäkerhet. Expert råd från Tobias Ytterman (erbjuder uppdrag som BAS-U).'
     },
     keywords: ['BAS-U', 'arbetsmiljösamordnare utförande', 'säkerhetsronder', 'byggarbetsplats', 'arbetsmiljö byggplats', 'samordningsmöten'],
     link: '/guider/bas-u-guide/'
@@ -220,7 +220,7 @@ export const knowledgeBase: GuideMetadata[] = [
   {
     slug: 'vad-ar-bas',
     title: 'Vad är BAS? - Skillnad mellan BAS-P och BAS-U',
-    description: 'Förklaring av BAS-roller: vad är byggarbetsmiljösamordnare, när behövs BAS-P och BAS-U, och lagkrav enligt AFS 1999:3.',
+    description: 'Förklaring av BAS-roller: vad är byggarbetsmiljösamordnare, när behövs BAS-P och BAS-U, och lagkrav enligt AFS 2023:3.',
     category: 'Säkerhetssamordning',
     readTime: '7 min',
     icon: 'Users',
@@ -228,7 +228,7 @@ export const knowledgeBase: GuideMetadata[] = [
       title: 'Vad är BAS? BAS-P & BAS-U Förklarat - Lagkrav & Skillnader | Ytterman',
       description: 'Enkelt förklarad guide om BAS: vad är byggarbetsmiljösamordnare, skillnad mellan BAS-P och BAS-U, lagkrav och när du behöver BAS. Expert råd från Tobias Ytterman.'
     },
-    keywords: ['vad är BAS', 'byggarbetsmiljösamordnare', 'BAS förklaring', 'BAS-P BAS-U skillnad', 'när behövs BAS', 'AFS 1999:3'],
+    keywords: ['vad är BAS', 'byggarbetsmiljösamordnare', 'BAS förklaring', 'BAS-P BAS-U skillnad', 'när behövs BAS', 'AFS 2023:3'],
     link: '/guider/vad-ar-bas/'
   },
   {

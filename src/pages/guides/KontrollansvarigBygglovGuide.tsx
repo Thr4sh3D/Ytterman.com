@@ -184,7 +184,7 @@ const KontrollansvarigBygglovGuide = () => {
 
         <ul className="list-disc list-inside space-y-2 mb-6 text-stone-700">
           <li>Genomför slutbesiktning och verifierar att allt är enligt bygglov</li>
-          <li>Upprättar kontrollansvarigs intyg (slutbevis)</li>
+          <li>Lämnar skriftligt utlåtande och underlag inför slutbesked</li>
           <li>Sammanställer all dokumentation från byggprocessen</li>
           <li>Ansöker om slutbesked hos byggnadsnämnden</li>
         </ul>

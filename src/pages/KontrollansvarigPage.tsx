@@ -17,7 +17,7 @@ const KontrollansvarigPage = () => {
   const kontrollansvarigFAQ = [
     {
       question: "Vad gör en kontrollansvarig?",
-      answer: "En kontrollansvarig säkerställer att byggprojektet följer gällande byggregler, kontrollerar att alla tekniska egenskapskrav uppfylls och utfärdar slutbevis när byggnaden är klar."
+      answer: "En kontrollansvarig säkerställer att byggprojektet följer gällande byggregler och kontrollerar att alla tekniska egenskapskrav uppfylls. KA lämnar bl.a. ett skriftligt utlåtande och underlag inför slutbesked. Det är byggnadsnämnden som beslutar om slutbesked."
     },
     {
       question: "När behövs en kontrollansvarig?",
@@ -30,6 +30,10 @@ const KontrollansvarigPage = () => {
     {
       question: "Hur lång tid tar kontrollprocessen?",
       answer: "Tidsåtgången beror på projektets omfattning. Vi arbetar effektivt för att minimera förseningar och håller dig informerad genom hela processen."
+    },
+    {
+      question: "Vad är skillnaden mellan slutbevis och slutbesked?",
+      answer: "Det gamla begreppet 'slutbevis' används inte längre. Idag lämnar byggnadsnämnden ett slutbesked när projektet är klart. Kontrollansvarig lämnar bl.a. ett skriftligt utlåtande och underlag inför slutbeskedet – men det är alltid byggnadsnämnden som fattar det formella beslutet."
     }
   ];
 
@@ -45,8 +49,8 @@ const KontrollansvarigPage = () => {
       icon: <Shield className="h-6 w-6" />
     },
     {
-      title: "Slutbesiktning",
-      description: "Genomförande av slutbesiktning och utfärdande av slutbevis",
+      title: "Inför slutbesked",
+      description: "Skriftligt utlåtande och underlag till byggnadsnämnden inför slutbesked",
       icon: <CheckCircle className="h-6 w-6" />
     },
     {
@@ -65,7 +69,7 @@ const KontrollansvarigPage = () => {
     "@context": "https://schema.org",
     "@type": "Service",
     "name": "Kontrollansvarig tjänster",
-    "description": "Professionella kontrollansvarig tjänster i Västernorrland. Certifierad kontrollansvarig med över 20 års erfarenhet i byggbranschen.",
+    "description": "Professionella kontrollansvarig-tjänster i Västernorrland. Certifierad kontrollansvarig (KA11926, Kiwa Certification AB) med behörighet N.",
     "provider": {
       "@type": "LocalBusiness",
       "name": "Ytterman",
@@ -84,8 +88,8 @@ const KontrollansvarigPage = () => {
     "serviceType": "Kontrollansvarig",
     "offers": {
       "@type": "Offer",
-      "description": "Kontrollansvarig tjänster från 19,999 SEK",
-      "priceRange": "Från 19,999 SEK"
+      "description": "Kontrollansvarig tjänster från 29 500 kr inkl. moms",
+      "priceRange": "Från 29 500 kr"
     }
   };
 
@@ -121,11 +125,11 @@ const KontrollansvarigPage = () => {
           badge="Certifierad Kontrollansvarig"
           title="Kontrollansvarig i Västernorrland"
           subtitle="Trygg byggprocess med erfaren kontrollansvarig"
-          description="Säkerställ att ditt byggprojekt följer alla regler och krav. Som certifierad kontrollansvarig (KA enligt PBL) med över 20 års erfarenhet i byggbranschen hjälper jag dig genom hela processen - från kontrollplan till slutbevis."
+          description="Säkerställ att ditt byggprojekt följer alla regler och krav. Som certifierad kontrollansvarig (KA enligt PBL, cert.nr KA11926 hos Kiwa Certification AB, behörighet N, giltig t.o.m. 2030-07-02) hjälper jag dig genom hela processen – från kontrollplan till underlag inför slutbesked."
           features={[
             "Kontrollplan och teknisk kontroll enligt PBL",
-            "Slutbesiktning och utfärdande av slutbevis",
-            "Erfaren och certifierad kontrollansvarig",
+            "Skriftligt utlåtande och underlag inför slutbesked",
+            "Certifierad kontrollansvarig – cert.nr KA11926, Kiwa Certification AB",
             "Fast pris eller tydlig timdebitering",
             "Digital hantering och snabb återkoppling"
           ]}
@@ -140,11 +144,11 @@ const KontrollansvarigPage = () => {
           }}
           bannerContent={{
             icon: Shield,
-            title: "Certifierad Expert",
+            title: "Certifierad Kontrollansvarig",
             subtitle: "Kontrollansvarig enligt PBL",
             certifications: [
-              "Medlem i SBR - Svenska Byggingenjörers Riksförbund",
-              "Certifierad enligt nya regelverket 2025",
+              "Certifikat KA11926 – Kiwa Certification AB",
+              "Behörighet N, giltigt t.o.m. 2030-07-02",
               "Digital hantering och snabb återkoppling"
             ]
           }}
@@ -215,8 +219,8 @@ const KontrollansvarigPage = () => {
                   4
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Slutbevis</h3>
-                  <p className="text-gray-600">Slutbesiktning och utfärdande av slutbevis när allt är klart.</p>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Underlag och slutbesked</h3>
+                  <p className="text-gray-600">Kontrollansvarig lämnar skriftligt utlåtande och underlag inför slutbesked. Det är byggnadsnämnden som beslutar om slutbesked.</p>
                 </div>
               </div>
             </div>

@@ -13,7 +13,7 @@ export const About = () => {
   const achievements = [
     {
       icon: Award,
-      title: "20+ års erfarenhet",
+      title: "Certifierad kontrollansvarig",
       description: "Gedigen erfarenhet inom byggbranschen och kontroll"
     },
     {
@@ -29,7 +29,7 @@ export const About = () => {
     {
       icon: Clock,
       title: "Snabb hantering",
-      description: "Effektiv process från kontakt till slutbevis"
+      description: "Effektiv process från kontakt till slutbesked"
     }
   ];
 
@@ -75,7 +75,7 @@ export const About = () => {
               Om Ytterman
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Med över 20 års erfarenhet inom byggbranschen erbjuder vi professionella 
+              Med gedigen erfarenhet inom byggbranschen erbjuder vi professionella 
               tjänster som kontrollansvarig och byggarbetsmiljösamordnare i Västernorrland.
             </p>
           </div>

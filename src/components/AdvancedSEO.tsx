@@ -89,7 +89,7 @@ export const AdvancedSEO = ({
     "@type": "ProfessionalService",
     "name": "Ytterman – Kontrollansvarig & BAS",
     "alternateName": "Tobias Ytterman",
-    "description": "Certifierad kontrollansvarig (KA) och BAS-P/BAS-U i Västernorrland. Över 20 års erfarenhet inom byggteknik.",
+    "description": "Certifierad kontrollansvarig (KA) och BAS-P/BAS-U i Västernorrland. Gedigen erfarenhet inom byggteknik.",
     "url": "https://ytterman.com",
     "telephone": "+46761118447",
     "email": "tobias@ytterman.com",
@@ -158,7 +158,7 @@ export const AdvancedSEO = ({
         },
         {
           "@type": "EducationalOccupationalCredential", 
-          "name": "Certifierad BAS-P/BAS-U"
+          "name": "BAS-P och BAS-U"
         }
       ]
     },

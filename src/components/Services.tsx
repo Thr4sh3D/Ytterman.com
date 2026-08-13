@@ -16,7 +16,7 @@ export const Services = ({ onServiceSelect }: ServicesProps) => {
       icon: Shield,
       title: 'Kontrollansvarig (KA)',
       description: 'Teknisk kontroll enligt Plan- och bygglagen (PBL). Säkerställer att ditt byggprojekt följer gällande regler och föreskrifter.',
-      features: ['Kontrollplan', 'Besiktningar', 'Slutbevis', 'Teknisk rådgivning'],
+      features: ['Kontrollplan', 'Besiktningar', 'Underlag inför slutbesked', 'Teknisk rådgivning'],
       link: '/kontrollansvarig/'
     },
     {
@@ -107,7 +107,7 @@ export const Services = ({ onServiceSelect }: ServicesProps) => {
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Jag erbjuder kompletta lösningar för ditt byggprojekt - från planering 
-            till slutbesiktning. Med över 20 års erfarenhet säkerställer jag att 
+            till slutbesiktning. Med bred erfarenhet säkerställer jag att 
             ditt projekt genomförs enligt alla regler och med högsta kvalitet.
           </p>
         </div>

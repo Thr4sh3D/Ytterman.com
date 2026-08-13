@@ -42,7 +42,7 @@ export const seoKeywords = {
   ],
   secondary: [
     'PBL kontroll',
-    'slutbevis bygglov',
+    'slutbesked bygglov',
     'arbetsmiljöplan bygg',
     'riskbedömning byggarbetsplats',
     'byggarbetsmiljö samordning',
@@ -87,14 +87,14 @@ export const seoKeywords = {
 export const seoContent = {
   hero: {
     title: "Certifierad Kontrollansvarig & BAS i Västernorrland - Trygg Byggprocess",
-    subtitle: "Över 20 års erfarenhet i byggbranschen med certifiering inom kontrollansvarig (KA), BAS-P och BAS-U tjänster i Sundsvall, Härnösand, Sollefteå, Timrå och Kramfors. Fast pris och professionell hantering för din byggprocess.",
+    subtitle: "Gedigen erfarenhet i byggbranschen med certifiering inom kontrollansvarig (KA), BAS-P och BAS-U tjänster i Sundsvall, Härnösand, Sollefteå, Timrå och Kramfors. Fast pris och professionell hantering för din byggprocess.",
     cta: "Få kostnadsfri konsultation och offert idag"
   },
   services: {
     intro: "Kompletta byggtjänster för trygg och regelenlig byggprocess i Västernorrland",
     ka: {
       title: "Kontrollansvarig (KA) enligt PBL",
-      description: "Certifierad kontrollansvarig för teknisk kontroll, slutbesiktning och slutbevis enligt Plan- och bygglagen. Verksam i Sundsvall, Härnösand och hela Västernorrland."
+      description: "Certifierad kontrollansvarig för teknisk kontroll, kontrollplan och underlag inför slutbesked enligt Plan- och bygglagen. Verksam i Sundsvall, Härnösand och hela Västernorrland."
     },
     basP: {
       title: "BAS-P - Byggarbetsmiljösamordnare Projektering", 
@@ -106,7 +106,7 @@ export const seoContent = {
     }
   },
   about: {
-    experience: "Över 20 års gedigen erfarenhet inom byggbranschen och arbetsmiljö i Västernorrland",
+    experience: "Gedigen erfarenhet inom byggbranschen och arbetsmiljö i Västernorrland",
     certification: "Certifierad enligt senaste regelverket och medlem i Svenska Byggingenjörers Riksförbund (SBR)",
     approach: "Personlig service med digital hantering för effektiv och trygg byggprocess i hela Västernorrland"
   },

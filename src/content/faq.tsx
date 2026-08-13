@@ -27,7 +27,7 @@ export const faqItems: FAQItem[] = [
   {
     category: 'kontrollansvarig',
     question: "Vad gör en kontrollansvarig (KA)?",
-    answer: "En kontrollansvarig ansvarar för teknisk kontroll under byggprocessen, upprättar kontrollplan, genomför slutbesiktning och utfärdar slutbevis enligt Plan- och bygglagen (PBL).",
+    answer: "En kontrollansvarig ansvarar för teknisk kontroll under byggprocessen, upprättar kontrollplan, och lämnar underlag inför slutbesked enligt Plan- och bygglagen (PBL).",
     keywords: ['kontrollansvarig', 'KA', 'byggkontroll', 'PBL']
   },
   {
@@ -45,7 +45,7 @@ export const faqItems: FAQItem[] = [
   {
     category: 'kontrollansvarig',
     question: "Hur lång tid tar kontrollprocessen?",
-    answer: "Tiden varierar beroende på projektets storlek, men en typisk kontrollprocess tar 2-4 veckor från kontrollplan till slutbevis. Vi arbetar effektivt för att inte försena ditt projekt.",
+    answer: "Tiden varierar beroende på projektets storlek, men en typisk kontrollprocess tar 2-4 veckor från kontrollplan till slutbesked. Vi arbetar effektivt för att inte försena ditt projekt.",
     keywords: ['tid', 'process', 'kontrollansvarig']
   },
 
@@ -125,7 +125,7 @@ export const faqItems: FAQItem[] = [
   {
     category: 'pricing',
     question: "Vad ingår i priset för kontrollansvarig?",
-    answer: "Priset inkluderar granskning av ritningar och handlingar, upprättande av kontrollplan, tekniska kontroller på bygget enligt kontrollplanen, löpande dokumentation, samordning med byggledning och projektörer samt utfärdande av slutbevis. Resor inom Västernorrland ingår utan extra kostnad.",
+    answer: "Priset inkluderar granskning av ritningar och handlingar, upprättande av kontrollplan, tekniska kontroller på bygget enligt kontrollplanen, löpande dokumentation, samordning med byggledning och projektörer samt underlag inför slutbesked. Resor inom Västernorrland ingår utan extra kostnad.",
     keywords: ['ingår', 'kontrollansvarig', 'tjänster']
   },
   {
@@ -163,7 +163,7 @@ export const faqItems: FAQItem[] = [
   {
     category: 'bygglov',
     question: "Vad händer om man bygger utan kontrollansvarig?",
-    answer: "Att bygga utan kontrollansvarig när det krävs är lagbrott som kan leda till byggförbud, byggsanktionsavgift upp till flera hundra tusen kronor och krav på rivning i värsta fall. Dessutom får du inget slutbevis vilket gör fastigheten juridiskt otillåten att använda eller sälja.",
+    answer: "Att bygga utan kontrollansvarig när det krävs är lagbrott som kan leda till byggförbud, byggsanktionsavgift upp till flera hundra tusen kronor och krav på rivning i värsta fall. Dessutom får du inget slutbesked vilket gör fastigheten juridiskt otillåten att använda eller sälja.",
     keywords: ['lagbrott', 'sanktion', 'byggförbud']
   },
 

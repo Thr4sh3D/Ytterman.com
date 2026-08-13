@@ -5,7 +5,7 @@ export const SEOEnhancements = () => {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Ytterman - Kontrollansvarig & BAS",
-    "description": "Certifierad Kontrollansvarig och Byggarbetsmiljösamordnare (BAS-P/BAS-U) i Västernorrland. Över 20 års erfarenhet inom byggbranschen.",
+    "description": "Certifierad Kontrollansvarig och Byggarbetsmiljösamordnare (BAS-P/BAS-U) i Västernorrland. Gedigen erfarenhet inom byggbranschen.",
     "url": "https://ytterman.com",
     "telephone": "+46761118447",
     "email": "tobias@ytterman.com",
@@ -61,7 +61,7 @@ export const SEOEnhancements = () => {
       <meta property="business:contact_data:country_name" content="Sverige" />
       
       {/* Additional keywords in meta */}
-      <meta name="keywords" content="kontrollansvarig Västernorrland, BAS-P Sundsvall, BAS-U Härnösand, byggkontroll Sollefteå, arbetsmiljösamordnare Timrå, kontrollansvarig Kramfors, bygglov Västernorrland, PBL kontroll, slutbevis, arbetsmiljöplan, riskbedömning bygg, byggarbetsmiljö, kontrollplan, certifierad kontrollansvarig, byggexpert Västernorrland" />
+      <meta name="keywords" content="kontrollansvarig Västernorrland, BAS-P Sundsvall, BAS-U Härnösand, byggkontroll Sollefteå, arbetsmiljösamordnare Timrå, kontrollansvarig Kramfors, bygglov Västernorrland, PBL kontroll, slutbesked, arbetsmiljöplan, riskbedömning bygg, byggarbetsmiljö, kontrollplan, certifierad kontrollansvarig, byggexpert Västernorrland" />
     </Helmet>
   );
 };

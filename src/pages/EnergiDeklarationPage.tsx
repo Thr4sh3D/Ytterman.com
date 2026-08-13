@@ -49,8 +49,8 @@ const EnergiDeklarationPage = () => {
       icon: <Zap className="h-6 w-6" />
     },
     {
-      title: "Certifiering",
-      description: "Utfärdande av officiell energideklaration",
+      title: "Samordning",
+      description: "Hjälp med process, underlag och kontakt med certifierad energiexpert",
       icon: <Award className="h-6 w-6" />
     }
   ];
@@ -64,7 +64,7 @@ const EnergiDeklarationPage = () => {
     "@context": "https://schema.org",
     "@type": "Service",
     "name": "Energideklaration",
-    "description": "Professionella energideklarationer i Västernorrland. Certifierad energiexpert med över 20 års erfarenhet i byggbranschen.",
+    "description": "Hjälp med energideklaration för fastigheter i Västernorrland. Energideklaration ska utföras av certifierad energiexpert.",
     "provider": {
       "@type": "LocalBusiness",
       "name": "Ytterman",
@@ -92,7 +92,7 @@ const EnergiDeklarationPage = () => {
     <>
       <AdvancedSEO
         title="Energideklaration i Västernorrland | Ytterman"
-        description="Behöver du energideklaration? Certifierad energiexpert med 20+ års erfarenhet i Sundsvall, Härnösand, Sollefteå, Timrå, Kramfors. Snabb handläggning."
+        description="Hjälp med energideklaration för din fastighet i Sundsvall, Härnösand, Sollefteå, Timrå och Kramfors. Vi samordnar processen och hjälper dig ta fram rätt underlag."
         keywords="energideklaration, energideklaration Sundsvall, energideklaration Härnösand, energideklaration Västernorrland, energiklass, energibesiktning"
         url="https://ytterman.com/energideklaration"
         type="website"
@@ -117,16 +117,16 @@ const EnergiDeklarationPage = () => {
         </section>
         
         <ServiceHero
-          badge="Certifierad Energiexpert"
+          badge="Energideklaration"
           title="Energideklaration i Västernorrland"
-          subtitle="Professionell energibesiktning och rådgivning"
-          description="Få en professionell energideklaration för din fastighet. Som certifierad energiexpert hjälper jag dig med energibesiktning, energiberäkning och konkreta förslag för energibesparingar."
+          subtitle="Hjälp med processen och rätt underlag"
+          description="Energideklaration ska utföras av certifierad energiexpert. Vi hjälper dig samordna processen, ta fram underlag och förstå vad en energideklaration innebär för din fastighet."
           features={[
-            "Komplett energibesiktning av fastigheten",
-            "Energiberäkning och energiklass",
-            "Konkreta förslag på energibesparande åtgärder",
-            "Official energideklaration enligt BBR",
-            "Snabb handläggning - klart inom 1-2 veckor"
+            "Vägledning om vad energideklaration kräver",
+            "Hjälp att ta fram handlingar och underlag",
+            "Energiklass och åtgärdsförslag",
+            "Kontakt med certifierad energiexpert vid behov",
+            "Tydlig process och snabb återkoppling"
           ]}
           ctaPrimary={{
             text: "Begär offert",
@@ -139,11 +139,11 @@ const EnergiDeklarationPage = () => {
           }}
           bannerContent={{
             icon: Zap,
-            title: "Certifierad Energiexpert",
-            subtitle: "Energideklaration",
+            title: "Energideklaration",
+            subtitle: "Hjälp med processen",
             certifications: [
-              "Certifierad energideklarationsexpert",
-              "Över 20 års erfarenhet av energiberäkningar",
+              "Energideklaration kräver certifierad energiexpert",
+              "Vi hjälper dig med samordning och underlag",
               "Snabb handläggning och tydlig rapport"
             ]
           }}

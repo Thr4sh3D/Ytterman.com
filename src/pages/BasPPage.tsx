@@ -65,7 +65,7 @@ const BasPPage = () => {
     "@context": "https://schema.org",
     "@type": "Service",
     "name": "BAS-P tjänster - Byggarbetsmiljösamordnare under projektering",
-    "description": "Professionella BAS-P tjänster i Västernorrland. Certifierad byggarbetsmiljösamordnare med över 20 års erfarenhet i byggbranschen.",
+    "description": "Professionella BAS-P tjänster i Västernorrland. Tobias Ytterman erbjuder uppdrag som BAS-P och BAS-U.",
     "provider": {
       "@type": "LocalBusiness",
       "name": "Ytterman",
@@ -93,7 +93,7 @@ const BasPPage = () => {
     <>
       <AdvancedSEO
         title="BAS-P i Västernorrland | Ytterman"
-        description="Behöver du BAS-P? Certifierad byggarbetsmiljösamordnare under projektering med 20+ års erfarenhet i Sundsvall, Härnösand, Sollefteå, Timrå, Kramfors."
+        description="Behöver du BAS-P? Tobias Ytterman erbjuder uppdrag som BAS-P i Sundsvall, Härnösand, Sollefteå, Timrå, Kramfors."
         keywords="BAS-P, byggarbetsmiljösamordnare, arbetsmiljöplan, BAS-P Sundsvall, BAS-P Härnösand, BAS-P Västernorrland, arbetsmiljö byggprojekt"
         url="https://ytterman.com/bas-p"
         type="website"
@@ -118,14 +118,14 @@ const BasPPage = () => {
         </section>
         
         <ServiceHero
-          badge="Certifierad BAS-P"
+          badge="BAS-P – Byggarbetsmiljösamordnare"
           title="BAS-P i Västernorrland"
           subtitle="Säker arbetsmiljö under projektering"
-          description="Säkerställ en trygg arbetsmiljö redan från projekteringsfasen. Som certifierad BAS-P (Byggarbetsmiljösamordnare under projektering) hjälper jag dig planera för säkerhet och förebygga arbetsmiljörisker."
+          description="Säkerställ en trygg arbetsmiljö redan från projekteringsfasen. Som BAS-P (Byggarbetsmiljösamordnare under projektering) hjälper jag dig planera för säkerhet och förebygga arbetsmiljörisker."
           features={[
             "Arbetsmiljöplan och riskbedömningar",
             "Samordning under projekteringsfasen",
-            "Certifierad enligt AFS 1999:3",
+            "Uppdrag enligt AFS 2023:3",
             "Fast pris eller tydlig timdebitering",
             "Kan kombineras med BAS-U och KA"
           ]}
@@ -140,11 +140,11 @@ const BasPPage = () => {
           }}
           bannerContent={{
             icon: HardHat,
-            title: "Certifierad BAS-P",
+            title: "BAS-P",
             subtitle: "Byggarbetsmiljösamordnare",
             certifications: [
-              "Certifierad enligt AFS 1999:3",
-              "Över 20 års erfarenhet av arbetsmiljö",
+              "Uppdrag enligt AFS 2023:3",
+              
               "Kan kombineras med BAS-U och Kontrollansvarig"
             ]
           }}
@@ -290,7 +290,7 @@ const BasPPage = () => {
                 Brandskydd och SBA när projektet går in i utförande
               </h2>
               <p className="text-lg text-gray-700 leading-relaxed">
-                Som BAS-P planerar jag för risker redan i projekteringen, men när byggstarten närmar sig behöver byggherren ofta tydlig ansvarsfördelning även för brandskyddet. BAS-U samordnar arbetsmiljön under utförandet enligt AFS 2023:1 – men det operativa systematiska brandskyddsarbetet (SBA) är en separat roll med eget kompetenskrav. Behöver ert projekt en namngiven brandskyddsansvarig? Anlita{' '}
+                Som BAS-P planerar jag för risker redan i projekteringen, men när byggstarten närmar sig behöver byggherren ofta tydlig ansvarsfördelning även för brandskyddet. BAS-U samordnar arbetsmiljön under utförandet enligt AFS 2023:3 – men det operativa systematiska brandskyddsarbetet (SBA) är en separat roll med eget kompetenskrav. Behöver ert projekt en namngiven brandskyddsansvarig? Anlita{' '}
                 <ExternalSiteLink
                   href="https://www.tysafety.se/sba-byggarbetsplats"
                   ariaLabel="extern brandskyddsansvarig SBA via TY Safety – extern länk"

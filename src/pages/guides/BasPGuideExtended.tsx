@@ -41,7 +41,7 @@ const BasPGuideExtended = () => {
         </h2>
 
         <p className="mb-4">
-          Enligt Arbetsmiljöverkets föreskrifter (AFS 1999:3) ska BAS-P utses när:
+          Enligt Arbetsmiljöverkets föreskrifter (AFS 2023:3) ska BAS-P utses när:
         </p>
 
         <div className="bg-gradient-to-r from-slate-50 to-stone-50 p-6 rounded-lg mb-6">
@@ -293,7 +293,7 @@ const BasPGuideExtended = () => {
               <div>
                 <strong className="text-stone-800">BAS-P/BAS-U kurs (40 timmar):</strong>
                 <p className="text-stone-700 mt-1">
-                  Specialiserad utbildning i arbetsmiljösamordning enligt AFS 1999:3
+                  Specialiserad utbildning i arbetsmiljösamordning enligt AFS 2023:3
                 </p>
               </div>
             </li>

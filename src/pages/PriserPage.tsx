@@ -213,7 +213,7 @@ const PriserPage = () => {
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
                     <div>
                       <h3 className="text-2xl font-bold text-stone-900 mb-2">Kontrollansvarig (KA)</h3>
-                      <p className="text-stone-600">Teknisk kontroll och slutbevis för ditt byggprojekt</p>
+                      <p className="text-stone-600">Teknisk kontroll och underlag inför slutbesked</p>
                     </div>
                     <div className="mt-4 md:mt-0 text-left md:text-right">
                       <div className="text-sm text-stone-500 mb-1">Fast pris från</div>
@@ -259,7 +259,7 @@ const PriserPage = () => {
                       <li>✓ Tekniska kontroller på bygget (enligt kontrollplan)</li>
                       <li>✓ Löpande dokumentation och rapportering</li>
                       <li>✓ Samordning med byggledning och projektörer</li>
-                      <li>✓ Slutbesiktning och utfärdande av slutbevis</li>
+                      <li>✓ Underlag och utlåtande inför slutbesked</li>
                       <li>✓ Resor inom Västernorrland (Sundsvall, Härnösand, Timrå, Kramfors, Sollefteå)</li>
                     </ul>
                   </div>
@@ -284,7 +284,7 @@ const PriserPage = () => {
                         <li>✓ Riskbedömning i projekteringsfasen</li>
                         <li>✓ Samordning mellan projektörer</li>
                         <li>✓ Säkerställande av arbetsmiljöaspekter</li>
-                        <li>✓ Dokumentation enligt AFS 1999:3</li>
+                        <li>✓ Dokumentation enligt AFS 2023:3</li>
                       </ul>
                     </div>
 

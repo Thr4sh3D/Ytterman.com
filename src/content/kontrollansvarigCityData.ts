@@ -43,7 +43,7 @@ export const cityData: Record<string, CityData> = {
     description: 'Kontrollansvarig i Sundsvall med kontor i Viksjö. Snabb service för alla typer av byggprojekt i Sundsvall med omnejd.',
     heroTitle: 'Kontrollansvarig i Sundsvall',
     heroSubtitle: 'Certifierad kontrollansvarig med lokal närvaro i Sundsvall',
-    heroDescription: 'Behöver du en kontrollansvarig i Sundsvall? Som certifierad kontrollansvarig (KA enligt PBL) med kontor i Viksjö och över 20 års erfarenhet i byggbranschen är jag din lokala expert. Jag hjälper dig genom hela byggprocessen – från kontrollplan till slutbevis – med snabb service och personligt engagemang.',
+    heroDescription: 'Behöver du en kontrollansvarig i Sundsvall? Som certifierad kontrollansvarig (KA enligt PBL) med kontor i Viksjö och över 20 års erfarenhet i byggbranschen är jag din lokala expert. Jag hjälper dig genom hela byggprocessen – från kontrollplan till slutbesked – med snabb service och personligt engagemang.',
     seo: {
       title: 'Kontrollansvarig i Sundsvall | Ytterman',
       description: 'Certifierad kontrollansvarig i Sundsvall. Kontor i Viksjö med 20+ års erfarenhet. Fast pris, snabb service för villor, tillbyggnader och kommersiella projekt. Boka kostnadsfri konsultation.',
@@ -94,7 +94,7 @@ export const cityData: Record<string, CityData> = {
     description: 'Kontrollansvarig i Härnösand med specialkunskap om kulturhistorisk bebyggelse och samarbete med Härnösands byggnadsnämnd.',
     heroTitle: 'Kontrollansvarig i Härnösand',
     heroSubtitle: 'Certifierad kontrollansvarig med erfarenhet i Härnösand',
-    heroDescription: 'Söker du en kontrollansvarig i Härnösand? Med erfarenhet av Härnösands kulturhistoriska stadskärna och nära samarbete med kommunens byggnadsnämnd hjälper jag dig som certifierad kontrollansvarig (KA enligt PBL) med allt från kontrollplan till slutbevis. Över 20 års erfarenhet i byggbranschen.',
+    heroDescription: 'Söker du en kontrollansvarig i Härnösand? Med erfarenhet av Härnösands kulturhistoriska stadskärna och nära samarbete med kommunens byggnadsnämnd hjälper jag dig som certifierad kontrollansvarig (KA enligt PBL) med allt från kontrollplan till slutbesked. Över 20 års erfarenhet i byggbranschen.',
     seo: {
       title: 'Kontrollansvarig Härnösand - Certifierad KA & Kulturbyggnad | Ytterman',
       description: 'Certifierad kontrollansvarig i Härnösand. Specialkunskap om K-märkta byggnader och kulturhistorisk bebyggelse. 20+ års erfarenhet, fast pris. Boka kostnadsfri konsultation.',
@@ -196,7 +196,7 @@ export const cityData: Record<string, CityData> = {
     description: 'Kontrollansvarig i Kramfors med erfarenhet av byggprojekt i både tätort och landsbygd i Kramfors kommun.',
     heroTitle: 'Kontrollansvarig i Kramfors',
     heroSubtitle: 'Certifierad kontrollansvarig för Kramfors kommun',
-    heroDescription: 'Letar du efter en kontrollansvarig i Kramfors? Som certifierad kontrollansvarig (KA enligt PBL) med erfarenhet av byggprojekt i hela Kramfors kommun hjälper jag dig genom byggprocessen. Över 20 års erfarenhet, inga extra reskostnader och personlig service från kontrollplan till slutbevis.',
+    heroDescription: 'Letar du efter en kontrollansvarig i Kramfors? Som certifierad kontrollansvarig (KA enligt PBL) med erfarenhet av byggprojekt i hela Kramfors kommun hjälper jag dig genom byggprocessen. Över 20 års erfarenhet, inga extra reskostnader och personlig service från kontrollplan till slutbesked.',
     seo: {
       title: 'Kontrollansvarig i Kramfors | Ytterman',
       description: 'Certifierad kontrollansvarig i Kramfors. Erfarenhet av tätort och landsbygd, inga reskostnader. 20+ års erfarenhet, fast pris. Boka kostnadsfri konsultation.',
@@ -247,7 +247,7 @@ export const cityData: Record<string, CityData> = {
     description: 'Kontrollansvarig i Sollefteå med erfarenhet av landsbygdsbyggnation och klimatanpassat byggande i Sollefteå kommun.',
     heroTitle: 'Kontrollansvarig i Sollefteå',
     heroSubtitle: 'Certifierad kontrollansvarig för Sollefteå kommun',
-    heroDescription: 'Behöver du en kontrollansvarig i Sollefteå? Med erfarenhet av landsbygdsbyggnation och klimatanpassat byggande är jag din certifierade kontrollansvarig (KA enligt PBL) för Sollefteå kommun. Över 20 års erfarenhet, inga extra reskostnader och trygg service från kontrollplan till slutbevis.',
+    heroDescription: 'Behöver du en kontrollansvarig i Sollefteå? Med erfarenhet av landsbygdsbyggnation och klimatanpassat byggande är jag din certifierade kontrollansvarig (KA enligt PBL) för Sollefteå kommun. Över 20 års erfarenhet, inga extra reskostnader och trygg service från kontrollplan till slutbesked.',
     seo: {
       title: 'Kontrollansvarig i Sollefteå | Ytterman',
       description: 'Certifierad kontrollansvarig i Sollefteå. Erfarenhet av landsbygdsbyggnation och klimatanpassat byggande. 20+ års erfarenhet, inga reskostnader. Boka kostnadsfri konsultation.',

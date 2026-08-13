@@ -41,7 +41,7 @@ const BasUGuideExtended = () => {
         </h2>
 
         <p className="mb-4">
-          Enligt Arbetsmiljöverkets föreskrifter (AFS 1999:3) ska BAS-U utses när:
+          Enligt Arbetsmiljöverkets föreskrifter (AFS 2023:3) ska BAS-U utses när:
         </p>
 
         <div className="bg-gradient-to-r from-slate-50 to-stone-50 p-6 rounded-lg mb-6">
@@ -325,7 +325,7 @@ const BasUGuideExtended = () => {
             <li className="flex items-start">
               <CheckCircle className="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
               <div>
-                <strong>BAS-U utbildning (40 timmar):</strong> Specialiserad kurs i arbetsmiljösamordning enligt AFS 1999:3
+                <strong>BAS-U utbildning (40 timmar):</strong> Specialiserad kurs i arbetsmiljösamordning enligt AFS 2023:3
               </div>
             </li>
             <li className="flex items-start">

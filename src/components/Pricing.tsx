@@ -19,7 +19,7 @@ export const Pricing = ({ onPackageSelect }: PricingProps) => {
                 'Kontrollplan enligt PBL (skräddarsydd)',
                 'Teknisk kontroll enligt plan',
                 'Obligatoriska besiktningar',
-                'Slutbevis när allt är klart',
+                'Underlag inför slutbesked',
                 'Grundläggande dokumentation',
                 '✓ Så här går det till: 1) Handlingar in 2) Fast pris inom 24h 3) Guidning till slutbesked'
             ],

@@ -83,7 +83,7 @@ export const WhyStrongKA2025 = () => {
                 Vad betyder det här för dig?
               </h3>
               <p className="text-lg text-slate-600 mb-8 max-w-2xl mx-auto">
-                Med 20+ års erfarenhet och kontinuerlig vidareutbildning är jag redo för de nya kraven. Jag hjälper dig navigera regelverket säkert – så att ditt projekt godkänns snabbt och går smidigt från start till mål.
+                Med erfarenhet och kontinuerlig vidareutbildning är jag redo för de nya kraven. Jag hjälper dig navigera regelverket säkert – så att ditt projekt godkänns snabbt och går smidigt från start till mål.
               </p>
               <Button 
                 onClick={scrollToContact}

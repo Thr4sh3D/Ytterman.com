@@ -26,7 +26,7 @@ export const WhoIHelp = () => {
       icon: Users,
       title: "Fastighetsägare och byggföretag",
       description: "Ni behöver en pålitlig KA som kan hantera flera projekt samtidigt och som förstår kommersiella krav på tidseffektivitet.",
-      solution: "Med 20+ års erfarenhet och digital hantering kan jag hantera både stora och små projekt parallellt. Jag levererar snabbt, kommunicerar tydligt och sköter all dokumentation professionellt."
+      solution: "Med erfarenhet och digital hantering kan jag hantera både stora och små projekt parallellt. Jag levererar snabbt, kommunicerar tydligt och sköter all dokumentation professionellt."
     }
   ];
 

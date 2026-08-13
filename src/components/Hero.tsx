@@ -35,7 +35,7 @@ export const Hero = () => {
             </p>
             
             <p className="text-lg text-muted-foreground mb-8">
-              Verksam i Sundsvall, Härnösand, Sollefteå, Kramfors, Timrå och hela Västernorrland – över 20 års erfarenhet från byggsektorn
+              Verksam i Sundsvall, Härnösand, Sollefteå, Kramfors, Timrå och hela Västernorrland – erfarenhet från byggsektorn
             </p>
             
             <div className="space-y-4 mb-8">

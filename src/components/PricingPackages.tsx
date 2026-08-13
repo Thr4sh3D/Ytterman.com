@@ -92,7 +92,7 @@ export const PricingPackages = () => {
         <div className="max-w-6xl mx-auto mb-16">
           <div className="text-center mb-8">
             <p className="text-lg font-semibold text-slate-900">
-              Erfaren Kontrollansvarig och BAS med 20+ års branscherfarenhet i Västernorrland
+              Certifierad Kontrollansvarig och BAS-uppdrag i Västernorrland
             </p>
           </div>
           

@@ -234,7 +234,7 @@ const BygglovsguideVanligaMisstag = () => {
 
         <p className="mb-4">
           Förutom kontrollansvarig kan du också behöva anlita <strong>byggarbetsmiljösamordnare</strong> (BAS). Detta regleras 
-          av Arbetsmiljöverkets föreskrifter (AFS 1999:3).
+          av Arbetsmiljöverkets föreskrifter (AFS 2023:3).
         </p>
 
         <div className="bg-blue-50 p-6 rounded-lg mb-6">
