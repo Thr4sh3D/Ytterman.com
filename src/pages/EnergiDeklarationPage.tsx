@@ -11,6 +11,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle, Phone, Mail, MapPin, Clock, Award, Shield, FileText, Zap, Home, Calculator } from "lucide-react";
 import { Link } from "react-router-dom";
+import { BUSINESS_COPY, COMPANY, SERVICES } from '@/config/company';
 
 const EnergiDeklarationPage = () => {
   const energiDeklarationFAQ = [
@@ -20,22 +21,22 @@ const EnergiDeklarationPage = () => {
     },
     {
       question: "När behövs en energideklaration?",
-      answer: "Energideklaration krävs vid försäljning, uthyrning eller vid större renoveringar av byggnader. Den ska också uppdateras regelbundet."
+      answer: "Kravet beror bland annat på byggnadstyp och hur byggnaden används eller överlåts. Ytterman samordnar kontakten med en behörig partner som bedömer förutsättningarna för den aktuella byggnaden."
     },
     {
       question: "Hur lång tid tar det att få en energideklaration?",
-      answer: "Normalt tar det 1-2 veckor från besiktning till färdig energideklaration, beroende på byggnadens storlek och komplexitet."
+      answer: "Tidsplanen beror på byggnadens storlek, tillgängligt underlag och partnerns kapacitet. Leveranstid bekräftas innan uppdraget startar."
     },
     {
       question: "Vad kostar en energideklaration?",
-      answer: "Kostnaden varierar beroende på byggnadens storlek och typ. Kontakta oss för en kostnadsfri offert anpassad efter din fastighet."
+      answer: "Kostnaden beror på byggnadens storlek, typ och tillgängligt underlag. Ytterman tar in uppgifterna och återkommer med upplägg och offert för partnerleveransen."
     }
   ];
 
   const services = [
     {
       title: "Energibesiktning",
-      description: "Grundlig besiktning av byggnadens energisystem",
+      description: "Den certifierade energiexperten avgör vilket platsbesök och underlag som behövs",
       icon: <Home className="h-6 w-6" />
     },
     {
@@ -45,12 +46,12 @@ const EnergiDeklarationPage = () => {
     },
     {
       title: "Åtgärdsförslag",
-      description: "Konkreta förslag på energibesparande åtgärder",
+      description: "Eventuella åtgärdsförslag tas fram av partnerns certifierade energiexpert",
       icon: <Zap className="h-6 w-6" />
     },
     {
-      title: "Certifiering",
-      description: "Utfärdande av officiell energideklaration",
+      title: "Certifierad utförare",
+      description: "Deklarationen utförs av certifierad energiexpert hos behörig partner",
       icon: <Award className="h-6 w-6" />
     }
   ];
@@ -64,35 +65,24 @@ const EnergiDeklarationPage = () => {
     "@context": "https://schema.org",
     "@type": "Service",
     "name": "Energideklaration",
-    "description": "Professionella energideklarationer i Västernorrland. Certifierad energiexpert med över 20 års erfarenhet i byggbranschen.",
+    "description": BUSINESS_COPY.energyPartner,
     "provider": {
       "@type": "LocalBusiness",
-      "name": "Ytterman",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Viksjö",
-        "addressRegion": "Västernorrland",
-        "addressCountry": "SE"
-      },
-      "telephone": "+46761118447",
-      "email": "tobias@ytterman.com"
+      "name": COMPANY.brandName,
+      "url": COMPANY.siteUrl,
+      "telephone": COMPANY.phone.e164,
+      "email": COMPANY.email
     },
-    "areaServed": [
-      "Sundsvall", "Härnösand", "Sollefteå", "Timrå", "Kramfors"
-    ],
+    "areaServed": COMPANY.areaServed,
     "serviceType": "Energideklaration",
-    "offers": {
-      "@type": "Offer",
-      "description": "Energideklaration från 8,000 SEK",
-      "priceRange": "Från 8,000 SEK"
-    }
+    "serviceOutput": "Energideklaration utförd av certifierad energiexpert hos behörig partner"
   };
 
   return (
     <>
       <AdvancedSEO
         title="Energideklaration i Västernorrland | Ytterman"
-        description="Behöver du energideklaration? Certifierad energiexpert med 20+ års erfarenhet i Sundsvall, Härnösand, Sollefteå, Timrå, Kramfors. Snabb handläggning."
+        description={BUSINESS_COPY.energyPartner}
         keywords="energideklaration, energideklaration Sundsvall, energideklaration Härnösand, energideklaration Västernorrland, energiklass, energibesiktning"
         url="https://ytterman.com/energideklaration"
         type="website"
@@ -117,34 +107,28 @@ const EnergiDeklarationPage = () => {
         </section>
         
         <ServiceHero
-          badge="Certifierad Energiexpert"
+          badge="Partnertjänst"
           title="Energideklaration i Västernorrland"
-          subtitle="Professionell energibesiktning och rådgivning"
-          description="Få en professionell energideklaration för din fastighet. Som certifierad energiexpert hjälper jag dig med energibesiktning, energiberäkning och konkreta förslag för energibesparingar."
-          features={[
-            "Komplett energibesiktning av fastigheten",
-            "Energiberäkning och energiklass",
-            "Konkreta förslag på energibesparande åtgärder",
-            "Official energideklaration enligt BBR",
-            "Snabb handläggning - klart inom 1-2 veckor"
-          ]}
+          subtitle="Ytterman samordnar – certifierad energiexpert utför"
+          description={BUSINESS_COPY.energyPartner}
+          features={[...SERVICES.energyDeclaration.features]}
           ctaPrimary={{
             text: "Begär offert",
             href: "/kontakt"
           }}
           ctaSecondary={{
             text: "Ring direkt",
-            href: "tel:+46761118447",
+            href: COMPANY.phone.href,
             phone: true
           }}
           bannerContent={{
             icon: Zap,
-            title: "Certifierad Energiexpert",
-            subtitle: "Energideklaration",
+            title: "Behörig partnerleverans",
+            subtitle: "Tydlig ansvarsfördelning",
             certifications: [
-              "Certifierad energideklarationsexpert",
-              "Över 20 års erfarenhet av energiberäkningar",
-              "Snabb handläggning och tydlig rapport"
+              "Certifierad energiexpert utför deklarationen",
+              "Ytterman är kundens kontakt och samordnare",
+              "Partnerns giltiga behörighet kontrolleras inför uppdraget"
             ]
           }}
         />
@@ -154,7 +138,7 @@ const EnergiDeklarationPage = () => {
         <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
-              Energideklaration Tjänster
+              Det här ingår i partnerleveransen
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {services.map((service, index) => (
@@ -186,8 +170,8 @@ const EnergiDeklarationPage = () => {
                   1
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Bokning & Planering</h3>
-                  <p className="text-gray-600">Vi bokar en tid för besiktning och går igenom vad som behövs.</p>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Förfrågan till Ytterman</h3>
+                  <p className="text-gray-600">Ytterman samlar in grunduppgifter och stämmer av vilket underlag som finns.</p>
                 </div>
               </div>
               <div className="flex items-start space-x-4">
@@ -196,7 +180,7 @@ const EnergiDeklarationPage = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Energibesiktning</h3>
-                  <p className="text-gray-600">Grundlig besiktning av byggnadens energisystem och konstruktion.</p>
+                  <p className="text-gray-600">En certifierad energiexpert hos behörig partner genomför nödvändigt platsbesök.</p>
                 </div>
               </div>
               <div className="flex items-start space-x-4">
@@ -205,7 +189,7 @@ const EnergiDeklarationPage = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Beräkning & Analys</h3>
-                  <p className="text-gray-600">Beräkning av energiprestanda och identifiering av förbättringsområden.</p>
+                  <p className="text-gray-600">Partnerns energiexpert beräknar energiprestanda och identifierar förbättringsområden.</p>
                 </div>
               </div>
               <div className="flex items-start space-x-4">
@@ -214,7 +198,7 @@ const EnergiDeklarationPage = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Energideklaration</h3>
-                  <p className="text-gray-600">Färdig energideklaration med energiklass och åtgärdsförslag.</p>
+                  <p className="text-gray-600">Den certifierade energiexperten upprättar deklarationen och Ytterman samordnar leveransen till kunden.</p>
                 </div>
               </div>
             </div>
@@ -232,22 +216,22 @@ const EnergiDeklarationPage = () => {
                 <div className="mx-auto mb-4 p-3 bg-green-100 rounded-full w-fit">
                   <Zap className="h-8 w-8 text-green-600" />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Sänk energikostnaderna</h3>
-                <p className="text-gray-600">Få konkreta förslag på hur du kan minska din energiförbrukning och spara pengar.</p>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Beslutsunderlag</h3>
+                <p className="text-gray-600">Deklarationen visar energiprestanda och kan innehålla åtgärder som är värda att utreda vidare.</p>
               </div>
               <div className="text-center">
                 <div className="mx-auto mb-4 p-3 bg-blue-100 rounded-full w-fit">
                   <Home className="h-8 w-8 text-blue-600" />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Öka fastighetsvärdet</h3>
-                <p className="text-gray-600">En bra energiklass kan öka din fastighets värde och attraktivitet på marknaden.</p>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Tydlig energiinformation</h3>
+                <p className="text-gray-600">Energiprestanda och energiklass ger ägare, köpare och förvaltare ett jämförbart underlag.</p>
               </div>
               <div className="text-center">
                 <div className="mx-auto mb-4 p-3 bg-amber-100 rounded-full w-fit">
                   <Shield className="h-8 w-8 text-amber-600" />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Lagkrav</h3>
-                <p className="text-gray-600">Uppfyll lagkraven för energideklaration vid försäljning eller uthyrning.</p>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Kravbedömning</h3>
+                <p className="text-gray-600">Partnerns certifierade energiexpert bedömer om och hur kraven gäller för den aktuella byggnaden.</p>
               </div>
             </div>
           </div>
@@ -322,27 +306,27 @@ const EnergiDeklarationPage = () => {
               Behöver du energideklaration?
             </h2>
             <p className="text-xl mb-8 opacity-90">
-              Kontakta mig idag för en kostnadsfri konsultation och offert.
+              Kontakta Ytterman för samordning, underlagskontroll och offert för leverans via behörig partner.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-white text-slate-900 hover:bg-slate-100" asChild>
                 <Link to="/kontakt/">Skicka förfrågan</Link>
               </Button>
               <Button size="lg" className="bg-transparent text-white border-2 border-white hover:bg-white hover:text-yellow-600" asChild>
-                <a href="mailto:tobias@ytterman.com">
+                <a href={`mailto:${COMPANY.email}`}>
                   <Mail className="mr-2 h-4 w-4" />
-                  tobias@ytterman.com
+                  {COMPANY.email}
                 </a>
               </Button>
             </div>
             <div className="mt-8 flex items-center justify-center space-x-6 text-sm opacity-80">
               <div className="flex items-center">
                 <MapPin className="mr-2 h-4 w-4" />
-                Verksam i hela Västernorrland
+                Samordning i {COMPANY.region}
               </div>
               <div className="flex items-center">
                 <Clock className="mr-2 h-4 w-4" />
-                Snabb handläggning
+                Leveranstid bekräftas före start
               </div>
             </div>
           </div>

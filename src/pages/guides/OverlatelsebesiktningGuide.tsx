@@ -1,438 +1,112 @@
-import React from 'react';
+import { AlertTriangle, CheckCircle, Search } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { GuideLayout } from '@/components/GuideLayout';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { CheckCircle, Search, Camera, FileText, AlertTriangle, Home, Shield, Clock, CalendarCheck } from 'lucide-react';
 import { BOOKING_OVL_URL } from '@/config/booking';
+import { COMPANY, SERVICES } from '@/config/company';
 
-const OverlatelsebesiktningGuide = () => {
-  const guideData = {
-    title: "Överlåtelsebesiktning - Komplett Guide",
-    description: "Allt du behöver veta om överlåtelsebesiktning inför fastighetsförsäljning",
-    readTime: "10 min",
-    category: "Fastighetsbesiktning",
-    seoTitle: "Guide: Överlåtelsebesiktning | Ytterman",
-    seoDescription: "Komplett guide om överlåtelsebesiktning vid fastighetsförsäljning. Processen, kostnad och vad som ingår. Expert råd från Tobias Ytterman i Västernorrland.",
-    keywords: "överlåtelsebesiktning, fastighetsbesiktning, försäljningsbesiktning, köpebesiktning, husbesiktning, fastighetsförsäljning, Västernorrland",
-    canonicalPath: "/guider/overlatelsebesiktning"
-  };
+const processSteps = [
+  'Fastigheten, parterna, syftet och önskad omfattning gås igenom före bokning.',
+  'Uppdragsbekräftelsen anger vad som ska besiktigas, kända begränsningar, pris och leveranstid.',
+  'Besiktningen genomförs okulärt i de avtalade delar som är synliga och åtkomliga vid tillfället.',
+  'Iakttagelser, risker, begränsningar och eventuell rekommendation om fortsatt utredning dokumenteras enligt avtalet.',
+];
 
-  const inspectionAreas = [
-    {
-      title: "Konstruktion & Byggnadsskal",
-      items: [
-        "Grund och källare",
-        "Bärande konstruktioner",
-        "Väggar och tak",
-        "Fönster och dörrar",
-        "Balkonger och uteplatser"
-      ],
-      icon: <Home className="w-6 h-6" />
-    },
-    {
-      title: "Installationer",
-      items: [
-        "Elinstallationer och säkringar",
-        "VVS-system och rörledningar",
-        "Ventilationssystem",
-        "Värmesystem",
-        "Avloppssystem"
-      ],
-      icon: <Shield className="w-6 h-6" />
-    },
-    {
-      title: "Fukt & Miljö",
-      items: [
-        "Fuktmätningar",
-        "Ventilationskontroll",
-        "Radonmätning",
-        "Asbest och PCB",
-        "Mögel och bakterier"
-      ],
-      icon: <AlertTriangle className="w-6 h-6" />
-    }
-  ];
+const OverlatelsebesiktningGuide = () => (
+  <GuideLayout
+    title="Överlåtelsebesiktning – omfattning och begränsningar"
+    description="Vad en okulär överlåtelsebesiktning kan omfatta och vad som behöver avtalas före uppdraget."
+    category="Fastighetsbesiktning"
+    readTime="6 min"
+    seoTitle="Överlåtelsebesiktning – omfattning och rapport | Ytterman"
+    seoDescription="Guide till okulär överlåtelsebesiktning, åtkomlighet, begränsningar, rapport och fortsatt teknisk utredning."
+    keywords="överlåtelsebesiktning, okulär besiktning, besiktningsrapport, fastighetsbesiktning, fortsatt teknisk utredning"
+    canonicalPath="/guider/overlatelsebesiktning"
+  >
+    <div className="prose prose-stone max-w-none">
+      <p className="text-lg font-medium text-stone-700">
+        En överlåtelsebesiktning är ett avtalat uppdrag. Omfattningen kan skilja sig mellan
+        fastigheter och uppdragsgivare, så uppdragsbekräftelsen är viktigare än en generell lista på
+        webbplatsen.
+      </p>
 
-  const processSteps = [
-    {
-      step: 1,
-      title: "Bokning och förberedelse",
-      description: "Vi bokar en tid som passar dig och går igenom vad som ska besiktigas. Du får en checklista över vad som behöver vara tillgängligt.",
-      icon: <FileText className="w-6 h-6" />
-    },
-    {
-      step: 2,
-      title: "Besiktning på plats",
-      description: "Grundlig genomgång av hela fastigheten, både invändigt och utvändigt. Vi dokumenterar alla iakttagelser med foton.",
-      icon: <Search className="w-6 h-6" />
-    },
-    {
-      step: 3,
-      title: "Dokumentation",
-      description: "Alla fynd fotograferas och dokumenteras noggrant för att skapa en komplett bild av fastighetens skick.",
-      icon: <Camera className="w-6 h-6" />
-    },
-    {
-      step: 4,
-      title: "Besiktningsrapport",
-      description: "Detaljerad rapport med alla iakttagelser, foton och rekommendationer levereras inom 48 timmar.",
-      icon: <FileText className="w-6 h-6" />
-    }
-  ];
+      <div className="not-prose my-8 flex gap-3 rounded-xl border border-amber-200 bg-amber-50 p-6">
+        <AlertTriangle className="mt-0.5 h-7 w-7 shrink-0 text-amber-800" />
+        <p className="text-amber-950">
+          En okulär besiktning är inte en garanti för att fastigheten saknar fel. Dolda, täckta,
+          låsta eller på annat sätt oåtkomliga delar kan inte bedömas utan ett separat avtal om
+          fortsatt teknisk utredning.
+        </p>
+      </div>
 
-  const benefits = [
-    {
-      title: "Trygg försäljning",
-      description: "Undvik överraskningar och tvister efter försäljning genom att dokumentera fastighetens skick i förväg.",
-      icon: <Shield className="w-8 h-8 text-green-600" />
-    },
-    {
-      title: "Rätt pris",
-      description: "Få en realistisk bild av fastighetens värde och eventuella renoveringsbehov som påverkar priset.",
-      icon: <Home className="w-8 h-8 text-blue-600" />
-    },
-    {
-      title: "Snabbare försäljning",
-      description: "Köpare känner sig tryggare när de vet att fastigheten är professionellt besiktigad.",
-      icon: <Clock className="w-8 h-8 text-amber-600" />
-    }
-  ];
+      <h2>Vad som normalt bedöms</h2>
+      <p>
+        Besiktningsmannen undersöker synliga och åtkomliga byggnadsdelar inom den avtalade
+        omfattningen. Synliga tecken på exempelvis fukt, rörelser, slitage eller brister kan
+        dokumenteras, men varje iakttagelse måste förstås tillsammans med rapportens avgränsningar.
+      </p>
 
-  const commonIssues = [
-    {
-      category: "Fuktproblem",
-      severity: "Hög",
-      description: "Fukt i källare, badrum eller kök kan orsaka stora skador",
-      color: "bg-red-100 text-red-800"
-    },
-    {
-      category: "Elinstallationer",
-      severity: "Hög",
-      description: "Gamla eller felaktiga elinstallationer kan vara brandfarliga",
-      color: "bg-red-100 text-red-800"
-    },
-    {
-      category: "Takskador",
-      severity: "Medel",
-      description: "Läckage eller skador på tak kan leda till fuktproblem",
-      color: "bg-yellow-100 text-yellow-800"
-    },
-    {
-      category: "Ventilation",
-      severity: "Medel",
-      description: "Dålig ventilation kan orsaka fukt- och luftkvalitetsproblem",
-      color: "bg-yellow-100 text-yellow-800"
-    },
-    {
-      category: "Ytskador",
-      severity: "Låg",
-      description: "Kosmetiska skador som påverkar fastighetens utseende",
-      color: "bg-green-100 text-green-800"
-    }
-  ];
+      <h2>Vad som inte ingår utan separat avtal</h2>
+      <ul className="not-prose my-6 space-y-3">
+        {[
+          'Håltagning, rivning, demontering eller annan förstörande undersökning.',
+          'Provtagning, laboratorieanalys eller mätning som inte uttryckligen har avtalats.',
+          'Funktionsprovning eller fackmässig kontroll av el, VVS, ventilation eller andra installationer.',
+          'Fastighetsvärdering, juridisk rådgivning eller garanti om framtida funktion.',
+          'Bedömning av delar som inte är synliga eller åtkomliga vid besiktningstillfället.',
+        ].map((item) => (
+          <li key={item} className="flex gap-3 rounded-lg bg-slate-50 p-4 text-stone-800">
+            <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-green-700" />
+            {item}
+          </li>
+        ))}
+      </ul>
 
-  return (
-    <GuideLayout {...guideData}>
-      <div className="space-y-12">
-        {/* Introduction */}
-        <section>
-          <h2 className="text-3xl font-bold text-stone-800 mb-6">Vad är en överlåtelsebesiktning?</h2>
-          <div className="prose prose-lg max-w-none text-stone-600">
-            <p>
-              En överlåtelsebesiktning är en okulär (visuell) undersökning av en fastighet som genomförs 
-              inför försäljning. Syftet är att identifiera synliga fel, brister och 
-              underhållsbehov som kan påverka fastighetens värde eller säkerhet.
-            </p>
-            <p>
-              Besiktningen utförs av erfaren byggfackman och resulterar i en detaljerad 
-              rapport som ger både säljare och köpare en objektiv bild av fastighetens synliga skick. 
-              Detta skapar trygghet för båda parter och kan förebygga framtida tvister. 
-              Ofta kombineras överlåtelsebesiktning med en <Link to="/energideklaration/" className="text-amber-600 hover:text-amber-700 font-medium underline">energideklaration</Link> för en komplett bild av fastigheten.
-            </p>
-          </div>
-        </section>
+      <h2>Processen</h2>
+      <ol className="not-prose my-6 space-y-4">
+        {processSteps.map((step, index) => (
+          <li key={step} className="flex gap-4 rounded-xl border bg-white p-5">
+            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-amber-700 font-semibold text-white">
+              {index + 1}
+            </span>
+            <span className="text-stone-700">{step}</span>
+          </li>
+        ))}
+      </ol>
 
-        {/* Scope and Disclaimer */}
-        <section className="bg-amber-50 rounded-xl p-8 border border-amber-200">
-          <h2 className="text-2xl font-bold text-stone-800 mb-4">Viktigt att veta om besiktningen</h2>
-          <div className="prose max-w-none text-stone-700">
-            <p className="mb-3">
-              <strong>Överlåtelsebesiktningen är en okulär (visuell) besiktning.</strong> Detta innebär att 
-              endast synliga och åtkomliga byggnadsdelar kontrolleras. Inga håltagningar, rivningar, 
-              demonteringar eller provtagningar görs.
-            </p>
-            <p className="mb-3">
-              <strong>Ej åtkomliga områden kan inte besiktigas:</strong> Låsta utrymmen, täckta ytor, 
-              kraftigt möblerade områden, isolerade vindar, snötäckta tak eller ej öppningsbara 
-              inspektionsluckor omfattas inte av besiktningen.
-            </p>
-            <p className="mb-0">
-              <strong>Installationer bedöms visuellt:</strong> El-, VVS- och ventilationsinstallationer 
-              kontrolleras endast genom synliga tecken – inte som funktionskontroll eller fackmässig 
-              installation. Vid indikation på problem rekommenderas fortsatt utredning av fackman.
-            </p>
-          </div>
-        </section>
+      <h2>Förbered fastigheten</h2>
+      <p>
+        Se till att avtalade utrymmen och inspektionsluckor är åtkomliga, att relevanta nycklar
+        finns och att tillgängliga ritningar, tidigare besiktningsprotokoll och uppgifter om kända
+        skador kan lämnas före eller vid besiktningen.
+      </p>
 
-        {/* Why needed */}
-        <section>
-          <h2 className="text-3xl font-bold text-stone-800 mb-6">Varför behövs en överlåtelsebesiktning?</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Shield className="w-5 h-5 text-green-600" />
-                  För säljaren
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-3">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                    <span>Undvik överraskningar under försäljningsprocessen</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                    <span>Sätt rätt pris baserat på fastighetens faktiska skick</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                    <span>Minska risken för prisavdrag efter köparens besiktning</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                    <span>Visa transparens och seriositet gentemot köpare</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
+      <h2>Rapport och fortsatt utredning</h2>
+      <p>
+        Rapportens struktur och leveranstid framgår av uppdragsbekräftelsen. Om en iakttagelse inte
+        kan bedömas okulärt kan rapporten rekommendera en fortsatt utredning av lämplig fackperson.
+      </p>
 
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Home className="w-5 h-5 text-blue-600" />
-                  För köparen
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-3">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                    <span>Få en objektiv bedömning av fastighetens skick</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                    <span>Identifiera framtida underhållsbehov och kostnader</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                    <span>Underlag för prisförhandling</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                    <span>Trygghet i köpbeslutet</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
-
-        {/* What we inspect */}
-        <section>
-          <h2 className="text-3xl font-bold text-stone-800 mb-6">Vad kontrollerar vi?</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            {inspectionAreas.map((area, index) => (
-              <Card key={index}>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2 text-lg">
-                    <div className="text-primary">{area.icon}</div>
-                    {area.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-2">
-                    {area.items.map((item, itemIndex) => (
-                      <li key={itemIndex} className="flex items-start gap-2 text-stone-600">
-                        <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-                        <span className="text-sm">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
-
-        {/* Process */}
-        <section>
-          <h2 className="text-3xl font-bold text-stone-800 mb-6">Så går besiktningen till</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            {processSteps.map((step) => (
-              <div key={step.step} className="flex gap-4">
-                <div className="flex-shrink-0">
-                  <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-lg">
-                    {step.step}
-                  </div>
-                </div>
-                <div>
-                  <div className="flex items-center gap-2 mb-2">
-                    <div className="text-primary">{step.icon}</div>
-                    <h3 className="text-xl font-semibold text-stone-800">{step.title}</h3>
-                  </div>
-                  <p className="text-stone-600">{step.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Common issues */}
-        <section>
-          <h2 className="text-3xl font-bold text-stone-800 mb-6">Vanliga fel och brister</h2>
-          <p className="text-stone-600 mb-6">
-            Här är de vanligaste problemen vi upptäcker vid överlåtelsebesiktningar och 
-            hur allvarliga de kan vara för fastigheten.
-          </p>
-          <div className="space-y-4">
-            {commonIssues.map((issue, index) => (
-              <div key={index} className="flex items-center justify-between p-4 bg-white rounded-lg border">
-                <div className="flex-1">
-                  <div className="flex items-center gap-3 mb-2">
-                    <h3 className="font-semibold text-stone-800">{issue.category}</h3>
-                    <Badge className={issue.color}>{issue.severity} risk</Badge>
-                  </div>
-                  <p className="text-stone-600 text-sm">{issue.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Benefits */}
-        <section>
-          <h2 className="text-3xl font-bold text-stone-800 mb-6">Fördelar med överlåtelsebesiktning</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {benefits.map((benefit, index) => (
-              <Card key={index} className="text-center">
-                <CardHeader>
-                  <div className="mx-auto mb-4">
-                    {benefit.icon}
-                  </div>
-                  <CardTitle className="text-xl">{benefit.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-base">{benefit.description}</CardDescription>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
-
-        {/* Cost and timeline */}
-        <section>
-          <h2 className="text-3xl font-bold text-stone-800 mb-6">Kostnad och tidsåtgång</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <Card>
-              <CardHeader>
-                <CardTitle>Priser</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div className="flex justify-between items-center">
-                    <span>Lägenhet (50-100 m²)</span>
-                    <Badge variant="secondary">8,000 - 12,000 kr</Badge>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span>Villa (100-200 m²)</span>
-                    <Badge variant="secondary">12,000 - 18,000 kr</Badge>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span>Större villa (200+ m²)</span>
-                    <Badge variant="secondary">18,000 - 25,000 kr</Badge>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span>Specialmätningar</span>
-                    <Badge variant="secondary">Tillkommer vid behov</Badge>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle>Tidsåtgång</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div className="flex justify-between items-center">
-                    <span>Besiktning på plats</span>
-                    <Badge variant="outline">2-4 timmar</Badge>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span>Rapportskrivning</span>
-                    <Badge variant="outline">1-2 dagar</Badge>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span>Färdig rapport</span>
-                    <Badge variant="outline">24-48 timmar</Badge>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span>Uppföljning</span>
-                    <Badge variant="outline">Efter behov</Badge>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
-
-        {/* CTA */}
-        <section className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl p-8 text-center">
-          <h2 className="text-3xl font-bold text-stone-800 mb-4">
-            Redo att boka överlåtelsebesiktning?
-          </h2>
-          <p className="text-xl text-stone-600 mb-6">
-            Boka direkt online eller kontakta oss för mer information. Se även <Link to="/priser/" className="text-amber-600 hover:text-amber-700 font-medium underline">våra priser</Link>.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            {BOOKING_OVL_URL && (
-              <a 
-                href={BOOKING_OVL_URL}
-                className="earth-gradient hover:opacity-90 text-white px-8 py-3 rounded-lg font-semibold transition-colors inline-flex items-center justify-center gap-2"
-              >
-                <CalendarCheck className="w-5 h-5" />
-                Boka online
-              </a>
-            )}
-            <Link 
-              to="/kontakt/" 
-              className="border-2 border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white px-8 py-3 rounded-lg font-semibold transition-colors"
-            >
-              Kontaktformulär
-            </Link>
-            <Link 
-              to="/overlatelsebesiktning/" 
-              className="border-2 border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white px-8 py-3 rounded-lg font-semibold transition-colors"
-            >
-              Läs mer om tjänsten
-            </Link>
-          </div>
-        </section>
-
-        <div className="mt-12 pt-8 border-t border-stone-200">
-          <h3 className="text-xl font-semibold text-stone-800 mb-4">Relaterade guider</h3>
-          <ul className="space-y-2 text-stone-700">
-            <li>• <Link to="/guider/energi/" className="text-amber-600 hover:text-amber-700 font-medium underline">Energideklaration - Komplett Guide</Link></li>
-            <li>• <Link to="/guider/kontrollansvarig/" className="text-amber-600 hover:text-amber-700 font-medium underline">Kontrollansvarig vid nybyggnation</Link></li>
-            <li>• <Link to="/guider/kvalitetskontroll/" className="text-amber-600 hover:text-amber-700 font-medium underline">Kvalitetskontroll i byggprojekt</Link></li>
-          </ul>
+      <div className="not-prose my-8 rounded-xl bg-amber-950 p-7 text-white">
+        <Search className="h-7 w-7" />
+        <h2 className="mt-3 text-2xl font-bold">Skicka en förfrågan</h2>
+        <p className="mt-2 text-amber-100">
+          {SERVICES.inspection.priceLabel}. Tillgänglighet, omfattning, resor, pris och leveranstid
+          bekräftas för den aktuella fastigheten.
+        </p>
+        <div className="mt-5 flex flex-wrap gap-3">
+          <a className="rounded-lg bg-white px-5 py-3 font-semibold text-amber-950" href={BOOKING_OVL_URL}>
+            Skicka förfrågan
+          </a>
+          <Link className="rounded-lg border border-white px-5 py-3 font-semibold text-white" to="/overlatelsebesiktning/">
+            Läs om tjänsten
+          </Link>
+          <a className="rounded-lg border border-white px-5 py-3 font-semibold text-white" href={COMPANY.phone.href}>
+            {COMPANY.phone.display}
+          </a>
         </div>
       </div>
-    </GuideLayout>
-  );
-};
+    </div>
+  </GuideLayout>
+);
 
 export default OverlatelsebesiktningGuide;

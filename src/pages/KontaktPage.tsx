@@ -11,6 +11,7 @@ import { ContactInfo } from '@/components/ContactInfo';
 import { ServiceAreas } from '@/components/ServiceAreas';
 import { JsonLdSchema } from '@/components/JsonLdSchema';
 import { Phone, Mail } from 'lucide-react';
+import { COMPANY } from '@/config/company';
 
 const KontaktPage = () => {
   const breadcrumbs = [
@@ -22,7 +23,7 @@ const KontaktPage = () => {
     <>
       <AdvancedSEO 
         title="Kontakta Ytterman - Kontrollansvarig & BAS Västernorrland"
-        description="Behöver du kontrollansvarig eller BAS? Ring 076-111 84 47 eller mejla tobias@ytterman.com. Kostnadsfri konsultation. Svar inom 24h!"
+        description="Kontakta Ytterman om kontrollansvarig, BAS-P/BAS-U eller energideklaration via behörig partner. Vi återkommer med nästa steg utifrån projektet."
         keywords="kontakt kontrollansvarig, BAS-P BAS-U Västernorrland, byggkonsult Sundsvall, Härnösand, Sollefteå, Timrå, Kramfors, tobias ytterman"
         url="https://ytterman.com/kontakt"
         breadcrumbs={breadcrumbs}
@@ -62,25 +63,25 @@ const KontaktPage = () => {
                 </h1>
                 <p className="text-xl text-slate-600 mb-8">
                   Behöver du hjälp med kontrollansvarig, BAS-P, BAS-U eller andra byggtjänster? 
-                  Kontakta oss för en kostnadsfri konsultation och fast prisoffert.
+                  Skicka projektets grunduppgifter så återkommer vi med nästa steg och offert.
                 </p>
                 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <a 
-                    href="tel:+46761118447"
+                    href={COMPANY.phone.href}
                     className="inline-flex items-center px-8 py-4 earth-gradient text-white rounded-lg hover:opacity-90 transition-opacity text-lg font-semibold focus:ring-4 focus:ring-primary/20 focus:outline-none"
-                    aria-label="Ring direkt till Ytterman på telefonnummer 076-111 84 47"
+                    aria-label={`Ring Ytterman på ${COMPANY.phone.display}`}
                   >
                     <Phone className="w-5 h-5 mr-2" aria-hidden="true" />
-                    Ring direkt: 076-111 84 47
+                    Ring: {COMPANY.phone.display}
                   </a>
                   <a 
-                    href="mailto:tobias@ytterman.com"
+                    href={`mailto:${COMPANY.email}`}
                     className="inline-flex items-center px-8 py-4 border-2 border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-colors text-lg font-semibold focus:ring-4 focus:ring-primary/20 focus:outline-none"
-                    aria-label="Skicka e-post till Tobias Ytterman på tobias@ytterman.com"
+                    aria-label={`Skicka e-post till ${COMPANY.publicName} på ${COMPANY.email}`}
                   >
                     <Mail className="w-5 h-5 mr-2" aria-hidden="true" />
-                    tobias@ytterman.com
+                    {COMPANY.email}
                   </a>
                 </div>
               </div>
@@ -96,7 +97,7 @@ const KontaktPage = () => {
                     <h2 className="text-xl font-bold text-slate-900 mb-3">Inför första kontakten</h2>
                     <p className="text-slate-600">
                       Beskriv gärna vilken typ av projekt du planerar, var fastigheten ligger och om du
-                      redan har ritningar, beslut eller en tidplan. Det gör det enklare att snabbt avgöra
+                      redan har ritningar, beslut eller en tidplan. Det gör det enklare att bedöma
                       vilken tjänst som passar bäst.
                     </p>
                   </div>
@@ -111,7 +112,7 @@ const KontaktPage = () => {
                   <div className="rounded-xl border border-slate-200 p-6">
                     <h2 className="text-xl font-bold text-slate-900 mb-3">Vad du kan förvänta dig</h2>
                     <p className="text-slate-600">
-                      Du får en snabb första bedömning, tydlig återkoppling om nästa steg och besked om
+                      Du får en första bedömning, återkoppling om nästa steg och besked om
                       hur uppdraget kan läggas upp utifrån projektets omfattning, plats och tidsram.
                     </p>
                   </div>

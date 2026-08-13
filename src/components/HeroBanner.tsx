@@ -1,4 +1,5 @@
 import { Shield, Award, CheckCircle, Phone } from 'lucide-react';
+import { BAS, COMPANY } from '@/config/company';
 
 export const HeroBanner = () => {
   return (
@@ -14,15 +15,15 @@ export const HeroBanner = () => {
               <Shield className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h3 className="font-bold text-lg text-foreground">Certifierad Expert</h3>
-              <p className="text-sm text-muted-foreground">KA, BAS-P & BAS-U</p>
+              <h3 className="font-bold text-lg text-foreground">Certifierad KA</h3>
+              <p className="text-sm text-muted-foreground">{BAS.qualificationLabel}</p>
             </div>
           </div>
           
           <div className="text-right">
             <div className="flex items-center space-x-1 text-accent mb-1">
               <Award className="w-4 h-4" />
-              <span className="text-sm font-semibold">20+ År</span>
+              <span className="text-sm font-semibold">{COMPANY.experienceYears}+ år</span>
             </div>
             <p className="text-xs text-muted-foreground">Erfarenhet</p>
           </div>
@@ -31,17 +32,17 @@ export const HeroBanner = () => {
         <div className="space-y-3">
           <div className="flex items-center space-x-3">
             <CheckCircle className="w-5 h-5 text-accent flex-shrink-0" />
-            <span className="text-sm text-foreground">Medlem i SBR - Svenska Byggingenjörers Riksförbund</span>
+            <span className="text-sm text-foreground">Medlem i {COMPANY.membership.name}</span>
           </div>
           
           <div className="flex items-center space-x-3">
             <CheckCircle className="w-5 h-5 text-accent flex-shrink-0" />
-            <span className="text-sm text-foreground">Certifierad enligt nya regelverket 2025</span>
+            <span className="text-sm text-foreground">Behörighet N – projekt av normal art</span>
           </div>
           
           <div className="flex items-center space-x-3">
             <CheckCircle className="w-5 h-5 text-accent flex-shrink-0" />
-            <span className="text-sm text-foreground">Digital hantering och snabb återkoppling</span>
+            <span className="text-sm text-foreground">Digital hantering och projektspecifik tidplan</span>
           </div>
         </div>
         
@@ -51,13 +52,13 @@ export const HeroBanner = () => {
               <p className="text-xs text-muted-foreground mb-1">Kontakta mig direkt</p>
               <div className="flex items-center space-x-2">
                 <Phone className="w-4 h-4 text-accent" />
-                <span className="font-semibold text-foreground">076-111 84 47</span>
+                <span className="font-semibold text-foreground">{COMPANY.phone.display}</span>
               </div>
             </div>
             
             <div className="text-right">
-              <p className="text-xs text-muted-foreground mb-1">Svarstid</p>
-              <p className="font-semibold text-sm text-foreground">Inom 24h</p>
+              <p className="text-xs text-muted-foreground mb-1">Återkoppling</p>
+              <p className="font-semibold text-sm text-foreground">Efter genomgång</p>
             </div>
           </div>
         </div>

@@ -1,3 +1,5 @@
+import { BAS, BUSINESS_COPY, COMPANY, KA_CERT, PRICE_LABELS } from '@/config/company';
+
 interface SEOContentProps {
   children: React.ReactNode;
   keywords?: string[];
@@ -42,7 +44,7 @@ export const seoKeywords = {
   ],
   secondary: [
     'PBL kontroll',
-    'slutbevis bygglov',
+    'slutbesked bygglov',
     'arbetsmiljöplan bygg',
     'riskbedömning byggarbetsplats',
     'byggarbetsmiljö samordning',
@@ -55,7 +57,7 @@ export const seoKeywords = {
     'sektionsritningar'
   ],
   semantic: [
-    'certifierad byggexpert Västernorrland',
+    'certifierad kontrollansvarig Västernorrland',
     'trygg byggprocess',
     'professionell byggkontroll',
     'erfaren kontrollansvarig',
@@ -86,34 +88,34 @@ export const seoKeywords = {
 
 export const seoContent = {
   hero: {
-    title: "Certifierad Kontrollansvarig & BAS i Västernorrland - Trygg Byggprocess",
-    subtitle: "Över 20 års erfarenhet i byggbranschen med certifiering inom kontrollansvarig (KA), BAS-P och BAS-U tjänster i Sundsvall, Härnösand, Sollefteå, Timrå och Kramfors. Fast pris och professionell hantering för din byggprocess.",
-    cta: "Få kostnadsfri konsultation och offert idag"
+    title: "Certifierad kontrollansvarig samt BAS-P/BAS-U i Västernorrland",
+    subtitle: `${COMPANY.experienceLabel} i byggbranschen. ${KA_CERT.authorizationLabel} samt utbildning, kompetens och erfarenhet för uppdrag som ${BAS.rolesLabel}.`,
+    cta: "Beskriv projektet och be om offert"
   },
   services: {
-    intro: "Kompletta byggtjänster för trygg och regelenlig byggprocess i Västernorrland",
+    intro: "Byggtjänster med verifierad omfattning och tydlig rollfördelning i Västernorrland",
     ka: {
       title: "Kontrollansvarig (KA) enligt PBL",
-      description: "Certifierad kontrollansvarig för teknisk kontroll, slutbesiktning och slutbevis enligt Plan- och bygglagen. Verksam i Sundsvall, Härnösand och hela Västernorrland."
+      description: BUSINESS_COPY.kaScope
     },
     basP: {
       title: "BAS-P - Byggarbetsmiljösamordnare Projektering", 
-      description: "Professionell arbetsmiljösamordning under projekteringsfasen med arbetsmiljöplan och riskbedömning för byggprojekt i Västernorrland."
+      description: `Arbetsmiljösamordning under projektering utifrån uppdragets riskbild och ${BAS.regulation}.`
     },
     basU: {
       title: "BAS-U - Byggarbetsmiljösamordnare Utförande",
-      description: "Säker arbetsmiljösamordning under byggfasen med regelbundna säkerhetsronder och dokumentation för trygg byggprocess."
+      description: `Arbetsmiljösamordning under utförandet med aktiviteter anpassade till projektets riskbild och ${BAS.regulation}.`
     }
   },
   about: {
-    experience: "Över 20 års gedigen erfarenhet inom byggbranschen och arbetsmiljö i Västernorrland",
-    certification: "Certifierad enligt senaste regelverket och medlem i Svenska Byggingenjörers Riksförbund (SBR)",
-    approach: "Personlig service med digital hantering för effektiv och trygg byggprocess i hela Västernorrland"
+    experience: `${COMPANY.experienceLabel} i byggbranschen`,
+    certification: `${KA_CERT.title}, ${KA_CERT.authorizationLabel}, och medlem i ${COMPANY.membership.name} (${COMPANY.membership.shortName})`,
+    approach: "Personlig kontakt och digital hantering enligt det avtalade uppdragets upplägg"
   },
   locations: {
-    primary: "Verksam i Sundsvall, Härnösand, Sollefteå, Timrå och Kramfors",
-    coverage: "Täcker hela Västernorrland med fokus på Medelpad och Ångermanland",
-    response: "Snabb respons och flexibla möten i hela regionen"
+    primary: `Förfrågningar tas emot från ${COMPANY.region}`,
+    coverage: "Tillgänglighet, platsbesök och resor bekräftas per projekt",
+    response: "Återkoppling och mötesupplägg bekräftas utifrån projekt och aktuell kapacitet"
   }
 };
 
@@ -121,18 +123,18 @@ export const seoContent = {
 export const seoFAQ = [
   {
     question: "Vad kostar en kontrollansvarig i Västernorrland?",
-    answer: "Våra kontrollansvarig-tjänster börjar från 15,000 SEK beroende på projektets omfattning. Vi erbjuder fast pris och kostnadsfri konsultation för alla projekt i Sundsvall, Härnösand, Sollefteå, Timrå och Kramfors."
+    answer: `${PRICE_LABELS.kaBasFrom} inklusive moms gäller KA Bas för tillbyggnad. Övriga paketpriser och villkor finns på prissidan.`
   },
   {
     question: "Hur lång tid tar det att få kontrollplan?",
-    answer: "En kontrollplan färdigställs vanligtvis inom 1-2 veckor efter att vi mottagit alla nödvändiga handlingar. Vi arbetar effektivt för att inte försena din byggprocess."
+    answer: "Tidsplanen beror på projektets omfattning och om underlaget är komplett. Upplägg och förväntad leverans bekräftas efter genomgång av handlingarna."
   },
   {
     question: "Behöver jag BAS-P och BAS-U för mitt projekt?",
-    answer: "BAS-P behövs under projekteringsfasen när flera entreprenörer ska arbeta på projektet. BAS-U krävs under byggfasen. Vi hjälper dig bedöma vad som krävs för ditt specifika projekt."
+    answer: `Byggherren ska utse lämplig BAS-P för planering och projektering och BAS-U för utförandet av bygg- och anläggningsarbetet. Roller och omfattning bedöms för projektet utifrån bland annat ${BAS.regulation}.`
   },
   {
     question: "Vilka områden täcker ni i Västernorrland?",
-    answer: "Vi verkar i hela Västernorrland med huvudfokus på Sundsvall, Härnösand, Sollefteå, Timrå och Kramfors. Vi hjälper även kunder i övriga delar av regionen."
+    answer: `Ytterman tar emot förfrågningar från ${COMPANY.region}. Tillgänglighet, resor och eventuella resekostnader bekräftas för varje projekt.`
   }
 ];

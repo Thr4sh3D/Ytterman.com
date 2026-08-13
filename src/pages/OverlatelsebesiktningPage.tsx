@@ -9,10 +9,13 @@ import { ServiceHero } from "@/components/ServiceHero";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle, Phone, Mail, MapPin, Clock, Award, Shield, FileText, Search, Camera, ClipboardCheck, CalendarCheck, Home, ArrowRight } from "lucide-react";
+import { CheckCircle, Phone, Mail, MapPin, Clock, Award, Shield, FileText, Search, Camera, ClipboardCheck, Home, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { BOOKING_OVL_URL } from "@/config/booking";
 import { overlatelsebesiktningCityData } from '@/content/overlatelsebesiktningCityData';
+import { COMPANY, SERVICES } from '@/config/company';
+
+const inspectionService = SERVICES.inspection;
 
 const OverlatelsebesiktningPage = () => {
   const overlatelsebesiktningFAQ = [
@@ -22,7 +25,7 @@ const OverlatelsebesiktningPage = () => {
     },
     {
       question: "Vad ingår i besiktningen?",
-      answer: "Besiktningen omfattar visuell kontroll av konstruktion, fasad, tak, grund, väggar, golv, fönster, dörrar samt synliga delar av el-, VVS- och ventilationsinstallationer. Fotografisk dokumentation görs och du får en detaljerad rapport med prioriterade åtgärdsförslag inom 48 timmar."
+      answer: "Besiktningen omfattar okulär kontroll av de byggnadsdelar och utrymmen som anges i uppdragsbekräftelsen och är åtkomliga vid besiktningen. Rapportens innehåll och leveranstid bekräftas vid bokning."
     },
     {
       question: "Vad ingår inte i besiktningen?",
@@ -30,7 +33,7 @@ const OverlatelsebesiktningPage = () => {
     },
     {
       question: "Hur lång tid tar en överlåtelsebesiktning?",
-      answer: "Besiktningstiden varierar beroende på fastighetens storlek, men vanligtvis tar det 2-4 timmar på plats. Rapporten levereras digitalt inom 48 timmar efter besiktningen."
+      answer: "Tiden beror på fastighetens storlek, ålder, konstruktion och åtkomlighet. Tidsåtgång på plats och rapportens leveranstid bekräftas vid bokning."
     },
     {
       question: "Hur förbereder jag fastigheten?",
@@ -40,23 +43,23 @@ const OverlatelsebesiktningPage = () => {
 
   const services = [
     {
-      title: "Teknisk besiktning",
-      description: "Grundlig kontroll av byggnadens konstruktion och skick",
+      title: "Okulär besiktning",
+      description: "Visuell undersökning av de synliga och åtkomliga delar som anges i uppdraget",
       icon: <Search className="h-6 w-6" />
     },
     {
-      title: "Installationskontroll",
-      description: "Kontroll av el-, VVS- och ventilationsinstallationer",
+      title: "Iakttagelser och risker",
+      description: "Dokumentation av synliga iakttagelser och rekommendation om fortsatt utredning vid behov",
       icon: <ClipboardCheck className="h-6 w-6" />
     },
     {
       title: "Dokumentation",
-      description: "Detaljerad fotografisk dokumentation av alla iakttagelser",
+      description: "Fotografisk dokumentation i den omfattning som anges i uppdragsbekräftelsen",
       icon: <Camera className="h-6 w-6" />
     },
     {
       title: "Besiktningsrapport",
-      description: "Professionell rapport med alla fynd och rekommendationer",
+      description: "Rapportinnehåll, begränsningar och leveranstid bekräftas före uppdraget",
       icon: <FileText className="h-6 w-6" />
     }
   ];
@@ -73,32 +76,19 @@ const OverlatelsebesiktningPage = () => {
     "description": "Professionella överlåtelsebesiktningar i Västernorrland. Över 20 års erfarenhet i byggbranschen.",
     "provider": {
       "@type": "LocalBusiness",
-      "name": "Ytterman",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Viksjö",
-        "addressRegion": "Västernorrland",
-        "addressCountry": "SE"
-      },
-      "telephone": "+46761118447",
-      "email": "tobias@ytterman.com"
+      "name": COMPANY.brandName,
+      "telephone": COMPANY.phone.e164,
+      "email": COMPANY.email
     },
-    "areaServed": [
-      "Sundsvall", "Härnösand", "Sollefteå", "Timrå", "Kramfors", "Örnsköldsvik", "Ånge"
-    ],
-    "serviceType": "Överlåtelsebesiktning",
-    "offers": {
-      "@type": "Offer",
-      "description": "Överlåtelsebesiktning från 12,000 SEK",
-      "priceRange": "Från 12,000 SEK"
-    }
+    "areaServed": COMPANY.areaServed,
+    "serviceType": inspectionService.name
   };
 
   return (
     <>
       <AdvancedSEO
         title="Överlåtelsebesiktning Sundsvall & Härnösand | Ytterman"
-        description="Behöver du överlåtelsebesiktning? 20+ års erfarenhet i byggbranschen. Sundsvall, Härnösand, Sollefteå, Timrå, Kramfors. Boka online eller kontakta oss."
+        description="Överlåtelsebesiktning med över 20 års erfarenhet i byggbranschen. Omfattning, pris och rapportens leveranstid bekräftas vid bokning."
         keywords="överlåtelsebesiktning, besiktning, fastighetbesiktning, besiktningsman Sundsvall, överlåtelsebesiktning Härnösand, Västernorrland"
         url="https://ytterman.com/overlatelsebesiktning"
         type="website"
@@ -123,34 +113,34 @@ const OverlatelsebesiktningPage = () => {
       
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-amber-50/30 to-slate-50">
         <ServiceHero
-          badge="Certifierad Besiktningsman"
+          badge="Överlåtelsebesiktning"
           title="Överlåtelsebesiktning i Västernorrland"
-          subtitle="Säkerställ en trygg fastighetsaffär"
-          description="Med över 20 års erfarenhet i byggbranschen genomför jag professionella överlåtelsebesiktningar. Du får en detaljerad rapport om fastighetens skick inom 48 timmar, vilket ger dig som köpare eller säljare trygghet i affären."
+          subtitle="Okulär undersökning med avtalad omfattning"
+          description="Med över 20 års erfarenhet i byggbranschen genomför jag okulära överlåtelsebesiktningar. Omfattning, pris och rapportens leveranstid bekräftas vid bokning."
           features={[
-            "Okulär besiktning av alla synliga byggnadsdelar",
-            "Detaljerad fotografisk dokumentation",
-            "Professionell rapport inom 48 timmar",
-            "Kontroll av konstruktion, fasad, tak och installationer",
-            "Prioriterade åtgärdsförslag och rekommendationer"
+            "Okulär besiktning av avtalade, synliga och åtkomliga delar",
+            "Fotografisk dokumentation enligt uppdragsbekräftelsen",
+            "Rapportens innehåll och leveranstid bekräftas vid bokning",
+            "Inga ingrepp, provtagningar eller funktionsprov om inte annat avtalas",
+            "Rekommendation om fortsatt teknisk utredning vid behov"
           ]}
           ctaPrimary={BOOKING_OVL_URL ? {
-            text: "Boka online",
+            text: "Skicka förfrågan",
             href: BOOKING_OVL_URL
           } : undefined}
           ctaSecondary={{
-            text: "076-111 84 47",
-            href: "tel:+46761118447",
+            text: COMPANY.phone.display,
+            href: COMPANY.phone.href,
             phone: true
           }}
           bannerContent={{
             icon: Home,
-            title: "Certifierad Besiktningsman",
+            title: "Överlåtelsebesiktning",
             subtitle: "20+ års erfarenhet i byggbranschen",
             certifications: [
               "Över 20 års erfarenhet i byggbranschen",
-              "Detaljerade rapporter inom 48 timmar",
-              "Täcker Sundsvall, Härnösand, Sollefteå m.fl."
+              "Tydligt avtalad omfattning och leveranstid",
+              `Förfrågningar från ${COMPANY.region}`
             ]
           }}
         />
@@ -372,7 +362,7 @@ const OverlatelsebesiktningPage = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Bokning</h3>
-                  <p className="text-gray-600">Boka online eller kontakta oss för att boka en tid som passar dig.</p>
+                  <p className="text-gray-600">Skicka en förfrågan. Tillgänglighet, underlag, pris och villkor bekräftas innan uppdraget bokas.</p>
                 </div>
               </div>
               <div className="flex items-start space-x-4">
@@ -390,7 +380,7 @@ const OverlatelsebesiktningPage = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Rapport</h3>
-                  <p className="text-gray-600">Detaljerad besiktningsrapport med bilder och rekommendationer levereras inom 48 timmar.</p>
+                  <p className="text-gray-600">Rapportens innehåll och leveranstid bekräftas vid bokning.</p>
                 </div>
               </div>
               <div className="flex items-start space-x-4">
@@ -423,7 +413,7 @@ const OverlatelsebesiktningPage = () => {
               Överlåtelsebesiktning i Västernorrland
             </h2>
             <p className="text-gray-600 text-center mb-8">
-              Vi erbjuder överlåtelsebesiktning i hela Västernorrlands län. Läs mer om vår service i din kommun:
+              Följande sidor innehåller lokal information. Tillgänglighet och resor bekräftas vid bokning:
             </p>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {Object.values(overlatelsebesiktningCityData).map((city) => (
@@ -449,10 +439,10 @@ const OverlatelsebesiktningPage = () => {
         <section className="py-16 px-4 sm:px-6 lg:px-8 earth-gradient text-white">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-6">
-              Redo att boka överlåtelsebesiktning?
+              Vill du fråga om en överlåtelsebesiktning?
             </h2>
             <p className="text-xl mb-4 opacity-90">
-              Boka direkt online eller kontakta oss för mer information.
+              Skicka en förfrågan så går vi igenom fastigheten, önskad omfattning och möjligt upplägg.
             </p>
             <p className="text-sm mb-8 opacity-75">
               Okulär besiktning av synliga och åtkomliga byggnadsdelar. Inga ingrepp eller provtagningar görs.
@@ -463,13 +453,13 @@ const OverlatelsebesiktningPage = () => {
                   <a 
                     href={BOOKING_OVL_URL}
                   >
-                    <CalendarCheck className="mr-2 h-4 w-4" />
-                    Boka online
+                    <Mail className="mr-2 h-4 w-4" />
+                    Skicka förfrågan
                   </a>
                 </Button>
               )}
               <Button size="lg" className="bg-transparent text-white border-2 border-white hover:bg-white hover:text-amber-600" asChild>
-                <a href="mailto:tobias@ytterman.com">
+                <a href={`mailto:${COMPANY.email}`}>
                   <Mail className="mr-2 h-4 w-4" />
                   Kontakta oss
                 </a>
@@ -483,11 +473,11 @@ const OverlatelsebesiktningPage = () => {
             <div className="mt-8 flex items-center justify-center space-x-6 text-sm opacity-80">
               <div className="flex items-center">
                 <MapPin className="mr-2 h-4 w-4" />
-                Verksam i hela Västernorrland
+                Förfrågningar från {COMPANY.region}
               </div>
               <div className="flex items-center">
                 <Clock className="mr-2 h-4 w-4" />
-                Snabb rapport
+                Leveranstid bekräftas vid bokning
               </div>
             </div>
           </div>

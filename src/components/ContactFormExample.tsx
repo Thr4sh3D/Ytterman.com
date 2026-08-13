@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
+import { COMPANY } from '@/config/company';
 
 /**
  * Example contact form component with Google Ads conversion tracking
@@ -38,7 +39,7 @@ export const ContactFormExample: React.FC = () => {
       
       toast({
         title: "Meddelande skickat!",
-        description: "Tack för ditt meddelande. Vi återkommer inom 24 timmar.",
+        description: "Tack för ditt meddelande. Vi går igenom uppgifterna och återkommer med nästa steg.",
       });
       
       // Reset form
@@ -64,13 +65,13 @@ export const ContactFormExample: React.FC = () => {
   const handlePhoneClick = () => {
     // Track phone call conversion when user clicks phone number
     trackPhoneCall();
-    window.location.href = 'tel:+46761118447';
+    window.location.href = COMPANY.phone.href;
   };
 
   const handleEmailClick = () => {
     // Track email click conversion when user clicks email
     trackEmailClick();
-    window.location.href = 'mailto:tobias@ytterman.com';
+    window.location.href = `mailto:${COMPANY.email}`;
   };
 
   return (
@@ -85,7 +86,7 @@ export const ContactFormExample: React.FC = () => {
             onClick={handlePhoneClick}
             className="text-amber-600 hover:text-amber-700 underline"
           >
-            076-111 84 47
+            {COMPANY.phone.display}
           </button>
         </p>
         <p>
@@ -94,7 +95,7 @@ export const ContactFormExample: React.FC = () => {
             onClick={handleEmailClick}
             className="text-amber-600 hover:text-amber-700 underline"
           >
-            tobias@ytterman.com
+            {COMPANY.email}
           </button>
         </p>
       </div>

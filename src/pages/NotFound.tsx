@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Home, Phone, ArrowLeft, MapPin } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import { normalizeInternalPath } from '@/utils/url';
+import { COMPANY } from '@/config/company';
 
 const NotFound = () => {
   const popularPages = [
@@ -12,7 +13,7 @@ const NotFound = () => {
     { name: "Kontrollansvarig Guide", url: "/guider/kontrollansvarig", description: "Allt om KA-rollen och teknisk kontroll" },
     { name: "BAS Guide", url: "/guider/bas", description: "Arbetsmiljösamordning under projektering och utförande" },
     { name: "Vanliga frågor", url: "/faq", description: "Svar på de mest frekventa frågorna" },
-    { name: "Kontakt", url: "/kontakt", description: "Kom i kontakt med oss för kostnadsfri konsultation" },
+    { name: "Kontakt", url: "/kontakt", description: "Skicka projektets grunduppgifter och be om offert" },
     { name: "Guider", url: "/guider", description: "Expertguider och tips för byggprocessen" }
   ];
 
@@ -125,7 +126,7 @@ const NotFound = () => {
                   Våra tjänsteområden i Västernorrland
                 </h2>
                 <p className="text-xl text-slate-600 mb-8">
-                  Vi erbjuder kontrollansvarig och BAS-tjänster i hela Västernorrland
+                  Vi tar emot förfrågningar om kontrollansvarig och BAS-tjänster i Västernorrland.
                 </p>
                 <div className="flex flex-wrap justify-center gap-3 mb-8">
                   {localAreas.map((area, index) => (
@@ -162,11 +163,11 @@ const NotFound = () => {
                   Kontakta oss
                 </Button>
                 <a 
-                  href="tel:+46761118447"
+                  href={COMPANY.phone.href}
                   className="inline-flex items-center px-8 py-4 border-2 border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-colors text-lg font-semibold focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-                  aria-label="Ring direkt till 076-111 84 47"
+                  aria-label={`Ring Ytterman på ${COMPANY.phone.display}`}
                 >
-                  Ring direkt: 076-111 84 47
+                  Ring: {COMPANY.phone.display}
                 </a>
               </div>
             </div>

@@ -1,4 +1,5 @@
 import { Phone, Mail, MapPin, Clock, CheckCircle } from 'lucide-react';
+import { BUSINESS_COPY, COMPANY } from '@/config/company';
 
 interface ContactInfoProps {
   className?: string;
@@ -9,28 +10,28 @@ export const ContactInfo = ({ className = '' }: ContactInfoProps) => {
     {
       icon: Phone,
       title: "Telefon",
-      value: "076-111 84 47",
-      link: "tel:+46761118447",
-      description: "Ring för akuta frågor"
+      value: COMPANY.phone.display,
+      link: COMPANY.phone.href,
+      description: "Ring eller lämna en projektförfrågan"
     },
     {
       icon: Mail,
       title: "E-post",
-      value: "tobias@ytterman.com",
-      link: "mailto:tobias@ytterman.com",
+      value: COMPANY.email,
+      link: `mailto:${COMPANY.email}`,
       description: "Skicka dina frågor"
     },
     {
       icon: MapPin,
       title: "Område",
-      value: "Västernorrland",
-      description: "Sundsvall, Härnösand, Sollefteå, Timrå, Kramfors"
+      value: COMPANY.region,
+      description: "Tillgänglighet och resor bekräftas per projekt"
     },
     {
       icon: Clock,
-      title: "Öppettider",
-      value: "Mån-Fre 08:00-17:00",
-      description: "Flexibla möten efter överenskommelse"
+      title: "Återkoppling",
+      value: "Utifrån projekt och kapacitet",
+      description: BUSINESS_COPY.defaultResponse
     }
   ];
 

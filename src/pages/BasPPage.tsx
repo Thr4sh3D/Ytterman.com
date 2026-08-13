@@ -6,42 +6,42 @@ import { FAQ } from "@/components/FAQ";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ServiceHero } from "@/components/ServiceHero";
-import { ExternalSiteLink } from "@/components/ExternalSiteLink";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle, Phone, Mail, MapPin, Clock, Award, Shield, FileText, Users, HardHat } from "lucide-react";
 import { Link } from "react-router-dom";
+import { BAS, COMPANY, SERVICES } from '@/config/company';
 
 const BasPPage = () => {
   const basPFAQ = [
     {
       question: "Vad är BAS-P?",
-      answer: "BAS-P (Byggarbetsmiljösamordnare under projektering) ansvarar för att samordna arbetsmiljöfrågor under projekteringsfasen och upprättar arbetsmiljöplan för byggprojektet."
+      answer: "BAS-P är byggarbetsmiljösamordnare under planering och projektering. Rollen samordnar arbetsmiljöfrågorna och medverkar till arbetsmiljöplan när en sådan krävs."
     },
     {
       question: "När behövs en BAS-P?",
-      answer: "BAS-P krävs när flera entreprenörer ska arbeta samtidigt på en byggarbetsplats, eller när projektet beräknas ta mer än 30 arbetsdagar eller 500 persondagar."
+      answer: "Byggherren ska se till att en lämplig BAS-P utses för planering och projektering av bygg- och anläggningsarbetet. Ansvarsfördelningen bedöms för det aktuella projektet."
     },
     {
       question: "Vad ingår i BAS-P tjänsten?",
-      answer: "Arbetsmiljöplan, riskbedömningar, samordning av säkerhetsåtgärder, och säkerställande av att alla arbetsmiljökrav följs under projekteringen."
+      answer: "Samordning av arbetsmiljöfrågor, uppföljning av projektörernas riskarbete och arbetsmiljöplan när reglerna kräver det. Exakt omfattning framgår av uppdragsbeskrivningen."
     },
     {
       question: "Skillnaden mellan BAS-P och BAS-U?",
-      answer: "BAS-P arbetar under projekteringsfasen medan BAS-U arbetar under utförandefasen. Ofta behövs båda rollerna för ett komplett byggprojekt."
+      answer: "BAS-P arbetar under planering och projektering, medan BAS-U arbetar under utförandet. Byggherren utser rollerna för respektive skede; samma lämpliga person kan ha båda uppdragen."
     }
   ];
 
   const services = [
     {
       title: "Arbetsmiljöplan",
-      description: "Upprättande av detaljerad arbetsmiljöplan för projektet",
+      description: "Samordning av arbetsmiljöplanen när reglerna kräver en sådan",
       icon: <FileText className="h-6 w-6" />
     },
     {
       title: "Riskbedömning",
-      description: "Identifiering och bedömning av arbetsmiljörisker",
+      description: "Samordning och uppföljning av projektörernas riskarbete",
       icon: <Shield className="h-6 w-6" />
     },
     {
@@ -65,35 +65,23 @@ const BasPPage = () => {
     "@context": "https://schema.org",
     "@type": "Service",
     "name": "BAS-P tjänster - Byggarbetsmiljösamordnare under projektering",
-    "description": "Professionella BAS-P tjänster i Västernorrland. Certifierad byggarbetsmiljösamordnare med över 20 års erfarenhet i byggbranschen.",
+    "description": `${SERVICES.basP.shortDescription} ${BAS.description}`,
     "provider": {
       "@type": "LocalBusiness",
-      "name": "Ytterman",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Viksjö",
-        "addressRegion": "Västernorrland",
-        "addressCountry": "SE"
-      },
-      "telephone": "+46761118447",
-      "email": "tobias@ytterman.com"
+      "name": COMPANY.brandName,
+      "url": COMPANY.siteUrl,
+      "telephone": COMPANY.phone.e164,
+      "email": COMPANY.email
     },
-    "areaServed": [
-      "Sundsvall", "Härnösand", "Sollefteå", "Timrå", "Kramfors"
-    ],
-    "serviceType": "BAS-P (Byggarbetsmiljösamordnare under projektering)",
-    "offers": {
-      "@type": "Offer",
-      "description": "BAS-P tjänster från 12,000 SEK",
-      "priceRange": "Från 12,000 SEK"
-    }
+    "areaServed": COMPANY.areaServed,
+    "serviceType": "BAS-P (Byggarbetsmiljösamordnare under projektering)"
   };
 
   return (
     <>
       <AdvancedSEO
         title="BAS-P i Västernorrland | Ytterman"
-        description="Behöver du BAS-P? Certifierad byggarbetsmiljösamordnare under projektering med 20+ års erfarenhet i Sundsvall, Härnösand, Sollefteå, Timrå, Kramfors."
+        description={`BAS-P i Västernorrland med ${COMPANY.experienceLabel.toLowerCase()}. Utbildning, kompetens och erfarenhet för arbetsmiljösamordning enligt ${BAS.regulation}.`}
         keywords="BAS-P, byggarbetsmiljösamordnare, arbetsmiljöplan, BAS-P Sundsvall, BAS-P Härnösand, BAS-P Västernorrland, arbetsmiljö byggprojekt"
         url="https://ytterman.com/bas-p"
         type="website"
@@ -118,33 +106,27 @@ const BasPPage = () => {
         </section>
         
         <ServiceHero
-          badge="Certifierad BAS-P"
+          badge="BAS-P – utbildad och erfaren"
           title="BAS-P i Västernorrland"
           subtitle="Säker arbetsmiljö under projektering"
-          description="Säkerställ en trygg arbetsmiljö redan från projekteringsfasen. Som certifierad BAS-P (Byggarbetsmiljösamordnare under projektering) hjälper jag dig planera för säkerhet och förebygga arbetsmiljörisker."
-          features={[
-            "Arbetsmiljöplan och riskbedömningar",
-            "Samordning under projekteringsfasen",
-            "Certifierad enligt AFS 1999:3",
-            "Fast pris eller tydlig timdebitering",
-            "Kan kombineras med BAS-U och KA"
-          ]}
+          description="Som BAS-P hjälper jag byggherren att samordna arbetsmiljöfrågorna under projekteringen och förebygga risker inför byggskedet."
+          features={[...SERVICES.basP.features, "Kan kombineras med BAS-U och KA"]}
           ctaPrimary={{
             text: "Begär offert",
             href: "/kontakt"
           }}
           ctaSecondary={{
             text: "Ring direkt",
-            href: "tel:+46761118447",
+            href: COMPANY.phone.href,
             phone: true
           }}
           bannerContent={{
             icon: HardHat,
-            title: "Certifierad BAS-P",
+            title: "Utbildad för BAS-P",
             subtitle: "Byggarbetsmiljösamordnare",
             certifications: [
-              "Certifierad enligt AFS 1999:3",
-              "Över 20 års erfarenhet av arbetsmiljö",
+              `Aktuellt regelverk: ${BAS.regulation}`,
+              COMPANY.experienceLabel,
               "Kan kombineras med BAS-U och Kontrollansvarig"
             ]
           }}
@@ -188,7 +170,7 @@ const BasPPage = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Projektanalys</h3>
-                  <p className="text-gray-600">Analys av projektets omfattning och identifiering av arbetsmiljörisker.</p>
+                  <p className="text-gray-600">Genomgång av projektets upplägg, aktörer och arbetsmiljörisker i projekteringen.</p>
                 </div>
               </div>
               <div className="flex items-start space-x-4">
@@ -197,7 +179,7 @@ const BasPPage = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Arbetsmiljöplan</h3>
-                  <p className="text-gray-600">Upprättande av detaljerad arbetsmiljöplan med säkerhetsåtgärder.</p>
+                  <p className="text-gray-600">Samordning av arbetsmiljöplan och åtgärder när reglerna kräver en plan.</p>
                 </div>
               </div>
               <div className="flex items-start space-x-4">
@@ -215,7 +197,7 @@ const BasPPage = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Dokumentation</h3>
-                  <p className="text-gray-600">Komplett dokumentation för överlämning till BAS-U.</p>
+                  <p className="text-gray-600">Dokumenterad överlämning av kvarstående risker, åtgärder och aktuell arbetsmiljöplan till BAS-U.</p>
                 </div>
               </div>
             </div>
@@ -248,8 +230,8 @@ const BasPPage = () => {
                     praktiken för projektörer, entreprenörer och övriga aktörer.
                   </p>
                   <p>
-                    Resultatet blir en arbetsmiljöplan och dokumentation som går att använda vidare
-                    när projektet lämnas över till utförandefasen och BAS-U tar vid.
+                    När en arbetsmiljöplan krävs ska den tillsammans med kvarstående risker och valda
+                    åtgärder kunna användas när projektet lämnas över till BAS-U.
                   </p>
                 </CardContent>
               </Card>
@@ -259,9 +241,8 @@ const BasPPage = () => {
                 </CardHeader>
                 <CardContent className="space-y-4 text-gray-600">
                   <p>
-                    När risker för fall, transporter, samordning och tillträde är genomgångna i tid
-                    blir både upphandling och byggstart mer förutsägbar. Det minskar risken för
-                    stopp, missförstånd och extra administration senare i projektet.
+                    När risker för fall, transporter, samordning och tillträde behandlas i
+                    projekteringen får utförandet ett tydligare underlag för planering och åtgärder.
                   </p>
                   <p>
                     För många projekt är det också en fördel att samordna BAS-P med andra roller som
@@ -287,18 +268,13 @@ const BasPPage = () => {
           <div className="max-w-4xl mx-auto">
             <div className="rounded-2xl border border-green-100 bg-green-50 p-8">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                Brandskydd och SBA när projektet går in i utförande
+                Tydlig överlämning till utförandet
               </h2>
               <p className="text-lg text-gray-700 leading-relaxed">
-                Som BAS-P planerar jag för risker redan i projekteringen, men när byggstarten närmar sig behöver byggherren ofta tydlig ansvarsfördelning även för brandskyddet. BAS-U samordnar arbetsmiljön under utförandet enligt AFS 2023:1 – men det operativa systematiska brandskyddsarbetet (SBA) är en separat roll med eget kompetenskrav. Behöver ert projekt en namngiven brandskyddsansvarig? Anlita{' '}
-                <ExternalSiteLink
-                  href="https://www.tysafety.se/sba-byggarbetsplats"
-                  ariaLabel="extern brandskyddsansvarig SBA via TY Safety – extern länk"
-                  className="text-green-700"
-                >
-                  extern brandskyddsansvarig (SBA) via TY Safety
-                </ExternalSiteLink>{' '}
-                – Tobias systerföretag som tar SBA-uppdrag i hela Västernorrland.
+                BAS-P samordnar arbetsmiljöfrågorna under planering och projektering utifrån bland
+                annat {BAS.regulation}. Inför utförandet behöver kvarstående risker, valda åtgärder
+                och aktuell arbetsmiljöplan lämnas över till BAS-U. Projektörer, arbetsgivare och
+                byggherre behåller sina respektive ansvar.
               </p>
             </div>
           </div>
@@ -311,27 +287,27 @@ const BasPPage = () => {
               Behöver du BAS-P för ditt projekt?
             </h2>
             <p className="text-xl mb-8 opacity-90">
-              Kontakta mig idag för en kostnadsfri konsultation och offert.
+              Skicka projektets underlag så återkommer jag med nästa steg och offert.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-white text-slate-900 hover:bg-slate-100" asChild>
                 <Link to="/kontakt/">Skicka förfrågan</Link>
               </Button>
               <Button size="lg" className="bg-transparent text-white border-2 border-white hover:bg-white hover:text-green-600" asChild>
-                <a href="mailto:tobias@ytterman.com">
+                <a href={`mailto:${COMPANY.email}`}>
                   <Mail className="mr-2 h-4 w-4" />
-                  tobias@ytterman.com
+                  {COMPANY.email}
                 </a>
               </Button>
             </div>
             <div className="mt-8 flex items-center justify-center space-x-6 text-sm opacity-80">
               <div className="flex items-center">
                 <MapPin className="mr-2 h-4 w-4" />
-                Verksam i hela Västernorrland
+                Förfrågningar från {COMPANY.region}
               </div>
               <div className="flex items-center">
                 <Clock className="mr-2 h-4 w-4" />
-                Snabb handläggning
+                Tidplan bekräftas i offerten
               </div>
             </div>
           </div>

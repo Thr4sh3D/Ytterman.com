@@ -1,10 +1,10 @@
 import { OptimizedImage } from '@/components/OptimizedImage';
 import { Certifications } from '@/components/Certifications';
-import { ExternalSiteLink } from '@/components/ExternalSiteLink';
 import profileImage512 from '@/assets/images/tobias-ytterman-profile-512.webp';
 import profileImage900 from '@/assets/images/tobias-ytterman-profile-900.webp';
 import { cacheBusterToken } from '@/lib/buildInfo';
 import { CheckCircle, Award, Users, Clock, Shield, Zap, HeartHandshake, MapPin } from 'lucide-react';
+import { BAS, BUSINESS_COPY, COMPANY, KA_CERT } from '@/config/company';
 
 export const About = () => {
   const profileImage512Src = `${profileImage512}?v=${cacheBusterToken}`;
@@ -13,56 +13,56 @@ export const About = () => {
   const achievements = [
     {
       icon: Award,
-      title: "20+ års erfarenhet",
+      title: COMPANY.experienceLabel,
       description: "Gedigen erfarenhet inom byggbranschen och kontroll"
     },
     {
       icon: CheckCircle,
-      title: "Certifierad expert",
-      description: "Officiellt certifierad kontrollansvarig enligt PBL"
+      title: "Certifierad kontrollansvarig",
+      description: `${KA_CERT.authorizationLabel}, certifikat ${KA_CERT.certificateNumber}`
     },
     {
       icon: Users,
-      title: "100+ nöjda kunder",
-      description: "Framgångsrikt genomförda projekt i hela Västernorrland"
+      title: `Medlem i ${COMPANY.membership.shortName}`,
+      description: COMPANY.membership.name
     },
     {
       icon: Clock,
-      title: "Snabb hantering",
-      description: "Effektiv process från kontakt till slutbevis"
+      title: "Tydlig KA-roll",
+      description: BUSINESS_COPY.kaScope
     }
   ];
 
   const whyChoose = [
     {
       icon: Shield,
-      title: "Trygghet genom hela projektet",
-      description: "Jag finns med från början till slut. Inga överraskningar, ingen osäkerhet – bara en tydlig plan som följs."
+      title: "Tydligt avgränsat uppdrag",
+      description: "Offerten beskriver roller, moment, kontaktvägar, resor och vilka underlag som behövs."
     },
     {
       icon: Clock,
-      title: "Snabb kommunikation",
-      description: "Svarar inom 24 timmar på mejl och WhatsApp. När något händer på bygget vill du ha svar direkt – inte nästa vecka."
+      title: "Tydlig kommunikation",
+      description: BUSINESS_COPY.defaultResponse
     },
     {
       icon: MapPin,
-      title: "Känner kommunerna i Västernorrland",
-      description: "Jag vet exakt vad Sundsvall, Härnösand, Sollefteå, Timrå och Kramfors kräver. Det sparar dig tid och krångel."
+      title: `Verksam i ${COMPANY.region}`,
+      description: "Projektets krav och kommunens besked gås igenom utifrån det aktuella ärendet."
     },
     {
       icon: Zap,
-      title: "Digital och effektiv",
-      description: "All dokumentation hanteras digitalt och strukturerat. Du får snabb åtkomst till handlingar när du behöver dem."
+      title: "Digital och strukturerad",
+      description: "Dokumentation och avstämningar kan hanteras digitalt när det passar projektets upplägg."
     },
     {
       icon: HeartHandshake,
       title: "Personligt engagemang",
-      description: "Ditt projekt är mitt projekt. Jag bryr mig om att det ska bli bra – inte bara godkänt, utan riktigt bra."
+      description: "Du har en tydlig kontaktperson och får projektspecifik återkoppling inom det avtalade uppdraget."
     },
     {
       icon: Award,
-      title: "Uppdaterad på nya regler",
-      description: "Jag håller mig kontinuerligt uppdaterad på regeländringar och nya krav så att du alltid är säker."
+      title: "Aktuellt regelverk",
+      description: "Uppdraget utgår från gällande regler och de beslut som gäller för det aktuella projektet."
     }
   ];
 
@@ -75,7 +75,7 @@ export const About = () => {
               Om Ytterman
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Med över 20 års erfarenhet inom byggbranschen erbjuder vi professionella 
+              Med {COMPANY.experienceLabel.toLowerCase()} inom byggbranschen erbjuder jag
               tjänster som kontrollansvarig och byggarbetsmiljösamordnare i Västernorrland.
             </p>
           </div>
@@ -86,24 +86,11 @@ export const About = () => {
                 Tobias Ytterman
               </h3>
               <p className="text-lg text-slate-600 mb-6">
-                Som certifierad kontrollansvarig och byggarbetsmiljösamordnare har jag 
-                hjälpt hundratals kunder genom hela byggprocessen. Min expertis sträcker 
-                sig från småhus till större kommersiella projekt.
+                Jag är {KA_CERT.title.toLowerCase()} och utbildad för uppdrag som {BAS.rolesLabel}.
+                Varje uppdrag avgränsas efter projektets art, roller och underlag.
               </p>
               <p className="text-lg text-slate-600 mb-8">
-                Jag är stolt över att kunna erbjuda trygghet och kvalitetssäkring för 
-                ditt byggprojekt med fast pris och tydlig kommunikation genom hela processen.
-              </p>
-              <p className="text-lg text-slate-600 mb-8">
-                Tobias driver även{' '}
-                <ExternalSiteLink
-                  href="https://www.tysafety.se"
-                  ariaLabel="TY Safety – extern länk"
-                  className="text-primary"
-                >
-                  TY Safety
-                </ExternalSiteLink>{' '}
-                – certifierad utbildare inom HLR, Första Hjälpen, Brandskydd, Heta Arbeten® och Arbetsmiljö i Västernorrland. Aktiv Gruppledare vid Räddningstjänsten och tidigare Stridssjukvårdare i Försvarsmakten.
+                Prisform, omfattning, kontaktvägar och tidplan framgår av offerten för det aktuella projektet.
               </p>
               
               <div className="grid sm:grid-cols-2 gap-6">
@@ -132,7 +119,7 @@ export const About = () => {
               <OptimizedImage
                 src={profileImage900Src}
                 srcSet={`${profileImage512Src} 512w, ${profileImage900Src} 900w`}
-                alt="Tobias Ytterman - Certifierad Kontrollansvarig och Byggarbetsmiljösamordnare i Västernorrland"
+                alt={`${COMPANY.publicName} – certifierad kontrollansvarig och utbildad för BAS-P/BAS-U`}
                 className="rounded-xl shadow-lg w-full h-auto"
                 width={900}
                 height={1352}
@@ -148,7 +135,7 @@ export const About = () => {
                 Varför välja Ytterman?
               </h3>
               <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-                Det finns många kontrollansvariga på marknaden. Här är vad som skiljer mig från andra.
+                Här är de arbetssätt och dokumenterade uppgifter som Ytterman bygger erbjudandet på.
               </p>
             </div>
 

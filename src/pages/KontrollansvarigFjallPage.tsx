@@ -5,56 +5,56 @@ import { Helmet } from 'react-helmet-async';
 import { FAQ } from "@/components/FAQ";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { ExternalSiteLink } from "@/components/ExternalSiteLink";
 import { ServiceHero } from "@/components/ServiceHero";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { CheckCircle, Mail, MapPin, Clock, Award, Shield, FileText, Mountain, Camera, Package } from "lucide-react";
+import { Mail, MapPin, Clock, Award, FileText, Mountain, Camera, Package } from "lucide-react";
 import { Link } from "react-router-dom";
+import { BAS, BUSINESS_COPY, COMPANY, KA_CERT } from '@/config/company';
 
 const KontrollansvarigFjallPage = () => {
   const fjallFAQ = [
     {
       question: "Kan du vara KA för mitt fjällhus i Åre eller Vemdalen?",
-      answer: "Ja. Jag tar uppdrag i hela fjällkedjan inom ca 3–5,5 timmars bilresa från Viksjö/Härnösand: Åre, Duved, Storlien, Vemdalen, Funäsdalen, Tänndalen, Lofsdalen, Hemavan/Tärnaby, Kittelfjäll och Saxnäs med omnejd."
+      answer: "Jag bedömer fjälluppdrag individuellt utifrån projektets läge, kontrollbehov och möjligheten att planera nödvändiga platsbesök. Skicka ort och underlag för besked om tillgänglighet."
     },
     {
       question: "Hur fungerar platsbesöken när byggplatsen är långt borta?",
-      answer: "Vi planerar platsbesök i förväg och paketerar dem till kritiska skeden (grundläggning, stomme, tätt hus). Mellan besöken sker uppföljning digitalt via foto, video och åtgärdslistor. Det håller nere kostnader och resor."
+      answer: "Behov, skeden och möjligheten till digital uppföljning bedöms från projektets kontrollplan och övriga underlag. Antal besök, resor, kostnader och tidplan bekräftas i offerten."
     },
     {
       question: "Vad menas med BAS-P/BAS-U och behöver jag det?",
-      answer: "BAS-P och BAS-U är byggarbetsmiljösamordnare för projektering respektive utförande. Det krävs när flera entreprenörer jobbar på samma arbetsplats. Jag kan kombinera rollen som KA med BAS-P/BAS-U i ett och samma uppdrag, vilket är vanligt vid fjällhusprojekt med flera underentreprenörer."
+      answer: "BAS-P och BAS-U är byggarbetsmiljösamordnare för projektering respektive utförande. Byggherrens ansvar, lämpliga personer och rollernas omfattning bedöms för projektet. KA och BAS kan kombineras när kompetens, tid, mandat och offert stödjer upplägget."
     },
     {
       question: "Hur ser prisbilden ut för ett fjälluppdrag?",
-      answer: "Fjälluppdrag prissätts som ett grundpaket för KA-uppdraget plus ett fast resepåslag per planerat platsbesök. Exakt pris beror på projektets storlek och antal besök. Skicka dina handlingar så får du ett tydligt prisförslag inom 24 timmar."
+      answer: "Fjälluppdrag prissätts utifrån KA-uppdragets omfattning, projektets läge och planerade platsbesök. Grundpris, resor och eventuella resekostnader specificeras i offerten."
     },
     {
       question: "Vilka utmaningar är specifika för fjällbyggen?",
-      answer: "Höga snölaster, korta byggfönster, logistik med material och hantverkare, sämre mobilnät och lokala entreprenörer som ofta arbetar på distans. En van fjäll-KA planerar för dessa faktorer redan i kontrollplanen."
+      answer: "Klimat, laster, mark, logistik och åtkomlighet behöver bedömas av projektets sakkunniga utifrån den faktiska platsen. KA följer den fastställda kontrollplanen men ersätter inte projektörernas tekniska ansvar."
     }
   ];
 
   const services = [
     {
       title: "Kontrollplan & tekniskt samråd",
-      description: "Upprättar kontrollplan och håller tekniskt samråd anpassat för fjällhus och fritidshus – med hänsyn till snölast, klimat och lokala förutsättningar.",
+      description: "Hjälper byggherren ta fram förslag till kontrollplan och medverkar vid tekniskt samråd för fjällhus och fritidshus.",
       icon: <FileText className="h-6 w-6" />
     },
     {
       title: "Platsbesök i kritiska skeden",
-      description: "Paketerade besök vid grund, stomme och tätt hus. Vi planerar resorna i förväg för att hålla kostnader nere.",
+      description: "Behov, skeden, resor och kostnader för platsbesök anges i offerten och anpassas till projektets kontrollplan.",
       icon: <Mountain className="h-6 w-6" />
     },
     {
       title: "Digital uppföljning",
-      description: "Foto, video och åtgärdslistor mellan platsbesöken. Du vet alltid vad som händer utan att vi behöver vara på plats varje vecka.",
+      description: "Foto, video och åtgärdslistor kan användas som stöd när projektets förutsättningar och kontrollbehov medger det.",
       icon: <Camera className="h-6 w-6" />
     },
     {
       title: "KA + BAS-P/BAS-U",
-      description: "Möjlighet att kombinera kontrollansvarig med byggarbetsmiljösamordnare i ett paketerat uppdrag – smidigare och kostnadseffektivare.",
+      description: "KA och BAS-P/BAS-U kan kombineras när roller, mandat, kapacitet och omfattning framgår tydligt av offerten.",
       icon: <Package className="h-6 w-6" />
     }
   ];
@@ -69,24 +69,17 @@ const KontrollansvarigFjallPage = () => {
     "@context": "https://schema.org",
     "@type": "Service",
     "name": "Kontrollansvarig i fjällvärlden",
-    "description": "Certifierad kontrollansvarig och BAS-P/BAS-U för fjällhus och fritidshus i Åre, Härjedalen och Västerbottensfjällen. Digital uppföljning kombinerat med paketerade platsbesök.",
+    "description": `${KA_CERT.title} och utbildad för uppdrag som ${BAS.rolesLabel} för fjällhus och fritidshus. Resor och platsbesök specificeras i offerten.`,
     "provider": {
       "@type": "LocalBusiness",
-      "name": "Ytterman",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Viksjö",
-        "addressRegion": "Västernorrland",
-        "addressCountry": "SE"
-      },
-      "telephone": "+46761118447",
-      "email": "tobias@ytterman.com"
+      "name": COMPANY.brandName,
+      "telephone": COMPANY.phone.e164,
+      "email": COMPANY.email
     },
-    "areaServed": [
-      "Åre", "Duved", "Vålådalen", "Bydalen", "Storlien",
-      "Vemdalen", "Funäsdalen", "Tänndalen", "Lofsdalen",
-      "Hemavan", "Tärnaby", "Kittelfjäll", "Saxnäs"
-    ],
+    "areaServed": COMPANY.areaServed.map((name) => ({
+      "@type": "AdministrativeArea",
+      name
+    })),
     "serviceType": "Kontrollansvarig"
   };
 
@@ -94,7 +87,7 @@ const KontrollansvarigFjallPage = () => {
     <>
       <AdvancedSEO
         title="Kontrollansvarig i fjällen | Ytterman"
-        description="Certifierad kontrollansvarig (KA) och BAS-P/BAS-U för fjällhus och fritidshus. Täcker Åre, Vemdalen, Funäsdalen, Hemavan och hela fjällkedjan. Digital uppföljning + paketerade platsbesök."
+        description={`${KA_CERT.title} och utbildad för ${BAS.rolesLabel} för fjällhus och fritidshus. Tillgänglighet, resor och platsbesök bekräftas i offerten.`}
         keywords="kontrollansvarig fjäll, kontrollansvarig Åre, kontrollansvarig Vemdalen, kontrollansvarig Funäsdalen, kontrollansvarig Hemavan, kontrollansvarig fritidshus, KA fjällhus, byggkontroll fjäll, BAS-P fjäll, Härjedalen, Västerbottensfjällen"
         url="https://ytterman.com/kontrollansvarig-i-fjallen"
         type="website"
@@ -122,16 +115,16 @@ const KontrollansvarigFjallPage = () => {
         </section>
 
         <ServiceHero
-          badge="Kontrollansvarig i fjällvärlden"
-          title="Kontrollansvarig i fjällvärlden – Åre, Härjedalen & Västerbottensfjällen"
-          subtitle="Certifierad KA och BAS-P/BAS-U med bas i Västernorrland"
-          description="Jag är certifierad kontrollansvarig (KA) och BAS-P/BAS-U med bas i Viksjö/Härnösand. Jag tar uppdrag längs hela fjällkedjan inom cirka 3–5,5 timmars bilresa och är van vid fjällhus, fritidshus och mindre flerbostadshus i fjällmiljö."
+          badge="Förfrågan för fjällprojekt"
+          title="Kontrollansvarig för fjällhus och fritidshus"
+          subtitle="Certifierad KA och utbildad för BAS-P/BAS-U"
+          description="Jag bedömer fjälluppdrag individuellt utifrån projektets läge, kontrollbehov och planerade platsbesök. Resor och eventuella resekostnader specificeras före uppdraget."
           features={[
             "Kontrollplan och tekniskt samråd för fjällhus och fritidshus",
-            "Paketerade platsbesök i grund, stomme och tätt hus",
-            "Digital uppföljning med foto, video och åtgärdslistor",
+            "Platsbesök och resor enligt offert och kontrollplan",
+            "Digital uppföljning där projektets kontrollbehov medger det",
             "Möjlighet att kombinera KA med BAS-P/BAS-U",
-            "Svar på offertförfrågan inom 24 timmar"
+            "Tillgänglighet och upplägg bekräftas i offerten"
           ]}
           ctaPrimary={{
             text: "Skicka skiss/handlingar",
@@ -139,16 +132,16 @@ const KontrollansvarigFjallPage = () => {
           }}
           ctaSecondary={{
             text: "Ring direkt",
-            href: "tel:+46761118447",
+            href: COMPANY.phone.href,
             phone: true
           }}
           bannerContent={{
             icon: Mountain,
-            title: "Fjäll-KA",
-            subtitle: "Åre · Härjedalen · Västerbottensfjällen",
+            title: "Fjällprojekt",
+            subtitle: "Tillgänglighet bedöms per förfrågan",
             certifications: [
-              "Certifierad KA enligt PBL",
-              "Certifierad BAS-P och BAS-U",
+              KA_CERT.authorizationLabel,
+              `Utbildad för ${BAS.rolesLabel}`,
               "Digital + platsbaserad uppföljning"
             ]
           }}
@@ -160,10 +153,11 @@ const KontrollansvarigFjallPage = () => {
           <section className="py-16 px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Områden jag täcker
+                Exempel på fjällorter för förfrågan
               </h2>
               <p className="text-lg text-gray-600 mb-8">
-                Jag verkar längs hela fjällkedjan inom <strong>cirka 3–5,5 timmars bilresa från Viksjö/Härnösand</strong>. Det innebär att jag kan vara på plats snabbt när det behövs, och planera resor kostnadseffektivt.
+                Tillgängligheten bedöms per uppdrag. Projektets läge, kontrollplan, nödvändiga
+                platsbesök och resor gås igenom innan offert lämnas.
               </p>
               <div className="grid sm:grid-cols-3 gap-6">
                 <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
@@ -210,10 +204,13 @@ const KontrollansvarigFjallPage = () => {
           <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                Varför välja en fjäll-KA?
+                Kontrollplanering för fjällprojekt
               </h2>
               <p className="text-lg text-gray-600 mb-8">
-                Att bygga i fjällen skiljer sig från ett vanligt villprojekt. Höga snölaster ställer krav på stommen redan på ritbordet. Kort byggfönster – ofta maj till oktober – gör att tidsplanen inte får halka. Lokala hantverkare är ofta rörliga och jobbar på flera ställen; logistiken kräver planering. En kontrollansvarig med erfarenhet av fjällprojekt vet hur man anpassar kontrollplanen, paketerar platsbesöken effektivt och håller koll digitalt när det inte går att vara på plats.
+                Klimat, laster, mark, logistik och åtkomlighet behöver bedömas av projektets
+                sakkunniga utifrån den faktiska platsen. KA hjälper byggherren att anpassa förslaget
+                till kontrollplan och planera sin uppföljning, men ersätter inte projektörernas
+                tekniska ansvar.
               </p>
               <div className="grid sm:grid-cols-2 gap-6">
                 {services.map((service, index) => (
@@ -240,7 +237,8 @@ const KontrollansvarigFjallPage = () => {
                 Upplägg och prislogik
               </h2>
               <p className="text-lg text-gray-600 mb-8">
-                Fjälluppdrag skiljer sig lite från ett lokalt KA-uppdrag, framför allt på grund av restid. Jag prissätter dem transparent och förutsägbart:
+                Fjälluppdrag bedöms individuellt. Uppdragets omfattning, platsbesök, resor,
+                eventuella resekostnader och tidplan ska framgå av offerten:
               </p>
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
@@ -249,7 +247,7 @@ const KontrollansvarigFjallPage = () => {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">Grundpaket KA</h3>
-                    <p className="text-gray-600">Fast pris för hela KA-uppdraget för en fjällvilla eller fritidshus – kontrollplan, tekniskt samråd, besök i kritiska skeden och slutbevis. Priset anpassas efter projektets storlek.</p>
+                    <p className="text-gray-600">Grundpriset omfattar de KA-moment som uttryckligen anges i offerten, exempelvis kontrollplan, medverkan vid tekniskt samråd, planerade besök och utlåtande inför slutbesked.</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
@@ -257,8 +255,8 @@ const KontrollansvarigFjallPage = () => {
                     2
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Fast resepåslag per resa</h3>
-                    <p className="text-gray-600">Varje planerat platsbesök faktureras med ett fast resepåslag som täcker mil och restid. Du vet i förväg vad varje besök kostar – inga överraskningar.</p>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Resor och platsbesök</h3>
+                    <p className="text-gray-600">Antal besök, berörda skeden, resor och eventuella resekostnader specificeras före uppdraget.</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
@@ -266,30 +264,11 @@ const KontrollansvarigFjallPage = () => {
                     3
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Samordnade besök håller ner kostnaden</h3>
-                    <p className="text-gray-600">Jag planerar alltid resor för att kunna samordna flera ärenden under samma resa. Det gör att kostnaden per besök hålls nere, utan att kontrollen försämras.</p>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Bekräftat upplägg</h3>
+                    <p className="text-gray-600">Uppdraget bekräftas först när kontrollbehov, tillgänglighet och praktiskt upplägg har gåtts igenom.</p>
                   </div>
                 </div>
               </div>
-            </div>
-          </section>
-
-          <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                Brandskydd i fjällmiljö
-              </h2>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Bygger du i fjällen? Brandskydd och utrymning är extra kritiskt långt från räddningstjänsten. TY Safety erbjuder även{' '}
-                <ExternalSiteLink
-                  href="https://www.tysafety.se/sakerhetshelg-fjallen"
-                  ariaLabel="Säkerhetsresor i fjällen via TY Safety – extern länk"
-                  className="text-blue-700"
-                >
-                  Säkerhetsresor i fjällen via TY Safety
-                </ExternalSiteLink>{' '}
-                – kombinerade HLR- och brandskyddsutbildningar för företagsgrupper.
-              </p>
             </div>
           </section>
 
@@ -310,7 +289,7 @@ const KontrollansvarigFjallPage = () => {
                 Planerar du ett fjällhus?
               </h2>
               <p className="text-xl mb-4 opacity-90">
-                Skicka dina skisser eller bygglovshandlingar via mail – jag återkommer med prisförslag och upplägg inom 24 timmar.
+                Skicka dina skisser eller bygglovshandlingar via mejl så återkommer jag med nästa steg utifrån projektet och aktuell kapacitet.
               </p>
               <p className="text-base mb-8 opacity-80">
                 Ju tidigare du kontaktar mig, desto lättare är det att samordna platsbesöken med ditt byggfönster.
@@ -320,24 +299,24 @@ const KontrollansvarigFjallPage = () => {
                   <Link to="/kontakt/">Skicka förfrågan</Link>
                 </Button>
                 <Button size="lg" className="bg-transparent text-white border-2 border-white hover:bg-white hover:text-blue-600" asChild>
-                  <a href="mailto:tobias@ytterman.com">
+                  <a href={`mailto:${COMPANY.email}`}>
                     <Mail className="mr-2 h-4 w-4" />
-                    tobias@ytterman.com
+                    {COMPANY.email}
                   </a>
                 </Button>
               </div>
               <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-6 text-sm opacity-80">
                 <div className="flex items-center">
                   <Clock className="mr-2 h-4 w-4" />
-                  Svar inom 24 timmar
+                  Tillgänglighet bekräftas
                 </div>
                 <div className="flex items-center">
                   <MapPin className="mr-2 h-4 w-4" />
-                  3–5,5 h från Viksjö/Härnösand
+                  Resor specificeras i offerten
                 </div>
                 <div className="flex items-center">
                   <Award className="mr-2 h-4 w-4" />
-                  Certifierad KA &amp; BAS-P/BAS-U
+                  Certifierad KA · utbildad för BAS-P/BAS-U
                 </div>
               </div>
             </div>

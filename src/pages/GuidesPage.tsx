@@ -9,6 +9,7 @@ import { BookOpen, Shield, Users, FileText, Building, Zap, Leaf, Laptop, CheckCi
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { knowledgeBase } from '@/content/knowledgeBase';
 import type { BlogPostMeta } from '@/types/blog';
+import { COMPANY } from '@/config/company';
 
 // Icon mapping for dynamic icon resolution
 const iconMap: Record<string, LucideIcon> = {
@@ -61,23 +62,23 @@ const GuidesPage = () => {
   const guidesFaq = [
     {
       question: 'Hur ofta uppdateras guiderna?',
-      answer: 'Våra guider uppdateras kontinuerligt för att reflektera aktuella lagar, föreskrifter och best practices inom byggbranschen.'
+      answer: 'Guiderna ses över när relevanta regler eller tjänsteuppgifter ändras. Kontrollera alltid aktuella projektkrav med ansvarig myndighet eller avtalad sakkunnig.'
     },
     {
       question: 'Kan jag få personlig rådgivning utöver guiderna?',
-      answer: 'Absolut! Kontakta oss för en kostnadsfri konsultation där vi kan diskutera ditt specifika projekt och behov.'
+      answer: 'Skicka en förfrågan med projektets grunduppgifter så får du besked om möjligt upplägg, aktuell kapacitet och nästa steg.'
     },
     {
       question: 'Är guiderna relevanta för alla typer av byggprojekt?',
-      answer: 'Våra guider täcker ett brett spektrum av byggprojekt, från villabyggen till kommersiella byggnader. Kontakta oss om du har specifika frågor.'
+      answer: 'Guiderna är generell information och ersätter inte en bedömning av ditt projekt. Skicka projektets grunduppgifter om du vill få ett förslag på nästa steg.'
     }
   ];
 
   return (
     <>
       <AdvancedSEO 
-        title="Bygguider - Kontrollansvarig, BAS, Bygglov & Mer | Ytterman"
-        description="Omfattande guider om byggprocessen: Kontrollansvarig, BAS-P/BAS-U, bygglov, energideklaration, överlåtelsebesiktning. Expertråd från certifierad byggkonsult i Västernorrland."
+        title="Bygguider – kontrollansvarig, BAS och byggprocess | Ytterman"
+        description="Guider om kontrollansvarig, BAS-P/BAS-U, bygglov, energideklaration via partner, överlåtelsebesiktning och byggprocess."
         keywords="byggguide, kontrollansvarig guide, BAS-P guide, BAS-U guide, bygglov guide, energideklaration, överlåtelsebesiktning, byggprocess, Västernorrland"
         url="https://ytterman.com/guider"
         type="website"
@@ -107,8 +108,8 @@ const GuidesPage = () => {
                   Bygguider från Ytterman
                 </h1>
                 <p className="text-xl text-slate-600 mb-8">
-                  Lär dig allt om byggprocessen från en erfaren kontrollansvarig och 
-                  byggarbetsmiljösamordnare. Praktiska guider baserade på över 20 års erfarenhet.
+                  Praktiska guider om roller, beslut och dokumentation i byggprocessen,
+                  baserade på över 20 års erfarenhet i byggbranschen.
                 </p>
               </div>
             </div>
@@ -161,7 +162,7 @@ const GuidesPage = () => {
                 <div className="flex items-center justify-between mb-10">
                   <div>
                     <h2 className="text-3xl font-bold text-slate-900 mb-2">Blogg</h2>
-                    <p className="text-slate-600">Dagliga expertartiklar om byggprocessen</p>
+                    <p className="text-slate-600">Artiklar och uppdateringar om byggprocessen</p>
                   </div>
                   <a
                     href="/blogg/"
@@ -231,8 +232,8 @@ const GuidesPage = () => {
                 Behöver du professionell hjälp?
               </h2>
               <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-                Våra guider ger dig grundläggande kunskap, men inget slår personlig rådgivning. 
-                Kontakta oss för en kostnadsfri konsultation.
+                Guiderna ger allmän information. Skicka projektets underlag om du vill be om
+                offert på projektspecifikt stöd.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a 
@@ -242,10 +243,10 @@ const GuidesPage = () => {
                   Kontakta oss
                 </a>
                 <a 
-                  href="tel:+46761118447"
+                  href={COMPANY.phone.href}
                   className="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white rounded-lg hover:bg-white hover:text-slate-900 transition-colors text-lg font-semibold"
                 >
-                  Ring: 076-111 84 47
+                  Ring: {COMPANY.phone.display}
                 </a>
               </div>
             </div>

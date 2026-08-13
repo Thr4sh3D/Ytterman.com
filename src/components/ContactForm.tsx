@@ -9,6 +9,7 @@ import { useToast } from '@/hooks/use-toast';
 import { sendContactEmail } from '@/lib/emailjs';
 import { useGoogleAdsTracking } from '@/hooks/useGoogleAdsTracking';
 import { useSearchParams } from 'react-router-dom';
+import { BUSINESS_COPY, COMPANY } from '@/config/company';
 
 const VALID_PROJECT_TYPES = new Set([
   'kontrollansvarig',
@@ -87,7 +88,7 @@ const ContactForm = () => {
         
         toast({
           title: "Meddelande skickat!",
-          description: "Tack för ditt meddelande. Vi återkommer inom 24 timmar.",
+          description: "Tack för ditt meddelande. Vi går igenom uppgifterna och återkommer med nästa steg.",
         });
         
         // Rensa formuläret
@@ -107,7 +108,7 @@ const ContactForm = () => {
       
       toast({
         title: "Kunde inte skicka meddelandet",
-        description: "Försök igen eller ring oss direkt på 076-111 84 47.",
+        description: `Försök igen eller ring ${COMPANY.phone.display}.`,
         variant: "destructive",
       });
     } finally {
@@ -123,7 +124,7 @@ const ContactForm = () => {
           <CardHeader>
             <CardTitle className="text-2xl text-slate-800">Kontakta oss</CardTitle>
             <CardDescription>
-              Berätta om ditt projekt så återkommer vi med en kostnadsfri offert inom 24 timmar.
+              Berätta om ditt projekt så går vi igenom underlaget och återkommer med nästa steg.
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -224,7 +225,7 @@ const ContactForm = () => {
               {submitStatus === 'success' && (
                 <div className="flex items-center gap-2 text-green-600 bg-green-50 p-3 rounded-lg">
                   <CheckCircle className="w-5 h-5" />
-                  <span>Meddelande skickat! Vi återkommer inom 24 timmar.</span>
+                  <span>Meddelande skickat! Vi går igenom uppgifterna och återkommer med nästa steg.</span>
                 </div>
               )}
 
@@ -250,11 +251,11 @@ const ContactForm = () => {
                 <div>
                   <p className="font-medium text-slate-800">Telefon</p>
                   <a 
-                    href="tel:+46761118447" 
+                    href={COMPANY.phone.href}
                     className="text-blue-600 hover:text-blue-700 transition-colors"
-                    onClick={() => handlePhoneClick('+46761118447')}
+                    onClick={() => handlePhoneClick(COMPANY.phone.e164)}
                   >
-                    076-111 84 47
+                    {COMPANY.phone.display}
                   </a>
                 </div>
               </div>
@@ -264,10 +265,10 @@ const ContactForm = () => {
                 <div>
                   <p className="font-medium text-slate-800">E-post</p>
                   <a 
-                    href="mailto:tobias@ytterman.com" 
+                    href={`mailto:${COMPANY.email}`}
                     className="text-blue-600 hover:text-blue-700 transition-colors"
                   >
-                    tobias@ytterman.com
+                    {COMPANY.email}
                   </a>
                 </div>
               </div>
@@ -276,16 +277,16 @@ const ContactForm = () => {
                 <MapPin className="w-5 h-5 text-blue-600" />
                 <div>
                   <p className="font-medium text-slate-800">Verksamhetsområde</p>
-                  <p className="text-slate-600">Västernorrland</p>
-                  <p className="text-sm text-slate-500">Sundsvall, Härnösand, Sollefteå, Kramfors, Timrå</p>
+                  <p className="text-slate-600">{COMPANY.region}</p>
+                  <p className="text-sm text-slate-500">{COMPANY.localPageAreas.join(', ')}</p>
                 </div>
               </div>
 
               <div className="flex items-center gap-3">
                 <Clock className="w-5 h-5 text-blue-600" />
                 <div>
-                  <p className="font-medium text-slate-800">Svarstid</p>
-                  <p className="text-slate-600">Inom 24 timmar</p>
+                  <p className="font-medium text-slate-800">Återkoppling</p>
+                  <p className="text-slate-600">{BUSINESS_COPY.defaultResponse}</p>
                 </div>
               </div>
             </CardContent>
@@ -293,20 +294,20 @@ const ContactForm = () => {
 
           <Card className="bg-blue-50 border-blue-200">
             <CardContent className="p-6">
-              <h3 className="font-semibold text-slate-800 mb-2">Snabb kontakt</h3>
+              <h3 className="font-semibold text-slate-800 mb-2">Kontakta Ytterman</h3>
               <p className="text-slate-600 mb-4">
-                Behöver du svar direkt? Ring oss så svarar vi inom kontorstid.
+                Ring om du föredrar telefon. Om samtalet inte kan tas emot, skicka gärna projektets grunduppgifter i formuläret.
               </p>
               <Button 
                 asChild 
                 className="w-full earth-gradient hover:opacity-90 text-white"
               >
                 <a 
-                  href="tel:+46761118447"
-                  onClick={() => handlePhoneClick('+46761118447')}
+                  href={COMPANY.phone.href}
+                  onClick={() => handlePhoneClick(COMPANY.phone.e164)}
                 >
                   <Phone className="w-4 h-4 mr-2" />
-                  Ring nu: 076-111 84 47
+                  Ring nu: {COMPANY.phone.display}
                 </a>
               </Button>
             </CardContent>

@@ -3,6 +3,7 @@ import { Phone, Mail, MapPin, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 import { sendContactEmail } from '@/lib/emailjs';
+import { BUSINESS_COPY, COMPANY } from '@/config/company';
 
 interface ContactProps {
   selectedPackage?: string;
@@ -54,7 +55,7 @@ export const Contact = ({ selectedPackage = '', prefilledMessage = '' }: Contact
       if (response.success) {
         toast({
           title: "Meddelande skickat!",
-          description: "Tack för ditt meddelande. Jag återkommer inom 24 timmar.",
+          description: "Tack för ditt meddelande. Jag går igenom uppgifterna och återkommer med nästa steg.",
         });
         
         // Reset form
@@ -72,7 +73,7 @@ export const Contact = ({ selectedPackage = '', prefilledMessage = '' }: Contact
       console.error('Error sending message:', error);
       toast({
         title: "Fel vid skickning",
-        description: "Ett fel uppstod. Försök igen eller ring direkt på 076-111 84 47.",
+        description: `Ett fel uppstod. Försök igen eller ring ${COMPANY.phone.display}.`,
         variant: "destructive"
       });
     } finally {
@@ -91,25 +92,25 @@ export const Contact = ({ selectedPackage = '', prefilledMessage = '' }: Contact
     {
       icon: Phone,
       title: "Telefon",
-      value: "076-111 84 47",
-      action: () => window.open('tel:+46761118447')
+      value: COMPANY.phone.display,
+      action: () => window.open(COMPANY.phone.href)
     },
     {
       icon: Mail,
       title: "E-post",
-      value: "tobias@ytterman.com",
-      action: () => window.open('mailto:tobias@ytterman.com')
+      value: COMPANY.email,
+      action: () => window.open(`mailto:${COMPANY.email}`)
     },
     {
       icon: MapPin,
       title: "Verksam i",
-      value: "Västernorrland",
+      value: COMPANY.region,
       action: null
     },
     {
       icon: Clock,
-      title: "Svarstid",
-      value: "Inom 24 timmar",
+      title: "Återkoppling",
+      value: "Utifrån projekt och aktuell kapacitet",
       action: null
     }
   ];
@@ -122,7 +123,7 @@ export const Contact = ({ selectedPackage = '', prefilledMessage = '' }: Contact
             Kontakta mig tidigt – det lönar sig
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Många hör av sig för sent i processen och får onödiga problem och merkostnader. Ju tidigare du tar kontakt, desto smidigare blir hela projektet. <strong>Boka en kostnadsfri konsultation redan idag</strong> – så ser vi till att du får rätt start från början.
+            Tidigt och tydligt underlag gör det lättare att bedöma rätt tjänst och omfattning. <strong>Skicka projektets grunduppgifter</strong> så återkommer jag med nästa steg utifrån aktuell kapacitet.
           </p>
         </div>
 
@@ -154,12 +155,11 @@ export const Contact = ({ selectedPackage = '', prefilledMessage = '' }: Contact
             </div>
 
             <div className="mt-8 p-6 bg-white rounded-lg">
-              <h4 className="font-semibold text-foreground mb-4">Kostnadsfri konsultation – inga förbindelser</h4>
+              <h4 className="font-semibold text-foreground mb-4">Så behandlas din förfrågan</h4>
               <p className="text-muted-foreground">
-                Jag erbjuder alltid en kostnadsfri första konsultation där vi går igenom 
-                ditt projekt och diskuterar vilka tjänster som behövs. Du får ett fast 
-                prisförslag utan förbindelser. Ring eller skicka ett meddelande så 
-                bokar vi ett möte redan idag.
+                Beskriv projektets typ, ort, tidplan och vilka handlingar som redan finns.
+                Jag bedömer möjlig omfattning och återkommer med frågor, nästa steg eller
+                offert. Inget uppdrag startar innan omfattning och villkor har bekräftats.
               </p>
             </div>
           </div>
@@ -171,7 +171,7 @@ export const Contact = ({ selectedPackage = '', prefilledMessage = '' }: Contact
             </h3>
             
             <p className="text-muted-foreground mb-6">
-              Fyll i formuläret så återkommer jag vanligtvis inom 24 timmar med förslag på upplägg och fast prisförslag för just ditt projekt.
+              {BUSINESS_COPY.defaultResponse}
             </p>
             
             <form onSubmit={handleSubmit} className="space-y-6">

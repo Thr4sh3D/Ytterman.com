@@ -8,9 +8,10 @@ import { Footer } from "@/components/Footer";
 import { ServiceHero } from "@/components/ServiceHero";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { CheckCircle, Phone, Mail, MapPin, Clock, Award, Shield, FileText, ArrowRight } from "lucide-react";
+import { CheckCircle, Mail, MapPin, Clock, Award, Shield, FileText, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { type CityData, getOtherCities } from '@/content/kontrollansvarigCityData';
+import { COMPANY, KA_CERT, PRICING } from '@/config/company';
 
 interface KontrollansvarigCityPageProps {
   cityData: CityData;
@@ -22,22 +23,22 @@ const KontrollansvarigCityPage = ({ cityData: city }: KontrollansvarigCityPagePr
   const services = [
     {
       title: "Kontrollplan",
-      description: `Upprättande av detaljerad kontrollplan för ditt byggprojekt i ${city.name}`,
+      description: `Förslag till kontrollplan utifrån projektets underlag i ${city.name}`,
       icon: <FileText className="h-6 w-6" />
     },
     {
-      title: "Teknisk kontroll",
-      description: "Kontroll av tekniska egenskapskrav och byggnadstekniska lösningar",
+      title: "Uppföljning",
+      description: "Följer att kontrollerna enligt den fastställda kontrollplanen dokumenteras",
       icon: <Shield className="h-6 w-6" />
     },
     {
-      title: "Slutbesiktning",
-      description: "Genomförande av slutbesiktning och utfärdande av slutbevis",
+      title: "Utlåtande inför slutbesked",
+      description: "Sammanställning av dokumentation och kontrollansvarigs utlåtande till byggherren",
       icon: <CheckCircle className="h-6 w-6" />
     },
     {
       title: "Rådgivning",
-      description: `Kontinuerlig rådgivning genom hela byggprocessen i ${city.name}`,
+      description: `Kontakt och stöd inom det avtalade KA-uppdraget i ${city.name}`,
       icon: <Award className="h-6 w-6" />
     }
   ];
@@ -55,31 +56,22 @@ const KontrollansvarigCityPage = ({ cityData: city }: KontrollansvarigCityPagePr
     "description": city.seo.description,
     "provider": {
       "@type": "LocalBusiness",
-      "name": "Ytterman",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": city.structuredData.addressLocality,
-        "addressRegion": "Västernorrland",
-        "addressCountry": "SE"
-      },
-      "telephone": "+46761118447",
-      "email": "tobias@ytterman.com",
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": city.structuredData.latitude,
-        "longitude": city.structuredData.longitude
-      }
+      "name": COMPANY.brandName,
+      "telephone": COMPANY.phone.e164,
+      "email": COMPANY.email
     },
     "areaServed": {
-      "@type": "City",
-      "name": city.name
+      "@type": "AdministrativeArea",
+      "name": COMPANY.region
     },
     "serviceType": "Kontrollansvarig",
     "offers": {
-      "@type": "Offer",
-      "description": `Kontrollansvarig tjänster i ${city.name} från 15,000 SEK`,
+      "@type": "AggregateOffer",
+      "description": `Paketpriser ${PRICING.year}, inklusive moms`,
       "priceCurrency": "SEK",
-      "priceRange": "Från 15,000 SEK"
+      "lowPrice": PRICING.ka.extension.bas,
+      "highPrice": PRICING.ka.newVacationHome.plus,
+      "offerCount": 6
     }
   };
 
@@ -120,11 +112,11 @@ const KontrollansvarigCityPage = ({ cityData: city }: KontrollansvarigCityPagePr
           subtitle={city.heroSubtitle}
           description={city.heroDescription}
           features={[
-            `Lokal närvaro i ${city.name} – ${city.travelTime}`,
-            "Kontrollplan och teknisk kontroll enligt PBL",
-            "Slutbesiktning och utfärdande av slutbevis",
-            "Fast pris utan extra reskostnader",
-            "Digital hantering och snabb återkoppling"
+            `Förfrågningar från ${city.name} – ${city.travelTime}`,
+            "Förslag till kontrollplan och uppföljning enligt PBL",
+            "Dokumentation och utlåtande inför slutbesked",
+            KA_CERT.authorizationLabel,
+            "Omfattning och tidsplan bekräftas i offerten"
           ]}
           ctaPrimary={{
             text: "Begär offert",
@@ -132,17 +124,17 @@ const KontrollansvarigCityPage = ({ cityData: city }: KontrollansvarigCityPagePr
           }}
           ctaSecondary={{
             text: "Ring direkt",
-            href: "tel:+46761118447",
+            href: COMPANY.phone.href,
             phone: true
           }}
           bannerContent={{
             icon: Shield,
-            title: "Certifierad Expert",
+            title: "Certifierad KA",
             subtitle: `Kontrollansvarig i ${city.name}`,
             certifications: [
               "Medlem i SBR - Svenska Byggingenjörers Riksförbund",
-              "Certifierad enligt nya regelverket 2025",
-              `Verksam i ${city.name} och hela Västernorrland`
+              `${KA_CERT.issuer}, ${KA_CERT.certificateNumber}`,
+              `Förfrågningar från ${city.name} och ${COMPANY.region}`
             ]
           }}
         />
@@ -152,7 +144,7 @@ const KontrollansvarigCityPage = ({ cityData: city }: KontrollansvarigCityPagePr
           <section className="py-16 px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                Kontrollansvarig i {city.name} – Lokal Expertis
+                Kontrollansvarig i {city.name} – lokal information
               </h2>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
                 {city.localContent.intro}
@@ -222,28 +214,28 @@ const KontrollansvarigCityPage = ({ cityData: city }: KontrollansvarigCityPagePr
                   <div className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-semibold">1</div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">Kontakt & Offert</h3>
-                    <p className="text-gray-600">Vi diskuterar ditt projekt i {city.name} och ger dig en kostnadsfri offert.</p>
+                    <p className="text-gray-600">Vi går igenom ditt projekt i {city.name} och lämnar offert på ett definierat upplägg.</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
                   <div className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-semibold">2</div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">Kontrollplan</h3>
-                    <p className="text-gray-600">Jag upprättar en detaljerad kontrollplan anpassad för ditt projekt och {city.municipality}s krav.</p>
+                    <p className="text-gray-600">Jag hjälper dig som byggherre att ta fram ett förslag till kontrollplan utifrån projektets underlag. Byggnadsnämnden fastställer kontrollplanen.</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
                   <div className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-semibold">3</div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">Kontroll & Uppföljning</h3>
-                    <p className="text-gray-600">Kontinuerlig kontroll och uppföljning under byggprocessen med platsbesök i {city.name}.</p>
+                    <p className="text-gray-600">Jag följer kontrollerna och gör de platsbesök som ingår i det avtalade uppdraget och beslutad kontrollplan.</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
                   <div className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-semibold">4</div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Slutbevis</h3>
-                    <p className="text-gray-600">Slutbesiktning och utfärdande av slutbevis när allt är klart.</p>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Underlag inför slutbesked</h3>
+                    <p className="text-gray-600">Jag sammanställer dokumentation och lämnar mitt utlåtande. Byggnadsnämnden beslutar om slutbesked.</p>
                   </div>
                 </div>
               </div>
@@ -267,7 +259,7 @@ const KontrollansvarigCityPage = ({ cityData: city }: KontrollansvarigCityPagePr
                 Kontrollansvarig i övriga kommuner
               </h2>
               <p className="text-gray-600 text-center mb-8">
-                Vi erbjuder kontrollansvarig tjänster i hela Västernorrland. Läs mer om vår lokala närvaro:
+                Se informationssidor för fler orter. Tillgänglighet och resor bekräftas alltid per projekt:
               </p>
               <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 {otherCities.map((otherCity) => (
@@ -301,16 +293,16 @@ const KontrollansvarigCityPage = ({ cityData: city }: KontrollansvarigCityPagePr
                 Behöver du en kontrollansvarig i {city.name}?
               </h2>
               <p className="text-xl mb-8 opacity-90">
-                Kontakta mig idag för en kostnadsfri konsultation och offert för ditt projekt i {city.name}.
+                Skicka projektunderlaget så återkommer jag med nästa steg och offert för ett möjligt uppdrag i {city.name}.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="bg-white text-slate-900 hover:bg-slate-100" asChild>
                   <Link to="/kontakt/">Skicka förfrågan</Link>
                 </Button>
                 <Button size="lg" className="bg-transparent text-white border-2 border-white hover:bg-white hover:text-blue-600" asChild>
-                  <a href="mailto:tobias@ytterman.com">
+                  <a href={`mailto:${COMPANY.email}`}>
                     <Mail className="mr-2 h-4 w-4" />
-                    tobias@ytterman.com
+                    {COMPANY.email}
                   </a>
                 </Button>
               </div>
@@ -321,7 +313,7 @@ const KontrollansvarigCityPage = ({ cityData: city }: KontrollansvarigCityPagePr
                 </div>
                 <div className="flex items-center">
                   <Clock className="mr-2 h-4 w-4" />
-                  Snabb handläggning
+                  Tidplan bekräftas i offerten
                 </div>
               </div>
             </div>

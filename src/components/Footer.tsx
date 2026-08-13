@@ -1,6 +1,7 @@
 import { Phone, Mail, MapPin } from 'lucide-react';
 import { ExternalSiteLink } from '@/components/ExternalSiteLink';
 import { buildTimeIso, shortCommitSha } from '@/lib/buildInfo';
+import { BAS, COMPANY, KA_CERT } from '@/config/company';
 
 const FOOTER_DATE_LOCALE = 'sv-SE';
 
@@ -11,32 +12,32 @@ export const Footer = () => {
   return (
     <footer className="bg-slate-900 text-white">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid md:grid-cols-5 gap-8">
+        <div className="grid md:grid-cols-4 gap-8">
           {/* Company Info */}
           <section className="md:col-span-2" aria-label="Ytterman">
             <p className="text-2xl font-bold earth-gradient bg-clip-text text-transparent mb-4">
-              Ytterman
+              {COMPANY.brandName}
             </p>
             <p className="text-gray-300 mb-6">
-              Certifierad Kontrollansvarig och Byggarbetsmiljösamordnare med över 20 års
-              erfarenhet i byggbranschen. Vi hjälper dig genom hela byggprocessen i Västernorrland.
+              {KA_CERT.title} och utbildad för uppdrag som {BAS.rolesLabel}.{' '}
+              {COMPANY.experienceLabel} i byggbranschen.
             </p>
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <Phone className="w-5 h-5 text-primary" />
-                <a href="tel:+46761118447" className="hover:text-primary transition-colors">
-                  076-111 84 47
+                <a href={COMPANY.phone.href} className="hover:text-primary transition-colors">
+                  {COMPANY.phone.display}
                 </a>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="w-5 h-5 text-primary" />
-                <a href="mailto:tobias@ytterman.com" className="hover:text-primary transition-colors">
-                  tobias@ytterman.com
+                <a href={`mailto:${COMPANY.email}`} className="hover:text-primary transition-colors">
+                  {COMPANY.email}
                 </a>
               </div>
               <div className="flex items-center space-x-3">
                 <MapPin className="w-5 h-5 text-primary" />
-                <span>Västernorrland, Sverige</span>
+                <span>{COMPANY.region}, Sverige</span>
               </div>
             </div>
 
@@ -115,37 +116,14 @@ export const Footer = () => {
               Verksamhetsområden
             </p>
             <ul className="space-y-2 text-gray-300">
-              <li>Sundsvall</li>
-              <li>Härnösand</li>
-              <li>Sollefteå</li>
-              <li>Timrå</li>
-              <li>Kramfors</li>
-            </ul>
-          </section>
-
-          <section aria-label="Systerföretag">
-            <p className="text-lg font-semibold mb-4">
-              Systerföretag
-            </p>
-            <ul className="space-y-2">
-              <li>
-                <ExternalSiteLink
-                  href="https://www.tysafety.se"
-                  ariaLabel="TY Safety – HLR, Brandskydd, Heta Arbeten och Arbetsmiljö – extern länk"
-                  underline={false}
-                  showIcon={true}
-                  className="text-gray-300 hover:text-white"
-                >
-                  TY Safety – HLR, Brandskydd, Heta Arbeten® & Arbetsmiljö
-                </ExternalSiteLink>
-              </li>
+              {COMPANY.areaServed.slice(0, 5).map((area) => <li key={area}>{area}</li>)}
             </ul>
           </section>
         </div>
 
         <div className="border-t border-slate-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center gap-3">
           <p className="text-gray-400 text-sm text-center md:text-left">
-            © {currentYear} Ytterman. Alla rättigheter förbehållna.
+            © {currentYear} {COMPANY.brandName}. Alla rättigheter förbehållna.
           </p>
           <p className="text-gray-500 text-xs font-mono text-center">
             Build: {shortCommitSha ?? 'local'}{buildTimeLabel ? ` • ${buildTimeLabel}` : ''}

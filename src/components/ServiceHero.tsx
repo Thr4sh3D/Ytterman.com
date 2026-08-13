@@ -4,6 +4,7 @@ import { CheckCircle, Phone, Award, Shield, Clock, MessageCircle } from 'lucide-
 import { Link } from 'react-router-dom';
 import { LucideIcon } from 'lucide-react';
 import { normalizeInternalPath } from '@/utils/url';
+import { BAS, COMPANY, KA_CERT } from '@/config/company';
 
 interface ServiceHeroProps {
   badge: string;
@@ -45,10 +46,10 @@ export const ServiceHero = ({
   bannerContent
 }: ServiceHeroProps) => {
   const defaultStats = [
-    { icon: Award, title: "20+ År", subtitle: "Erfarenhet inom bygg" },
-    { icon: Shield, title: "Certifierad", subtitle: "KA, BAS-P & BAS-U" },
-    { icon: Clock, title: "Snabb", subtitle: "Svar inom 24h" },
-    { icon: MessageCircle, title: "Digital", subtitle: "Smidig hantering" }
+    { icon: Award, title: `${COMPANY.experienceYears}+ år`, subtitle: "Erfarenhet inom bygg" },
+    { icon: Shield, title: "Certifierad KA", subtitle: KA_CERT.authorizationLabel },
+    { icon: Clock, title: BAS.rolesLabel, subtitle: "Utbildad för rollerna" },
+    { icon: MessageCircle, title: COMPANY.membership.shortName, subtitle: "Medlem" }
   ];
 
   const displayStats = stats || defaultStats;
@@ -166,13 +167,13 @@ export const ServiceHero = ({
                           <p className="text-xs text-muted-foreground mb-1">Kontakta mig direkt</p>
                           <div className="flex items-center space-x-2">
                             <Phone className="w-4 h-4 text-accent" />
-                            <span className="font-semibold text-foreground">076-111 84 47</span>
+                            <span className="font-semibold text-foreground">{COMPANY.phone.display}</span>
                           </div>
                         </div>
                         
                         <div className="text-right">
-                          <p className="text-xs text-muted-foreground mb-1">Svarstid</p>
-                          <p className="font-semibold text-sm text-foreground">Inom 24h</p>
+                          <p className="text-xs text-muted-foreground mb-1">Återkoppling</p>
+                          <p className="font-semibold text-sm text-foreground">Utifrån aktuell kapacitet</p>
                         </div>
                       </div>
                     </div>

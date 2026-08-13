@@ -9,6 +9,7 @@ import { BlogCard } from '@/components/BlogCard';
 import { Skeleton } from '@/components/ui/skeleton';
 import { BookOpen } from 'lucide-react';
 import type { BlogPostMeta } from '@/types/blog';
+import { COMPANY } from '@/config/company';
 
 const MIN_READING_TIME_MINUTES = 3;
 const DESCRIPTION_WORDS_PER_MINUTE = 50;
@@ -75,7 +76,7 @@ const BlogPage = () => {
     <>
       <AdvancedSEO
         title="Blogg – Byggkunskap & Tips | Ytterman"
-        description="Expertartiklar om kontrollansvarig, BAS-P, BAS-U, bygglov och byggprocessen i Västernorrland. Ny kunskap publiceras varje dag."
+        description="Artiklar om kontrollansvarig, BAS-P, BAS-U, bygglov och byggprocessen i Västernorrland."
         keywords="byggblogg, kontrollansvarig tips, BAS-P BAS-U, bygglov råd, byggkunskap, Västernorrland"
         url="https://ytterman.com/blogg"
         type="website"
@@ -106,8 +107,8 @@ const BlogPage = () => {
                   Blogg från Ytterman
                 </h1>
                 <p className="text-xl text-slate-600">
-                  Dagliga expertartiklar om byggprocessen – kontrollansvarig,
-                  BAS-P/BAS-U, bygglov och mycket mer.
+                  Artiklar om byggprocessen – kontrollansvarig, BAS-P/BAS-U,
+                  bygglov och närliggande frågor.
                 </p>
               </div>
             </div>
@@ -239,7 +240,7 @@ const BlogPage = () => {
                 Behöver du professionell hjälp?
               </h2>
               <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-                Kontakta oss för en kostnadsfri konsultation om ditt byggprojekt.
+                Skicka projektets underlag om du vill be om offert på projektspecifikt stöd.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
@@ -249,10 +250,10 @@ const BlogPage = () => {
                   Kontakta oss
                 </a>
                 <a
-                  href="tel:+46761118447"
+                  href={COMPANY.phone.href}
                   className="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white rounded-lg hover:bg-white hover:text-slate-900 transition-colors text-lg font-semibold"
                 >
-                  Ring: 076-111 84 47
+                  Ring: {COMPANY.phone.display}
                 </a>
               </div>
             </div>

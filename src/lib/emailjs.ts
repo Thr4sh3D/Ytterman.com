@@ -1,4 +1,5 @@
 import emailjs from '@emailjs/browser';
+import { COMPANY } from '@/config/company';
 
 // EmailJS configuration med dina riktiga uppgifter
 const SERVICE_ID = 'service_hkaan9a';
@@ -22,7 +23,7 @@ export const sendContactEmail = async (formData: ContactFormData): Promise<{ suc
       phone: formData.phone || 'Ej angiven',
       project_type: formData.project || 'Ej specificerat',
       message: formData.message,
-      to_email: 'tobias@ytterman.com',
+      to_email: COMPANY.email,
       reply_to: formData.email
     };
 
@@ -46,7 +47,7 @@ export const sendContactEmail = async (formData: ContactFormData): Promise<{ suc
     console.error('EmailJS Error:', error);
     return { 
       success: false, 
-      error: 'Kunde inte skicka meddelandet. Försök igen eller ring direkt på 076-111 84 47.' 
+      error: `Kunde inte skicka meddelandet. Försök igen eller ring ${COMPANY.phone.display}.`
     };
   }
 };

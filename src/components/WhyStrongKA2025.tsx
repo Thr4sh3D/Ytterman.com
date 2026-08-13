@@ -12,23 +12,23 @@ export const WhyStrongKA2025 = () => {
   const reasons = [
     {
       icon: AlertTriangle,
-      title: "Nya byggreglerna från juli 2025",
-      description: "Från och med juli 2025 skärps kraven på teknisk kontroll och dokumentation enligt PBL. Din kontrollansvarig måste ha ännu starkare teknisk kompetens och kunna hantera mer detaljerad dokumentation."
+      title: "Projektspecifik kontrollplan",
+      description: "Kontrollplanen ska utgå från åtgärden, projektets risker och byggnadsnämndens beslut. En generell mall behöver alltid anpassas."
     },
     {
       icon: Shield,
-      title: "Ökat ansvar för byggherren",
-      description: "Som byggherre får du större personligt ansvar för att byggprocessen följer alla regler. En erfaren KA skyddar dig mot kostsamma misstag och säkerställer att allt blir rätt från start."
+      title: "Byggherren har huvudansvaret",
+      description: "Kontrollansvarig stödjer kontrollprocessen men tar inte över byggherrens eller entreprenörernas ansvar. Tydlig rollfördelning minskar missförstånd."
     },
     {
       icon: FileCheck,
-      title: "Hårdare krav på kontrollplaner",
-      description: "Kontrollplaner måste nu vara ännu mer detaljerade och anpassade efter varje projekts unika risker. En generisk mall räcker inte längre – du behöver en KA som verkligen förstår ditt projekt."
+      title: "Spårbar dokumentation",
+      description: "Kontroller, avvikelser och åtgärder behöver dokumenteras så att kontrollansvarig kan lämna ett sakligt utlåtande inför slutbesked."
     },
     {
       icon: TrendingUp,
-      title: "Snabbare processer = större risk",
-      description: "Myndigheterna förväntas hantera ärenden snabbare, vilket betyder mindre tid för korrigeringar. Får du avslag på grund av bristfällig kontrollplan kan det kosta dig månader i förseningar."
+      title: "Rätt underlag i rätt skede",
+      description: "Kompletta handlingar gör det lättare att hålla projektets kontrollmoment samordnade och minskar risken för sena kompletteringar."
     }
   ];
 
@@ -39,15 +39,15 @@ export const WhyStrongKA2025 = () => {
           <div className="text-center mb-16">
             <div className="inline-flex items-center space-x-2 bg-amber-600/10 px-4 py-2 rounded-full mb-6">
               <AlertTriangle className="w-5 h-5 text-amber-600" />
-              <span className="text-sm font-medium text-amber-600">Nya regler från juli 2025</span>
+              <span className="text-sm font-medium text-amber-600">Tydlig kontroll enligt PBL</span>
             </div>
             
             <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-6">
-              Varför du behöver en{' '}
-              <span className="text-gradient">stark kontrollansvarig 2025</span>
+              Därför behövs en{' '}
+              <span className="text-gradient">tydligt avgränsad KA-roll</span>
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Byggreglerna skärps – och det ställer högre krav på både dig som byggherre och din kontrollansvarig. Här är vad som förändras och varför det spelar roll.
+              Bra kontroll bygger på rätt roller, projektspecifik planering och spårbar dokumentation.
             </p>
           </div>
 
@@ -83,14 +83,14 @@ export const WhyStrongKA2025 = () => {
                 Vad betyder det här för dig?
               </h3>
               <p className="text-lg text-slate-600 mb-8 max-w-2xl mx-auto">
-                Med 20+ års erfarenhet och kontinuerlig vidareutbildning är jag redo för de nya kraven. Jag hjälper dig navigera regelverket säkert – så att ditt projekt godkänns snabbt och går smidigt från start till mål.
+                Med över 20 års erfarenhet hjälper jag dig strukturera KA-uppdraget. Byggnadsnämnden fattar besluten om start- och slutbesked.
               </p>
               <Button 
                 onClick={scrollToContact}
                 size="lg"
                 className="earth-gradient text-white hover:opacity-90 text-lg px-8 py-6"
               >
-                Boka kostnadsfri konsultation
+                Beskriv projektet
               </Button>
             </div>
           </div>

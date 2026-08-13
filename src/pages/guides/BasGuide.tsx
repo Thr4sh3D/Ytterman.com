@@ -1,234 +1,74 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
+import { CheckCircle, Users } from 'lucide-react';
 import { GuideLayout } from '@/components/GuideLayout';
-import { CheckCircle, AlertTriangle, Shield, Users, FileText } from 'lucide-react';
+import { BAS, COMPANY, SERVICES } from '@/config/company';
 
-const BasGuide = () => {
-  return (
-    <GuideLayout
-      title="BAS-P vs BAS-U: Skillnader och när de behövs"
-      description="Förstå skillnaderna mellan BAS-P och BAS-U samt när respektive roll krävs i ditt projekt."
-      category="Säkerhetssamordning"
-      readTime="6 min"
-      seoTitle="BAS-P och BAS-U Guide - Säkerhetssamordning 2025 | Ytterman"
-      seoDescription="Komplett guide om BAS-P och BAS-U roller, skillnader och lagkrav enligt AFS 1999:3. Expert råd från certifierad säkerhetssamordnare Tobias Ytterman i Västernorrland."
-      keywords="BAS-P, BAS-U, säkerhetssamordnare, arbetsmiljö, AFS 1999:3, byggarbetsmiljö, arbetsmiljöplan, Västernorrland"
-      canonicalPath="/guider/bas"
-    >
-      <div className="prose prose-stone max-w-none">
-        <h2 className="flex items-center gap-2 text-2xl font-bold text-stone-800 mb-6">
-          <Shield className="w-6 h-6 text-red-600" />
-          Vad är BAS-P (Byggarbetsmiljösamordnare Projektering)?
-        </h2>
-        
-        <p className="text-lg text-stone-700 mb-6">
-          <Link to="/bas-p/" className="text-red-600 hover:text-red-700 font-medium underline">BAS-P</Link> är en säkerhetssamordnare som arbetar under projekteringsfasen för att säkerställa att 
-          arbetsmiljöaspekter beaktas redan från början. Rollen är avgörande för att skapa säkra 
-          förutsättningar för det kommande byggarbetet.
-        </p>
+const BasGuide = () => (
+  <GuideLayout
+    title="BAS-P och BAS-U – rollerna i byggprojektet"
+    description="Skillnaden mellan arbetsmiljösamordning under projektering och utförande."
+    category="Arbetsmiljö"
+    readTime="6 min"
+    seoTitle="BAS-P och BAS-U – guide enligt AFS 2023:3 | Ytterman"
+    seoDescription="Guide till BAS-P och BAS-U, ansvarsfördelning, arbetsmiljöplan och aktuellt regelverk AFS 2023:3."
+    keywords="BAS-P, BAS-U, byggarbetsmiljösamordnare, AFS 2023:3, arbetsmiljöplan, byggarbetsmiljö"
+    canonicalPath="/guider/bas"
+  >
+    <div className="prose prose-stone max-w-none">
+      <p className="text-lg font-medium text-stone-700">
+        BAS-P och BAS-U är funktioner för arbetsmiljösamordning. De ska beskrivas genom uppdrag,
+        utbildning, kompetens och erfarenhet – inte som en myndighetscertifiering.
+      </p>
 
-        <div className="bg-red-50 border-l-4 border-red-400 p-6 mb-8">
-          <div className="flex items-start">
-            <AlertTriangle className="w-5 h-5 text-red-600 mt-1 mr-3 flex-shrink-0" />
-            <div>
-              <h3 className="font-semibold text-red-800 mb-2">Lagkrav enligt AFS 1999:3</h3>
-              <p className="text-red-700">
-                BAS-P krävs för alla byggprojekt där fler än en entreprenör kommer att arbeta samtidigt 
-                eller i följd på samma arbetsplats.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <h3 className="text-xl font-semibold text-stone-800 mb-4">BAS-P:s huvudansvar:</h3>
-        
-        <ul className="space-y-3 mb-8">
-          <li className="flex items-start">
-            <CheckCircle className="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
-            <span><strong>Riskbedömning:</strong> Identifiera och bedöma arbetsmiljörisker i projekteringsskedet</span>
-          </li>
-          <li className="flex items-start">
-            <CheckCircle className="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
-            <span><strong>Säkerhetsplan:</strong> Upprätta plan för säkerhet, hälsa och miljö</span>
-          </li>
-          <li className="flex items-start">
-            <CheckCircle className="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
-            <span><strong>Koordinering:</strong> Samordna säkerhetsaspekter mellan olika projektörer</span>
-          </li>
-          <li className="flex items-start">
-            <CheckCircle className="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
-            <span><strong>Dokumentation:</strong> Sammanställa säkerhets- och hälsoplanen</span>
-          </li>
-        </ul>
-
-        <h2 className="flex items-center gap-2 text-2xl font-bold text-stone-800 mb-6">
-          <Users className="w-6 h-6 text-blue-600" />
-          Vad är BAS-U (Byggarbetsmiljösamordnare Utförande)?
-        </h2>
-
-        <p className="text-lg text-stone-700 mb-6">
-          <Link to="/bas-u/" className="text-blue-600 hover:text-blue-700 font-medium underline">BAS-U</Link> arbetar under byggfasen och ansvarar för att säkerhetsplanerna följs i praktiken. 
-          Denna roll är kritisk för att upprätthålla en säker arbetsmiljö på byggarbetsplatsen.
-        </p>
-
-        <h3 className="text-xl font-semibold text-stone-800 mb-4">BAS-U:s huvudansvar:</h3>
-        
-        <ul className="space-y-3 mb-8">
-          <li className="flex items-start">
-            <CheckCircle className="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
-            <span><strong>Säkerhetskoordinering:</strong> Samordna säkerhetsarbetet mellan olika entreprenörer</span>
-          </li>
-          <li className="flex items-start">
-            <CheckCircle className="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
-            <span><strong>Kontroll:</strong> Övervaka att säkerhetsföreskrifter följs på arbetsplatsen</span>
-          </li>
-          <li className="flex items-start">
-            <CheckCircle className="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
-            <span><strong>Utbildning:</strong> Säkerställa att alla arbetare får nödvändig säkerhetsinformation</span>
-          </li>
-          <li className="flex items-start">
-            <CheckCircle className="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
-            <span><strong>Incidenthantering:</strong> Hantera och rapportera säkerhetsincidenter</span>
-          </li>
-        </ul>
-
-        <h2 className="flex items-center gap-2 text-2xl font-bold text-stone-800 mb-6">
-          <FileText className="w-6 h-6 text-amber-600" />
-          Skillnader mellan BAS-P och BAS-U
-        </h2>
-
-        <div className="grid md:grid-cols-2 gap-6 mb-8">
-          <div className="bg-red-50 p-6 rounded-lg">
-            <h3 className="font-semibold text-red-800 mb-4 flex items-center">
-              <Shield className="w-5 h-5 mr-2" />
-              BAS-P (Projektering)
-            </h3>
-            <ul className="space-y-2 text-red-700 text-sm">
-              <li>• Arbetar under projekteringsfasen</li>
-              <li>• Fokus på planering och förebyggande</li>
-              <li>• Skapar säkerhets- och hälsoplaner</li>
-              <li>• Identifierar risker i förväg</li>
-              <li>• Samordnar mellan projektörer</li>
-              <li>• Dokumenterar säkerhetsaspekter</li>
+      <h2>Två skeden, två tydliga uppdrag</h2>
+      <div className="not-prose my-6 grid gap-5 md:grid-cols-2">
+        {[SERVICES.basP, SERVICES.basU].map((service) => (
+          <div key={service.id} className="rounded-xl border bg-white p-6">
+            <Users className="h-7 w-7 text-blue-700" />
+            <h3 className="mt-3 text-xl font-semibold text-stone-900">{service.name}</h3>
+            <p className="mt-2 text-stone-600">{service.shortDescription}</p>
+            <ul className="mt-4 space-y-2">
+              {service.features.map((feature) => (
+                <li key={feature} className="flex items-start gap-2 text-sm text-stone-700">
+                  <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-green-700" />
+                  {feature}
+                </li>
+              ))}
             </ul>
-          </div>
-          
-          <div className="bg-blue-50 p-6 rounded-lg">
-            <h3 className="font-semibold text-blue-800 mb-4 flex items-center">
-              <Users className="w-5 h-5 mr-2" />
-              BAS-U (Utförande)
-            </h3>
-            <ul className="space-y-2 text-blue-700 text-sm">
-              <li>• Arbetar under byggfasen</li>
-              <li>• Fokus på praktisk säkerhet</li>
-              <li>• Implementerar säkerhetsplaner</li>
-              <li>• Övervakar daglig säkerhet</li>
-              <li>• Samordnar mellan entreprenörer</li>
-              <li>• Hanterar akuta säkerhetsfrågor</li>
-            </ul>
-          </div>
-        </div>
-
-        <h2 className="text-2xl font-bold text-stone-800 mb-6">
-          När krävs BAS-P respektive BAS-U?
-        </h2>
-
-        <div className="bg-amber-50 border border-amber-200 p-6 rounded-lg mb-8">
-          <h3 className="font-semibold text-amber-800 mb-4">Lagkrav enligt AFS 1999:3</h3>
-          <p className="text-amber-700 mb-4">
-            Både BAS-P och BAS-U krävs när (ofta tillsammans med en <Link to="/kontrollansvarig/" className="text-amber-800 hover:text-amber-900 font-medium underline">certifierad kontrollansvarig</Link>):
-          </p>
-          <ul className="space-y-2 text-amber-700">
-            <li>• Fler än en entreprenör arbetar på samma arbetsplats</li>
-            <li>• Entreprenörer arbetar i följd på samma projekt</li>
-            <li>• Projektet innebär särskilda risker</li>
-            <li>• Byggherren bedömer att samordning behövs</li>
-          </ul>
-        </div>
-
-        <h3 className="text-xl font-semibold text-stone-800 mb-4">Praktiska exempel:</h3>
-
-        <div className="grid md:grid-cols-2 gap-4 mb-8">
-          <div className="bg-green-50 border border-green-200 p-4 rounded-lg">
-            <h4 className="font-semibold text-green-800 mb-2">BAS krävs</h4>
-            <ul className="text-sm text-green-700 space-y-1">
-              <li>• Nybyggnation av villa med flera entreprenörer</li>
-              <li>• Större renoveringar</li>
-              <li>• Kommersiella byggnader</li>
-              <li>• Industrianläggningar</li>
-            </ul>
-          </div>
-          
-          <div className="bg-gray-50 border border-gray-200 p-4 rounded-lg">
-            <h4 className="font-semibold text-gray-800 mb-2">BAS krävs ej</h4>
-            <ul className="text-sm text-gray-700 space-y-1">
-              <li>• Enkel renovering med en entreprenör</li>
-              <li>• Mindre reparationsarbeten</li>
-              <li>• Eget arbete utan entreprenörer</li>
-              <li>• Mycket små projekt</li>
-            </ul>
-          </div>
-        </div>
-
-        <h2 className="text-2xl font-bold text-stone-800 mb-6">
-          Samarbete mellan BAS-P och BAS-U
-        </h2>
-
-        <p className="mb-4">
-          För att säkerställa en smidig övergång från projektering till utförande är samarbetet 
-          mellan BAS-P och BAS-U avgörande:
-        </p>
-
-        <div className="bg-stone-50 p-6 rounded-lg mb-8">
-          <ul className="space-y-3">
-            <li className="flex items-start">
-              <CheckCircle className="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
-              <span><strong>Överlämning:</strong> BAS-P överlämnar säkerhets- och hälsoplanen till BAS-U</span>
-            </li>
-            <li className="flex items-start">
-              <CheckCircle className="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
-              <span><strong>Kontinuitet:</strong> Säkerställa att planerade säkerhetsåtgärder implementeras</span>
-            </li>
-            <li className="flex items-start">
-              <CheckCircle className="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
-              <span><strong>Uppdatering:</strong> BAS-U uppdaterar planer baserat på faktiska förhållanden</span>
-            </li>
-            <li className="flex items-start">
-              <CheckCircle className="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
-              <span><strong>Kommunikation:</strong> Löpande dialog om säkerhetsaspekter</span>
-            </li>
-          </ul>
-        </div>
-
-        <div className="bg-blue-50 border border-blue-200 p-6 rounded-lg">
-          <h3 className="font-semibold text-blue-800 mb-3">Tobias Ytterman - Certifierad BAS-P och BAS-U</h3>
-          <p className="text-blue-700 mb-3">
-            Med över 20 års erfarenhet och certifiering inom både BAS-P och BAS-U kan jag erbjuda:
-          </p>
-          <ul className="space-y-2 text-blue-700">
-            <li>• Komplett säkerhetssamordning från projektering till färdigställande</li>
-            <li>• Djup förståelse för lokala förhållanden i Västernorrland</li>
-            <li>• Digital dokumentation och effektiv kommunikation</li>
-            <li>• Konkurrenskraftiga priser för både enskilda uppdrag och helhetslösningar - <Link to="/priser/" className="text-blue-800 hover:text-blue-900 font-medium underline">se priser här</Link></li>
-          </ul>
-          <div className="mt-4 pt-4 border-t border-blue-300">
-            <Link to="/kontakt/" className="inline-block bg-blue-700 text-white px-6 py-3 rounded-lg hover:bg-blue-800 transition-colors font-semibold">
-              Begär offert för BAS-tjänster →
+            <Link to={service.path} className="mt-5 inline-flex font-medium text-blue-700">
+              Läs om {service.name}
             </Link>
           </div>
-        </div>
-
-        <div className="mt-12 pt-8 border-t border-stone-200">
-          <h3 className="text-xl font-semibold text-stone-800 mb-4">Relaterade guider</h3>
-          <ul className="space-y-2 text-stone-700">
-            <li>• <Link to="/guider/kontrollansvarig/" className="text-amber-600 hover:text-amber-700 font-medium underline">Kontrollansvarigs roll i byggprocessen</Link></li>
-            <li>• <Link to="/guider/bygglov/" className="text-amber-600 hover:text-amber-700 font-medium underline">Bygglovsprocessen i Västernorrland</Link></li>
-            <li>• <Link to="/guider/kvalitetskontroll/" className="text-amber-600 hover:text-amber-700 font-medium underline">Kvalitetskontroll: säkerställ högsta byggkvalitet</Link></li>
-          </ul>
-        </div>
+        ))}
       </div>
-    </GuideLayout>
-  );
-};
+
+      <h2>Vem ska utse BAS?</h2>
+      <p>
+        Utgångspunkten i bygg- och anläggningsarbete är att byggherren ska se till att lämpliga
+        byggarbetsmiljösamordnare utses för planering/projektering respektive utförande. Avtal och
+        regler för det aktuella projektet kan påverka ansvarsfördelningen, exempelvis i vissa
+        konsumententreprenader. Dokumentera därför vem som bär ansvaret och vilket mandat varje roll har.
+      </p>
+
+      <h2>Arbetsmiljöplan och förhandsanmälan är egna frågor</h2>
+      <p>
+        Krav på arbetsmiljöplan och förhandsanmälan ska bedömas separat. Tids- och persondagströsklar
+        för förhandsanmälan ska inte användas som en generell regel för när BAS-P eller BAS-U behövs.
+        Utgå från aktuella regler och projektets verkliga risker.
+      </p>
+
+      <h2>Yttermans erbjudande</h2>
+      <p>
+        {BAS.description} Huvudreferensen är <strong>{BAS.regulation}</strong>. Fristående uppdrag
+        prissätts efter projektets skeden och riskbild; paket med KA och BAS visas på{' '}
+        <Link to="/priser/">prissidan</Link>.
+      </p>
+      <p>
+        Förfrågningar tas emot från {COMPANY.region}. Omfattning, tillgänglighet, platsbesök, resor
+        och tidplan bekräftas i offerten.
+      </p>
+    </div>
+  </GuideLayout>
+);
 
 export default BasGuide;

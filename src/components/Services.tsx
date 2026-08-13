@@ -1,250 +1,108 @@
-import { Shield, Users, FileText, Building, PenTool, Map, Layers, Zap, Search, CalendarCheck } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Building, FileText, Search, Shield, Users, Zap } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { BOOKING_OVL_URL } from '@/config/booking';
+import { Button } from '@/components/ui/button';
+import { BUSINESS_COPY, PRICE_LABELS, SERVICES } from '@/config/company';
 
 interface ServicesProps {
   onServiceSelect?: (serviceId: string) => void;
 }
 
+const publishedServices = [
+  { config: SERVICES.kontrollansvarig, icon: Shield },
+  { config: SERVICES.basP, icon: Users },
+  { config: SERVICES.basU, icon: Building },
+  { config: SERVICES.energyDeclaration, icon: Zap },
+  { config: SERVICES.inspection, icon: Search },
+  { config: SERVICES.buildingPermitDocuments, icon: FileText },
+] as const;
+
 export const Services = ({ onServiceSelect }: ServicesProps) => {
   const navigate = useNavigate();
 
-  const services = [
-    {
-      id: 'kontrollansvarig-service',
-      icon: Shield,
-      title: 'Kontrollansvarig (KA)',
-      description: 'Teknisk kontroll enligt Plan- och bygglagen (PBL). Säkerställer att ditt byggprojekt följer gällande regler och föreskrifter.',
-      features: ['Kontrollplan', 'Besiktningar', 'Slutbevis', 'Teknisk rådgivning'],
-      link: '/kontrollansvarig/'
-    },
-    {
-      id: 'bas-p-service',
-      icon: Users,
-      title: 'BAS-P (Projektering)',
-      description: 'Byggarbetsmiljösamordnare under projekteringsfasen. Planerar för en säker arbetsmiljö redan från början.',
-      features: ['Arbetsmiljöplan', 'Riskbedömning', 'Säkerhetsspecifikation', 'Samordning'],
-      link: '/bas-p/'
-    },
-    {
-      id: 'bas-u-service',
-      icon: Building,
-      title: 'BAS-U (Utförande)',
-      description: 'Byggarbetsmiljösamordnare under utförandefasen. Övervakar och säkerställer arbetsmiljön på byggarbetsplatsen.',
-      features: ['Arbetsmiljöuppföljning', 'Säkerhetsinspektioner', 'Incidenthantering', 'Utbildning'],
-      link: '/bas-u/'
-    },
-    {
-      id: 'energideklaration-service',
-      icon: Zap,
-      title: 'Energideklaration',
-      description: 'Professionell energideklaration för din fastighet. Energibesiktning, energiberäkning och åtgärdsförslag.',
-      features: ['Energibesiktning', 'Energiberäkning', 'Energiklass', 'Åtgärdsförslag'],
-      link: '/energideklaration/'
-    },
-    {
-      id: 'overlatelsebesiktning-service',
-      icon: Search,
-      title: 'Överlåtelsebesiktning',
-      description: 'Okulär besiktning inför fastighetsförsäljning. Identifierar synliga fel och brister för en trygg affär. Boka direkt online – välj tid och betala vid bokning.',
-      features: ['Visuell kontroll', 'Synliga installationer', 'Besiktningsrapport', 'Fotografisk dokumentation'],
-      link: '/overlatelsebesiktning/'
-    },
-    {
-      id: 'kombinerade-paket-service',
-      title: 'Kombinerade Paket',
-      description: 'Kostnadseffektiva paket som kombinerar flera tjänster för en smidig och ekonomisk lösning.',
-      features: ['KA + BAS-P', 'KA + BAS-U', 'Fullständiga paket', 'Projektledning']
-    }
-  ];
-
-  const additionalServices = [
-    {
-      id: 'bygglovshandlingar',
-      icon: FileText,
-      title: 'Bygglovshandlingar',
-      description: 'Professionell framtagning av alla handlingar som krävs för bygglovsansökan.'
-    },
-    {
-      id: 'planritning',
-      icon: PenTool,
-      title: 'Planritning',
-      description: 'Detaljerade planritningar som uppfyller alla tekniska krav och standarder.'
-    },
-    {
-      id: 'situationsplan',
-      icon: Map,
-      title: 'Situationsplan',
-      description: 'Exakt situationsplan som visar byggnadens placering på tomten.'
-    },
-    {
-      id: 'sektionsritningar',
-      icon: Layers,
-      title: 'Sektionsritningar',
-      description: 'Tekniska sektionsritningar för komplex byggnadskonstruktion.'
-    }
-  ];
-
-  const handleGetQuote = (serviceId: string) => {
-    navigate(`/kontakt/?service=${serviceId}&source=services-page`);
-  };
-
-  const handleLearnMore = (link: string) => {
-    navigate(link);
-  };
-
-  const handleStartOnlineCalculation = () => {
-    navigate('/energiberakning-online/');
+  const handleContact = (serviceId: string) => {
+    onServiceSelect?.(serviceId);
+    navigate(`/kontakt/?service=${serviceId}&source=services`);
   };
 
   return (
-    <section id="tjanster" className="py-20 bg-secondary/30">
+    <section id="tjanster" className="bg-secondary/30 py-20">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-6">
-            Mina Tjänster
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Jag erbjuder kompletta lösningar för ditt byggprojekt - från planering 
-            till slutbesiktning. Med över 20 års erfarenhet säkerställer jag att 
-            ditt projekt genomförs enligt alla regler och med högsta kvalitet.
+        <div className="mx-auto mb-16 max-w-3xl text-center">
+          <h2 className="mb-6 text-3xl font-bold text-foreground lg:text-4xl">Mina tjänster</h2>
+          <p className="text-xl text-muted-foreground">
+            Kontrollansvarig, BAS-P/BAS-U och byggrelaterat stöd med tydlig omfattning.
+            Energideklaration samordnas av Ytterman och utförs av certifierad energiexpert
+            hos behörig partner.
           </p>
         </div>
 
-        {/* Energiberäkning Online - Featured Service */}
-        <div className="bg-gradient-to-r from-blue-600 to-amber-600 rounded-2xl p-8 mb-16 text-white">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center space-x-2 bg-white/20 px-4 py-2 rounded-full mb-4">
-              <Zap className="w-5 h-5" />
-              <span className="text-sm font-medium">Ny tjänst</span>
+        <div className="mb-16 rounded-2xl bg-gradient-to-r from-blue-700 to-slate-800 p-8 text-white">
+          <div className="mx-auto max-w-4xl text-center">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2">
+              <Zap className="h-5 w-5" />
+              <span className="text-sm font-medium">Intresseanmälan</span>
             </div>
-            <h3 className="text-3xl font-bold mb-4">
-              Energiberäkning Online
-            </h3>
-            <p className="text-xl text-blue-100 mb-6">
-              Snabb och enkel energiberäkning direkt online. Professionell kvalitet till fast pris - endast 2,999 kr.
-            </p>
-            <div className="flex flex-wrap justify-center gap-6 text-sm mb-8">
-              <div className="flex items-center gap-2">
-                <span>✓ Klar på minuter</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span>✓ Professionell rapport</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span>✓ Fast pris 2,999 kr</span>
-              </div>
-            </div>
+            <h3 className="mb-4 text-3xl font-bold">{SERVICES.energyCalculation.name}</h3>
+            <p className="mb-6 text-xl text-blue-100">{SERVICES.energyCalculation.shortDescription}</p>
+            <p className="mb-8 text-sm text-blue-100">{BUSINESS_COPY.digitalInterest}</p>
             <Button
-              onClick={handleStartOnlineCalculation}
+              onClick={() => navigate(SERVICES.energyCalculation.path)}
               size="lg"
-              className="bg-white text-blue-600 hover:bg-blue-50 font-semibold px-8 py-3"
+              className="bg-white text-blue-800 hover:bg-blue-50"
             >
-              Starta nu
+              Läs mer och anmäl intresse
             </Button>
           </div>
         </div>
 
-        {/* Huvudtjänster */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {services.map((service) => (
-            <div
-              key={service.id}
-              className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-            >
-              <div className="w-16 h-16 earth-gradient rounded-xl flex items-center justify-center mb-6">
-                {service.icon && <service.icon className="w-8 h-8 text-white" />}
+        <div className="mb-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {publishedServices.map(({ config, icon: Icon }) => (
+            <article key={config.id} className="rounded-2xl bg-white p-6 shadow-lg">
+              <div className="earth-gradient mb-6 flex h-16 w-16 items-center justify-center rounded-xl">
+                <Icon className="h-8 w-8 text-white" />
               </div>
-              
-              <h3 className="text-xl font-bold text-foreground mb-4">
-                {service.title}
-              </h3>
-              
-              <p className="text-muted-foreground mb-6">
-                {service.description}
-              </p>
-
-              <ul className="space-y-2 mb-6">
-                {service.features.map((feature, index) => (
-                  <li key={index} className="text-sm text-muted-foreground flex items-center">
-                    <div className="w-1.5 h-1.5 bg-accent rounded-full mr-2"></div>
+              <h3 className="mb-3 text-xl font-bold text-foreground">{config.name}</h3>
+              <p className="mb-3 text-sm font-semibold text-primary">{config.priceLabel}</p>
+              <p className="mb-6 text-muted-foreground">{config.shortDescription}</p>
+              <ul className="mb-6 space-y-2">
+                {config.features.map((feature) => (
+                  <li key={feature} className="flex text-sm text-muted-foreground">
+                    <span className="mr-2 mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
                     {feature}
                   </li>
                 ))}
               </ul>
-
               <div className="flex gap-2">
-                {service.id !== 'overlatelsebesiktning-service' && (
-                  <Button
-                    onClick={() => handleGetQuote(service.id)}
-                    className="flex-1 earth-gradient text-white hover:opacity-90"
-                  >
-                    Få offert
-                  </Button>
-                )}
-                {service.id === 'overlatelsebesiktning-service' && BOOKING_OVL_URL && (
-                  <Button
-                    asChild
-                    className="flex-1 earth-gradient text-white hover:opacity-90"
-                    >
-                    <a 
-                      href={BOOKING_OVL_URL}
-                    >
-                      <CalendarCheck className="w-4 h-4 mr-2" />
-                      Boka online
-                    </a>
-                  </Button>
-                )}
-                {service.link && (
-                  <Button
-                    onClick={() => handleLearnMore(service.link)}
-                    variant="outline"
-                    className="border-accent text-accent hover:bg-accent hover:text-white"
-                  >
-                    Läs mer
-                  </Button>
-                )}
+                <Button
+                  onClick={() => handleContact(config.id)}
+                  className="flex-1 earth-gradient text-white hover:opacity-90"
+                >
+                  Be om offert
+                </Button>
+                <Button
+                  onClick={() => navigate(config.path)}
+                  variant="outline"
+                  className="border-accent text-accent hover:bg-accent hover:text-white"
+                >
+                  Läs mer
+                </Button>
               </div>
-            </div>
+            </article>
           ))}
         </div>
 
-        {/* Ytterligare tjänster */}
-        <div className="bg-white rounded-2xl p-8 shadow-lg">
-          <h3 className="text-2xl font-bold text-foreground mb-8 text-center">
-            Ytterligare Tjänster
-          </h3>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {additionalServices.map((service) => (
-              <div
-                key={service.id}
-                className="text-center p-6 rounded-xl border border-border hover:border-accent transition-colors"
-              >
-                <div className="w-12 h-12 earth-gradient rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <service.icon className="w-6 h-6 text-white" />
-                </div>
-                
-                <h4 className="font-semibold text-foreground mb-2">
-                  {service.title}
-                </h4>
-                
-                <p className="text-sm text-muted-foreground mb-4">
-                  {service.description}
-                </p>
-
-                <Button
-                  onClick={() => handleGetQuote(service.id)}
-                  variant="outline"
-                  size="sm"
-                  className="border-accent text-accent hover:bg-accent hover:text-white"
-                >
-                  Få offert
-                </Button>
-              </div>
-            ))}
-          </div>
+        <div className="mx-auto max-w-4xl rounded-xl border border-slate-200 bg-white p-8 text-center">
+          <h3 className="mb-3 text-2xl font-bold text-foreground">Kombinera KA och BAS-P/U</h3>
+          <p className="mb-2 text-lg font-semibold text-primary">{PRICE_LABELS.kaBasPackage} inkl. moms</p>
+          <p className="mb-6 text-muted-foreground">
+            Paketets exakta omfattning och pris fastställs efter genomgång av projektet.
+          </p>
+          <Button
+            onClick={() => handleContact('ka-bas-paket')}
+            className="earth-gradient text-white hover:opacity-90"
+          >
+            Be om paketoffert
+          </Button>
         </div>
       </div>
     </section>

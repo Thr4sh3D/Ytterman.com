@@ -1,42 +1,30 @@
 import { Helmet } from 'react-helmet-async';
+import { BAS, COMPANY, KA_CREDENTIAL_SCHEMA, KA_CERT, PRICE_LABELS, SERVICES } from '@/config/company';
 
 export const SEOEnhancements = () => {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "name": "Ytterman - Kontrollansvarig & BAS",
-    "description": "Certifierad Kontrollansvarig och Byggarbetsmiljösamordnare (BAS-P/BAS-U) i Västernorrland. Över 20 års erfarenhet inom byggbranschen.",
-    "url": "https://ytterman.com",
-    "telephone": "+46761118447",
-    "email": "tobias@ytterman.com",
-    "address": {
-      "@type": "PostalAddress",
-      "addressRegion": "Västernorrland",
-      "addressCountry": "SE"
-    },
-    "areaServed": [
-      "Sundsvall",
-      "Härnösand", 
-      "Sollefteå",
-      "Timrå",
-      "Kramfors",
-      "Västernorrland"
-    ],
+    "name": COMPANY.brandName,
+    "description": `${KA_CERT.title} och utbildad för uppdrag som ${BAS.rolesLabel}. ${COMPANY.experienceLabel}.`,
+    "url": COMPANY.siteUrl,
+    "telephone": COMPANY.phone.e164,
+    "email": COMPANY.email,
+    "areaServed": COMPANY.areaServed.map(name => ({ "@type": "AdministrativeArea", name })),
     "serviceType": [
       "Kontrollansvarig",
       "BAS-P",
       "BAS-U",
       "Byggkontroll",
-      "Arbetsmiljösamordning"
+      "Arbetsmiljösamordning",
+      SERVICES.energyDeclaration.name
     ],
-    "priceRange": "12000-25000 SEK",
-    "founder": {
-      "@type": "Person",
-      "name": "Tobias Ytterman"
-    },
+    "priceRange": PRICE_LABELS.schemaRange,
+    "hasCredential": [KA_CREDENTIAL_SCHEMA],
+    "knowsAbout": [BAS.rolesLabel, BAS.regulation],
     "memberOf": {
       "@type": "Organization",
-      "name": "Svenska Byggingenjörers Riksförbund"
+      "name": COMPANY.membership.name
     }
   };
 
@@ -48,10 +36,9 @@ export const SEOEnhancements = () => {
       
       {/* Additional meta tags for better SEO */}
       <meta name="robots" content="index, follow" />
-      <meta name="author" content="Tobias Ytterman" />
+      <meta name="author" content={COMPANY.publicName} />
       <meta name="geo.region" content="SE-Y" />
-      <meta name="geo.placename" content="Västernorrland" />
-      <meta name="ICBM" content="62.3908,17.3069" />
+      <meta name="geo.placename" content={COMPANY.region} />
       
       {/* Open Graph tags */}
       <meta property="og:type" content="business.business" />
@@ -61,7 +48,7 @@ export const SEOEnhancements = () => {
       <meta property="business:contact_data:country_name" content="Sverige" />
       
       {/* Additional keywords in meta */}
-      <meta name="keywords" content="kontrollansvarig Västernorrland, BAS-P Sundsvall, BAS-U Härnösand, byggkontroll Sollefteå, arbetsmiljösamordnare Timrå, kontrollansvarig Kramfors, bygglov Västernorrland, PBL kontroll, slutbevis, arbetsmiljöplan, riskbedömning bygg, byggarbetsmiljö, kontrollplan, certifierad kontrollansvarig, byggexpert Västernorrland" />
+      <meta name="keywords" content="kontrollansvarig Västernorrland, BAS-P Sundsvall, BAS-U Härnösand, byggkontroll Sollefteå, arbetsmiljösamordnare Timrå, kontrollansvarig Kramfors, bygglov Västernorrland, PBL kontroll, slutbesked, arbetsmiljöplan, riskbedömning bygg, byggarbetsmiljö, kontrollplan, certifierad kontrollansvarig" />
     </Helmet>
   );
 };

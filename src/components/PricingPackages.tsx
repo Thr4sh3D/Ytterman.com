@@ -5,6 +5,7 @@ import {
   actionTypePrices, 
   disclaimerPoints 
 } from '@/content/pricingPackages';
+import { COMPANY, PRICING } from '@/config/company';
 
 export const PricingPackages = () => {
   return (
@@ -16,9 +17,8 @@ export const PricingPackages = () => {
             Paket & priser
           </h2>
           <p className="text-xl text-slate-700 max-w-3xl mx-auto leading-relaxed">
-            Transparenta priser för Kontrollansvarig (KA) och BAS-P/U i Västernorrland. 
-            Välj det paket som passar ditt projekt – från grundläggande kontroll till 
-            komplett samordning enligt PBL.
+            Paketpriser för kontrollansvarig (KA) och paket med BAS-P/U för {PRICING.year}.
+            Offerten bekräftar projektets omfattning, roller, resor och tillämpliga villkor.
           </p>
         </div>
 
@@ -80,7 +80,7 @@ export const PricingPackages = () => {
                 className={`w-full ${pkg.popular ? 'earth-gradient text-white' : 'bg-slate-900 text-white hover:bg-slate-800'}`}
               >
                 <a href="/kontakt/" aria-label={`Be om offert för ${pkg.name}`}>
-                  {pkg.popular ? 'Starta med kostnadsfri konsultation' : 'Be om fast pris för detta paket'}
+                  {pkg.popular ? 'Beskriv projektet' : 'Be om offert för detta paket'}
                 </a>
               </Button>
             </div>
@@ -112,14 +112,14 @@ export const PricingPackages = () => {
         </div>
         */}
 
-        {/* Example Prices per Action Type */}
+        {/* Verified package prices per action type */}
         <div className="max-w-5xl mx-auto mb-16">
           <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-6 text-center">
-            Exempelpriser per åtgärdstyp
+            Paketpriser per åtgärdstyp
           </h3>
           <p className="text-slate-700 text-center mb-8 max-w-3xl mx-auto">
-            Priserna nedan är exempel och visar vad olika typer av projekt typiskt kostar. 
-            Exakt pris beror på projektets specifika förutsättningar.
+            Paketpriser för {PRICING.year} visas nedan. Offerten
+            bekräftar att projektet ryms inom paketets förutsättningar.
           </p>
           
           <div className="grid md:grid-cols-3 gap-6">
@@ -157,7 +157,7 @@ export const PricingPackages = () => {
               <AlertCircle className="w-6 h-6 text-amber-600 flex-shrink-0 mt-1" />
               <div>
                 <h4 className="text-xl font-bold text-slate-900 mb-4">
-                  Trygghetsgaranti – Jag finns med dig hela vägen
+                  Viktigt om omfattning och kompletteringar
                 </h4>
                 <ul className="space-y-3">
                   {disclaimerPoints.map((point, index) => (
@@ -178,7 +178,7 @@ export const PricingPackages = () => {
             Klart att starta? Hör av dig idag
           </h3>
           <p className="text-slate-700 mb-8 max-w-2xl mx-auto">
-            Ju tidigare du tar kontakt, desto smidigare blir ditt projekt. Kostnadsfri konsultation och fast prisförslag inom 24 timmar.
+            Skicka underlaget så återkommer vi med nästa steg och ett prisförslag anpassat till projektets omfattning.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button 
@@ -186,9 +186,9 @@ export const PricingPackages = () => {
               size="lg"
               className="earth-gradient text-white hover:opacity-90"
             >
-              <a href="/kontakt/" aria-label="Boka kostnadsfri genomgång">
+              <a href="/kontakt/" aria-label="Skicka projektförfrågan">
                 <Mail className="w-5 h-5 mr-2" />
-                Boka kostnadsfri genomgång
+                Skicka projektförfrågan
               </a>
             </Button>
             <Button 
@@ -197,9 +197,9 @@ export const PricingPackages = () => {
               variant="outline"
               className="border-2 border-primary text-primary hover:bg-primary hover:text-white"
             >
-              <a href="tel:+46761118447" aria-label="Ring oss">
+              <a href={COMPANY.phone.href} aria-label="Ring Ytterman">
                 <Phone className="w-5 h-5 mr-2" />
-                076-111 84 47
+                {COMPANY.phone.display}
               </a>
             </Button>
           </div>

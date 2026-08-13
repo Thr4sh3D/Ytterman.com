@@ -5,32 +5,32 @@ export const KAProcess = () => {
     {
       number: "1",
       title: "Första mötet och projektkartläggning",
-      description: "Vi träffas (fysiskt eller digitalt) och går igenom ditt projekt. Jag får en helhetsbild av omfattning, tidsplan och eventuella utmaningar. Du får svar på alla dina frågor och en preliminär bedömning."
+      description: "Vi går igenom åtgärden, tillgängliga handlingar, kommunens besked och preliminär tidplan. Därefter bedömer jag behörighet, kontrollbehov, kapacitet och möjligt upplägg."
     },
     {
       number: "2",
       title: "Offert och tydligt åtagande",
-      description: "Du får en detaljerad offert med fast pris eller tydlig timdebitering. Jag specificerar exakt vad som ingår, när jag gör vad, och vilka handlingar du behöver ta fram. Inga dolda kostnader eller oklarheter."
+      description: "Offerten anger prisform, moment, planerade byggplatsbesök, resor, kontaktvägar, underlag och avgränsningar."
     },
     {
       number: "3",
-      title: "Kontrollplan och bygglovsansökan",
-      description: "Jag upprättar en skräddarsydd kontrollplan som är anpassad efter ditt projekts unika risker och krav. Om du behöver hjälp med bygglov guidar jag dig genom processen eller samarbetar med din arkitekt."
+      title: "Förslag till kontrollplan",
+      description: "Jag biträder dig som byggherre med att upprätta ett projektspecifikt förslag till kontrollplan. Bygglovshandlingar är en separat tjänst och ingår bara när det avtalats."
     },
     {
       number: "4",
       title: "Startbesked och byggstart",
-      description: "När kontrollplanen är godkänd av kommunen och startbesked utfärdats, håller jag startmöte med alla inblandade. Vi går igenom roller, ansvar och vilka kontroller som kommer ske under byggfasen."
+      description: "Byggnadsnämnden prövar underlaget och beslutar om startbesked. Projektet får starta i den omfattning och på de villkor som framgår av beslutet."
     },
     {
       number: "5",
-      title: "Löpande kontroller under byggprocessen",
-      description: "Jag genomför planerade besiktningar och kontroller enligt kontrollplanen. Du får tydlig återkoppling efter varje besök – vad som är bra, vad som behöver åtgärdas, och hur vi löser eventuella avvikelser."
+      title: "Uppföljning och byggplatsbesök",
+      description: "Jag följer upp att kontrollplanen och gällande villkor följs, närvarar vid de tillfällen som hör till KA-uppdraget och dokumenterar mina byggplatsbesök. Namngivna kontrollanter utför respektive kontroll."
     },
     {
       number: "6",
-      title: "Slutbesiktning och slutbevis",
-      description: "När bygget är klart gör jag slutbesiktning och sammanställer all dokumentation. Du får slutbeviset som bekräftar att allt är utfört enligt gällande regler – så att du kan flytta in eller sälja fastigheten utan bekymmer."
+      title: "Utlåtande inför slutbesked",
+      description: "Jag lämnar eget utlåtande till byggherren och byggnadsnämnden som underlag inför slutbesked. Byggnadsnämnden prövar och beslutar om slutbesked."
     }
   ];
 
@@ -44,7 +44,7 @@ export const KAProcess = () => {
               <span className="text-gradient">kontrollansvarig</span>
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Från första kontakt till färdigt slutbevis – här är processen som ger dig trygghet genom hela byggprojektet.
+              Från första kontakt till kontrollansvarigs underlag inför slutbesked – en tydlig process genom byggprojektet.
             </p>
           </div>
 
@@ -73,7 +73,7 @@ export const KAProcess = () => {
 
           <div className="mt-16 text-center bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-8 border-2 border-accent/20">
             <p className="text-lg text-slate-700 max-w-2xl mx-auto">
-              <strong>Transparent kommunikation hela vägen.</strong> Du vet alltid var vi är i processen och vad som händer härnäst. Jag är tillgänglig via telefon, mejl och WhatsApp för snabb återkoppling.
+              <strong>Transparent kommunikation inom uppdraget.</strong> Kontaktvägar, avstämningar och tidplan bekräftas i offerten så att ansvar och nästa steg är tydliga.
             </p>
           </div>
         </div>

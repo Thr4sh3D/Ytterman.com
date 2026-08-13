@@ -12,6 +12,7 @@ import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Calendar, ArrowLeft, Tag } from 'lucide-react';
 import type { BlogArticle } from '@/types/blog';
+import { COMPANY } from '@/config/company';
 
 const BlogPostPage = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -160,7 +161,7 @@ const BlogPostPage = () => {
                     Behöver du hjälp med ditt byggprojekt?
                   </h2>
                   <p className="text-slate-600 mb-6">
-                    Kontakta Tobias Ytterman för en kostnadsfri konsultation om
+                    Kontakta Tobias Ytterman med projektets underlag om
                     kontrollansvarig, BAS-P/BAS-U eller överlåtelsebesiktning.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4">
@@ -171,10 +172,10 @@ const BlogPostPage = () => {
                       Kontakta oss
                     </a>
                     <a
-                      href="tel:+46761118447"
+                      href={COMPANY.phone.href}
                       className="inline-flex items-center justify-center px-6 py-3 border-2 border-slate-300 text-slate-900 rounded-lg hover:border-slate-400 transition-colors font-semibold"
                     >
-                      Ring: 076-111 84 47
+                      Ring: {COMPANY.phone.display}
                     </a>
                   </div>
                 </div>
