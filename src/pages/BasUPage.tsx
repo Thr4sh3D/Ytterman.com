@@ -121,11 +121,11 @@ const BasUPage = () => {
           badge="Certifierad BAS-U"
           title="BAS-U i Västernorrland"
           subtitle="Säker arbetsmiljö under byggfasen"
-          description="Säkerställ en trygg arbetsmiljö under hela byggfasen. Som certifierad BAS-U (Byggarbetsmiljösamordnare under utförande) övervakar jag säkerheten på byggarbetsplatsen och samordnar alla entreprenörer."
+          description="Säkerställ en trygg arbetsmiljö under hela byggfasen. Som BAS-U (Byggarbetsmiljösamordnare under utförande) övervakar jag säkerheten på byggarbetsplatsen och samordnar alla entreprenörer."
           features={[
             "Säkerhetsronder och arbetsmiljökontroll",
             "Samordning mellan entreprenörer",
-            "Certifierad enligt AFS 1999:3",
+            "Utbildad enligt AFS 2023:3",
             "Fast pris eller tydlig timdebitering",
             "Kan kombineras med BAS-P och KA"
           ]}
@@ -143,7 +143,7 @@ const BasUPage = () => {
             title: "Certifierad BAS-U",
             subtitle: "Byggarbetsmiljösamordnare",
             certifications: [
-              "Certifierad enligt AFS 1999:3",
+              "Utbildad enligt AFS 2023:3",
               "Regelbundna säkerhetsronder på plats",
               "Kan kombineras med BAS-P och Kontrollansvarig"
             ]
@@ -288,7 +288,7 @@ const BasUPage = () => {
                 Brandskyddsansvar under utförandefasen
               </h2>
               <p className="text-lg text-gray-700 leading-relaxed">
-                BAS-U samordnar arbetsmiljön under utförandet enligt AFS 2023:1 – men det operativa systematiska brandskyddsarbetet (SBA) är en separat roll med eget kompetenskrav. Behöver ert projekt en namngiven brandskyddsansvarig? Anlita{' '}
+                BAS-U samordnar arbetsmiljön under utförandet enligt AFS 2023:3 – men det operativa systematiska brandskyddsarbetet (SBA) är en separat roll med eget kompetenskrav. Behöver ert projekt en namngiven brandskyddsansvarig? Anlita{' '}
                 <ExternalSiteLink
                   href="https://www.tysafety.se/sba-byggarbetsplats"
                   ariaLabel="extern brandskyddsansvarig SBA via TY Safety – extern länk"

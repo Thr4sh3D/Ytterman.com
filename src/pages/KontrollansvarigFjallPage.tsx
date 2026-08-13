@@ -249,7 +249,7 @@ const KontrollansvarigFjallPage = () => {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">Grundpaket KA</h3>
-                    <p className="text-gray-600">Fast pris för hela KA-uppdraget för en fjällvilla eller fritidshus – kontrollplan, tekniskt samråd, besök i kritiska skeden och slutbevis. Priset anpassas efter projektets storlek.</p>
+                    <p className="text-gray-600">Fast pris för hela KA-uppdraget för en fjällvilla eller fritidshus – kontrollplan, tekniskt samråd, besök i kritiska skeden och underlag för slutbesked. Priset anpassas efter projektets storlek.</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">

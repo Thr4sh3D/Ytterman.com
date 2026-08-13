@@ -15,9 +15,8 @@ export const Certifications = ({ showTitle = true, compact = false }: Certificat
             Certifieringar & Kvalifikationer
           </h3>
           <p className="text-slate-600 max-w-2xl mx-auto">
-            Officiellt certifierad kontrollansvarig enligt Plan- och bygglagen med 
-            fullständig behörighet för teknisk kontroll och slutbesiktning samt 
-            uppdaterade BAS-P och BAS-U certifikat.
+            Officiellt certifierad kontrollansvarig (KA) enligt Plan- och bygglagen med 
+            behörighet N för projekt av normal art, samt kursintyg för uppdrag som BAS-P och BAS-U enligt AFS 2023:3.
           </p>
         </div>
       )}
@@ -47,7 +46,7 @@ export const Certifications = ({ showTitle = true, compact = false }: Certificat
               </div>
               <div className="flex justify-between">
                 <span className="text-slate-600">Giltigt till:</span>
-                <span className="font-semibold text-green-600">2030-07-03</span>
+                <span className="font-semibold text-green-600">2030-07-02</span>
               </div>
             </div>
             
@@ -132,7 +131,7 @@ export const Certifications = ({ showTitle = true, compact = false }: Certificat
           <div>
             <h5 className="font-semibold text-slate-900 mb-1">Fullständig Behörighet</h5>
             <p className="text-sm text-slate-600">
-              Certifierad för teknisk kontroll och slutbesiktning enligt Plan- och bygglagen.
+              Certifierad för teknisk kontroll enligt Plan- och bygglagen, behörighet N.
             </p>
           </div>
         </div>
@@ -142,9 +141,9 @@ export const Certifications = ({ showTitle = true, compact = false }: Certificat
             <HardHat className="w-5 h-5 text-orange-600" />
           </div>
           <div>
-            <h5 className="font-semibold text-slate-900 mb-1">Uppdaterad Säkerhetsutbildning</h5>
+            <h5 className="font-semibold text-slate-900 mb-1">Uppdaterat Utbildningsintyg</h5>
             <p className="text-sm text-slate-600">
-              Senaste BAS-P och BAS-U enligt gällande AFS från 2025.
+              Kursintyg BAS-P och BAS-U enligt AFS 2023:3, förnyas 2030.
             </p>
           </div>
         </div>

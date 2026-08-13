@@ -29,8 +29,8 @@ export const KAProcess = () => {
     },
     {
       number: "6",
-      title: "Slutbesiktning och slutbevis",
-      description: "När bygget är klart gör jag slutbesiktning och sammanställer all dokumentation. Du får slutbeviset som bekräftar att allt är utfört enligt gällande regler – så att du kan flytta in eller sälja fastigheten utan bekymmer."
+      title: "Slutbesiktning och underlag för slutbesked",
+      description: "När bygget är klart genomför jag slutbesiktning och sammanställer all dokumentation – kontrollplanen, protokoll och mitt skriftliga utlåtande. Det är sedan byggnadsnämnden som beviljar slutbeskedet, så att du kan flytta in eller sälja fastigheten utan bekymmer."
     }
   ];
 
@@ -44,7 +44,7 @@ export const KAProcess = () => {
               <span className="text-gradient">kontrollansvarig</span>
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Från första kontakt till färdigt slutbevis – här är processen som ger dig trygghet genom hela byggprojektet.
+              Från första kontakt till slutbesked – här är processen som ger dig trygghet genom hela byggprojektet.
             </p>
           </div>
 

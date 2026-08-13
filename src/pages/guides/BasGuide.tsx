@@ -11,8 +11,8 @@ const BasGuide = () => {
       category="Säkerhetssamordning"
       readTime="6 min"
       seoTitle="BAS-P och BAS-U Guide - Säkerhetssamordning 2025 | Ytterman"
-      seoDescription="Komplett guide om BAS-P och BAS-U roller, skillnader och lagkrav enligt AFS 1999:3. Expert råd från certifierad säkerhetssamordnare Tobias Ytterman i Västernorrland."
-      keywords="BAS-P, BAS-U, säkerhetssamordnare, arbetsmiljö, AFS 1999:3, byggarbetsmiljö, arbetsmiljöplan, Västernorrland"
+      seoDescription="Komplett guide om BAS-P och BAS-U roller, skillnader och lagkrav enligt AFS 2023:3. Expert råd från Tobias Ytterman i Västernorrland."
+      keywords="BAS-P, BAS-U, säkerhetssamordnare, arbetsmiljö, AFS 2023:3, byggarbetsmiljö, arbetsmiljöplan, Västernorrland"
       canonicalPath="/guider/bas"
     >
       <div className="prose prose-stone max-w-none">
@@ -31,7 +31,7 @@ const BasGuide = () => {
           <div className="flex items-start">
             <AlertTriangle className="w-5 h-5 text-red-600 mt-1 mr-3 flex-shrink-0" />
             <div>
-              <h3 className="font-semibold text-red-800 mb-2">Lagkrav enligt AFS 1999:3</h3>
+              <h3 className="font-semibold text-red-800 mb-2">Lagkrav enligt AFS 2023:3</h3>
               <p className="text-red-700">
                 BAS-P krävs för alla byggprojekt där fler än en entreprenör kommer att arbeta samtidigt 
                 eller i följd på samma arbetsplats.
@@ -134,7 +134,7 @@ const BasGuide = () => {
         </h2>
 
         <div className="bg-amber-50 border border-amber-200 p-6 rounded-lg mb-8">
-          <h3 className="font-semibold text-amber-800 mb-4">Lagkrav enligt AFS 1999:3</h3>
+          <h3 className="font-semibold text-amber-800 mb-4">Lagkrav enligt AFS 2023:3</h3>
           <p className="text-amber-700 mb-4">
             Både BAS-P och BAS-U krävs när (ofta tillsammans med en <Link to="/kontrollansvarig/" className="text-amber-800 hover:text-amber-900 font-medium underline">certifierad kontrollansvarig</Link>):
           </p>

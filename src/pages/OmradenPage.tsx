@@ -425,7 +425,7 @@ const OmradenPage = () => {
                     <h3 className="text-xl font-bold text-blue-900 mb-3">Kontrollansvarig (KA)</h3>
                     <p className="text-blue-800 mb-4">
                       Fullständig teknisk kontroll och kvalitetssäkring av ditt byggprojekt enligt 
-                      Plan- och bygglagen. Från kontrollplan till slutbevis.
+                      Plan- och bygglagen. Från kontrollplan till slutbesked.
                     </p>
                     <div className="flex flex-wrap gap-3">
                       <Link 

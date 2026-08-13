@@ -64,7 +64,7 @@ const EnergiDeklarationPage = () => {
     "@context": "https://schema.org",
     "@type": "Service",
     "name": "Energideklaration",
-    "description": "Professionella energideklarationer i Västernorrland. Certifierad energiexpert med över 20 års erfarenhet i byggbranschen.",
+    "description": "Energirådgivning och energibesiktning i Västernorrland. Hjälp att förstå din fastighets energiprestanda inför renovering eller försäljning.",
     "provider": {
       "@type": "LocalBusiness",
       "name": "Ytterman",
@@ -92,7 +92,7 @@ const EnergiDeklarationPage = () => {
     <>
       <AdvancedSEO
         title="Energideklaration i Västernorrland | Ytterman"
-        description="Behöver du energideklaration? Certifierad energiexpert med 20+ års erfarenhet i Sundsvall, Härnösand, Sollefteå, Timrå, Kramfors. Snabb handläggning."
+        description="Behöver du energirådgivning inför renovering eller försäljning? Tobias Ytterman erbjuder energibesiktning och energirådgivning i Sundsvall, Härnösand och hela Västernorrland."
         keywords="energideklaration, energideklaration Sundsvall, energideklaration Härnösand, energideklaration Västernorrland, energiklass, energibesiktning"
         url="https://ytterman.com/energideklaration"
         type="website"
@@ -117,16 +117,16 @@ const EnergiDeklarationPage = () => {
         </section>
         
         <ServiceHero
-          badge="Certifierad Energiexpert"
-          title="Energideklaration i Västernorrland"
-          subtitle="Professionell energibesiktning och rådgivning"
-          description="Få en professionell energideklaration för din fastighet. Som certifierad energiexpert hjälper jag dig med energibesiktning, energiberäkning och konkreta förslag för energibesparingar."
+          badge="Energirådgivning"
+          title="Energibesiktning & Rådgivning i Västernorrland"
+          subtitle="Förstå din fastighets energiprestanda"
+          description="Planerar du renovering eller vill förstå din fastighets energistatus? Tobias Ytterman erbjuder energibesiktning och rådgivning. OBS: Officiell energideklaration utförs av certifierad energiexpert – vi hjälper dig hitta rätt och förbereda för deklarationen."
           features={[
-            "Komplett energibesiktning av fastigheten",
-            "Energiberäkning och energiklass",
+            "Energibesiktning och genomgång av fastigheten",
+            "Rådgivning om energieffektivisering",
             "Konkreta förslag på energibesparande åtgärder",
-            "Official energideklaration enligt BBR",
-            "Snabb handläggning - klart inom 1-2 veckor"
+            "Hjälp inför och under renoveringsprojekt",
+            "Förberedelse inför formell energideklaration"
           ]}
           ctaPrimary={{
             text: "Begär offert",
@@ -139,12 +139,12 @@ const EnergiDeklarationPage = () => {
           }}
           bannerContent={{
             icon: Zap,
-            title: "Certifierad Energiexpert",
-            subtitle: "Energideklaration",
+            title: "Energibesiktning & Rådgivning",
+            subtitle: "Energieffektivisering",
             certifications: [
-              "Certifierad energideklarationsexpert",
-              "Över 20 års erfarenhet av energiberäkningar",
-              "Snabb handläggning och tydlig rapport"
+              "Rådgivning om energieffektivisering",
+              "Över 20 års erfarenhet i byggbranschen",
+              "Hjälp att förbereda inför formell energideklaration"
             ]
           }}
         />

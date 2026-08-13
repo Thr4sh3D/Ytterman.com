@@ -17,7 +17,7 @@ const KontrollansvarigPage = () => {
   const kontrollansvarigFAQ = [
     {
       question: "Vad gör en kontrollansvarig?",
-      answer: "En kontrollansvarig säkerställer att byggprojektet följer gällande byggregler, kontrollerar att alla tekniska egenskapskrav uppfylls och utfärdar slutbevis när byggnaden är klar."
+      answer: "En kontrollansvarig säkerställer att byggprojektet följer gällande byggregler, kontrollerar att alla tekniska egenskapskrav uppfylls och lämnar utlåtande inför slutbesked när byggnaden är klar."
     },
     {
       question: "När behövs en kontrollansvarig?",
@@ -46,7 +46,7 @@ const KontrollansvarigPage = () => {
     },
     {
       title: "Slutbesiktning",
-      description: "Genomförande av slutbesiktning och utfärdande av slutbevis",
+      description: "Genomförande av slutbesiktning och KA:s utlåtande inför slutbesked",
       icon: <CheckCircle className="h-6 w-6" />
     },
     {
@@ -121,10 +121,10 @@ const KontrollansvarigPage = () => {
           badge="Certifierad Kontrollansvarig"
           title="Kontrollansvarig i Västernorrland"
           subtitle="Trygg byggprocess med erfaren kontrollansvarig"
-          description="Säkerställ att ditt byggprojekt följer alla regler och krav. Som certifierad kontrollansvarig (KA enligt PBL) med över 20 års erfarenhet i byggbranschen hjälper jag dig genom hela processen - från kontrollplan till slutbevis."
+          description="Säkerställ att ditt byggprojekt följer alla regler och krav. Som certifierad kontrollansvarig (KA enligt PBL) med över 20 års erfarenhet i byggbranschen hjälper jag dig genom hela processen - från kontrollplan till slutbesked."
           features={[
             "Kontrollplan och teknisk kontroll enligt PBL",
-            "Slutbesiktning och utfärdande av slutbevis",
+            "Slutbesiktning och KA:s utlåtande inför slutbesked",
             "Erfaren och certifierad kontrollansvarig",
             "Fast pris eller tydlig timdebitering",
             "Digital hantering och snabb återkoppling"
@@ -216,7 +216,7 @@ const KontrollansvarigPage = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Slutbevis</h3>
-                  <p className="text-gray-600">Slutbesiktning och utfärdande av slutbevis när allt är klart.</p>
+                  <p className="text-gray-600">Slutbesiktning och KA:s utlåtande inför slutbesked när allt är klart.</p>
                 </div>
               </div>
             </div>

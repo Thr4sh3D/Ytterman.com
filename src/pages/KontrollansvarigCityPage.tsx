@@ -32,7 +32,7 @@ const KontrollansvarigCityPage = ({ cityData: city }: KontrollansvarigCityPagePr
     },
     {
       title: "Slutbesiktning",
-      description: "Genomförande av slutbesiktning och utfärdande av slutbevis",
+      description: "Genomförande av slutbesiktning och KA:s utlåtande inför slutbesked",
       icon: <CheckCircle className="h-6 w-6" />
     },
     {
@@ -122,7 +122,7 @@ const KontrollansvarigCityPage = ({ cityData: city }: KontrollansvarigCityPagePr
           features={[
             `Lokal närvaro i ${city.name} – ${city.travelTime}`,
             "Kontrollplan och teknisk kontroll enligt PBL",
-            "Slutbesiktning och utfärdande av slutbevis",
+            "Slutbesiktning och KA:s utlåtande inför slutbesked",
             "Fast pris utan extra reskostnader",
             "Digital hantering och snabb återkoppling"
           ]}
@@ -243,7 +243,7 @@ const KontrollansvarigCityPage = ({ cityData: city }: KontrollansvarigCityPagePr
                   <div className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-semibold">4</div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">Slutbevis</h3>
-                    <p className="text-gray-600">Slutbesiktning och utfärdande av slutbevis när allt är klart.</p>
+                    <p className="text-gray-600">Slutbesiktning och KA:s utlåtande inför slutbesked när allt är klart.</p>
                   </div>
                 </div>
               </div>

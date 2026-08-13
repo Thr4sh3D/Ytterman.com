@@ -32,7 +32,7 @@ const TjansterPage = () => {
       price: "Från 19,999 SEK",
       features: [
         "Kontrollplan och teknisk kontroll",
-        "Slutbesiktning och slutbevis",
+        "Slutbesiktning och underlag för slutbesked",
         "Dokumentation enligt PBL",
         "Samordning med byggkontroll"
       ],

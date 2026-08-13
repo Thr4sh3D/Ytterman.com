@@ -96,7 +96,7 @@ const VadArBasGuide = () => {
         </h2>
 
         <p className="mb-4">
-          Enligt <strong>Arbetsmiljöverkets föreskrifter (AFS 1999:3)</strong> ska BAS anlitas när:
+          Enligt <strong>Arbetsmiljöverkets föreskrifter (AFS 2023:3)</strong> ska BAS anlitas när:
         </p>
 
         <div className="bg-green-50 p-6 rounded-lg mb-6">
