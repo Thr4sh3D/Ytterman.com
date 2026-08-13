@@ -32,12 +32,12 @@ const createMockClient = () => ({
   },
   integrations: {
     core: {
-      uploadFile: async () => null,
-      invokeLLM: async () => ({}),
-      generateImage: async () => null,
-      getUploadedFile: async () => null,
-      sendEmail: async () => ({ success: true, message: 'Mock email sent' }),
-      extractDataFromUploadedFile: async () => null
+      uploadFile: async (_payload?: unknown) => null,
+      invokeLLM: async (_payload?: unknown) => ({}),
+      generateImage: async (_payload?: unknown) => null,
+      getUploadedFile: async (_payload?: unknown) => null,
+      sendEmail: async (_payload?: unknown) => ({ success: true, message: 'Mock email sent' }),
+      extractDataFromUploadedFile: async (_payload?: unknown) => null
     }
   },
   initialize: () => Promise.resolve(),
