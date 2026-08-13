@@ -59,7 +59,9 @@ Build verifierad:
 ```powershell
 git add .
 git commit -m "Fix: SEO improvements - 404 handling, DNS config, canonical URLs"
-git push origin main
+
+# I task-agent-miljön: använd engine-tools-report_progress för commit + push
+# Öppna sedan PR med runtime-tools-create_pull_request vid behov
 ```
 
 ### 2. DNS (Samma dag)

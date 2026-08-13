@@ -24,7 +24,9 @@ SPA (Single Page Application) redirect-reglerna i `netlify.toml` är inte aktive
 ```bash
 git add .
 git commit -m "fix: Activate SPA redirects for all routes"
-git push origin main
+
+# I task-agent-miljön: använd engine-tools-report_progress för commit + push
+# Öppna sedan PR med runtime-tools-create_pull_request vid behov
 ```
 
 **Alternativ B - Via Netlify Dashboard:**

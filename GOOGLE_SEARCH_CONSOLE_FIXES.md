@@ -82,7 +82,9 @@ https://www.ytterman.com/* → https://ytterman.com/:splat (301!)
 ```bash
 git add .
 git commit -m "Fix: Google Search Console indexing issues - optimize redirects & update sitemap"
-git push origin main
+
+# I task-agent-miljön: använd engine-tools-report_progress för commit + push
+# Öppna sedan PR med runtime-tools-create_pull_request vid behov
 ```
 
 ### 2. Vänta på deploy

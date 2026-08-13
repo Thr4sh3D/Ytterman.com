@@ -6,7 +6,9 @@
 # 1. Commita alla ändringar
 git add .
 git commit -m "Fix: SEO improvements - 404 handling, DNS config, canonical URLs"
-git push origin main
+
+# 1b. I task-agent-miljön: använd engine-tools-report_progress för commit + push
+# Öppna sedan PR med runtime-tools-create_pull_request vid behov
 
 # 2. Vänta på deploy (~2-5 min)
 # Följ: https://github.com/Thr4sh3D/Ytterman.com/actions

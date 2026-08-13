@@ -93,7 +93,9 @@ Om du ändrade något, klicka "Save" och vänta ~1 minut för att GitHub ska pro
 # Commita och pusha ändringarna
 git add .
 git commit -m "Fix: SEO improvements - 404 handling and canonical URLs"
-git push origin main
+
+# I task-agent-miljön: använd engine-tools-report_progress för commit + push
+# Öppna sedan PR med runtime-tools-create_pull_request vid behov
 
 # Vänta ~2-5 minuter för GitHub Actions deploy
 ```

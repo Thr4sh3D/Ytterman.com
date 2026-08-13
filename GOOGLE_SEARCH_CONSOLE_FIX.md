@@ -113,7 +113,9 @@ Båda dessa plattformar är gratis för statiska sidor och stöder _redirects-fi
    ```bash
    git add .
    git commit -m "Fix: Add Google Search Console verification and URL redirects"
-   git push
+
+   # I task-agent-miljön: använd engine-tools-report_progress för commit + push
+   # Öppna sedan PR med runtime-tools-create_pull_request vid behov
    ```
 
 3. Vänta några minuter tills webbplatsen är deployad

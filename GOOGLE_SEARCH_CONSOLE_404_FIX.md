@@ -75,8 +75,8 @@ Filen innehåller redan rätt SPA fallback-regel:
 git add .
 git commit -m "fix: Ensure SPA redirects are deployed to Netlify"
 
-# 2. Pusha till main branch (trigger deployment)
-git push origin main
+# 2. I task-agent-miljön: använd engine-tools-report_progress för commit + push
+# Öppna sedan PR med runtime-tools-create_pull_request om flödet kräver det
 ```
 
 **ALTERNATIVT - Manuell Re-deploy i Netlify Dashboard:**

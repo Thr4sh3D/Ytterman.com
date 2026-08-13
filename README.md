@@ -1,5 +1,11 @@
 # Welcome to your Superdev project
 
+## PR-flöde i task-miljön
+
+- Direkt `git push` är spärrat i den här miljön.
+- Använd `engine-tools-report_progress` för att commita och skicka upp ändringar.
+- Använd `runtime-tools-create_pull_request` när du uttryckligen ska öppna en PR.
+
 ## Verifiera senaste GitHub Pages-deploy
 
 1. Öppna repo **Settings → Pages** och använd länken under **Your site is live at**.
