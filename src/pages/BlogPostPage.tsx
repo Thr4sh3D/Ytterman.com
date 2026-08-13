@@ -5,7 +5,6 @@ import remarkGfm from 'remark-gfm';
 import DOMPurify from 'dompurify';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { AdvancedSEO } from '@/components/AdvancedSEO';
 import { CanonicalUrl } from '@/components/CanonicalUrl';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
@@ -172,10 +171,10 @@ const BlogPostPage = () => {
                       Kontakta oss
                     </a>
                     <a
-                      href={COMPANY.phone.href}
+                      href={COMPANY.emailHref}
                       className="inline-flex items-center justify-center px-6 py-3 border-2 border-slate-300 text-slate-900 rounded-lg hover:border-slate-400 transition-colors font-semibold"
                     >
-                      Ring: {COMPANY.phone.display}
+                      Mejla Tobias
                     </a>
                   </div>
                 </div>
@@ -185,7 +184,6 @@ const BlogPostPage = () => {
         </main>
 
         <Footer />
-        <WhatsAppButton />
       </div>
     </>
   );

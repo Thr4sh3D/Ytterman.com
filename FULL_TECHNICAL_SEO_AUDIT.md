@@ -131,7 +131,6 @@ Alla sidor använder redan korrekt semantic HTML. **Inget att åtgärda här.**
   "@type": "Organization",
   "name": "Ytterman",
   "url": "https://ytterman.com",
-  "telephone": "+46761118447",
   "email": "tobias@ytterman.com"
 }
 ```

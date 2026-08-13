@@ -10,6 +10,12 @@ const searchableFiles = [
   join(projectRoot, 'index.html'),
   join(projectRoot, 'scripts/create-github-pages-routes.mjs'),
 ].filter((file) => searchableExtensions.has(extname(file)));
+const publicContactDocs = [
+  'FULL_TECHNICAL_SEO_AUDIT.md',
+  'SEO_IMPLEMENTATION.md',
+  'OPEN-GRAPH-TWITTER.md',
+  'UI_SAFE_REPORT.md',
+].map((file) => join(projectRoot, file));
 
 function walk(directory) {
   return readdirSync(directory)
@@ -69,6 +75,21 @@ for (const file of searchableFiles) {
   }
 }
 
+const forbiddenPublicPhoneRules = [
+  ['borttaget publikt telefonnummer', /076[\s-]*111[\s-]*84[\s-]*47/gi],
+  ['borttaget publikt telefonnummer', /(?:\+|00)?46[\s-]*76[\s-]*111[\s-]*84[\s-]*47/gi],
+];
+
+for (const file of [...searchableFiles, ...publicContactDocs]) {
+  const source = readFileSync(file, 'utf8');
+  for (const [label, pattern] of forbiddenPublicPhoneRules) {
+    pattern.lastIndex = 0;
+    for (const match of source.matchAll(pattern)) {
+      violations.push(`${sourceName(file)}:${lineNumber(source, match.index)} – ${label}: “${match[0]}”`);
+    }
+  }
+}
+
 const digitalPages = [
   'src/pages/ByggstartPlanerare.tsx',
   'src/pages/EnergiberakningOnlinePage.tsx',
@@ -115,8 +136,6 @@ for (const fragment of requiredConfigFragments) {
 
 const contactValues = [
   companyConfig.match(/email:\s*'([^']+)'/)?.[1],
-  companyConfig.match(/display:\s*'([^']+)'/)?.[1],
-  companyConfig.match(/e164:\s*'([^']+)'/)?.[1],
 ].filter(Boolean);
 const sourceFilesOutsideCompanyConfig = walk(join(projectRoot, 'src'))
   .filter((file) => searchableExtensions.has(extname(file)) && file !== companyConfigPath);

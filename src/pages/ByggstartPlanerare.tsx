@@ -15,7 +15,6 @@ import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { CanonicalUrl } from '@/components/CanonicalUrl';
 import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
-import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { BAS, BUSINESS_COPY, KA_CERT, SERVICES } from '@/config/company';
@@ -146,7 +145,6 @@ const ByggstartPlanerare = () => {
         </main>
 
         <Footer />
-        <WhatsAppButton />
       </div>
     </>
   );

@@ -1,8 +1,7 @@
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { Button } from '@/components/ui/button';
-import { Home, Phone, ArrowLeft, MapPin } from 'lucide-react';
+import { Home, Mail, ArrowLeft, MapPin } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import { normalizeInternalPath } from '@/utils/url';
 import { COMPANY } from '@/config/company';
@@ -159,15 +158,15 @@ const NotFound = () => {
                   className="earth-gradient text-white hover:opacity-90 px-8 py-4 text-lg"
                   aria-label="Gå till kontaktsidan"
                 >
-                  <Phone className="w-5 h-5 mr-2" aria-hidden="true" />
+                  <Mail className="w-5 h-5 mr-2" aria-hidden="true" />
                   Kontakta oss
                 </Button>
                 <a 
-                  href={COMPANY.phone.href}
+                  href={COMPANY.emailHref}
                   className="inline-flex items-center px-8 py-4 border-2 border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-colors text-lg font-semibold focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-                  aria-label={`Ring Ytterman på ${COMPANY.phone.display}`}
+                  aria-label={`Mejla Ytterman på ${COMPANY.email}`}
                 >
-                  Ring: {COMPANY.phone.display}
+                  Mejla Tobias
                 </a>
               </div>
             </div>
@@ -175,7 +174,6 @@ const NotFound = () => {
         </main>
         
         <Footer />
-        <WhatsAppButton />
       </div>
     </>
   );

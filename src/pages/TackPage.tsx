@@ -2,10 +2,9 @@ import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { AdvancedSEO } from '@/components/AdvancedSEO';
 import { CanonicalUrl } from '@/components/CanonicalUrl';
-import { CheckCircle, Phone, Mail, Calendar, ArrowRight } from 'lucide-react';
+import { CheckCircle, Mail, Calendar, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { normalizeInternalPath } from '@/utils/url';
 import { BUSINESS_COPY, COMPANY } from '@/config/company';
@@ -173,19 +172,19 @@ const TackPage = () => {
                 
                 <div className="grid md:grid-cols-2 gap-8">
                   <div className="bg-slate-50 p-8 rounded-xl text-center">
-                    <Phone className="w-12 h-12 text-primary mx-auto mb-4" />
+                    <ArrowRight className="w-12 h-12 text-primary mx-auto mb-4" />
                     <h3 className="text-xl font-bold text-slate-900 mb-2">
-                      Ring direkt
+                      Kontaktformulär
                     </h3>
                     <p className="text-slate-600 mb-4">
-                      För frågor om din inskickade förfrågan
+                      Komplettera din inskickade förfrågan
                     </p>
                     <a 
-                      href={COMPANY.phone.href}
+                      href={normalizeInternalPath('/kontakt')}
                       className="inline-flex items-center px-6 py-3 earth-gradient text-white rounded-lg hover:opacity-90 transition-opacity"
                     >
-                      <Phone className="w-5 h-5 mr-2" />
-                      {COMPANY.phone.display}
+                      <ArrowRight className="w-5 h-5 mr-2" />
+                      Öppna formuläret
                     </a>
                   </div>
                   
@@ -198,7 +197,7 @@ const TackPage = () => {
                       Skicka ytterligare information
                     </p>
                     <a 
-                      href={`mailto:${COMPANY.email}`}
+                      href={COMPANY.emailHref}
                       className="inline-flex items-center px-6 py-3 border-2 border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-colors"
                     >
                       <Mail className="w-5 h-5 mr-2" />
@@ -289,7 +288,6 @@ const TackPage = () => {
         </main>
         
         <Footer />
-        <WhatsAppButton />
       </div>
     </>
   );

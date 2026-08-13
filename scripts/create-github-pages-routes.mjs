@@ -92,7 +92,7 @@ const routeSeoData = {
   },
   kontakt: {
     title: 'Kontakta Ytterman - Kontrollansvarig & BAS Västernorrland',
-    description: 'Behöver du kontrollansvarig eller BAS? Ring 076-111 84 47 eller mejla tobias@ytterman.com och beskriv projektet så återkommer vi med nästa steg.',
+    description: 'Behöver du kontrollansvarig eller BAS? Mejla tobias@ytterman.com eller använd formuläret och beskriv projektet så återkommer vi med nästa steg.',
   },
   guider: {
     title: 'Bygguider – kontrollansvarig, BAS och byggprocess | Ytterman',

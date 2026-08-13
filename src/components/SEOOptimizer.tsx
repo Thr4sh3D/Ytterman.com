@@ -84,7 +84,6 @@ export const SEOOptimizer: React.FC<SEOOptimizerProps> = ({
           "contactPoint": {
             "@type": "ContactPoint",
             "contactType": "customer service",
-            "telephone": COMPANY.phone.e164,
             "email": COMPANY.email,
             "areaServed": COMPANY.countryCode,
             "availableLanguage": "Swedish"

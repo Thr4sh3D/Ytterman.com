@@ -1,6 +1,5 @@
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { AdvancedSEO } from '@/components/AdvancedSEO';
 import { FAQ, faqData } from '@/components/FAQ';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
@@ -10,8 +9,8 @@ import { ContactForm } from '@/components/ContactForm';
 import { ContactInfo } from '@/components/ContactInfo';
 import { ServiceAreas } from '@/components/ServiceAreas';
 import { JsonLdSchema } from '@/components/JsonLdSchema';
-import { Phone, Mail } from 'lucide-react';
-import { COMPANY } from '@/config/company';
+import { Mail } from 'lucide-react';
+import { BUSINESS_COPY, COMPANY } from '@/config/company';
 
 const KontaktPage = () => {
   const breadcrumbs = [
@@ -64,19 +63,20 @@ const KontaktPage = () => {
                 <p className="text-xl text-slate-600 mb-8">
                   Behöver du hjälp med kontrollansvarig, BAS-P, BAS-U eller andra byggtjänster? 
                   Skicka projektets grunduppgifter så återkommer vi med nästa steg och offert.
+                  {' '}{BUSINESS_COPY.preferredContact}
                 </p>
                 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <a 
-                    href={COMPANY.phone.href}
+                    href="#kontaktformular"
                     className="inline-flex items-center px-8 py-4 earth-gradient text-white rounded-lg hover:opacity-90 transition-opacity text-lg font-semibold focus:ring-4 focus:ring-primary/20 focus:outline-none"
-                    aria-label={`Ring Ytterman på ${COMPANY.phone.display}`}
+                    aria-label="Gå till Yttermans kontaktformulär"
                   >
-                    <Phone className="w-5 h-5 mr-2" aria-hidden="true" />
-                    Ring: {COMPANY.phone.display}
+                    <Mail className="w-5 h-5 mr-2" aria-hidden="true" />
+                    Öppna formuläret
                   </a>
                   <a 
-                    href={`mailto:${COMPANY.email}`}
+                    href={COMPANY.emailHref}
                     className="inline-flex items-center px-8 py-4 border-2 border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-colors text-lg font-semibold focus:ring-4 focus:ring-primary/20 focus:outline-none"
                     aria-label={`Skicka e-post till ${COMPANY.publicName} på ${COMPANY.email}`}
                   >
@@ -89,7 +89,7 @@ const KontaktPage = () => {
           </section>
 
           {/* Contact Info & Form */}
-          <section className="py-20 bg-white" aria-labelledby="contact-section-heading">
+          <section id="kontaktformular" className="py-20 bg-white" aria-labelledby="contact-section-heading">
             <div className="container mx-auto px-4">
               <div className="max-w-5xl mx-auto mb-12">
                 <div className="grid md:grid-cols-3 gap-6">
@@ -139,7 +139,6 @@ const KontaktPage = () => {
         </main>
         
         <Footer />
-        <WhatsAppButton />
       </div>
     </>
   );

@@ -77,7 +77,6 @@ const OverlatelsebesiktningPage = () => {
     "provider": {
       "@type": "LocalBusiness",
       "name": COMPANY.brandName,
-      "telephone": COMPANY.phone.e164,
       "email": COMPANY.email
     },
     "areaServed": COMPANY.areaServed,
@@ -129,9 +128,9 @@ const OverlatelsebesiktningPage = () => {
             href: BOOKING_OVL_URL
           } : undefined}
           ctaSecondary={{
-            text: COMPANY.phone.display,
-            href: COMPANY.phone.href,
-            phone: true
+            text: "Mejla direkt",
+            href: COMPANY.emailHref,
+            external: true
           }}
           bannerContent={{
             icon: Home,

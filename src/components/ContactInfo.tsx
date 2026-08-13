@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin, Clock, CheckCircle } from 'lucide-react';
+import { Mail, MapPin, Clock, CheckCircle } from 'lucide-react';
 import { BUSINESS_COPY, COMPANY } from '@/config/company';
 
 interface ContactInfoProps {
@@ -8,18 +8,11 @@ interface ContactInfoProps {
 export const ContactInfo = ({ className = '' }: ContactInfoProps) => {
   const contactInfo = [
     {
-      icon: Phone,
-      title: "Telefon",
-      value: COMPANY.phone.display,
-      link: COMPANY.phone.href,
-      description: "Ring eller lämna en projektförfrågan"
-    },
-    {
       icon: Mail,
       title: "E-post",
       value: COMPANY.email,
-      link: `mailto:${COMPANY.email}`,
-      description: "Skicka dina frågor"
+      link: COMPANY.emailHref,
+      description: BUSINESS_COPY.preferredContact
     },
     {
       icon: MapPin,

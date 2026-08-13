@@ -8,7 +8,6 @@ export const SEOEnhancements = () => {
     "name": COMPANY.brandName,
     "description": `${KA_CERT.title} och utbildad för uppdrag som ${BAS.rolesLabel}. ${COMPANY.experienceLabel}.`,
     "url": COMPANY.siteUrl,
-    "telephone": COMPANY.phone.e164,
     "email": COMPANY.email,
     "areaServed": COMPANY.areaServed.map(name => ({ "@type": "AdministrativeArea", name })),
     "serviceType": [

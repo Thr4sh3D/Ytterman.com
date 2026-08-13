@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Phone, Mail, MapPin, Clock } from 'lucide-react';
+import { Mail, MapPin, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 import { sendContactEmail } from '@/lib/emailjs';
@@ -73,7 +73,7 @@ export const Contact = ({ selectedPackage = '', prefilledMessage = '' }: Contact
       console.error('Error sending message:', error);
       toast({
         title: "Fel vid skickning",
-        description: `Ett fel uppstod. Försök igen eller ring ${COMPANY.phone.display}.`,
+        description: `Ett fel uppstod. Försök igen eller mejla ${COMPANY.email}.`,
         variant: "destructive"
       });
     } finally {
@@ -90,16 +90,10 @@ export const Contact = ({ selectedPackage = '', prefilledMessage = '' }: Contact
 
   const contactInfo = [
     {
-      icon: Phone,
-      title: "Telefon",
-      value: COMPANY.phone.display,
-      action: () => window.open(COMPANY.phone.href)
-    },
-    {
       icon: Mail,
       title: "E-post",
       value: COMPANY.email,
-      action: () => window.open(`mailto:${COMPANY.email}`)
+      action: () => window.open(COMPANY.emailHref)
     },
     {
       icon: MapPin,

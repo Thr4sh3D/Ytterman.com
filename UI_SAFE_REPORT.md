@@ -68,14 +68,13 @@ Alla guide-filer har uppdaterats med **interna länkar** men **inga visuella än
 |--------|----------|----------|
 | **Status** | ✅ Ny sida (finns inte i tidigare version) | ✅ **Ja** - kan inte bryta befintlig design |
 | **Design-språk** | Återanvänder **existerande komponenter** | ✅ **Konsistent** |
-| **Komponenter** | Header, Footer, WhatsAppButton, ContactForm, FAQ, Breadcrumbs | ✅ **Alla befintliga** |
+| **Komponenter** | Header, Footer, ContactForm, FAQ, Breadcrumbs | ✅ **Alla befintliga** |
 | **Tailwind-klasser** | Endast standard Tailwind-klasser som redan används | ✅ **Ingen custom CSS** |
 | **Layout-pattern** | Följer samma mönster som andra sidor (Hero → Innehåll → CTA → Footer) | ✅ **Konsistent** |
 
 **Komponenter använd i OmradenPage:**
 - ✅ `<Header />` - Befintlig
 - ✅ `<Footer />` - Befintlig
-- ✅ `<WhatsAppButton />` - Befintlig
 - ✅ `<AdvancedSEO />` - Befintlig
 - ✅ `<Breadcrumbs />` - Befintlig
 - ✅ `<FAQ />` - Befintlig

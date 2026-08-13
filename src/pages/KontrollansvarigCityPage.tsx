@@ -57,7 +57,6 @@ const KontrollansvarigCityPage = ({ cityData: city }: KontrollansvarigCityPagePr
     "provider": {
       "@type": "LocalBusiness",
       "name": COMPANY.brandName,
-      "telephone": COMPANY.phone.e164,
       "email": COMPANY.email
     },
     "areaServed": {
@@ -123,9 +122,9 @@ const KontrollansvarigCityPage = ({ cityData: city }: KontrollansvarigCityPagePr
             href: "/kontakt"
           }}
           ctaSecondary={{
-            text: "Ring direkt",
-            href: COMPANY.phone.href,
-            phone: true
+            text: "Mejla direkt",
+            href: COMPANY.emailHref,
+            external: true
           }}
           bannerContent={{
             icon: Shield,

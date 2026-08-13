@@ -100,8 +100,8 @@ const OverlatelsebesiktningGuide = () => (
           <Link className="rounded-lg border border-white px-5 py-3 font-semibold text-white" to="/overlatelsebesiktning/">
             Läs om tjänsten
           </Link>
-          <a className="rounded-lg border border-white px-5 py-3 font-semibold text-white" href={COMPANY.phone.href}>
-            {COMPANY.phone.display}
+          <a className="rounded-lg border border-white px-5 py-3 font-semibold text-white" href={COMPANY.emailHref}>
+            Mejla Tobias
           </a>
         </div>
       </div>

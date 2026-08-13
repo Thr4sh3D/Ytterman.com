@@ -47,7 +47,7 @@ export const sendContactEmail = async (formData: ContactFormData): Promise<{ suc
     console.error('EmailJS Error:', error);
     return { 
       success: false, 
-      error: `Kunde inte skicka meddelandet. Försök igen eller ring ${COMPANY.phone.display}.`
+      error: `Kunde inte skicka meddelandet. Försök igen eller mejla ${COMPANY.email}.`
     };
   }
 };

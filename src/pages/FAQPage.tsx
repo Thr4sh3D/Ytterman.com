@@ -1,6 +1,5 @@
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { AdvancedSEO } from '@/components/AdvancedSEO';
 import { CanonicalUrl } from '@/components/CanonicalUrl';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
@@ -208,12 +207,12 @@ const FAQPage = () => {
                   Kontakta oss
                 </Button>
                 <Button 
-                  onClick={() => window.location.href = COMPANY.phone.href}
+                  onClick={() => window.location.href = COMPANY.emailHref}
                   size="lg"
                   variant="outline"
                   className="border-white text-white hover:bg-white hover:text-slate-900"
                 >
-                  Ring: {COMPANY.phone.display}
+                  Mejla Tobias
                 </Button>
               </div>
             </div>
@@ -221,7 +220,6 @@ const FAQPage = () => {
         </main>
         
         <Footer />
-        <WhatsAppButton />
       </div>
     </>
   );

@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin } from 'lucide-react';
+import { Mail, MapPin } from 'lucide-react';
 import { ExternalSiteLink } from '@/components/ExternalSiteLink';
 import { buildTimeIso, shortCommitSha } from '@/lib/buildInfo';
 import { BAS, COMPANY, KA_CERT } from '@/config/company';
@@ -24,14 +24,8 @@ export const Footer = () => {
             </p>
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
-                <Phone className="w-5 h-5 text-primary" />
-                <a href={COMPANY.phone.href} className="hover:text-primary transition-colors">
-                  {COMPANY.phone.display}
-                </a>
-              </div>
-              <div className="flex items-center space-x-3">
                 <Mail className="w-5 h-5 text-primary" />
-                <a href={`mailto:${COMPANY.email}`} className="hover:text-primary transition-colors">
+                <a href={COMPANY.emailHref} className="hover:text-primary transition-colors">
                   {COMPANY.email}
                 </a>
               </div>

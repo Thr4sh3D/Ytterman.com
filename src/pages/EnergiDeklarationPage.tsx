@@ -70,7 +70,6 @@ const EnergiDeklarationPage = () => {
       "@type": "LocalBusiness",
       "name": COMPANY.brandName,
       "url": COMPANY.siteUrl,
-      "telephone": COMPANY.phone.e164,
       "email": COMPANY.email
     },
     "areaServed": COMPANY.areaServed,
@@ -117,9 +116,9 @@ const EnergiDeklarationPage = () => {
             href: "/kontakt"
           }}
           ctaSecondary={{
-            text: "Ring direkt",
-            href: COMPANY.phone.href,
-            phone: true
+            text: "Mejla direkt",
+            href: COMPANY.emailHref,
+            external: true
           }}
           bannerContent={{
             icon: Zap,

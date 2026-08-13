@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Phone, Mail, MapPin, Clock, CheckCircle, AlertCircle } from 'lucide-react';
+import { Mail, MapPin, Clock, CheckCircle, AlertCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { sendContactEmail } from '@/lib/emailjs';
 import { useGoogleAdsTracking } from '@/hooks/useGoogleAdsTracking';
@@ -32,7 +32,7 @@ const ContactForm = () => {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [searchParams] = useSearchParams();
   const { toast } = useToast();
-  const { trackFormSubmission, trackPhoneClick } = useGoogleAdsTracking();
+  const { trackFormSubmission } = useGoogleAdsTracking();
 
   useEffect(() => {
     const requestedProject = searchParams.get('project')?.trim().toLowerCase();
@@ -52,10 +52,6 @@ const ContactForm = () => {
       ...prev,
       [field]: value
     }));
-  };
-
-  const handlePhoneClick = (phoneNumber: string) => {
-    trackPhoneClick(phoneNumber);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -108,7 +104,7 @@ const ContactForm = () => {
       
       toast({
         title: "Kunde inte skicka meddelandet",
-        description: `Försök igen eller ring ${COMPANY.phone.display}.`,
+        description: `Försök igen eller mejla ${COMPANY.email}.`,
         variant: "destructive",
       });
     } finally {
@@ -232,7 +228,7 @@ const ContactForm = () => {
               {submitStatus === 'error' && (
                 <div className="flex items-center gap-2 text-red-600 bg-red-50 p-3 rounded-lg">
                   <AlertCircle className="w-5 h-5" />
-                  <span>Kunde inte skicka meddelandet. Försök igen eller ring direkt.</span>
+                  <span>Kunde inte skicka meddelandet. Försök igen eller mejla {COMPANY.email}.</span>
                 </div>
               )}
             </form>
@@ -247,25 +243,11 @@ const ContactForm = () => {
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-blue-600" />
-                <div>
-                  <p className="font-medium text-slate-800">Telefon</p>
-                  <a 
-                    href={COMPANY.phone.href}
-                    className="text-blue-600 hover:text-blue-700 transition-colors"
-                    onClick={() => handlePhoneClick(COMPANY.phone.e164)}
-                  >
-                    {COMPANY.phone.display}
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-blue-600" />
                 <div>
                   <p className="font-medium text-slate-800">E-post</p>
                   <a 
-                    href={`mailto:${COMPANY.email}`}
+                    href={COMPANY.emailHref}
                     className="text-blue-600 hover:text-blue-700 transition-colors"
                   >
                     {COMPANY.email}
@@ -296,18 +278,17 @@ const ContactForm = () => {
             <CardContent className="p-6">
               <h3 className="font-semibold text-slate-800 mb-2">Kontakta Ytterman</h3>
               <p className="text-slate-600 mb-4">
-                Ring om du föredrar telefon. Om samtalet inte kan tas emot, skicka gärna projektets grunduppgifter i formuläret.
+                {BUSINESS_COPY.preferredContact} Skicka gärna med projektets typ, ort och önskad start.
               </p>
               <Button 
                 asChild 
                 className="w-full earth-gradient hover:opacity-90 text-white"
               >
                 <a 
-                  href={COMPANY.phone.href}
-                  onClick={() => handlePhoneClick(COMPANY.phone.e164)}
+                  href={COMPANY.emailHref}
                 >
-                  <Phone className="w-4 h-4 mr-2" />
-                  Ring nu: {COMPANY.phone.display}
+                  <Mail className="w-4 h-4 mr-2" />
+                  Mejla {COMPANY.email}
                 </a>
               </Button>
             </CardContent>

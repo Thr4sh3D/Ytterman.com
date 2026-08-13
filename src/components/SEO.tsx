@@ -25,7 +25,6 @@ export const SEO = ({
     "alternateName": COMPANY.publicName,
     "description": `${KA_CERT.title} och ${BAS.qualificationLabel.toLowerCase()} med ${COMPANY.experienceLabel.toLowerCase()} i byggbranschen i ${COMPANY.region}`,
     "url": url,
-    "telephone": COMPANY.phone.e164,
     "email": COMPANY.email,
     "areaServed": COMPANY.areaServed.map(name => ({ "@type": "AdministrativeArea", name })),
     "serviceType": ACTIVE_SERVICE_NAMES,

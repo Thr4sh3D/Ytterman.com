@@ -1,6 +1,5 @@
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { AdvancedSEO } from '@/components/AdvancedSEO';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { CanonicalUrl } from '@/components/CanonicalUrl';
@@ -8,7 +7,7 @@ import { ContactForm } from '@/components/ContactForm';
 import { PricingPackages } from '@/components/PricingPackages';
 import { PricingFAQ } from '@/components/PricingFAQ';
 import { COMPANY, PRICE_LABELS, PRICING } from '@/config/company';
-import { CheckCircle, FileCheck2, Info, Phone } from 'lucide-react';
+import { CheckCircle, FileCheck2, Info, Mail } from 'lucide-react';
 
 const PriserPage = () => {
   const breadcrumbs = [
@@ -58,11 +57,11 @@ const PriserPage = () => {
                     Begär offert
                   </a>
                   <a
-                    href={COMPANY.phone.href}
+                    href={COMPANY.emailHref}
                     className="inline-flex items-center rounded-lg border-2 border-primary bg-white px-8 py-4 font-semibold text-primary transition-colors hover:bg-stone-50"
                   >
-                    <Phone className="mr-2 h-5 w-5" />
-                    {COMPANY.phone.display}
+                    <Mail className="mr-2 h-5 w-5" />
+                    Mejla underlaget
                   </a>
                 </div>
               </div>
@@ -126,7 +125,6 @@ const PriserPage = () => {
         </main>
 
         <Footer />
-        <WhatsAppButton />
       </div>
     </>
   );

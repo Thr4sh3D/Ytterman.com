@@ -1,6 +1,5 @@
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { Helmet } from 'react-helmet-async';
 import { COMPANY } from '@/config/company';
 
@@ -38,7 +37,6 @@ const Integritetspolicy = () => {
                   <div className="bg-stone-50 p-6 rounded-lg">
                     <p><strong>{COMPANY.brandName}</strong></p>
                     <p>E-post: {COMPANY.email}</p>
-                    <p>Telefon: {COMPANY.phone.display}</p>
                   </div>
                 </section>
 
@@ -110,7 +108,7 @@ const Integritetspolicy = () => {
                     <li><strong>Dataportabilitet</strong> - få ut dina uppgifter i strukturerat format</li>
                   </ul>
                   <p className="mt-4">
-                    För att utöva dina rättigheter, kontakta oss på {COMPANY.email} eller {COMPANY.phone.display}.
+                    För att utöva dina rättigheter, kontakta oss på {COMPANY.email}.
                   </p>
                 </section>
 
@@ -149,7 +147,6 @@ const Integritetspolicy = () => {
                   <div className="bg-stone-50 p-6 rounded-lg mt-4">
                     <p><strong>{COMPANY.brandName}</strong></p>
                     <p>E-post: {COMPANY.email}</p>
-                    <p>Telefon: {COMPANY.phone.display}</p>
                     <p className="mt-4">
                       Du har också rätt att lämna klagomål till Integritetsskyddsmyndigheten (IMY) 
                       om du anser att vi behandlar dina personuppgifter på ett felaktigt sätt.
@@ -167,7 +164,6 @@ const Integritetspolicy = () => {
           </div>
         </main>
         <Footer />
-        <WhatsAppButton />
       </div>
     </>
   );

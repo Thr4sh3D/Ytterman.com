@@ -20,11 +20,8 @@ export const COMPANY = {
   publicName: 'Tobias Ytterman',
   siteUrl: 'https://ytterman.com',
   email: 'tobias@ytterman.com',
-  phone: {
-    display: '076-111 84 47',
-    e164: '+46761118447',
-    href: 'tel:+46761118447',
-  },
+  emailHref: 'mailto:tobias@ytterman.com',
+  contactPath: '/kontakt/',
   experienceYears: 20,
   experienceLabel: 'Över 20 års erfarenhet',
   region: 'Västernorrland',
@@ -114,7 +111,9 @@ export const PRICE_LABELS = {
 
 export const BUSINESS_COPY = {
   defaultResponse:
-    'Skicka din förfrågan så återkommer vi med nästa steg utifrån projektets omfattning och aktuell kapacitet.',
+    'Skicka din förfrågan via formuläret eller e-post så återkommer jag med nästa steg utifrån projektets omfattning och aktuell kapacitet.',
+  preferredContact:
+    'E-post och formuläret är de snabbaste kontaktvägarna eftersom jag ofta är ute i projekt under dagtid.',
   kaScope:
     'Kontrollansvarig biträder byggherren med att upprätta förslag till kontrollplan, följer upp att kontrollplanen och gällande villkor följs samt lämnar eget utlåtande som underlag inför slutbesked. Byggnadsnämnden beslutar om slutbesked.',
   energyPartner:

@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { AdvancedSEO } from '@/components/AdvancedSEO';
 import { CanonicalUrl } from '@/components/CanonicalUrl';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
@@ -243,10 +242,10 @@ const GuidesPage = () => {
                   Kontakta oss
                 </a>
                 <a 
-                  href={COMPANY.phone.href}
+                  href={COMPANY.emailHref}
                   className="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white rounded-lg hover:bg-white hover:text-slate-900 transition-colors text-lg font-semibold"
                 >
-                  Ring: {COMPANY.phone.display}
+                  Mejla Tobias
                 </a>
               </div>
             </div>
@@ -254,7 +253,6 @@ const GuidesPage = () => {
         </main>
         
         <Footer />
-        <WhatsAppButton />
       </div>
     </>
   );

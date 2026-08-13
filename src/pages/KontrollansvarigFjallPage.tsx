@@ -73,7 +73,6 @@ const KontrollansvarigFjallPage = () => {
     "provider": {
       "@type": "LocalBusiness",
       "name": COMPANY.brandName,
-      "telephone": COMPANY.phone.e164,
       "email": COMPANY.email
     },
     "areaServed": COMPANY.areaServed.map((name) => ({
@@ -131,9 +130,9 @@ const KontrollansvarigFjallPage = () => {
             href: "/kontakt"
           }}
           ctaSecondary={{
-            text: "Ring direkt",
-            href: COMPANY.phone.href,
-            phone: true
+            text: "Mejla direkt",
+            href: COMPANY.emailHref,
+            external: true
           }}
           bannerContent={{
             icon: Mountain,

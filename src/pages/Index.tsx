@@ -5,7 +5,6 @@ import { Services } from '@/components/Services';
 import { About } from '@/components/About';
 import { Contact } from '@/components/Contact';
 import { FAQ } from '@/components/FAQ';
-import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { AdvancedSEO } from '@/components/AdvancedSEO';
 import { JsonLdSchema } from '@/components/JsonLdSchema';
 import { PricingPackages } from '@/components/PricingPackages';
@@ -129,7 +128,6 @@ const Index = () => {
           <Contact selectedPackage="" prefilledMessage="" />
         </main>
         <Footer />
-        <WhatsAppButton />
       </div>
     </>
   );

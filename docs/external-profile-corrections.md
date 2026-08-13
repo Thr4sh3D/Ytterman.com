@@ -7,7 +7,9 @@
 - [ ] Verifiera juridiskt företagsnamn exakt som det är registrerat.
 - [ ] Verifiera organisationsnummer.
 - [ ] Verifiera postadress och eventuell separat besöks-/verksamhetsadress.
-- [ ] Bestäm ett enda publikt format för namn, telefon och adress (NAP) och använd samma format överallt.
+- [ ] Ta bort det publika telefonnumret från webbplatsen, Google Business Profile, katalogtjänster och sociala profiler.
+- [ ] Använd `tobias@ytterman.com` och kontaktformuläret på `https://ytterman.com/kontakt/` som primära kontaktvägar.
+- [ ] Använd samma verifierade namn- och adressuppgifter överallt där de publiceras.
 - [ ] Bekräfta om en fysisk adress ska visas offentligt eller om profilen ska vara ett serviceområde utan synlig adress.
 
 Publicera inte adress, organisationsnummer eller juridiskt namn i schema, sidfot eller externa profiler förrän punkterna ovan är klara.
@@ -44,7 +46,8 @@ Godkänd energiformulering: “Ytterman erbjuder och samordnar energideklaration
 - [ ] Publicera endast verifierade recensioner; spara källa och datum.
 - [ ] Gå igenom Google Business Profile, Bygglov.se, SBR-profil, sociala profiler och relevanta kataloger.
 - [ ] Bekräfta relationen till TY Safety och önskad korslänkning innan verksamheten beskrivs som systerföretag.
-- [ ] Synka NAP, tjänstelista, KA-behörighet, BAS-formulering, energipartner-modell, priser och serviceområde.
+- [ ] Synka kontaktvägar, tjänstelista, KA-behörighet, BAS-formulering, energipartner-modell, priser och serviceområde.
+- [ ] Kontrollera att inga externa profiler eller äldre kampanjer visar det borttagna telefonnumret eller en WhatsApp-länk till det.
 - [ ] Ta bort gamla löften om svar inom 24/48 timmar, minuter, kort restid eller kostnadsfria resor.
 - [ ] Kontrollera att ingen profil beskriver Tobias som certifierad energiexpert.
 

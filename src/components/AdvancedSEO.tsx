@@ -101,7 +101,6 @@ export const AdvancedSEO = ({
     "alternateName": COMPANY.publicName,
     "description": `${KA_CERT.title}, ${BAS.rolesLabel} och andra byggtjänster i ${COMPANY.region}. ${BUSINESS_COPY.energyPartner}`,
     "url": COMPANY.siteUrl,
-    "telephone": COMPANY.phone.e164,
     "email": COMPANY.email,
     "areaServed": COMPANY.areaServed.map(name => ({ "@type": "AdministrativeArea", name })),
     "serviceType": ACTIVE_SERVICE_NAMES,
@@ -273,7 +272,7 @@ export const AdvancedSEO = ({
       
       {/* Mobile and Viewport */}
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <meta name="format-detection" content="telephone=yes" />
+      <meta name="format-detection" content="telephone=no" />
       
       {/* Structured Data */}
       {organization && (

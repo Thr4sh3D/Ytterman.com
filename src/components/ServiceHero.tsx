@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { CheckCircle, Phone, Award, Shield, Clock, MessageCircle } from 'lucide-react';
+import { CheckCircle, Mail, Award, Shield, Clock, MessageCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { LucideIcon } from 'lucide-react';
 import { normalizeInternalPath } from '@/utils/url';
@@ -19,7 +19,7 @@ interface ServiceHeroProps {
   ctaSecondary?: {
     text: string;
     href: string;
-    phone?: boolean;
+    external?: boolean;
   };
   stats?: {
     icon: LucideIcon;
@@ -54,7 +54,7 @@ export const ServiceHero = ({
 
   const displayStats = stats || defaultStats;
   const primaryHref = ctaPrimary ? normalizeInternalPath(ctaPrimary.href) || ctaPrimary.href : undefined;
-  const secondaryHref = ctaSecondary && !ctaSecondary.phone
+  const secondaryHref = ctaSecondary && !ctaSecondary.external
     ? normalizeInternalPath(ctaSecondary.href) || ctaSecondary.href
     : ctaSecondary?.href;
 
@@ -108,9 +108,9 @@ export const ServiceHero = ({
                   className="border-accent text-accent hover:bg-accent hover:text-white text-lg px-8 py-6"
                   asChild
                 >
-                  {ctaSecondary.phone ? (
+                  {ctaSecondary.external ? (
                     <a href={ctaSecondary.href}>
-                      <Phone className="w-5 h-5 mr-2" />
+                      <Mail className="w-5 h-5 mr-2" />
                       {ctaSecondary.text}
                     </a>
                   ) : (
@@ -164,10 +164,12 @@ export const ServiceHero = ({
                     <div className="mt-6 pt-4 border-t border-border/50">
                       <div className="flex items-center justify-between">
                         <div>
-                          <p className="text-xs text-muted-foreground mb-1">Kontakta mig direkt</p>
+                          <p className="text-xs text-muted-foreground mb-1">Snabbaste kontaktvägen</p>
                           <div className="flex items-center space-x-2">
-                            <Phone className="w-4 h-4 text-accent" />
-                            <span className="font-semibold text-foreground">{COMPANY.phone.display}</span>
+                            <Mail className="w-4 h-4 text-accent" />
+                            <a href={COMPANY.emailHref} className="font-semibold text-foreground hover:underline">
+                              E-post eller formulär
+                            </a>
                           </div>
                         </div>
                         

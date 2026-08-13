@@ -1,4 +1,4 @@
-import { Check, Star, AlertCircle, Phone, Mail } from 'lucide-react';
+import { Check, Star, AlertCircle, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { 
   pricingPackages, 
@@ -197,9 +197,9 @@ export const PricingPackages = () => {
               variant="outline"
               className="border-2 border-primary text-primary hover:bg-primary hover:text-white"
             >
-              <a href={COMPANY.phone.href} aria-label="Ring Ytterman">
-                <Phone className="w-5 h-5 mr-2" />
-                {COMPANY.phone.display}
+              <a href={COMPANY.emailHref} aria-label="Mejla Ytterman">
+                <Mail className="w-5 h-5 mr-2" />
+                Mejla underlaget
               </a>
             </Button>
           </div>

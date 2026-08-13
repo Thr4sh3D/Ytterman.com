@@ -32,7 +32,7 @@ export const pricingPackages: PricingPackage[] = [
       'Medverkan i tekniskt samråd vid behov',
       'Arbetsplatsbesök enligt offert och kontrollplan',
       'KA-utlåtande som underlag inför slutbesked',
-      'Löpande kommunikation via telefon och e-post',
+      'Löpande kommunikation via e-post och överenskomna projektkanaler',
     ],
     popular: false,
   },

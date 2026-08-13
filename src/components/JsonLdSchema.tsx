@@ -22,7 +22,6 @@ export const JsonLdSchema = ({ type = 'ProfessionalService' }: JsonLdSchemaProps
     alternateName: COMPANY.publicName,
     description: `${KA_CERT.title} och ${BAS.qualificationLabel.toLowerCase()} i ${COMPANY.region}. ${BUSINESS_COPY.energyPartner}`,
     url: COMPANY.siteUrl,
-    telephone: COMPANY.phone.e164,
     email: COMPANY.email,
     image: `${COMPANY.siteUrl}/og-image.png`,
     logo: `${COMPANY.siteUrl}/favicon.svg`,

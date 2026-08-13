@@ -1,5 +1,5 @@
-import { Shield, Award, CheckCircle, Phone } from 'lucide-react';
-import { BAS, COMPANY } from '@/config/company';
+import { Shield, Award, CheckCircle, Mail } from 'lucide-react';
+import { BAS, BUSINESS_COPY, COMPANY } from '@/config/company';
 
 export const HeroBanner = () => {
   return (
@@ -49,11 +49,14 @@ export const HeroBanner = () => {
         <div className="mt-6 pt-4 border-t border-border/50">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-xs text-muted-foreground mb-1">Kontakta mig direkt</p>
+              <p className="text-xs text-muted-foreground mb-1">Snabbaste kontaktvägen</p>
               <div className="flex items-center space-x-2">
-                <Phone className="w-4 h-4 text-accent" />
-                <span className="font-semibold text-foreground">{COMPANY.phone.display}</span>
+                <Mail className="w-4 h-4 text-accent" />
+                <a href={COMPANY.emailHref} className="font-semibold text-foreground hover:underline">
+                  E-post eller formulär
+                </a>
               </div>
+              <p className="sr-only">{BUSINESS_COPY.preferredContact}</p>
             </div>
             
             <div className="text-right">
