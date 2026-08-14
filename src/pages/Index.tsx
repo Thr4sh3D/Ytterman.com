@@ -10,7 +10,7 @@ import { JsonLdSchema } from '@/components/JsonLdSchema';
 import { PricingPackages } from '@/components/PricingPackages';
 import { Helmet } from 'react-helmet-async';
 import { Button } from '@/components/ui/button';
-import { Award, Shield } from 'lucide-react';
+import { Shield } from 'lucide-react';
 import { BAS, BUSINESS_COPY, COMPANY, KA_CERT, PRICE_LABELS } from '@/config/company';
 
 const Index = () => {
@@ -82,11 +82,11 @@ const Index = () => {
                 </div>
               </div>
               <h2 className="text-3xl font-bold text-slate-900 mb-4">
-                Förfrågan för fjällprojekt
+                Bygger du fritidshus i fjällen?
               </h2>
               <p className="text-lg text-slate-600 mb-8 max-w-2xl mx-auto">
-                Planerar du ett fjällhus eller fritidshus? Jag bedömer uppdraget utifrån plats,
-                kontrollbehov, behörighet och aktuell kapacitet. Resor och platsbesök specificeras i offerten.
+                Jag tar emot förfrågningar för fjällprojekt och bedömer upplägget utifrån läge,
+                kontrollbehov och planerade platsbesök. Du får resor och kostnader specificerade i offerten.
               </p>
               <Button
                 asChild
@@ -94,32 +94,7 @@ const Index = () => {
                 className="earth-gradient text-white hover:opacity-90"
               >
                 <a href="/kontrollansvarig-i-fjallen/">
-                  Läs om upplägget för fjällprojekt
-                </a>
-              </Button>
-            </div>
-          </section>
-          <section className="py-16 bg-gradient-to-br from-slate-50 to-amber-50">
-            <div className="container mx-auto px-4 text-center max-w-4xl">
-              <div className="flex justify-center mb-6">
-                <div className="w-16 h-16 earth-gradient rounded-xl flex items-center justify-center">
-                  <Shield className="w-8 h-8 text-white" />
-                </div>
-              </div>
-              <h2 className="text-3xl font-bold text-slate-900 mb-4">
-                KA-certifikat och BAS-utbildning
-              </h2>
-              <p className="text-lg text-slate-600 mb-8 max-w-2xl mx-auto">
-                Kontrollera mitt Kiwa-certifikat som kontrollansvarig samt utbildningsintyg för rollerna BAS-P och BAS-U.
-              </p>
-              <Button 
-                asChild
-                size="lg"
-                className="earth-gradient text-white hover:opacity-90"
-              >
-                <a href="#certifikat" aria-label="Scrolla till certifikat">
-                  <Award className="w-5 h-5 mr-2" />
-                  Visa certifikat
+                  Se upplägget för fjällprojekt
                 </a>
               </Button>
             </div>

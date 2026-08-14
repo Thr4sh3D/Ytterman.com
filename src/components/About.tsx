@@ -1,171 +1,94 @@
+import { Award, BadgeCheck, CheckCircle2, Users } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { OptimizedImage } from '@/components/OptimizedImage';
 import { Certifications } from '@/components/Certifications';
+import { Button } from '@/components/ui/button';
 import profileImage512 from '@/assets/images/tobias-ytterman-profile-512.webp';
 import profileImage900 from '@/assets/images/tobias-ytterman-profile-900.webp';
 import { cacheBusterToken } from '@/lib/buildInfo';
-import { CheckCircle, Award, Users, Clock, Shield, Zap, HeartHandshake, MapPin } from 'lucide-react';
-import { BAS, BUSINESS_COPY, COMPANY, KA_CERT } from '@/config/company';
+import { BAS, COMPANY, KA_CERT } from '@/config/company';
+
+const strengths = [
+  {
+    title: 'Praktisk byggförståelse',
+    description: 'Över 20 års erfarenhet ger en stabil grund för att se risker, underlag och nästa steg i sitt sammanhang.',
+  },
+  {
+    title: 'Tydlig kommunikation',
+    description: 'Du får veta vilka handlingar som behövs, vem som ansvarar för vad och vad som händer härnäst.',
+  },
+  {
+    title: 'Samlat stöd när det passar',
+    description: 'KA och BAS-P/U kan kombineras i ett tydligt uppdrag när projektets roller och omfattning medger det.',
+  },
+];
 
 export const About = () => {
   const profileImage512Src = `${profileImage512}?v=${cacheBusterToken}`;
   const profileImage900Src = `${profileImage900}?v=${cacheBusterToken}`;
 
-  const achievements = [
-    {
-      icon: Award,
-      title: COMPANY.experienceLabel,
-      description: "Gedigen erfarenhet inom byggbranschen och kontroll"
-    },
-    {
-      icon: CheckCircle,
-      title: "Certifierad kontrollansvarig",
-      description: `${KA_CERT.authorizationLabel}, certifikat ${KA_CERT.certificateNumber}`
-    },
-    {
-      icon: Users,
-      title: `Medlem i ${COMPANY.membership.shortName}`,
-      description: COMPANY.membership.name
-    },
-    {
-      icon: Clock,
-      title: "Tydlig KA-roll",
-      description: BUSINESS_COPY.kaScope
-    }
-  ];
-
-  const whyChoose = [
-    {
-      icon: Shield,
-      title: "Tydligt avgränsat uppdrag",
-      description: "Offerten beskriver roller, moment, kontaktvägar, resor och vilka underlag som behövs."
-    },
-    {
-      icon: Clock,
-      title: "Tydlig kommunikation",
-      description: BUSINESS_COPY.defaultResponse
-    },
-    {
-      icon: MapPin,
-      title: `Verksam i ${COMPANY.region}`,
-      description: "Projektets krav och kommunens besked gås igenom utifrån det aktuella ärendet."
-    },
-    {
-      icon: Zap,
-      title: "Digital och strukturerad",
-      description: "Dokumentation och avstämningar kan hanteras digitalt när det passar projektets upplägg."
-    },
-    {
-      icon: HeartHandshake,
-      title: "Personligt engagemang",
-      description: "Du har en tydlig kontaktperson och får projektspecifik återkoppling inom det avtalade uppdraget."
-    },
-    {
-      icon: Award,
-      title: "Aktuellt regelverk",
-      description: "Uppdraget utgår från gällande regler och de beslut som gäller för det aktuella projektet."
-    }
-  ];
-
   return (
-    <section id="om-oss" className="py-20 bg-white">
+    <section id="om-oss" className="bg-white py-16 sm:py-20">
       <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-slate-900 mb-6">
-              Om Ytterman
+        <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:gap-16">
+          <div className="relative mx-auto max-w-md lg:mx-0">
+            <OptimizedImage
+              src={profileImage900Src}
+              srcSet={`${profileImage512Src} 512w, ${profileImage900Src} 900w`}
+              alt={`${COMPANY.publicName} – certifierad kontrollansvarig och utbildad för BAS-P/BAS-U`}
+              className="h-auto w-full rounded-2xl shadow-xl"
+              width={900}
+              height={1352}
+              sizes="(min-width: 1024px) 26rem, 100vw"
+            />
+            <div className="absolute -bottom-5 left-4 right-4 rounded-xl bg-slate-900 p-4 text-white shadow-xl sm:left-8 sm:right-8">
+              <p className="font-bold">{COMPANY.publicName}</p>
+              <p className="mt-1 text-sm text-slate-300">{KA_CERT.title} · {BAS.qualificationLabel}</p>
+            </div>
+          </div>
+
+          <div className="pt-6 lg:pt-0">
+            <p className="mb-3 text-sm font-bold uppercase tracking-[0.18em] text-accent">Erfarenhet som skapar struktur</p>
+            <h2 className="mb-5 text-3xl font-bold leading-tight text-slate-900 sm:text-4xl">
+              En erfaren kontakt genom ett komplext byggprojekt
             </h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Med {COMPANY.experienceLabel.toLowerCase()} inom byggbranschen erbjuder jag
-              tjänster som kontrollansvarig och byggarbetsmiljösamordnare i Västernorrland.
+            <p className="mb-7 text-lg leading-relaxed text-slate-600">
+              Du ska inte behöva hålla reda på varje roll, handling och kontrollpunkt själv.
+              Jag hjälper dig skapa ett tydligt upplägg för uppdraget och hålla ihop uppföljningen
+              från första underlag till utlåtandet inför slutbesked.
             </p>
-          </div>
 
-          <div className="grid lg:grid-cols-2 gap-16 items-center mb-16">
-            <div>
-              <h3 className="text-3xl font-bold text-slate-900 mb-6">
-                Tobias Ytterman
-              </h3>
-              <p className="text-lg text-slate-600 mb-6">
-                Jag är {KA_CERT.title.toLowerCase()} och utbildad för uppdrag som {BAS.rolesLabel}.
-                Varje uppdrag avgränsas efter projektets art, roller och underlag.
-              </p>
-              <p className="text-lg text-slate-600 mb-8">
-                Prisform, omfattning, kontaktvägar och tidplan framgår av offerten för det aktuella projektet.
-              </p>
-              
-              <div className="grid sm:grid-cols-2 gap-6">
-                {achievements.map((achievement, index) => {
-                  const IconComponent = achievement.icon;
-                  return (
-                    <div key={index} className="flex items-start space-x-3">
-                      <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <IconComponent className="w-5 h-5 text-primary" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-slate-900 mb-1">
-                          {achievement.title}
-                        </h4>
-                        <p className="text-sm text-slate-600">
-                          {achievement.description}
-                        </p>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-            
-            <div className="relative">
-              <OptimizedImage
-                src={profileImage900Src}
-                srcSet={`${profileImage512Src} 512w, ${profileImage900Src} 900w`}
-                alt={`${COMPANY.publicName} – certifierad kontrollansvarig och utbildad för BAS-P/BAS-U`}
-                className="rounded-xl shadow-lg w-full h-auto"
-                width={900}
-                height={1352}
-                sizes="(min-width: 1024px) 34rem, 100vw"
-              />
-            </div>
-          </div>
-
-          {/* Why Choose Ytterman Section */}
-          <div className="mb-16">
-            <div className="text-center mb-12">
-              <h3 className="text-3xl font-bold text-slate-900 mb-4">
-                Varför välja Ytterman?
-              </h3>
-              <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-                Här är de arbetssätt och dokumenterade uppgifter som Ytterman bygger erbjudandet på.
-              </p>
+            <div className="mb-8 grid grid-cols-2 gap-3">
+              {[
+                { icon: Award, label: COMPANY.experienceLabel },
+                { icon: BadgeCheck, label: `Kiwa ${KA_CERT.certificateNumber}` },
+                { icon: Users, label: `Medlem i ${COMPANY.membership.shortName}` },
+                { icon: CheckCircle2, label: KA_CERT.authorizationLabel },
+              ].map(({ icon: Icon, label }) => (
+                <div key={label} className="flex items-center gap-2 rounded-xl bg-slate-50 p-3 text-sm font-semibold text-slate-800">
+                  <Icon className="h-5 w-5 shrink-0 text-accent" />
+                  <span>{label}</span>
+                </div>
+              ))}
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {whyChoose.map((reason, index) => {
-                const IconComponent = reason.icon;
-                return (
-                  <div 
-                    key={index}
-                    className="bg-gradient-to-br from-slate-50 to-amber-50 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-transparent hover:border-accent"
-                  >
-                    <div className="w-12 h-12 earth-gradient rounded-lg flex items-center justify-center mb-4">
-                      <IconComponent className="w-6 h-6 text-white" />
-                    </div>
-                    <h4 className="text-lg font-bold text-slate-900 mb-2">
-                      {reason.title}
-                    </h4>
-                    <p className="text-slate-600 leading-relaxed">
-                      {reason.description}
-                    </p>
-                  </div>
-                );
-              })}
+            <div className="mb-8 space-y-4">
+              {strengths.map((strength) => (
+                <div key={strength.title} className="border-l-4 border-accent pl-4">
+                  <h3 className="font-bold text-slate-900">{strength.title}</h3>
+                  <p className="mt-1 text-sm leading-relaxed text-slate-600">{strength.description}</p>
+                </div>
+              ))}
             </div>
-          </div>
 
-          {/* Certifications Section */}
-          <div id="certifikat" className="bg-slate-50 rounded-2xl p-8" style={{ scrollMarginTop: '96px' }}>
-            <Certifications showTitle={true} />
+            <Button asChild variant="outline" className="border-2 border-accent text-accent hover:bg-accent hover:text-white">
+              <Link to="/om/">Lär känna Ytterman</Link>
+            </Button>
           </div>
+        </div>
+
+        <div id="certifikat" className="mx-auto mt-16 max-w-6xl rounded-2xl bg-slate-50 p-6 sm:p-8" style={{ scrollMarginTop: '96px' }}>
+          <Certifications showTitle={true} />
         </div>
       </div>
     </section>
