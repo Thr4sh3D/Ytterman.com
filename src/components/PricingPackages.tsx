@@ -1,210 +1,87 @@
-import { Check, Star, AlertCircle, Mail } from 'lucide-react';
+import { ArrowRight, Check, Mail, Star } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { 
-  pricingPackages, 
-  actionTypePrices, 
-  disclaimerPoints 
-} from '@/content/pricingPackages';
-import { COMPANY, PRICING } from '@/config/company';
+import { pricingPackages } from '@/content/pricingPackages';
+import { PRICING } from '@/config/company';
 
-export const PricingPackages = () => {
-  return (
-    <section id="paket-priser" className="py-20 bg-gradient-to-br from-slate-50 to-amber-50">
-      <div className="container mx-auto px-4">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
-            Paket & priser
-          </h2>
-          <p className="text-xl text-slate-700 max-w-3xl mx-auto leading-relaxed">
-            Paketpriser för kontrollansvarig (KA) och paket med BAS-P/U för {PRICING.year}.
-            Offerten bekräftar projektets omfattning, roller, resor och tillämpliga villkor.
-          </p>
-        </div>
+export const PricingPackages = () => (
+  <section id="paket-priser" className="bg-gradient-to-br from-slate-50 to-amber-50 py-16 sm:py-20">
+    <div className="container mx-auto px-4">
+      <div className="mx-auto mb-12 max-w-3xl text-center">
+        <p className="mb-3 text-sm font-bold uppercase tracking-[0.18em] text-accent">Tydliga paketpriser {PRICING.year}</p>
+        <h2 className="mb-5 text-3xl font-bold text-slate-900 md:text-4xl lg:text-5xl">
+          Välj nivån som passar ditt projekt
+        </h2>
+        <p className="text-lg leading-relaxed text-slate-700 sm:text-xl">
+          Du ser startpriset direkt. Offerten bekräftar omfattning, platsbesök, resor och
+          kompletteringsvillkor innan du bestämmer dig.
+        </p>
+      </div>
 
-        {/* Pricing Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto mb-16">
-          {pricingPackages.map((pkg) => (
-            <div
-              key={pkg.id}
-              className={`relative bg-white rounded-2xl p-8 shadow-lg transition-all duration-300 hover:shadow-2xl ${
-                pkg.popular 
-                  ? 'border-4 border-primary scale-105 lg:scale-110' 
-                  : 'border-2 border-slate-200'
-              }`}
-            >
-              {/* Popular Badge */}
-              {pkg.popular && (
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <span className="earth-gradient text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg flex items-center gap-2">
-                    <Star className="w-4 h-4 fill-current" />
-                    Mest populär
-                  </span>
-                </div>
-              )}
-
-              {/* Package Header */}
-              <div className="text-center mb-6">
-                <h3 className="text-2xl font-bold text-slate-900 mb-2">
-                  {pkg.name}
-                </h3>
-                <p className="text-sm text-primary font-semibold mb-4">
-                  {pkg.subtitle}
-                </p>
-                <div className="mb-4">
-                  <div className="text-3xl md:text-4xl font-bold text-slate-900">
-                    {pkg.price}
-                  </div>
-                  {pkg.priceSubtext && (
-                    <p className="text-sm text-slate-600 mt-1">{pkg.priceSubtext}</p>
-                  )}
-                </div>
-                <p className="text-slate-600 leading-relaxed">
-                  {pkg.description}
-                </p>
+      <div className="mx-auto mb-10 grid max-w-7xl gap-7 md:grid-cols-2 lg:grid-cols-3">
+        {pricingPackages.map((pkg) => (
+          <article
+            key={pkg.id}
+            className={`relative flex flex-col rounded-2xl bg-white p-6 shadow-lg transition-shadow hover:shadow-xl sm:p-8 ${
+              pkg.popular ? 'border-2 border-primary lg:-translate-y-2' : 'border border-slate-200'
+            }`}
+          >
+            {pkg.popular && (
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+                <span className="earth-gradient flex items-center gap-2 whitespace-nowrap rounded-full px-5 py-2 text-sm font-bold text-white shadow-lg">
+                  <Star className="h-4 w-4" /> Utökad uppföljning
+                </span>
               </div>
+            )}
 
-              {/* Features */}
-              <ul className="space-y-3 mb-8">
-                {pkg.features.map((feature, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
-                    <span className="text-slate-700">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-
-              {/* CTA */}
-              <Button 
-                asChild
-                className={`w-full ${pkg.popular ? 'earth-gradient text-white' : 'bg-slate-900 text-white hover:bg-slate-800'}`}
-              >
-                <a href="/kontakt/" aria-label={`Be om offert för ${pkg.name}`}>
-                  {pkg.popular ? 'Beskriv projektet' : 'Be om offert för detta paket'}
-                </a>
-              </Button>
+            <div className="mb-6 text-center">
+              <h3 className="mb-2 text-2xl font-bold text-slate-900">{pkg.name}</h3>
+              <p className="mb-4 text-sm font-semibold text-primary">{pkg.subtitle}</p>
+              <div className="text-3xl font-bold text-slate-900 md:text-4xl">{pkg.price}</div>
+              {pkg.priceSubtext && <p className="mt-1 text-sm text-slate-600">{pkg.priceSubtext}</p>}
+              <p className="mt-4 leading-relaxed text-slate-600">{pkg.description}</p>
             </div>
-          ))}
-        </div>
 
-        {/* Social Proof / Testimonials - Prepared for future testimonials */}
-        {/* 
-        <div className="max-w-6xl mx-auto mb-16">
-          <div className="text-center mb-8">
-            <p className="text-lg font-semibold text-slate-900">
-              Erfaren Kontrollansvarig och BAS med 20+ års branscherfarenhet i Västernorrland
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-6">
-            {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-white rounded-xl p-6 shadow-md border border-slate-200">
-                <div className="flex gap-1 mb-3">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 text-amber-500 fill-current" />
-                  ))}
-                </div>
-                <p className="text-slate-700 mb-4 italic">"{testimonial.quote}"</p>
-                <p className="text-sm font-semibold text-slate-900">{testimonial.author}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-        */}
+            <ul className="mb-8 flex-grow space-y-3">
+              {pkg.features.map((feature) => (
+                <li key={feature} className="flex items-start gap-3">
+                  <Check className="mt-0.5 h-5 w-5 shrink-0 text-green-700" />
+                  <span className="text-slate-700">{feature}</span>
+                </li>
+              ))}
+            </ul>
 
-        {/* Verified package prices per action type */}
-        <div className="max-w-5xl mx-auto mb-16">
-          <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-6 text-center">
-            Paketpriser per åtgärdstyp
-          </h3>
-          <p className="text-slate-700 text-center mb-8 max-w-3xl mx-auto">
-            Paketpriser för {PRICING.year} visas nedan. Offerten
-            bekräftar att projektet ryms inom paketets förutsättningar.
-          </p>
-          
-          <div className="grid md:grid-cols-3 gap-6">
-            {actionTypePrices.map((item, index) => (
-              <div 
-                key={index}
-                className="bg-white rounded-xl p-6 shadow-md border border-slate-200 hover:shadow-lg transition-shadow"
-              >
-                <h4 className="text-xl font-bold text-slate-900 mb-3">
-                  {item.actionType}
-                </h4>
-                <p className="text-sm text-slate-600 mb-4">
-                  {item.description}
-                </p>
-                <div className="space-y-2">
-                  <div className="flex justify-between items-center">
-                    <span className="text-slate-700 font-medium">KA Bas:</span>
-                    <span className="text-lg font-bold text-slate-900">{item.basPrice}</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-slate-700 font-medium">KA Plus:</span>
-                    <span className="text-lg font-bold text-slate-900">{item.plusPrice}</span>
-                  </div>
-                  <p className="text-xs text-slate-500 mt-2">Priser inkl. moms</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Disclaimer */}
-        <div className="max-w-4xl mx-auto mb-12">
-          <div className="bg-amber-50 border-2 border-amber-200 rounded-xl p-8">
-            <div className="flex items-start gap-4">
-              <AlertCircle className="w-6 h-6 text-amber-600 flex-shrink-0 mt-1" />
-              <div>
-                <h4 className="text-xl font-bold text-slate-900 mb-4">
-                  Viktigt om omfattning och kompletteringar
-                </h4>
-                <ul className="space-y-3">
-                  {disclaimerPoints.map((point, index) => (
-                    <li key={index} className="flex items-start gap-3">
-                      <span className="text-amber-600 font-bold flex-shrink-0">•</span>
-                      <span className="text-slate-700">{point}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* CTA Section */}
-        <div className="text-center">
-          <h3 className="text-2xl font-bold text-slate-900 mb-4">
-            Klart att starta? Hör av dig idag
-          </h3>
-          <p className="text-slate-700 mb-8 max-w-2xl mx-auto">
-            Skicka underlaget så återkommer vi med nästa steg och ett prisförslag anpassat till projektets omfattning.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button 
-              asChild
-              size="lg"
-              className="earth-gradient text-white hover:opacity-90"
-            >
-              <a href="/kontakt/" aria-label="Skicka projektförfrågan">
-                <Mail className="w-5 h-5 mr-2" />
-                Skicka projektförfrågan
-              </a>
+            <Button asChild className={`w-full ${pkg.popular ? 'earth-gradient text-white' : 'bg-slate-900 text-white hover:bg-slate-800'}`}>
+              <Link to={`/kontakt/?package=${pkg.id}&source=pricing`}>
+                Få offert på {pkg.name}
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
             </Button>
-            <Button 
-              asChild
-              size="lg"
-              variant="outline"
-              className="border-2 border-primary text-primary hover:bg-primary hover:text-white"
-            >
-              <a href={COMPANY.emailHref} aria-label="Mejla Ytterman">
-                <Mail className="w-5 h-5 mr-2" />
-                Mejla underlaget
-              </a>
-            </Button>
-          </div>
+          </article>
+        ))}
+      </div>
+
+      <div className="mx-auto mb-10 max-w-4xl rounded-xl border border-amber-200 bg-white/80 p-5 text-sm text-slate-700">
+        <strong>Bra att veta:</strong> {PRICING.supplementRule} Projektets komplexitet,
+        platsbesök och resor kan påverka slutpriset och anges därför i offerten.
+      </div>
+
+      <div className="text-center">
+        <h3 className="mb-3 text-2xl font-bold text-slate-900">Osäker på vilket paket som passar?</h3>
+        <p className="mx-auto mb-7 max-w-2xl text-slate-700">
+          Beskriv projektet och skicka de handlingar du har, så får du ett förslag på omfattning och nästa steg.
+        </p>
+        <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <Button asChild size="lg" className="earth-gradient text-white hover:opacity-90">
+            <Link to="/kontakt/?source=pricing-help">
+              <Mail className="mr-2 h-5 w-5" /> Få offert
+            </Link>
+          </Button>
+          <Button asChild size="lg" variant="ghost">
+            <Link to="/priser/">Se alla projekttypspriser</Link>
+          </Button>
         </div>
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);

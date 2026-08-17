@@ -1,5 +1,5 @@
-import { Shield, Award, CheckCircle, Mail } from 'lucide-react';
-import { BAS, BUSINESS_COPY, COMPANY } from '@/config/company';
+import { ArrowRight, Shield, Award, CheckCircle } from 'lucide-react';
+import { BAS, COMPANY, KA_CERT, PRICE_LABELS } from '@/config/company';
 
 export const HeroBanner = () => {
   return (
@@ -15,7 +15,7 @@ export const HeroBanner = () => {
               <Shield className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h3 className="font-bold text-lg text-foreground">Certifierad KA</h3>
+              <h3 className="font-bold text-lg text-foreground">Verifierad kompetens</h3>
               <p className="text-sm text-muted-foreground">{BAS.qualificationLabel}</p>
             </div>
           </div>
@@ -37,7 +37,7 @@ export const HeroBanner = () => {
           
           <div className="flex items-center space-x-3">
             <CheckCircle className="w-5 h-5 text-accent flex-shrink-0" />
-            <span className="text-sm text-foreground">Behörighet N – projekt av normal art</span>
+            <span className="text-sm text-foreground">Kiwa {KA_CERT.certificateNumber} · {KA_CERT.authorizationLabel}</span>
           </div>
           
           <div className="flex items-center space-x-3">
@@ -49,19 +49,16 @@ export const HeroBanner = () => {
         <div className="mt-6 pt-4 border-t border-border/50">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-xs text-muted-foreground mb-1">Snabbaste kontaktvägen</p>
-              <div className="flex items-center space-x-2">
-                <Mail className="w-4 h-4 text-accent" />
-                <a href={COMPANY.emailHref} className="font-semibold text-foreground hover:underline">
-                  E-post eller formulär
-                </a>
-              </div>
-              <p className="sr-only">{BUSINESS_COPY.preferredContact}</p>
+              <p className="text-xs text-muted-foreground mb-1">Berätta om projektet</p>
+              <a href="/kontakt/?source=hero-card" className="flex items-center space-x-2 hover:text-accent">
+                <span className="font-semibold text-foreground">Skicka projektförfrågan</span>
+                <ArrowRight className="w-4 h-4 text-accent" />
+              </a>
             </div>
             
             <div className="text-right">
-              <p className="text-xs text-muted-foreground mb-1">Återkoppling</p>
-              <p className="font-semibold text-sm text-foreground">Efter genomgång</p>
+              <p className="text-xs text-muted-foreground mb-1">KA Bas</p>
+              <p className="font-semibold text-sm text-foreground">{PRICE_LABELS.kaBasFrom}</p>
             </div>
           </div>
         </div>
