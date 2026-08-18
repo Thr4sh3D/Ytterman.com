@@ -15,6 +15,8 @@ import TjansterPage from '@/pages/TjansterPage';
 import KontaktPage from '@/pages/KontaktPage';
 import About from '@/pages/About';
 import NotFound from '@/pages/NotFound';
+import { AnalyticsProvider } from '@/components/AnalyticsProvider';
+import GoogleConsentMode from '@/components/GoogleConsentMode';
 
 // Lazy-loaded Service Pages
 const KontrollansvarigPage = lazy(() => import('@/pages/KontrollansvarigPage'));
@@ -88,6 +90,8 @@ export function AppRoutes() {
                     <UrlCanonicalizer />
                     <RouteSeo />
                     <ScrollToTop />
+                    <AnalyticsProvider />
+                    <GoogleConsentMode />
                     <div className="min-h-screen">
                         <Suspense fallback={
                             <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary/5 to-amber-50">

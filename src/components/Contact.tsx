@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 import { sendContactEmail } from '@/lib/emailjs';
 import { BUSINESS_COPY, COMPANY } from '@/config/company';
+import { trackLead } from '@/components/AnalyticsProvider';
 
 interface ContactProps {
   selectedPackage?: string;
@@ -53,6 +54,11 @@ export const Contact = ({ selectedPackage = '', prefilledMessage = '' }: Contact
       const response = await sendContactEmail(formData);
       
       if (response.success) {
+        trackLead({
+          form_type: 'homepage_contact_form',
+          project_type: formData.project || 'not_selected',
+          has_phone: Boolean(formData.phone),
+        });
         toast({
           title: "Meddelande skickat!",
           description: "Tack för ditt meddelande. Jag går igenom uppgifterna och återkommer med nästa steg.",

@@ -3,7 +3,6 @@ import { Footer } from '@/components/Footer';
 import { AdvancedSEO } from '@/components/AdvancedSEO';
 import { FAQ, faqData } from '@/components/FAQ';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
-import { ConversionTracking } from '@/components/ConversionTracking';
 import { CanonicalUrl } from '@/components/CanonicalUrl';
 import { ContactForm } from '@/components/ContactForm';
 import { ContactInfo } from '@/components/ContactInfo';
@@ -32,7 +31,6 @@ const KontaktPage = () => {
       
       <CanonicalUrl path="/kontakt" />
       <JsonLdSchema type="ProfessionalService" />
-      <ConversionTracking />
       
       {/* Skip link för tangentbordsnavigering */}
       <a 

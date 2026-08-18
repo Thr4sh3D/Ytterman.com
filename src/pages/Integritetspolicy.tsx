@@ -1,6 +1,7 @@
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { COMPANY } from '@/config/company';
+import { openConsentSettings } from '@/lib/consent';
 
 const Integritetspolicy = () => {
   return (
@@ -38,7 +39,7 @@ const Integritetspolicy = () => {
                   <ul className="list-disc pl-6 space-y-2">
                     <li><strong>Kontaktuppgifter:</strong> Namn, e-postadress, telefonnummer</li>
                     <li><strong>Projektinformation:</strong> Uppgifter om ditt byggprojekt, adress, projekttyp</li>
-                    <li><strong>Teknisk information:</strong> IP-adress, webbläsartyp, besökstid</li>
+                    <li><strong>Teknisk information:</strong> Begränsad besöksdata när du har samtyckt till analys eller marknadsföring</li>
                     <li><strong>Kommunikation:</strong> Meddelanden och korrespondens med oss</li>
                   </ul>
                 </section>
@@ -115,9 +116,27 @@ const Integritetspolicy = () => {
                 <section>
                   <h2 className="text-2xl font-semibold text-slate-900 mb-4">10. Cookies</h2>
                   <p>
-                    Vår webbplats använder cookies för att förbättra användarupplevelsen och analysera 
-                    trafik. Du kan hantera cookie-inställningar i din webbläsare. Vissa funktioner kan 
-                    påverkas om du väljer att blockera cookies.
+                    Nödvändig lagring används för webbplatsens funktioner och för att komma ihåg ditt val.
+                    Google Analytics och Google Ads laddas endast om motsvarande ändamål är konfigurerat
+                    och du aktivt har samtyckt till analys respektive marknadsföring. Innan dess görs inga
+                    anrop till Googles taggtjänst från vår mätkod.
+                  </p>
+                  <p className="mt-4">
+                    Analysdata begränsas till tillåtna händelser, sidans sökväg och icke-personliga val såsom
+                    projekttyp. Namn, e-postadress, telefonnummer och meddelandetext skickas inte som
+                    analyshändelser. Kampanjparametrar och första landningssida följer i stället med den
+                    projektförfrågan som du själv skickar, så att vi kan förstå förfrågans källa utan att
+                    skicka uppgifterna vidare till annonssystem i onödan.
+                  </p>
+                  <p className="mt-4">
+                    Du kan acceptera, avvisa, anpassa eller återkalla valfria cookies via
+                    <button
+                      type="button"
+                      onClick={openConsentSettings}
+                      className="ml-1 font-semibold text-primary underline"
+                    >
+                      Cookie-inställningar
+                    </button>.
                   </p>
                 </section>
 

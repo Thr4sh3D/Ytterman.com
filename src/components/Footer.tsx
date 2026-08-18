@@ -2,6 +2,7 @@ import { Mail, MapPin } from 'lucide-react';
 import { ExternalSiteLink } from '@/components/ExternalSiteLink';
 import { buildTimeIso, shortCommitSha } from '@/lib/buildInfo';
 import { BAS, COMPANY, KA_CERT } from '@/config/company';
+import { openConsentSettings } from '@/lib/consent';
 
 const FOOTER_DATE_LOCALE = 'sv-SE';
 
@@ -129,6 +130,13 @@ export const Footer = () => {
             <a href="/integritetspolicy/" className="text-gray-400 hover:text-white transition-colors text-sm">
               Integritetspolicy
             </a>
+            <button
+              type="button"
+              onClick={openConsentSettings}
+              className="text-gray-400 hover:text-white transition-colors text-sm"
+            >
+              Cookie-inställningar
+            </button>
             <a href="/#kontakt" className="text-gray-400 hover:text-white transition-colors text-sm">
               Kontakt
             </a>

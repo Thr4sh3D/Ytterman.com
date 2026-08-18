@@ -1,5 +1,6 @@
 import emailjs from '@emailjs/browser';
 import { COMPANY } from '@/config/company';
+import { readLeadAttribution } from '@/lib/leadAttribution';
 
 // EmailJS configuration med dina riktiga uppgifter
 const SERVICE_ID = 'service_hkaan9a';
@@ -16,6 +17,7 @@ interface ContactFormData {
 
 export const sendContactEmail = async (formData: ContactFormData): Promise<{ success: boolean; message?: string; error?: string }> => {
   try {
+    const attribution = readLeadAttribution();
     // Template parameters för EmailJS
     const templateParams = {
       from_name: formData.name,
@@ -24,10 +26,15 @@ export const sendContactEmail = async (formData: ContactFormData): Promise<{ suc
       project_type: formData.project || 'Ej specificerat',
       message: formData.message,
       to_email: COMPANY.email,
-      reply_to: formData.email
+      reply_to: formData.email,
+      landing_page: attribution?.landingPage || 'Ej tillgänglig',
+      lead_source: attribution?.source || attribution?.utmSource || 'Direkt/okänd',
+      utm_source: attribution?.utmSource || '',
+      utm_medium: attribution?.utmMedium || '',
+      utm_campaign: attribution?.utmCampaign || '',
+      utm_content: attribution?.utmContent || '',
+      utm_term: attribution?.utmTerm || '',
     };
-
-    console.log('Skickar e-post med EmailJS...', templateParams);
 
     const response = await emailjs.send(
       SERVICE_ID,
@@ -35,8 +42,6 @@ export const sendContactEmail = async (formData: ContactFormData): Promise<{ suc
       templateParams,
       PUBLIC_KEY
     );
-
-    console.log('EmailJS response:', response);
 
     if (response.status === 200) {
       return { success: true, message: 'Meddelande skickat!' };
