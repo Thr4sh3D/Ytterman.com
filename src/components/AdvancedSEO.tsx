@@ -1,16 +1,10 @@
 import { isValidElement, type ReactNode } from 'react';
-import { Helmet } from 'react-helmet-async';
+import { useLocation } from 'react-router-dom';
+import { SeoDocument } from '@/components/SeoDocument';
+import { getRouteByPath } from '@/config/routeRegistry.mjs';
+import { COMPANY } from '@/config/company';
+import { buildDynamicSchema } from '@/seo/schema';
 import { normalizeSiteUrl } from '@/utils/url';
-import {
-  ACTIVE_SERVICE_NAMES,
-  BAS,
-  BUSINESS_COPY,
-  COMPANY,
-  KA_CREDENTIAL_SCHEMA,
-  KA_CERT,
-  PRICE_LABELS,
-  SERVICES,
-} from '@/config/company';
 
 interface Breadcrumb {
   name: string;
@@ -36,10 +30,7 @@ interface AdvancedSEOProps {
   organization?: boolean;
   breadcrumbs?: Breadcrumb[];
   article?: Article;
-  faq?: Array<{
-    question: string;
-    answer: string | ReactNode;
-  }>;
+  faq?: Array<{ question: string; answer: string | ReactNode }>;
   reviews?: Array<{
     author: string;
     rating: number;
@@ -48,266 +39,61 @@ interface AdvancedSEOProps {
   }>;
 }
 
-export const AdvancedSEO = ({ 
-  title, 
-  description, 
-  keywords, 
-  url: rawUrl, 
-  image = "/og-image.png",
-  type = "website",
-  robots = "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  organization = false,
+const extractText = (node: ReactNode): string => {
+  if (node == null || typeof node === 'boolean') return '';
+  if (typeof node === 'string' || typeof node === 'number') return String(node);
+  if (Array.isArray(node)) return node.map(extractText).join(' ');
+  if (isValidElement(node)) return extractText((node.props as { children?: ReactNode }).children);
+  return '';
+};
+
+/**
+ * Compatibility entrypoint for dynamic content.
+ * Static routes are owned exclusively by RouteSeo and the shared route registry.
+ */
+export const AdvancedSEO = ({
+  title,
+  description,
+  keywords,
+  url,
+  image = `${COMPANY.siteUrl}/og-image.png`,
+  type = 'website',
+  robots,
   breadcrumbs = [],
   article,
   faq = [],
-  reviews = []
 }: AdvancedSEOProps) => {
-  // Ensure trailing slash for GitHub Pages compatibility (avoids 301 redirects)
-  const url = normalizeSiteUrl(rawUrl);
-  const extractTextFromNode = (node: ReactNode): string => {
-    if (node == null || typeof node === 'boolean') {
-      return '';
-    }
+  const { pathname } = useLocation();
 
-    if (typeof node === 'string' || typeof node === 'number') {
-      return String(node);
-    }
+  if (getRouteByPath(pathname)) return null;
 
-    if (Array.isArray(node)) {
-      return node.map(extractTextFromNode).join(' ');
-    }
-
-    if (isValidElement(node)) {
-      return extractTextFromNode((node.props as { children?: ReactNode }).children);
-    }
-
-    return '';
-  };
-
-  const normalizeFaqAnswer = (answer: string | ReactNode) => {
-    if (typeof answer === 'string') {
-      return answer;
-    }
-
-    return extractTextFromNode(answer)
-      .replace(/\s+/g, ' ')
-      .trim();
-  };
-
-  const organizationSchema = {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": `${COMPANY.brandName} – Kontrollansvarig & BAS`,
-    "alternateName": COMPANY.publicName,
-    "description": `${KA_CERT.title}, ${BAS.rolesLabel} och andra byggtjänster i ${COMPANY.region}. ${BUSINESS_COPY.energyPartner}`,
-    "url": COMPANY.siteUrl,
-    "email": COMPANY.email,
-    "areaServed": COMPANY.areaServed.map(name => ({ "@type": "AdministrativeArea", name })),
-    "serviceType": ACTIVE_SERVICE_NAMES,
-    "priceRange": PRICE_LABELS.schemaRange,
-    "hasCredential": [KA_CREDENTIAL_SCHEMA],
-    "knowsAbout": [BAS.rolesLabel, BAS.regulation],
-    "memberOf": {
-      "@type": "Organization",
-      "name": COMPANY.membership.name
-    },
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Tjänster",
-      "itemListElement": [
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": SERVICES.energyDeclaration.name,
-            "description": SERVICES.energyDeclaration.shortDescription
-          }
-        }
-      ]
-    },
-    "aggregateRating": reviews.length > 0 ? {
-      "@type": "AggregateRating",
-      "ratingValue": "5",
-      "reviewCount": reviews.length.toString(),
-      "bestRating": "5",
-      "worstRating": "1"
-    } : undefined,
-    "review": reviews.map(review => ({
-      "@type": "Review",
-      "author": {
-        "@type": "Person",
-        "name": review.author
-      },
-      "reviewRating": {
-        "@type": "Rating",
-        "ratingValue": review.rating.toString(),
-        "bestRating": "5",
-        "worstRating": "1"
-      },
-      "reviewBody": review.reviewBody,
-      "datePublished": review.datePublished
-    }))
-  };
-
-  const personSchema = organization ? {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": COMPANY.publicName,
-    "hasCredential": [KA_CREDENTIAL_SCHEMA],
-    "knowsAbout": [BAS.rolesLabel, BAS.regulation],
-    "worksFor": {
-      "@type": "Organization",
-      "name": COMPANY.brandName,
-      "url": COMPANY.siteUrl
-    }
-  } : null;
-
-  const breadcrumbSchema = breadcrumbs.length > 0 ? {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": breadcrumbs.map((crumb, index) => ({
-      "@type": "ListItem",
-      "position": index + 1,
-      "name": crumb.name,
-      "item": normalizeSiteUrl(crumb.url)
-    }))
-  } : null;
-
-  const faqSchema = faq.length > 0 ? {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faq.map(item => ({
-      "@type": "Question",
-      "name": item.question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": normalizeFaqAnswer(item.answer)
-      }
-    }))
-  } : null;
-
-  const articleSchema = article ? {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": title,
-    "description": description,
-    "image": image,
-    "author": {
-      "@type": "Person",
-      "name": article.author || COMPANY.publicName
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": COMPANY.brandName,
-      "logo": {
-        "@type": "ImageObject",
-        "url": `${COMPANY.siteUrl}/favicon.svg`
-      }
-    },
-    "datePublished": article.publishedTime,
-    "dateModified": article.modifiedTime || article.publishedTime,
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": url
-    },
-    "articleSection": article.section,
-    "keywords": article.tags?.join(", ")
-  } : null;
+  const canonicalUrl = normalizeSiteUrl(url);
+  const normalizedFaq = faq.map((item) => ({
+    question: item.question,
+    answer: extractText(item.answer).replace(/\s+/g, ' ').trim(),
+  }));
 
   return (
-    <Helmet>
-      {/* Basic Meta Tags */}
-      <title>{title}</title>
-      <meta name="description" content={description} />
-      <meta name="keywords" content={keywords} />
-      <meta name="author" content={COMPANY.publicName} />
-      <meta name="robots" content={robots} />
-      <meta name="language" content="Swedish" />
-      <meta name="geo.region" content="SE-Y" />
-      <meta name="geo.placename" content={COMPANY.region} />
-      
-      {/* Open Graph Tags */}
-      <meta property="og:type" content={type} />
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={description} />
-      <meta property="og:url" content={url} />
-      <meta property="og:image" content={image} />
-      <meta property="og:image:width" content="1200" />
-      <meta property="og:image:height" content="630" />
-      <meta property="og:image:alt" content={title} />
-      <meta property="og:locale" content="sv_SE" />
-      <meta property="og:site_name" content={COMPANY.brandName} />
-      
-      {/* Article specific Open Graph */}
-      {article && (
-        <>
-          {article.publishedTime && (
-            <meta property="article:published_time" content={article.publishedTime} />
-          )}
-          {(article.modifiedTime || article.publishedTime) && (
-            <meta property="article:modified_time" content={article.modifiedTime || article.publishedTime} />
-          )}
-          <meta property="article:author" content={article.author || COMPANY.publicName} />
-          <meta property="article:section" content={article.section} />
-          {article.tags?.map((tag, index) => (
-            <meta key={index} property="article:tag" content={tag} />
-          ))}
-        </>
-      )}
-
-      {/* Twitter Card Tags */}
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={image} />
-      <meta name="twitter:image:alt" content={title} />
-
-      {/* Canonical URL */}
-      <link rel="canonical" href={url} />
-      
-      {/* Additional SEO Meta Tags */}
-      <meta name="DC.title" content={title} />
-      <meta name="DC.description" content={description} />
-      <meta name="DC.subject" content="Kontrollansvarig, BAS-P, BAS-U, Byggkontroll" />
-      <meta name="DC.coverage" content={`${COMPANY.region}, Sverige`} />
-      <meta name="DC.type" content="Service" />
-      <meta name="DC.format" content="text/html" />
-      <meta name="DC.language" content="sv" />
-      
-      {/* Mobile and Viewport */}
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <meta name="format-detection" content="telephone=no" />
-      
-      {/* Structured Data */}
-      {organization && (
-        <script type="application/ld+json">
-          {JSON.stringify(organizationSchema)}
-        </script>
-      )}
-
-      {personSchema && (
-        <script type="application/ld+json">
-          {JSON.stringify(personSchema)}
-        </script>
-      )}
-      
-      {breadcrumbSchema && (
-        <script type="application/ld+json">
-          {JSON.stringify(breadcrumbSchema)}
-        </script>
-      )}
-      
-      {faqSchema && (
-        <script type="application/ld+json">
-          {JSON.stringify(faqSchema)}
-        </script>
-      )}
-      
-      {articleSchema && (
-        <script type="application/ld+json">
-          {JSON.stringify(articleSchema)}
-        </script>
-      )}
-    </Helmet>
+    <SeoDocument
+      title={title}
+      description={description}
+      keywords={keywords}
+      canonicalUrl={canonicalUrl}
+      image={image.startsWith('http') ? image : `${COMPANY.siteUrl}${image}`}
+      robots={robots}
+      type={type}
+      article={article}
+      schema={buildDynamicSchema({
+        canonicalUrl,
+        title,
+        description,
+        article,
+        breadcrumbs: breadcrumbs.map((crumb) => ({
+          ...crumb,
+          url: normalizeSiteUrl(crumb.url),
+        })),
+        faq: normalizedFaq,
+      })}
+    />
   );
 };

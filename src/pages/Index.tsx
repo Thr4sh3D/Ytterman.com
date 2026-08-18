@@ -8,7 +8,6 @@ import { FAQ } from '@/components/FAQ';
 import { AdvancedSEO } from '@/components/AdvancedSEO';
 import { JsonLdSchema } from '@/components/JsonLdSchema';
 import { PricingPackages } from '@/components/PricingPackages';
-import { Helmet } from 'react-helmet-async';
 import { Button } from '@/components/ui/button';
 import { Shield } from 'lucide-react';
 import { BAS, BUSINESS_COPY, COMPANY, KA_CERT, PRICE_LABELS } from '@/config/company';
@@ -53,20 +52,6 @@ const Index = () => {
         faq={homeFaq}
       />
       <JsonLdSchema type="ProfessionalService" />
-      <Helmet>
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebPage",
-            "name": "Kontrollansvarig Västernorrland",
-            "speakable": {
-              "@type": "SpeakableSpecification",
-              "cssSelector": [".hero-section", ".faq-section"]
-            }
-          })}
-        </script>
-      </Helmet>
-      
       <div className="min-h-screen">
         <Header />
         <main>

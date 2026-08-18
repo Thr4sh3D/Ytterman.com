@@ -1,0 +1,259 @@
+const SITE_URL = 'https://ytterman.com';
+
+const defaultRobots = 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1';
+
+const defineRoute = ({
+  id,
+  path,
+  title,
+  description,
+  keywords = [],
+  pageType = 'WebPage',
+  serviceKey,
+  indexable = true,
+  prerender = true,
+  priority = '0.5',
+  changefreq = 'monthly',
+}) => ({
+  id,
+  path,
+  indexable,
+  prerender,
+  sitemap: indexable ? { priority, changefreq } : null,
+  meta: {
+    title,
+    description,
+    keywords,
+    robots: indexable ? defaultRobots : 'noindex, follow',
+    image: `${SITE_URL}/og-image.png`,
+  },
+  schema: { pageType, serviceKey },
+});
+
+const coreRoutes = [
+  defineRoute({
+    id: 'home', path: '/', priority: '1.0', changefreq: 'weekly', pageType: 'WebPage',
+    title: 'Kontrollansvarig & BAS i Västernorrland | Ytterman',
+    description: 'Kiwa-certifierad kontrollansvarig och utbildad för BAS-P/BAS-U. Tydliga paket, personlig kontakt och över 20 års erfarenhet i byggbranschen.',
+    keywords: ['kontrollansvarig Västernorrland', 'BAS-P', 'BAS-U', 'Tobias Ytterman'],
+  }),
+  defineRoute({
+    id: 'services', path: '/tjanster', priority: '0.9', pageType: 'CollectionPage',
+    title: 'Tjänster inom KA, BAS och bygg | Ytterman',
+    description: 'Kontrollansvarig, BAS-P, BAS-U, bygglovshandlingar och överlåtelsebesiktning. Energideklaration samordnas via behörig partner.',
+    keywords: ['byggtjänster', 'kontrollansvarig', 'BAS-P', 'BAS-U', 'energideklaration'],
+  }),
+  defineRoute({
+    id: 'contact', path: '/kontakt', priority: '0.9', pageType: 'ContactPage',
+    title: 'Kontakta Ytterman – beskriv ditt byggprojekt',
+    description: 'Skicka projekttyp, ort, tidplan och tillgängliga handlingar för besked om upplägg och offert från Ytterman.',
+    keywords: ['kontakt kontrollansvarig', 'offert KA', 'offert BAS'],
+  }),
+  defineRoute({
+    id: 'about', path: '/om', priority: '0.7', pageType: 'AboutPage',
+    title: 'Om Tobias Ytterman – certifierad kontrollansvarig',
+    description: 'Lär känna Tobias Ytterman: Kiwa-certifierad kontrollansvarig, utbildad för BAS-P/BAS-U och medlem i SBR.',
+    keywords: ['Tobias Ytterman', 'Kiwa KA11926', 'kontrollansvarig', 'SBR'],
+  }),
+  defineRoute({
+    id: 'faq', path: '/faq', priority: '0.8', pageType: 'FAQPage',
+    title: 'Vanliga frågor om KA, BAS och byggprojekt | Ytterman',
+    description: 'Svar om kontrollansvarig, BAS-P, BAS-U, kontrollplan, priser, offert och byggprocessen.',
+    keywords: ['frågor kontrollansvarig', 'frågor BAS-P', 'kontrollplan FAQ'],
+  }),
+  defineRoute({
+    id: 'prices', path: '/priser', priority: '0.9', pageType: 'WebPage',
+    title: 'Priser för kontrollansvarig och KA + BAS 2026 | Ytterman',
+    description: 'Paketpriser inklusive moms för tillbyggnad, ombyggnation och fritidshus samt kombinerade uppdrag med KA och BAS-P/U.',
+    keywords: ['kontrollansvarig pris', 'KA pris 2026', 'KA BAS paket'],
+  }),
+  defineRoute({
+    id: 'areas', path: '/omraden', priority: '0.7', pageType: 'CollectionPage',
+    title: 'Områden för Yttermans byggtjänster | Västernorrland',
+    description: 'Ytterman tar emot projektförfrågningar i Västernorrland. Tillgänglighet, platsbesök, resor och kostnader bekräftas per projekt.',
+    keywords: ['kontrollansvarig Västernorrland', 'BAS Västernorrland'],
+  }),
+  defineRoute({
+    id: 'thankYou', path: '/tack', indexable: false, pageType: 'WebPage',
+    title: 'Tack för din förfrågan | Ytterman',
+    description: 'Din projektförfrågan har skickats till Ytterman.',
+  }),
+  defineRoute({
+    id: 'privacy', path: '/integritetspolicy', priority: '0.3', changefreq: 'yearly', pageType: 'WebPage',
+    title: 'Integritetspolicy | Ytterman',
+    description: 'Information om hur Ytterman behandlar personuppgifter, kontaktförfrågningar, cookies och mätdata.',
+    keywords: ['integritetspolicy Ytterman', 'personuppgifter'],
+  }),
+  defineRoute({
+    id: 'notFound', path: '/404', indexable: false, prerender: false, pageType: 'WebPage',
+    title: 'Sidan hittades inte (404) | Ytterman',
+    description: 'Sidan du söker finns inte. Gå vidare till Yttermans tjänster, guider eller kontakt.',
+    keywords: [],
+  }),
+];
+
+const serviceRoutes = [
+  defineRoute({
+    id: 'kontrollansvarig', path: '/kontrollansvarig', priority: '0.9', pageType: 'ServicePage', serviceKey: 'kontrollansvarig',
+    title: 'Kontrollansvarig i Västernorrland | Ytterman',
+    description: 'Kiwa-certifierad kontrollansvarig, KA11926, behörighet N för projekt av normal art. Kontrollplan, samråd, uppföljning och utlåtande.',
+    keywords: ['kontrollansvarig', 'KA Västernorrland', 'kontrollplan', 'slutbesked'],
+  }),
+  defineRoute({
+    id: 'kontrollansvarigFjall', path: '/kontrollansvarig-i-fjallen', priority: '0.8', pageType: 'ServicePage', serviceKey: 'kontrollansvarig',
+    title: 'Kontrollansvarig för fjällhus och fritidshus | Ytterman',
+    description: 'Förfrågan om kontrollansvarig för fjällhus och fritidshus. Behörighet, upplägg, platsbesök och resor bedöms för varje projekt.',
+    keywords: ['kontrollansvarig fjällhus', 'KA fritidshus', 'bygglov fjällen'],
+  }),
+  defineRoute({
+    id: 'basP', path: '/bas-p', priority: '0.9', pageType: 'ServicePage', serviceKey: 'basP',
+    title: 'BAS-P i Västernorrland – projektering | Ytterman',
+    description: 'Byggarbetsmiljösamordning under planering och projektering enligt AFS 2023:3. Omfattning och mandat anpassas till projektet.',
+    keywords: ['BAS-P Västernorrland', 'byggarbetsmiljösamordnare projektering', 'AFS 2023:3'],
+  }),
+  defineRoute({
+    id: 'basU', path: '/bas-u', priority: '0.9', pageType: 'ServicePage', serviceKey: 'basU',
+    title: 'BAS-U i Västernorrland – utförande | Ytterman',
+    description: 'Byggarbetsmiljösamordning under utförandet enligt AFS 2023:3 med samordning, riskuppföljning och arbetsmiljöplan.',
+    keywords: ['BAS-U Västernorrland', 'byggarbetsmiljösamordnare utförande', 'AFS 2023:3'],
+  }),
+  defineRoute({
+    id: 'energyDeclaration', path: '/energideklaration', priority: '0.8', pageType: 'ServicePage', serviceKey: 'energyDeclaration',
+    title: 'Energideklaration via certifierad energiexpert | Ytterman',
+    description: 'Ytterman erbjuder och samordnar energideklaration. En certifierad energiexpert hos behörig partner utför och registrerar deklarationen.',
+    keywords: ['energideklaration', 'certifierad energiexpert', 'energiklass Västernorrland'],
+  }),
+  defineRoute({
+    id: 'inspection', path: '/overlatelsebesiktning', priority: '0.8', pageType: 'ServicePage', serviceKey: 'inspection',
+    title: 'Överlåtelsebesiktning i Västernorrland | Ytterman',
+    description: 'Okulär överlåtelsebesiktning av synliga och åtkomliga delar. Omfattning, begränsningar, pris och leveranstid bekräftas vid bokning.',
+    keywords: ['överlåtelsebesiktning', 'husbesiktning', 'fastighetsbesiktning'],
+  }),
+  defineRoute({
+    id: 'energyCalculation', path: '/energiberakning-online', priority: '0.6', pageType: 'WebPage', serviceKey: 'energyCalculation',
+    title: 'Energiberäkning online – intresseanmälan | Ytterman',
+    description: 'Skicka en intresseanmälan för digital energiberäkning. Pris, underlag, omfattning och leverans bekräftas innan beställning.',
+    keywords: ['energiberäkning online', 'energiberäkning intresseanmälan'],
+  }),
+  defineRoute({
+    id: 'buildingPermitDocuments', path: '/bygglovshandlingar', priority: '0.8', pageType: 'ServicePage', serviceKey: 'buildingPermitDocuments',
+    title: 'Bygglovshandlingar för ditt projekt | Ytterman',
+    description: 'Planritningar, sektioner, situationsplan och teknisk beskrivning efter projektets och kommunens behov.',
+    keywords: ['bygglovshandlingar', 'planritning', 'situationsplan'],
+  }),
+];
+
+const kaCities = ['Sundsvall', 'Härnösand', 'Timrå', 'Kramfors', 'Sollefteå'];
+const inspectionCities = ['Sundsvall', 'Härnösand', 'Timrå', 'Kramfors', 'Sollefteå', 'Örnsköldsvik', 'Ånge'];
+const slugify = (value) => value.toLowerCase().replaceAll('å', 'a').replaceAll('ä', 'a').replaceAll('ö', 'o');
+
+const localRoutes = [
+  ...kaCities.map((city) => defineRoute({
+    id: `kontrollansvarig${slugify(city).replace(/^./, (letter) => letter.toUpperCase())}`,
+    path: `/kontrollansvarig-${slugify(city)}`,
+    priority: '0.8',
+    pageType: 'ServicePage',
+    serviceKey: 'kontrollansvarig',
+    title: `Kontrollansvarig i ${city} | Ytterman`,
+    description: `Kiwa-certifierad kontrollansvarig för projekt av normal art i ${city}. Paketpriser för 2026; tillgänglighet och resor bekräftas i offerten.`,
+    keywords: [`kontrollansvarig ${city}`, `KA ${city}`, `kontrollplan ${city}`],
+  })),
+  ...inspectionCities.map((city) => defineRoute({
+    id: `inspection${slugify(city).replace(/^./, (letter) => letter.toUpperCase())}`,
+    path: `/overlatelsebesiktning-${slugify(city)}`,
+    priority: '0.7',
+    pageType: 'ServicePage',
+    serviceKey: 'inspection',
+    title: `Överlåtelsebesiktning i ${city} | Ytterman`,
+    description: `Okulär överlåtelsebesiktning i ${city}. Omfattning, pris, resor och rapportens leveranstid bekräftas vid bokning.`,
+    keywords: [`överlåtelsebesiktning ${city}`, `husbesiktning ${city}`, `fastighetsbesiktning ${city}`],
+  })),
+];
+
+const guideDefinitions = [
+  ['kontrollansvarig', 'Kontrollansvarigs roll i byggprocessen', 'Guide till KA-rollens uppgifter, kontrollplan, uppföljning, avvikelser och utlåtande inför slutbesked.'],
+  ['bas', 'BAS-P och BAS-U – roller och skillnader', 'Guide till BAS-P och BAS-U, rollernas olika skeden och arbetsmiljösamordning enligt AFS 2023:3.'],
+  ['bygglov', 'Bygglovsprocessen steg för steg', 'Guide till bygglov, handlingar, tekniskt samråd, startbesked, kontrollplan och slutbesked.'],
+  ['kvalitetskontroll', 'Kontroller och kvalitet i byggprojekt', 'Skillnaden mellan kontrollplan, egenkontroll, sakkunnigkontroll och separat entreprenadbesiktning.'],
+  ['overlatelsebesiktning', 'Överlåtelsebesiktning – omfattning och rapport', 'Guide till okulär överlåtelsebesiktning, åtkomlighet, begränsningar och fortsatt teknisk utredning.'],
+  ['energi', 'Energideklaration – ansvar och partnerleverans', 'Guide till energideklaration och hur Ytterman samordnar leverans via partner med certifierad energiexpert.'],
+  ['miljo', 'Miljöarbete i byggprojekt', 'Guide till mål, ansvar, energi, material, återbruk, avfall och verifierbar miljödokumentation.'],
+  ['digitala-verktyg', 'Digitala verktyg för byggprojekt', 'Guide till digital projekthantering, dokumentation och kommunikation i byggprojekt.'],
+  ['kontrollansvarig-bygglov', 'Kontrollansvarig i bygglovsprocessen', 'Guide till kontrollansvarigs roll från kontrollplan och tekniskt samråd till utlåtande inför slutbesked.'],
+  ['kontrollansvarig-certifiering', 'Kontrollansvarig certifiering – verifiera KA', 'Så verifierar du certifikat, behörighet och giltighetstid för kontrollansvarig. Tobias Ytterman har Kiwa KA11926.'],
+  ['kontrollansvarig-ansvar', 'Kontrollansvarigs ansvar och avgränsning', 'Guide till KA-rollens uppgifter och gränser mot byggherre, entreprenör, besiktningsman och byggnadsnämnd.'],
+  ['kontrollansvarig-timpris', 'Kontrollansvarig pris 2026', 'Guide till Yttermans paketpriser för kontrollansvarig och kombinerade uppdrag med BAS-P/U.'],
+  ['bas-p-guide', 'BAS-P – projektering och arbetsmiljösamordning', 'Guide till BAS-P:s samordningsuppgifter, riskarbete, arbetsmiljöplan och överlämning.'],
+  ['bas-u-guide', 'BAS-U – samordning under utförandet', 'Guide till BAS-U:s samordningsuppgifter, riskuppföljning och arbetsmiljöplan under byggskedet.'],
+  ['vad-ar-bas', 'Vad är BAS-P och BAS-U?', 'Förklaring av BAS-rollerna, när de behövs och hur ansvaret fördelas enligt AFS 2023:3.'],
+  ['tekniskt-samrad', 'Tekniskt samråd enligt PBL', 'Guide till när tekniskt samråd hålls, vilka som deltar och vad byggnadsnämnden går igenom.'],
+  ['kontrollplan', 'Kontrollplan i byggprojekt', 'Guide till förslag till kontrollplan, kontrollpunkter, ansvar, verifiering och uppföljning enligt PBL.'],
+  ['slutbesked', 'Slutbesked – krav och process', 'Guide till byggherrens underlag, kontrollansvarigs utlåtande och byggnadsnämndens beslut om slutbesked.'],
+  ['vasternorrland', 'Byggprojekt i Västernorrland', 'Guide till kontrollansvarig, kommunala beslut och projektunderlag för byggprojekt i Västernorrland.'],
+  ['bygglovsguide-vanliga-misstag-husbygge', 'Bygglovsguide – vanliga misstag att förebygga', 'Praktisk guide om lov, startbesked, kontrollansvarig, BAS, ändringar, kontrollplan och slutbesked.'],
+];
+
+const guideRoutes = [
+  defineRoute({
+    id: 'guides', path: '/guider', priority: '0.7', pageType: 'CollectionPage',
+    title: 'Guider om KA, BAS, bygglov och besiktning | Ytterman',
+    description: 'Praktiska guider om kontrollansvarig, BAS-P/U, bygglov, kontrollplan, besiktning, energi och byggprojekt.',
+    keywords: ['byggguider', 'kontrollansvarig guide', 'BAS guide'],
+  }),
+  ...guideDefinitions.map(([slug, title, description]) => defineRoute({
+    id: `guide-${slug}`,
+    path: `/guider/${slug}`,
+    priority: '0.7',
+    pageType: 'TechArticle',
+    title: `${title} | Ytterman`,
+    description,
+    keywords: [title, 'Ytterman', 'Västernorrland'],
+  })),
+];
+
+const contentRoutes = [
+  defineRoute({
+    id: 'blog', path: '/blogg', priority: '0.7', pageType: 'CollectionPage',
+    title: 'Guider och kunskap om byggprojekt | Ytterman',
+    description: 'Artiklar och guider om kontrollansvarig, BAS, bygglov, arbetsmiljö och praktisk projektstyrning.',
+    keywords: ['byggblogg', 'byggkunskap', 'kontrollansvarig artiklar'],
+  }),
+  defineRoute({
+    id: 'products', path: '/produkter', priority: '0.6', pageType: 'CollectionPage',
+    title: 'Digitala verktyg för byggprojekt | Ytterman',
+    description: 'Digitala planeringsverktyg för byggprojekt. Produkter visas som intresseanmälan tills betalning och automatisk leverans är verifierade.',
+    keywords: ['digitala byggverktyg', 'byggplanering'],
+  }),
+  defineRoute({
+    id: 'buildingStartPlanner', path: '/byggstart-planerare', priority: '0.6', pageType: 'WebPage', serviceKey: 'buildingStartPlanner',
+    title: 'Byggstart-planerare – intresseanmälan | Ytterman',
+    description: 'Digitalt planeringsverktyg för byggstart. Skicka intresseanmälan; pris och leverans bekräftas före beställning.',
+    keywords: ['byggstart planerare', 'planera byggprojekt'],
+  }),
+];
+
+export const routeRegistry = Object.freeze([
+  ...coreRoutes,
+  ...serviceRoutes,
+  ...localRoutes,
+  ...guideRoutes,
+  ...contentRoutes,
+]);
+
+export const ROUTE_PATHS = Object.freeze(Object.fromEntries(routeRegistry.map((route) => [route.id, route.path])));
+export const routeByPath = new Map(routeRegistry.map((route) => [route.path, route]));
+
+export const normalizeRoutePath = (path) => {
+  if (!path || path === '/') return '/';
+  return `/${path.replace(/^\/+|\/+$/g, '')}`;
+};
+
+export const getRouteByPath = (path) => routeByPath.get(normalizeRoutePath(path));
+export const getPrerenderRoutes = () => routeRegistry.filter((route) => route.prerender).map((route) => route.path);
+export const getSitemapRoutes = () => routeRegistry.filter((route) => route.indexable && route.sitemap);
+export const toCanonicalUrl = (path) => {
+  const normalized = normalizeRoutePath(path);
+  return normalized === '/' ? `${SITE_URL}/` : `${SITE_URL}${normalized}/`;
+};
+
+export { SITE_URL };

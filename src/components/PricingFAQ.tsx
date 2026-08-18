@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { ChevronDown, ChevronUp, HelpCircle } from 'lucide-react';
-import { Helmet } from 'react-helmet-async';
 import { pricingFAQ } from '@/content/pricingPackages';
 
 export const PricingFAQ = () => {
@@ -30,13 +29,6 @@ export const PricingFAQ = () => {
 
   return (
     <>
-      {/* JSON-LD Schema */}
-      <Helmet>
-        <script type="application/ld+json">
-          {JSON.stringify(faqSchema)}
-        </script>
-      </Helmet>
-
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">

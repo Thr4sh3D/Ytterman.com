@@ -1,18 +1,10 @@
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { Helmet } from 'react-helmet-async';
 import { COMPANY } from '@/config/company';
 
 const Integritetspolicy = () => {
   return (
     <>
-      <Helmet>
-        <title>Integritetspolicy | {COMPANY.brandName}</title>
-        <meta name="description" content={`Läs hur ${COMPANY.brandName} behandlar personuppgifter i samband med webbplats och projektförfrågningar.`} />
-        <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://ytterman.com/integritetspolicy/" />
-      </Helmet>
-      
       <div className="min-h-screen">
         <Header />
         <main className="pt-20">

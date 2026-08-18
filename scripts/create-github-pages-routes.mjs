@@ -10,12 +10,12 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { render } from '../dist-ssr/entry-server.js';
+import { getPrerenderRoutes } from '../src/config/routeRegistry.mjs';
 
 const scriptDirectory = dirname(fileURLToPath(import.meta.url));
 const projectRoot = join(scriptDirectory, '..');
 const distPath = join(projectRoot, 'dist');
 const indexPath = join(distPath, 'index.html');
-const appSourcePath = join(projectRoot, 'src', 'App.tsx');
 const headBlockPattern = /<!-- app-head-start -->[\s\S]*?<!-- app-head-end -->/;
 const rootPlaceholder = '<div id="root"></div>';
 
@@ -27,25 +27,6 @@ const baseHtml = readFileSync(indexPath, 'utf8');
 if (!headBlockPattern.test(baseHtml) || !baseHtml.includes(rootPlaceholder)) {
   throw new Error('index.html saknar app-head-markörer eller tom #root-behållare.');
 }
-
-const extractStaticRoutes = () => {
-  const source = readFileSync(appSourcePath, 'utf8');
-  const routePattern = /<Route\s+path="([^"]+)"/g;
-  const routes = new Set();
-
-  for (const match of source.matchAll(routePattern)) {
-    const route = match[1];
-    if (route !== '*' && !route.includes(':')) {
-      routes.add(route);
-    }
-  }
-
-  return [...routes].sort((left, right) => {
-    if (left === '/') return -1;
-    if (right === '/') return 1;
-    return left.localeCompare(right, 'sv');
-  });
-};
 
 const toCanonicalPath = (route) => route === '/' ? '/' : `${route.replace(/\/+$/, '')}/`;
 
@@ -81,7 +62,7 @@ const prerender = async (route, destination, options) => {
   writeFileSync(destination, buildDocument(rendered, options), 'utf8');
 };
 
-const routes = extractStaticRoutes();
+const routes = getPrerenderRoutes();
 for (const route of routes) {
   await prerender(route, toOutputPath(route));
   console.log(`  ✓ ${toCanonicalPath(route)}`);

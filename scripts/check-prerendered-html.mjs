@@ -1,16 +1,11 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { getPrerenderRoutes } from '../src/config/routeRegistry.mjs';
 
 const projectRoot = fileURLToPath(new URL('..', import.meta.url));
 const distPath = join(projectRoot, 'dist');
-const appSource = readFileSync(join(projectRoot, 'src', 'App.tsx'), 'utf8');
-const routePattern = /<Route\s+path="([^"]+)"/g;
-const routes = [...new Set(
-  [...appSource.matchAll(routePattern)]
-    .map((match) => match[1])
-    .filter((route) => route !== '*' && !route.includes(':')),
-)];
+const routes = getPrerenderRoutes();
 
 const failures = [];
 const oldPhonePatterns = [
