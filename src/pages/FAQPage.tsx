@@ -4,7 +4,6 @@ import { AdvancedSEO } from '@/components/AdvancedSEO';
 import { CanonicalUrl } from '@/components/CanonicalUrl';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { FAQ, faqData } from '@/components/FAQ';
-import { Helmet } from 'react-helmet-async';
 import { Button } from '@/components/ui/button';
 import { HelpCircle } from 'lucide-react';
 import { normalizeInternalPath } from '@/utils/url';
@@ -42,20 +41,6 @@ const FAQPage = () => {
       />
       
       <CanonicalUrl path="/faq" />
-      <Helmet>
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebPage",
-            "name": "Vanliga frågor – Kontrollansvarig & BAS Västernorrland",
-            "speakable": {
-              "@type": "SpeakableSpecification",
-              "cssSelector": [".faq-section"]
-            }
-          })}
-        </script>
-      </Helmet>
-      
       <div className="min-h-screen">
         <Header />
         

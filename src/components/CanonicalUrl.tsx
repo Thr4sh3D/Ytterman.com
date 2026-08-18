@@ -1,4 +1,6 @@
 import { Helmet } from 'react-helmet-async';
+import { useLocation } from 'react-router-dom';
+import { getRouteByPath } from '@/config/routeRegistry.mjs';
 import { normalizeSiteUrl } from '@/utils/url';
 
 interface CanonicalUrlProps {
@@ -12,6 +14,9 @@ interface CanonicalUrlProps {
  * @param fullUrl - Complete URL including domain (overrides path if provided)
  */
 export const CanonicalUrl = ({ path, fullUrl }: CanonicalUrlProps) => {
+  const { pathname } = useLocation();
+  if (getRouteByPath(pathname)) return null;
+
   // Base domain for the site
   const baseDomain = "https://ytterman.com";
   

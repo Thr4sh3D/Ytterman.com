@@ -4,8 +4,10 @@ import { HelmetProvider } from 'react-helmet-async';
 import { Toaster } from '@/components/ui/sonner';
 import { ScrollToTop } from '@/components/ScrollToTop';
 import { UrlCanonicalizer } from '@/components/UrlCanonicalizer';
+import { RouteSeo } from '@/components/RouteSeo';
 import { createAppQueryClient } from '@/lib/queryClient';
 import { lazy, Suspense } from 'react';
+import { ROUTE_PATHS } from '@/config/routeRegistry.mjs';
 
 // Critical Pages (eager load for fast initial render)
 import Index from '@/pages/Index';
@@ -84,6 +86,7 @@ export function AppRoutes() {
     return (
         <>
                     <UrlCanonicalizer />
+                    <RouteSeo />
                     <ScrollToTop />
                     <div className="min-h-screen">
                         <Suspense fallback={
@@ -96,72 +99,72 @@ export function AppRoutes() {
                         }>
                             <Routes>
                             {/* Main Pages */}
-                            <Route path="/" element={<Index />} />
-                            <Route path="/tjanster" element={<TjansterPage />} />
-                            <Route path="/kontakt" element={<KontaktPage />} />
-                            <Route path="/om" element={<About />} />
-                            <Route path="/faq" element={<FAQPage />} />
-                            <Route path="/priser" element={<PriserPage />} />
-                            <Route path="/omraden" element={<OmradenPage />} />
-                            <Route path="/tack" element={<TackPage />} />
-                            <Route path="/integritetspolicy" element={<Integritetspolicy />} />
+                            <Route path={ROUTE_PATHS.home} element={<Index />} />
+                            <Route path={ROUTE_PATHS.services} element={<TjansterPage />} />
+                            <Route path={ROUTE_PATHS.contact} element={<KontaktPage />} />
+                            <Route path={ROUTE_PATHS.about} element={<About />} />
+                            <Route path={ROUTE_PATHS.faq} element={<FAQPage />} />
+                            <Route path={ROUTE_PATHS.prices} element={<PriserPage />} />
+                            <Route path={ROUTE_PATHS.areas} element={<OmradenPage />} />
+                            <Route path={ROUTE_PATHS.thankYou} element={<TackPage />} />
+                            <Route path={ROUTE_PATHS.privacy} element={<Integritetspolicy />} />
                             
                             {/* Service Pages */}
-                            <Route path="/kontrollansvarig" element={<KontrollansvarigPage />} />
-                            <Route path="/kontrollansvarig-i-fjallen" element={<KontrollansvarigFjallPage />} />
-                            <Route path="/bas-p" element={<BasPPage />} />
-                            <Route path="/bas-u" element={<BasUPage />} />
-                            <Route path="/energideklaration" element={<EnergiDeklarationPage />} />
-                            <Route path="/overlatelsebesiktning" element={<OverlatelsebesiktningPage />} />
-                            <Route path="/energiberakning-online" element={<EnergiberakningOnlinePage />} />
-                            <Route path="/bygglovshandlingar" element={<BygglovshandlingarPage />} />
+                            <Route path={ROUTE_PATHS.kontrollansvarig} element={<KontrollansvarigPage />} />
+                            <Route path={ROUTE_PATHS.kontrollansvarigFjall} element={<KontrollansvarigFjallPage />} />
+                            <Route path={ROUTE_PATHS.basP} element={<BasPPage />} />
+                            <Route path={ROUTE_PATHS.basU} element={<BasUPage />} />
+                            <Route path={ROUTE_PATHS.energyDeclaration} element={<EnergiDeklarationPage />} />
+                            <Route path={ROUTE_PATHS.inspection} element={<OverlatelsebesiktningPage />} />
+                            <Route path={ROUTE_PATHS.energyCalculation} element={<EnergiberakningOnlinePage />} />
+                            <Route path={ROUTE_PATHS.buildingPermitDocuments} element={<BygglovshandlingarPage />} />
                             
                             {/* City-specific Kontrollansvarig Pages */}
-                            <Route path="/kontrollansvarig-sundsvall" element={<KontrollansvarigSundsvall />} />
-                            <Route path="/kontrollansvarig-harnosand" element={<KontrollansvarigHarnosand />} />
-                            <Route path="/kontrollansvarig-timra" element={<KontrollansvarigTimra />} />
-                            <Route path="/kontrollansvarig-kramfors" element={<KontrollansvarigKramfors />} />
-                            <Route path="/kontrollansvarig-solleftea" element={<KontrollansvarigSolleftea />} />
+                            <Route path={ROUTE_PATHS.kontrollansvarigSundsvall} element={<KontrollansvarigSundsvall />} />
+                            <Route path={ROUTE_PATHS.kontrollansvarigHarnosand} element={<KontrollansvarigHarnosand />} />
+                            <Route path={ROUTE_PATHS.kontrollansvarigTimra} element={<KontrollansvarigTimra />} />
+                            <Route path={ROUTE_PATHS.kontrollansvarigKramfors} element={<KontrollansvarigKramfors />} />
+                            <Route path={ROUTE_PATHS.kontrollansvarigSolleftea} element={<KontrollansvarigSolleftea />} />
                             
                             {/* City-specific Överlåtelsebesiktning Pages */}
-                            <Route path="/overlatelsebesiktning-sundsvall" element={<OverlatelsebesiktningSundsvall />} />
-                            <Route path="/overlatelsebesiktning-harnosand" element={<OverlatelsebesiktningHarnosand />} />
-                            <Route path="/overlatelsebesiktning-timra" element={<OverlatelsebesiktningTimra />} />
-                            <Route path="/overlatelsebesiktning-kramfors" element={<OverlatelsebesiktningKramfors />} />
-                            <Route path="/overlatelsebesiktning-solleftea" element={<OverlatelsebesiktningSolleftea />} />
-                            <Route path="/overlatelsebesiktning-ornskoldsvik" element={<OverlatelsebesiktningOrnskoldsvik />} />
-                            <Route path="/overlatelsebesiktning-ange" element={<OverlatelsebesiktningAnge />} />
+                            <Route path={ROUTE_PATHS.inspectionSundsvall} element={<OverlatelsebesiktningSundsvall />} />
+                            <Route path={ROUTE_PATHS.inspectionHarnosand} element={<OverlatelsebesiktningHarnosand />} />
+                            <Route path={ROUTE_PATHS.inspectionTimra} element={<OverlatelsebesiktningTimra />} />
+                            <Route path={ROUTE_PATHS.inspectionKramfors} element={<OverlatelsebesiktningKramfors />} />
+                            <Route path={ROUTE_PATHS.inspectionSolleftea} element={<OverlatelsebesiktningSolleftea />} />
+                            <Route path={ROUTE_PATHS.inspectionOrnskoldsvik} element={<OverlatelsebesiktningOrnskoldsvik />} />
+                            <Route path={ROUTE_PATHS.inspectionAnge} element={<OverlatelsebesiktningAnge />} />
                             
                             {/* Guides */}
-                            <Route path="/guider" element={<GuidesPage />} />
-                            <Route path="/guider/kontrollansvarig" element={<KontrollansvarigGuide />} />
-                            <Route path="/guider/bas" element={<BasGuide />} />
-                            <Route path="/guider/bygglov" element={<BygglovGuide />} />
-                            <Route path="/guider/kvalitetskontroll" element={<KvalitetskontrollGuide />} />
-                            <Route path="/guider/overlatelsebesiktning" element={<OverlatelsebesiktningGuide />} />
-                            <Route path="/guider/energi" element={<EnergiGuide />} />
-                            <Route path="/guider/miljo" element={<MiljoGuide />} />
-                            <Route path="/guider/digitala-verktyg" element={<DigitalaVerktygGuide />} />
-                            <Route path="/guider/kontrollansvarig-bygglov" element={<KontrollansvarigBygglovGuide />} />
-                            <Route path="/guider/kontrollansvarig-certifiering" element={<KontrollansvarigCertifieringGuide />} />
-                            <Route path="/guider/kontrollansvarig-ansvar" element={<KontrollansvarigAnsvarGuide />} />
-                            <Route path="/guider/kontrollansvarig-timpris" element={<KontrollansvarigTimprisGuide />} />
-                            <Route path="/guider/bas-p-guide" element={<BasPGuideExtended />} />
-                            <Route path="/guider/bas-u-guide" element={<BasUGuideExtended />} />
-                            <Route path="/guider/vad-ar-bas" element={<VadArBasGuide />} />
-                            <Route path="/guider/tekniskt-samrad" element={<TeknisktSamradGuide />} />
-                            <Route path="/guider/kontrollplan" element={<KontrollplanGuide />} />
-                            <Route path="/guider/slutbesked" element={<SlutbeskedGuide />} />
-                            <Route path="/guider/vasternorrland" element={<VasternorrlandGuide />} />
-                            <Route path="/guider/bygglovsguide-vanliga-misstag-husbygge" element={<BygglovsguideVanligaMisstag />} />
+                            <Route path={ROUTE_PATHS.guides} element={<GuidesPage />} />
+                            <Route path={ROUTE_PATHS['guide-kontrollansvarig']} element={<KontrollansvarigGuide />} />
+                            <Route path={ROUTE_PATHS['guide-bas']} element={<BasGuide />} />
+                            <Route path={ROUTE_PATHS['guide-bygglov']} element={<BygglovGuide />} />
+                            <Route path={ROUTE_PATHS['guide-kvalitetskontroll']} element={<KvalitetskontrollGuide />} />
+                            <Route path={ROUTE_PATHS['guide-overlatelsebesiktning']} element={<OverlatelsebesiktningGuide />} />
+                            <Route path={ROUTE_PATHS['guide-energi']} element={<EnergiGuide />} />
+                            <Route path={ROUTE_PATHS['guide-miljo']} element={<MiljoGuide />} />
+                            <Route path={ROUTE_PATHS['guide-digitala-verktyg']} element={<DigitalaVerktygGuide />} />
+                            <Route path={ROUTE_PATHS['guide-kontrollansvarig-bygglov']} element={<KontrollansvarigBygglovGuide />} />
+                            <Route path={ROUTE_PATHS['guide-kontrollansvarig-certifiering']} element={<KontrollansvarigCertifieringGuide />} />
+                            <Route path={ROUTE_PATHS['guide-kontrollansvarig-ansvar']} element={<KontrollansvarigAnsvarGuide />} />
+                            <Route path={ROUTE_PATHS['guide-kontrollansvarig-timpris']} element={<KontrollansvarigTimprisGuide />} />
+                            <Route path={ROUTE_PATHS['guide-bas-p-guide']} element={<BasPGuideExtended />} />
+                            <Route path={ROUTE_PATHS['guide-bas-u-guide']} element={<BasUGuideExtended />} />
+                            <Route path={ROUTE_PATHS['guide-vad-ar-bas']} element={<VadArBasGuide />} />
+                            <Route path={ROUTE_PATHS['guide-tekniskt-samrad']} element={<TeknisktSamradGuide />} />
+                            <Route path={ROUTE_PATHS['guide-kontrollplan']} element={<KontrollplanGuide />} />
+                            <Route path={ROUTE_PATHS['guide-slutbesked']} element={<SlutbeskedGuide />} />
+                            <Route path={ROUTE_PATHS['guide-vasternorrland']} element={<VasternorrlandGuide />} />
+                            <Route path={ROUTE_PATHS['guide-bygglovsguide-vanliga-misstag-husbygge']} element={<BygglovsguideVanligaMisstag />} />
 
                             {/* Blogg */}
-                            <Route path="/blogg" element={<BlogPage />} />
+                            <Route path={ROUTE_PATHS.blog} element={<BlogPage />} />
                             <Route path="/blogg/:slug" element={<BlogPostPage />} />
 
                             {/* Digitala produkter */}
-                            <Route path="/produkter" element={<ProdukterPage />} />
-                            <Route path="/byggstart-planerare" element={<ByggstartPlanerare />} />
+                            <Route path={ROUTE_PATHS.products} element={<ProdukterPage />} />
+                            <Route path={ROUTE_PATHS.buildingStartPlanner} element={<ByggstartPlanerare />} />
                             
                             {/* 404 - Must be last */}
                             <Route path="*" element={<NotFound />} />

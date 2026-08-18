@@ -2,7 +2,6 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Home, Mail, ArrowLeft, MapPin } from 'lucide-react';
-import { Helmet } from 'react-helmet-async';
 import { normalizeInternalPath } from '@/utils/url';
 import { COMPANY } from '@/config/company';
 
@@ -22,36 +21,6 @@ const NotFound = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Sidan hittades inte (404) - Kontrollansvarig & BAS | Ytterman</title>
-        <meta name="description" content="Sidan du söker finns inte. Hitta våra tjänster inom kontrollansvarig, BAS-P, BAS-U och byggkonsultation i Västernorrland. Verksam i Sundsvall, Härnösand, Sollefteå." />
-        <meta name="keywords" content="404, sida hittades inte, kontrollansvarig Västernorrland, BAS-P Sundsvall, BAS-U Härnösand, byggkontroll Sollefteå" />
-        <link rel="canonical" href="https://ytterman.com/404" />
-        <meta name="robots" content="noindex, follow" />
-        
-        {/* Open Graph tags */}
-        <meta property="og:title" content="Sidan hittades inte (404) | Ytterman" />
-        <meta property="og:description" content="Sidan du söker finns inte. Hitta våra tjänster inom kontrollansvarig och BAS i Västernorrland." />
-        <meta property="og:url" content="https://ytterman.com/404" />
-        <meta property="og:type" content="website" />
-        
-        {/* Structured data for organization */}
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebPage",
-            "name": "Sidan hittades inte (404)",
-            "description": "Sidan du söker finns inte. Hitta våra tjänster inom kontrollansvarig och BAS i Västernorrland.",
-            "url": "https://ytterman.com/404",
-            "isPartOf": {
-              "@type": "WebSite",
-              "name": "Ytterman - Kontrollansvarig & BAS",
-              "url": "https://ytterman.com"
-            }
-          })}
-        </script>
-      </Helmet>
-      
       <div className="min-h-screen flex flex-col">
         <Header />
         

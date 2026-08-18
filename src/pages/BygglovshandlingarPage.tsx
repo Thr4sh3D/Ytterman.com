@@ -1,7 +1,6 @@
 import { AdvancedSEO } from '@/components/AdvancedSEO';
 import { CanonicalUrl } from "@/components/CanonicalUrl";
 import { Breadcrumbs } from '@/components/Breadcrumbs';
-import { Helmet } from 'react-helmet-async';
 import { FAQ } from "@/components/FAQ";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -104,12 +103,6 @@ const BygglovshandlingarPage = () => {
       
       <CanonicalUrl path="/bygglovshandlingar" />
       
-      <Helmet>
-        <script type="application/ld+json">
-          {JSON.stringify(structuredData)}
-        </script>
-      </Helmet>
-
       <div className="min-h-screen">
         <Header />
         <section className="py-4 bg-white border-b">
