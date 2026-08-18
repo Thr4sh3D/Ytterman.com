@@ -1,273 +1,29 @@
-import { useState, useEffect } from 'react';
-import { Mail, MapPin, Clock } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { useToast } from '@/hooks/use-toast';
-import { sendContactEmail } from '@/lib/emailjs';
-import { BUSINESS_COPY, COMPANY } from '@/config/company';
-import { trackLead } from '@/components/AnalyticsProvider';
+import { ContactForm } from '@/components/ContactForm';
+import { ContactInfo } from '@/components/ContactInfo';
+import { BUSINESS_COPY } from '@/config/company';
 
 interface ContactProps {
   selectedPackage?: string;
   prefilledMessage?: string;
 }
 
-export const Contact = ({ selectedPackage = '', prefilledMessage = '' }: ContactProps) => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    project: '',
-    message: ''
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const { toast } = useToast();
-
-  // Mapping från paket-ID och tjänst-ID till projekttyp för select-fältet
-  const packageToProjectType = {
-    // Paket från Pricing
-    'kontrollansvarig': 'villa',
-    'ka-bas-paket': 'villa',
-    'brf-stora-projekt': 'flerfamilj',
-    // Tjänster från Services
-    'kontrollansvarig-service': 'villa',
-    'bas-p-service': 'villa',
-    'bas-u-service': 'villa',
-    'kombinerade-paket-service': 'flerfamilj'
-  };
-
-  // Update form when selectedPackage or prefilledMessage changes
-  useEffect(() => {
-    if (selectedPackage && prefilledMessage) {
-      setFormData(prev => ({
-        ...prev,
-        project: packageToProjectType[selectedPackage as keyof typeof packageToProjectType] || '',
-        message: prefilledMessage
-      }));
-    }
-  }, [selectedPackage, prefilledMessage]);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    try {
-      const response = await sendContactEmail(formData);
-      
-      if (response.success) {
-        trackLead({
-          form_type: 'homepage_contact_form',
-          project_type: formData.project || 'not_selected',
-          has_phone: Boolean(formData.phone),
-        });
-        toast({
-          title: "Meddelande skickat!",
-          description: "Tack för ditt meddelande. Jag går igenom uppgifterna och återkommer med nästa steg.",
-        });
-        
-        // Reset form
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          project: '',
-          message: ''
-        });
-      } else {
-        throw new Error(response.error || 'Okänt fel');
-      }
-    } catch (error) {
-      console.error('Error sending message:', error);
-      toast({
-        title: "Fel vid skickning",
-        description: `Ett fel uppstod. Försök igen eller mejla ${COMPANY.email}.`,
-        variant: "destructive"
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const contactInfo = [
-    {
-      icon: Mail,
-      title: "E-post",
-      value: COMPANY.email,
-      action: () => window.open(COMPANY.emailHref)
-    },
-    {
-      icon: MapPin,
-      title: "Verksam i",
-      value: COMPANY.region,
-      action: null
-    },
-    {
-      icon: Clock,
-      title: "Återkoppling",
-      value: "Utifrån projekt och aktuell kapacitet",
-      action: null
-    }
-  ];
-
-  return (
-    <section id="kontakt" className="py-20 bg-secondary/30">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-6">
-            Kontakta mig tidigt – det lönar sig
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Tidigt och tydligt underlag gör det lättare att bedöma rätt tjänst och omfattning. <strong>Skicka projektets grunduppgifter</strong> så återkommer jag med nästa steg utifrån aktuell kapacitet.
-          </p>
-        </div>
-
-        <div className="grid lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
-          {/* Contact Information */}
-          <div>
-            <h3 className="text-2xl font-bold text-foreground mb-8">
-              Kontaktinformation
-            </h3>
-            
-            <div className="space-y-6">
-              {contactInfo.map((info, index) => (
-                <div
-                  key={index}
-                  className={`flex items-center space-x-4 p-4 bg-white rounded-lg ${
-                    info.action ? 'cursor-pointer hover:shadow-md transition-shadow' : ''
-                  }`}
-                  onClick={info.action || undefined}
-                >
-                  <div className="w-12 h-12 earth-gradient rounded-lg flex items-center justify-center">
-                    <info.icon className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <div className="font-semibold text-foreground">{info.title}</div>
-                    <div className="text-muted-foreground">{info.value}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-8 p-6 bg-white rounded-lg">
-              <h4 className="font-semibold text-foreground mb-4">Så behandlas din förfrågan</h4>
-              <p className="text-muted-foreground">
-                Beskriv projektets typ, ort, tidplan och vilka handlingar som redan finns.
-                Jag bedömer möjlig omfattning och återkommer med frågor, nästa steg eller
-                offert. Inget uppdrag startar innan omfattning och villkor har bekräftats.
-              </p>
-            </div>
-          </div>
-
-          {/* Contact Form */}
-          <div className="bg-white rounded-2xl p-8 shadow-lg">
-            <h3 className="text-2xl font-bold text-foreground mb-4">
-              Skicka meddelande
-            </h3>
-            
-            <p className="text-muted-foreground mb-6">
-              {BUSINESS_COPY.defaultResponse}
-            </p>
-            
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-                    Namn *
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
-                  />
-                </div>
-                
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                    E-post *
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2">
-                  Telefon
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="project" className="block text-sm font-medium text-foreground mb-2">
-                  Typ av projekt
-                </label>
-                <select
-                  id="project"
-                  name="project"
-                  value={formData.project}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
-                >
-                  <option value="">Välj projekttyp</option>
-                  <option value="villa">Villa/Småhus</option>
-                  <option value="flerfamilj">Flerfamiljshus</option>
-                  <option value="kommersiell">Kommersiell byggnad</option>
-                  <option value="renovering">Renovering</option>
-                  <option value="annat">Annat</option>
-                </select>
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-                  Meddelande *
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={5}
-                  className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
-                  placeholder="Berätta om ditt projekt..."
-                />
-              </div>
-
-              <Button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full earth-gradient text-white hover:opacity-90 py-3"
-              >
-                {isSubmitting ? 'Skickar...' : 'Skicka meddelande'}
-              </Button>
-            </form>
-          </div>
-        </div>
+export const Contact = (_props: ContactProps) => (
+  <section id="kontakt" className="bg-secondary/30 py-20">
+    <div className="container mx-auto px-4">
+      <div className="mx-auto mb-12 max-w-3xl text-center">
+        <h2 className="mb-5 text-3xl font-bold text-foreground lg:text-4xl">
+          Få rätt upplägg från början
+        </h2>
+        <p className="text-lg text-muted-foreground sm:text-xl">
+          Ett kort tvåstegsformulär samlar det som behövs för en första bedömning. Det minskar
+          följdfrågorna och gör det lättare att lämna en tydlig offert. {BUSINESS_COPY.preferredContact}
+        </p>
       </div>
-    </section>
-  );
-};
+
+      <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+        <ContactInfo />
+        <ContactForm />
+      </div>
+    </div>
+  </section>
+);

@@ -25,7 +25,6 @@ const createMockClient = () => ({
     diagnoseWebsocket: async () => ({ success: true, message: 'Mock websocket diagnosis' }),
     getVersion: async () => ({ version: '1.0.0' }),
     index: async () => ({ success: true }),
-    sendContactEmail: async () => ({ success: true, message: 'Mock email sent' }),
     updateBlogPosts: async () => ({ success: true, message: 'Mock blog posts updated' }),
     deleteBlogPosts: async () => ({ success: true, message: 'Mock blog posts deleted' }),
     updateBlogPostImage: async () => ({ success: true, message: 'Mock blog post image updated' })
