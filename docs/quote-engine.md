@@ -1,104 +1,88 @@
-# Offertmotor – drift och n8n-kontrakt
+# Offertmotor – drift med Netlify Forms
 
 ## Arkitektur
 
 Ytterman.com publiceras på GitHub Pages. GitHub Pages kan inte köra serverkod, därför skickar
-webbläsaren aldrig direkt till n8n och innehåller inga n8n-hemligheter.
+webbläsaren offertförfrågan till en separat Netlify Function. Ingen e-posttjänst, databasnyckel
+eller annan hemlighet finns i klientens JavaScript.
 
 Flödet är:
 
 1. `ContactForm` samlar kvalificerande projekt- och kontaktuppgifter i två korta steg.
 2. Webbläsaren skickar uppgifterna till `VITE_QUOTE_REQUEST_ENDPOINT`.
-3. Serverless-funktionen `netlify/functions/quote-request.ts` validerar payload, origin,
-   honeypot, formulärtid, storleksgräns och rate limit.
-4. Funktionen bestämmer leveransmodell och kö från serverns egen konfiguration.
-5. Funktionen skickar en signerad, strukturerad payload till n8n.
+3. `netlify/functions/quote-request.ts` validerar payload, origin, honeypot, formulärtid,
+   storleksgräns och rate limit.
+4. Funktionen bestämmer leveransmodell, granskningskö och eventuell partnerkontroll från
+   serverns egen konfiguration.
+5. Funktionen lämnar den verifierade förfrågan till Netlify Forms som lagrar leadet och
+   kan skicka en e-postavisering.
 
-Det gamla direkta EmailJS-anropet från webbläsaren är borttaget.
+Det gamla direkta EmailJS-anropet från webbläsaren är borttaget. n8n behövs inte.
 
-## Servervariabler
+## Konfiguration
 
-Följande sätts endast där serverless-funktionen körs, exempelvis i Netlify. De får inte läggas
-som `VITE_`-variabler eftersom de då blir publika i JavaScript-bundlen.
+GitHub repository variable:
+
+```text
+VITE_QUOTE_REQUEST_ENDPOINT=https://ytterman-offert.netlify.app/api/quote-request
+```
+
+Servervariabler i Netlify:
 
 | Variabel | Innehåll |
 |---|---|
-| `N8N_QUOTE_WEBHOOK_URL` | Full HTTPS-adress till n8n-webhooken |
-| `N8N_QUOTE_WEBHOOK_SECRET` | Slumpad hemlighet som kontrolleras av n8n |
-| `QUOTE_RATE_LIMIT_SALT` | Separat slumpad sträng för hashning av rate-limit-nycklar |
+| `QUOTE_RATE_LIMIT_SALT` | Slumpad hemlig sträng för hashning av rate-limit-nycklar |
 | `QUOTE_ALLOWED_ORIGINS` | Valfri kommaseparerad tilläggslista; `https://ytterman.com` ingår alltid |
+| `QUOTE_FORM_DELIVERY_URL` | Valfri överstyrning av formulärmottagare; annars används Netlifys inbyggda `URL` |
 
-När proxyfunktionen har en publik URL sätts följande repository variable i GitHub:
+Variabler som ska vara hemliga får inte börja med `VITE_`, eftersom Vite då bygger in dem i
+publikt JavaScript. Efter ändrade servervariabler måste projektet driftsättas på nytt.
 
-```text
-VITE_QUOTE_REQUEST_ENDPOINT=https://<serverless-domän>/api/quote-request
-```
+## Netlify Forms-schema
 
-Starta därefter om workflowen `Deploy to GitHub Pages`. Proxyadressen är publik men innehåller
-ingen behörighet. n8n-adress och hemlighet finns bara på serversidan.
+Det statiska formuläret i `index.html` används bara för Netlifys byggtidsdetektering. Kunden ser
+och använder React-formuläret. Serverfunktionen lämnar följande fält till formuläret
+`quote-request`:
 
-## Payload till n8n
+| Grupp | Fält |
+|---|---|
+| Identitet | `leadId`, `receivedAt`, `source` |
+| Tjänst | `service`, `serviceLabel`, `deliveryModel` |
+| Projekt | `projectType`, `municipality`, `size`, `permitStatus`, `desiredStart` |
+| Kontakt | `name`, `email`, `phone`, `message` |
+| Routing | `routingQueue`, `routingStatus`, `routingOwner` |
+| Partnerkontroll | `requiresPartnerVerification`, `partnerVerificationStatus` |
+| Attribution | `landingPage`, `utmSource`, `utmMedium`, `utmCampaign`, `utmContent`, `utmTerm` |
 
-```json
-{
-  "leadId": "uuid",
-  "receivedAt": "2026-08-18T15:30:00.000Z",
-  "source": "ytterman.com",
-  "service": "ka|bas-p|bas-u|ka-bas|energideklaration|overlatelsebesiktning|bygglovshandlingar|other",
-  "serviceLabel": "Visningsnamn",
-  "deliveryModel": "ytterman|partner|mixed",
-  "projectType": "string",
-  "municipality": "string",
-  "size": "string",
-  "permitStatus": "string",
-  "desiredStart": "YYYY-MM",
-  "contact": {
-    "name": "string",
-    "email": "string",
-    "phone": "string"
-  },
-  "message": "string",
-  "attribution": {
-    "landingPage": "string",
-    "source": "string",
-    "utmSource": "string",
-    "utmMedium": "string",
-    "utmCampaign": "string",
-    "utmContent": "string",
-    "utmTerm": "string"
-  },
-  "routing": {
-    "queue": "quote-review|energy-partner-verification|manual-triage",
-    "status": "new",
-    "owner": "tobias",
-    "requiresPartnerVerification": true
-  },
-  "partnerVerification": {
-    "status": "required",
-    "assignedPartner": null,
-    "certificateVerifiedAt": null,
-    "verifiedBy": null
-  }
-}
-```
+## Routingregler
 
-## n8n-regler
-
-- Webhooken ska kräva samma hemlighet i `Authorization: Bearer …` eller `X-Webhook-Secret`.
-- Normala förfrågningar läggs i `quote-review` med Tobias som ägare.
-- Energideklaration läggs i `energy-partner-verification` och får inte skickas vidare till en
-  utförare förrän partner, certifikatsstatus, kontrolltidpunkt och kontrollant har registrerats.
-- `leadId` används som idempotency-nyckel för att undvika dubbla ärenden.
-- Bekräftelse till kunden skickas först när leadet har sparats. Bekräftelsen får inte lova en
-  viss svarstid eller att uppdraget är accepterat.
-- UTM och landningssida sparas på leadet men skickas inte vidare till Google tillsammans med
+- Normala förfrågningar får `routingQueue = quote-review` och Tobias som ägare.
+- Energideklaration får `routingQueue = energy-partner-verification` och
+  `partnerVerificationStatus = required`.
+- En energideklaration får inte skickas vidare till utförare förrän det manuellt har
+  kontrollerats att partnerns energiexpert har giltig certifiering för uppdraget.
+- `leadId` används som unik referens vid uppföljning och eventuell framtida integration.
+- Bekräftelsen till kunden lovar inte en viss svarstid eller att uppdraget är accepterat.
+- UTM och landningssida sparas på leadet men skickas inte till Google tillsammans med
   kontaktuppgifter.
+
+## Avisering och daglig hantering
+
+I Netlify väljs **Project configuration → Notifications → Emails and webhooks → Form submission
+notifications**. Lägg en e-postavisering för formuläret `quote-request` till
+`tobias@ytterman.com`.
+
+Alla verifierade förfrågningar finns även under **Forms** i projektet `ytterman-offert`. E-post är
+avisering; Netlify Forms är primär inkorg tills leadet har bedömts och flyttats till ordinarie
+kundhantering.
 
 ## Releasekontroll
 
 1. Kör `npm run typecheck`, `npm run lint`, `npm run test:quote` och `npm run build`.
-2. Testa att tomt formulär, fel origin, honeypot och fler än fem försök per 15 minuter stoppas.
-3. Skicka ett testlead för KA och kontrollera kön `quote-review`.
-4. Skicka ett testlead för energideklaration och kontrollera att det stannar i
-   `energy-partner-verification` med `partnerVerification.status = required`.
-5. Kontrollera att inga kontaktuppgifter förekommer i Google `dataLayer`.
+2. Kontrollera att Netlify-driften visar formuläret `quote-request`.
+3. Testa att tomt formulär, fel origin, honeypot och fler än fem försök per 15 minuter stoppas.
+4. Skicka ett KA-testlead och kontrollera `routingQueue = quote-review`.
+5. Skicka ett energideklarationslead och kontrollera `routingQueue = energy-partner-verification`
+   samt `partnerVerificationStatus = required`.
+6. Kontrollera att båda leaden syns i Netlify Forms och att e-postaviseringen kommer fram.
+7. Kontrollera att inga kontaktuppgifter förekommer i Google `dataLayer`.

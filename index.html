@@ -7,7 +7,6 @@
     <!-- Preconnect to external domains for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="dns-prefetch" href="https://ellprnxjjzatijdxcogk.supabase.co" />
     
     <!-- Google Fonts — loaded as non-render-blocking link to improve LCP -->
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
@@ -80,11 +79,48 @@
   </head>
 
   <body>
+    <!-- Netlify detects this static schema at deploy time. The visible React form
+         submits through the validated serverless proxy instead. -->
+    <form
+      name="quote-request"
+      method="POST"
+      data-netlify="true"
+      data-netlify-honeypot="website"
+      hidden
+      aria-hidden="true"
+    >
+      <input type="hidden" name="form-name" value="quote-request" />
+      <input type="hidden" name="subject" data-remove-prefix value="Ny offertförfrågan från ytterman.com" />
+      <input name="leadId" />
+      <input name="receivedAt" />
+      <input name="source" />
+      <input name="service" />
+      <input name="serviceLabel" />
+      <input name="deliveryModel" />
+      <input name="projectType" />
+      <input name="municipality" />
+      <input name="size" />
+      <input name="permitStatus" />
+      <input name="desiredStart" />
+      <input name="name" />
+      <input name="email" type="email" />
+      <input name="phone" />
+      <textarea name="message"></textarea>
+      <input name="routingQueue" />
+      <input name="routingStatus" />
+      <input name="routingOwner" />
+      <input name="requiresPartnerVerification" />
+      <input name="partnerVerificationStatus" />
+      <input name="landingPage" />
+      <input name="utmSource" />
+      <input name="utmMedium" />
+      <input name="utmCampaign" />
+      <input name="utmContent" />
+      <input name="utmTerm" />
+      <input name="website" />
+    </form>
     <div id="root"></div>
     
-    <!-- DO NOT REMOVE THESE IMPORTS -->
-    <script async src="https://ellprnxjjzatijdxcogk.supabase.co/storage/v1/object/public/cdn/console-capture.js"></script>
     <script type="module" src="/src/main.tsx"></script>
-    <!-- DO NOT REMOVE THESE IMPORTS -->
   </body>
 </html>

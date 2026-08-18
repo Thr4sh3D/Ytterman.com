@@ -9,6 +9,7 @@ const contactSection = read('src/components/Contact.tsx');
 const client = read('src/lib/quoteRequest.ts');
 const endpoint = read('netlify/functions/quote-request.ts');
 const workflow = read('.github/workflows/deploy.yml');
+const indexHtml = read('index.html');
 
 assert.deepEqual(QUOTE_SERVICE_IDS, [
   'ka',
@@ -38,22 +39,29 @@ assert.ok(!existsSync(new URL('../src/lib/emailjs.ts', import.meta.url)), 'Klien
 assert.ok(!packageJson.dependencies?.['@emailjs/browser'], 'EmailJS får inte vara ett klientberoende.');
 
 assert.ok(client.includes("VITE_QUOTE_REQUEST_ENDPOINT"), 'Publik proxyendpoint saknas.');
-assert.ok(!client.includes('N8N_QUOTE_WEBHOOK_URL'), 'n8n-adressen får inte byggas in i klienten.');
-assert.ok(!client.includes('N8N_QUOTE_WEBHOOK_SECRET'), 'n8n-hemligheten får inte byggas in i klienten.');
+assert.ok(indexHtml.includes('name="quote-request"'), 'Netlify Forms-schemat saknas i statisk HTML.');
+assert.ok(indexHtml.includes('data-netlify="true"'), 'Automatisk formulärdetektering saknas.');
+assert.ok(indexHtml.includes('name="routingQueue"'), 'Routingfältet saknas i Netlify Forms-schemat.');
+assert.ok(!indexHtml.includes('console-capture.js'), 'Externt konsolinfångningsscript får inte laddas.');
+assert.ok(!client.includes('N8N_'), 'n8n-konfiguration får inte byggas in i klienten.');
 
 for (const requirement of [
-  'N8N_QUOTE_WEBHOOK_URL',
-  'N8N_QUOTE_WEBHOOK_SECRET',
+  'QUOTE_FORM_DELIVERY_URL',
   'QUOTE_RATE_LIMIT_SALT',
+  "process.env.URL",
   'allowedOrigins',
   'quoteRequestSchema',
   'website',
   'MIN_FORM_TIME_MS',
   'consumeRateLimit',
   'requiresPartnerVerification',
+  "'form-name': 'quote-request'",
+  'application/x-www-form-urlencoded',
 ]) {
   assert.ok(endpoint.includes(requirement), `Serverendpointen saknar ${requirement}.`);
 }
+
+assert.ok(!endpoint.includes('N8N_'), 'Serverendpointen ska inte kräva n8n.');
 
 assert.ok(workflow.includes('VITE_QUOTE_REQUEST_ENDPOINT: ${{ vars.VITE_QUOTE_REQUEST_ENDPOINT }}'));
 

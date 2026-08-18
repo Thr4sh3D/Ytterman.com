@@ -75,7 +75,7 @@ const clientAddress = (request: Request) => (
 );
 
 const rateLimitKey = (request: Request) => {
-  const secretSalt = process.env.QUOTE_RATE_LIMIT_SALT || process.env.N8N_QUOTE_WEBHOOK_SECRET || 'local-only';
+  const secretSalt = process.env.QUOTE_RATE_LIMIT_SALT?.trim() || process.env.SITE_ID || 'local-only';
   const addressHash = createHash('sha256')
     .update(`${secretSalt}:${clientAddress(request)}`)
     .digest('hex');
@@ -109,13 +109,14 @@ const consumeRateLimit = async (request: Request) => {
   }
 };
 
-const safeWebhookUrl = () => {
-  const configured = process.env.N8N_QUOTE_WEBHOOK_URL?.trim();
+const safeFormsUrl = () => {
+  const configured = process.env.QUOTE_FORM_DELIVERY_URL?.trim() || process.env.URL?.trim();
   if (!configured) return null;
 
   try {
-    const url = new URL(configured);
-    return url.protocol === 'https:' ? url.toString() : null;
+    const url = new URL('/', configured);
+    const isLocalDevelopment = process.env.CONTEXT === 'dev' && url.protocol === 'http:';
+    return url.protocol === 'https:' || isLocalDevelopment ? url.toString() : null;
   } catch {
     return null;
   }
@@ -181,12 +182,6 @@ export default async (request: Request) => {
     return jsonResponse(origin, 429, { success: false, error: 'För många försök. Vänta en stund och försök igen.' });
   }
 
-  const webhookUrl = safeWebhookUrl();
-  const webhookSecret = process.env.N8N_QUOTE_WEBHOOK_SECRET?.trim();
-  if (!webhookUrl || !webhookSecret) {
-    return jsonResponse(origin, 503, { success: false, error: 'Offerttjänsten är tillfälligt otillgänglig.' });
-  }
-
   const service = getQuoteService(parsed.data.service);
   if (!service) {
     return jsonResponse(origin, 400, { success: false, error: 'Okänd tjänst.' });
@@ -194,7 +189,15 @@ export default async (request: Request) => {
 
   const leadId = randomUUID();
   const receivedAt = new Date().toISOString();
-  const payload = {
+  const formsUrl = safeFormsUrl();
+  if (!formsUrl) {
+    return jsonResponse(origin, 503, { success: false, error: 'Offerttjänsten är tillfälligt otillgänglig.' });
+  }
+
+  const attribution = parsed.data.attribution;
+  const formBody = new URLSearchParams({
+    'form-name': 'quote-request',
+    subject: `Ny offert: ${service.label} – ${parsed.data.municipality}`,
     leadId,
     receivedAt,
     source: 'ytterman.com',
@@ -206,42 +209,39 @@ export default async (request: Request) => {
     size: parsed.data.size,
     permitStatus: parsed.data.permitStatus,
     desiredStart: parsed.data.desiredStart,
-    contact: parsed.data.contact,
+    name: parsed.data.contact.name,
+    email: parsed.data.contact.email,
+    phone: parsed.data.contact.phone,
     message: parsed.data.message,
-    attribution: parsed.data.attribution,
-    routing: {
-      queue: service.queue,
-      status: 'new',
-      owner: 'tobias',
-      requiresPartnerVerification: service.requiresPartnerVerification,
-    },
-    partnerVerification: service.requiresPartnerVerification
-      ? {
-          status: 'required',
-          assignedPartner: null,
-          certificateVerifiedAt: null,
-          verifiedBy: null,
-        }
-      : { status: 'not-applicable' },
-  };
+    routingQueue: service.queue,
+    routingStatus: 'new',
+    routingOwner: 'tobias',
+    requiresPartnerVerification: String(service.requiresPartnerVerification),
+    partnerVerificationStatus: service.requiresPartnerVerification ? 'required' : 'not-applicable',
+    landingPage: attribution?.landingPage || '',
+    utmSource: attribution?.utmSource || '',
+    utmMedium: attribution?.utmMedium || '',
+    utmCampaign: attribution?.utmCampaign || '',
+    utmContent: attribution?.utmContent || '',
+    utmTerm: attribution?.utmTerm || '',
+    website: '',
+  });
 
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 10_000);
 
   try {
-    const webhookResponse = await fetch(webhookUrl, {
+    const formResponse = await fetch(formsUrl, {
       method: 'POST',
       headers: {
-        Authorization: `Bearer ${webhookSecret}`,
-        'Content-Type': 'application/json',
-        'X-Webhook-Secret': webhookSecret,
+        'Content-Type': 'application/x-www-form-urlencoded',
         'X-Ytterman-Event': 'quote.created',
       },
       signal: controller.signal,
-      body: JSON.stringify(payload),
+      body: formBody.toString(),
     });
 
-    if (!webhookResponse.ok) {
+    if (!formResponse.ok) {
       return jsonResponse(origin, 502, { success: false, error: 'Förfrågan kunde inte levereras just nu.' });
     }
   } catch {
