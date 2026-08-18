@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
@@ -12,42 +11,6 @@ import { BUSINESS_COPY, COMPANY } from '@/config/company';
 const TackPage = () => {
   const [searchParams] = useSearchParams();
   const service = searchParams.get('service') || 'kontakt';
-  const source = searchParams.get('source') || 'website';
-
-  useEffect(() => {
-    // Google Ads konverteringsmätning med din riktiga konverteringskod
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', 'conversion', {
-        'send_to': 'AW-17296101730/I1ieCMvrqvoaEOKitrdA'
-      });
-      
-      console.log('Google Ads konvertering spårad:', {
-        conversionId: 'AW-17296101730',
-        conversionLabel: 'I1ieCMvrqvoaEOKitrdA',
-        service: service,
-        source: source
-      });
-    }
-
-    // Facebook Pixel (om du använder det)
-    if (typeof window !== 'undefined' && window.fbq) {
-      window.fbq('track', 'Lead', {
-        content_name: service,
-        content_category: 'Kontakt',
-        value: 1.0,
-        currency: 'SEK'
-      });
-    }
-
-    // Google Analytics 4 event
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', 'generate_lead', {
-        'event_category': 'Contact',
-        'event_label': service,
-        'value': 1
-      });
-    }
-  }, [service, source]);
 
   const getServiceInfo = (serviceType: string) => {
     switch (serviceType) {
@@ -272,19 +235,6 @@ const TackPage = () => {
             </div>
           </section>
 
-          <section className="py-20 bg-white">
-            <div className="container mx-auto px-4">
-              <div className="max-w-4xl mx-auto text-center">
-                <blockquote className="text-2xl text-slate-700 italic mb-6">
-                  "Professionell hantering från start till mål. Tobias höll vad han lovade 
-                  och vårt projekt gick smidigt genom hela byggprocessen."
-                </blockquote>
-                <cite className="text-slate-600">
-                  - Maria Andersson, Villaägare i Sundsvall
-                </cite>
-              </div>
-            </div>
-          </section>
         </main>
         
         <Footer />

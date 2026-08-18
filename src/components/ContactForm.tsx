@@ -7,7 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Mail, MapPin, Clock, CheckCircle, AlertCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { sendContactEmail } from '@/lib/emailjs';
-import { useGoogleAdsTracking } from '@/hooks/useGoogleAdsTracking';
+import { trackLead } from '@/components/AnalyticsProvider';
 import { useSearchParams } from 'react-router-dom';
 import { BUSINESS_COPY, COMPANY } from '@/config/company';
 
@@ -32,7 +32,6 @@ const ContactForm = () => {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [searchParams] = useSearchParams();
   const { toast } = useToast();
-  const { trackFormSubmission } = useGoogleAdsTracking();
 
   useEffect(() => {
     const requestedProject = searchParams.get('project')?.trim().toLowerCase();
@@ -76,9 +75,9 @@ const ContactForm = () => {
         setSubmitStatus('success');
         
         // Spåra framgångsrik formulärinskickning
-        trackFormSubmission('contact_form', {
-          name: formData.name,
-          project: formData.project,
+        trackLead({
+          form_type: 'contact_form',
+          project_type: formData.project || 'not_selected',
           has_phone: !!formData.phone
         });
         
