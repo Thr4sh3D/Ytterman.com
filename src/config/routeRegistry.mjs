@@ -245,7 +245,7 @@ const contentRoutes = [
   defineRoute({
     id: 'products', path: '/produkter', priority: '0.6', pageType: 'CollectionPage',
     title: 'Energiberäkning online och digitala byggverktyg | Ytterman',
-    description: 'Starta energiberäkning via aktiv extern partnertjänst eller anmäl intresse för Yttermans kommande digitala planeringsverktyg.',
+    description: 'Starta energiberäkning online hos vår samarbetspartner eller anmäl intresse för Yttermans digitala planeringsverktyg.',
     keywords: ['energiberäkning online', 'digitala byggverktyg', 'byggplanering'],
   }),
   defineRoute({
