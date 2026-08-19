@@ -135,6 +135,8 @@ const BlogPostPage = () => {
                     <img
                       src={article.main_image_url}
                       alt={article.title}
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover"
                     />
                   </div>

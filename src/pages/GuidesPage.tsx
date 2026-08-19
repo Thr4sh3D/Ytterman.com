@@ -185,6 +185,8 @@ const GuidesPage = () => {
                             <img
                               src={post.main_image_url}
                               alt={post.title}
+                              loading="lazy"
+                              decoding="async"
                               className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                             />
                           </div>

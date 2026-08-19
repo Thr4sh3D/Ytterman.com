@@ -1,22 +1,21 @@
 import { BrowserRouter, Navigate, Routes, Route } from 'react-router-dom';
-import { QueryClientProvider } from '@tanstack/react-query';
 import { HelmetProvider } from 'react-helmet-async';
-import { Toaster } from '@/components/ui/sonner';
+import { Toaster } from 'sonner';
 import { ScrollToTop } from '@/components/ScrollToTop';
 import { UrlCanonicalizer } from '@/components/UrlCanonicalizer';
 import { RouteSeo } from '@/components/RouteSeo';
-import { createAppQueryClient } from '@/lib/queryClient';
 import { lazy, Suspense } from 'react';
 import { redirectRegistry, ROUTE_PATHS } from '@/config/routeRegistry.mjs';
 
 // Critical Pages (eager load for fast initial render)
 import Index from '@/pages/Index';
-import TjansterPage from '@/pages/TjansterPage';
-import KontaktPage from '@/pages/KontaktPage';
-import About from '@/pages/About';
-import NotFound from '@/pages/NotFound';
 import { AnalyticsProvider } from '@/components/AnalyticsProvider';
 import GoogleConsentMode from '@/components/GoogleConsentMode';
+
+const TjansterPage = lazy(() => import('@/pages/TjansterPage'));
+const KontaktPage = lazy(() => import('@/pages/KontaktPage'));
+const About = lazy(() => import('@/pages/About'));
+const NotFound = lazy(() => import('@/pages/NotFound'));
 
 // Lazy-loaded Service Pages
 const KontrollansvarigPage = lazy(() => import('@/pages/KontrollansvarigPage'));
@@ -81,12 +80,18 @@ const ProdukterPage = lazy(() => import('@/pages/ProdukterPage'));
 export function AppRoutes() {
     return (
         <>
+                    <a
+                      href="#app-content"
+                      className="sr-only fixed left-4 top-4 z-[200] rounded-md bg-slate-900 px-4 py-3 font-semibold text-white focus:not-sr-only"
+                    >
+                      Hoppa till huvudinnehåll
+                    </a>
                     <UrlCanonicalizer />
                     <RouteSeo />
                     <ScrollToTop />
                     <AnalyticsProvider />
                     <GoogleConsentMode />
-                    <div className="min-h-screen">
+                    <div id="app-content" tabIndex={-1} className="min-h-screen">
                         <Suspense fallback={
                             <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary/5 to-amber-50">
                                 <div className="text-center">
@@ -167,22 +172,18 @@ export function AppRoutes() {
                             <Route path="*" element={<NotFound />} />
                             </Routes>
                         </Suspense>
-                        <Toaster />
+                        <Toaster theme="light" richColors closeButton />
                     </div>
         </>
     );
 }
 
-const queryClient = createAppQueryClient();
-
 function App() {
     return (
         <HelmetProvider>
-            <QueryClientProvider client={queryClient}>
-                <BrowserRouter>
-                    <AppRoutes />
-                </BrowserRouter>
-            </QueryClientProvider>
+            <BrowserRouter>
+                <AppRoutes />
+            </BrowserRouter>
         </HelmetProvider>
     );
 }

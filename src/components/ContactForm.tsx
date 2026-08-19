@@ -1,11 +1,11 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { AlertCircle, CheckCircle, ChevronLeft, ChevronRight, ShieldCheck } from 'lucide-react';
+import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { useToast } from '@/hooks/use-toast';
 import { trackAnalyticsEvent, trackLead } from '@/components/AnalyticsProvider';
 import { BUSINESS_COPY, COMPANY } from '@/config/company';
 import {
@@ -63,7 +63,6 @@ const ContactForm = ({ className = '', initialService = '' }: ContactFormProps) 
   const [privacyAccepted, setPrivacyAccepted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-  const { toast } = useToast();
 
   useEffect(() => {
     const requestedService = (searchParams.get('service') || searchParams.get('project'))
@@ -91,10 +90,8 @@ const ContactForm = ({ className = '', initialService = '' }: ContactFormProps) 
 
   const goToContactStep = () => {
     if (!formData.service || !formData.projectType || !formData.municipality.trim()) {
-      toast({
-        title: 'Komplettera projektuppgifterna',
+      toast.error('Komplettera projektuppgifterna', {
         description: 'Tjänst, projekttyp och kommun behövs för att gå vidare.',
-        variant: 'destructive',
       });
       return;
     }
@@ -107,10 +104,8 @@ const ContactForm = ({ className = '', initialService = '' }: ContactFormProps) 
     event.preventDefault();
 
     if (!formData.name.trim() || !formData.email.trim() || !privacyAccepted) {
-      toast({
-        title: 'Komplettera kontaktuppgifterna',
+      toast.error('Komplettera kontaktuppgifterna', {
         description: 'Namn, e-post och bekräftelse av integritetspolicyn behövs.',
-        variant: 'destructive',
       });
       return;
     }
@@ -127,16 +122,13 @@ const ContactForm = ({ className = '', initialService = '' }: ContactFormProps) 
       });
       setSubmitStatus('success');
       setPrivacyAccepted(false);
-      toast({
-        title: 'Förfrågan är skickad',
+      toast.success('Förfrågan är skickad', {
         description: 'Tack! Uppgifterna är strukturerade och redo för en första bedömning.',
       });
     } else {
       setSubmitStatus('error');
-      toast({
-        title: 'Förfrågan kunde inte skickas',
+      toast.error('Förfrågan kunde inte skickas', {
         description: `${result.error} Du kan även mejla ${COMPANY.email}.`,
-        variant: 'destructive',
       });
     }
 

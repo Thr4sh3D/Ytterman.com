@@ -192,10 +192,9 @@ const BlogPage = () => {
                 ) : (
                   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {publishedPosts
-                      .map((post, index) => (
+                      .map((post) => (
                         <BlogCard
                           key={post.id}
-                          priority={index < 3}
                           post={{
                             id: post.id,
                             title: post.title,

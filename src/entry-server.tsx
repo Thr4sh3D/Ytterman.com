@@ -1,10 +1,8 @@
 import { PassThrough } from 'node:stream';
-import { QueryClientProvider } from '@tanstack/react-query';
 import { renderToPipeableStream } from 'react-dom/server';
 import { HelmetProvider, type HelmetServerState } from 'react-helmet-async';
 import { StaticRouter } from 'react-router-dom/server';
 import { AppRoutes } from './App';
-import { createAppQueryClient } from './lib/queryClient';
 
 interface HelmetContext {
   helmet?: HelmetServerState;
@@ -29,7 +27,6 @@ const renderHelmetHead = (helmet: HelmetServerState) => [
 
 export const render = (url: string): Promise<RenderedRoute> => {
   const helmetContext: HelmetContext = {};
-  const queryClient = createAppQueryClient();
 
   return new Promise((resolve, reject) => {
     let renderError: unknown;
@@ -50,11 +47,9 @@ export const render = (url: string): Promise<RenderedRoute> => {
 
     const { pipe, abort } = renderToPipeableStream(
       <HelmetProvider context={helmetContext}>
-        <QueryClientProvider client={queryClient}>
-          <StaticRouter location={url}>
-            <AppRoutes />
-          </StaticRouter>
-        </QueryClientProvider>
+        <StaticRouter location={url}>
+          <AppRoutes />
+        </StaticRouter>
       </HelmetProvider>,
       {
         onAllReady() {

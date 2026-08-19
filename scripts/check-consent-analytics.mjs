@@ -16,8 +16,10 @@ const app = read('src/App.tsx');
 const contactForm = read('src/components/ContactForm.tsx');
 const thankYou = read('src/pages/TackPage.tsx');
 const analyticsConfig = read('src/config/analytics.ts');
+const builtIndex = existsSync(join(projectRoot, 'dist/index.html')) ? read('dist/index.html') : '';
 
 assert(!indexHtml.includes('googletagmanager.com'), 'index.html får inte kontakta Google före samtycke.');
+assert(!/fonts\.(googleapis|gstatic)\.com/.test(indexHtml), 'Google Fonts får inte vara en render-blockerande extern resurs.');
 assert(!indexHtml.includes('dataLayer') && !indexHtml.includes('gtag('), 'index.html får inte initiera mätning före samtycke.');
 assert(provider.includes('readConsent()') && provider.includes('loadGoogleTag(preferences)'), 'Google-taggen måste styras av sparat samtycke.');
 assert(provider.includes('VITE_') === false, 'Miljö-ID:n ska läsas i den centrala konfigurationen, inte utspritt.');
@@ -32,6 +34,9 @@ assert(app.includes('<AnalyticsProvider />') && app.includes('<GoogleConsentMode
 assert(provider.includes('PII_KEY') && provider.includes('ALLOWED_PARAMETERS'), 'Tillåtelselista och PII-filter saknas.');
 assert(!contactForm.includes('name: formData.name'), 'Formulärnamn får inte skickas till analys.');
 assert(!thankYou.includes("gtag('event'") && !thankYou.includes('fbq('), 'Tacksidan får inte mäta en konvertering bara genom ett sidbesök.');
+if (builtIndex) {
+  assert(!/googletagmanager\.com|google-analytics\.com|fonts\.(googleapis|gstatic)\.com/.test(builtIndex), 'Byggd startsida innehåller ett Google-anrop före samtycke.');
+}
 
 for (const legacyPath of [
   'src/components/ConversionTracking.tsx',

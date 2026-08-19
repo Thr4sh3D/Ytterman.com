@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title description">
+  <title id="title">Ytterman – kontrollansvarig och BAS-P/U</title>
+  <desc id="description">Delningsbild för Ytterman med byggrelaterad linjegrafik och verksamhetsområde Västernorrland.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="0.62" stop-color="#172554"/>
+      <stop offset="1" stop-color="#7c2d12"/>
+    </linearGradient>
+    <linearGradient id="brand" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#fdba74"/>
+      <stop offset="1" stop-color="#f59e0b"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#background)"/>
+  <g opacity="0.15" fill="none" stroke="#fff" stroke-width="2">
+    <path d="M760 535V235l150-105 150 105v300"/>
+    <path d="M820 535V305h180v230M760 235h300M910 130v405"/>
+    <path d="M720 535h410M780 275h260M840 355h140M840 415h140"/>
+    <circle cx="1060" cy="120" r="180"/>
+  </g>
+  <rect x="72" y="62" width="190" height="8" rx="4" fill="url(#brand)"/>
+  <text x="72" y="132" fill="#fff" font-family="Inter, Arial, sans-serif" font-size="44" font-weight="800" letter-spacing="1">YTTERMAN</text>
+  <text x="72" y="260" fill="#fff" font-family="Inter, Arial, sans-serif" font-size="68" font-weight="800">Kontrollansvarig</text>
+  <text x="72" y="342" fill="#fff" font-family="Inter, Arial, sans-serif" font-size="68" font-weight="800">och BAS-P/U</text>
+  <text x="76" y="410" fill="#cbd5e1" font-family="Inter, Arial, sans-serif" font-size="31" font-weight="500">Tydlig byggprocess i Västernorrland</text>
+  <g transform="translate(72 472)">
+    <rect width="322" height="66" rx="16" fill="#fff" fill-opacity="0.1" stroke="#fff" stroke-opacity="0.25"/>
+    <circle cx="37" cy="33" r="18" fill="#f59e0b"/>
+    <path d="m28 33 6 6 12-14" fill="none" stroke="#0f172a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="68" y="42" fill="#fff" font-family="Inter, Arial, sans-serif" font-size="25" font-weight="700">Kiwa KA11926 · N</text>
+  </g>
+  <text x="1128" y="578" fill="#fff" fill-opacity="0.75" text-anchor="end" font-family="Inter, Arial, sans-serif" font-size="24">ytterman.com</text>
+</svg>

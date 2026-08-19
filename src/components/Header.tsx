@@ -40,7 +40,7 @@ export const Header = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-6">
+          <nav className="hidden lg:flex items-center space-x-6" aria-label="Huvudnavigation">
             {navigation.map((item) => (
               <a
                 key={item.name}
@@ -72,8 +72,12 @@ export const Header = () => {
           {/* Mobile menu button */}
           <div className="lg:hidden">
             <button
+              type="button"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-slate-700 hover:text-primary transition-colors"
+              className="rounded-md p-2 text-slate-700 transition-colors hover:text-primary"
+              aria-label={isMenuOpen ? 'Stäng meny' : 'Öppna meny'}
+              aria-expanded={isMenuOpen}
+              aria-controls="mobile-navigation"
             >
               {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -82,8 +86,8 @@ export const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="lg:hidden py-4 border-t border-slate-200">
-            <nav className="flex flex-col space-y-4">
+          <div id="mobile-navigation" className="lg:hidden py-4 border-t border-slate-200">
+            <nav className="flex flex-col space-y-4" aria-label="Mobilnavigation">
               {navigation.map((item) => (
                 <a
                   key={item.name}
