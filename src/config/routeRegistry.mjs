@@ -14,6 +14,7 @@ const defineRoute = ({
   prerender = true,
   priority = '0.5',
   changefreq = 'monthly',
+  dateModified,
 }) => ({
   id,
   path,
@@ -27,7 +28,7 @@ const defineRoute = ({
     robots: indexable ? defaultRobots : 'noindex, follow',
     image: `${SITE_URL}/og-image.png`,
   },
-  schema: { pageType, serviceKey },
+  schema: { pageType, serviceKey, dateModified },
 });
 
 const coreRoutes = [
@@ -155,35 +156,45 @@ const serviceRoutes = [
   }),
 ];
 
-const kaCities = ['Sundsvall', 'Härnösand', 'Timrå', 'Kramfors', 'Sollefteå'];
-const inspectionCities = ['Sundsvall', 'Härnösand', 'Timrå', 'Kramfors', 'Sollefteå', 'Örnsköldsvik', 'Ånge'];
+const kaCities = [
+  ['Sundsvall', 'KA för normal art, tydlig rollfördelning och offertunderlag för projekt i Sundsvall.'],
+  ['Härnösand', 'KA för normal art i Härnösand med tydlig avgränsning mot byggledning, projektering och besiktning.'],
+  ['Timrå', 'Kontrollansvarig i Timrå med en spårbar process från offert och kontrollplan till utlåtande.'],
+  ['Kramfors', 'Kontrollansvarig i Kramfors med planerade platsbesök, tydliga resevillkor och projektspecifik offert.'],
+  ['Sollefteå', 'Kontrollansvarig i Sollefteå med fokus på komplett underlag, ändringshantering och tydlig offert.'],
+];
 const slugify = (value) => value.toLowerCase().replaceAll('å', 'a').replaceAll('ä', 'a').replaceAll('ö', 'o');
 
 const localRoutes = [
-  ...kaCities.map((city) => defineRoute({
+  ...kaCities.map(([city, description]) => defineRoute({
     id: `kontrollansvarig${slugify(city).replace(/^./, (letter) => letter.toUpperCase())}`,
     path: `/kontrollansvarig-${slugify(city)}`,
     priority: '0.8',
     pageType: 'ServicePage',
     serviceKey: 'kontrollansvarig',
     title: `Kontrollansvarig i ${city} | Ytterman`,
-    description: `Kiwa-certifierad kontrollansvarig för projekt av normal art i ${city}. Paketpriser för 2026; tillgänglighet och resor bekräftas i offerten.`,
+    description,
     keywords: [`kontrollansvarig ${city}`, `KA ${city}`, `kontrollplan ${city}`],
-  })),
-  ...inspectionCities.map((city) => defineRoute({
-    id: `inspection${slugify(city).replace(/^./, (letter) => letter.toUpperCase())}`,
-    path: `/overlatelsebesiktning-${slugify(city)}`,
-    priority: '0.7',
-    pageType: 'ServicePage',
-    serviceKey: 'inspection',
-    title: `Överlåtelsebesiktning i ${city} | Ytterman`,
-    description: `Okulär överlåtelsebesiktning i ${city}. Omfattning, pris, resor och rapportens leveranstid bekräftas vid bokning.`,
-    keywords: [`överlåtelsebesiktning ${city}`, `husbesiktning ${city}`, `fastighetsbesiktning ${city}`],
   })),
 ];
 
+export const redirectRegistry = Object.freeze([
+  'sundsvall',
+  'harnosand',
+  'timra',
+  'kramfors',
+  'solleftea',
+  'ornskoldsvik',
+  'ange',
+].map((city) => ({
+  from: `/overlatelsebesiktning-${city}`,
+  to: '/overlatelsebesiktning',
+  reason: 'Tunn lokal dublett konsoliderad till regional tjänstesida',
+})));
+
 const guideDefinitions = [
   ['kontrollansvarig', 'Kontrollansvarigs roll i byggprocessen', 'Guide till KA-rollens uppgifter, kontrollplan, uppföljning, avvikelser och utlåtande inför slutbesked.'],
+  ['nar-kravs-kontrollansvarig', 'När krävs en kontrollansvarig?', 'Kort guide till huvudregeln, undantag och byggnadsnämndens bedömning av om ett projekt behöver kontrollansvarig.'],
   ['bas', 'BAS-P och BAS-U – roller och skillnader', 'Guide till BAS-P och BAS-U, rollernas olika skeden och arbetsmiljösamordning enligt AFS 2023:3.'],
   ['bygglov', 'Bygglovsprocessen steg för steg', 'Guide till bygglov, handlingar, tekniskt samråd, startbesked, kontrollplan och slutbesked.'],
   ['kvalitetskontroll', 'Kontroller och kvalitet i byggprojekt', 'Skillnaden mellan kontrollplan, egenkontroll, sakkunnigkontroll och separat entreprenadbesiktning.'],
@@ -220,6 +231,7 @@ const guideRoutes = [
     title: `${title} | Ytterman`,
     description,
     keywords: [title, 'Ytterman', 'Västernorrland'],
+    dateModified: '2026-08-19',
   })),
 ];
 

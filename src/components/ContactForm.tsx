@@ -70,9 +70,14 @@ const ContactForm = ({ className = '', initialService = '' }: ContactFormProps) 
       ?.trim()
       .toLowerCase();
     const mappedService = requestedService ? QUERY_SERVICE_MAP[requestedService] : undefined;
+    const requestedMunicipality = searchParams.get('municipality')?.trim();
 
-    if (mappedService) {
-      setFormData((current) => ({ ...current, service: mappedService }));
+    if (mappedService || requestedMunicipality) {
+      setFormData((current) => ({
+        ...current,
+        ...(mappedService ? { service: mappedService } : {}),
+        ...(requestedMunicipality ? { municipality: requestedMunicipality } : {}),
+      }));
     }
   }, [searchParams]);
 

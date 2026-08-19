@@ -31,12 +31,6 @@ interface AdvancedSEOProps {
   breadcrumbs?: Breadcrumb[];
   article?: Article;
   faq?: Array<{ question: string; answer: string | ReactNode }>;
-  reviews?: Array<{
-    author: string;
-    rating: number;
-    reviewBody: string;
-    datePublished: string;
-  }>;
 }
 
 const extractText = (node: ReactNode): string => {

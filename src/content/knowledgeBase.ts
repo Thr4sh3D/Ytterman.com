@@ -33,6 +33,20 @@ export const knowledgeBase: GuideMetadata[] = [
     link: '/guider/kontrollansvarig/'
   },
   {
+    slug: 'nar-kravs-kontrollansvarig',
+    title: 'När krävs en kontrollansvarig?',
+    description: 'Huvudregeln, undantagen och hur du får besked om KA behövs i ditt projekt.',
+    category: 'Kontrollansvarig',
+    readTime: '4 min',
+    icon: 'Shield',
+    seo: {
+      title: 'När krävs kontrollansvarig? | Ytterman',
+      description: 'Kontrollansvarig krävs för många lov- och anmälningspliktiga åtgärder, men undantag finns. Byggnadsnämnden avgör det enskilda ärendet.'
+    },
+    keywords: ['när krävs kontrollansvarig', 'behövs KA', 'kontrollansvarig bygglov', 'undantag kontrollansvarig'],
+    link: '/guider/nar-kravs-kontrollansvarig/'
+  },
+  {
     slug: 'bas',
     title: 'BAS-P vs BAS-U: Skillnader och när de behövs',
     description: 'Förstå skillnaderna mellan BAS-P och BAS-U samt när respektive roll krävs i ditt projekt.',

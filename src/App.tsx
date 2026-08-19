@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Navigate, Routes, Route } from 'react-router-dom';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { HelmetProvider } from 'react-helmet-async';
 import { Toaster } from '@/components/ui/sonner';
@@ -7,7 +7,7 @@ import { UrlCanonicalizer } from '@/components/UrlCanonicalizer';
 import { RouteSeo } from '@/components/RouteSeo';
 import { createAppQueryClient } from '@/lib/queryClient';
 import { lazy, Suspense } from 'react';
-import { ROUTE_PATHS } from '@/config/routeRegistry.mjs';
+import { redirectRegistry, ROUTE_PATHS } from '@/config/routeRegistry.mjs';
 
 // Critical Pages (eager load for fast initial render)
 import Index from '@/pages/Index';
@@ -37,15 +37,6 @@ const KontrollansvarigTimra = lazy(() => import('@/pages/KontrollansvarigTimra')
 const KontrollansvarigKramfors = lazy(() => import('@/pages/KontrollansvarigKramfors'));
 const KontrollansvarigSolleftea = lazy(() => import('@/pages/KontrollansvarigSolleftea'));
 
-// City-specific Överlåtelsebesiktning Pages
-const OverlatelsebesiktningSundsvall = lazy(() => import('@/pages/OverlatelsebesiktningSundsvall'));
-const OverlatelsebesiktningHarnosand = lazy(() => import('@/pages/OverlatelsebesiktningHarnosand'));
-const OverlatelsebesiktningTimra = lazy(() => import('@/pages/OverlatelsebesiktningTimra'));
-const OverlatelsebesiktningKramfors = lazy(() => import('@/pages/OverlatelsebesiktningKramfors'));
-const OverlatelsebesiktningSolleftea = lazy(() => import('@/pages/OverlatelsebesiktningSolleftea'));
-const OverlatelsebesiktningOrnskoldsvik = lazy(() => import('@/pages/OverlatelsebesiktningOrnskoldsvik'));
-const OverlatelsebesiktningAnge = lazy(() => import('@/pages/OverlatelsebesiktningAnge'));
-
 // Lazy-loaded Info Pages
 const GuidesPage = lazy(() => import('@/pages/GuidesPage'));
 const FAQPage = lazy(() => import('@/pages/FAQPage'));
@@ -58,6 +49,7 @@ const SamarbetaPage = lazy(() => import('@/pages/SamarbetaPage'));
 
 // Lazy-loaded Guide Pages
 const KontrollansvarigGuide = lazy(() => import('@/pages/guides/KontrollansvarigGuide'));
+const NarKravsKontrollansvarigGuide = lazy(() => import('@/pages/guides/NarKravsKontrollansvarigGuide'));
 const BasGuide = lazy(() => import('@/pages/guides/BasGuide'));
 const BygglovGuide = lazy(() => import('@/pages/guides/BygglovGuide'));
 const KvalitetskontrollGuide = lazy(() => import('@/pages/guides/KvalitetskontrollGuide'));
@@ -134,18 +126,15 @@ export function AppRoutes() {
                             <Route path={ROUTE_PATHS.kontrollansvarigKramfors} element={<KontrollansvarigKramfors />} />
                             <Route path={ROUTE_PATHS.kontrollansvarigSolleftea} element={<KontrollansvarigSolleftea />} />
                             
-                            {/* City-specific Överlåtelsebesiktning Pages */}
-                            <Route path={ROUTE_PATHS.inspectionSundsvall} element={<OverlatelsebesiktningSundsvall />} />
-                            <Route path={ROUTE_PATHS.inspectionHarnosand} element={<OverlatelsebesiktningHarnosand />} />
-                            <Route path={ROUTE_PATHS.inspectionTimra} element={<OverlatelsebesiktningTimra />} />
-                            <Route path={ROUTE_PATHS.inspectionKramfors} element={<OverlatelsebesiktningKramfors />} />
-                            <Route path={ROUTE_PATHS.inspectionSolleftea} element={<OverlatelsebesiktningSolleftea />} />
-                            <Route path={ROUTE_PATHS.inspectionOrnskoldsvik} element={<OverlatelsebesiktningOrnskoldsvik />} />
-                            <Route path={ROUTE_PATHS.inspectionAnge} element={<OverlatelsebesiktningAnge />} />
+                            {/* Consolidated legacy location pages */}
+                            {redirectRegistry.map((redirect) => (
+                              <Route key={redirect.from} path={redirect.from} element={<Navigate to={redirect.to} replace />} />
+                            ))}
                             
                             {/* Guides */}
                             <Route path={ROUTE_PATHS.guides} element={<GuidesPage />} />
                             <Route path={ROUTE_PATHS['guide-kontrollansvarig']} element={<KontrollansvarigGuide />} />
+                            <Route path={ROUTE_PATHS['guide-nar-kravs-kontrollansvarig']} element={<NarKravsKontrollansvarigGuide />} />
                             <Route path={ROUTE_PATHS['guide-bas']} element={<BasGuide />} />
                             <Route path={ROUTE_PATHS['guide-bygglov']} element={<BygglovGuide />} />
                             <Route path={ROUTE_PATHS['guide-kvalitetskontroll']} element={<KvalitetskontrollGuide />} />

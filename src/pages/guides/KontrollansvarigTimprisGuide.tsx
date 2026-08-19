@@ -2,6 +2,7 @@ import { CheckCircle, Info } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { GuideLayout } from '@/components/GuideLayout';
 import { PRICING, formatSek } from '@/config/company';
+import { OFFICIAL_SOURCES } from '@/config/officialSources';
 
 const priceRows = Object.values(PRICING.ka);
 
@@ -15,8 +16,10 @@ const KontrollansvarigTimprisGuide = () => (
     seoDescription={`Paketpriser ${PRICING.year} för kontrollansvarig: tillbyggnad, ombyggnation, fritidshus och paket med BAS-P/U. Alla belopp inklusive moms.`}
     keywords="kontrollansvarig pris, KA kostnad, fast pris kontrollansvarig, pris KA Västernorrland"
     canonicalPath="/guider/kontrollansvarig-timpris"
+    sources={[OFFICIAL_SOURCES.boverketControlManager]}
   >
     <div className="prose prose-lg max-w-none">
+      <h2>Kort svar</h2>
       <p className="lead">
         Ett KA-pris går bara att jämföra rättvist när omfattning, antal planerade besök,
         dokumentation och kompletteringsvillkor är tydliga. Ytterman publicerar därför
@@ -55,6 +58,15 @@ const KontrollansvarigTimprisGuide = () => (
         <Info className="mt-0.5 h-6 w-6 shrink-0 text-amber-700" />
         <p className="text-amber-950">{PRICING.supplementRule}</p>
       </div>
+
+      <h2>Vad påverkar priset för KA?</h2>
+      <ul>
+        <li>Projektets art, storlek, tekniska lösningar och kontrollbehov.</li>
+        <li>Vilka samråd, möten och dokumenterade byggplatsbesök som behövs.</li>
+        <li>Kontrollplanens omfattning och mängden handlingar som ska följas upp.</li>
+        <li>Byggtid, resor, ändringar och hur väl underlagen är samordnade.</li>
+        <li>Om uppdraget kombineras med BAS-P eller BAS-U.</li>
+      </ul>
 
       <h2>Kontrollera detta i offerten</h2>
       <ul className="not-prose my-6 space-y-3">

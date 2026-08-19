@@ -240,7 +240,7 @@ const KontrollansvarigPage = () => {
                 >
                   <div>
                     <span className="font-semibold text-gray-900 group-hover:text-blue-600">Kontrollansvarig {city.name}</span>
-                    <span className="block text-sm text-gray-500">{city.travelTime}</span>
+                    <span className="block text-sm text-gray-500">Offert efter projektbedömning</span>
                   </div>
                   <MapPin className="h-5 w-5 text-gray-400 group-hover:text-blue-600" />
                 </Link>

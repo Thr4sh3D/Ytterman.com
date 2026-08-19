@@ -1,10 +1,11 @@
 import { ExternalLink, ShieldCheck } from 'lucide-react';
 import { GuideLayout } from '@/components/GuideLayout';
 import { COMPANY, KA_CERT } from '@/config/company';
+import { OFFICIAL_SOURCES } from '@/config/officialSources';
 
 const KontrollansvarigCertifieringGuide = () => (
   <GuideLayout
-    title="Certifiering för kontrollansvarig"
+    title="Behörighet N och K för kontrollansvarig"
     description="Så kontrollerar du certifikat, behörighet, certifieringsorgan och giltighetstid för en KA."
     category="Kontrollansvarig"
     readTime="5 min"
@@ -12,6 +13,7 @@ const KontrollansvarigCertifieringGuide = () => (
     seoDescription="Guide till hur du verifierar en kontrollansvarigs certifikat, behörighet och giltighetstid. Tobias Ytterman: Kiwa KA11926, behörighet N."
     keywords="kontrollansvarig certifiering, KA certifikat, Kiwa KA11926, behörighet N, certifierad kontrollansvarig"
     canonicalPath="/guider/kontrollansvarig-certifiering"
+    sources={[OFFICIAL_SOURCES.boverketControlManager, OFFICIAL_SOURCES.boverketCertificationRules]}
   >
     <div className="prose prose-stone max-w-none">
       <p className="text-lg font-medium text-stone-700">
@@ -49,11 +51,15 @@ const KontrollansvarigCertifieringGuide = () => (
         </a>
       </div>
 
-      <h2>Behörighet N ska anges korrekt</h2>
+      <h2>Kort svar: skillnaden mellan N och K</h2>
       <p>
-        Tobias har behörighet N för projekt av normal art. Webbplatsen ska inte beskriva denna
-        behörighet som obegränsad eller ”fullständig”. Projektets omfattning behöver bedömas innan
-        uppdraget bekräftas.
+        Behörighet N gäller projekt av normal art. Behörighet K gäller projekt av komplicerad art.
+        Boverkets föreskrift ger vägledande exempel, men projektets faktiska kontrollbehov kan göra
+        att en annan behörighetsnivå krävs. Byggnadsnämnden prövar frågan i det enskilda ärendet.
+      </p>
+      <p>
+        Tobias har behörighet N. Den ska inte beskrivas som obegränsad eller ”fullständig”, och
+        projektets art behöver bedömas innan uppdraget bekräftas.
       </p>
 
       <h2>Certifiering är inte samma sak som BAS-kompetens</h2>

@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import { AlertTriangle, CheckCircle, MapPin } from 'lucide-react';
 import { GuideLayout } from '@/components/GuideLayout';
 import { BAS, BUSINESS_COPY, COMPANY, KA_CERT } from '@/config/company';
+import { OFFICIAL_SOURCES } from '@/config/officialSources';
+import { cityData } from '@/content/kontrollansvarigCityData';
 
 const VasternorrlandGuide = () => (
   <GuideLayout
@@ -13,8 +15,13 @@ const VasternorrlandGuide = () => (
     seoDescription="Guide till kontrollansvarig, kommunala beslut och projektunderlag i Västernorrland. Aktuella krav och handläggningstider kontrolleras alltid med kommunen."
     keywords="kontrollansvarig Västernorrland, bygglov Västernorrland, Sundsvall, Härnösand, Timrå, Kramfors, Sollefteå, Örnsköldsvik, Ånge"
     canonicalPath="/guider/vasternorrland"
+    sources={[
+      OFFICIAL_SOURCES.boverketControlManager,
+      OFFICIAL_SOURCES.workEnvironmentBas,
+    ]}
   >
     <div className="prose prose-stone max-w-none">
+      <h2>Kort svar</h2>
       <p className="text-lg font-medium text-stone-700">
         Nationella regler gäller i hela Sverige, men detaljplaner, fastighetens förutsättningar,
         kommunens process och det enskilda beslutet påverkar vad som behövs. Använd därför denna
@@ -68,22 +75,24 @@ const VasternorrlandGuide = () => (
         Roller och omfattning ska vara tydligt utsedda och avtalade för projektets skeden.
       </p>
 
-      <h2>Lokala informationssidor</h2>
+      <h2>Prioriterade ortssidor</h2>
       <p>
-        Ytterman tar emot förfrågningar från {COMPANY.region}. Följande orter har lokala
-        informationssidor, men det innebär inte garanterad tillgänglighet eller bestämda resevillkor:
+        Ytterman betjänar {COMPANY.region}. Sundsvall, Härnösand, Timrå, Kramfors och Sollefteå har
+        egna informationssidor med olika praktiska fokus. Sidorna innebär inte att Ytterman har
+        lokalkontor på orterna eller att tillgänglighet och resevillkor redan är bestämda.
       </p>
-      <div className="not-prose my-6 flex flex-wrap gap-3">
-        {COMPANY.localPageAreas.map((area) => (
-          <span key={area} className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-4 py-2 text-blue-900">
+      <div className="not-prose my-6 grid gap-3 sm:grid-cols-2">
+        {Object.values(cityData).map((city) => (
+          <Link key={city.id} to={`/${city.slug}/`} className="inline-flex items-center gap-2 rounded-lg border bg-blue-50 px-4 py-3 text-blue-900 hover:border-blue-400">
             <MapPin className="h-4 w-4" />
-            {area}
-          </span>
+            Kontrollansvarig i {city.name}
+          </Link>
         ))}
       </div>
       <p>
-        Tillgänglighet, nödvändiga platsbesök, resor, eventuella resekostnader och tidplan
-        bekräftas efter att projektets underlag har gåtts igenom.
+        Förfrågningar från andra orter kan också bedömas. Tillgänglighet, nödvändiga platsbesök,
+        resor, eventuella resekostnader och tidplan bekräftas efter att projektets underlag har gåtts
+        igenom.
       </p>
 
       <div className="not-prose mt-10 rounded-xl bg-blue-900 p-8 text-white">

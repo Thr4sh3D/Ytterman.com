@@ -1,6 +1,6 @@
 import { CheckCircle, FileCheck2, Landmark, UserRound } from 'lucide-react';
 import { GuideLayout } from '@/components/GuideLayout';
-import { BUSINESS_COPY } from '@/config/company';
+import { OFFICIAL_SOURCES } from '@/config/officialSources';
 
 const SlutbeskedGuide = () => (
   <GuideLayout
@@ -12,9 +12,15 @@ const SlutbeskedGuide = () => (
     seoDescription="Guide till slutbesked: byggherren begär prövning, kontrollansvarig lämnar sitt utlåtande och byggnadsnämnden fattar beslut."
     keywords="slutbesked, kontrollansvarigs utlåtande, byggnadsnämnden, kontrollplan, byggherre, PBL"
     canonicalPath="/guider/slutbesked"
+    sources={[OFFICIAL_SOURCES.boverketControlManager, OFFICIAL_SOURCES.boverketFinalDecision]}
   >
     <div className="prose prose-lg max-w-none">
-      <p className="lead">{BUSINESS_COPY.kaScope}</p>
+      <h2>Kort svar</h2>
+      <p className="lead">
+        Kontrollansvarig lämnar sitt utlåtande till byggherren och byggnadsnämnden som ett underlag
+        inför beslutet. KA utfärdar inte slutbeskedet; det gör byggnadsnämnden när förutsättningarna
+        är uppfyllda.
+      </p>
 
       <div className="my-8 rounded-xl border border-blue-200 bg-blue-50 p-6 not-prose">
         <h2 className="mb-4 text-2xl font-bold text-blue-950">Tre roller – tre olika ansvar</h2>
