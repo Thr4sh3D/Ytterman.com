@@ -1,14 +1,10 @@
 import { Mail, MapPin } from 'lucide-react';
 import { ExternalSiteLink } from '@/components/ExternalSiteLink';
-import { buildTimeIso, shortCommitSha } from '@/lib/buildInfo';
 import { BAS, COMPANY, KA_CERT } from '@/config/company';
 import { openConsentSettings } from '@/lib/consent';
 
-const FOOTER_DATE_LOCALE = 'sv-SE';
-
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
-  const buildTimeLabel = buildTimeIso ? new Date(buildTimeIso).toLocaleString(FOOTER_DATE_LOCALE) : null;
 
   return (
     <footer className="bg-slate-900 text-white">
@@ -74,6 +70,11 @@ export const Footer = () => {
                 </a>
               </li>
               <li>
+                <a href="/overlatelsebesiktning/" className="text-gray-300 hover:text-white transition-colors">
+                  Överlåtelsebesiktning
+                </a>
+              </li>
+              <li>
                 <a href="/bas-p/" className="text-gray-300 hover:text-white transition-colors">
                   BAS-P
                 </a>
@@ -84,18 +85,13 @@ export const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="/bygglovshandlingar/" className="text-gray-300 hover:text-white transition-colors">
-                  Bygglovshandlingar
-                </a>
-              </li>
-              <li>
                 <a href="/energideklaration/" className="text-gray-300 hover:text-white transition-colors">
                   Energideklaration
                 </a>
               </li>
               <li>
-                <a href="/overlatelsebesiktning/" className="text-gray-300 hover:text-white transition-colors">
-                  Överlåtelsebesiktning
+                <a href="/bygglovshandlingar/" className="text-gray-300 hover:text-white transition-colors">
+                  Bygglovshandlingar
                 </a>
               </li>
               <li>
@@ -125,9 +121,6 @@ export const Footer = () => {
         <div className="border-t border-slate-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center gap-3">
           <p className="text-gray-400 text-sm text-center md:text-left">
             © {currentYear} {COMPANY.brandName}. Alla rättigheter förbehållna.
-          </p>
-          <p className="text-gray-500 text-xs font-mono text-center">
-            Build: {shortCommitSha ?? 'local'}{buildTimeLabel ? ` • ${buildTimeLabel}` : ''}
           </p>
           <div className="mt-4 flex flex-wrap justify-center gap-x-6 gap-y-3 md:mt-0">
             <a href="/priser/" className="text-gray-400 hover:text-white transition-colors text-sm">

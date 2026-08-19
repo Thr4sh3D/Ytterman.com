@@ -42,9 +42,9 @@ const Index = () => {
   return (
     <>
       <AdvancedSEO 
-        title="Kontrollansvarig & BAS i Västernorrland | Ytterman"
-        description={`${KA_CERT.title} och utbildad för uppdrag som ${BAS.rolesLabel}. ${COMPANY.experienceLabel}, tydliga paket och verksamhet i ${COMPANY.region}.`}
-        keywords="kontrollansvarig, BAS-P, BAS-U, byggarbetsmiljösamordnare, byggkontroll, energiberäkning online, Sundsvall, Härnösand, Sollefteå, Timrå, Kramfors, Västernorrland, bygglov, Tobias Ytterman"
+        title="Kontrollansvarig & överlåtelsebesiktning | Ytterman"
+        description={`${KA_CERT.title} och överlåtelsebesiktning i ${COMPANY.region}. ${COMPANY.experienceLabel}, tydliga KA-paket och avtalad omfattning före uppdrag.`}
+        keywords="kontrollansvarig, överlåtelsebesiktning, besiktningsman, BAS-P, BAS-U, byggkontroll, Sundsvall, Härnösand, Sollefteå, Timrå, Kramfors, Västernorrland, Tobias Ytterman"
         url="https://ytterman.com/"
         type="website"
         organization={true}

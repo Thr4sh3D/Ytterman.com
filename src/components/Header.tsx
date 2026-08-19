@@ -8,9 +8,9 @@ export const Header = () => {
 
   const navigation = [
     { name: 'Hem', href: '/' },
+    { name: 'Kontrollansvarig', href: '/kontrollansvarig/' },
+    { name: 'Besiktning', href: '/overlatelsebesiktning/' },
     { name: 'Tjänster', href: '/tjanster/' },
-    { name: 'Produkter', href: '/produkter/' },
-    { name: 'Företag', href: '/foretag/' },
     { name: 'Guider', href: '/guider/' },
     { name: 'FAQ', href: '/faq/' },
     { name: 'Kontakt', href: '/kontakt/' },

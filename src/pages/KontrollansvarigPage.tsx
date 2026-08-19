@@ -129,7 +129,7 @@ const KontrollansvarigPage = () => {
             title: "Certifierad kontrollansvarig",
             subtitle: "Kontrollansvarig enligt PBL",
             certifications: [
-              "Medlem i SBR - Svenska Byggingenjörers Riksförbund",
+              "Ansluten till SBR - Svenska Byggingenjörers Riksförbund",
               `${KA_CERT.issuer}, ${KA_CERT.certificateNumber}`,
               `Giltigt till ${KA_CERT.validUntil}`
             ]

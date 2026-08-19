@@ -11,6 +11,8 @@ export interface ServiceConfig {
   features: readonly string[];
   path: string;
   requiresCertifiedPerformer?: boolean;
+  externalUrl?: string;
+  affiliateDisclosure?: string;
 }
 
 export const formatSek = (amount: number) => `${amount.toLocaleString('sv-SE')} kr`;
@@ -36,9 +38,10 @@ export const COMPANY = {
     'Örnsköldsvik',
     'Ånge',
   ],
-  membership: {
+  affiliation: {
     shortName: 'SBR',
     name: 'Svenska Byggingenjörers Riksförbund',
+    label: 'Ansluten till SBR',
   },
   // Juridiskt namn, organisationsnummer och fullständig adress publiceras först
   // efter ägarverifiering. Se docs/external-profile-corrections.md.
@@ -121,6 +124,14 @@ export const BUSINESS_COPY = {
   energyPartnerShort: 'Samordnas av Ytterman och utförs av certifierad energiexpert hos behörig partner.',
   digitalInterest:
     'Tjänsten visas som intresseanmälan tills betalning och automatisk leverans är verifierade.',
+  energyCalculationPartner:
+    'Energiberäkningen genomförs i en aktiv extern partnertjänst. Beställning, villkor och leverans hanteras på partnerns webbplats.',
+  energyCalculationAffiliate:
+    'Ytterman får provision på försäljning som sker via partnerlänken.',
+} as const;
+
+export const PARTNER_LINKS = {
+  energyCalculation: 'https://energi.holidaygroup.se/?utm_source=ytterman&pr=2999',
 } as const;
 
 export const SERVICES = {
@@ -188,16 +199,19 @@ export const SERVICES = {
   energyCalculation: {
     id: 'energiberakning-online-service',
     name: 'Energiberäkning online',
-    shortDescription: 'Digital energiberäkning – skicka en intresseanmälan för besked om upplägg och leverans.',
-    deliveryModel: 'digital',
-    publicationStatus: 'interest-only',
-    priceLabel: PRICE_LABELS.interest,
+    shortDescription: BUSINESS_COPY.energyCalculationPartner,
+    deliveryModel: 'partner',
+    publicationStatus: 'active',
+    priceLabel: 'Pris och villkor hos partnern',
     features: [
-      'Intresseanmälan före beställning',
-      'Underlaget bedöms innan leverans bekräftas',
-      'Pris och leveranstid lämnas för det aktuella projektet',
+      'Aktiv tjänst på partnerns webbplats',
+      'Beräkning för småhus, flerbostadshus och lokaler',
+      'Pris, villkor och leverans visas av partnern',
+      BUSINESS_COPY.energyCalculationAffiliate,
     ],
     path: '/energiberakning-online/',
+    externalUrl: PARTNER_LINKS.energyCalculation,
+    affiliateDisclosure: BUSINESS_COPY.energyCalculationAffiliate,
   },
   buildingPermitDocuments: {
     id: 'bygglovshandlingar',

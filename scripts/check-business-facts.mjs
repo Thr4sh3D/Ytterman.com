@@ -38,6 +38,7 @@ const forbiddenRules = [
   ['BAS beskrivet som certifiering', /\b(?:certifierad|certifierade)\s+(?:som\s+)?BAS[-\s]?[PU]\b/gi],
   ['BAS beskrivet som certifiering', /\bBAS[-\s]?[PU]\s*(?:-|–|—|,|:)?\s*certifierad\b/gi],
   ['obekräftad titel', /\bcertifierad byggkonsult\b/gi],
+  ['felaktigt SBR-medlemskap', /\b(?:medlem(?:skap(?:et)?)?\s+i\s+(?:Svenska Byggingenjörers Riksförbund|SBR)|SBR[-\s]?medlem)\b/gi],
   ['felaktigt påstående om energiexpert', /\b(?:Tobias(?:\s+Ytterman)?|Ytterman)\s+(?:är|som)\s+(?:en\s+)?certifierad energiexpert\b/gi],
   ['fel utförare av energideklaration', /\b(?:Tobias(?:\s+Ytterman)?|Ytterman)\s+(?:utför|registrerar)\s+energideklaration(?:en)?\b/gi],
   ['felaktig KA-behörighet', /fullständig behörighet/gi],
@@ -93,8 +94,6 @@ for (const file of [...searchableFiles, ...publicContactDocs]) {
 
 const digitalPages = [
   'src/pages/ByggstartPlanerare.tsx',
-  'src/pages/EnergiberakningOnlinePage.tsx',
-  'src/pages/ProdukterPage.tsx',
 ];
 
 for (const path of digitalPages) {
@@ -126,6 +125,8 @@ const requiredConfigFragments = [
   'to: 52_500',
   "deliveryModel: 'partner'",
   "publicationStatus: 'interest-only'",
+  "affiliation: {",
+  "label: 'Ansluten till SBR'",
   'legalIdentityVerified: false',
 ];
 
@@ -152,8 +153,8 @@ for (const file of sourceFilesOutsideCompanyConfig) {
 }
 
 const energyConfigSection = companyConfig.slice(
-  companyConfig.indexOf('energyDeclaration:'),
-  companyConfig.indexOf('energyCalculation:'),
+  companyConfig.indexOf('  energyDeclaration: {'),
+  companyConfig.indexOf('  energyCalculation: {'),
 );
 for (const phrase of [
   "deliveryModel: 'partner'",
@@ -166,6 +167,25 @@ for (const phrase of [
   }
 }
 
+const energyCalculationConfigSection = companyConfig.slice(
+  companyConfig.indexOf('  energyCalculation: {'),
+  companyConfig.indexOf('  buildingPermitDocuments: {'),
+);
+for (const phrase of [
+  "deliveryModel: 'partner'",
+  "publicationStatus: 'active'",
+  'externalUrl: PARTNER_LINKS.energyCalculation',
+  'BUSINESS_COPY.energyCalculationAffiliate',
+]) {
+  if (!energyCalculationConfigSection.includes(phrase)) {
+    violations.push(`src/config/company.ts – energiberäkning online saknar formuleringen “${phrase}”`);
+  }
+}
+
+if (!companyConfig.includes("energyCalculationAffiliate:\n    'Ytterman får provision på försäljning som sker via partnerlänken.'")) {
+  violations.push('src/config/company.ts – energiberäkning online saknar tydlig provisionsupplysning');
+}
+
 const pricingContent = readFileSync(join(projectRoot, 'src/content/pricingPackages.ts'), 'utf8');
 if (!pricingContent.includes("from '@/config/company'")) {
   violations.push('src/content/pricingPackages.ts – prisinnehållet använder inte den centrala konfigurationen');
@@ -176,9 +196,16 @@ const commercialOffers = readFileSync(commercialOffersPath, 'utf8');
 const pricingComponent = readFileSync(join(projectRoot, 'src/components/PricingPackages.tsx'), 'utf8');
 const productAction = readFileSync(join(projectRoot, 'src/components/ProductAction.tsx'), 'utf8');
 const routeRegistry = readFileSync(join(projectRoot, 'src/config/routeRegistry.mjs'), 'utf8');
+const homeHero = readFileSync(join(projectRoot, 'src/components/Hero.tsx'), 'utf8');
+const homeServices = readFileSync(join(projectRoot, 'src/components/Services.tsx'), 'utf8');
+const serviceAreas = readFileSync(join(projectRoot, 'src/components/ServiceAreas.tsx'), 'utf8');
+const faqPage = readFileSync(join(projectRoot, 'src/pages/FAQPage.tsx'), 'utf8');
+const servicesPage = readFileSync(join(projectRoot, 'src/pages/TjansterPage.tsx'), 'utf8');
+const siteHeader = readFileSync(join(projectRoot, 'src/components/Header.tsx'), 'utf8');
+const siteFooter = readFileSync(join(projectRoot, 'src/components/Footer.tsx'), 'utf8');
 
 for (const fragment of [
-  "import { PRICING, SERVICES, formatSek } from '@/config/company'",
+  "import { PARTNER_LINKS, PRICING, SERVICES, formatSek } from '@/config/company'",
   'KA_PACKAGE_LEVELS',
   'KA_PROJECT_OFFERS',
   'KA_BAS_PACKAGE',
@@ -188,10 +215,76 @@ for (const fragment of [
   'contentReady: false',
   'automaticDelivery: false',
   'VITE_PAYMENT_LINK_PROJECT_REVIEW',
+  'PARTNER_LINKS.energyCalculation',
+  "publicationStatus: 'purchasable'",
+  'contentReady: true',
+  'automaticDelivery: true',
 ]) {
   if (!commercialOffers.includes(fragment)) {
     violations.push(`src/config/commercialOffers.ts – erbjudandekonfiguration saknar: ${fragment}`);
   }
+}
+
+const energyCalculationPage = readFileSync(join(projectRoot, 'src/pages/EnergiberakningOnlinePage.tsx'), 'utf8');
+for (const fragment of [
+  'ProductAction productKey="energyCalculation"',
+  'BUSINESS_COPY.energyCalculationAffiliate',
+  'Aktiv extern partnertjänst',
+]) {
+  if (!energyCalculationPage.includes(fragment)) {
+    violations.push(`src/pages/EnergiberakningOnlinePage.tsx – aktiv partnertjänst saknar: ${fragment}`);
+  }
+}
+
+if (/intresseanmälan/i.test(energyCalculationPage)) {
+  violations.push('src/pages/EnergiberakningOnlinePage.tsx – aktiv energiberäkning får inte beskrivas som intresseanmälan');
+}
+
+for (const [path, source, fragments] of [
+  ['src/components/Hero.tsx', homeHero, [
+    '/kontakt/?service=kontrollansvarig',
+    '/kontakt/?service=overlatelsebesiktning',
+  ]],
+  ['src/components/Services.tsx', homeServices, [
+    'const priorityServices',
+    'SERVICES.kontrollansvarig',
+    'SERVICES.inspection',
+    'Prioriterad tjänst',
+    'aria-label={`Läs mer om ${config.name}`}',
+    'absolute inset-0',
+  ]],
+  ['src/components/ServiceAreas.tsx', serviceAreas, [
+    "from '@/content/kontrollansvarigCityData'",
+    '/overlatelsebesiktning/',
+    'Se regionalt KA-upplägg',
+    'absolute inset-0',
+  ]],
+  ['src/pages/FAQPage.tsx', faqPage, [
+    'border-white bg-transparent text-white',
+  ]],
+  ['src/pages/TjansterPage.tsx', servicesPage, [
+    'service.priority',
+    'aria-label={`Läs mer om ${service.title}`}',
+    'absolute inset-0',
+  ]],
+  ['src/components/Header.tsx', siteHeader, [
+    "{ name: 'Kontrollansvarig', href: '/kontrollansvarig/' }",
+    "{ name: 'Besiktning', href: '/overlatelsebesiktning/' }",
+  ]],
+]) {
+  for (const fragment of fragments) {
+    if (!source.includes(fragment)) {
+      violations.push(`${path} – prioriterad kundväg saknar: ${fragment}`);
+    }
+  }
+}
+
+if (siteFooter.includes('Build:')) {
+  violations.push('src/components/Footer.tsx – publik build-version ska vara dold');
+}
+
+if (homeServices.indexOf('SERVICES.kontrollansvarig') > homeServices.indexOf('SERVICES.inspection')) {
+  violations.push('src/components/Services.tsx – kontrollansvarig ska visas före överlåtelsebesiktning');
 }
 
 if (!pricingComponent.includes("from '@/config/commercialOffers'")) {

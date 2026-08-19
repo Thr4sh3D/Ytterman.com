@@ -32,7 +32,7 @@ export const HeroBanner = () => {
         <div className="space-y-3">
           <div className="flex items-center space-x-3">
             <CheckCircle className="w-5 h-5 text-accent flex-shrink-0" />
-            <span className="text-sm text-foreground">Medlem i {COMPANY.membership.name}</span>
+            <span className="text-sm text-foreground">Ansluten till {COMPANY.affiliation.name}</span>
           </div>
           
           <div className="flex items-center space-x-3">

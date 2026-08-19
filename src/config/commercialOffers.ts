@@ -1,4 +1,4 @@
-import { PRICING, SERVICES, formatSek } from '@/config/company';
+import { PARTNER_LINKS, PRICING, SERVICES, formatSek } from '@/config/company';
 
 export interface KaPackageLevel {
   id: 'ka-bas' | 'ka-plus';
@@ -89,6 +89,7 @@ export interface DigitalProductOffer {
   automaticDelivery: boolean;
   paymentLink?: string;
   informationPath: string;
+  actionLabel?: string;
 }
 
 const cleanPaymentLink = (value: string | undefined) => value?.trim() || undefined;
@@ -106,11 +107,12 @@ export const DIGITAL_PRODUCT_OFFERS = {
   energyCalculation: {
     key: 'energyCalculation',
     name: SERVICES.energyCalculation.name,
-    publicationStatus: 'interest-only',
-    contentReady: false,
-    automaticDelivery: false,
-    paymentLink: cleanPaymentLink(import.meta.env.VITE_PAYMENT_LINK_ENERGY_CALCULATION),
-    informationPath: '/kontakt/?service=other&utm_source=ytterman&utm_medium=internal&utm_campaign=energiberakning-information',
+    publicationStatus: 'purchasable',
+    contentReady: true,
+    automaticDelivery: true,
+    paymentLink: PARTNER_LINKS.energyCalculation,
+    informationPath: '/energiberakning-online/',
+    actionLabel: 'Starta energiberäkningen',
   },
   projectReview: {
     key: 'projectReview',

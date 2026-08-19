@@ -19,9 +19,9 @@ const EnergiberakningOnlinePage = () => {
   return (
     <>
       <AdvancedSEO
-        title="Energiberäkning online – intresseanmälan | Ytterman"
-        description="Skicka en intresseanmälan för digital energiberäkning. Underlag, pris och leverans bekräftas innan en beställning görs."
-        keywords="energiberäkning online, energiberäkning bygglov, energiberäkning intresseanmälan, Västernorrland"
+        title="Energiberäkning online via partner | Ytterman"
+        description="Starta en aktiv energiberäkning på partnerns webbplats. Pris, villkor och leverans hanteras av partnern; Ytterman får provision via länken."
+        keywords="energiberäkning online, energiberäkning bygglov, energiberäkning via partner, Västernorrland"
         url={`https://ytterman.com${service.path}`}
         type="website"
         breadcrumbs={breadcrumbs}
@@ -40,7 +40,7 @@ const EnergiberakningOnlinePage = () => {
           <section className="bg-gradient-to-br from-slate-900 to-blue-900 py-16 text-white">
             <div className="container mx-auto max-w-4xl px-4 text-center">
               <span className="mb-5 inline-flex rounded-full bg-white/10 px-4 py-2 text-sm font-medium">
-                Intresseanmälan
+                Aktiv extern partnertjänst
               </span>
               <h1 className="mb-6 text-4xl font-bold md:text-5xl">{service.name}</h1>
               <p className="mx-auto mb-8 max-w-2xl text-xl text-blue-100">
@@ -56,7 +56,7 @@ const EnergiberakningOnlinePage = () => {
                 <Card>
                   <CardHeader>
                     <Calculator className="mb-2 h-9 w-9 text-blue-700" />
-                    <CardTitle>Så hanteras din förfrågan</CardTitle>
+                    <CardTitle>Så fungerar tjänsten</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <ul className="space-y-3">
@@ -81,16 +81,17 @@ const EnergiberakningOnlinePage = () => {
                       ventilation gör det lättare att bedöma omfattningen.
                     </p>
                     <p>
-                      Vi bekräftar vilket underlag som krävs, priset och hur leveransen sker
-                      innan du tar ställning till en beställning.
+                      Partnerns webbplats visar vilket underlag som krävs samt aktuellt pris,
+                      villkor och leverans. Länken öppnas i en ny flik.
                     </p>
                   </CardContent>
                 </Card>
               </div>
 
               <div className="mt-10 rounded-xl border border-amber-200 bg-amber-50 p-6 text-amber-950">
-                <h2 className="mb-2 text-xl font-semibold">Tydligt läge före beställning</h2>
-                <p>{BUSINESS_COPY.digitalInterest}</p>
+                <h2 className="mb-2 text-xl font-semibold">Extern partnertjänst och provision</h2>
+                <p>{BUSINESS_COPY.energyCalculationPartner}</p>
+                <p className="mt-2 font-medium">{BUSINESS_COPY.energyCalculationAffiliate}</p>
               </div>
             </div>
           </section>

@@ -19,11 +19,11 @@ const FAQPage = () => {
   const allFaqItems = [
     ...faqData.general,
     ...faqData.kontrollansvarig,
+    ...faqData.overlatelsebesiktning,
     ...faqData.bas,
     ...faqData.pricing,
     ...faqData.bygglov,
     ...faqData.certifiering,
-    ...faqData.overlatelsebesiktning,
     ...faqData.lokalt
   ];
 
@@ -100,8 +100,20 @@ const FAQPage = () => {
             </div>
           </section>
 
-          {/* BAS FAQ */}
+          {/* Överlåtelsebesiktning FAQ */}
           <section className="py-16 bg-white">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto">
+                <h2 className="text-3xl font-bold text-slate-900 mb-8">
+                  Frågor om överlåtelsebesiktning
+                </h2>
+                <FAQ items={faqData.overlatelsebesiktning} />
+              </div>
+            </div>
+          </section>
+
+          {/* BAS FAQ */}
+          <section className="py-16 bg-slate-50">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto">
                 <h2 className="text-3xl font-bold text-slate-900 mb-8">
@@ -113,7 +125,7 @@ const FAQPage = () => {
           </section>
 
           {/* Pricing FAQ */}
-          <section className="py-16 bg-slate-50">
+          <section className="py-16 bg-white">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto">
                 <h2 className="text-3xl font-bold text-slate-900 mb-8">
@@ -125,7 +137,7 @@ const FAQPage = () => {
           </section>
 
           {/* Bygglov FAQ */}
-          <section className="py-16 bg-white">
+          <section className="py-16 bg-slate-50">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto">
                 <h2 className="text-3xl font-bold text-slate-900 mb-8">
@@ -137,25 +149,13 @@ const FAQPage = () => {
           </section>
 
           {/* Certifiering FAQ */}
-          <section className="py-16 bg-slate-50">
+          <section className="py-16 bg-white">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto">
                 <h2 className="text-3xl font-bold text-slate-900 mb-8">
                   Frågor om certifiering
                 </h2>
                 <FAQ items={faqData.certifiering} />
-              </div>
-            </div>
-          </section>
-
-          {/* Överlåtelsebesiktning FAQ */}
-          <section className="py-16 bg-white">
-            <div className="container mx-auto px-4">
-              <div className="max-w-4xl mx-auto">
-                <h2 className="text-3xl font-bold text-slate-900 mb-8">
-                  Frågor om överlåtelsebesiktning
-                </h2>
-                <FAQ items={faqData.overlatelsebesiktning} />
               </div>
             </div>
           </section>
@@ -195,7 +195,7 @@ const FAQPage = () => {
                   onClick={() => window.location.href = COMPANY.emailHref}
                   size="lg"
                   variant="outline"
-                  className="border-white text-white hover:bg-white hover:text-slate-900"
+                  className="border-white bg-transparent text-white hover:bg-white hover:text-slate-900"
                 >
                   Mejla Tobias
                 </Button>

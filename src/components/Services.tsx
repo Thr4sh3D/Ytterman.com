@@ -1,20 +1,80 @@
-import { Building, FileText, Search, Shield, Users, Zap } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { Building, FileText, Search, Shield, Users, Zap, type LucideIcon } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { BUSINESS_COPY, PRICE_LABELS, SERVICES } from '@/config/company';
+import { ProductAction } from '@/components/ProductAction';
+import { BUSINESS_COPY, PRICE_LABELS, SERVICES, type ServiceConfig } from '@/config/company';
 
 interface ServicesProps {
   onServiceSelect?: (serviceId: string) => void;
 }
 
-const publishedServices = [
+const priorityServices = [
   { config: SERVICES.kontrollansvarig, icon: Shield },
+  { config: SERVICES.inspection, icon: Search },
+] as const;
+
+const supportingServices = [
   { config: SERVICES.basP, icon: Users },
   { config: SERVICES.basU, icon: Building },
   { config: SERVICES.energyDeclaration, icon: Zap },
-  { config: SERVICES.inspection, icon: Search },
   { config: SERVICES.buildingPermitDocuments, icon: FileText },
 ] as const;
+
+interface ServiceCardProps {
+  config: ServiceConfig;
+  icon: LucideIcon;
+  featured?: boolean;
+  onContact: (serviceId: string) => void;
+  onDetails: (path: string) => void;
+}
+
+const ServiceCard = ({ config, icon: Icon, featured = false, onContact, onDetails }: ServiceCardProps) => (
+  <article className={`relative flex flex-col rounded-2xl bg-white p-5 shadow-lg sm:p-6 ${
+    featured ? 'border-2 border-accent/40 bg-gradient-to-br from-white to-accent/5 shadow-xl' : 'border border-slate-100'
+  }`}>
+    <Link
+      to={config.path}
+      aria-label={`Läs mer om ${config.name}`}
+      className="absolute inset-0 z-0 rounded-2xl focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-primary"
+    />
+    <div className="pointer-events-none relative z-10 flex h-full flex-col">
+      {featured && (
+        <span className="absolute right-0 top-0 rounded-full bg-accent px-3 py-1 text-xs font-bold uppercase tracking-wide text-white">
+          Prioriterad tjänst
+        </span>
+      )}
+      <div className="earth-gradient mb-6 flex h-16 w-16 items-center justify-center rounded-xl">
+        <Icon className="h-8 w-8 text-white" aria-hidden="true" />
+      </div>
+      <h3 className="mb-3 pr-24 text-xl font-bold text-foreground sm:text-2xl">{config.name}</h3>
+      <p className="mb-3 text-sm font-semibold text-primary">{config.priceLabel}</p>
+      <p className="mb-6 text-muted-foreground">{config.shortDescription}</p>
+      <ul className="mb-6 flex-grow space-y-2">
+        {config.features.map((feature) => (
+          <li key={feature} className="flex text-sm text-muted-foreground">
+            <span className="mr-2 mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+            {feature}
+          </li>
+        ))}
+      </ul>
+      <div className="pointer-events-auto flex flex-col gap-2 sm:flex-row">
+        <Button
+          onClick={() => onContact(config.id)}
+          className="flex-1 earth-gradient text-white hover:opacity-90"
+        >
+          {config.id === SERVICES.inspection.id ? 'Fråga om besiktning' : 'Få pris och upplägg'}
+        </Button>
+        <Button
+          onClick={() => onDetails(config.path)}
+          variant="outline"
+          className="border-accent text-accent hover:bg-accent hover:text-white"
+        >
+          Se tjänsten
+        </Button>
+      </div>
+    </div>
+  </article>
+);
 
 export const Services = ({ onServiceSelect }: ServicesProps) => {
   const navigate = useNavigate();
@@ -36,40 +96,35 @@ export const Services = ({ onServiceSelect }: ServicesProps) => {
           </p>
         </div>
 
-        <div className="mb-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {publishedServices.map(({ config, icon: Icon }) => (
-            <article key={config.id} className="flex flex-col rounded-2xl border border-slate-100 bg-white p-5 shadow-lg sm:p-6">
-              <div className="earth-gradient mb-6 flex h-16 w-16 items-center justify-center rounded-xl">
-                <Icon className="h-8 w-8 text-white" />
-              </div>
-              <h3 className="mb-3 text-xl font-bold text-foreground">{config.name}</h3>
-              <p className="mb-3 text-sm font-semibold text-primary">{config.priceLabel}</p>
-              <p className="mb-6 text-muted-foreground">{config.shortDescription}</p>
-              <ul className="mb-6 flex-grow space-y-2">
-                {config.features.map((feature) => (
-                  <li key={feature} className="flex text-sm text-muted-foreground">
-                    <span className="mr-2 mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-              <div className="flex gap-2">
-                <Button
-                  onClick={() => handleContact(config.id)}
-                  className="flex-1 earth-gradient text-white hover:opacity-90"
-                >
-                  Få pris och upplägg
-                </Button>
-                <Button
-                  onClick={() => navigate(config.path)}
-                  variant="outline"
-                  className="border-accent text-accent hover:bg-accent hover:text-white"
-                >
-                  Se tjänsten
-                </Button>
-              </div>
-            </article>
-          ))}
+        <div className="mb-12">
+          <h3 className="mb-6 text-center text-2xl font-bold text-foreground">Mest efterfrågade uppdrag</h3>
+          <div className="grid gap-8 md:grid-cols-2">
+            {priorityServices.map(({ config, icon }) => (
+              <ServiceCard
+                key={config.id}
+                config={config}
+                icon={icon}
+                featured
+                onContact={handleContact}
+                onDetails={navigate}
+              />
+            ))}
+          </div>
+        </div>
+
+        <div className="mb-12">
+          <h3 className="mb-6 text-center text-2xl font-bold text-foreground">Kompletterande tjänster</h3>
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+            {supportingServices.map(({ config, icon }) => (
+              <ServiceCard
+                key={config.id}
+                config={config}
+                icon={icon}
+                onContact={handleContact}
+                onDetails={navigate}
+              />
+            ))}
+          </div>
         </div>
 
         <div className="mx-auto mb-8 max-w-4xl rounded-2xl bg-slate-900 p-7 text-center text-white sm:p-9">
@@ -91,18 +146,13 @@ export const Services = ({ onServiceSelect }: ServicesProps) => {
         <div className="mx-auto flex max-w-4xl flex-col items-start justify-between gap-5 rounded-2xl border border-blue-200 bg-blue-50 p-6 sm:flex-row sm:items-center">
           <div>
             <div className="mb-2 flex items-center gap-2 text-sm font-semibold text-blue-800">
-              <Zap className="h-4 w-4" /> Digital tjänst under utveckling
+              <Zap className="h-4 w-4" /> Aktiv extern partnertjänst
             </div>
             <h3 className="text-xl font-bold text-slate-900">{SERVICES.energyCalculation.name}</h3>
-            <p className="mt-1 max-w-2xl text-sm text-slate-600">{BUSINESS_COPY.digitalInterest}</p>
+            <p className="mt-1 max-w-2xl text-sm text-slate-600">{SERVICES.energyCalculation.shortDescription}</p>
+            <p className="mt-2 max-w-2xl text-xs font-medium text-slate-700">{BUSINESS_COPY.energyCalculationAffiliate}</p>
           </div>
-          <Button
-            onClick={() => navigate(SERVICES.energyCalculation.path)}
-            variant="outline"
-            className="shrink-0 border-blue-700 text-blue-800 hover:bg-blue-700 hover:text-white"
-          >
-            Anmäl intresse
-          </Button>
+          <ProductAction productKey="energyCalculation" className="shrink-0" />
         </div>
       </div>
     </section>

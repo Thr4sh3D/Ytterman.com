@@ -1,13 +1,13 @@
-import { ArrowRight, BadgeCheck, CheckCircle2, Mail } from 'lucide-react';
+import { ArrowRight, BadgeCheck, CheckCircle2, Mail, Search } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { HeroBanner } from './HeroBanner';
 import { BAS, COMPANY, KA_CERT, PRICE_LABELS } from '@/config/company';
 
 const benefits = [
-  'Rätt underlag och kontrollpunkter i rätt skede',
-  'Tydliga roller, kostnader och nästa steg',
-  'Digital uppföljning och planerade platsbesök',
+  'Kontrollansvar med rätt underlag och kontrollpunkter i rätt skede',
+  'Okulär överlåtelsebesiktning med tydligt avtalad omfattning',
+  'Tydliga kostnader, villkor och nästa steg före uppdraget',
 ];
 
 export const Hero = () => (
@@ -20,20 +20,20 @@ export const Hero = () => (
         <div className="animate-fade-in">
           <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-accent/30 bg-white/80 px-3 py-2 text-sm font-semibold text-accent shadow-sm backdrop-blur">
             <BadgeCheck className="h-5 w-5" />
-            Kiwa-certifierad KA · {KA_CERT.authorizationLabel}
+            Kontrollansvarig · Överlåtelsebesiktning
           </div>
 
           <h1 className="mb-5 text-4xl font-bold leading-[1.08] tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-            Mer kontroll. Mindre osäkerhet i ditt{' '}
-            <span className="text-gradient">byggprojekt.</span>
+            Tryggare när du bygger – och när du{' '}
+            <span className="text-gradient">köper hus.</span>
           </h1>
 
           <p className="mb-3 text-xl font-semibold leading-relaxed text-foreground sm:text-2xl">
-            Kontrollansvarig och {BAS.rolesLabel} i {COMPANY.region}
+            Kontrollansvarig och överlåtelsebesiktning i {COMPANY.region}
           </p>
           <p className="mb-7 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            Jag hjälper dig skapa struktur i kontrollplan, samråd, arbetsmiljö och dokumentation –
-            med tydliga paket och en personlig kontakt genom uppdraget.
+            Jag hjälper dig genom byggprojektets kontrollprocess och inför fastighetsöverlåtelsen.
+            Uppdrag som {BAS.rolesLabel} finns kvar som kompletterande stöd när projektet behöver det.
           </p>
 
           <ul className="mb-8 space-y-3">
@@ -47,20 +47,27 @@ export const Hero = () => (
 
           <div className="flex flex-col gap-3 sm:flex-row">
             <Button asChild size="lg" className="earth-gradient min-h-12 text-base text-white hover:opacity-90 sm:px-7">
-              <Link to="/kontakt/?source=hero">
-                Få offert för ditt projekt
+              <Link to="/kontakt/?service=kontrollansvarig&amp;source=hero">
+                Begär offert för KA
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="min-h-12 border-2 border-accent text-base text-accent hover:bg-accent hover:text-white sm:px-7">
-              <Link to="/priser/">Se priser från {PRICE_LABELS.kaBasFrom.replace('Från ', '')}</Link>
+              <Link to="/kontakt/?service=overlatelsebesiktning&amp;source=hero">
+                <Search className="mr-2 h-5 w-5" aria-hidden="true" />
+                Fråga om besiktning
+              </Link>
             </Button>
           </div>
+
+          <Link className="mt-4 inline-flex text-sm font-semibold text-accent underline-offset-4 hover:underline" to="/priser/">
+            Se KA-paket från {PRICE_LABELS.kaBasFrom.replace('Från ', '')}
+          </Link>
 
           <div className="mt-7 flex flex-wrap gap-x-5 gap-y-2 text-sm font-medium text-muted-foreground">
             <span>{COMPANY.experienceLabel}</span>
             <span className="hidden sm:inline">•</span>
-            <span>Medlem i {COMPANY.membership.shortName}</span>
+            <span>{COMPANY.affiliation.label}</span>
             <span className="hidden sm:inline">•</span>
             <a className="inline-flex items-center hover:text-accent" href={COMPANY.emailHref}>
               <Mail className="mr-1.5 h-4 w-4" /> {COMPANY.email}

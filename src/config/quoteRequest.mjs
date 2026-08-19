@@ -88,3 +88,7 @@ export const QUOTE_LIMITS = Object.freeze({
 });
 
 export const getQuoteService = (serviceId) => QUOTE_SERVICES[serviceId] || null;
+
+export const quoteServiceRequiresConstructionDetails = (serviceId) => (
+  serviceId !== 'overlatelsebesiktning'
+);

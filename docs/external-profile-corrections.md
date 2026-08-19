@@ -34,11 +34,13 @@ Godkänd energiformulering: “Ytterman erbjuder och samordnar energideklaration
 
 ## 4. Digitala produkter
 
+- Energiberäkning online är en aktiv extern partnertjänst. Partnern hanterar beställning, villkor och leverans; Ytterman får provision via partnerlänken.
+- Kontrollerna nedan gäller Yttermans egna digitala produkter innan de öppnas för köp.
 - [ ] Verifiera fungerande betalning i produktion.
 - [ ] Verifiera automatisk leverans och kvitto från början till slut.
 - [ ] Publicera köpvillkor, integritetstext, ångerrätt/undantag och återbetalningsprocess.
 - [ ] Testa misslyckad betalning, dubbelbetalning och utebliven leverans.
-- [ ] Ändra från “intresseanmälan” till köp först när hela flödet ovan är verifierat.
+- [ ] Ändra Yttermans egna produkter från “intresseanmälan” till köp först när hela flödet ovan är verifierat.
 
 ## 5. Bevis och externa profiler
 
