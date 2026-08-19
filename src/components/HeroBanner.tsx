@@ -15,7 +15,7 @@ export const HeroBanner = () => {
               <Shield className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h3 className="font-bold text-lg text-foreground">Verifierad kompetens</h3>
+              <p className="font-bold text-lg text-foreground">Verifierad kompetens</p>
               <p className="text-sm text-muted-foreground">{BAS.qualificationLabel}</p>
             </div>
           </div>
