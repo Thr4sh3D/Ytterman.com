@@ -26,19 +26,7 @@ export default defineConfig(({ isSsrBuild }) => ({
           // Separate vendor libraries for better caching
           "react-vendor": ["react", "react-dom"],
           "router-vendor": ["react-router-dom"],
-          "ui-vendor": [
-            "@radix-ui/react-accordion",
-            "@radix-ui/react-dialog",
-            "@radix-ui/react-dropdown-menu",
-            "@radix-ui/react-navigation-menu",
-            "@radix-ui/react-popover",
-            "@radix-ui/react-select",
-            "@radix-ui/react-tabs",
-            "@radix-ui/react-toast",
-          ],
-          "query-vendor": ["@tanstack/react-query"],
           "helmet-vendor": ["react-helmet-async"],
-          "icons-vendor": ["lucide-react"],
         },
         // Better asset naming for caching
         assetFileNames: (assetInfo) => {
@@ -72,7 +60,6 @@ export default defineConfig(({ isSsrBuild }) => ({
       "react",
       "react-dom",
       "react-router-dom",
-      "@tanstack/react-query",
       "lucide-react",
       "react-helmet-async",
     ],

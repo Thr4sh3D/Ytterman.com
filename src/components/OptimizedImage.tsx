@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { cn } from '@/lib/utils';
 
 interface OptimizedImageProps {
@@ -51,15 +50,11 @@ export const OptimizedImage = ({
   priority = false,
   sizes,
 }: OptimizedImageProps) => {
-  const [isLoaded, setIsLoaded] = useState(false);
   const optimizedSrc = optimizeImageSrc(src, width);
-  const fetchPriorityAttribute = {
-    fetchpriority: priority ? 'high' : 'auto',
-  };
 
   return (
     <img
-      {...fetchPriorityAttribute}
+      fetchPriority={priority ? 'high' : 'auto'}
       src={optimizedSrc}
       alt={alt}
       srcSet={srcSet}
@@ -68,13 +63,7 @@ export const OptimizedImage = ({
       sizes={sizes}
       loading={priority ? 'eager' : 'lazy'}
       decoding="async"
-      onLoad={() => setIsLoaded(true)}
-      className={cn(
-        'transition-opacity duration-300',
-        !isLoaded && 'opacity-0',
-        isLoaded && 'opacity-100',
-        className
-      )}
+      className={cn(className)}
     />
   );
 };

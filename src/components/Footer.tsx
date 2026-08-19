@@ -25,13 +25,13 @@ export const Footer = () => {
             </p>
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
-                <Mail className="w-5 h-5 text-primary" />
-                <a href={COMPANY.emailHref} className="hover:text-primary transition-colors">
+                <Mail className="w-5 h-5 text-orange-300" aria-hidden="true" />
+                <a href={COMPANY.emailHref} className="hover:text-orange-200 transition-colors">
                   {COMPANY.email}
                 </a>
               </div>
               <div className="flex items-center space-x-3">
-                <MapPin className="w-5 h-5 text-primary" />
+                <MapPin className="w-5 h-5 text-orange-300" aria-hidden="true" />
                 <span>{COMPANY.region}, Sverige</span>
               </div>
             </div>
@@ -50,6 +50,7 @@ export const Footer = () => {
                     alt="Bygglov.se verifierad ansluten sedan 2025"
                     className="block h-auto w-full"
                     loading="lazy"
+                    decoding="async"
                   />
                 </ExternalSiteLink>
               </div>

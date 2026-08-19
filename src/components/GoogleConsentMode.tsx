@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { BarChart3, Cookie, Shield, Target, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
@@ -12,6 +12,7 @@ const GoogleConsentMode = () => {
   const [customizing, setCustomizing] = useState(false);
   const [analytics, setAnalytics] = useState(false);
   const [marketing, setMarketing] = useState(false);
+  const dialogRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const stored = readConsent();
@@ -33,6 +34,43 @@ const GoogleConsentMode = () => {
     return () => window.removeEventListener(OPEN_CONSENT_SETTINGS_EVENT, openSettings);
   }, []);
 
+  useEffect(() => {
+    if (!visible) return;
+
+    const previousFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    const dialog = dialogRef.current;
+    const focusable = () => Array.from(dialog?.querySelectorAll<HTMLElement>(
+      'button:not([disabled]), input:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])',
+    ) ?? []);
+    focusable()[0]?.focus();
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && readConsent()) {
+        setVisible(false);
+        return;
+      }
+      if (event.key !== 'Tab') return;
+
+      const controls = focusable();
+      if (controls.length === 0) return;
+      const first = controls[0];
+      const last = controls[controls.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      previousFocus?.focus();
+    };
+  }, [visible, customizing]);
+
   const persist = (choices: { analytics: boolean; marketing: boolean }) => {
     saveConsent(choices);
     setAnalytics(choices.analytics);
@@ -46,10 +84,12 @@ const GoogleConsentMode = () => {
   return (
     <div className="fixed inset-0 z-[100] flex items-end bg-black/50" role="presentation">
       <section
+        ref={dialogRef}
         className="w-full border-t bg-white shadow-2xl"
         role="dialog"
         aria-modal="true"
         aria-labelledby="cookie-heading"
+        aria-describedby="cookie-description"
       >
         <div className="container mx-auto max-w-6xl px-4 py-6">
           {!customizing ? (
@@ -58,7 +98,7 @@ const GoogleConsentMode = () => {
                 <Cookie className="mt-1 h-6 w-6 shrink-0 text-primary" />
                 <div>
                   <h2 id="cookie-heading" className="mb-2 text-lg font-semibold text-slate-900">Valfria cookies</h2>
-                  <p className="text-sm leading-relaxed text-slate-600">
+                  <p id="cookie-description" className="text-sm leading-relaxed text-slate-600">
                     Nödvändiga funktioner är alltid aktiva. Analys och annonsering startar endast om du väljer dem.
                     Du kan ändra eller återkalla valet när som helst via länken i sidfoten.
                   </p>
@@ -81,7 +121,7 @@ const GoogleConsentMode = () => {
               <div className="mb-6 flex items-start justify-between gap-4">
                 <div>
                   <h2 id="cookie-heading" className="text-xl font-semibold text-slate-900">Cookie-inställningar</h2>
-                  <p className="mt-2 text-sm text-slate-600">Välj per ändamål. Ett avstängt val stoppar nya mätanrop och rensar kända Google-cookies.</p>
+                  <p id="cookie-description" className="mt-2 text-sm text-slate-600">Välj per ändamål. Ett avstängt val stoppar nya mätanrop och rensar kända Google-cookies.</p>
                 </div>
                 {readConsent() && (
                   <Button variant="ghost" size="icon" onClick={() => setVisible(false)} aria-label="Stäng cookie-inställningar">

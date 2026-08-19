@@ -6,7 +6,6 @@ import { About } from '@/components/About';
 import { Contact } from '@/components/Contact';
 import { FAQ } from '@/components/FAQ';
 import { AdvancedSEO } from '@/components/AdvancedSEO';
-import { JsonLdSchema } from '@/components/JsonLdSchema';
 import { PricingPackages } from '@/components/PricingPackages';
 import { Button } from '@/components/ui/button';
 import { Shield } from 'lucide-react';
@@ -51,7 +50,6 @@ const Index = () => {
         organization={true}
         faq={homeFaq}
       />
-      <JsonLdSchema type="ProfessionalService" />
       <div className="min-h-screen">
         <Header />
         <main>

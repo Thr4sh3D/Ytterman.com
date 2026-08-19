@@ -7,7 +7,6 @@ import { CanonicalUrl } from '@/components/CanonicalUrl';
 import { ContactForm } from '@/components/ContactForm';
 import { ContactInfo } from '@/components/ContactInfo';
 import { ServiceAreas } from '@/components/ServiceAreas';
-import { JsonLdSchema } from '@/components/JsonLdSchema';
 import { Mail } from 'lucide-react';
 import { BUSINESS_COPY, COMPANY } from '@/config/company';
 
@@ -30,15 +29,6 @@ const KontaktPage = () => {
       />
       
       <CanonicalUrl path="/kontakt" />
-      <JsonLdSchema type="ProfessionalService" />
-      
-      {/* Skip link för tangentbordsnavigering */}
-      <a 
-        href="#main-content" 
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary text-white px-4 py-2 rounded-lg z-50 focus:ring-2 focus:ring-white"
-      >
-        Hoppa till huvudinnehåll
-      </a>
       
       <div className="min-h-screen">
         <Header />

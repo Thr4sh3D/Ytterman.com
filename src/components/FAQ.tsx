@@ -39,9 +39,12 @@ export const FAQ = ({ items, title = "Vanliga frågor", className = "" }: FAQPro
                 className="bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden"
               >
                 <button
+                  type="button"
                   onClick={() => toggleItem(index)}
                   className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-slate-50 transition-colors"
                   aria-expanded={openItems.includes(index)}
+                  aria-controls={`faq-answer-${index}`}
+                  id={`faq-question-${index}`}
                 >
                   <h3 className="font-semibold text-slate-900 pr-4">
                     {item.question}
@@ -53,7 +56,12 @@ export const FAQ = ({ items, title = "Vanliga frågor", className = "" }: FAQPro
                   )}
                 </button>
                 {openItems.includes(index) && (
-                  <div className="px-6 pb-4">
+                  <div
+                    id={`faq-answer-${index}`}
+                    className="px-6 pb-4"
+                    role="region"
+                    aria-labelledby={`faq-question-${index}`}
+                  >
                     <div className="text-slate-600 leading-relaxed">
                       {typeof item.answer === 'string' ? (
                         <p>{item.answer}</p>
