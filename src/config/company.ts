@@ -129,7 +129,7 @@ export const BUSINESS_COPY = {
   digitalInterest:
     'Tjänsten visas som intresseanmälan tills betalning och automatisk leverans är verifierade.',
   energyCalculationPartner:
-    'Energiberäkningen genomförs i en aktiv extern partnertjänst. Beställning, villkor och leverans hanteras på partnerns webbplats.',
+    'Gör energiberäkningen online hos vår samarbetspartner. Där ser du aktuellt pris, villkor och leverans innan du beställer.',
   energyCalculationAffiliate:
     'Ytterman får provision på försäljning som sker via partnerlänken.',
 } as const;
@@ -208,7 +208,7 @@ export const SERVICES = {
     publicationStatus: 'active',
     priceLabel: 'Pris och villkor hos partnern',
     features: [
-      'Aktiv tjänst på partnerns webbplats',
+      'Starta och genomför beräkningen online',
       'Beräkning för småhus, flerbostadshus och lokaler',
       'Pris, villkor och leverans visas av partnern',
       BUSINESS_COPY.energyCalculationAffiliate,
