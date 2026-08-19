@@ -38,15 +38,10 @@ const ServiceCard = ({ config, icon: Icon, featured = false, onContact, onDetail
       className="absolute inset-0 z-0 rounded-2xl focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-primary"
     />
     <div className="pointer-events-none relative z-10 flex h-full flex-col">
-      {featured && (
-        <span className="absolute right-0 top-0 rounded-full bg-accent px-3 py-1 text-xs font-bold uppercase tracking-wide text-white">
-          Prioriterad tjänst
-        </span>
-      )}
       <div className="earth-gradient mb-6 flex h-16 w-16 items-center justify-center rounded-xl">
         <Icon className="h-8 w-8 text-white" aria-hidden="true" />
       </div>
-      <h3 className="mb-3 pr-24 text-xl font-bold text-foreground sm:text-2xl">{config.name}</h3>
+      <h3 className="mb-3 text-xl font-bold text-foreground sm:text-2xl">{config.name}</h3>
       <p className="mb-3 text-sm font-semibold text-primary">{config.priceLabel}</p>
       <p className="mb-6 text-muted-foreground">{config.shortDescription}</p>
       <ul className="mb-6 flex-grow space-y-2">
