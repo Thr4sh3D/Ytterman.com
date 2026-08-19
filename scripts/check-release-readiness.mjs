@@ -64,6 +64,15 @@ for (const route of getPrerenderRoutes()) {
   const mainCount = (html.match(/<main\b/gi) || []).length;
   if (h1Count !== 1) fail(`${route}: förväntade exakt en H1, hittade ${h1Count}`);
   if (mainCount !== 1) fail(`${route}: förväntade exakt ett main-landmark, hittade ${mainCount}`);
+
+  const headingLevels = [...html.matchAll(/<h([1-6])\b/gi)].map((match) => Number(match[1]));
+  for (let index = 1; index < headingLevels.length; index += 1) {
+    const previous = headingLevels[index - 1];
+    const current = headingLevels[index];
+    if (current > previous + 1) {
+      fail(`${route}: rubrikhierarkin hoppar från H${previous} till H${current}`);
+    }
+  }
   if (!/<html\b[^>]*\blang="sv"/i.test(html)) fail(`${route}: html lang="sv" saknas`);
   const mainHtml = html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/i)?.[1] || '';
   if (!/<div id="root">[\s\S]*?<main\b/i.test(html) || stripTags(mainHtml).length < 400) {
