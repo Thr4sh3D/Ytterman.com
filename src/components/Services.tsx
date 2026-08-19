@@ -108,7 +108,7 @@ export const Services = ({ onServiceSelect }: ServicesProps) => {
         </div>
 
         <div className="mb-12">
-          <h3 className="mb-6 text-center text-2xl font-bold text-foreground">Kompletterande tjänster</h3>
+          <h3 className="mb-6 text-center text-2xl font-bold text-foreground">Fler tjänster för byggprojektet</h3>
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             {supportingServices.map(({ config, icon }) => (
               <ServiceCard
@@ -141,7 +141,7 @@ export const Services = ({ onServiceSelect }: ServicesProps) => {
         <div className="mx-auto flex max-w-4xl flex-col items-start justify-between gap-5 rounded-2xl border border-blue-200 bg-blue-50 p-6 sm:flex-row sm:items-center">
           <div>
             <div className="mb-2 flex items-center gap-2 text-sm font-semibold text-blue-800">
-              <Zap className="h-4 w-4" /> Aktiv extern partnertjänst
+              <Zap className="h-4 w-4" /> Beställ online hos vår samarbetspartner
             </div>
             <h3 className="text-xl font-bold text-slate-900">{SERVICES.energyCalculation.name}</h3>
             <p className="mt-1 max-w-2xl text-sm text-slate-600">{SERVICES.energyCalculation.shortDescription}</p>
