@@ -70,8 +70,8 @@ const KontrollansvarigCertifieringGuide = () => (
       </p>
 
       <p>
-        {COMPANY.experienceLabel} i byggbranschen och medlemskap i {COMPANY.membership.name} är
-        separata uppgifter om erfarenhet och medlemskap. De ändrar inte certifikatets behörighetsgräns.
+        {COMPANY.experienceLabel} i byggbranschen och anslutning till {COMPANY.affiliation.name} är
+        separata uppgifter om erfarenhet och branschanknytning. De ändrar inte certifikatets behörighetsgräns.
       </p>
     </div>
   </GuideLayout>

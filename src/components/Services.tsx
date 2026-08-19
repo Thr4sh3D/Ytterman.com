@@ -1,6 +1,7 @@
 import { Building, FileText, Search, Shield, Users, Zap } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { ProductAction } from '@/components/ProductAction';
 import { BUSINESS_COPY, PRICE_LABELS, SERVICES } from '@/config/company';
 
 interface ServicesProps {
@@ -91,18 +92,13 @@ export const Services = ({ onServiceSelect }: ServicesProps) => {
         <div className="mx-auto flex max-w-4xl flex-col items-start justify-between gap-5 rounded-2xl border border-blue-200 bg-blue-50 p-6 sm:flex-row sm:items-center">
           <div>
             <div className="mb-2 flex items-center gap-2 text-sm font-semibold text-blue-800">
-              <Zap className="h-4 w-4" /> Digital tjänst under utveckling
+              <Zap className="h-4 w-4" /> Aktiv extern partnertjänst
             </div>
             <h3 className="text-xl font-bold text-slate-900">{SERVICES.energyCalculation.name}</h3>
-            <p className="mt-1 max-w-2xl text-sm text-slate-600">{BUSINESS_COPY.digitalInterest}</p>
+            <p className="mt-1 max-w-2xl text-sm text-slate-600">{SERVICES.energyCalculation.shortDescription}</p>
+            <p className="mt-2 max-w-2xl text-xs font-medium text-slate-700">{BUSINESS_COPY.energyCalculationAffiliate}</p>
           </div>
-          <Button
-            onClick={() => navigate(SERVICES.energyCalculation.path)}
-            variant="outline"
-            className="shrink-0 border-blue-700 text-blue-800 hover:bg-blue-700 hover:text-white"
-          >
-            Anmäl intresse
-          </Button>
+          <ProductAction productKey="energyCalculation" className="shrink-0" />
         </div>
       </div>
     </section>

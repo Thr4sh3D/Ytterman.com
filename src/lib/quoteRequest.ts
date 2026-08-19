@@ -1,5 +1,8 @@
 import { readLeadAttribution, type LeadAttribution } from '@/lib/leadAttribution';
-import type { QuoteServiceId } from '@/config/quoteRequest.mjs';
+import {
+  quoteServiceRequiresConstructionDetails,
+  type QuoteServiceId,
+} from '@/config/quoteRequest.mjs';
 
 export interface QuoteFormData {
   service: QuoteServiceId | '';
@@ -47,12 +50,13 @@ export const submitQuoteRequest = async (formData: QuoteFormData): Promise<Quote
     return { success: false, error: 'Välj vilken tjänst förfrågan gäller.' };
   }
 
+  const requiresConstructionDetails = quoteServiceRequiresConstructionDetails(formData.service);
   const payload: QuoteRequestPayload = {
     service: formData.service,
-    projectType: formData.projectType.trim(),
+    projectType: requiresConstructionDetails ? formData.projectType.trim() : 'not-applicable',
     municipality: formData.municipality.trim(),
-    size: formData.size,
-    permitStatus: formData.permitStatus,
+    size: requiresConstructionDetails ? formData.size : 'not-applicable',
+    permitStatus: requiresConstructionDetails ? formData.permitStatus : 'not-applicable',
     desiredStart: formData.desiredStart,
     contact: {
       name: formData.name.trim(),

@@ -33,7 +33,7 @@ Dessa uppgifter är styrande för kommande implementation och får inte ersätta
 | Slutbesiktning | KA-uppdraget får inte generellt beskrivas som att KA utför entreprenadrättslig slutbesiktning eller verifierar entreprenadens kontraktsenlighet. |
 | Energideklaration | Ytterman erbjuder tjänsten. Själva energideklarationen utförs genom behöriga partners som är certifierade energiexperter. Tobias/Ytterman får beskrivas som kundens kontakt och samordnare, men inte som certifierad energiexpert. |
 | Erfarenhet | Uppgiften om mer än 20 års erfarenhet är ägarverifierad och får användas konsekvent. |
-| SBR | Medlemskapet i SBR är ägarverifierat och får användas konsekvent. |
+| SBR | Tobias är ansluten till SBR men ännu inte medlem. Endast formuleringen ”ansluten till SBR” får användas. |
 | Prisstruktur 2026 | Tillbyggnad: Bas 29 500 kr / Plus 34 500 kr. Ombyggnation: Bas 32 500 kr / Plus 38 500 kr. Nyproduktion fritidshus: Bas 34 500 kr / Plus 39 500 kr. KA + BAS-P/U: från cirka 46 500–52 500 kr. Beloppen är inklusive moms. |
 | Kompletteringar | En normal kompletteringsvända ingår. Upprepade kompletteringar på grund av ändringar eller bristande underlag debiteras separat. |
 
@@ -158,7 +158,7 @@ Netlify publicerar `dist`. Route-mapparna förbättrar HTTP-status och ger route
 | Energideklaration framställs som egen certifierad expertleverans | Otydligt vem som har lagstadgad kompetens | `EnergiDeklarationPage.tsx`, `TjansterPage.tsx`, formulär, metadata/schema | Behåll tjänsten aktiv men ange tydligt att deklarationen utförs av certifierad energiexpert hos behörig partner och att Ytterman samordnar leveransen. Partnerns behörighet ska verifieras före uppdrag. |
 | Gamla priser och flera prisformat finns parallellt | Felaktiga förväntningar och låg offertkvalitet | `PriserPage.tsx`, `Pricing.tsx`, `PricingPackages.tsx`, `TjansterPage.tsx`, FAQ, ortsdata, guider, schema | Använd 2026 års ägarverifierade paket från en central källa. |
 | Löften om svar inom 24 timmar, start inom 1–2 veckor, rapport inom 48 timmar och ”svar inom minuter” | Operativt löfte utan kapacitetskoppling | formulär, metadata, tjänste- och ortssidor | Ta bort eller gör löften konfigurerbara och publicera bara sådant som kan hållas. |
-| Digitala produkter lovar köp, direktbetalning och omedelbar nedladdning men CTA leder till kontaktformulär | Vilseledande köpresa och manuell administration | `ProdukterPage.tsx`, `ByggstartPlanerare.tsx`, `EnergiberakningOnlinePage.tsx` | Visa intresse/offert tills verklig betalning och automatisk leverans finns. Komplettera köpvillkor innan försäljning. |
+| Digitala produkter lovar köp utan fungerande leverans | Vilseledande köpresa | `ProdukterPage.tsx`, `ByggstartPlanerare.tsx` | Visa intresse för opublicerade egna produkter. Energiberäkning online är däremot en aktiv extern partnertjänst och ska länkas med tydlig provisionsupplysning. |
 | Google Ads-script laddas innan aktivt samtycke; samtyckeskomponenten är inte monterad | Cookie- och integritetsrisk | `index.html`, `GoogleConsentMode.tsx`, `ConversionTracking.tsx` | Ladda valfria script först efter aktivt val; ge likvärdiga acceptera/avvisa/ändra-alternativ. |
 | Formulärspårning skickar besökarens namn till `dataLayer` | Onödig personuppgift i analysflöde | `ContactForm.tsx`, `useGoogleAdsTracking.ts` | Ta bort namn och andra direkt identifierande uppgifter från analys. |
 | Företagsidentitet och adress är inte konsekventa | Förtroende-, NAP- och avtalsrisk | `index.html`, integritetspolicy, schema, ortsdata | Ägarverifiera juridiskt namn, organisationsnummer, postadress och verksamhetsadress innan publicering av villkor/schema. |
@@ -204,7 +204,7 @@ Nuläget har god ambition men för många parallella källor:
 
 Målarkitektur:
 
-1. `companyConfig` – juridisk och publik identitet, kontakt, NAP, certifikat och medlemskap.
+1. `companyConfig` – juridisk och publik identitet, kontakt, NAP, certifikat och branschanslutning.
 2. `serviceConfig` – leveransmodell (`tobias`, `partner`, `digital`), publiceringsstatus, priser och behörighetskrav.
 3. `routeRegistry` – path, indexstatus, metadata, sitemapstatus, sida och uppdateringsdatum.
 4. Schema byggs från dessa källor och valideras som JSON under build/test.

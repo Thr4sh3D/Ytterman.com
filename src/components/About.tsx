@@ -62,7 +62,7 @@ export const About = () => {
               {[
                 { icon: Award, label: COMPANY.experienceLabel },
                 { icon: BadgeCheck, label: `Kiwa ${KA_CERT.certificateNumber}` },
-                { icon: Users, label: `Medlem i ${COMPANY.membership.shortName}` },
+                { icon: Users, label: COMPANY.affiliation.label },
                 { icon: CheckCircle2, label: KA_CERT.authorizationLabel },
               ].map(({ icon: Icon, label }) => (
                 <div key={label} className="flex items-center gap-2 rounded-xl bg-slate-50 p-3 text-sm font-semibold text-slate-800">

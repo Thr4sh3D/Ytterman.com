@@ -1,4 +1,4 @@
-import { ArrowRight, ClipboardList } from 'lucide-react';
+import { ArrowRight, Calculator, ClipboardList } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { AdvancedSEO } from '@/components/AdvancedSEO';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
@@ -11,6 +11,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { BAS, BUSINESS_COPY, COMPANY, KA_CERT, SERVICES } from '@/config/company';
 
 const planner = SERVICES.buildingStartPlanner;
+const energyCalculation = SERVICES.energyCalculation;
 
 const ProdukterPage = () => {
   const breadcrumbs = [
@@ -21,9 +22,9 @@ const ProdukterPage = () => {
   return (
     <>
       <AdvancedSEO
-        title="Digitala verktyg – intresseanmälan | Ytterman"
-        description="Ytterman utvecklar praktiska digitala planeringsverktyg för byggprojekt. Se innehållet och anmäl intresse innan försäljning öppnas."
-        keywords="digitala verktyg byggprojekt, byggstart planerare, intresseanmälan, Ytterman"
+        title="Digitala tjänster och verktyg | Ytterman"
+        description="Starta energiberäkning via aktiv extern partnertjänst eller anmäl intresse för Yttermans kommande planeringsverktyg."
+        keywords="energiberäkning online, digitala verktyg byggprojekt, byggstart planerare, Ytterman"
         url={`${COMPANY.siteUrl}/produkter/`}
         type="website"
         breadcrumbs={breadcrumbs}
@@ -42,48 +43,77 @@ const ProdukterPage = () => {
           <section className="border-b bg-white py-16">
             <div className="container mx-auto max-w-4xl px-4 text-center">
               <span className="mb-5 inline-flex rounded-full bg-amber-100 px-4 py-2 text-sm font-semibold text-amber-900">
-                Under utveckling
+                Aktiv tjänst och kommande verktyg
               </span>
               <h1 className="mb-5 text-4xl font-bold text-slate-900 md:text-5xl">
                 Digitala verktyg för bättre byggplanering
               </h1>
               <p className="mx-auto max-w-2xl text-xl text-slate-600">
-                Här visar vi verktyg som är under utveckling. Försäljning öppnas först när
-                betalning, villkor och automatisk leverans är verifierade.
+                Starta en aktiv energiberäkning hos partnern eller följ verktyg som Ytterman
+                fortfarande utvecklar. Leveransmodell och nästa steg framgår för varje tjänst.
               </p>
             </div>
           </section>
 
           <section className="py-16">
-            <div className="container mx-auto max-w-4xl px-4">
-              <Card className="overflow-hidden border-slate-200">
-                <CardHeader className="bg-white">
-                  <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
-                    <ClipboardList className="h-6 w-6 text-primary" />
-                  </div>
-                  <CardTitle className="text-2xl">{planner.name}</CardTitle>
-                </CardHeader>
-                <CardContent className="p-6">
-                  <p className="mb-6 text-slate-600">{planner.shortDescription}</p>
-                  <ul className="mb-8 grid gap-3 sm:grid-cols-2">
-                    {planner.features.map((feature) => (
-                      <li key={feature} className="text-sm text-slate-700">• {feature}</li>
-                    ))}
-                  </ul>
-                  <div className="flex flex-wrap gap-3">
-                    <Button asChild className="earth-gradient text-white hover:opacity-90">
-                      <Link to={planner.path}>
-                        Läs om verktyget
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                      </Link>
-                    </Button>
-                    <ProductAction productKey="buildingStartPlanner" />
-                  </div>
-                </CardContent>
-              </Card>
+            <div className="container mx-auto max-w-5xl px-4">
+              <div className="grid gap-8 md:grid-cols-2">
+                <Card className="overflow-hidden border-blue-200">
+                  <CardHeader className="bg-blue-50">
+                    <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-700 text-white">
+                      <Calculator className="h-6 w-6" />
+                    </div>
+                    <p className="text-sm font-bold uppercase tracking-wide text-blue-800">Aktiv partnertjänst</p>
+                    <CardTitle className="text-2xl">{energyCalculation.name}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="p-6">
+                    <p className="mb-6 text-slate-600">{energyCalculation.shortDescription}</p>
+                    <ul className="mb-8 space-y-3">
+                      {energyCalculation.features.map((feature) => (
+                        <li key={feature} className="text-sm text-slate-700">• {feature}</li>
+                      ))}
+                    </ul>
+                    <div className="flex flex-wrap gap-3">
+                      <Button asChild variant="outline">
+                        <Link to={energyCalculation.path}>
+                          Läs hur tjänsten fungerar
+                          <ArrowRight className="ml-2 h-4 w-4" />
+                        </Link>
+                      </Button>
+                      <ProductAction productKey="energyCalculation" />
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="overflow-hidden border-slate-200">
+                  <CardHeader className="bg-white">
+                    <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
+                      <ClipboardList className="h-6 w-6 text-primary" />
+                    </div>
+                    <CardTitle className="text-2xl">{planner.name}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="p-6">
+                    <p className="mb-6 text-slate-600">{planner.shortDescription}</p>
+                    <ul className="mb-8 grid gap-3 sm:grid-cols-2">
+                      {planner.features.map((feature) => (
+                        <li key={feature} className="text-sm text-slate-700">• {feature}</li>
+                      ))}
+                    </ul>
+                    <div className="flex flex-wrap gap-3">
+                      <Button asChild className="earth-gradient text-white hover:opacity-90">
+                        <Link to={planner.path}>
+                          Läs om verktyget
+                          <ArrowRight className="ml-2 h-4 w-4" />
+                        </Link>
+                      </Button>
+                      <ProductAction productKey="buildingStartPlanner" />
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
 
               <div className="mt-10 rounded-xl border border-amber-200 bg-amber-50 p-6 text-amber-950">
-                <h2 className="mb-2 text-xl font-semibold">Tydligt före köp</h2>
+                <h2 className="mb-2 text-xl font-semibold">Byggstart-planeraren är inte öppnad för köp</h2>
                 <p>{BUSINESS_COPY.digitalInterest}</p>
               </div>
 

@@ -60,7 +60,7 @@ export const Hero = () => (
           <div className="mt-7 flex flex-wrap gap-x-5 gap-y-2 text-sm font-medium text-muted-foreground">
             <span>{COMPANY.experienceLabel}</span>
             <span className="hidden sm:inline">•</span>
-            <span>Medlem i {COMPANY.membership.shortName}</span>
+            <span>{COMPANY.affiliation.label}</span>
             <span className="hidden sm:inline">•</span>
             <a className="inline-flex items-center hover:text-accent" href={COMPANY.emailHref}>
               <Mail className="mr-1.5 h-4 w-4" /> {COMPANY.email}

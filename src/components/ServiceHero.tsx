@@ -49,7 +49,7 @@ export const ServiceHero = ({
     { icon: Award, title: `${COMPANY.experienceYears}+ år`, subtitle: "Erfarenhet inom bygg" },
     { icon: Shield, title: "Certifierad KA", subtitle: KA_CERT.authorizationLabel },
     { icon: Clock, title: BAS.rolesLabel, subtitle: "Utbildad för rollerna" },
-    { icon: MessageCircle, title: COMPANY.membership.shortName, subtitle: "Medlem" }
+    { icon: MessageCircle, title: COMPANY.affiliation.shortName, subtitle: "Ansluten" }
   ];
 
   const displayStats = stats || defaultStats;

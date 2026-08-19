@@ -6,6 +6,7 @@ import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { CheckCircle, Phone, Mail, FileText, Users, Shield, Building, ArrowRight, Zap, Search, Calculator, CalendarCheck } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { ProductAction } from '@/components/ProductAction';
 import { CanonicalUrl } from '@/components/CanonicalUrl';
 import { BOOKING_OVL_URL } from '@/config/booking';
 import { BUSINESS_COPY, COMPANY, PRICE_LABELS, PRICING, SERVICES } from '@/config/company';
@@ -89,7 +90,7 @@ const TjansterPage = () => {
   const serviceFaq = [
     {
       question: "Vilka tjänster erbjuder Ytterman?",
-      answer: `Ytterman erbjuder kontrollansvarig, BAS-P, BAS-U, bygglovshandlingar och överlåtelsebesiktning. Energideklaration erbjuds och samordnas av Ytterman men utförs via behörig partner av certifierad energiexpert. Digital energiberäkning tar tills vidare emot intresseanmälningar. ${COMPANY.experienceLabel}.`
+      answer: `Ytterman erbjuder kontrollansvarig, BAS-P, BAS-U, bygglovshandlingar och överlåtelsebesiktning. Energideklaration erbjuds och samordnas av Ytterman men utförs via behörig partner av certifierad energiexpert. Energiberäkning online är en aktiv extern partnertjänst där Ytterman får provision på försäljning via länken. ${COMPANY.experienceLabel}.`
     },
     {
       question: "Vad kostar era tjänster?",
@@ -191,13 +192,16 @@ const TjansterPage = () => {
                         </ul>
                         
                         <div className="flex gap-3">
-                          {service.id !== 'overlatelsebesiktning-service' && (
+                          {service.id === 'energiberakning-online-service' && (
+                            <ProductAction productKey="energyCalculation" className="flex-1" />
+                          )}
+                          {service.id !== 'overlatelsebesiktning-service' && service.id !== 'energiberakning-online-service' && (
                             <Button 
                               onClick={() => handleServiceQuote(service.id)}
                               className="flex-1 earth-gradient text-white hover:opacity-90"
-                              aria-label={`${service.publicationStatus === 'interest-only' ? 'Anmäl intresse för' : 'Få offert för'} ${service.title}`}
+                              aria-label={`Få offert för ${service.title}`}
                             >
-                              {service.publicationStatus === 'interest-only' ? 'Anmäl intresse' : 'Få offert'}
+                              Få offert
                             </Button>
                           )}
                           {service.id === 'overlatelsebesiktning-service' && BOOKING_OVL_URL && (

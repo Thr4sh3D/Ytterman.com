@@ -6,6 +6,7 @@ import {
   QUOTE_SERVICE_IDS,
   QUOTE_SERVICES,
   getQuoteService,
+  quoteServiceRequiresConstructionDetails,
 } from '../../src/config/quoteRequest.mjs';
 
 const MAX_BODY_BYTES = 32_000;
@@ -41,7 +42,27 @@ const quoteRequestSchema = z.object({
   attribution: attributionSchema.nullable(),
   website: z.string().max(200),
   startedAt: z.number().int().positive(),
-}).strict();
+}).strict().superRefine((data, context) => {
+  const requiresConstructionDetails = quoteServiceRequiresConstructionDetails(data.service);
+  if (requiresConstructionDetails && data.projectType === 'not-applicable') {
+    context.addIssue({
+      code: z.ZodIssueCode.custom,
+      path: ['projectType'],
+      message: 'Projekttyp krävs för vald tjänst.',
+    });
+  }
+  if (!requiresConstructionDetails) {
+    for (const field of ['projectType', 'size', 'permitStatus'] as const) {
+      if (data[field] !== 'not-applicable') {
+        context.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: [field],
+          message: 'Fältet är inte relevant för överlåtelsebesiktning.',
+        });
+      }
+    }
+  }
+});
 
 const configuredOrigins = (process.env.QUOTE_ALLOWED_ORIGINS || '')
   .split(',')

@@ -38,6 +38,7 @@ const forbiddenRules = [
   ['BAS beskrivet som certifiering', /\b(?:certifierad|certifierade)\s+(?:som\s+)?BAS[-\s]?[PU]\b/gi],
   ['BAS beskrivet som certifiering', /\bBAS[-\s]?[PU]\s*(?:-|–|—|,|:)?\s*certifierad\b/gi],
   ['obekräftad titel', /\bcertifierad byggkonsult\b/gi],
+  ['felaktigt SBR-medlemskap', /\b(?:medlem(?:skap(?:et)?)?\s+i\s+(?:Svenska Byggingenjörers Riksförbund|SBR)|SBR[-\s]?medlem)\b/gi],
   ['felaktigt påstående om energiexpert', /\b(?:Tobias(?:\s+Ytterman)?|Ytterman)\s+(?:är|som)\s+(?:en\s+)?certifierad energiexpert\b/gi],
   ['fel utförare av energideklaration', /\b(?:Tobias(?:\s+Ytterman)?|Ytterman)\s+(?:utför|registrerar)\s+energideklaration(?:en)?\b/gi],
   ['felaktig KA-behörighet', /fullständig behörighet/gi],
@@ -93,8 +94,6 @@ for (const file of [...searchableFiles, ...publicContactDocs]) {
 
 const digitalPages = [
   'src/pages/ByggstartPlanerare.tsx',
-  'src/pages/EnergiberakningOnlinePage.tsx',
-  'src/pages/ProdukterPage.tsx',
 ];
 
 for (const path of digitalPages) {
@@ -126,6 +125,8 @@ const requiredConfigFragments = [
   'to: 52_500',
   "deliveryModel: 'partner'",
   "publicationStatus: 'interest-only'",
+  "affiliation: {",
+  "label: 'Ansluten till SBR'",
   'legalIdentityVerified: false',
 ];
 
@@ -152,8 +153,8 @@ for (const file of sourceFilesOutsideCompanyConfig) {
 }
 
 const energyConfigSection = companyConfig.slice(
-  companyConfig.indexOf('energyDeclaration:'),
-  companyConfig.indexOf('energyCalculation:'),
+  companyConfig.indexOf('  energyDeclaration: {'),
+  companyConfig.indexOf('  energyCalculation: {'),
 );
 for (const phrase of [
   "deliveryModel: 'partner'",
@@ -164,6 +165,25 @@ for (const phrase of [
   if (!energyConfigSection.includes(phrase)) {
     violations.push(`src/config/company.ts – energideklaration saknar formuleringen “${phrase}”`);
   }
+}
+
+const energyCalculationConfigSection = companyConfig.slice(
+  companyConfig.indexOf('  energyCalculation: {'),
+  companyConfig.indexOf('  buildingPermitDocuments: {'),
+);
+for (const phrase of [
+  "deliveryModel: 'partner'",
+  "publicationStatus: 'active'",
+  'externalUrl: PARTNER_LINKS.energyCalculation',
+  'BUSINESS_COPY.energyCalculationAffiliate',
+]) {
+  if (!energyCalculationConfigSection.includes(phrase)) {
+    violations.push(`src/config/company.ts – energiberäkning online saknar formuleringen “${phrase}”`);
+  }
+}
+
+if (!companyConfig.includes("energyCalculationAffiliate:\n    'Ytterman får provision på försäljning som sker via partnerlänken.'")) {
+  violations.push('src/config/company.ts – energiberäkning online saknar tydlig provisionsupplysning');
 }
 
 const pricingContent = readFileSync(join(projectRoot, 'src/content/pricingPackages.ts'), 'utf8');
@@ -178,7 +198,7 @@ const productAction = readFileSync(join(projectRoot, 'src/components/ProductActi
 const routeRegistry = readFileSync(join(projectRoot, 'src/config/routeRegistry.mjs'), 'utf8');
 
 for (const fragment of [
-  "import { PRICING, SERVICES, formatSek } from '@/config/company'",
+  "import { PARTNER_LINKS, PRICING, SERVICES, formatSek } from '@/config/company'",
   'KA_PACKAGE_LEVELS',
   'KA_PROJECT_OFFERS',
   'KA_BAS_PACKAGE',
@@ -188,10 +208,29 @@ for (const fragment of [
   'contentReady: false',
   'automaticDelivery: false',
   'VITE_PAYMENT_LINK_PROJECT_REVIEW',
+  'PARTNER_LINKS.energyCalculation',
+  "publicationStatus: 'purchasable'",
+  'contentReady: true',
+  'automaticDelivery: true',
 ]) {
   if (!commercialOffers.includes(fragment)) {
     violations.push(`src/config/commercialOffers.ts – erbjudandekonfiguration saknar: ${fragment}`);
   }
+}
+
+const energyCalculationPage = readFileSync(join(projectRoot, 'src/pages/EnergiberakningOnlinePage.tsx'), 'utf8');
+for (const fragment of [
+  'ProductAction productKey="energyCalculation"',
+  'BUSINESS_COPY.energyCalculationAffiliate',
+  'Aktiv extern partnertjänst',
+]) {
+  if (!energyCalculationPage.includes(fragment)) {
+    violations.push(`src/pages/EnergiberakningOnlinePage.tsx – aktiv partnertjänst saknar: ${fragment}`);
+  }
+}
+
+if (/intresseanmälan/i.test(energyCalculationPage)) {
+  violations.push('src/pages/EnergiberakningOnlinePage.tsx – aktiv energiberäkning får inte beskrivas som intresseanmälan');
 }
 
 if (!pricingComponent.includes("from '@/config/commercialOffers'")) {

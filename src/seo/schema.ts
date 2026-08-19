@@ -6,6 +6,7 @@ import {
   KA_CREDENTIAL_SCHEMA,
   KA_CERT,
   PRICE_LABELS,
+  PARTNER_LINKS,
   SERVICES,
 } from '@/config/company';
 import type { RouteDefinition } from '@/config/routeRegistry.mjs';
@@ -18,6 +19,7 @@ const IDS = {
   business: `${COMPANY.siteUrl}/#professional-service`,
   person: `${COMPANY.siteUrl}/#tobias-ytterman`,
   energyPartner: `${COMPANY.siteUrl}/#energy-declaration-partner`,
+  energyCalculationPartner: `${COMPANY.siteUrl}/#energy-calculation-partner`,
 } as const;
 
 const serviceId = (key: string) => `${COMPANY.siteUrl}/#service-${key}`;
@@ -27,6 +29,8 @@ const buildServiceNode = (key: string): SchemaNode | null => {
   if (!service) return null;
 
   const partnerDelivered = service.deliveryModel === 'partner';
+  const energyCalculationPartner = key === 'energyCalculation';
+  const partnerId = energyCalculationPartner ? IDS.energyCalculationPartner : IDS.energyPartner;
   return {
     '@type': 'Service',
     '@id': serviceId(key),
@@ -36,12 +40,14 @@ const buildServiceNode = (key: string): SchemaNode | null => {
     serviceType: service.name,
     areaServed: COMPANY.areaServed.map((name) => ({ '@type': 'AdministrativeArea', name })),
     provider: partnerDelivered
-      ? { '@id': IDS.energyPartner }
+      ? { '@id': partnerId }
       : { '@id': IDS.business },
     ...(partnerDelivered
       ? {
           broker: { '@id': IDS.business },
-          disambiguatingDescription: BUSINESS_COPY.energyPartner,
+          disambiguatingDescription: energyCalculationPartner
+            ? `${BUSINESS_COPY.energyCalculationPartner} ${BUSINESS_COPY.energyCalculationAffiliate}`
+            : BUSINESS_COPY.energyPartner,
         }
       : {}),
   };
@@ -71,7 +77,7 @@ const buildCoreGraph = (): SchemaNode[] => {
       areaServed: COMPANY.areaServed.map((name) => ({ '@type': 'AdministrativeArea', name })),
       serviceType: ACTIVE_SERVICE_NAMES,
       priceRange: PRICE_LABELS.schemaRange,
-      memberOf: { '@type': 'Organization', name: COMPANY.membership.name },
+      affiliation: { '@type': 'Organization', name: COMPANY.affiliation.name },
       employee: { '@id': IDS.person },
       hasOfferCatalog: {
         '@type': 'OfferCatalog',
@@ -96,6 +102,13 @@ const buildCoreGraph = (): SchemaNode[] => {
       '@id': IDS.energyPartner,
       name: 'Behörig partner för energideklaration',
       description: 'Partnerorganisation där deklarationen utförs av certifierad energiexpert. Partner och behörighet verifieras inför uppdraget.',
+    },
+    {
+      '@type': 'Organization',
+      '@id': IDS.energyCalculationPartner,
+      name: 'Partner för Energiberäkning online',
+      url: PARTNER_LINKS.energyCalculation,
+      description: BUSINESS_COPY.energyCalculationPartner,
     },
     ...activeServiceEntries
       .map(([key]) => buildServiceNode(key))

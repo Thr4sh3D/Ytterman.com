@@ -14,6 +14,7 @@ import {
   QUOTE_SERVICE_IDS,
   QUOTE_SERVICES,
   SIZE_OPTIONS,
+  quoteServiceRequiresConstructionDetails,
   type QuoteServiceId,
 } from '@/config/quoteRequest.mjs';
 import { submitQuoteRequest, type QuoteFormData } from '@/lib/quoteRequest';
@@ -81,6 +82,7 @@ const ContactForm = ({ className = '', initialService = '' }: ContactFormProps) 
   }, [searchParams]);
 
   const serviceDefinition = formData.service ? QUOTE_SERVICES[formData.service] : null;
+  const requiresConstructionDetails = quoteServiceRequiresConstructionDetails(formData.service);
   const minimumMonth = useMemo(() => new Date().toISOString().slice(0, 7), []);
 
   const updateField = <Key extends keyof QuoteFormData>(field: Key, value: QuoteFormData[Key]) => {
@@ -89,9 +91,11 @@ const ContactForm = ({ className = '', initialService = '' }: ContactFormProps) 
   };
 
   const goToContactStep = () => {
-    if (!formData.service || !formData.projectType || !formData.municipality.trim()) {
+    if (!formData.service || (requiresConstructionDetails && !formData.projectType) || !formData.municipality.trim()) {
       toast.error('Komplettera projektuppgifterna', {
-        description: 'Tjänst, projekttyp och kommun behövs för att gå vidare.',
+        description: requiresConstructionDetails
+          ? 'Tjänst, projekttyp och kommun behövs för att gå vidare.'
+          : 'Tjänst och kommun behövs för att gå vidare.',
       });
       return;
     }
@@ -184,11 +188,17 @@ const ContactForm = ({ className = '', initialService = '' }: ContactFormProps) 
           <span className={`h-1.5 rounded-full ${step === 2 ? 'bg-primary' : 'bg-slate-200'}`} />
         </div>
         <CardTitle className="pt-3 text-2xl text-slate-900">
-          {step === 1 ? 'Berätta kort om projektet' : 'Hur når jag dig?'}
+          {step === 1
+            ? requiresConstructionDetails
+              ? 'Berätta kort om projektet'
+              : 'Berätta kort om besiktningen'
+            : 'Hur når jag dig?'}
         </CardTitle>
         <CardDescription>
           {step === 1
-            ? 'Tre grunduppgifter räcker för att sortera förfrågan rätt. Resten är frivilligt.'
+            ? requiresConstructionDetails
+              ? 'Tre grunduppgifter räcker för att sortera förfrågan rätt. Resten är frivilligt.'
+              : 'Tjänst och kommun räcker för att sortera besiktningsförfrågan rätt. Resten är frivilligt.'
             : BUSINESS_COPY.defaultResponse}
         </CardDescription>
       </CardHeader>
@@ -227,23 +237,25 @@ const ContactForm = ({ className = '', initialService = '' }: ContactFormProps) 
                 </div>
               )}
 
-              <div>
-                <label htmlFor="quote-project-type" className="mb-1 block text-sm font-medium text-slate-700">
-                  Projekttyp *
-                </label>
-                <select
-                  id="quote-project-type"
-                  value={formData.projectType}
-                  onChange={(event) => updateField('projectType', event.target.value)}
-                  required
-                  className="w-full rounded-md border border-input bg-background px-3 py-2.5 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring"
-                >
-                  <option value="">Välj projekttyp</option>
-                  {PROJECT_TYPE_OPTIONS.map(([value, label]) => (
-                    <option key={value} value={value}>{label}</option>
-                  ))}
-                </select>
-              </div>
+              {requiresConstructionDetails && (
+                <div>
+                  <label htmlFor="quote-project-type" className="mb-1 block text-sm font-medium text-slate-700">
+                    Projekttyp *
+                  </label>
+                  <select
+                    id="quote-project-type"
+                    value={formData.projectType}
+                    onChange={(event) => updateField('projectType', event.target.value)}
+                    required
+                    className="w-full rounded-md border border-input bg-background px-3 py-2.5 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring"
+                  >
+                    <option value="">Välj projekttyp</option>
+                    {PROJECT_TYPE_OPTIONS.map(([value, label]) => (
+                      <option key={value} value={value}>{label}</option>
+                    ))}
+                  </select>
+                </div>
+              )}
 
               <div>
                 <label htmlFor="quote-municipality" className="mb-1 block text-sm font-medium text-slate-700">
@@ -263,38 +275,40 @@ const ContactForm = ({ className = '', initialService = '' }: ContactFormProps) 
                 </datalist>
               </div>
 
-              <div className="grid gap-5 sm:grid-cols-2">
-                <div>
-                  <label htmlFor="quote-size" className="mb-1 block text-sm font-medium text-slate-700">
-                    Ungefärlig storlek
-                  </label>
-                  <select
-                    id="quote-size"
-                    value={formData.size}
-                    onChange={(event) => updateField('size', event.target.value)}
-                    className="w-full rounded-md border border-input bg-background px-3 py-2.5 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring"
-                  >
-                    {SIZE_OPTIONS.map(([value, label]) => <option key={value} value={value}>{label}</option>)}
-                  </select>
+              {requiresConstructionDetails && (
+                <div className="grid gap-5 sm:grid-cols-2">
+                  <div>
+                    <label htmlFor="quote-size" className="mb-1 block text-sm font-medium text-slate-700">
+                      Ungefärlig storlek
+                    </label>
+                    <select
+                      id="quote-size"
+                      value={formData.size}
+                      onChange={(event) => updateField('size', event.target.value)}
+                      className="w-full rounded-md border border-input bg-background px-3 py-2.5 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring"
+                    >
+                      {SIZE_OPTIONS.map(([value, label]) => <option key={value} value={value}>{label}</option>)}
+                    </select>
+                  </div>
+                  <div>
+                    <label htmlFor="quote-permit" className="mb-1 block text-sm font-medium text-slate-700">
+                      Status för lov/anmälan
+                    </label>
+                    <select
+                      id="quote-permit"
+                      value={formData.permitStatus}
+                      onChange={(event) => updateField('permitStatus', event.target.value)}
+                      className="w-full rounded-md border border-input bg-background px-3 py-2.5 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring"
+                    >
+                      {PERMIT_STATUS_OPTIONS.map(([value, label]) => <option key={value} value={value}>{label}</option>)}
+                    </select>
+                  </div>
                 </div>
-                <div>
-                  <label htmlFor="quote-permit" className="mb-1 block text-sm font-medium text-slate-700">
-                    Status för lov/anmälan
-                  </label>
-                  <select
-                    id="quote-permit"
-                    value={formData.permitStatus}
-                    onChange={(event) => updateField('permitStatus', event.target.value)}
-                    className="w-full rounded-md border border-input bg-background px-3 py-2.5 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring"
-                  >
-                    {PERMIT_STATUS_OPTIONS.map(([value, label]) => <option key={value} value={value}>{label}</option>)}
-                  </select>
-                </div>
-              </div>
+              )}
 
               <div>
                 <label htmlFor="quote-start" className="mb-1 block text-sm font-medium text-slate-700">
-                  Önskad projektstart
+                  {requiresConstructionDetails ? 'Önskad projektstart' : 'Önskad tid för besiktning'}
                 </label>
                 <Input
                   id="quote-start"
@@ -363,7 +377,9 @@ const ContactForm = ({ className = '', initialService = '' }: ContactFormProps) 
                   onChange={(event) => updateField('message', event.target.value)}
                   maxLength={4_000}
                   rows={4}
-                  placeholder="Till exempel befintliga handlingar, beslut eller särskilda förutsättningar."
+                  placeholder={formData.service === 'overlatelsebesiktning'
+                    ? 'Till exempel fastighetsbeteckning, byggnadstyp, ungefärligt byggår och önskat datum.'
+                    : 'Till exempel befintliga handlingar, beslut eller särskilda förutsättningar.'}
                 />
               </div>
 

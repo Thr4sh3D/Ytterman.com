@@ -53,7 +53,7 @@ const coreRoutes = [
   defineRoute({
     id: 'about', path: '/om', priority: '0.7', pageType: 'AboutPage',
     title: 'Om Tobias Ytterman – certifierad kontrollansvarig',
-    description: 'Lär känna Tobias Ytterman: Kiwa-certifierad kontrollansvarig, utbildad för BAS-P/BAS-U och medlem i SBR.',
+    description: 'Lär känna Tobias Ytterman: Kiwa-certifierad kontrollansvarig, utbildad för BAS-P/BAS-U och ansluten till SBR.',
     keywords: ['Tobias Ytterman', 'Kiwa KA11926', 'kontrollansvarig', 'SBR'],
   }),
   defineRoute({
@@ -144,9 +144,9 @@ const serviceRoutes = [
   }),
   defineRoute({
     id: 'energyCalculation', path: '/energiberakning-online', priority: '0.6', pageType: 'WebPage', serviceKey: 'energyCalculation',
-    title: 'Energiberäkning online – intresseanmälan | Ytterman',
-    description: 'Skicka en intresseanmälan för digital energiberäkning. Pris, underlag, omfattning och leverans bekräftas innan beställning.',
-    keywords: ['energiberäkning online', 'energiberäkning intresseanmälan'],
+    title: 'Energiberäkning online via partner | Ytterman',
+    description: 'Starta en aktiv energiberäkning på partnerns webbplats. Pris, villkor och leverans hanteras av partnern; Ytterman får provision via länken.',
+    keywords: ['energiberäkning online', 'energiberäkning bygglov', 'energiberäkning via partner'],
   }),
   defineRoute({
     id: 'buildingPermitDocuments', path: '/bygglovshandlingar', priority: '0.8', pageType: 'ServicePage', serviceKey: 'buildingPermitDocuments',
@@ -244,9 +244,9 @@ const contentRoutes = [
   }),
   defineRoute({
     id: 'products', path: '/produkter', priority: '0.6', pageType: 'CollectionPage',
-    title: 'Digitala verktyg för byggprojekt | Ytterman',
-    description: 'Digitala planeringsverktyg för byggprojekt. Produkter visas som intresseanmälan tills betalning och automatisk leverans är verifierade.',
-    keywords: ['digitala byggverktyg', 'byggplanering'],
+    title: 'Energiberäkning online och digitala byggverktyg | Ytterman',
+    description: 'Starta energiberäkning via aktiv extern partnertjänst eller anmäl intresse för Yttermans kommande digitala planeringsverktyg.',
+    keywords: ['energiberäkning online', 'digitala byggverktyg', 'byggplanering'],
   }),
   defineRoute({
     id: 'buildingStartPlanner', path: '/byggstart-planerare', priority: '0.6', pageType: 'WebPage', serviceKey: 'buildingStartPlanner',

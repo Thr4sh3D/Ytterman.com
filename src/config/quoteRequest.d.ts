@@ -24,3 +24,4 @@ export const SIZE_OPTIONS: readonly (readonly [string, string])[];
 export const PERMIT_STATUS_OPTIONS: readonly (readonly [string, string])[];
 export const QUOTE_LIMITS: Readonly<Record<'name' | 'email' | 'phone' | 'municipality' | 'message' | 'attribution', number>>;
 export const getQuoteService: (serviceId: string) => QuoteServiceDefinition | null;
+export const quoteServiceRequiresConstructionDetails: (serviceId: string) => boolean;
