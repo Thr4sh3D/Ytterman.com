@@ -52,8 +52,8 @@ const OmradenPage = () => {
             <div className="container mx-auto max-w-5xl px-4">
               <h2 className="mb-3 text-center text-3xl font-bold text-slate-900">Lokala informationssidor</h2>
               <p className="mx-auto mb-10 max-w-3xl text-center text-slate-600">
-                Fem prioriterade KA-sidor har eget process- och offertstöd. Övriga orter betjänas
-                fortfarande efter projektbedömning men får ingen tunn, duplicerad landningssida.
+                Välj ort för information om hur ett uppdrag som kontrollansvarig kan läggas upp.
+                För andra orter bedöms tillgänglighet, resor och omfattning utifrån projektet.
               </p>
               <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
                 {Object.values(cityData).map((city) => (
