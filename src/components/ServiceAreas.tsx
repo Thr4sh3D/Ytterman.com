@@ -37,8 +37,8 @@ export const ServiceAreas = ({ className = '' }: ServiceAreasProps) => {
             Våra verksamhetsområden
           </h2>
           <p className="text-xl text-slate-600 mb-12">
-            Ytterman tar emot förfrågningar från {COMPANY.region}. De fem prioriterade KA-sidorna
-            har eget lokalt beslutsstöd; övriga orter länkar till det regionala upplägget.
+            Ytterman tar emot förfrågningar från {COMPANY.region}. Välj en ort för lokal information
+            om kontrollansvarig eller se det regionala upplägget för övriga delar av länet.
           </p>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6" role="list">
