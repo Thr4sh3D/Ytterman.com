@@ -64,13 +64,13 @@ Den nya releasekontrollen stoppar releasen om den hittar:
 | Mätpunkt | Före steg 9 | Efter ändring |
 |---|---:|---:|
 | Open Graph-bild | 1 161 730 byte, 3402 × 1646 | 27 822 byte, 1200 × 630 |
-| CSS | 116,15 kB / 17,96 kB gzip | Rapporteras av PR-kontrollen |
-| Applikationens entry-JS | 216,26 kB / 59,36 kB gzip | Rapporteras av PR-kontrollen |
-| Initiala resurser | cirka 154,06 kB gzip | Budget: högst 150 kB gzip |
+| CSS | 116,15 kB / 17,96 kB gzip | 74,49 kB / 11,82 kB gzip |
+| Största JavaScript-chunk | minst 216,26 kB för tidigare entry | 199,86 kB |
+| Initiala resurser | cirka 154,06 kB gzip | 126,99 kB gzip |
 | För-renderade routes | 49 + 7 redirects + 404 | Ska vara oförändrat; verifieras i PR |
 | Interna referenser | 1 912, inga saknade vid baslinjen | Räknas och verifieras i PR |
 
-De slutliga bundle-värdena ska hämtas från pull requestens `Release quality`-logg. Den lokala arbetsmiljön saknade kvarvarande körbudget när slutkontrollen skulle göras, så dokumentet märker värdena som väntande i stället för att ange obekräftade resultat.
+Värdena efter ändring kommer från pull requestens `Release quality`-logg. Jämfört med baslinjen minskade CSS med cirka 35,9 procent rått och 34,2 procent gzip. Den initiala gzip-lasten minskade med cirka 17,6 procent och ligger under budgeten 150 kB.
 
 ## Lighthouse
 

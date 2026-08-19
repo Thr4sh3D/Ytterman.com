@@ -65,7 +65,8 @@ for (const route of getPrerenderRoutes()) {
   if (h1Count !== 1) fail(`${route}: förväntade exakt en H1, hittade ${h1Count}`);
   if (mainCount !== 1) fail(`${route}: förväntade exakt ett main-landmark, hittade ${mainCount}`);
   if (!/<html\b[^>]*\blang="sv"/i.test(html)) fail(`${route}: html lang="sv" saknas`);
-  if (!/<div id="root">[\s\S]*?<main\b/i.test(html) || stripTags(html.match(/<div id="root">([\s\S]*?)<\/div>\s*<script/i)?.[1] || '').length < 400) {
+  const mainHtml = html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/i)?.[1] || '';
+  if (!/<div id="root">[\s\S]*?<main\b/i.test(html) || stripTags(mainHtml).length < 400) {
     fail(`${route}: huvudinnehållet är inte användbart utan JavaScript`);
   }
 
@@ -130,7 +131,7 @@ for (const [sourceRoute, html] of routeFiles) {
     const rawTarget = match[1];
     if (!rawTarget || /^(?:data:|blob:|javascript:)/i.test(rawTarget)) continue;
     if (rawTarget.startsWith('mailto:')) {
-      if (rawTarget !== 'mailto:tobias@ytterman.com') fail(`${sourceRoute}: inkonsekvent mailto-länk ${rawTarget}`);
+      if (rawTarget.split('?')[0] !== 'mailto:tobias@ytterman.com') fail(`${sourceRoute}: inkonsekvent mailto-länk ${rawTarget}`);
       continue;
     }
     if (rawTarget.startsWith('tel:')) {
