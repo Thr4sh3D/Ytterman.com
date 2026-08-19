@@ -20,7 +20,7 @@ const KontaktPage = () => {
     <>
       <AdvancedSEO 
         title="Kontakta Ytterman – KA och överlåtelsebesiktning"
-        description="Skicka förfrågan om kontrollansvarig eller överlåtelsebesiktning i Västernorrland. BAS-P/BAS-U och andra byggtjänster finns som kompletterande stöd."
+        description="Skicka förfrågan om kontrollansvarig eller överlåtelsebesiktning i Västernorrland. För byggprojekt erbjuder Ytterman även BAS-P, BAS-U och andra byggtjänster."
         keywords="kontakt kontrollansvarig, överlåtelsebesiktning Västernorrland, besiktningsman, BAS-P BAS-U, Sundsvall, Härnösand, Sollefteå, Timrå, Kramfors, Tobias Ytterman"
         url="https://ytterman.com/kontakt"
         breadcrumbs={breadcrumbs}
@@ -51,7 +51,7 @@ const KontaktPage = () => {
                 <p className="text-xl text-slate-600 mb-8">
                   Behöver du kontrollansvarig eller en överlåtelsebesiktning? Skicka några
                   grunduppgifter om byggprojektet eller fastigheten så återkommer vi med nästa steg.
-                  BAS-P, BAS-U och andra byggtjänster finns som kompletterande stöd.
+                  För byggprojekt kan jag även hjälpa till med BAS-P, BAS-U och andra byggtjänster.
                   {' '}{BUSINESS_COPY.preferredContact}
                 </p>
                 
