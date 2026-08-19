@@ -98,6 +98,9 @@ export const PRICING = {
     from: 46_500,
     to: 52_500,
   },
+  inspection: {
+    from: 9_900,
+  },
   includedSupplementRounds: 1,
   supplementRule:
     'En normal kompletteringsvända ingår. Upprepade kompletteringar på grund av ändringar eller bristande underlag debiteras separat.',
@@ -107,7 +110,8 @@ export const PRICE_LABELS = {
   kaBasFrom: `Från ${formatSek(PRICING.ka.extension.bas)}`,
   kaPlusFrom: `Från ${formatSek(PRICING.ka.extension.plus)}`,
   kaBasPackage: `${PRICING.kaBasPackage.from.toLocaleString('sv-SE')}–${formatSek(PRICING.kaBasPackage.to)}`,
-  schemaRange: `${PRICING.ka.extension.bas.toLocaleString('sv-SE')}–${PRICING.kaBasPackage.to.toLocaleString('sv-SE')} SEK`,
+  inspectionFrom: `Från ${formatSek(PRICING.inspection.from)}`,
+  schemaRange: `${PRICING.inspection.from.toLocaleString('sv-SE')}–${PRICING.kaBasPackage.to.toLocaleString('sv-SE')} SEK`,
   quote: 'Pris lämnas efter genomgång av underlaget',
   interest: 'Intresseanmälan',
 } as const;
@@ -125,7 +129,7 @@ export const BUSINESS_COPY = {
   digitalInterest:
     'Tjänsten visas som intresseanmälan tills betalning och automatisk leverans är verifierade.',
   energyCalculationPartner:
-    'Energiberäkningen genomförs i en aktiv extern partnertjänst. Beställning, villkor och leverans hanteras på partnerns webbplats.',
+    'Gör energiberäkningen online hos vår samarbetspartner. Där ser du aktuellt pris, villkor och leverans innan du beställer.',
   energyCalculationAffiliate:
     'Ytterman får provision på försäljning som sker via partnerlänken.',
 } as const;
@@ -204,7 +208,7 @@ export const SERVICES = {
     publicationStatus: 'active',
     priceLabel: 'Pris och villkor hos partnern',
     features: [
-      'Aktiv tjänst på partnerns webbplats',
+      'Starta och genomför beräkningen online',
       'Beräkning för småhus, flerbostadshus och lokaler',
       'Pris, villkor och leverans visas av partnern',
       BUSINESS_COPY.energyCalculationAffiliate,
@@ -233,7 +237,7 @@ export const SERVICES = {
     shortDescription: 'Okulär besiktning inför en fastighetsöverlåtelse.',
     deliveryModel: 'tobias',
     publicationStatus: 'active',
-    priceLabel: PRICE_LABELS.quote,
+    priceLabel: PRICE_LABELS.inspectionFrom,
     features: [
       'Okulär kontroll av åtkomliga delar',
       'Dokumentation av synliga iakttagelser',

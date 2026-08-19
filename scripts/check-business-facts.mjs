@@ -123,6 +123,9 @@ const requiredConfigFragments = [
   'plus: 39_500',
   'from: 46_500',
   'to: 52_500',
+  'inspection: {',
+  'from: 9_900',
+  'inspectionFrom:',
   "deliveryModel: 'partner'",
   "publicationStatus: 'interest-only'",
   "affiliation: {",
@@ -229,7 +232,7 @@ const energyCalculationPage = readFileSync(join(projectRoot, 'src/pages/Energibe
 for (const fragment of [
   'ProductAction productKey="energyCalculation"',
   'BUSINESS_COPY.energyCalculationAffiliate',
-  'Aktiv extern partnertjänst',
+  'service.shortDescription',
 ]) {
   if (!energyCalculationPage.includes(fragment)) {
     violations.push(`src/pages/EnergiberakningOnlinePage.tsx – aktiv partnertjänst saknar: ${fragment}`);
@@ -249,7 +252,7 @@ for (const [path, source, fragments] of [
     'const priorityServices',
     'SERVICES.kontrollansvarig',
     'SERVICES.inspection',
-    'Prioriterad tjänst',
+    'featured',
     'aria-label={`Läs mer om ${config.name}`}',
     'absolute inset-0',
   ]],

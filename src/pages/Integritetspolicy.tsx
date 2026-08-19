@@ -48,10 +48,10 @@ const Integritetspolicy = () => {
                   <h2 className="text-2xl font-semibold text-slate-900 mb-4">4. Hur använder vi dina personuppgifter?</h2>
                   <p>Vi använder dina personuppgifter för att:</p>
                   <ul className="list-disc pl-6 space-y-2">
-                    <li>Tillhandahålla våra tjänster som kontrollansvarig och BAS</li>
+                    <li>Tillhandahålla tjänster som kontrollansvarig, överlåtelsebesiktning och BAS</li>
                     <li>Kommunicera med dig om ditt projekt</li>
                     <li>Skicka offerter och projektdokumentation</li>
-                    <li>Sortera förfrågan till rätt internt granskningsflöde</li>
+                    <li>Hantera och bedöma din förfrågan</li>
                     <li>Förbättra vår webbplats och våra tjänster</li>
                     <li>Uppfylla juridiska förpliktelser</li>
                   </ul>
@@ -83,15 +83,14 @@ const Integritetspolicy = () => {
                 </section>
 
                 <section>
-                  <h2 className="text-2xl font-semibold text-slate-900 mb-4">7. Automatiserad hantering av förfrågningar</h2>
+                  <h2 className="text-2xl font-semibold text-slate-900 mb-4">7. Hantering av förfrågningar</h2>
                   <p>
-                    Offertformuläret skickar uppgifterna via en skyddad serverfunktion till vårt interna
-                    arbetsflöde. Där skapas ett strukturerat ärende för manuell bedömning. Automatiseringen
-                    fattar inte beslut om att acceptera ett uppdrag eller ingå avtal.
+                    Offertformuläret skickar uppgifterna säkert och skapar ett ärende som bedöms manuellt.
+                    Automatiseringen fattar inte beslut om att acceptera ett uppdrag eller ingå avtal.
                   </p>
                   <p className="mt-4">
-                    En förfrågan om energideklaration markeras för partnerkontroll. Ingen utförare tilldelas
-                    innan det har kontrollerats att partnerns energiexpert har giltig certifiering för uppdraget.
+                    Vid en förfrågan om energideklaration kontrollerar vi att partnerns energiexpert har
+                    giltig certifiering innan en utförare bekräftas för uppdraget.
                   </p>
                 </section>
 

@@ -128,7 +128,7 @@ const ContactForm = ({ className = '', initialService = '' }: ContactFormProps) 
       setSubmitStatus('success');
       setPrivacyAccepted(false);
       toast.success('Förfrågan är skickad', {
-        description: 'Tack! Uppgifterna är strukturerade och redo för en första bedömning.',
+        description: 'Tack! Jag återkommer med en första bedömning och nästa steg.',
       });
     } else {
       setSubmitStatus('error');
@@ -147,13 +147,13 @@ const ContactForm = ({ className = '', initialService = '' }: ContactFormProps) 
           <CheckCircle className="mx-auto mb-4 h-12 w-12 text-green-600" aria-hidden="true" />
           <h3 className="mb-3 text-2xl font-bold text-slate-900">Tack – förfrågan är mottagen</h3>
           <p className="mx-auto mb-6 max-w-xl text-slate-600">
-            Projektuppgifterna går nu vidare till rätt granskningsflöde. Inget uppdrag startar innan
-            omfattning, kapacitet och villkor har bekräftats.
+            Jag går igenom uppgifterna och återkommer om möjligt upplägg, omfattning och nästa steg.
+            Inget uppdrag startar innan tillgänglighet och villkor har bekräftats.
           </p>
           {formData.service === 'energideklaration' && (
             <p className="mx-auto mb-6 max-w-xl rounded-lg bg-amber-50 p-4 text-sm text-amber-900">
-              Energideklarationen går först till intern partnerkontroll. Den som utför deklarationen
-              ska vara certifierad energiexpert med giltig behörighet.
+              För energideklaration bekräftar Ytterman vilken behörig partner som kan utföra uppdraget.
+              Deklarationen utförs alltid av en certifierad energiexpert med giltig behörighet.
             </p>
           )}
           <div className="flex flex-col justify-center gap-3 sm:flex-row">
@@ -198,8 +198,8 @@ const ContactForm = ({ className = '', initialService = '' }: ContactFormProps) 
         <CardDescription>
           {step === 1
             ? requiresConstructionDetails
-              ? 'Tre grunduppgifter räcker för att sortera förfrågan rätt. Resten är frivilligt.'
-              : 'Tjänst och kommun räcker för att sortera besiktningsförfrågan rätt. Resten är frivilligt.'
+              ? 'Ange tjänst, projekttyp och kommun så kan jag bedöma ett lämpligt upplägg.'
+              : 'Välj tjänst och ange kommun. Övriga uppgifter är frivilliga men hjälper mig att bedöma förfrågan.'
             : BUSINESS_COPY.defaultResponse}
         </CardDescription>
       </CardHeader>

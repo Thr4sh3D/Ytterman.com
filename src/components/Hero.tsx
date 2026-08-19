@@ -33,7 +33,8 @@ export const Hero = () => (
           </p>
           <p className="mb-7 max-w-2xl text-lg leading-relaxed text-muted-foreground">
             Jag hjälper dig genom byggprojektets kontrollprocess och inför fastighetsöverlåtelsen.
-            Uppdrag som {BAS.rolesLabel} finns kvar som kompletterande stöd när projektet behöver det.
+            För byggprojekt kan jag även ta uppdrag som {BAS.rolesLabel} och samordna
+            arbetsmiljöarbetet under projektering och utförande.
           </p>
 
           <ul className="mb-8 space-y-3">

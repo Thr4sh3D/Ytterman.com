@@ -30,6 +30,10 @@ const OverlatelsebesiktningPage = () => {
       answer: "Besiktningen inkluderar inte håltagningar, rivningar, demonteringar, provtagningar eller funktionsprovning av installationer. Ej åtkomliga utrymmen (t.ex. låsta rum, isolerade vindar, snötäckta tak) kan inte besiktigas. Vid indikation på problem rekommenderas fortsatt utredning av fackman."
     },
     {
+      question: "Vad kostar en överlåtelsebesiktning?",
+      answer: `${inspectionService.priceLabel} inkl. moms. Slutligt pris bekräftas efter genomgång av fastighetens storlek, ålder, konstruktion, åtkomlighet och önskad omfattning.`
+    },
+    {
       question: "Hur lång tid tar en överlåtelsebesiktning?",
       answer: "Tiden beror på fastighetens storlek, ålder, konstruktion och åtkomlighet. Tidsåtgång på plats och rapportens leveranstid bekräftas vid bokning."
     },
@@ -85,7 +89,7 @@ const OverlatelsebesiktningPage = () => {
     <>
       <AdvancedSEO
         title="Överlåtelsebesiktning Sundsvall & Härnösand | Ytterman"
-        description="Överlåtelsebesiktning med över 20 års erfarenhet i byggbranschen. Omfattning, pris och rapportens leveranstid bekräftas vid bokning."
+        description="Överlåtelsebesiktning från 9 900 kr inkl. moms med över 20 års byggerfarenhet. Omfattning, slutligt pris och leveranstid bekräftas vid bokning."
         keywords="överlåtelsebesiktning, besiktning, fastighetbesiktning, besiktningsman Sundsvall, överlåtelsebesiktning Härnösand, Västernorrland"
         url="https://ytterman.com/overlatelsebesiktning"
         type="website"
@@ -108,7 +112,7 @@ const OverlatelsebesiktningPage = () => {
           badge="Överlåtelsebesiktning"
           title="Överlåtelsebesiktning i Västernorrland"
           subtitle="Okulär undersökning med avtalad omfattning"
-          description="Med över 20 års erfarenhet i byggbranschen genomför jag okulära överlåtelsebesiktningar. Omfattning, pris och rapportens leveranstid bekräftas vid bokning."
+          description={`${inspectionService.priceLabel} inkl. moms. Jag genomför okulära överlåtelsebesiktningar med tydligt avtalad omfattning. Slutligt pris och rapportens leveranstid bekräftas vid bokning.`}
           features={[
             "Okulär besiktning av avtalade, synliga och åtkomliga delar",
             "Fotografisk dokumentation enligt uppdragsbekräftelsen",
@@ -128,7 +132,7 @@ const OverlatelsebesiktningPage = () => {
           bannerContent={{
             icon: Home,
             title: "Överlåtelsebesiktning",
-            subtitle: "20+ års erfarenhet i byggbranschen",
+            subtitle: `${inspectionService.priceLabel} inkl. moms`,
             certifications: [
               "Över 20 års erfarenhet i byggbranschen",
               "Tydligt avtalad omfattning och leveranstid",

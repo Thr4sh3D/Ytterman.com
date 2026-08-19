@@ -100,7 +100,7 @@ const EnergiDeklarationPage = () => {
 
         <main id="main-content">
         <ServiceHero
-          badge="Partnertjänst"
+          badge="Via certifierad energiexpert"
           title="Energideklaration i Västernorrland"
           subtitle="Ytterman samordnar – certifierad energiexpert utför"
           description={BUSINESS_COPY.energyPartner}
