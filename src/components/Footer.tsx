@@ -102,6 +102,11 @@ export const Footer = () => {
                   Byggstart-planerare
                 </a>
               </li>
+              <li>
+                <a href="/foretag/" className="text-gray-300 hover:text-white transition-colors">
+                  Företag och portfölj
+                </a>
+              </li>
             </ul>
           </nav>
 
@@ -123,7 +128,13 @@ export const Footer = () => {
           <p className="text-gray-500 text-xs font-mono text-center">
             Build: {shortCommitSha ?? 'local'}{buildTimeLabel ? ` • ${buildTimeLabel}` : ''}
           </p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
+          <div className="mt-4 flex flex-wrap justify-center gap-x-6 gap-y-3 md:mt-0">
+            <a href="/priser/" className="text-gray-400 hover:text-white transition-colors text-sm">
+              Paket och priser
+            </a>
+            <a href="/samarbeta/" className="text-gray-400 hover:text-white transition-colors text-sm">
+              Samarbeta
+            </a>
             <a href="/guider/" className="text-gray-400 hover:text-white transition-colors text-sm">
               Guider
             </a>

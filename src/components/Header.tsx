@@ -10,6 +10,7 @@ export const Header = () => {
     { name: 'Hem', href: '/' },
     { name: 'Tjänster', href: '/tjanster/' },
     { name: 'Produkter', href: '/produkter/' },
+    { name: 'Företag', href: '/foretag/' },
     { name: 'Guider', href: '/guider/' },
     { name: 'FAQ', href: '/faq/' },
     { name: 'Kontakt', href: '/kontakt/' },
@@ -39,7 +40,7 @@ export const Header = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden lg:flex items-center space-x-6">
             {navigation.map((item) => (
               <a
                 key={item.name}
@@ -52,7 +53,7 @@ export const Header = () => {
           </nav>
 
           {/* Desktop CTA */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden lg:flex items-center space-x-4">
             <a 
               href={COMPANY.emailHref}
               className="flex items-center space-x-2 text-slate-700 hover:text-primary transition-colors"
@@ -69,7 +70,7 @@ export const Header = () => {
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="text-slate-700 hover:text-primary transition-colors"
@@ -81,7 +82,7 @@ export const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 border-t border-slate-200">
+          <div className="lg:hidden py-4 border-t border-slate-200">
             <nav className="flex flex-col space-y-4">
               {navigation.map((item) => (
                 <a
