@@ -177,7 +177,7 @@ const KontrollansvarigCityPage = ({ cityData: city }: KontrollansvarigCityPagePr
                   </div>
                 </div>
                 <div>
-                  <h2 className="flex items-center gap-2 text-2xl font-bold text-slate-900"><ShieldCheck className="h-6 w-6 text-primary" /> Övriga prioriterade orter</h2>
+                  <h2 className="flex items-center gap-2 text-2xl font-bold text-slate-900"><ShieldCheck className="h-6 w-6 text-primary" /> Kontrollansvarig på fler orter</h2>
                   <div className="mt-5 grid gap-3 sm:grid-cols-2">
                     {otherCities.map((otherCity) => <Link key={otherCity.id} to={`/${otherCity.slug}/`} className="rounded-lg border bg-white p-4 font-medium text-slate-800 hover:border-primary/40 hover:text-primary">Kontrollansvarig i {otherCity.name}</Link>)}
                     <Link to="/guider/vasternorrland/" className="rounded-lg border bg-blue-50 p-4 font-medium text-blue-900 hover:border-primary/40">Kontrollansvarig i Västernorrland</Link>
