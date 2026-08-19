@@ -34,9 +34,9 @@ const defineRoute = ({
 const coreRoutes = [
   defineRoute({
     id: 'home', path: '/', priority: '1.0', changefreq: 'weekly', pageType: 'WebPage',
-    title: 'Kontrollansvarig & BAS i Västernorrland | Ytterman',
-    description: 'Kiwa-certifierad kontrollansvarig och utbildad för BAS-P/BAS-U. Tydliga paket, personlig kontakt och över 20 års erfarenhet i byggbranschen.',
-    keywords: ['kontrollansvarig Västernorrland', 'BAS-P', 'BAS-U', 'Tobias Ytterman'],
+    title: 'Kontrollansvarig & överlåtelsebesiktning i Västernorrland | Ytterman',
+    description: 'Kiwa-certifierad kontrollansvarig i Västernorrland. Överlåtelsebesiktning från 9 900 kr inkl. moms. Tydliga villkor och över 20 års byggerfarenhet.',
+    keywords: ['kontrollansvarig Västernorrland', 'överlåtelsebesiktning Västernorrland', 'husbesiktning', 'Tobias Ytterman'],
   }),
   defineRoute({
     id: 'services', path: '/tjanster', priority: '0.9', pageType: 'CollectionPage',
@@ -139,7 +139,7 @@ const serviceRoutes = [
   defineRoute({
     id: 'inspection', path: '/overlatelsebesiktning', priority: '0.8', pageType: 'ServicePage', serviceKey: 'inspection',
     title: 'Överlåtelsebesiktning i Västernorrland | Ytterman',
-    description: 'Okulär överlåtelsebesiktning av synliga och åtkomliga delar. Omfattning, begränsningar, pris och leveranstid bekräftas vid bokning.',
+    description: 'Överlåtelsebesiktning från 9 900 kr inkl. moms av synliga och åtkomliga delar. Omfattning, begränsningar och slutligt pris bekräftas vid bokning.',
     keywords: ['överlåtelsebesiktning', 'husbesiktning', 'fastighetsbesiktning'],
   }),
   defineRoute({
