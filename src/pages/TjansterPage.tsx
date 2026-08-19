@@ -90,11 +90,11 @@ const TjansterPage = () => {
   const serviceFaq = [
     {
       question: "Vilka tjänster erbjuder Ytterman?",
-      answer: `Ytterman erbjuder kontrollansvarig, BAS-P, BAS-U, bygglovshandlingar och överlåtelsebesiktning. Energideklaration erbjuds och samordnas av Ytterman men utförs via behörig partner av certifierad energiexpert. Energiberäkning online är en aktiv extern partnertjänst där Ytterman får provision på försäljning via länken. ${COMPANY.experienceLabel}.`
+      answer: `Ytterman erbjuder kontrollansvarig, överlåtelsebesiktning, BAS-P, BAS-U och bygglovshandlingar. Energideklaration samordnas av Ytterman och utförs av certifierad energiexpert hos behörig partner. Energiberäkning online beställs hos vår samarbetspartner, och Ytterman får provision på försäljning via länken. ${COMPANY.experienceLabel}.`
     },
     {
       question: "Vad kostar era tjänster?",
-      answer: `KA Bas kostar ${PRICE_LABELS.kaBasFrom.toLowerCase()} inklusive moms och paketet KA + BAS-P/U kostar ${PRICE_LABELS.kaBasPackage.toLowerCase()}. Övriga tjänster prissätts efter genomgång av underlaget.`
+      answer: `KA Bas kostar ${PRICE_LABELS.kaBasFrom.toLowerCase()} inklusive moms, överlåtelsebesiktning kostar ${PRICE_LABELS.inspectionFrom.toLowerCase()} inklusive moms och paketet KA + BAS-P/U kostar ${PRICE_LABELS.kaBasPackage.toLowerCase()}. Övriga tjänster prissätts efter genomgång av underlaget.`
     },
     {
       question: "Vilka områden täcker ni?",
@@ -115,7 +115,7 @@ const TjansterPage = () => {
     <>
       <AdvancedSEO 
         title="Kontrollansvarig och överlåtelsebesiktning | Ytterman"
-        description={`Kontrollansvarig och överlåtelsebesiktning prioriteras i Västernorrland. BAS-P, BAS-U och andra byggtjänster erbjuds som kompletterande stöd. Priser ${PRICING.year}.`}
+        description={`Kontrollansvarig och överlåtelsebesiktning från ${PRICING.inspection.from.toLocaleString('sv-SE')} kr inklusive moms i Västernorrland. Ytterman erbjuder även BAS-P, BAS-U och andra byggtjänster. Priser ${PRICING.year}.`}
         keywords="kontrollansvarig tjänster, överlåtelsebesiktning, besiktningsman, BAS-P, BAS-U, bygglovshandlingar, energideklaration, Västernorrland, Sundsvall, Härnösand"
         url="https://ytterman.com/tjanster"
         breadcrumbs={breadcrumbs}
@@ -139,11 +139,11 @@ const TjansterPage = () => {
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto text-center">
                 <h1 className="text-5xl font-bold text-slate-900 mb-6">
-                  Våra Tjänster
+                  Våra tjänster
                 </h1>
                 <p className="text-xl text-slate-600 mb-8">
-                  Kontrollansvarig och överlåtelsebesiktning är våra prioriterade uppdrag.
-                  BAS-P, BAS-U och andra byggtjänster finns när projektet behöver kompletterande stöd.
+                  Jag hjälper dig främst med kontrollansvar och överlåtelsebesiktning.
+                  För byggprojekt kan uppdraget även omfatta BAS-P, BAS-U och andra byggtjänster.
                 </p>
                 <Button 
                   onClick={scrollToContact}
@@ -174,11 +174,6 @@ const TjansterPage = () => {
                           aria-label={`Läs mer om ${service.title}`}
                         />
                         <div className="pointer-events-none relative z-10 flex h-full flex-col">
-                          {service.priority && (
-                            <div className="absolute -top-10 -right-10 bg-primary text-white px-3 py-1 rounded-full text-sm font-semibold">
-                              Prioriterad
-                            </div>
-                          )}
                           <div className="flex items-center mb-6">
                             <div className="w-12 h-12 earth-gradient rounded-lg flex items-center justify-center mr-4">
                               <IconComponent className="w-6 h-6 text-white" aria-hidden="true" />
