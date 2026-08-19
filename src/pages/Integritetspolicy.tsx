@@ -38,7 +38,7 @@ const Integritetspolicy = () => {
                   <p>Vi kan samla in följande typer av personuppgifter:</p>
                   <ul className="list-disc pl-6 space-y-2">
                     <li><strong>Kontaktuppgifter:</strong> Namn, e-postadress, telefonnummer</li>
-                    <li><strong>Projektinformation:</strong> Uppgifter om ditt byggprojekt, adress, projekttyp</li>
+                    <li><strong>Projektinformation:</strong> Tjänst, projekttyp, kommun, ungefärlig storlek, lovstatus, önskad start och ditt meddelande</li>
                     <li><strong>Teknisk information:</strong> Begränsad besöksdata när du har samtyckt till analys eller marknadsföring</li>
                     <li><strong>Kommunikation:</strong> Meddelanden och korrespondens med oss</li>
                   </ul>
@@ -51,6 +51,7 @@ const Integritetspolicy = () => {
                     <li>Tillhandahålla våra tjänster som kontrollansvarig och BAS</li>
                     <li>Kommunicera med dig om ditt projekt</li>
                     <li>Skicka offerter och projektdokumentation</li>
+                    <li>Sortera förfrågan till rätt internt granskningsflöde</li>
                     <li>Förbättra vår webbplats och våra tjänster</li>
                     <li>Uppfylla juridiska förpliktelser</li>
                   </ul>
@@ -60,9 +61,9 @@ const Integritetspolicy = () => {
                   <h2 className="text-2xl font-semibold text-slate-900 mb-4">5. Rättslig grund för behandling</h2>
                   <p>Vi behandlar dina personuppgifter baserat på:</p>
                   <ul className="list-disc pl-6 space-y-2">
-                    <li><strong>Avtal:</strong> För att fullgöra våra tjänster enligt avtal</li>
-                    <li><strong>Berättigat intresse:</strong> För att utveckla och förbättra våra tjänster</li>
-                    <li><strong>Samtycke:</strong> När du frivilligt lämnar uppgifter via kontaktformulär</li>
+                    <li><strong>Avtal och åtgärder inför avtal:</strong> För att hantera din förfrågan, bedöma uppdraget och lämna offert</li>
+                    <li><strong>Berättigat intresse:</strong> För säker drift, missbruksskydd och utveckling av våra tjänster</li>
+                    <li><strong>Samtycke:</strong> För valfri analys och marknadsföring när du aktivt har valt detta</li>
                     <li><strong>Juridisk förpliktelse:</strong> För att uppfylla krav enligt PBL och andra lagar</li>
                   </ul>
                 </section>
@@ -70,18 +71,32 @@ const Integritetspolicy = () => {
                 <section>
                   <h2 className="text-2xl font-semibold text-slate-900 mb-4">6. Delning av personuppgifter</h2>
                   <p>
-                    Vi delar inte dina personuppgifter med tredje part utan ditt samtycke, förutom när 
-                    det krävs enligt lag eller för att tillhandahålla våra tjänster. Detta kan inkludera:
+                    Personuppgifter lämnas bara till mottagare som behövs för att hantera förfrågan,
+                    tillhandahålla en avtalad tjänst eller uppfylla lagkrav. Detta kan inkludera:
                   </p>
                   <ul className="list-disc pl-6 space-y-2">
                     <li>Byggnadsnämnder och myndigheter (enligt PBL)</li>
-                    <li>Tekniska leverantörer för webbplatsens drift</li>
+                    <li>Tekniska leverantörer för serverdrift, automatisering och e-post</li>
+                    <li>Behörig partner när en partnerlevererad tjänst, exempelvis energideklaration, ska offereras eller utföras</li>
                     <li>Juridiska rådgivare vid behov</li>
                   </ul>
                 </section>
 
                 <section>
-                  <h2 className="text-2xl font-semibold text-slate-900 mb-4">7. Lagring av personuppgifter</h2>
+                  <h2 className="text-2xl font-semibold text-slate-900 mb-4">7. Automatiserad hantering av förfrågningar</h2>
+                  <p>
+                    Offertformuläret skickar uppgifterna via en skyddad serverfunktion till vårt interna
+                    arbetsflöde. Där skapas ett strukturerat ärende för manuell bedömning. Automatiseringen
+                    fattar inte beslut om att acceptera ett uppdrag eller ingå avtal.
+                  </p>
+                  <p className="mt-4">
+                    En förfrågan om energideklaration markeras för partnerkontroll. Ingen utförare tilldelas
+                    innan det har kontrollerats att partnerns energiexpert har giltig certifiering för uppdraget.
+                  </p>
+                </section>
+
+                <section>
+                  <h2 className="text-2xl font-semibold text-slate-900 mb-4">8. Lagring av personuppgifter</h2>
                   <p>
                     Vi lagrar personuppgifter så länge de behövs för det aktuella ändamålet och därefter
                     så länge som krävs för avtal, rättsliga skyldigheter eller för att hantera rättsliga anspråk.
@@ -90,7 +105,7 @@ const Integritetspolicy = () => {
                 </section>
 
                 <section>
-                  <h2 className="text-2xl font-semibold text-slate-900 mb-4">8. Dina rättigheter</h2>
+                  <h2 className="text-2xl font-semibold text-slate-900 mb-4">9. Dina rättigheter</h2>
                   <p>Enligt GDPR har du rätt att:</p>
                   <ul className="list-disc pl-6 space-y-2">
                     <li><strong>Få tillgång</strong> till dina personuppgifter</li>
@@ -106,7 +121,7 @@ const Integritetspolicy = () => {
                 </section>
 
                 <section>
-                  <h2 className="text-2xl font-semibold text-slate-900 mb-4">9. Säkerhet</h2>
+                  <h2 className="text-2xl font-semibold text-slate-900 mb-4">10. Säkerhet</h2>
                   <p>
                     Vi arbetar med tekniska och organisatoriska skyddsåtgärder som anpassas efter
                     uppgifternas art, behandlingens omfattning och aktuell risk.
@@ -114,7 +129,7 @@ const Integritetspolicy = () => {
                 </section>
 
                 <section>
-                  <h2 className="text-2xl font-semibold text-slate-900 mb-4">10. Cookies</h2>
+                  <h2 className="text-2xl font-semibold text-slate-900 mb-4">11. Cookies</h2>
                   <p>
                     Nödvändig lagring används för webbplatsens funktioner och för att komma ihåg ditt val.
                     Google Analytics och Google Ads laddas endast om motsvarande ändamål är konfigurerat
@@ -141,7 +156,7 @@ const Integritetspolicy = () => {
                 </section>
 
                 <section>
-                  <h2 className="text-2xl font-semibold text-slate-900 mb-4">11. Ändringar av integritetspolicyn</h2>
+                  <h2 className="text-2xl font-semibold text-slate-900 mb-4">12. Ändringar av integritetspolicyn</h2>
                   <p>
                     Vi kan uppdatera denna integritetspolicy från tid till annan. Väsentliga ändringar 
                     kommer att meddelas på vår webbplats eller via e-post. Vi rekommenderar att du 
@@ -150,7 +165,7 @@ const Integritetspolicy = () => {
                 </section>
 
                 <section>
-                  <h2 className="text-2xl font-semibold text-slate-900 mb-4">12. Kontakt</h2>
+                  <h2 className="text-2xl font-semibold text-slate-900 mb-4">13. Kontakt</h2>
                   <p>
                     Om du har frågor om denna integritetspolicy eller hur vi behandlar dina 
                     personuppgifter, kontakta oss:
@@ -167,7 +182,7 @@ const Integritetspolicy = () => {
 
                 <section className="border-t pt-8 mt-12">
                   <p className="text-sm text-slate-600">
-                    <strong>Senast uppdaterad:</strong> 13 augusti 2026
+                    <strong>Senast uppdaterad:</strong> 18 augusti 2026
                   </p>
                 </section>
               </div>

@@ -33,6 +33,7 @@ export const ContactInfo = ({ className = '' }: ContactInfoProps) => {
     "BAS-P - Byggarbetsmiljösamordnare Projektering",
     "BAS-U - Byggarbetsmiljösamordnare Utförande",
     "Bygglovshandlingar och ritningar",
+    "Energideklaration via behörig partner",
     "Konsultation och rådgivning"
   ];
 
