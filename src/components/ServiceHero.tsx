@@ -138,7 +138,7 @@ export const ServiceHero = ({
                           <bannerContent.icon className="w-6 h-6 text-white" />
                         </div>
                         <div>
-                          <h3 className="font-bold text-lg text-foreground">{bannerContent.title}</h3>
+                          <p className="font-bold text-lg text-foreground">{bannerContent.title}</p>
                           <p className="text-sm text-muted-foreground">{bannerContent.subtitle}</p>
                         </div>
                       </div>
@@ -188,7 +188,7 @@ export const ServiceHero = ({
                 {displayStats.map((stat, index) => (
                   <div key={index} className="bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-shadow">
                     <stat.icon className="w-6 h-6 text-accent mb-2" />
-                    <h3 className="font-bold text-lg mb-1">{stat.title}</h3>
+                    <p className="font-bold text-lg mb-1">{stat.title}</p>
                     <p className="text-xs text-muted-foreground">{stat.subtitle}</p>
                   </div>
                 ))}
