@@ -37,6 +37,7 @@ const QUERY_SERVICE_MAP: Record<string, QuoteServiceId> = {
   energideklaration: 'energideklaration',
   'energideklaration-service': 'energideklaration',
   overlatelsebesiktning: 'overlatelsebesiktning',
+  'overlatelsebesiktning-service': 'overlatelsebesiktning',
   bygglovshandlingar: 'bygglovshandlingar',
   annat: 'other',
   other: 'other',

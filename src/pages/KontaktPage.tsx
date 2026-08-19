@@ -19,9 +19,9 @@ const KontaktPage = () => {
   return (
     <>
       <AdvancedSEO 
-        title="Kontakta Ytterman - Kontrollansvarig & BAS Västernorrland"
-        description="Kontakta Ytterman om kontrollansvarig, BAS-P/BAS-U eller energideklaration via behörig partner. Vi återkommer med nästa steg utifrån projektet."
-        keywords="kontakt kontrollansvarig, BAS-P BAS-U Västernorrland, byggkonsult Sundsvall, Härnösand, Sollefteå, Timrå, Kramfors, tobias ytterman"
+        title="Kontakta Ytterman – KA och överlåtelsebesiktning"
+        description="Skicka förfrågan om kontrollansvarig eller överlåtelsebesiktning i Västernorrland. BAS-P/BAS-U och andra byggtjänster finns som kompletterande stöd."
+        keywords="kontakt kontrollansvarig, överlåtelsebesiktning Västernorrland, besiktningsman, BAS-P BAS-U, Sundsvall, Härnösand, Sollefteå, Timrå, Kramfors, Tobias Ytterman"
         url="https://ytterman.com/kontakt"
         breadcrumbs={breadcrumbs}
         faq={faqData.general}
@@ -49,8 +49,9 @@ const KontaktPage = () => {
                   Kontakta oss
                 </h1>
                 <p className="text-xl text-slate-600 mb-8">
-                  Behöver du hjälp med kontrollansvarig, BAS-P, BAS-U eller andra byggtjänster? 
-                  Skicka projektets grunduppgifter så återkommer vi med nästa steg och offert.
+                  Behöver du kontrollansvarig eller en överlåtelsebesiktning? Skicka några
+                  grunduppgifter om byggprojektet eller fastigheten så återkommer vi med nästa steg.
+                  BAS-P, BAS-U och andra byggtjänster finns som kompletterande stöd.
                   {' '}{BUSINESS_COPY.preferredContact}
                 </p>
                 
@@ -84,17 +85,15 @@ const KontaktPage = () => {
                   <div className="rounded-xl border border-slate-200 p-6">
                     <h2 className="text-xl font-bold text-slate-900 mb-3">Inför första kontakten</h2>
                     <p className="text-slate-600">
-                      Beskriv gärna vilken typ av projekt du planerar, var fastigheten ligger och om du
-                      redan har ritningar, beslut eller en tidplan. Det gör det enklare att bedöma
-                      vilken tjänst som passar bäst.
+                      För KA: ange projekttyp, kommun och aktuellt skede. För besiktning: ange kommun,
+                      byggnadstyp, ungefärligt byggår och önskad tid. Det räcker för en första bedömning.
                     </p>
                   </div>
                   <div className="rounded-xl border border-slate-200 p-6">
                     <h2 className="text-xl font-bold text-slate-900 mb-3">När i processen du bör höra av dig</h2>
                     <p className="text-slate-600">
-                      Ju tidigare du kontaktar Ytterman, desto lättare är det att planera kontrollansvar,
-                      arbetsmiljösamordning, energifrågor och bygglovshandlingar utan att projektet tappar
-                      fart längre fram.
+                      Kontakta Ytterman tidigt inför tekniskt samråd och byggstart, eller så snart du vet
+                      när en fastighetsbesiktning behöver genomföras. Tillgänglighet bekräftas per uppdrag.
                     </p>
                   </div>
                   <div className="rounded-xl border border-slate-200 p-6">

@@ -43,6 +43,7 @@ assert.ok(contactForm.includes('Steg {step} av 2'), 'Tvåstegsflödet saknas.');
 assert.ok(contactForm.includes('quote-website'), 'Honeypot-fältet saknas.');
 assert.ok(contactForm.includes('integritetspolicyn'), 'Integritetsbekräftelsen saknas.');
 assert.ok(contactForm.includes('quoteServiceRequiresConstructionDetails(formData.service)'), 'Besiktningsflödet ska dölja irrelevanta bygglovsfält.');
+assert.ok(contactForm.includes("'overlatelsebesiktning-service': 'overlatelsebesiktning'"), 'Besiktningskortets CTA ska förvälja rätt formulärflöde.');
 assert.ok(client.includes("requiresConstructionDetails ? formData.projectType.trim() : 'not-applicable'"), 'Irrelevanta besiktningsfält ska normaliseras i payloaden.');
 assert.ok(!existsSync(new URL('../src/lib/emailjs.ts', import.meta.url)), 'Klientbaserad EmailJS-fil får inte finnas kvar.');
 assert.ok(!packageJson.dependencies?.['@emailjs/browser'], 'EmailJS får inte vara ett klientberoende.');

@@ -70,6 +70,11 @@ export const Footer = () => {
                 </a>
               </li>
               <li>
+                <a href="/overlatelsebesiktning/" className="text-gray-300 hover:text-white transition-colors">
+                  Överlåtelsebesiktning
+                </a>
+              </li>
+              <li>
                 <a href="/bas-p/" className="text-gray-300 hover:text-white transition-colors">
                   BAS-P
                 </a>
@@ -80,18 +85,13 @@ export const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="/bygglovshandlingar/" className="text-gray-300 hover:text-white transition-colors">
-                  Bygglovshandlingar
-                </a>
-              </li>
-              <li>
                 <a href="/energideklaration/" className="text-gray-300 hover:text-white transition-colors">
                   Energideklaration
                 </a>
               </li>
               <li>
-                <a href="/overlatelsebesiktning/" className="text-gray-300 hover:text-white transition-colors">
-                  Överlåtelsebesiktning
+                <a href="/bygglovshandlingar/" className="text-gray-300 hover:text-white transition-colors">
+                  Bygglovshandlingar
                 </a>
               </li>
               <li>

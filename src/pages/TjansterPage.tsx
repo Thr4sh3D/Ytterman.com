@@ -29,52 +29,7 @@ const TjansterPage = () => {
       price: SERVICES.kontrollansvarig.priceLabel,
       icon: Shield,
       link: SERVICES.kontrollansvarig.path,
-      isNew: false,
-    },
-    {
-      ...SERVICES.basP,
-      title: SERVICES.basP.name,
-      description: SERVICES.basP.shortDescription,
-      price: SERVICES.basP.priceLabel,
-      icon: FileText,
-      link: SERVICES.basP.path,
-      isNew: false,
-    },
-    {
-      ...SERVICES.basU,
-      title: SERVICES.basU.name,
-      description: SERVICES.basU.shortDescription,
-      price: SERVICES.basU.priceLabel,
-      icon: Users,
-      link: SERVICES.basU.path,
-      isNew: false,
-    },
-    {
-      ...SERVICES.energyCalculation,
-      title: SERVICES.energyCalculation.name,
-      description: SERVICES.energyCalculation.shortDescription,
-      price: SERVICES.energyCalculation.priceLabel,
-      icon: Calculator,
-      link: SERVICES.energyCalculation.path,
-      isNew: false,
-    },
-    {
-      ...SERVICES.buildingPermitDocuments,
-      title: SERVICES.buildingPermitDocuments.name,
-      description: SERVICES.buildingPermitDocuments.shortDescription,
-      price: SERVICES.buildingPermitDocuments.priceLabel,
-      icon: Building,
-      link: SERVICES.buildingPermitDocuments.path,
-      isNew: false,
-    },
-    {
-      ...SERVICES.energyDeclaration,
-      title: SERVICES.energyDeclaration.name,
-      description: SERVICES.energyDeclaration.shortDescription,
-      price: SERVICES.energyDeclaration.priceLabel,
-      icon: Zap,
-      link: SERVICES.energyDeclaration.path,
-      isNew: false,
+      priority: true,
     },
     {
       ...SERVICES.inspection,
@@ -83,7 +38,52 @@ const TjansterPage = () => {
       price: SERVICES.inspection.priceLabel,
       icon: Search,
       link: SERVICES.inspection.path,
-      isNew: false,
+      priority: true,
+    },
+    {
+      ...SERVICES.basP,
+      title: SERVICES.basP.name,
+      description: SERVICES.basP.shortDescription,
+      price: SERVICES.basP.priceLabel,
+      icon: FileText,
+      link: SERVICES.basP.path,
+      priority: false,
+    },
+    {
+      ...SERVICES.basU,
+      title: SERVICES.basU.name,
+      description: SERVICES.basU.shortDescription,
+      price: SERVICES.basU.priceLabel,
+      icon: Users,
+      link: SERVICES.basU.path,
+      priority: false,
+    },
+    {
+      ...SERVICES.energyCalculation,
+      title: SERVICES.energyCalculation.name,
+      description: SERVICES.energyCalculation.shortDescription,
+      price: SERVICES.energyCalculation.priceLabel,
+      icon: Calculator,
+      link: SERVICES.energyCalculation.path,
+      priority: false,
+    },
+    {
+      ...SERVICES.buildingPermitDocuments,
+      title: SERVICES.buildingPermitDocuments.name,
+      description: SERVICES.buildingPermitDocuments.shortDescription,
+      price: SERVICES.buildingPermitDocuments.priceLabel,
+      icon: Building,
+      link: SERVICES.buildingPermitDocuments.path,
+      priority: false,
+    },
+    {
+      ...SERVICES.energyDeclaration,
+      title: SERVICES.energyDeclaration.name,
+      description: SERVICES.energyDeclaration.shortDescription,
+      price: SERVICES.energyDeclaration.priceLabel,
+      icon: Zap,
+      link: SERVICES.energyDeclaration.path,
+      priority: false,
     },
   ];
 
@@ -114,9 +114,9 @@ const TjansterPage = () => {
   return (
     <>
       <AdvancedSEO 
-        title="Byggtjänster Västernorrland - KA, BAS, Energiberäkning | Ytterman"
-        description={`Kontrollansvarig, BAS-P och BAS-U i Västernorrland. Energideklaration samordnas av Ytterman och utförs av certifierad energiexpert hos behörig partner. Priser ${PRICING.year}.`}
-        keywords="kontrollansvarig tjänster, BAS-P, BAS-U, energiberäkning online, bygglovshandlingar, energideklaration, överlåtelsebesiktning, byggtjänster Västernorrland, Sundsvall, Härnösand, byggkontroll"
+        title="Kontrollansvarig och överlåtelsebesiktning | Ytterman"
+        description={`Kontrollansvarig och överlåtelsebesiktning prioriteras i Västernorrland. BAS-P, BAS-U och andra byggtjänster erbjuds som kompletterande stöd. Priser ${PRICING.year}.`}
+        keywords="kontrollansvarig tjänster, överlåtelsebesiktning, besiktningsman, BAS-P, BAS-U, bygglovshandlingar, energideklaration, Västernorrland, Sundsvall, Härnösand"
         url="https://ytterman.com/tjanster"
         breadcrumbs={breadcrumbs}
         faq={serviceFaq}
@@ -142,8 +142,8 @@ const TjansterPage = () => {
                   Våra Tjänster
                 </h1>
                 <p className="text-xl text-slate-600 mb-8">
-                  Kontrollansvarig, BAS-P, BAS-U och andra byggtjänster med tydlig
-                  leveransmodell, omfattning och offert för det aktuella projektet.
+                  Kontrollansvarig och överlåtelsebesiktning är våra prioriterade uppdrag.
+                  BAS-P, BAS-U och andra byggtjänster finns när projektet behöver kompletterande stöd.
                 </p>
                 <Button 
                   onClick={scrollToContact}
@@ -164,71 +164,79 @@ const TjansterPage = () => {
                   {services.map((service, index) => {
                     const IconComponent = service.icon;
                     return (
-                      <div key={index} className="bg-slate-50 rounded-xl p-8 hover:shadow-lg transition-shadow relative">
-                        {service.isNew && (
-                          <div className="absolute -top-2 -right-2 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                            Ny!
-                          </div>
-                        )}
-                        <div className="flex items-center mb-6">
-                          <div className="w-12 h-12 earth-gradient rounded-lg flex items-center justify-center mr-4">
-                            <IconComponent className="w-6 h-6 text-white" aria-hidden="true" />
-                          </div>
-                          <div>
-                            <h3 className="text-2xl font-bold text-slate-900">{service.title}</h3>
-                            <p className="text-primary font-semibold">{service.price}</p>
-                          </div>
-                        </div>
-                        
-                        <p className="text-slate-600 mb-6">{service.description}</p>
-                        
-                        <ul className="space-y-3 mb-8">
-                          {service.features.map((feature, featureIndex) => (
-                            <li key={featureIndex} className="flex items-start space-x-3">
-                              <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" aria-hidden="true" />
-                              <span className="text-slate-700">{feature}</span>
-                            </li>
-                          ))}
-                        </ul>
-                        
-                        <div className="flex gap-3">
-                          {service.id === 'energiberakning-online-service' && (
-                            <ProductAction productKey="energyCalculation" className="flex-1" />
+                      <article key={index} className={`flex flex-col rounded-xl p-8 hover:shadow-lg transition-shadow relative ${
+                        service.priority ? 'border-2 border-primary/40 bg-orange-50/40 shadow-md' : 'bg-slate-50'
+                      }`}>
+                        <button
+                          type="button"
+                          onClick={() => navigate(service.link)}
+                          className="absolute inset-0 z-0 rounded-xl focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-primary"
+                          aria-label={`Läs mer om ${service.title}`}
+                        />
+                        <div className="pointer-events-none relative z-10 flex h-full flex-col">
+                          {service.priority && (
+                            <div className="absolute -top-10 -right-10 bg-primary text-white px-3 py-1 rounded-full text-sm font-semibold">
+                              Prioriterad
+                            </div>
                           )}
-                          {service.id !== 'overlatelsebesiktning-service' && service.id !== 'energiberakning-online-service' && (
-                            <Button 
-                              onClick={() => handleServiceQuote(service.id)}
-                              className="flex-1 earth-gradient text-white hover:opacity-90"
-                              aria-label={`Få offert för ${service.title}`}
-                            >
-                              Få offert
-                            </Button>
-                          )}
-                          {service.id === 'overlatelsebesiktning-service' && BOOKING_OVL_URL && (
-                            <Button 
-                              asChild
-                              className="flex-1 earth-gradient text-white hover:opacity-90"
-                              aria-label="Skicka förfrågan om överlåtelsebesiktning"
-                            >
-                              <a 
-                                href={BOOKING_OVL_URL}
+                          <div className="flex items-center mb-6">
+                            <div className="w-12 h-12 earth-gradient rounded-lg flex items-center justify-center mr-4">
+                              <IconComponent className="w-6 h-6 text-white" aria-hidden="true" />
+                            </div>
+                            <div>
+                              <h3 className="text-2xl font-bold text-slate-900">{service.title}</h3>
+                              <p className="text-primary font-semibold">{service.price}</p>
+                            </div>
+                          </div>
+
+                          <p className="text-slate-600 mb-6">{service.description}</p>
+
+                          <ul className="mb-8 flex-grow space-y-3">
+                            {service.features.map((feature, featureIndex) => (
+                              <li key={featureIndex} className="flex items-start space-x-3">
+                                <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" aria-hidden="true" />
+                                <span className="text-slate-700">{feature}</span>
+                              </li>
+                            ))}
+                          </ul>
+
+                          <div className="pointer-events-auto flex gap-3">
+                            {service.id === 'energiberakning-online-service' && (
+                              <ProductAction productKey="energyCalculation" className="flex-1" />
+                            )}
+                            {service.id !== 'overlatelsebesiktning-service' && service.id !== 'energiberakning-online-service' && (
+                              <Button
+                                onClick={() => handleServiceQuote(service.id)}
+                                className="flex-1 earth-gradient text-white hover:opacity-90"
+                                aria-label={`Få offert för ${service.title}`}
                               >
-                                <CalendarCheck className="w-4 h-4 mr-2" aria-hidden="true" />
-                                Skicka förfrågan
-                              </a>
+                                Få offert
+                              </Button>
+                            )}
+                            {service.id === 'overlatelsebesiktning-service' && BOOKING_OVL_URL && (
+                              <Button
+                                asChild
+                                className="flex-1 earth-gradient text-white hover:opacity-90"
+                                aria-label="Skicka förfrågan om överlåtelsebesiktning"
+                              >
+                                <a href={BOOKING_OVL_URL}>
+                                  <CalendarCheck className="w-4 h-4 mr-2" aria-hidden="true" />
+                                  Skicka förfrågan
+                                </a>
+                              </Button>
+                            )}
+                            <Button
+                              onClick={() => window.location.href = service.link}
+                              variant="outline"
+                              className="hover:bg-primary hover:text-white"
+                              aria-label={`Läs mer om ${service.title}`}
+                            >
+                              Läs mer
+                              <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
                             </Button>
-                          )}
-                          <Button 
-                            onClick={() => window.location.href = service.link}
-                            variant="outline"
-                            className="hover:bg-primary hover:text-white"
-                            aria-label={`Läs mer om ${service.title}`}
-                          >
-                            Läs mer
-                            <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
-                          </Button>
+                          </div>
                         </div>
-                      </div>
+                      </article>
                     );
                   })}
                 </div>
