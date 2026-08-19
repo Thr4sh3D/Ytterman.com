@@ -75,7 +75,7 @@ const VasternorrlandGuide = () => (
         Roller och omfattning ska vara tydligt utsedda och avtalade för projektets skeden.
       </p>
 
-      <h2>Prioriterade ortssidor</h2>
+      <h2>Lokala sidor om kontrollansvarig</h2>
       <p>
         Ytterman betjänar {COMPANY.region}. Sundsvall, Härnösand, Timrå, Kramfors och Sollefteå har
         egna informationssidor med olika praktiska fokus. Sidorna innebär inte att Ytterman har
