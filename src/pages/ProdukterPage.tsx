@@ -23,7 +23,7 @@ const ProdukterPage = () => {
     <>
       <AdvancedSEO
         title="Digitala tjänster och verktyg | Ytterman"
-        description="Starta energiberäkning via aktiv extern partnertjänst eller anmäl intresse för Yttermans kommande planeringsverktyg."
+        description="Starta energiberäkning online hos vår samarbetspartner eller anmäl intresse för Yttermans digitala planeringsverktyg."
         keywords="energiberäkning online, digitala verktyg byggprojekt, byggstart planerare, Ytterman"
         url={`${COMPANY.siteUrl}/produkter/`}
         type="website"
@@ -43,14 +43,14 @@ const ProdukterPage = () => {
           <section className="border-b bg-white py-16">
             <div className="container mx-auto max-w-4xl px-4 text-center">
               <span className="mb-5 inline-flex rounded-full bg-amber-100 px-4 py-2 text-sm font-semibold text-amber-900">
-                Aktiv tjänst och kommande verktyg
+                Energiberäkning online och planeringsverktyg
               </span>
               <h1 className="mb-5 text-4xl font-bold text-slate-900 md:text-5xl">
                 Digitala verktyg för bättre byggplanering
               </h1>
               <p className="mx-auto max-w-2xl text-xl text-slate-600">
-                Starta en aktiv energiberäkning hos partnern eller följ verktyg som Ytterman
-                fortfarande utvecklar. Leveransmodell och nästa steg framgår för varje tjänst.
+                Starta en energiberäkning hos vår samarbetspartner eller anmäl intresse för
+                byggstart-planeraren. På varje tjänst ser du vad nästa steg är innan du går vidare.
               </p>
             </div>
           </section>
@@ -63,7 +63,7 @@ const ProdukterPage = () => {
                     <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-700 text-white">
                       <Calculator className="h-6 w-6" />
                     </div>
-                    <p className="text-sm font-bold uppercase tracking-wide text-blue-800">Aktiv partnertjänst</p>
+                    <p className="text-sm font-bold uppercase tracking-wide text-blue-800">Beställ online</p>
                     <CardTitle className="text-2xl">{energyCalculation.name}</CardTitle>
                   </CardHeader>
                   <CardContent className="p-6">
