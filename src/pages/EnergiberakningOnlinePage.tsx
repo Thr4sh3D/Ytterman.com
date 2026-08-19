@@ -40,7 +40,7 @@ const EnergiberakningOnlinePage = () => {
           <section className="bg-gradient-to-br from-slate-900 to-blue-900 py-16 text-white">
             <div className="container mx-auto max-w-4xl px-4 text-center">
               <span className="mb-5 inline-flex rounded-full bg-white/10 px-4 py-2 text-sm font-medium">
-                Aktiv extern partnertjänst
+                Starta direkt online
               </span>
               <h1 className="mb-6 text-4xl font-bold md:text-5xl">{service.name}</h1>
               <p className="mx-auto mb-8 max-w-2xl text-xl text-blue-100">
@@ -89,7 +89,7 @@ const EnergiberakningOnlinePage = () => {
               </div>
 
               <div className="mt-10 rounded-xl border border-amber-200 bg-amber-50 p-6 text-amber-950">
-                <h2 className="mb-2 text-xl font-semibold">Extern partnertjänst och provision</h2>
+                <h2 className="mb-2 text-xl font-semibold">Så fungerar beställningen</h2>
                 <p>{BUSINESS_COPY.energyCalculationPartner}</p>
                 <p className="mt-2 font-medium">{BUSINESS_COPY.energyCalculationAffiliate}</p>
               </div>
