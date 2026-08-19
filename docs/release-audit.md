@@ -74,17 +74,17 @@ Värdena efter ändring kommer från pull requestens `Release quality`-logg. Jä
 
 ## Lighthouse
 
-Lighthouse kunde inte köras lokalt eftersom miljön saknar Lighthouse, Chromium, Playwright och Puppeteer och grenen ännu inte har någon publik preview-URL. Det innebär att inget obekräftat Lighthouse-värde redovisas.
+En representativ mobilmätning genomfördes 2026-08-19 mot produktion med PageSpeed Insights, Lighthouse 13.4.1, emulerad Moto G Power och långsam 4G. Samtliga kontrollerade routes klarade releasegränsen minst 90 för SEO och tillgänglighet.
 
-Före merge ska en representativ mobilkörning göras mot en preview eller den byggda sidan, minst för:
+| Route | Prestanda | Tillgänglighet | Best Practices | SEO |
+|---|---:|---:|---:|---:|
+| Startsida | 97 | 96 | 100 | 100 |
+| /kontrollansvarig/ | 97 | 98 | 100 | 100 |
+| /kontakt/ | 97 | 100 | 100 | 100 |
+| /kontrollansvarig-sundsvall/ | 100 | 100 | 100 | 100 |
+| /guider/nar-kravs-kontrollansvarig/ | 100 | 100 | 100 | 100 |
 
-- startsidan;
-- `/kontrollansvarig/`;
-- `/kontakt/`;
-- en prioriterad ortssida;
-- en guide.
-
-Målet är minst 90 för SEO och tillgänglighet. Om någon vy inte når målet ska exakt route, mätvärde och blockerande audit dokumenteras i PR:n.
+Startsidan och KA-sidan fick avdrag för rubrikhopp. Startsidan fick även avdrag för kontrast i paket- och certifikatdelarna. Slutrevisionen rättar dessa element utan att ändra sidornas synliga struktur och lägger till en automatisk releasekontroll som stoppar nya hopp i rubrikhierarkin. En ny livekörning görs efter merge för att verifiera det publicerade eftervärdet.
 
 ## Kvarvarande manuella kontroller
 

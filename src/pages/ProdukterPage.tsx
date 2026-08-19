@@ -57,6 +57,7 @@ const ProdukterPage = () => {
 
           <section className="py-16">
             <div className="container mx-auto max-w-5xl px-4">
+              <h2 className="sr-only">Tillgängliga digitala tjänster och verktyg</h2>
               <div className="grid gap-8 md:grid-cols-2">
                 <Card className="overflow-hidden border-blue-200">
                   <CardHeader className="bg-blue-50">

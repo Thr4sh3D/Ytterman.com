@@ -125,7 +125,7 @@ export const Services = ({ onServiceSelect }: ServicesProps) => {
         <div className="mx-auto mb-8 max-w-4xl rounded-2xl bg-slate-900 p-7 text-center text-white sm:p-9">
           <p className="mb-2 text-sm font-bold uppercase tracking-[0.16em] text-amber-300">Ett samlat uppdrag</p>
           <h3 className="mb-3 text-2xl font-bold">Kombinera KA och BAS-P/U</h3>
-          <p className="mb-2 text-lg font-semibold text-primary">{PRICE_LABELS.kaBasPackage} inkl. moms</p>
+          <p className="mb-2 text-lg font-semibold text-amber-300">{PRICE_LABELS.kaBasPackage} inkl. moms</p>
           <p className="mx-auto mb-6 max-w-2xl text-slate-300">
             Samla kontrollansvar och arbetsmiljösamordning med en tydlig rollfördelning.
             Exakt omfattning och pris bekräftas efter genomgång av projektet.

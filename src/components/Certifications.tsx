@@ -47,7 +47,7 @@ export const Certifications = ({ showTitle = true, compact = false }: Certificat
               </div>
               <div className="flex justify-between">
                 <span className="text-slate-600">Giltigt till:</span>
-                <span className="font-semibold text-green-600">{KA_CERT.validUntil}</span>
+                <span className="font-semibold text-green-700">{KA_CERT.validUntil}</span>
               </div>
             </div>
             
@@ -59,7 +59,7 @@ export const Certifications = ({ showTitle = true, compact = false }: Certificat
                 width={400}
                 height={500}
               />
-              <div className="absolute top-2 right-2 bg-green-500 text-white px-2 py-1 rounded text-xs font-semibold">
+              <div className="absolute top-2 right-2 bg-green-700 text-white px-2 py-1 rounded text-xs font-semibold">
                 Giltigt
               </div>
             </div>
@@ -101,7 +101,7 @@ export const Certifications = ({ showTitle = true, compact = false }: Certificat
               </div>
               <div className="flex justify-between">
                 <span className="text-slate-600">Giltigt till:</span>
-                <span className="font-semibold text-green-600">{BAS.validUntil}</span>
+                <span className="font-semibold text-green-700">{BAS.validUntil}</span>
               </div>
               <div className="text-xs text-slate-500 mt-2">
                 Kursen omfattar aktuellt regelverk, däribland {BAS.regulation}
@@ -116,7 +116,7 @@ export const Certifications = ({ showTitle = true, compact = false }: Certificat
                 width={400}
                 height={500}
               />
-              <div className="absolute top-2 right-2 bg-green-500 text-white px-2 py-1 rounded text-xs font-semibold">
+              <div className="absolute top-2 right-2 bg-green-700 text-white px-2 py-1 rounded text-xs font-semibold">
                 Förnyat 2025
               </div>
             </div>
