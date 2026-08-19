@@ -98,6 +98,9 @@ export const PRICING = {
     from: 46_500,
     to: 52_500,
   },
+  inspection: {
+    from: 9_900,
+  },
   includedSupplementRounds: 1,
   supplementRule:
     'En normal kompletteringsvända ingår. Upprepade kompletteringar på grund av ändringar eller bristande underlag debiteras separat.',
@@ -107,7 +110,8 @@ export const PRICE_LABELS = {
   kaBasFrom: `Från ${formatSek(PRICING.ka.extension.bas)}`,
   kaPlusFrom: `Från ${formatSek(PRICING.ka.extension.plus)}`,
   kaBasPackage: `${PRICING.kaBasPackage.from.toLocaleString('sv-SE')}–${formatSek(PRICING.kaBasPackage.to)}`,
-  schemaRange: `${PRICING.ka.extension.bas.toLocaleString('sv-SE')}–${PRICING.kaBasPackage.to.toLocaleString('sv-SE')} SEK`,
+  inspectionFrom: `Från ${formatSek(PRICING.inspection.from)}`,
+  schemaRange: `${PRICING.inspection.from.toLocaleString('sv-SE')}–${PRICING.kaBasPackage.to.toLocaleString('sv-SE')} SEK`,
   quote: 'Pris lämnas efter genomgång av underlaget',
   interest: 'Intresseanmälan',
 } as const;
@@ -233,7 +237,7 @@ export const SERVICES = {
     shortDescription: 'Okulär besiktning inför en fastighetsöverlåtelse.',
     deliveryModel: 'tobias',
     publicationStatus: 'active',
-    priceLabel: PRICE_LABELS.quote,
+    priceLabel: PRICE_LABELS.inspectionFrom,
     features: [
       'Okulär kontroll av åtkomliga delar',
       'Dokumentation av synliga iakttagelser',
