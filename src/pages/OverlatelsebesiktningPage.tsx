@@ -8,10 +8,9 @@ import { ServiceHero } from "@/components/ServiceHero";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle, Phone, Mail, MapPin, Clock, Award, Shield, FileText, Search, Camera, ClipboardCheck, Home, ArrowRight } from "lucide-react";
+import { CheckCircle, Phone, Mail, MapPin, Clock, Award, Shield, FileText, Search, Camera, ClipboardCheck, Home } from "lucide-react";
 import { Link } from "react-router-dom";
 import { BOOKING_OVL_URL } from "@/config/booking";
-import { overlatelsebesiktningCityData } from '@/content/overlatelsebesiktningCityData';
 import { COMPANY, SERVICES } from '@/config/company';
 
 const inspectionService = SERVICES.inspection;
@@ -396,35 +395,6 @@ const OverlatelsebesiktningPage = () => {
               Vanliga frågor om överlåtelsebesiktning
             </h2>
             <FAQ items={overlatelsebesiktningFAQ} />
-          </div>
-        </section>
-
-        {/* City Pages Cross-linking */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-              Överlåtelsebesiktning i Västernorrland
-            </h2>
-            <p className="text-gray-600 text-center mb-8">
-              Följande sidor innehåller lokal information. Tillgänglighet och resor bekräftas vid bokning:
-            </p>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {Object.values(overlatelsebesiktningCityData).map((city) => (
-                <Link
-                  key={city.id}
-                  to={`/${city.slug}`}
-                  className="flex items-center justify-between p-4 bg-slate-50 rounded-lg border border-gray-200 hover:border-amber-300 hover:shadow-md transition-all group"
-                >
-                  <div>
-                    <span className="font-semibold text-gray-900 group-hover:text-amber-600">
-                      {city.name}
-                    </span>
-                    <span className="block text-sm text-gray-500">{city.travelTime}</span>
-                  </div>
-                  <ArrowRight className="h-4 w-4 text-gray-400 group-hover:text-amber-600" />
-                </Link>
-              ))}
-            </div>
           </div>
         </section>
 

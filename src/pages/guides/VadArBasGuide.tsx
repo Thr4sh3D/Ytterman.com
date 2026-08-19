@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { CheckCircle } from 'lucide-react';
 import { GuideLayout } from '@/components/GuideLayout';
 import { BAS, SERVICES } from '@/config/company';
+import { OFFICIAL_SOURCES } from '@/config/officialSources';
 
 const VadArBasGuide = () => (
   <GuideLayout
@@ -13,8 +14,10 @@ const VadArBasGuide = () => (
     seoDescription="Kort guide till BAS-P under projektering och BAS-U under utförande, med ansvarsfördelning enligt AFS 2023:3."
     keywords="vad är BAS, BAS-P, BAS-U, byggarbetsmiljösamordnare, AFS 2023:3"
     canonicalPath="/guider/vad-ar-bas"
+    sources={[OFFICIAL_SOURCES.workEnvironmentBas]}
   >
     <div className="prose prose-stone max-w-none">
+      <h2>Kort svar</h2>
       <p className="text-lg font-medium text-stone-700">
         BAS betyder byggarbetsmiljösamordnare. BAS-P hör till planering och projektering; BAS-U hör
         till utförandet. Roller och mandat ska vara tydliga när projektet går från ritning till byggplats.

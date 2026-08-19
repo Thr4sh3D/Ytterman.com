@@ -10,7 +10,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { render } from '../dist-ssr/entry-server.js';
-import { getPrerenderRoutes } from '../src/config/routeRegistry.mjs';
+import { getPrerenderRoutes, redirectRegistry, toCanonicalUrl } from '../src/config/routeRegistry.mjs';
 
 const scriptDirectory = dirname(fileURLToPath(import.meta.url));
 const projectRoot = join(scriptDirectory, '..');
@@ -66,6 +66,26 @@ const routes = getPrerenderRoutes();
 for (const route of routes) {
   await prerender(route, toOutputPath(route));
   console.log(`  ✓ ${toCanonicalPath(route)}`);
+}
+
+for (const redirect of redirectRegistry) {
+  const target = toCanonicalUrl(redirect.to);
+  const destination = toOutputPath(redirect.from);
+  const document = `<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="noindex, follow" />
+    <link rel="canonical" href="${target}" />
+    <meta http-equiv="refresh" content="0; url=${target}" />
+    <title>Sidan har flyttat | Ytterman</title>
+    <script>window.location.replace(${JSON.stringify(target)});</script>
+  </head>
+  <body><p>Sidan har flyttat till <a href="${target}">överlåtelsebesiktning i Västernorrland</a>.</p></body>
+</html>`;
+  mkdirSync(dirname(destination), { recursive: true });
+  writeFileSync(destination, document, 'utf8');
+  console.log(`  ↪ ${toCanonicalPath(redirect.from)} → ${target}`);
 }
 
 // GitHub Pages returns 404.html for unknown paths while preserving the URL.

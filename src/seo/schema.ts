@@ -109,6 +109,7 @@ const pageNode = (
   description: string,
   pageType: string,
   serviceKey?: string,
+  dateModified?: string,
 ): SchemaNode => ({
   '@type': pageType,
   '@id': `${canonicalUrl}#webpage`,
@@ -119,7 +120,11 @@ const pageNode = (
   isPartOf: { '@id': IDS.website },
   about: serviceKey ? { '@id': serviceId(serviceKey) } : { '@id': IDS.business },
   ...(pageType === 'TechArticle'
-    ? { author: { '@id': IDS.person }, publisher: { '@id': IDS.business } }
+    ? {
+        author: { '@id': IDS.person },
+        publisher: { '@id': IDS.business },
+        ...(dateModified ? { dateModified } : {}),
+      }
     : {}),
   ...(pageType === 'ServicePage' && serviceKey
     ? { mainEntity: { '@id': serviceId(serviceKey) } }
@@ -138,6 +143,7 @@ export const buildRouteSchema = (route: RouteDefinition) => {
         route.meta.description,
         route.schema.pageType,
         route.schema.serviceKey,
+        route.schema.dateModified,
       ),
     ],
   };

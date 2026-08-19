@@ -8,16 +8,7 @@ import { Header } from '@/components/Header';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { COMPANY } from '@/config/company';
-
-const slugByArea: Record<(typeof COMPANY.localPageAreas)[number], string> = {
-  Sundsvall: 'sundsvall',
-  Härnösand: 'harnosand',
-  Timrå: 'timra',
-  Kramfors: 'kramfors',
-  Sollefteå: 'solleftea',
-  Örnsköldsvik: 'ornskoldsvik',
-  Ånge: 'ange',
-};
+import { cityData } from '@/content/kontrollansvarigCityData';
 
 const OmradenPage = () => {
   const breadcrumbs = [
@@ -61,30 +52,33 @@ const OmradenPage = () => {
             <div className="container mx-auto max-w-5xl px-4">
               <h2 className="mb-3 text-center text-3xl font-bold text-slate-900">Lokala informationssidor</h2>
               <p className="mx-auto mb-10 max-w-3xl text-center text-slate-600">
-                Sidorna nedan hjälper dig beskriva projektets läge. De är inte ett löfte om
-                omedelbar tillgänglighet; resevillkoren framgår alltid av offerten.
+                Fem prioriterade KA-sidor har eget process- och offertstöd. Övriga orter betjänas
+                fortfarande efter projektbedömning men får ingen tunn, duplicerad landningssida.
               </p>
               <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                {COMPANY.localPageAreas.map((area) => {
-                  const slug = slugByArea[area];
-                  return (
-                    <Card key={area}>
+                {Object.values(cityData).map((city) => (
+                    <Card key={city.id}>
                       <CardHeader>
-                        <CardTitle>{area}</CardTitle>
+                        <CardTitle>{city.name}</CardTitle>
                       </CardHeader>
                       <CardContent className="space-y-3">
-                        {area !== 'Örnsköldsvik' && area !== 'Ånge' && (
-                          <Link className="flex items-center text-sm font-medium text-primary" to={`/kontrollansvarig-${slug}/`}>
+                          <Link className="flex items-center text-sm font-medium text-primary" to={`/${city.slug}/`}>
                             Kontrollansvarig <ArrowRight className="ml-1 h-4 w-4" />
                           </Link>
-                        )}
-                        <Link className="flex items-center text-sm font-medium text-primary" to={`/overlatelsebesiktning-${slug}/`}>
-                          Överlåtelsebesiktning <ArrowRight className="ml-1 h-4 w-4" />
+                        <Link className="flex items-center text-sm font-medium text-primary" to="/guider/vasternorrland/">
+                          Regional projektguide <ArrowRight className="ml-1 h-4 w-4" />
                         </Link>
                       </CardContent>
                     </Card>
-                  );
-                })}
+                ))}
+              </div>
+
+              <div className="mt-8 rounded-xl border border-blue-200 bg-blue-50 p-6 text-blue-950">
+                <h2 className="mb-2 text-xl font-semibold">Överlåtelsebesiktning samlas på en tjänstesida</h2>
+                <p>
+                  Tidigare ortssidor med samma innehåll har konsoliderats. Läs omfattning,
+                  begränsningar och offertväg på sidan för <Link to="/overlatelsebesiktning/" className="font-semibold underline">överlåtelsebesiktning</Link>.
+                </p>
               </div>
 
               <div className="mt-12 rounded-xl border border-amber-200 bg-amber-50 p-6 text-amber-950">

@@ -4,10 +4,11 @@ import { Footer } from '@/components/Footer';
 import { AdvancedSEO } from '@/components/AdvancedSEO';
 import { CanonicalUrl } from '@/components/CanonicalUrl';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
-import { Clock, Tag } from 'lucide-react';
+import { CalendarDays, Clock, ExternalLink, Tag } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { normalizeInternalPath } from '@/utils/url';
 import { BAS, COMPANY, KA_CERT } from '@/config/company';
+import { GUIDE_UPDATED_AT, type OfficialSource } from '@/config/officialSources';
 
 interface GuideLayoutProps {
   title: string;
@@ -19,6 +20,8 @@ interface GuideLayoutProps {
   keywords: string;
   children: ReactNode;
   canonicalPath?: string;
+  updatedAt?: string;
+  sources?: readonly OfficialSource[];
 }
 
 export const GuideLayout = ({
@@ -30,7 +33,9 @@ export const GuideLayout = ({
   seoDescription,
   keywords,
   children,
-  canonicalPath
+  canonicalPath,
+  updatedAt = GUIDE_UPDATED_AT,
+  sources = [],
 }: GuideLayoutProps) => {
   // Ensure trailing slash for GitHub Pages compatibility
   const trailingCanonical = canonicalPath && !canonicalPath.endsWith('/') ? canonicalPath + '/' : canonicalPath;
@@ -52,6 +57,7 @@ export const GuideLayout = ({
         breadcrumbs={breadcrumbs}
         article={{
           author: 'Tobias Ytterman',
+          modifiedTime: updatedAt,
           section: 'Guider',
           tags: keywords.split(', ')
         }}
@@ -74,7 +80,7 @@ export const GuideLayout = ({
           <section className="py-12 bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-50">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto">
-                <div className="flex items-center gap-4 mb-6">
+                <div className="mb-6 flex flex-wrap items-center gap-4">
                   <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-semibold">
                     <Tag className="w-3 h-3 inline mr-1" />
                     {category}
@@ -82,6 +88,10 @@ export const GuideLayout = ({
                   <span className="flex items-center text-slate-600 text-sm">
                     <Clock className="w-4 h-4 mr-1" />
                     {readTime} läsning
+                  </span>
+                  <span className="flex items-center text-slate-600 text-sm">
+                    <CalendarDays className="w-4 h-4 mr-1" />
+                    Uppdaterad <time dateTime={updatedAt}>{updatedAt}</time>
                   </span>
                 </div>
                 
@@ -122,6 +132,33 @@ export const GuideLayout = ({
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto">
                 {children}
+
+                {sources.length > 0 && (
+                  <aside className="mt-12 border-t border-slate-200 pt-8" aria-labelledby="official-sources-title">
+                    <h2 id="official-sources-title" className="text-2xl font-bold text-slate-900">Officiella källor</h2>
+                    <p className="mt-2 text-sm text-slate-600">
+                      Kontrollera alltid senaste lydelsen och det enskilda projektets beslut hos ansvarig myndighet.
+                    </p>
+                    <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+                      {sources.map((source) => (
+                        <li key={source.url}>
+                          <a
+                            href={source.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex h-full items-start justify-between gap-3 rounded-lg border border-slate-200 bg-slate-50 p-4 text-slate-900 hover:border-primary/40"
+                          >
+                            <span>
+                              <span className="block font-semibold">{source.title}</span>
+                              <span className="mt-1 block text-sm text-slate-600">{source.publisher}</span>
+                            </span>
+                            <ExternalLink className="mt-1 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </aside>
+                )}
               </div>
             </div>
           </section>

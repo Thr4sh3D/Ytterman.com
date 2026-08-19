@@ -3,6 +3,8 @@ import { Footer } from '@/components/Footer';
 import { AdvancedSEO } from '@/components/AdvancedSEO';
 import { CanonicalUrl } from '@/components/CanonicalUrl';
 import { BAS, COMPANY, KA_CERT } from '@/config/company';
+import { VerifiedProof } from '@/components/VerifiedProof';
+import { ReviewRequestCta } from '@/components/ReviewRequestCta';
 
 const About = () => {
   return (
@@ -111,9 +113,11 @@ const About = () => {
                     Kontakta oss
                   </a>
                 </div>
+                <VerifiedProof />
               </div>
             </div>
           </div>
+          <ReviewRequestCta />
         </main>
         <Footer />
       </div>

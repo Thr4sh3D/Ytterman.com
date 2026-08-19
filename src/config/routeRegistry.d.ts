@@ -16,12 +16,14 @@ export interface RouteDefinition {
   schema: {
     pageType: SchemaPageType;
     serviceKey?: string;
+    dateModified?: string;
   };
 }
 
 export const SITE_URL: string;
 export const routeRegistry: readonly RouteDefinition[];
 export const ROUTE_PATHS: Readonly<Record<string, string>>;
+export const redirectRegistry: readonly { from: string; to: string; reason: string }[];
 export const routeByPath: ReadonlyMap<string, RouteDefinition>;
 export const normalizeRoutePath: (path: string) => string;
 export const getRouteByPath: (path: string) => RouteDefinition | undefined;

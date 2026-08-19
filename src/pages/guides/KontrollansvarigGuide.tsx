@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { CheckCircle, XCircle } from 'lucide-react';
 import { GuideLayout } from '@/components/GuideLayout';
 import { BUSINESS_COPY, COMPANY, KA_CERT, SERVICES } from '@/config/company';
+import { OFFICIAL_SOURCES } from '@/config/officialSources';
 
 const KontrollansvarigGuide = () => (
   <GuideLayout
@@ -13,9 +14,15 @@ const KontrollansvarigGuide = () => (
     seoDescription="Guide till kontrollansvarigs uppgifter och rollfördelningen mellan KA, byggherre och byggnadsnämnd."
     keywords="kontrollansvarig, KA, PBL, kontrollplan, tekniskt samråd, arbetsplatsbesök, slutbesked"
     canonicalPath="/guider/kontrollansvarig"
+    sources={[OFFICIAL_SOURCES.boverketControlManager]}
   >
     <div className="prose prose-stone max-w-none">
-      <p className="text-lg font-medium text-stone-700">{BUSINESS_COPY.kaScope}</p>
+      <h2>Kort svar</h2>
+      <p className="text-lg font-medium text-stone-700">
+        En kontrollansvarig hjälper byggherren med kontrollplanen, följer att kontroller utförs,
+        gör dokumenterade byggplatsbesök och lämnar ett utlåtande som underlag inför slutbesked.
+        Byggherren behåller sitt ansvar och byggnadsnämnden fattar besluten.
+      </p>
 
       <h2>När behövs en kontrollansvarig?</h2>
       <p>
