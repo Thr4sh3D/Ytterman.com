@@ -6,6 +6,7 @@ import { CanonicalUrl } from '@/components/CanonicalUrl';
 import { ContactForm } from '@/components/ContactForm';
 import { PricingPackages } from '@/components/PricingPackages';
 import { PricingFAQ } from '@/components/PricingFAQ';
+import { OfferPathways } from '@/components/OfferPathways';
 import { COMPANY, PRICE_LABELS, PRICING } from '@/config/company';
 import { CheckCircle, FileCheck2, Info, Mail } from 'lucide-react';
 
@@ -105,6 +106,8 @@ const PriserPage = () => {
           </section>
 
           <PricingFAQ />
+
+          <OfferPathways title="Jämför roller, paket och företagsupplägg" />
 
           <section id="kontakt" className="bg-stone-50 py-16">
             <div className="container mx-auto px-4">

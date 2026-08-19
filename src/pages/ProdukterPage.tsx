@@ -1,10 +1,11 @@
-import { ArrowRight, ClipboardList, Mail } from 'lucide-react';
+import { ArrowRight, ClipboardList } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { AdvancedSEO } from '@/components/AdvancedSEO';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { CanonicalUrl } from '@/components/CanonicalUrl';
 import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
+import { ProductAction } from '@/components/ProductAction';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { BAS, BUSINESS_COPY, COMPANY, KA_CERT, SERVICES } from '@/config/company';
@@ -76,12 +77,7 @@ const ProdukterPage = () => {
                         <ArrowRight className="ml-2 h-4 w-4" />
                       </Link>
                     </Button>
-                    <Button asChild variant="outline">
-                      <Link to="/kontakt/?produkt=byggstart-planerare">
-                        <Mail className="mr-2 h-4 w-4" />
-                        Anmäl intresse
-                      </Link>
-                    </Button>
+                    <ProductAction productKey="buildingStartPlanner" />
                   </div>
                 </CardContent>
               </Card>

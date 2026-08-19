@@ -1,11 +1,10 @@
-import { Link } from 'react-router-dom';
-import { Calculator, CheckCircle, FileQuestion, Mail } from 'lucide-react';
+import { Calculator, CheckCircle, FileQuestion } from 'lucide-react';
 import { AdvancedSEO } from '@/components/AdvancedSEO';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { CanonicalUrl } from '@/components/CanonicalUrl';
 import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
-import { Button } from '@/components/ui/button';
+import { ProductAction } from '@/components/ProductAction';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { BUSINESS_COPY, SERVICES } from '@/config/company';
 
@@ -47,12 +46,7 @@ const EnergiberakningOnlinePage = () => {
               <p className="mx-auto mb-8 max-w-2xl text-xl text-blue-100">
                 {service.shortDescription}
               </p>
-              <Button asChild size="lg" className="bg-white text-blue-900 hover:bg-blue-50">
-                <Link to="/kontakt/?service=energiberakning-online">
-                  <Mail className="mr-2 h-5 w-5" />
-                  Anmäl intresse
-                </Link>
-              </Button>
+              <ProductAction productKey="energyCalculation" className="bg-white text-blue-900 hover:bg-blue-50" />
             </div>
           </section>
 

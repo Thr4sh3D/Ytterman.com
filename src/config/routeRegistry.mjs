@@ -68,6 +68,18 @@ const coreRoutes = [
     keywords: ['kontrollansvarig pris', 'KA pris 2026', 'KA BAS paket'],
   }),
   defineRoute({
+    id: 'business', path: '/foretag', priority: '0.8', pageType: 'WebPage',
+    title: 'KA och BAS för företag och fastighetsägare | Ytterman',
+    description: 'Projekt- och portföljförfrågningar för byggföretag, arkitekter, fastighetsägare och bostadsrättsföreningar som behöver KA eller BAS-P/U.',
+    keywords: ['kontrollansvarig företag', 'BAS byggföretag', 'projektportfölj bygg'],
+  }),
+  defineRoute({
+    id: 'collaboration', path: '/samarbeta', priority: '0.5', pageType: 'WebPage',
+    title: 'Intresseanmälan för KA och energiexperter | Ytterman',
+    description: 'Certifierade kontrollansvariga N/K och certifierade energiexperter kan anmäla intresse för möjliga framtida samarbeten.',
+    keywords: ['samarbete kontrollansvarig', 'certifierad KA', 'certifierad energiexpert'],
+  }),
+  defineRoute({
     id: 'areas', path: '/omraden', priority: '0.7', pageType: 'CollectionPage',
     title: 'Områden för Yttermans byggtjänster | Västernorrland',
     description: 'Ytterman tar emot projektförfrågningar i Västernorrland. Tillgänglighet, platsbesök, resor och kostnader bekräftas per projekt.',

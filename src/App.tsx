@@ -53,6 +53,8 @@ const TackPage = lazy(() => import('@/pages/TackPage'));
 const Integritetspolicy = lazy(() => import('@/pages/Integritetspolicy'));
 const PriserPage = lazy(() => import('@/pages/PriserPage'));
 const OmradenPage = lazy(() => import('@/pages/OmradenPage'));
+const ForetagPage = lazy(() => import('@/pages/ForetagPage'));
+const SamarbetaPage = lazy(() => import('@/pages/SamarbetaPage'));
 
 // Lazy-loaded Guide Pages
 const KontrollansvarigGuide = lazy(() => import('@/pages/guides/KontrollansvarigGuide'));
@@ -110,6 +112,8 @@ export function AppRoutes() {
                             <Route path={ROUTE_PATHS.faq} element={<FAQPage />} />
                             <Route path={ROUTE_PATHS.prices} element={<PriserPage />} />
                             <Route path={ROUTE_PATHS.areas} element={<OmradenPage />} />
+                            <Route path={ROUTE_PATHS.business} element={<ForetagPage />} />
+                            <Route path={ROUTE_PATHS.collaboration} element={<SamarbetaPage />} />
                             <Route path={ROUTE_PATHS.thankYou} element={<TackPage />} />
                             <Route path={ROUTE_PATHS.privacy} element={<Integritetspolicy />} />
                             

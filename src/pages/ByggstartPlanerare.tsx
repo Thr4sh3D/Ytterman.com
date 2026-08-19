@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import {
   BarChart3,
   CalendarDays,
@@ -7,7 +6,6 @@ import {
   ClipboardList,
   DollarSign,
   FileText,
-  Mail,
   Users,
 } from 'lucide-react';
 import { AdvancedSEO } from '@/components/AdvancedSEO';
@@ -15,7 +13,7 @@ import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { CanonicalUrl } from '@/components/CanonicalUrl';
 import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
-import { Button } from '@/components/ui/button';
+import { ProductAction } from '@/components/ProductAction';
 import { Card, CardContent } from '@/components/ui/card';
 import { BAS, BUSINESS_COPY, KA_CERT, SERVICES } from '@/config/company';
 
@@ -90,12 +88,7 @@ const ByggstartPlanerare = () => {
                 {service.shortDescription} Verktyget är tänkt att ge struktur inför
                 byggstart, utan att ersätta projektspecifik expertbedömning.
               </p>
-              <Button asChild size="lg" className="earth-gradient text-white hover:opacity-90">
-                <Link to="/kontakt/?produkt=byggstart-planerare">
-                  <Mail className="mr-2 h-5 w-5" />
-                  Anmäl intresse
-                </Link>
-              </Button>
+              <ProductAction productKey="buildingStartPlanner" />
             </div>
           </section>
 

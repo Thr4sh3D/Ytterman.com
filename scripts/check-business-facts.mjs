@@ -54,6 +54,7 @@ const forbiddenRules = [
   ['obekräftad lokal restid', /\bbara\s+\d+\s+min(?:ut(?:er)?)?\s+(?:bort|restid)\b|\b\d+\s+minuters\s+restid\b/gi],
   ['obekräftat fast reseupplägg', /\bfast resepåslag\b/gi],
   ['overifierad juridisk identitet', /\b(?:MTY Konsult|8809134672)\b/gi],
+  ['obekräftat partnernätverk', /\b(?:vårt|Yttermans|befintligt|etablerat)\s+partnernätverk\b/gi],
   ['inaktuellt pris 14 900', /\b14(?:\s|\.)?900\s*(?:kr|kronor)\b/gi],
   ['inaktuellt pris 19 900', /\b19(?:\s|\.)?900\s*(?:kr|kronor)\b/gi],
   ['inaktuellt pris 24 900', /\b24(?:\s|\.)?900\s*(?:kr|kronor)\b/gi],
@@ -168,6 +169,74 @@ for (const phrase of [
 const pricingContent = readFileSync(join(projectRoot, 'src/content/pricingPackages.ts'), 'utf8');
 if (!pricingContent.includes("from '@/config/company'")) {
   violations.push('src/content/pricingPackages.ts – prisinnehållet använder inte den centrala konfigurationen');
+}
+
+const commercialOffersPath = join(projectRoot, 'src/config/commercialOffers.ts');
+const commercialOffers = readFileSync(commercialOffersPath, 'utf8');
+const pricingComponent = readFileSync(join(projectRoot, 'src/components/PricingPackages.tsx'), 'utf8');
+const productAction = readFileSync(join(projectRoot, 'src/components/ProductAction.tsx'), 'utf8');
+const routeRegistry = readFileSync(join(projectRoot, 'src/config/routeRegistry.mjs'), 'utf8');
+
+for (const fragment of [
+  "import { PRICING, SERVICES, formatSek } from '@/config/company'",
+  'KA_PACKAGE_LEVELS',
+  'KA_PROJECT_OFFERS',
+  'KA_BAS_PACKAGE',
+  'OFFER_EXCLUSIONS',
+  'OFFER_TERMS',
+  "publicationStatus: 'hidden'",
+  'contentReady: false',
+  'automaticDelivery: false',
+  'VITE_PAYMENT_LINK_PROJECT_REVIEW',
+]) {
+  if (!commercialOffers.includes(fragment)) {
+    violations.push(`src/config/commercialOffers.ts – erbjudandekonfiguration saknar: ${fragment}`);
+  }
+}
+
+if (!pricingComponent.includes("from '@/config/commercialOffers'")) {
+  violations.push('src/components/PricingPackages.tsx – erbjudandekomponenten använder inte central erbjudandekonfiguration');
+}
+
+for (const forbiddenPrice of ['29 500', '34 500', '32 500', '38 500', '39 500', '46 500', '52 500']) {
+  if (pricingComponent.includes(forbiddenPrice)) {
+    violations.push(`src/components/PricingPackages.tsx – priset ${forbiddenPrice} är duplicerat utanför central konfiguration`);
+  }
+}
+
+for (const fragment of [
+  "product.publicationStatus === 'purchasable'",
+  'product.contentReady',
+  'product.automaticDelivery',
+  'Boolean(product.paymentLink)',
+]) {
+  if (!commercialOffers.includes(fragment)) {
+    violations.push(`src/config/commercialOffers.ts – beställningsspärr saknar: ${fragment}`);
+  }
+}
+
+for (const fragment of ['Beställ', 'Begär information', 'isDigitalProductOrderable']) {
+  if (!productAction.includes(fragment)) {
+    violations.push(`src/components/ProductAction.tsx – produktåtgärd saknar: ${fragment}`);
+  }
+}
+
+for (const [path, requiredFragments] of Object.entries({
+  'src/pages/ForetagPage.tsx': ['Byggföretag', 'Arkitekter', 'Fastighetsägare', 'Bostadsrättsföreningar', 'Projektförfrågan', 'Portföljförfrågan'],
+  'src/pages/SamarbetaPage.tsx': ['Certifierad kontrollansvarig N eller K', 'Certifierad energiexpert', 'intresseanmälan', 'inte ett erbjudande om uppdrag'],
+})) {
+  const source = readFileSync(join(projectRoot, path), 'utf8');
+  for (const fragment of requiredFragments) {
+    if (!source.toLocaleLowerCase('sv-SE').includes(fragment.toLocaleLowerCase('sv-SE'))) {
+      violations.push(`${path} – obligatoriskt innehåll saknas: ${fragment}`);
+    }
+  }
+}
+
+for (const routeFragment of ["id: 'business', path: '/foretag'", "id: 'collaboration', path: '/samarbeta'"]) {
+  if (!routeRegistry.includes(routeFragment)) {
+    violations.push(`src/config/routeRegistry.mjs – ny kommersiell rutt saknas: ${routeFragment}`);
+  }
 }
 
 for (const manifestName of ['public/manifest.json', 'public/site.webmanifest']) {
