@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { BlogPost } from '@/entities';
 import { Button } from '@/components/ui/button';
 import { Trash2, AlertTriangle, Image } from 'lucide-react';
@@ -11,7 +11,7 @@ export const BlogCleanupTool = () => {
   const [loading, setLoading] = useState(true);
   const { toast } = useToast();
 
-  const fetchAndAnalyzePosts = async () => {
+  const fetchAndAnalyzePosts = useCallback(async () => {
     setLoading(true);
     try {
       const posts = await BlogPost.list();
@@ -51,11 +51,11 @@ export const BlogCleanupTool = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [toast]);
 
   useEffect(() => {
     fetchAndAnalyzePosts();
-  }, []);
+  }, [fetchAndAnalyzePosts]);
 
   const deletePost = async (id, title) => {
     try {

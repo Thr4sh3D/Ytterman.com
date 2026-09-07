@@ -10,7 +10,7 @@ export const UpdatePostImage = () => {
   const handleUpdateImage = async () => {
     setIsUpdating(true);
     try {
-      const result = await updateBlogPostImage({});
+      const result = await updateBlogPostImage();
       
       if (result.success) {
         toast({
@@ -18,12 +18,13 @@ export const UpdatePostImage = () => {
           description: result.message,
         });
       } else {
-        throw new Error(result.error);
+        throw new Error('message' in result ? result.message : 'Okänt fel');
       }
     } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
       toast({
         title: "Fel",
-        description: `Kunde inte uppdatera blogginlägg: ${error.message}`,
+        description: `Kunde inte uppdatera blogginlägg: ${message}`,
         variant: "destructive",
       });
     } finally {

@@ -6,7 +6,7 @@ const createMockClient = () => ({
     get: async () => null,
     create: async () => null,
     update: async () => null,
-    delete: async () => null,
+    delete: async (_id?: string) => null,
     find: async () => null,
     query: () => ({
       where: () => ({ exec: async () => [] }),
@@ -29,6 +29,16 @@ const createMockClient = () => ({
     updateBlogPosts: async () => ({ success: true, message: 'Mock blog posts updated' }),
     deleteBlogPosts: async () => ({ success: true, message: 'Mock blog posts deleted' }),
     updateBlogPostImage: async () => ({ success: true, message: 'Mock blog post image updated' })
+  },
+  integrations: {
+    core: {
+      uploadFile: async () => ({ url: '' }),
+      invokeLLM: async (_options: unknown) => ({}),
+      generateImage: async () => ({ url: '' }),
+      getUploadedFile: async () => null,
+      sendEmail: async () => ({ success: true }),
+      extractDataFromUploadedFile: async () => ({})
+    }
   },
   initialize: () => Promise.resolve(),
   auth: {

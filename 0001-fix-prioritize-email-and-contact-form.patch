@@ -1,0 +1,1590 @@
+From 9b33dbd278e08d9b0ce1e7a08369c268ec7fc04f Mon Sep 17 00:00:00 2001
+From: Codex <codex@openai.com>
+Date: Thu, 13 Aug 2026 11:12:08 +0200
+Subject: [PATCH] fix: prioritize email and contact form
+
+---
+ FULL_TECHNICAL_SEO_AUDIT.md                   |  1 -
+ OPEN-GRAPH-TWITTER.md                         |  4 +-
+ SEO_IMPLEMENTATION.md                         |  1 -
+ UI_SAFE_REPORT.md                             |  3 +-
+ docs/external-profile-corrections.md          |  7 +++-
+ index.html                                    |  1 -
+ .../byggstart-planerare-v1.html               |  4 +-
+ scripts/check-business-facts.mjs              | 23 +++++++++++-
+ scripts/create-github-pages-routes.mjs        |  2 +-
+ src/components/AdvancedSEO.tsx                |  3 +-
+ src/components/Contact.tsx                    | 12 ++----
+ src/components/ContactForm.tsx                | 37 +++++--------------
+ src/components/ContactFormExample.tsx         | 27 ++++----------
+ src/components/ContactInfo.tsx                | 13 ++-----
+ src/components/Footer.tsx                     | 10 +----
+ src/components/GuideLayout.tsx                |  6 +--
+ src/components/Header.tsx                     | 14 +++----
+ src/components/HeroBanner.tsx                 | 13 ++++---
+ src/components/JsonLdSchema.tsx               |  1 -
+ src/components/PricingPackages.tsx            |  8 ++--
+ src/components/SEO.tsx                        |  1 -
+ src/components/SEOEnhancements.tsx            |  1 -
+ src/components/SEOOptimizer.tsx               |  1 -
+ src/components/ServiceHero.tsx                | 18 +++++----
+ src/components/WhatsAppButton.tsx             | 20 ----------
+ src/config/company.ts                         | 11 +++---
+ src/content/pricingPackages.ts                |  2 +-
+ src/index.css                                 | 19 +---------
+ src/lib/emailjs.ts                            |  2 +-
+ src/pages/BasPPage.tsx                        |  7 ++--
+ src/pages/BasUPage.tsx                        |  7 ++--
+ src/pages/BlogPage.tsx                        |  6 +--
+ src/pages/BlogPostPage.tsx                    |  6 +--
+ src/pages/BygglovshandlingarPage.tsx          |  7 ++--
+ src/pages/ByggstartPlanerare.tsx              |  2 -
+ src/pages/EnergiDeklarationPage.tsx           |  7 ++--
+ src/pages/FAQPage.tsx                         |  6 +--
+ src/pages/GuidesPage.tsx                      |  6 +--
+ src/pages/Index.tsx                           |  2 -
+ src/pages/Integritetspolicy.tsx               |  6 +--
+ src/pages/KontaktPage.tsx                     | 19 +++++-----
+ src/pages/KontrollansvarigCityPage.tsx        |  7 ++--
+ src/pages/KontrollansvarigFjallPage.tsx       |  7 ++--
+ src/pages/KontrollansvarigPage.tsx            |  7 ++--
+ src/pages/NotFound.tsx                        | 12 +++---
+ src/pages/OverlatelsebesiktningCityPage.tsx   |  7 ++--
+ src/pages/OverlatelsebesiktningPage.tsx       |  7 ++--
+ src/pages/PriserPage.tsx                      | 10 ++---
+ src/pages/ProdukterPage.tsx                   |  2 -
+ src/pages/TackPage.tsx                        | 18 ++++-----
+ src/pages/TjansterPage.tsx                    |  2 -
+ .../guides/OverlatelsebesiktningGuide.tsx     |  4 +-
+ 52 files changed, 161 insertions(+), 268 deletions(-)
+ delete mode 100644 src/components/WhatsAppButton.tsx
+
+diff --git a/FULL_TECHNICAL_SEO_AUDIT.md b/FULL_TECHNICAL_SEO_AUDIT.md
+index 042fa16..febbc5f 100644
+--- a/FULL_TECHNICAL_SEO_AUDIT.md
++++ b/FULL_TECHNICAL_SEO_AUDIT.md
+@@ -131,7 +131,6 @@ Alla sidor använder redan korrekt semantic HTML. **Inget att åtgärda här.**
+   "@type": "Organization",
+   "name": "Ytterman",
+   "url": "https://ytterman.com",
+-  "telephone": "+46761118447",
+   "email": "tobias@ytterman.com"
+ }
+ ```
+diff --git a/OPEN-GRAPH-TWITTER.md b/OPEN-GRAPH-TWITTER.md
+index a182851..1bf3376 100644
+--- a/OPEN-GRAPH-TWITTER.md
++++ b/OPEN-GRAPH-TWITTER.md
+@@ -289,7 +289,7 @@ Innehåll:
+   - Logotyp/Brand name
+   - Tagline: "Certifierad Kontrollansvarig & BAS"
+   - Location: "Västernorrland"
+-  - CTA: "076-111 84 47"
++  - CTA: "tobias@ytterman.com"
+ Safe zone: 20px margin från alla kanter (vissa plattformar croppar)
+ ```
+ 
+@@ -303,7 +303,7 @@ Safe zone: 20px margin från alla kanter (vissa plattformar croppar)
+ │                                     │
+ │  Västernorrland · 20+ års erfarenhet│
+ │                                     │
+-│  📞 076-111 84 47                  │
++│  ✉ tobias@ytterman.com             │
+ └─────────────────────────────────────┘
+ ```
+ 
+diff --git a/SEO_IMPLEMENTATION.md b/SEO_IMPLEMENTATION.md
+index 30a02cc..cb4539a 100644
+--- a/SEO_IMPLEMENTATION.md
++++ b/SEO_IMPLEMENTATION.md
+@@ -302,7 +302,6 @@ Already implemented in AdvancedSEO component:
+   "name": "Ytterman",
+   "description": "Certifierad Kontrollansvarig och Byggarbetsmiljösamordnare...",
+   "url": "https://ytterman.com",
+-  "telephone": "+46761118447",
+   "email": "tobias@ytterman.com",
+   "areaServed": ["Sundsvall", "Härnösand", "Sollefteå", "Kramfors", "Timrå"]
+ }
+diff --git a/UI_SAFE_REPORT.md b/UI_SAFE_REPORT.md
+index 1a167f3..f695297 100644
+--- a/UI_SAFE_REPORT.md
++++ b/UI_SAFE_REPORT.md
+@@ -68,14 +68,13 @@ Alla guide-filer har uppdaterats med **interna länkar** men **inga visuella än
+ |--------|----------|----------|
+ | **Status** | ✅ Ny sida (finns inte i tidigare version) | ✅ **Ja** - kan inte bryta befintlig design |
+ | **Design-språk** | Återanvänder **existerande komponenter** | ✅ **Konsistent** |
+-| **Komponenter** | Header, Footer, WhatsAppButton, ContactForm, FAQ, Breadcrumbs | ✅ **Alla befintliga** |
++| **Komponenter** | Header, Footer, ContactForm, FAQ, Breadcrumbs | ✅ **Alla befintliga** |
+ | **Tailwind-klasser** | Endast standard Tailwind-klasser som redan används | ✅ **Ingen custom CSS** |
+ | **Layout-pattern** | Följer samma mönster som andra sidor (Hero → Innehåll → CTA → Footer) | ✅ **Konsistent** |
+ 
+ **Komponenter använd i OmradenPage:**
+ - ✅ `<Header />` - Befintlig
+ - ✅ `<Footer />` - Befintlig
+-- ✅ `<WhatsAppButton />` - Befintlig
+ - ✅ `<AdvancedSEO />` - Befintlig
+ - ✅ `<Breadcrumbs />` - Befintlig
+ - ✅ `<FAQ />` - Befintlig
+diff --git a/docs/external-profile-corrections.md b/docs/external-profile-corrections.md
+index dc4b2ea..7263417 100644
+--- a/docs/external-profile-corrections.md
++++ b/docs/external-profile-corrections.md
+@@ -7,7 +7,9 @@
+ - [ ] Verifiera juridiskt företagsnamn exakt som det är registrerat.
+ - [ ] Verifiera organisationsnummer.
+ - [ ] Verifiera postadress och eventuell separat besöks-/verksamhetsadress.
+-- [ ] Bestäm ett enda publikt format för namn, telefon och adress (NAP) och använd samma format överallt.
++- [ ] Ta bort det publika telefonnumret från webbplatsen, Google Business Profile, katalogtjänster och sociala profiler.
++- [ ] Använd `tobias@ytterman.com` och kontaktformuläret på `https://ytterman.com/kontakt/` som primära kontaktvägar.
++- [ ] Använd samma verifierade namn- och adressuppgifter överallt där de publiceras.
+ - [ ] Bekräfta om en fysisk adress ska visas offentligt eller om profilen ska vara ett serviceområde utan synlig adress.
+ 
+ Publicera inte adress, organisationsnummer eller juridiskt namn i schema, sidfot eller externa profiler förrän punkterna ovan är klara.
+@@ -44,7 +46,8 @@ Godkänd energiformulering: “Ytterman erbjuder och samordnar energideklaration
+ - [ ] Publicera endast verifierade recensioner; spara källa och datum.
+ - [ ] Gå igenom Google Business Profile, Bygglov.se, SBR-profil, sociala profiler och relevanta kataloger.
+ - [ ] Bekräfta relationen till TY Safety och önskad korslänkning innan verksamheten beskrivs som systerföretag.
+-- [ ] Synka NAP, tjänstelista, KA-behörighet, BAS-formulering, energipartner-modell, priser och serviceområde.
++- [ ] Synka kontaktvägar, tjänstelista, KA-behörighet, BAS-formulering, energipartner-modell, priser och serviceområde.
++- [ ] Kontrollera att inga externa profiler eller äldre kampanjer visar det borttagna telefonnumret eller en WhatsApp-länk till det.
+ - [ ] Ta bort gamla löften om svar inom 24/48 timmar, minuter, kort restid eller kostnadsfria resor.
+ - [ ] Kontrollera att ingen profil beskriver Tobias som certifierad energiexpert.
+ 
+diff --git a/index.html b/index.html
+index 9b1d33b..f12803a 100644
+--- a/index.html
++++ b/index.html
+@@ -94,7 +94,6 @@
+         "name": "Ytterman",
+         "description": "Certifierad kontrollansvarig enligt PBL och utbildad för uppdrag som BAS-P/BAS-U i Västernorrland. Energideklaration samordnas av Ytterman och utförs av certifierad energiexpert hos behörig partner.",
+         "url": "https://ytterman.com/",
+-        "telephone": "+46761118447",
+         "email": "tobias@ytterman.com",
+         "areaServed": {
+           "@type": "AdministrativeArea",
+diff --git a/public/products/byggstart-planerare/byggstart-planerare-v1.html b/public/products/byggstart-planerare/byggstart-planerare-v1.html
+index 55c7e5d..8e637a3 100644
+--- a/public/products/byggstart-planerare/byggstart-planerare-v1.html
++++ b/public/products/byggstart-planerare/byggstart-planerare-v1.html
+@@ -776,7 +776,7 @@
+ <!-- ── Footer ─────────────────────────────────────────────────────────────── -->
+ <footer id="app-footer">
+   <p>Byggstart-planerare v1 &nbsp;·&nbsp; En digital produkt från <a href="https://ytterman.com" target="_blank" rel="noopener">Ytterman</a></p>
+-  <p style="margin-top:0.25rem">Tobias Ytterman &nbsp;·&nbsp; <a href="tel:+46761118447">076-111 84 47</a> &nbsp;·&nbsp; <a href="mailto:tobias@ytterman.com">tobias@ytterman.com</a></p>
++  <p style="margin-top:0.25rem">Tobias Ytterman &nbsp;·&nbsp; <a href="mailto:tobias@ytterman.com">tobias@ytterman.com</a> &nbsp;·&nbsp; <a href="https://ytterman.com/kontakt/" target="_blank" rel="noopener">Kontaktformulär</a></p>
+ </footer>
+ 
+ <script>
+@@ -1296,7 +1296,7 @@ function renderSummary() {
+       <p>Planeraren ger dig en god överblick – men ett verkligt byggprojekt kräver projektspecifik bedömning, certifierade roller och erfarenhet. Tobias Ytterman hjälper dig med det.</p>
+       <div class="cta-btns">
+         <a href="https://ytterman.com/kontakt/" target="_blank" rel="noopener"><button class="btn-white">Kontakta Tobias</button></a>
+-        <a href="tel:+46761118447"><button class="btn-outline-white">📞 076-111 84 47</button></a>
++        <a href="mailto:tobias@ytterman.com"><button class="btn-outline-white">✉ Mejla Tobias</button></a>
+       </div>
+     </div>
+   `;
+diff --git a/scripts/check-business-facts.mjs b/scripts/check-business-facts.mjs
+index 039a351..2db0fa4 100644
+--- a/scripts/check-business-facts.mjs
++++ b/scripts/check-business-facts.mjs
+@@ -10,6 +10,12 @@ const searchableFiles = [
+   join(projectRoot, 'index.html'),
+   join(projectRoot, 'scripts/create-github-pages-routes.mjs'),
+ ].filter((file) => searchableExtensions.has(extname(file)));
++const publicContactDocs = [
++  'FULL_TECHNICAL_SEO_AUDIT.md',
++  'SEO_IMPLEMENTATION.md',
++  'OPEN-GRAPH-TWITTER.md',
++  'UI_SAFE_REPORT.md',
++].map((file) => join(projectRoot, file));
+ 
+ function walk(directory) {
+   return readdirSync(directory)
+@@ -69,6 +75,21 @@ for (const file of searchableFiles) {
+   }
+ }
+ 
++const forbiddenPublicPhoneRules = [
++  ['borttaget publikt telefonnummer', /076[\s-]*111[\s-]*84[\s-]*47/gi],
++  ['borttaget publikt telefonnummer', /(?:\+|00)?46[\s-]*76[\s-]*111[\s-]*84[\s-]*47/gi],
++];
++
++for (const file of [...searchableFiles, ...publicContactDocs]) {
++  const source = readFileSync(file, 'utf8');
++  for (const [label, pattern] of forbiddenPublicPhoneRules) {
++    pattern.lastIndex = 0;
++    for (const match of source.matchAll(pattern)) {
++      violations.push(`${sourceName(file)}:${lineNumber(source, match.index)} – ${label}: “${match[0]}”`);
++    }
++  }
++}
++
+ const digitalPages = [
+   'src/pages/ByggstartPlanerare.tsx',
+   'src/pages/EnergiberakningOnlinePage.tsx',
+@@ -115,8 +136,6 @@ for (const fragment of requiredConfigFragments) {
+ 
+ const contactValues = [
+   companyConfig.match(/email:\s*'([^']+)'/)?.[1],
+-  companyConfig.match(/display:\s*'([^']+)'/)?.[1],
+-  companyConfig.match(/e164:\s*'([^']+)'/)?.[1],
+ ].filter(Boolean);
+ const sourceFilesOutsideCompanyConfig = walk(join(projectRoot, 'src'))
+   .filter((file) => searchableExtensions.has(extname(file)) && file !== companyConfigPath);
+diff --git a/scripts/create-github-pages-routes.mjs b/scripts/create-github-pages-routes.mjs
+index 93d82d4..75be07f 100644
+--- a/scripts/create-github-pages-routes.mjs
++++ b/scripts/create-github-pages-routes.mjs
+@@ -92,7 +92,7 @@ const routeSeoData = {
+   },
+   kontakt: {
+     title: 'Kontakta Ytterman - Kontrollansvarig & BAS Västernorrland',
+-    description: 'Behöver du kontrollansvarig eller BAS? Ring 076-111 84 47 eller mejla tobias@ytterman.com och beskriv projektet så återkommer vi med nästa steg.',
++    description: 'Behöver du kontrollansvarig eller BAS? Mejla tobias@ytterman.com eller använd formuläret och beskriv projektet så återkommer vi med nästa steg.',
+   },
+   guider: {
+     title: 'Bygguider – kontrollansvarig, BAS och byggprocess | Ytterman',
+diff --git a/src/components/AdvancedSEO.tsx b/src/components/AdvancedSEO.tsx
+index 8c36341..1e787fa 100644
+--- a/src/components/AdvancedSEO.tsx
++++ b/src/components/AdvancedSEO.tsx
+@@ -101,7 +101,6 @@ export const AdvancedSEO = ({
+     "alternateName": COMPANY.publicName,
+     "description": `${KA_CERT.title}, ${BAS.rolesLabel} och andra byggtjänster i ${COMPANY.region}. ${BUSINESS_COPY.energyPartner}`,
+     "url": COMPANY.siteUrl,
+-    "telephone": COMPANY.phone.e164,
+     "email": COMPANY.email,
+     "areaServed": COMPANY.areaServed.map(name => ({ "@type": "AdministrativeArea", name })),
+     "serviceType": ACTIVE_SERVICE_NAMES,
+@@ -273,7 +272,7 @@ export const AdvancedSEO = ({
+       
+       {/* Mobile and Viewport */}
+       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+-      <meta name="format-detection" content="telephone=yes" />
++      <meta name="format-detection" content="telephone=no" />
+       
+       {/* Structured Data */}
+       {organization && (
+diff --git a/src/components/Contact.tsx b/src/components/Contact.tsx
+index 5b25c0d..e3df0c2 100644
+--- a/src/components/Contact.tsx
++++ b/src/components/Contact.tsx
+@@ -1,5 +1,5 @@
+ import { useState, useEffect } from 'react';
+-import { Phone, Mail, MapPin, Clock } from 'lucide-react';
++import { Mail, MapPin, Clock } from 'lucide-react';
+ import { Button } from '@/components/ui/button';
+ import { useToast } from '@/hooks/use-toast';
+ import { sendContactEmail } from '@/lib/emailjs';
+@@ -73,7 +73,7 @@ export const Contact = ({ selectedPackage = '', prefilledMessage = '' }: Contact
+       console.error('Error sending message:', error);
+       toast({
+         title: "Fel vid skickning",
+-        description: `Ett fel uppstod. Försök igen eller ring ${COMPANY.phone.display}.`,
++        description: `Ett fel uppstod. Försök igen eller mejla ${COMPANY.email}.`,
+         variant: "destructive"
+       });
+     } finally {
+@@ -89,17 +89,11 @@ export const Contact = ({ selectedPackage = '', prefilledMessage = '' }: Contact
+   };
+ 
+   const contactInfo = [
+-    {
+-      icon: Phone,
+-      title: "Telefon",
+-      value: COMPANY.phone.display,
+-      action: () => window.open(COMPANY.phone.href)
+-    },
+     {
+       icon: Mail,
+       title: "E-post",
+       value: COMPANY.email,
+-      action: () => window.open(`mailto:${COMPANY.email}`)
++      action: () => window.open(COMPANY.emailHref)
+     },
+     {
+       icon: MapPin,
+diff --git a/src/components/ContactForm.tsx b/src/components/ContactForm.tsx
+index 8a0dd7d..46ee76c 100644
+--- a/src/components/ContactForm.tsx
++++ b/src/components/ContactForm.tsx
+@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input';
+ import { Textarea } from '@/components/ui/textarea';
+ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+-import { Phone, Mail, MapPin, Clock, CheckCircle, AlertCircle } from 'lucide-react';
++import { Mail, MapPin, Clock, CheckCircle, AlertCircle } from 'lucide-react';
+ import { useToast } from '@/hooks/use-toast';
+ import { sendContactEmail } from '@/lib/emailjs';
+ import { useGoogleAdsTracking } from '@/hooks/useGoogleAdsTracking';
+@@ -32,7 +32,7 @@ const ContactForm = () => {
+   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+   const [searchParams] = useSearchParams();
+   const { toast } = useToast();
+-  const { trackFormSubmission, trackPhoneClick } = useGoogleAdsTracking();
++  const { trackFormSubmission } = useGoogleAdsTracking();
+ 
+   useEffect(() => {
+     const requestedProject = searchParams.get('project')?.trim().toLowerCase();
+@@ -54,10 +54,6 @@ const ContactForm = () => {
+     }));
+   };
+ 
+-  const handlePhoneClick = (phoneNumber: string) => {
+-    trackPhoneClick(phoneNumber);
+-  };
+-
+   const handleSubmit = async (e: React.FormEvent) => {
+     e.preventDefault();
+     
+@@ -108,7 +104,7 @@ const ContactForm = () => {
+       
+       toast({
+         title: "Kunde inte skicka meddelandet",
+-        description: `Försök igen eller ring ${COMPANY.phone.display}.`,
++        description: `Försök igen eller mejla ${COMPANY.email}.`,
+         variant: "destructive",
+       });
+     } finally {
+@@ -232,7 +228,7 @@ const ContactForm = () => {
+               {submitStatus === 'error' && (
+                 <div className="flex items-center gap-2 text-red-600 bg-red-50 p-3 rounded-lg">
+                   <AlertCircle className="w-5 h-5" />
+-                  <span>Kunde inte skicka meddelandet. Försök igen eller ring direkt.</span>
++                  <span>Kunde inte skicka meddelandet. Försök igen eller mejla {COMPANY.email}.</span>
+                 </div>
+               )}
+             </form>
+@@ -246,26 +242,12 @@ const ContactForm = () => {
+               <CardTitle className="text-xl text-slate-800">Kontaktinformation</CardTitle>
+             </CardHeader>
+             <CardContent className="space-y-4">
+-              <div className="flex items-center gap-3">
+-                <Phone className="w-5 h-5 text-blue-600" />
+-                <div>
+-                  <p className="font-medium text-slate-800">Telefon</p>
+-                  <a 
+-                    href={COMPANY.phone.href}
+-                    className="text-blue-600 hover:text-blue-700 transition-colors"
+-                    onClick={() => handlePhoneClick(COMPANY.phone.e164)}
+-                  >
+-                    {COMPANY.phone.display}
+-                  </a>
+-                </div>
+-              </div>
+-
+               <div className="flex items-center gap-3">
+                 <Mail className="w-5 h-5 text-blue-600" />
+                 <div>
+                   <p className="font-medium text-slate-800">E-post</p>
+                   <a 
+-                    href={`mailto:${COMPANY.email}`}
++                    href={COMPANY.emailHref}
+                     className="text-blue-600 hover:text-blue-700 transition-colors"
+                   >
+                     {COMPANY.email}
+@@ -296,18 +278,17 @@ const ContactForm = () => {
+             <CardContent className="p-6">
+               <h3 className="font-semibold text-slate-800 mb-2">Kontakta Ytterman</h3>
+               <p className="text-slate-600 mb-4">
+-                Ring om du föredrar telefon. Om samtalet inte kan tas emot, skicka gärna projektets grunduppgifter i formuläret.
++                {BUSINESS_COPY.preferredContact} Skicka gärna med projektets typ, ort och önskad start.
+               </p>
+               <Button 
+                 asChild 
+                 className="w-full earth-gradient hover:opacity-90 text-white"
+               >
+                 <a 
+-                  href={COMPANY.phone.href}
+-                  onClick={() => handlePhoneClick(COMPANY.phone.e164)}
++                  href={COMPANY.emailHref}
+                 >
+-                  <Phone className="w-4 h-4 mr-2" />
+-                  Ring nu: {COMPANY.phone.display}
++                  <Mail className="w-4 h-4 mr-2" />
++                  Mejla {COMPANY.email}
+                 </a>
+               </Button>
+             </CardContent>
+diff --git a/src/components/ContactFormExample.tsx b/src/components/ContactFormExample.tsx
+index ed5aa58..d3bdb68 100644
+--- a/src/components/ContactFormExample.tsx
++++ b/src/components/ContactFormExample.tsx
+@@ -20,7 +20,7 @@ export const ContactFormExample: React.FC = () => {
+   });
+   const [isSubmitting, setIsSubmitting] = useState(false);
+   
+-  const { trackFormSubmission, trackPhoneCall, trackEmailClick } = useGoogleAdsTracking();
++  const { trackFormSubmission, trackButtonClick } = useGoogleAdsTracking();
+   const { toast } = useToast();
+ 
+   const handleSubmit = async (e: React.FormEvent) => {
+@@ -35,7 +35,11 @@ export const ContactFormExample: React.FC = () => {
+       await new Promise(resolve => setTimeout(resolve, 1000));
+       
+       // Track the conversion after successful form submission
+-      trackFormSubmission('contact_form', 1000); // Optional value in SEK
++      trackFormSubmission('contact_form', {
++        name: formData.name,
++        project: formData.serviceType,
++        has_phone: Boolean(formData.phone),
++      });
+       
+       toast({
+         title: "Meddelande skickat!",
+@@ -62,16 +66,10 @@ export const ContactFormExample: React.FC = () => {
+     }
+   };
+ 
+-  const handlePhoneClick = () => {
+-    // Track phone call conversion when user clicks phone number
+-    trackPhoneCall();
+-    window.location.href = COMPANY.phone.href;
+-  };
+-
+   const handleEmailClick = () => {
+     // Track email click conversion when user clicks email
+-    trackEmailClick();
+-    window.location.href = `mailto:${COMPANY.email}`;
++    trackButtonClick('email_link', 'contact_form_example');
++    window.location.href = COMPANY.emailHref;
+   };
+ 
+   return (
+@@ -80,15 +78,6 @@ export const ContactFormExample: React.FC = () => {
+       
+       {/* Contact info with tracking */}
+       <div className="mb-6 p-4 bg-stone-50 rounded-lg">
+-        <p className="mb-2">
+-          <strong>Telefon:</strong>{' '}
+-          <button 
+-            onClick={handlePhoneClick}
+-            className="text-amber-600 hover:text-amber-700 underline"
+-          >
+-            {COMPANY.phone.display}
+-          </button>
+-        </p>
+         <p>
+           <strong>E-post:</strong>{' '}
+           <button 
+diff --git a/src/components/ContactInfo.tsx b/src/components/ContactInfo.tsx
+index 3f896f2..c67fc0d 100644
+--- a/src/components/ContactInfo.tsx
++++ b/src/components/ContactInfo.tsx
+@@ -1,4 +1,4 @@
+-import { Phone, Mail, MapPin, Clock, CheckCircle } from 'lucide-react';
++import { Mail, MapPin, Clock, CheckCircle } from 'lucide-react';
+ import { BUSINESS_COPY, COMPANY } from '@/config/company';
+ 
+ interface ContactInfoProps {
+@@ -7,19 +7,12 @@ interface ContactInfoProps {
+ 
+ export const ContactInfo = ({ className = '' }: ContactInfoProps) => {
+   const contactInfo = [
+-    {
+-      icon: Phone,
+-      title: "Telefon",
+-      value: COMPANY.phone.display,
+-      link: COMPANY.phone.href,
+-      description: "Ring eller lämna en projektförfrågan"
+-    },
+     {
+       icon: Mail,
+       title: "E-post",
+       value: COMPANY.email,
+-      link: `mailto:${COMPANY.email}`,
+-      description: "Skicka dina frågor"
++      link: COMPANY.emailHref,
++      description: BUSINESS_COPY.preferredContact
+     },
+     {
+       icon: MapPin,
+diff --git a/src/components/Footer.tsx b/src/components/Footer.tsx
+index 34c966f..6cf45f2 100644
+--- a/src/components/Footer.tsx
++++ b/src/components/Footer.tsx
+@@ -1,4 +1,4 @@
+-import { Phone, Mail, MapPin } from 'lucide-react';
++import { Mail, MapPin } from 'lucide-react';
+ import { ExternalSiteLink } from '@/components/ExternalSiteLink';
+ import { buildTimeIso, shortCommitSha } from '@/lib/buildInfo';
+ import { BAS, COMPANY, KA_CERT } from '@/config/company';
+@@ -23,15 +23,9 @@ export const Footer = () => {
+               {COMPANY.experienceLabel} i byggbranschen.
+             </p>
+             <div className="space-y-3">
+-              <div className="flex items-center space-x-3">
+-                <Phone className="w-5 h-5 text-primary" />
+-                <a href={COMPANY.phone.href} className="hover:text-primary transition-colors">
+-                  {COMPANY.phone.display}
+-                </a>
+-              </div>
+               <div className="flex items-center space-x-3">
+                 <Mail className="w-5 h-5 text-primary" />
+-                <a href={`mailto:${COMPANY.email}`} className="hover:text-primary transition-colors">
++                <a href={COMPANY.emailHref} className="hover:text-primary transition-colors">
+                   {COMPANY.email}
+                 </a>
+               </div>
+diff --git a/src/components/GuideLayout.tsx b/src/components/GuideLayout.tsx
+index 9072499..1d19c04 100644
+--- a/src/components/GuideLayout.tsx
++++ b/src/components/GuideLayout.tsx
+@@ -1,7 +1,6 @@
+ import { ReactNode } from 'react';
+ import { Header } from '@/components/Header';
+ import { Footer } from '@/components/Footer';
+-import { WhatsAppButton } from '@/components/WhatsAppButton';
+ import { AdvancedSEO } from '@/components/AdvancedSEO';
+ import { CanonicalUrl } from '@/components/CanonicalUrl';
+ import { Breadcrumbs } from '@/components/Breadcrumbs';
+@@ -146,12 +145,12 @@ export const GuideLayout = ({
+                   Be om offert
+                 </Button>
+                 <Button 
+-                  onClick={() => window.location.href = COMPANY.phone.href}
++                  onClick={() => window.location.href = COMPANY.emailHref}
+                   size="lg"
+                   variant="outline"
+                   className="border-white text-slate-900 hover:bg-white hover:text-slate-900"
+                 >
+-                  Ring: {COMPANY.phone.display}
++                  Mejla Tobias
+                 </Button>
+               </div>
+             </div>
+@@ -159,7 +158,6 @@ export const GuideLayout = ({
+         </main>
+         
+         <Footer />
+-        <WhatsAppButton />
+       </div>
+     </>
+   );
+diff --git a/src/components/Header.tsx b/src/components/Header.tsx
+index df66e1e..30d35dd 100644
+--- a/src/components/Header.tsx
++++ b/src/components/Header.tsx
+@@ -1,5 +1,5 @@
+ import { useState } from 'react';
+-import { Menu, X, Phone } from 'lucide-react';
++import { Menu, X, Mail } from 'lucide-react';
+ import { Button } from '@/components/ui/button';
+ import { COMPANY } from '@/config/company';
+ 
+@@ -54,11 +54,11 @@ export const Header = () => {
+           {/* Desktop CTA */}
+           <div className="hidden md:flex items-center space-x-4">
+             <a 
+-              href={COMPANY.phone.href}
++              href={COMPANY.emailHref}
+               className="flex items-center space-x-2 text-slate-700 hover:text-primary transition-colors"
+             >
+-              <Phone className="w-4 h-4" />
+-              <span className="font-medium">{COMPANY.phone.display}</span>
++              <Mail className="w-4 h-4" />
++              <span className="font-medium">{COMPANY.email}</span>
+             </a>
+             <Button 
+               onClick={scrollToContact}
+@@ -95,12 +95,12 @@ export const Header = () => {
+               ))}
+               <div className="pt-4 border-t border-slate-200 space-y-3">
+                 <a 
+-                  href={COMPANY.phone.href}
++                  href={COMPANY.emailHref}
+                   className="flex items-center space-x-2 text-slate-700 hover:text-primary transition-colors"
+                   onClick={() => setIsMenuOpen(false)}
+                 >
+-                  <Phone className="w-4 h-4" />
+-                  <span className="font-medium">{COMPANY.phone.display}</span>
++                  <Mail className="w-4 h-4" />
++                  <span className="font-medium">{COMPANY.email}</span>
+                 </a>
+                 <Button 
+                   onClick={scrollToContact}
+diff --git a/src/components/HeroBanner.tsx b/src/components/HeroBanner.tsx
+index fb83469..cba5b3c 100644
+--- a/src/components/HeroBanner.tsx
++++ b/src/components/HeroBanner.tsx
+@@ -1,5 +1,5 @@
+-import { Shield, Award, CheckCircle, Phone } from 'lucide-react';
+-import { BAS, COMPANY } from '@/config/company';
++import { Shield, Award, CheckCircle, Mail } from 'lucide-react';
++import { BAS, BUSINESS_COPY, COMPANY } from '@/config/company';
+ 
+ export const HeroBanner = () => {
+   return (
+@@ -49,11 +49,14 @@ export const HeroBanner = () => {
+         <div className="mt-6 pt-4 border-t border-border/50">
+           <div className="flex items-center justify-between">
+             <div>
+-              <p className="text-xs text-muted-foreground mb-1">Kontakta mig direkt</p>
++              <p className="text-xs text-muted-foreground mb-1">Snabbaste kontaktvägen</p>
+               <div className="flex items-center space-x-2">
+-                <Phone className="w-4 h-4 text-accent" />
+-                <span className="font-semibold text-foreground">{COMPANY.phone.display}</span>
++                <Mail className="w-4 h-4 text-accent" />
++                <a href={COMPANY.emailHref} className="font-semibold text-foreground hover:underline">
++                  E-post eller formulär
++                </a>
+               </div>
++              <p className="sr-only">{BUSINESS_COPY.preferredContact}</p>
+             </div>
+             
+             <div className="text-right">
+diff --git a/src/components/JsonLdSchema.tsx b/src/components/JsonLdSchema.tsx
+index 0da3e7c..cded7ae 100644
+--- a/src/components/JsonLdSchema.tsx
++++ b/src/components/JsonLdSchema.tsx
+@@ -22,7 +22,6 @@ export const JsonLdSchema = ({ type = 'ProfessionalService' }: JsonLdSchemaProps
+     alternateName: COMPANY.publicName,
+     description: `${KA_CERT.title} och ${BAS.qualificationLabel.toLowerCase()} i ${COMPANY.region}. ${BUSINESS_COPY.energyPartner}`,
+     url: COMPANY.siteUrl,
+-    telephone: COMPANY.phone.e164,
+     email: COMPANY.email,
+     image: `${COMPANY.siteUrl}/og-image.png`,
+     logo: `${COMPANY.siteUrl}/favicon.svg`,
+diff --git a/src/components/PricingPackages.tsx b/src/components/PricingPackages.tsx
+index 0ce24bc..ffedb6e 100644
+--- a/src/components/PricingPackages.tsx
++++ b/src/components/PricingPackages.tsx
+@@ -1,4 +1,4 @@
+-import { Check, Star, AlertCircle, Phone, Mail } from 'lucide-react';
++import { Check, Star, AlertCircle, Mail } from 'lucide-react';
+ import { Button } from '@/components/ui/button';
+ import { 
+   pricingPackages, 
+@@ -197,9 +197,9 @@ export const PricingPackages = () => {
+               variant="outline"
+               className="border-2 border-primary text-primary hover:bg-primary hover:text-white"
+             >
+-              <a href={COMPANY.phone.href} aria-label="Ring Ytterman">
+-                <Phone className="w-5 h-5 mr-2" />
+-                {COMPANY.phone.display}
++              <a href={COMPANY.emailHref} aria-label="Mejla Ytterman">
++                <Mail className="w-5 h-5 mr-2" />
++                Mejla underlaget
+               </a>
+             </Button>
+           </div>
+diff --git a/src/components/SEO.tsx b/src/components/SEO.tsx
+index 714ccdd..0753ef8 100644
+--- a/src/components/SEO.tsx
++++ b/src/components/SEO.tsx
+@@ -25,7 +25,6 @@ export const SEO = ({
+     "alternateName": COMPANY.publicName,
+     "description": `${KA_CERT.title} och ${BAS.qualificationLabel.toLowerCase()} med ${COMPANY.experienceLabel.toLowerCase()} i byggbranschen i ${COMPANY.region}`,
+     "url": url,
+-    "telephone": COMPANY.phone.e164,
+     "email": COMPANY.email,
+     "areaServed": COMPANY.areaServed.map(name => ({ "@type": "AdministrativeArea", name })),
+     "serviceType": ACTIVE_SERVICE_NAMES,
+diff --git a/src/components/SEOEnhancements.tsx b/src/components/SEOEnhancements.tsx
+index 8fcbf17..31eeb7e 100644
+--- a/src/components/SEOEnhancements.tsx
++++ b/src/components/SEOEnhancements.tsx
+@@ -8,7 +8,6 @@ export const SEOEnhancements = () => {
+     "name": COMPANY.brandName,
+     "description": `${KA_CERT.title} och utbildad för uppdrag som ${BAS.rolesLabel}. ${COMPANY.experienceLabel}.`,
+     "url": COMPANY.siteUrl,
+-    "telephone": COMPANY.phone.e164,
+     "email": COMPANY.email,
+     "areaServed": COMPANY.areaServed.map(name => ({ "@type": "AdministrativeArea", name })),
+     "serviceType": [
+diff --git a/src/components/SEOOptimizer.tsx b/src/components/SEOOptimizer.tsx
+index 9db10ce..7e67701 100644
+--- a/src/components/SEOOptimizer.tsx
++++ b/src/components/SEOOptimizer.tsx
+@@ -84,7 +84,6 @@ export const SEOOptimizer: React.FC<SEOOptimizerProps> = ({
+           "contactPoint": {
+             "@type": "ContactPoint",
+             "contactType": "customer service",
+-            "telephone": COMPANY.phone.e164,
+             "email": COMPANY.email,
+             "areaServed": COMPANY.countryCode,
+             "availableLanguage": "Swedish"
+diff --git a/src/components/ServiceHero.tsx b/src/components/ServiceHero.tsx
+index c6dec93..bcb5595 100644
+--- a/src/components/ServiceHero.tsx
++++ b/src/components/ServiceHero.tsx
+@@ -1,6 +1,6 @@
+ import { Button } from '@/components/ui/button';
+ import { Badge } from '@/components/ui/badge';
+-import { CheckCircle, Phone, Award, Shield, Clock, MessageCircle } from 'lucide-react';
++import { CheckCircle, Mail, Award, Shield, Clock, MessageCircle } from 'lucide-react';
+ import { Link } from 'react-router-dom';
+ import { LucideIcon } from 'lucide-react';
+ import { normalizeInternalPath } from '@/utils/url';
+@@ -19,7 +19,7 @@ interface ServiceHeroProps {
+   ctaSecondary?: {
+     text: string;
+     href: string;
+-    phone?: boolean;
++    external?: boolean;
+   };
+   stats?: {
+     icon: LucideIcon;
+@@ -54,7 +54,7 @@ export const ServiceHero = ({
+ 
+   const displayStats = stats || defaultStats;
+   const primaryHref = ctaPrimary ? normalizeInternalPath(ctaPrimary.href) || ctaPrimary.href : undefined;
+-  const secondaryHref = ctaSecondary && !ctaSecondary.phone
++  const secondaryHref = ctaSecondary && !ctaSecondary.external
+     ? normalizeInternalPath(ctaSecondary.href) || ctaSecondary.href
+     : ctaSecondary?.href;
+ 
+@@ -108,9 +108,9 @@ export const ServiceHero = ({
+                   className="border-accent text-accent hover:bg-accent hover:text-white text-lg px-8 py-6"
+                   asChild
+                 >
+-                  {ctaSecondary.phone ? (
++                  {ctaSecondary.external ? (
+                     <a href={ctaSecondary.href}>
+-                      <Phone className="w-5 h-5 mr-2" />
++                      <Mail className="w-5 h-5 mr-2" />
+                       {ctaSecondary.text}
+                     </a>
+                   ) : (
+@@ -164,10 +164,12 @@ export const ServiceHero = ({
+                     <div className="mt-6 pt-4 border-t border-border/50">
+                       <div className="flex items-center justify-between">
+                         <div>
+-                          <p className="text-xs text-muted-foreground mb-1">Kontakta mig direkt</p>
++                          <p className="text-xs text-muted-foreground mb-1">Snabbaste kontaktvägen</p>
+                           <div className="flex items-center space-x-2">
+-                            <Phone className="w-4 h-4 text-accent" />
+-                            <span className="font-semibold text-foreground">{COMPANY.phone.display}</span>
++                            <Mail className="w-4 h-4 text-accent" />
++                            <a href={COMPANY.emailHref} className="font-semibold text-foreground hover:underline">
++                              E-post eller formulär
++                            </a>
+                           </div>
+                         </div>
+                         
+diff --git a/src/components/WhatsAppButton.tsx b/src/components/WhatsAppButton.tsx
+deleted file mode 100644
+index 6109a88..0000000
+--- a/src/components/WhatsAppButton.tsx
++++ /dev/null
+@@ -1,20 +0,0 @@
+-import { MessageCircle } from 'lucide-react';
+-import { Button } from '@/components/ui/button';
+-
+-export const WhatsAppButton = () => {
+-  const phoneNumber = "46761118447"; // Swedish format without +
+-  const message = "Hej! Jag är intresserad av era tjänster och skulle vilja veta mer.";
+-  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+-
+-  return (
+-    <div className="fixed bottom-6 right-6 z-50">
+-      <Button
+-        onClick={() => window.open(whatsappUrl, '_blank')}
+-        className="bg-green-500 hover:bg-green-600 text-white rounded-full w-14 h-14 shadow-lg hover:shadow-xl transition-all duration-300 animate-pulse"
+-        size="icon"
+-      >
+-        <MessageCircle className="w-6 h-6" />
+-      </Button>
+-    </div>
+-  );
+-};
+\ No newline at end of file
+diff --git a/src/config/company.ts b/src/config/company.ts
+index df8062e..7fa28db 100644
+--- a/src/config/company.ts
++++ b/src/config/company.ts
+@@ -20,11 +20,8 @@ export const COMPANY = {
+   publicName: 'Tobias Ytterman',
+   siteUrl: 'https://ytterman.com',
+   email: 'tobias@ytterman.com',
+-  phone: {
+-    display: '076-111 84 47',
+-    e164: '+46761118447',
+-    href: 'tel:+46761118447',
+-  },
++  emailHref: 'mailto:tobias@ytterman.com',
++  contactPath: '/kontakt/',
+   experienceYears: 20,
+   experienceLabel: 'Över 20 års erfarenhet',
+   region: 'Västernorrland',
+@@ -114,7 +111,9 @@ export const PRICE_LABELS = {
+ 
+ export const BUSINESS_COPY = {
+   defaultResponse:
+-    'Skicka din förfrågan så återkommer vi med nästa steg utifrån projektets omfattning och aktuell kapacitet.',
++    'Skicka din förfrågan via formuläret eller e-post så återkommer jag med nästa steg utifrån projektets omfattning och aktuell kapacitet.',
++  preferredContact:
++    'E-post och formuläret är de snabbaste kontaktvägarna eftersom jag ofta är ute i projekt under dagtid.',
+   kaScope:
+     'Kontrollansvarig biträder byggherren med att upprätta förslag till kontrollplan, följer upp att kontrollplanen och gällande villkor följs samt lämnar eget utlåtande som underlag inför slutbesked. Byggnadsnämnden beslutar om slutbesked.',
+   energyPartner:
+diff --git a/src/content/pricingPackages.ts b/src/content/pricingPackages.ts
+index 79136b4..ba88a68 100644
+--- a/src/content/pricingPackages.ts
++++ b/src/content/pricingPackages.ts
+@@ -32,7 +32,7 @@ export const pricingPackages: PricingPackage[] = [
+       'Medverkan i tekniskt samråd vid behov',
+       'Arbetsplatsbesök enligt offert och kontrollplan',
+       'KA-utlåtande som underlag inför slutbesked',
+-      'Löpande kommunikation via telefon och e-post',
++      'Löpande kommunikation via e-post och överenskomna projektkanaler',
+     ],
+     popular: false,
+   },
+diff --git a/src/index.css b/src/index.css
+index 9c62610..0c9b83f 100644
+--- a/src/index.css
++++ b/src/index.css
+@@ -159,23 +159,6 @@ html {
+   background: #8B4513;
+ }
+ 
+-/* WhatsApp button pulse animation */
+-.whatsapp-pulse {
+-  animation: pulse 2s infinite;
+-}
+-
+-@keyframes pulse {
+-  0% {
+-    transform: scale(1);
+-  }
+-  50% {
+-    transform: scale(1.05);
+-  }
+-  100% {
+-    transform: scale(1);
+-  }
+-}
+-
+ /* Blog content specific styles */
+ .blog-content {
+   @apply text-slate-700 leading-relaxed;
+@@ -241,4 +224,4 @@ html {
+ 
+ .blog-content img {
+   @apply rounded-lg shadow-md my-6;
+-}
+\ No newline at end of file
++}
+diff --git a/src/lib/emailjs.ts b/src/lib/emailjs.ts
+index 79f8902..1d5f40e 100644
+--- a/src/lib/emailjs.ts
++++ b/src/lib/emailjs.ts
+@@ -47,7 +47,7 @@ export const sendContactEmail = async (formData: ContactFormData): Promise<{ suc
+     console.error('EmailJS Error:', error);
+     return { 
+       success: false, 
+-      error: `Kunde inte skicka meddelandet. Försök igen eller ring ${COMPANY.phone.display}.`
++      error: `Kunde inte skicka meddelandet. Försök igen eller mejla ${COMPANY.email}.`
+     };
+   }
+ };
+diff --git a/src/pages/BasPPage.tsx b/src/pages/BasPPage.tsx
+index ecb7b5c..9346302 100644
+--- a/src/pages/BasPPage.tsx
++++ b/src/pages/BasPPage.tsx
+@@ -70,7 +70,6 @@ const BasPPage = () => {
+       "@type": "LocalBusiness",
+       "name": COMPANY.brandName,
+       "url": COMPANY.siteUrl,
+-      "telephone": COMPANY.phone.e164,
+       "email": COMPANY.email
+     },
+     "areaServed": COMPANY.areaServed,
+@@ -116,9 +115,9 @@ const BasPPage = () => {
+             href: "/kontakt"
+           }}
+           ctaSecondary={{
+-            text: "Ring direkt",
+-            href: COMPANY.phone.href,
+-            phone: true
++            text: "Mejla direkt",
++            href: COMPANY.emailHref,
++            external: true
+           }}
+           bannerContent={{
+             icon: HardHat,
+diff --git a/src/pages/BasUPage.tsx b/src/pages/BasUPage.tsx
+index 32d9f15..899c39f 100644
+--- a/src/pages/BasUPage.tsx
++++ b/src/pages/BasUPage.tsx
+@@ -70,7 +70,6 @@ const BasUPage = () => {
+       "@type": "LocalBusiness",
+       "name": COMPANY.brandName,
+       "url": COMPANY.siteUrl,
+-      "telephone": COMPANY.phone.e164,
+       "email": COMPANY.email
+     },
+     "areaServed": COMPANY.areaServed,
+@@ -116,9 +115,9 @@ const BasUPage = () => {
+             href: "/kontakt"
+           }}
+           ctaSecondary={{
+-            text: "Ring direkt",
+-            href: COMPANY.phone.href,
+-            phone: true
++            text: "Mejla direkt",
++            href: COMPANY.emailHref,
++            external: true
+           }}
+           bannerContent={{
+             icon: Eye,
+diff --git a/src/pages/BlogPage.tsx b/src/pages/BlogPage.tsx
+index f0fff6a..5d16fa6 100644
+--- a/src/pages/BlogPage.tsx
++++ b/src/pages/BlogPage.tsx
+@@ -1,7 +1,6 @@
+ import { useState, useEffect } from 'react';
+ import { Header } from '@/components/Header';
+ import { Footer } from '@/components/Footer';
+-import { WhatsAppButton } from '@/components/WhatsAppButton';
+ import { AdvancedSEO } from '@/components/AdvancedSEO';
+ import { CanonicalUrl } from '@/components/CanonicalUrl';
+ import { Breadcrumbs } from '@/components/Breadcrumbs';
+@@ -250,10 +249,10 @@ const BlogPage = () => {
+                   Kontakta oss
+                 </a>
+                 <a
+-                  href={COMPANY.phone.href}
++                  href={COMPANY.emailHref}
+                   className="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white rounded-lg hover:bg-white hover:text-slate-900 transition-colors text-lg font-semibold"
+                 >
+-                  Ring: {COMPANY.phone.display}
++                  Mejla Tobias
+                 </a>
+               </div>
+             </div>
+@@ -261,7 +260,6 @@ const BlogPage = () => {
+         </main>
+ 
+         <Footer />
+-        <WhatsAppButton />
+       </div>
+     </>
+   );
+diff --git a/src/pages/BlogPostPage.tsx b/src/pages/BlogPostPage.tsx
+index d1bfc3d..e326131 100644
+--- a/src/pages/BlogPostPage.tsx
++++ b/src/pages/BlogPostPage.tsx
+@@ -5,7 +5,6 @@ import remarkGfm from 'remark-gfm';
+ import DOMPurify from 'dompurify';
+ import { Header } from '@/components/Header';
+ import { Footer } from '@/components/Footer';
+-import { WhatsAppButton } from '@/components/WhatsAppButton';
+ import { AdvancedSEO } from '@/components/AdvancedSEO';
+ import { CanonicalUrl } from '@/components/CanonicalUrl';
+ import { Breadcrumbs } from '@/components/Breadcrumbs';
+@@ -172,10 +171,10 @@ const BlogPostPage = () => {
+                       Kontakta oss
+                     </a>
+                     <a
+-                      href={COMPANY.phone.href}
++                      href={COMPANY.emailHref}
+                       className="inline-flex items-center justify-center px-6 py-3 border-2 border-slate-300 text-slate-900 rounded-lg hover:border-slate-400 transition-colors font-semibold"
+                     >
+-                      Ring: {COMPANY.phone.display}
++                      Mejla Tobias
+                     </a>
+                   </div>
+                 </div>
+@@ -185,7 +184,6 @@ const BlogPostPage = () => {
+         </main>
+ 
+         <Footer />
+-        <WhatsAppButton />
+       </div>
+     </>
+   );
+diff --git a/src/pages/BygglovshandlingarPage.tsx b/src/pages/BygglovshandlingarPage.tsx
+index 8c11097..a195ee7 100644
+--- a/src/pages/BygglovshandlingarPage.tsx
++++ b/src/pages/BygglovshandlingarPage.tsx
+@@ -84,7 +84,6 @@ const BygglovshandlingarPage = () => {
+     "provider": {
+       "@type": "LocalBusiness",
+       "name": COMPANY.brandName,
+-      "telephone": COMPANY.phone.e164,
+       "email": COMPANY.email
+     },
+     "areaServed": COMPANY.areaServed,
+@@ -136,9 +135,9 @@ const BygglovshandlingarPage = () => {
+             href: "/kontakt"
+           }}
+           ctaSecondary={{
+-            text: COMPANY.phone.display,
+-            href: COMPANY.phone.href,
+-            phone: true
++            text: "Mejla direkt",
++            href: COMPANY.emailHref,
++            external: true
+           }}
+           bannerContent={{
+             icon: Building,
+diff --git a/src/pages/ByggstartPlanerare.tsx b/src/pages/ByggstartPlanerare.tsx
+index 9daf41c..6a007d5 100644
+--- a/src/pages/ByggstartPlanerare.tsx
++++ b/src/pages/ByggstartPlanerare.tsx
+@@ -15,7 +15,6 @@ import { Breadcrumbs } from '@/components/Breadcrumbs';
+ import { CanonicalUrl } from '@/components/CanonicalUrl';
+ import { Footer } from '@/components/Footer';
+ import { Header } from '@/components/Header';
+-import { WhatsAppButton } from '@/components/WhatsAppButton';
+ import { Button } from '@/components/ui/button';
+ import { Card, CardContent } from '@/components/ui/card';
+ import { BAS, BUSINESS_COPY, KA_CERT, SERVICES } from '@/config/company';
+@@ -146,7 +145,6 @@ const ByggstartPlanerare = () => {
+         </main>
+ 
+         <Footer />
+-        <WhatsAppButton />
+       </div>
+     </>
+   );
+diff --git a/src/pages/EnergiDeklarationPage.tsx b/src/pages/EnergiDeklarationPage.tsx
+index 92d1c56..27882c2 100644
+--- a/src/pages/EnergiDeklarationPage.tsx
++++ b/src/pages/EnergiDeklarationPage.tsx
+@@ -70,7 +70,6 @@ const EnergiDeklarationPage = () => {
+       "@type": "LocalBusiness",
+       "name": COMPANY.brandName,
+       "url": COMPANY.siteUrl,
+-      "telephone": COMPANY.phone.e164,
+       "email": COMPANY.email
+     },
+     "areaServed": COMPANY.areaServed,
+@@ -117,9 +116,9 @@ const EnergiDeklarationPage = () => {
+             href: "/kontakt"
+           }}
+           ctaSecondary={{
+-            text: "Ring direkt",
+-            href: COMPANY.phone.href,
+-            phone: true
++            text: "Mejla direkt",
++            href: COMPANY.emailHref,
++            external: true
+           }}
+           bannerContent={{
+             icon: Zap,
+diff --git a/src/pages/FAQPage.tsx b/src/pages/FAQPage.tsx
+index 098e67d..deaf68f 100644
+--- a/src/pages/FAQPage.tsx
++++ b/src/pages/FAQPage.tsx
+@@ -1,6 +1,5 @@
+ import { Header } from '@/components/Header';
+ import { Footer } from '@/components/Footer';
+-import { WhatsAppButton } from '@/components/WhatsAppButton';
+ import { AdvancedSEO } from '@/components/AdvancedSEO';
+ import { CanonicalUrl } from '@/components/CanonicalUrl';
+ import { Breadcrumbs } from '@/components/Breadcrumbs';
+@@ -208,12 +207,12 @@ const FAQPage = () => {
+                   Kontakta oss
+                 </Button>
+                 <Button 
+-                  onClick={() => window.location.href = COMPANY.phone.href}
++                  onClick={() => window.location.href = COMPANY.emailHref}
+                   size="lg"
+                   variant="outline"
+                   className="border-white text-white hover:bg-white hover:text-slate-900"
+                 >
+-                  Ring: {COMPANY.phone.display}
++                  Mejla Tobias
+                 </Button>
+               </div>
+             </div>
+@@ -221,7 +220,6 @@ const FAQPage = () => {
+         </main>
+         
+         <Footer />
+-        <WhatsAppButton />
+       </div>
+     </>
+   );
+diff --git a/src/pages/GuidesPage.tsx b/src/pages/GuidesPage.tsx
+index 103f593..d73e740 100644
+--- a/src/pages/GuidesPage.tsx
++++ b/src/pages/GuidesPage.tsx
+@@ -1,7 +1,6 @@
+ import { useState, useEffect } from 'react';
+ import { Header } from '@/components/Header';
+ import { Footer } from '@/components/Footer';
+-import { WhatsAppButton } from '@/components/WhatsAppButton';
+ import { AdvancedSEO } from '@/components/AdvancedSEO';
+ import { CanonicalUrl } from '@/components/CanonicalUrl';
+ import { Breadcrumbs } from '@/components/Breadcrumbs';
+@@ -243,10 +242,10 @@ const GuidesPage = () => {
+                   Kontakta oss
+                 </a>
+                 <a 
+-                  href={COMPANY.phone.href}
++                  href={COMPANY.emailHref}
+                   className="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white rounded-lg hover:bg-white hover:text-slate-900 transition-colors text-lg font-semibold"
+                 >
+-                  Ring: {COMPANY.phone.display}
++                  Mejla Tobias
+                 </a>
+               </div>
+             </div>
+@@ -254,7 +253,6 @@ const GuidesPage = () => {
+         </main>
+         
+         <Footer />
+-        <WhatsAppButton />
+       </div>
+     </>
+   );
+diff --git a/src/pages/Index.tsx b/src/pages/Index.tsx
+index 88367d7..8543c30 100644
+--- a/src/pages/Index.tsx
++++ b/src/pages/Index.tsx
+@@ -5,7 +5,6 @@ import { Services } from '@/components/Services';
+ import { About } from '@/components/About';
+ import { Contact } from '@/components/Contact';
+ import { FAQ } from '@/components/FAQ';
+-import { WhatsAppButton } from '@/components/WhatsAppButton';
+ import { AdvancedSEO } from '@/components/AdvancedSEO';
+ import { JsonLdSchema } from '@/components/JsonLdSchema';
+ import { PricingPackages } from '@/components/PricingPackages';
+@@ -129,7 +128,6 @@ const Index = () => {
+           <Contact selectedPackage="" prefilledMessage="" />
+         </main>
+         <Footer />
+-        <WhatsAppButton />
+       </div>
+     </>
+   );
+diff --git a/src/pages/Integritetspolicy.tsx b/src/pages/Integritetspolicy.tsx
+index 65e7e0b..f3a8201 100644
+--- a/src/pages/Integritetspolicy.tsx
++++ b/src/pages/Integritetspolicy.tsx
+@@ -1,6 +1,5 @@
+ import { Header } from '@/components/Header';
+ import { Footer } from '@/components/Footer';
+-import { WhatsAppButton } from '@/components/WhatsAppButton';
+ import { Helmet } from 'react-helmet-async';
+ import { COMPANY } from '@/config/company';
+ 
+@@ -38,7 +37,6 @@ const Integritetspolicy = () => {
+                   <div className="bg-stone-50 p-6 rounded-lg">
+                     <p><strong>{COMPANY.brandName}</strong></p>
+                     <p>E-post: {COMPANY.email}</p>
+-                    <p>Telefon: {COMPANY.phone.display}</p>
+                   </div>
+                 </section>
+ 
+@@ -110,7 +108,7 @@ const Integritetspolicy = () => {
+                     <li><strong>Dataportabilitet</strong> - få ut dina uppgifter i strukturerat format</li>
+                   </ul>
+                   <p className="mt-4">
+-                    För att utöva dina rättigheter, kontakta oss på {COMPANY.email} eller {COMPANY.phone.display}.
++                    För att utöva dina rättigheter, kontakta oss på {COMPANY.email}.
+                   </p>
+                 </section>
+ 
+@@ -149,7 +147,6 @@ const Integritetspolicy = () => {
+                   <div className="bg-stone-50 p-6 rounded-lg mt-4">
+                     <p><strong>{COMPANY.brandName}</strong></p>
+                     <p>E-post: {COMPANY.email}</p>
+-                    <p>Telefon: {COMPANY.phone.display}</p>
+                     <p className="mt-4">
+                       Du har också rätt att lämna klagomål till Integritetsskyddsmyndigheten (IMY) 
+                       om du anser att vi behandlar dina personuppgifter på ett felaktigt sätt.
+@@ -167,7 +164,6 @@ const Integritetspolicy = () => {
+           </div>
+         </main>
+         <Footer />
+-        <WhatsAppButton />
+       </div>
+     </>
+   );
+diff --git a/src/pages/KontaktPage.tsx b/src/pages/KontaktPage.tsx
+index 7eb39d4..967f06c 100644
+--- a/src/pages/KontaktPage.tsx
++++ b/src/pages/KontaktPage.tsx
+@@ -1,6 +1,5 @@
+ import { Header } from '@/components/Header';
+ import { Footer } from '@/components/Footer';
+-import { WhatsAppButton } from '@/components/WhatsAppButton';
+ import { AdvancedSEO } from '@/components/AdvancedSEO';
+ import { FAQ, faqData } from '@/components/FAQ';
+ import { Breadcrumbs } from '@/components/Breadcrumbs';
+@@ -10,8 +9,8 @@ import { ContactForm } from '@/components/ContactForm';
+ import { ContactInfo } from '@/components/ContactInfo';
+ import { ServiceAreas } from '@/components/ServiceAreas';
+ import { JsonLdSchema } from '@/components/JsonLdSchema';
+-import { Phone, Mail } from 'lucide-react';
+-import { COMPANY } from '@/config/company';
++import { Mail } from 'lucide-react';
++import { BUSINESS_COPY, COMPANY } from '@/config/company';
+ 
+ const KontaktPage = () => {
+   const breadcrumbs = [
+@@ -64,19 +63,20 @@ const KontaktPage = () => {
+                 <p className="text-xl text-slate-600 mb-8">
+                   Behöver du hjälp med kontrollansvarig, BAS-P, BAS-U eller andra byggtjänster? 
+                   Skicka projektets grunduppgifter så återkommer vi med nästa steg och offert.
++                  {' '}{BUSINESS_COPY.preferredContact}
+                 </p>
+                 
+                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                   <a 
+-                    href={COMPANY.phone.href}
++                    href="#kontaktformular"
+                     className="inline-flex items-center px-8 py-4 earth-gradient text-white rounded-lg hover:opacity-90 transition-opacity text-lg font-semibold focus:ring-4 focus:ring-primary/20 focus:outline-none"
+-                    aria-label={`Ring Ytterman på ${COMPANY.phone.display}`}
++                    aria-label="Gå till Yttermans kontaktformulär"
+                   >
+-                    <Phone className="w-5 h-5 mr-2" aria-hidden="true" />
+-                    Ring: {COMPANY.phone.display}
++                    <Mail className="w-5 h-5 mr-2" aria-hidden="true" />
++                    Öppna formuläret
+                   </a>
+                   <a 
+-                    href={`mailto:${COMPANY.email}`}
++                    href={COMPANY.emailHref}
+                     className="inline-flex items-center px-8 py-4 border-2 border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-colors text-lg font-semibold focus:ring-4 focus:ring-primary/20 focus:outline-none"
+                     aria-label={`Skicka e-post till ${COMPANY.publicName} på ${COMPANY.email}`}
+                   >
+@@ -89,7 +89,7 @@ const KontaktPage = () => {
+           </section>
+ 
+           {/* Contact Info & Form */}
+-          <section className="py-20 bg-white" aria-labelledby="contact-section-heading">
++          <section id="kontaktformular" className="py-20 bg-white" aria-labelledby="contact-section-heading">
+             <div className="container mx-auto px-4">
+               <div className="max-w-5xl mx-auto mb-12">
+                 <div className="grid md:grid-cols-3 gap-6">
+@@ -139,7 +139,6 @@ const KontaktPage = () => {
+         </main>
+         
+         <Footer />
+-        <WhatsAppButton />
+       </div>
+     </>
+   );
+diff --git a/src/pages/KontrollansvarigCityPage.tsx b/src/pages/KontrollansvarigCityPage.tsx
+index 643c46d..c7b681f 100644
+--- a/src/pages/KontrollansvarigCityPage.tsx
++++ b/src/pages/KontrollansvarigCityPage.tsx
+@@ -57,7 +57,6 @@ const KontrollansvarigCityPage = ({ cityData: city }: KontrollansvarigCityPagePr
+     "provider": {
+       "@type": "LocalBusiness",
+       "name": COMPANY.brandName,
+-      "telephone": COMPANY.phone.e164,
+       "email": COMPANY.email
+     },
+     "areaServed": {
+@@ -123,9 +122,9 @@ const KontrollansvarigCityPage = ({ cityData: city }: KontrollansvarigCityPagePr
+             href: "/kontakt"
+           }}
+           ctaSecondary={{
+-            text: "Ring direkt",
+-            href: COMPANY.phone.href,
+-            phone: true
++            text: "Mejla direkt",
++            href: COMPANY.emailHref,
++            external: true
+           }}
+           bannerContent={{
+             icon: Shield,
+diff --git a/src/pages/KontrollansvarigFjallPage.tsx b/src/pages/KontrollansvarigFjallPage.tsx
+index 8a22752..9c23d6a 100644
+--- a/src/pages/KontrollansvarigFjallPage.tsx
++++ b/src/pages/KontrollansvarigFjallPage.tsx
+@@ -73,7 +73,6 @@ const KontrollansvarigFjallPage = () => {
+     "provider": {
+       "@type": "LocalBusiness",
+       "name": COMPANY.brandName,
+-      "telephone": COMPANY.phone.e164,
+       "email": COMPANY.email
+     },
+     "areaServed": COMPANY.areaServed.map((name) => ({
+@@ -131,9 +130,9 @@ const KontrollansvarigFjallPage = () => {
+             href: "/kontakt"
+           }}
+           ctaSecondary={{
+-            text: "Ring direkt",
+-            href: COMPANY.phone.href,
+-            phone: true
++            text: "Mejla direkt",
++            href: COMPANY.emailHref,
++            external: true
+           }}
+           bannerContent={{
+             icon: Mountain,
+diff --git a/src/pages/KontrollansvarigPage.tsx b/src/pages/KontrollansvarigPage.tsx
+index 9799360..a22f3d4 100644
+--- a/src/pages/KontrollansvarigPage.tsx
++++ b/src/pages/KontrollansvarigPage.tsx
+@@ -69,7 +69,6 @@ const KontrollansvarigPage = () => {
+     "provider": {
+       "@type": "LocalBusiness",
+       "name": COMPANY.brandName,
+-      "telephone": COMPANY.phone.e164,
+       "email": COMPANY.email
+     },
+     "areaServed": COMPANY.areaServed,
+@@ -126,9 +125,9 @@ const KontrollansvarigPage = () => {
+             href: "/kontakt"
+           }}
+           ctaSecondary={{
+-            text: "Ring direkt",
+-            href: COMPANY.phone.href,
+-            phone: true
++            text: "Mejla direkt",
++            href: COMPANY.emailHref,
++            external: true
+           }}
+           bannerContent={{
+             icon: Shield,
+diff --git a/src/pages/NotFound.tsx b/src/pages/NotFound.tsx
+index 5536ea9..845fa9a 100644
+--- a/src/pages/NotFound.tsx
++++ b/src/pages/NotFound.tsx
+@@ -1,8 +1,7 @@
+ import { Header } from '@/components/Header';
+ import { Footer } from '@/components/Footer';
+-import { WhatsAppButton } from '@/components/WhatsAppButton';
+ import { Button } from '@/components/ui/button';
+-import { Home, Phone, ArrowLeft, MapPin } from 'lucide-react';
++import { Home, Mail, ArrowLeft, MapPin } from 'lucide-react';
+ import { Helmet } from 'react-helmet-async';
+ import { normalizeInternalPath } from '@/utils/url';
+ import { COMPANY } from '@/config/company';
+@@ -159,15 +158,15 @@ const NotFound = () => {
+                   className="earth-gradient text-white hover:opacity-90 px-8 py-4 text-lg"
+                   aria-label="Gå till kontaktsidan"
+                 >
+-                  <Phone className="w-5 h-5 mr-2" aria-hidden="true" />
++                  <Mail className="w-5 h-5 mr-2" aria-hidden="true" />
+                   Kontakta oss
+                 </Button>
+                 <a 
+-                  href={COMPANY.phone.href}
++                  href={COMPANY.emailHref}
+                   className="inline-flex items-center px-8 py-4 border-2 border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-colors text-lg font-semibold focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+-                  aria-label={`Ring Ytterman på ${COMPANY.phone.display}`}
++                  aria-label={`Mejla Ytterman på ${COMPANY.email}`}
+                 >
+-                  Ring: {COMPANY.phone.display}
++                  Mejla Tobias
+                 </a>
+               </div>
+             </div>
+@@ -175,7 +174,6 @@ const NotFound = () => {
+         </main>
+         
+         <Footer />
+-        <WhatsAppButton />
+       </div>
+     </>
+   );
+diff --git a/src/pages/OverlatelsebesiktningCityPage.tsx b/src/pages/OverlatelsebesiktningCityPage.tsx
+index 664d06a..f765269 100644
+--- a/src/pages/OverlatelsebesiktningCityPage.tsx
++++ b/src/pages/OverlatelsebesiktningCityPage.tsx
+@@ -58,7 +58,6 @@ const OverlatelsebesiktningCityPage = ({ cityData: city }: Overlatelsebesiktning
+     "provider": {
+       "@type": "LocalBusiness",
+       "name": COMPANY.brandName,
+-      "telephone": COMPANY.phone.e164,
+       "email": COMPANY.email
+     },
+     "areaServed": {
+@@ -116,9 +115,9 @@ const OverlatelsebesiktningCityPage = ({ cityData: city }: Overlatelsebesiktning
+             href: BOOKING_OVL_URL
+           } : undefined}
+           ctaSecondary={{
+-            text: COMPANY.phone.display,
+-            href: COMPANY.phone.href,
+-            phone: true
++            text: "Mejla direkt",
++            href: COMPANY.emailHref,
++            external: true
+           }}
+           bannerContent={{
+             icon: Home,
+diff --git a/src/pages/OverlatelsebesiktningPage.tsx b/src/pages/OverlatelsebesiktningPage.tsx
+index 432a38e..bc72f26 100644
+--- a/src/pages/OverlatelsebesiktningPage.tsx
++++ b/src/pages/OverlatelsebesiktningPage.tsx
+@@ -77,7 +77,6 @@ const OverlatelsebesiktningPage = () => {
+     "provider": {
+       "@type": "LocalBusiness",
+       "name": COMPANY.brandName,
+-      "telephone": COMPANY.phone.e164,
+       "email": COMPANY.email
+     },
+     "areaServed": COMPANY.areaServed,
+@@ -129,9 +128,9 @@ const OverlatelsebesiktningPage = () => {
+             href: BOOKING_OVL_URL
+           } : undefined}
+           ctaSecondary={{
+-            text: COMPANY.phone.display,
+-            href: COMPANY.phone.href,
+-            phone: true
++            text: "Mejla direkt",
++            href: COMPANY.emailHref,
++            external: true
+           }}
+           bannerContent={{
+             icon: Home,
+diff --git a/src/pages/PriserPage.tsx b/src/pages/PriserPage.tsx
+index 6b93b74..89cd7cf 100644
+--- a/src/pages/PriserPage.tsx
++++ b/src/pages/PriserPage.tsx
+@@ -1,6 +1,5 @@
+ import { Header } from '@/components/Header';
+ import { Footer } from '@/components/Footer';
+-import { WhatsAppButton } from '@/components/WhatsAppButton';
+ import { AdvancedSEO } from '@/components/AdvancedSEO';
+ import { Breadcrumbs } from '@/components/Breadcrumbs';
+ import { CanonicalUrl } from '@/components/CanonicalUrl';
+@@ -8,7 +7,7 @@ import { ContactForm } from '@/components/ContactForm';
+ import { PricingPackages } from '@/components/PricingPackages';
+ import { PricingFAQ } from '@/components/PricingFAQ';
+ import { COMPANY, PRICE_LABELS, PRICING } from '@/config/company';
+-import { CheckCircle, FileCheck2, Info, Phone } from 'lucide-react';
++import { CheckCircle, FileCheck2, Info, Mail } from 'lucide-react';
+ 
+ const PriserPage = () => {
+   const breadcrumbs = [
+@@ -58,11 +57,11 @@ const PriserPage = () => {
+                     Begär offert
+                   </a>
+                   <a
+-                    href={COMPANY.phone.href}
++                    href={COMPANY.emailHref}
+                     className="inline-flex items-center rounded-lg border-2 border-primary bg-white px-8 py-4 font-semibold text-primary transition-colors hover:bg-stone-50"
+                   >
+-                    <Phone className="mr-2 h-5 w-5" />
+-                    {COMPANY.phone.display}
++                    <Mail className="mr-2 h-5 w-5" />
++                    Mejla underlaget
+                   </a>
+                 </div>
+               </div>
+@@ -126,7 +125,6 @@ const PriserPage = () => {
+         </main>
+ 
+         <Footer />
+-        <WhatsAppButton />
+       </div>
+     </>
+   );
+diff --git a/src/pages/ProdukterPage.tsx b/src/pages/ProdukterPage.tsx
+index 162d28e..14099c5 100644
+--- a/src/pages/ProdukterPage.tsx
++++ b/src/pages/ProdukterPage.tsx
+@@ -5,7 +5,6 @@ import { Breadcrumbs } from '@/components/Breadcrumbs';
+ import { CanonicalUrl } from '@/components/CanonicalUrl';
+ import { Footer } from '@/components/Footer';
+ import { Header } from '@/components/Header';
+-import { WhatsAppButton } from '@/components/WhatsAppButton';
+ import { Button } from '@/components/ui/button';
+ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+ import { BAS, BUSINESS_COPY, COMPANY, KA_CERT, SERVICES } from '@/config/company';
+@@ -101,7 +100,6 @@ const ProdukterPage = () => {
+         </main>
+ 
+         <Footer />
+-        <WhatsAppButton />
+       </div>
+     </>
+   );
+diff --git a/src/pages/TackPage.tsx b/src/pages/TackPage.tsx
+index 3a78356..60546cf 100644
+--- a/src/pages/TackPage.tsx
++++ b/src/pages/TackPage.tsx
+@@ -2,10 +2,9 @@ import { useEffect } from 'react';
+ import { useSearchParams } from 'react-router-dom';
+ import { Header } from '@/components/Header';
+ import { Footer } from '@/components/Footer';
+-import { WhatsAppButton } from '@/components/WhatsAppButton';
+ import { AdvancedSEO } from '@/components/AdvancedSEO';
+ import { CanonicalUrl } from '@/components/CanonicalUrl';
+-import { CheckCircle, Phone, Mail, Calendar, ArrowRight } from 'lucide-react';
++import { CheckCircle, Mail, Calendar, ArrowRight } from 'lucide-react';
+ import { Button } from '@/components/ui/button';
+ import { normalizeInternalPath } from '@/utils/url';
+ import { BUSINESS_COPY, COMPANY } from '@/config/company';
+@@ -173,19 +172,19 @@ const TackPage = () => {
+                 
+                 <div className="grid md:grid-cols-2 gap-8">
+                   <div className="bg-slate-50 p-8 rounded-xl text-center">
+-                    <Phone className="w-12 h-12 text-primary mx-auto mb-4" />
++                    <ArrowRight className="w-12 h-12 text-primary mx-auto mb-4" />
+                     <h3 className="text-xl font-bold text-slate-900 mb-2">
+-                      Ring direkt
++                      Kontaktformulär
+                     </h3>
+                     <p className="text-slate-600 mb-4">
+-                      För frågor om din inskickade förfrågan
++                      Komplettera din inskickade förfrågan
+                     </p>
+                     <a 
+-                      href={COMPANY.phone.href}
++                      href={normalizeInternalPath('/kontakt')}
+                       className="inline-flex items-center px-6 py-3 earth-gradient text-white rounded-lg hover:opacity-90 transition-opacity"
+                     >
+-                      <Phone className="w-5 h-5 mr-2" />
+-                      {COMPANY.phone.display}
++                      <ArrowRight className="w-5 h-5 mr-2" />
++                      Öppna formuläret
+                     </a>
+                   </div>
+                   
+@@ -198,7 +197,7 @@ const TackPage = () => {
+                       Skicka ytterligare information
+                     </p>
+                     <a 
+-                      href={`mailto:${COMPANY.email}`}
++                      href={COMPANY.emailHref}
+                       className="inline-flex items-center px-6 py-3 border-2 border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-colors"
+                     >
+                       <Mail className="w-5 h-5 mr-2" />
+@@ -289,7 +288,6 @@ const TackPage = () => {
+         </main>
+         
+         <Footer />
+-        <WhatsAppButton />
+       </div>
+     </>
+   );
+diff --git a/src/pages/TjansterPage.tsx b/src/pages/TjansterPage.tsx
+index 5bfc5e5..35607cf 100644
+--- a/src/pages/TjansterPage.tsx
++++ b/src/pages/TjansterPage.tsx
+@@ -1,6 +1,5 @@
+ import { Header } from '@/components/Header';
+ import { Footer } from '@/components/Footer';
+-import { WhatsAppButton } from '@/components/WhatsAppButton';
+ import { AdvancedSEO } from '@/components/AdvancedSEO';
+ import { ServiceFAQ } from '@/components/ServiceFAQ';
+ import { Breadcrumbs } from '@/components/Breadcrumbs';
+@@ -414,7 +413,6 @@ const TjansterPage = () => {
+         </main>
+         
+         <Footer />
+-        <WhatsAppButton />
+       </div>
+     </>
+   );
+diff --git a/src/pages/guides/OverlatelsebesiktningGuide.tsx b/src/pages/guides/OverlatelsebesiktningGuide.tsx
+index 9a96433..0cd563e 100644
+--- a/src/pages/guides/OverlatelsebesiktningGuide.tsx
++++ b/src/pages/guides/OverlatelsebesiktningGuide.tsx
+@@ -100,8 +100,8 @@ const OverlatelsebesiktningGuide = () => (
+           <Link className="rounded-lg border border-white px-5 py-3 font-semibold text-white" to="/overlatelsebesiktning/">
+             Läs om tjänsten
+           </Link>
+-          <a className="rounded-lg border border-white px-5 py-3 font-semibold text-white" href={COMPANY.phone.href}>
+-            {COMPANY.phone.display}
++          <a className="rounded-lg border border-white px-5 py-3 font-semibold text-white" href={COMPANY.emailHref}>
++            Mejla Tobias
+           </a>
+         </div>
+       </div>
+-- 
+2.51.1
+

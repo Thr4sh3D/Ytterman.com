@@ -1,0 +1,1283 @@
+From 377fbad32842ce795d8bda2cbccbced0da9e4aed Mon Sep 17 00:00:00 2001
+From: Codex <codex@openai.com>
+Date: Thu, 13 Aug 2026 11:47:25 +0200
+Subject: [PATCH] feat: prerender indexable routes
+
+---
+ docs/prerendering.md                        |  33 ++
+ index.html                                  |  20 +-
+ package.json                                |   5 +-
+ public/404.html                             |   7 +-
+ scripts/check-prerendered-html.mjs          |  97 +++++
+ scripts/copy-404.mjs                        |  29 --
+ scripts/create-github-pages-routes.mjs      | 449 ++++----------------
+ src/App.tsx                                 |  36 +-
+ src/components/AdvancedSEO.tsx              |   8 +-
+ src/components/GuideLayout.tsx              |   1 -
+ src/components/OptimizedImage.tsx           |   5 +-
+ src/entry-server.tsx                        | 108 +++++
+ src/lib/queryClient.ts                      |  10 +
+ src/main.tsx                                |  14 +-
+ src/pages/BasPPage.tsx                      |   4 +-
+ src/pages/BasUPage.tsx                      |   4 +-
+ src/pages/BygglovshandlingarPage.tsx        |   4 +-
+ src/pages/EnergiDeklarationPage.tsx         |   4 +-
+ src/pages/KontrollansvarigCityPage.tsx      |   4 +-
+ src/pages/KontrollansvarigFjallPage.tsx     |   2 +
+ src/pages/KontrollansvarigPage.tsx          |   4 +-
+ src/pages/OverlatelsebesiktningCityPage.tsx |   4 +-
+ src/pages/OverlatelsebesiktningPage.tsx     |   2 +
+ vite.config.ts                              |  14 +-
+ 24 files changed, 403 insertions(+), 465 deletions(-)
+ create mode 100644 docs/prerendering.md
+ create mode 100644 scripts/check-prerendered-html.mjs
+ delete mode 100644 scripts/copy-404.mjs
+ create mode 100644 src/entry-server.tsx
+ create mode 100644 src/lib/queryClient.ts
+
+diff --git a/docs/prerendering.md b/docs/prerendering.md
+new file mode 100644
+index 0000000..aeca673
+--- /dev/null
++++ b/docs/prerendering.md
+@@ -0,0 +1,33 @@
++# För-rendering för sök och AI
++
++Produktionsbygget skapar färdig HTML för alla statiska routes i `src/App.tsx`. Det innebär att sökmotorer och AI-crawlers får sidans H1, brödtext, länkar, metadata och JSON-LD utan att först behöva köra JavaScript.
++
++## Byggflöde
++
++`npm run build` gör följande:
++
++1. genererar sitemap,
++2. bygger den vanliga Vite-klienten,
++3. bygger server-entryn `src/entry-server.tsx`,
++4. för-renderar statiska React Router-routes till `dist/<route>/index.html`,
++5. kör affärsfakta- och prerenderkontrollerna.
++
++Klienten finns kvar i varje HTML-fil och hydrerar det befintliga innehållet, så formulär, navigation och övrig interaktivitet fungerar som tidigare.
++
++## GitHub Pages och dynamiska routes
++
++`dist/404.html` innehåller en för-renderad, `noindex`-märkt felsida. Den har också attributet `data-spa-fallback="true"`. GitHub Pages använder filen för okända sökvägar och behåller den begärda URL:en. Klienten monterar då från scratch så dynamiska routes som `/blogg/:slug` fortfarande kan hanteras av React Router utan hydreringskonflikt.
++
++Dynamiska blogginlägg är ännu inte statiskt för-renderade och kan därför fortfarande få HTTP 404 vid en direktförfrågan på GitHub Pages. Det är en begränsning i hostingen, inte i React-routingen. Om blogginläggen ska indexeras stabilt bör de genereras till egna HTML-filer vid build eller sajten flyttas till en host med redirects/SSR.
++
++## Kontroller
++
++`npm run test:prerender` verifierar för varje statisk route:
++
++- verkligt innehåll i `#root`, inklusive `<main>` och H1,
++- exakt en title och canonical,
++- description och robots-direktiv,
++- att Suspense-laddaren inte är det enda innehållet,
++- att det borttagna publika telefonnumret inte finns i HTML.
++
++Kontrollen ingår i produktionsbygget och stoppar deploy om någon av punkterna fallerar.
+diff --git a/index.html b/index.html
+index f12803a..295ddfc 100644
+--- a/index.html
++++ b/index.html
+@@ -68,7 +68,8 @@
+     <!-- Google Search Console Verification -->
+     <meta name="google-site-verification" content="RzdLk5ZZjJoDLBeC-hu0eQ2O5fVjF4M-EXUewixYTs" />
+     
+-    <!-- SEO Meta Tags (React Helmet will override these on route changes) -->
++    <!-- app-head-start -->
++    <!-- SEO defaults; the prerender step replaces this block for every route. -->
+     <title>Trygg Byggprocess med Ytterman - Kontrollansvarig & BAS i Västernorrland</title>
+     <meta name="description" content="Certifierad kontrollansvarig enligt PBL och uppdrag som BAS-P/BAS-U i Västernorrland. Över 20 års erfarenhet. Energideklaration utförs av certifierad energiexpert via behörig partner." />
+     <meta name="author" content="Tobias Ytterman" />
+@@ -114,28 +115,13 @@
+         }
+       }
+     </script>
++    <!-- app-head-end -->
+     
+   </head>
+ 
+   <body>
+     <div id="root"></div>
+     
+-    <!-- GitHub Pages SPA redirect handler -->
+-    <script>
+-      // This script runs before React loads and handles redirects from 404.html
+-      // It reads the stored path from sessionStorage and uses history.replaceState
+-      // to restore the correct URL without causing a page reload or UI flash
+-      (function() {
+-        var redirectPath = sessionStorage.getItem('spa-redirect-path');
+-        if (redirectPath) {
+-          sessionStorage.removeItem('spa-redirect-path');
+-          // Use replaceState to update the URL without reloading the page
+-          // React Router will pick up the correct path when it initializes
+-          history.replaceState(null, '', redirectPath);
+-        }
+-      })();
+-    </script>
+-    
+     <!-- DO NOT REMOVE THESE IMPORTS -->
+     <script async src="https://ellprnxjjzatijdxcogk.supabase.co/storage/v1/object/public/cdn/console-capture.js"></script>
+     <script type="module" src="/src/main.tsx"></script>
+diff --git a/package.json b/package.json
+index b8ad1f7..7edd26f 100644
+--- a/package.json
++++ b/package.json
+@@ -5,11 +5,12 @@
+   "type": "module",
+   "scripts": {
+     "dev": "vite",
+-    "build": "vite build && node scripts/copy-404.mjs && node scripts/create-github-pages-routes.mjs && node scripts/generate-sitemap.js && node scripts/check-business-facts.mjs",
++    "build": "node scripts/generate-sitemap.js && vite build && vite build --ssr src/entry-server.tsx --outDir dist-ssr && node scripts/create-github-pages-routes.mjs && node scripts/check-business-facts.mjs && node scripts/check-prerendered-html.mjs",
+     "build:dev": "vite build --mode development",
+-    "build:prod": "vite build && node scripts/copy-404.mjs && node scripts/create-github-pages-routes.mjs && node scripts/generate-sitemap.js && node scripts/check-business-facts.mjs",
++    "build:prod": "node scripts/generate-sitemap.js && vite build && vite build --ssr src/entry-server.tsx --outDir dist-ssr && node scripts/create-github-pages-routes.mjs && node scripts/check-business-facts.mjs && node scripts/check-prerendered-html.mjs",
+     "lint": "eslint .",
+     "test:content": "node scripts/check-business-facts.mjs",
++    "test:prerender": "node scripts/check-prerendered-html.mjs",
+     "typecheck": "tsc -b --pretty false",
+     "preview": "vite preview",
+     "generate:sitemap": "node scripts/generate-sitemap.js"
+diff --git a/public/404.html b/public/404.html
+index 4b3e46c..bbf2d9e 100644
+--- a/public/404.html
++++ b/public/404.html
+@@ -5,11 +5,8 @@
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+   <!-- 
+-    NOTE: This file is overwritten during build by scripts/copy-404.mjs
+-    The build process copies dist/index.html to dist/404.html for proper SPA routing on GitHub Pages
+-    
+-    This ensures that when GitHub Pages serves 404.html for unknown routes,
+-    it actually serves the full React app, allowing React Router to handle the routing client-side.
++    NOTE: This fallback is overwritten during build by the React prerender step.
++    The generated dist/404.html contains the real 404 page and hydrates client-side.
+   -->
+   
+   <!-- Prevent indexing of 404 page -->
+diff --git a/scripts/check-prerendered-html.mjs b/scripts/check-prerendered-html.mjs
+new file mode 100644
+index 0000000..d3d17ae
+--- /dev/null
++++ b/scripts/check-prerendered-html.mjs
+@@ -0,0 +1,97 @@
++import { existsSync, readFileSync } from 'node:fs';
++import { join } from 'node:path';
++import { fileURLToPath } from 'node:url';
++
++const projectRoot = fileURLToPath(new URL('..', import.meta.url));
++const distPath = join(projectRoot, 'dist');
++const appSource = readFileSync(join(projectRoot, 'src', 'App.tsx'), 'utf8');
++const routePattern = /<Route\s+path="([^"]+)"/g;
++const routes = [...new Set(
++  [...appSource.matchAll(routePattern)]
++    .map((match) => match[1])
++    .filter((route) => route !== '*' && !route.includes(':')),
++)];
++
++const failures = [];
++const oldPhonePatterns = [
++  /076[\s-]*111[\s-]*84[\s-]*47/i,
++  /(?:\+|00)?46[\s-]*76[\s-]*111[\s-]*84[\s-]*47/i,
++];
++
++const routePath = (route) => route === '/' ? '/' : `${route.replace(/\/+$/, '')}/`;
++const outputPath = (route) => route === '/'
++  ? join(distPath, 'index.html')
++  : join(distPath, route.replace(/^\/+|\/+$/g, ''), 'index.html');
++
++const getCanonicalUrls = (html) => [...html.matchAll(/<link\b[^>]*>/gi)]
++  .map((match) => match[0])
++  .filter((tag) => /\brel="canonical"/i.test(tag))
++  .map((tag) => tag.match(/\bhref="([^"]+)"/i)?.[1])
++  .filter(Boolean);
++
++const checkPage = (route, file) => {
++  if (!existsSync(file)) {
++    failures.push(`${route}: filen saknas (${file})`);
++    return;
++  }
++
++  const html = readFileSync(file, 'utf8');
++  const expectedCanonical = `https://ytterman.com${routePath(route)}`;
++  const canonicalUrls = getCanonicalUrls(html);
++  const titleCount = (html.match(/<title\b/gi) || []).length;
++
++  if (!/<div id="root"><[\s\S]*?<main\b/i.test(html)) {
++    failures.push(`${route}: #root innehåller inte för-renderat <main>-innehåll`);
++  }
++  if (!/<h1\b/i.test(html)) {
++    failures.push(`${route}: för-renderad H1 saknas`);
++  }
++  if (!/<meta\b[^>]*name="description"[^>]*content="[^"]+"/i.test(html)) {
++    failures.push(`${route}: meta description saknas`);
++  }
++  if (!/<meta\b[^>]*name="robots"[^>]*content="[^"]+"/i.test(html)) {
++    failures.push(`${route}: robots-direktiv saknas`);
++  }
++  if (titleCount !== 1) {
++    failures.push(`${route}: förväntade en title-tagg men hittade ${titleCount}`);
++  }
++  if (canonicalUrls.length !== 1 || canonicalUrls[0] !== expectedCanonical) {
++    failures.push(`${route}: canonical är ${canonicalUrls.join(', ') || 'saknad'}, förväntade ${expectedCanonical}`);
++  }
++  if (html.includes('>Laddar...</p>')) {
++    failures.push(`${route}: endast Suspense-laddaren för-renderades`);
++  }
++  for (const pattern of oldPhonePatterns) {
++    if (pattern.test(html)) {
++      failures.push(`${route}: det borttagna publika telefonnumret finns i HTML`);
++    }
++  }
++};
++
++for (const route of routes) {
++  checkPage(route, outputPath(route));
++}
++
++const notFoundPath = join(distPath, '404.html');
++if (!existsSync(notFoundPath)) {
++  failures.push('/404: dist/404.html saknas');
++} else {
++  const notFoundHtml = readFileSync(notFoundPath, 'utf8');
++  if (!/<div id="root" data-spa-fallback="true">/i.test(notFoundHtml)) {
++    failures.push('/404: markering för dynamiska GitHub Pages-routes saknas');
++  }
++  if (!/<h1\b[^>]*>\s*Sidan hittades inte\s*<\/h1>/i.test(notFoundHtml)) {
++    failures.push('/404: för-renderad 404-rubrik saknas');
++  }
++  if (!/<meta\b[^>]*name="robots"[^>]*content="noindex, follow"/i.test(notFoundHtml)) {
++    failures.push('/404: noindex-direktiv saknas');
++  }
++}
++
++if (failures.length > 0) {
++  console.error(`Prerender-kontrollen hittade ${failures.length} fel:\n`);
++  console.error(failures.map((failure) => `- ${failure}`).join('\n'));
++  process.exit(1);
++}
++
++console.log(`Prerender-kontrollen är grön (${routes.length} routes + 404 med H1, innehåll och unik metadata).`);
+diff --git a/scripts/copy-404.mjs b/scripts/copy-404.mjs
+deleted file mode 100644
+index 5c68c50..0000000
+--- a/scripts/copy-404.mjs
++++ /dev/null
+@@ -1,29 +0,0 @@
+-import { readFileSync, writeFileSync, existsSync, copyFileSync } from 'fs';
+-import { join, dirname } from 'path';
+-import { fileURLToPath } from 'url';
+-
+-const __dirname = dirname(fileURLToPath(import.meta.url));
+-const projectRoot = join(__dirname, '..');
+-const distPath = join(projectRoot, 'dist');
+-const indexPath = join(distPath, 'index.html');
+-const notFoundPath = join(distPath, '404.html');
+-
+-try {
+-  // Check if dist/index.html exists
+-  if (!existsSync(indexPath)) {
+-    console.error('❌ Error: dist/index.html not found. Please run "npm run build" first.');
+-    process.exit(1);
+-  }
+-
+-  // Copy index.html to 404.html
+-  // This is necessary for GitHub Pages SPA routing
+-  // GitHub Pages serves 404.html when a route is not found
+-  // By making it identical to index.html, React Router can handle all routing
+-  copyFileSync(indexPath, notFoundPath);
+-
+-  console.log('✅ Successfully created dist/404.html (copy of dist/index.html)');
+-  console.log('   This enables proper SPA routing on GitHub Pages');
+-} catch (error) {
+-  console.error('❌ Error copying index.html to 404.html:', error.message);
+-  process.exit(1);
+-}
+diff --git a/scripts/create-github-pages-routes.mjs b/scripts/create-github-pages-routes.mjs
+index 75be07f..8241b13 100644
+--- a/scripts/create-github-pages-routes.mjs
++++ b/scripts/create-github-pages-routes.mjs
+@@ -1,402 +1,95 @@
+ /**
+- * Creates dist/<route>/index.html for each SPA route.
++ * Pre-renders every static React Router route into dist/<route>/index.html.
+  *
+- * GitHub Pages serves files at their exact path. For a route like /faq,
+- * creating dist/faq/index.html makes GitHub Pages return HTTP 200 instead
+- * of falling through to dist/404.html (HTTP 404). This is essential for
+- * Google Search Console and other bots that don't execute JavaScript.
++ * The output keeps the client bundle, so React hydrates the existing markup and
++ * the site remains fully interactive. Crawlers and AI agents receive the real
++ * heading, body copy, links, metadata and JSON-LD without executing JavaScript.
+  */
+ 
+-import { mkdirSync, existsSync, readFileSync, writeFileSync } from 'fs';
+-import { join, dirname } from 'path';
+-import { fileURLToPath } from 'url';
++import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
++import { dirname, join } from 'node:path';
++import { fileURLToPath } from 'node:url';
++import { render } from '../dist-ssr/entry-server.js';
+ 
+-const __dirname = dirname(fileURLToPath(import.meta.url));
+-const distPath = join(__dirname, '..', 'dist');
++const scriptDirectory = dirname(fileURLToPath(import.meta.url));
++const projectRoot = join(scriptDirectory, '..');
++const distPath = join(projectRoot, 'dist');
+ const indexPath = join(distPath, 'index.html');
+-const DOMAIN = 'https://ytterman.com';
+-const DEFAULT_TITLE = 'Trygg Byggprocess med Ytterman - Kontrollansvarig & BAS i Västernorrland';
+-const DEFAULT_DESCRIPTION = 'Certifierad kontrollansvarig enligt PBL och uppdrag som BAS-P/BAS-U i Västernorrland. Över 20 års erfarenhet. Energideklaration utförs via behörig partner av certifierad energiexpert.';
++const appSourcePath = join(projectRoot, 'src', 'App.tsx');
++const headBlockPattern = /<!-- app-head-start -->[\s\S]*?<!-- app-head-end -->/;
++const rootPlaceholder = '<div id="root"></div>';
+ 
+ if (!existsSync(indexPath)) {
+-  console.error('❌ dist/index.html not found – run "npm run build" first.');
+-  process.exit(1);
++  throw new Error('dist/index.html saknas – kör klientbygget före prerenderingen.');
+ }
+ 
+-// All routes that must return HTTP 200 on GitHub Pages
+-const routes = [
+-  // Main pages
+-  'faq',
+-  'kontakt',
+-  'guider',
+-  'energideklaration',
+-  'om',
+-  'tjanster',
+-  'priser',
+-  'omraden',
+-  'kontrollansvarig',
+-  'bas-p',
+-  'bas-u',
+-  'overlatelsebesiktning',
+-  'energiberakning-online',
+-  'bygglovshandlingar',
+-  'integritetspolicy',
+-  'tack',
+-  // City-specific Kontrollansvarig pages
+-  'kontrollansvarig-sundsvall',
+-  'kontrollansvarig-harnosand',
+-  'kontrollansvarig-i-fjallen',
+-  'kontrollansvarig-timra',
+-  'kontrollansvarig-kramfors',
+-  'kontrollansvarig-solleftea',
+-  // City-specific Överlåtelsebesiktning pages
+-  'overlatelsebesiktning-sundsvall',
+-  'overlatelsebesiktning-harnosand',
+-  'overlatelsebesiktning-timra',
+-  'overlatelsebesiktning-kramfors',
+-  'overlatelsebesiktning-solleftea',
+-  'overlatelsebesiktning-ornskoldsvik',
+-  'overlatelsebesiktning-ange',
+-  // Guide pages
+-  'guider/kontrollansvarig',
+-  'guider/bas',
+-  'guider/bygglov',
+-  'guider/kvalitetskontroll',
+-  'guider/overlatelsebesiktning',
+-  'guider/energi',
+-  'guider/miljo',
+-  'guider/digitala-verktyg',
+-  'guider/kontrollansvarig-bygglov',
+-  'guider/kontrollansvarig-certifiering',
+-  'guider/kontrollansvarig-ansvar',
+-  'guider/kontrollansvarig-timpris',
+-  'guider/bas-p-guide',
+-  'guider/bas-u-guide',
+-  'guider/vad-ar-bas',
+-  'guider/tekniskt-samrad',
+-  'guider/kontrollplan',
+-  'guider/slutbesked',
+-  'guider/vasternorrland',
+-  'guider/bygglovsguide-vanliga-misstag-husbygge',
+-  // Digitala produkter
+-  'produkter',
+-  'byggstart-planerare',
+-  // Blogg
+-  'blogg',
+-];
+-
+-const routeSeoData = {
+-  faq: {
+-    title: 'Vanliga frågor om kontrollansvarig och BAS | Ytterman',
+-    description: 'Svar om kontrollansvarig, BAS-P, BAS-U, bygglov, certifiering, priser, energideklaration via partner och lokala förfrågningar.',
+-  },
+-  kontakt: {
+-    title: 'Kontakta Ytterman - Kontrollansvarig & BAS Västernorrland',
+-    description: 'Behöver du kontrollansvarig eller BAS? Mejla tobias@ytterman.com eller använd formuläret och beskriv projektet så återkommer vi med nästa steg.',
+-  },
+-  guider: {
+-    title: 'Bygguider – kontrollansvarig, BAS och byggprocess | Ytterman',
+-    description: 'Guider om kontrollansvarig, BAS-P/BAS-U, bygglov, energideklaration via partner, överlåtelsebesiktning och byggprocess.',
+-  },
+-  energideklaration: {
+-    title: 'Energideklaration i Västernorrland | Ytterman',
+-    description: 'Ytterman erbjuder och samordnar energideklaration i Västernorrland. Deklarationen utförs via behörig partner av certifierad energiexpert.',
+-  },
+-  om: {
+-    title: 'Om Ytterman – kontrollansvarig och BAS i Västernorrland',
+-    description: 'Lär känna Tobias Ytterman – certifierad kontrollansvarig enligt PBL och utbildad för uppdrag som BAS-P och BAS-U, med över 20 års erfarenhet i byggbranschen.',
+-  },
+-  tjanster: {
+-    title: 'Byggtjänster Västernorrland - KA, BAS, Energiberäkning | Ytterman',
+-    description: 'Kontrollansvarig, BAS-P och BAS-U i Västernorrland. Energideklaration samordnas av Ytterman och utförs av certifierad energiexpert hos behörig partner.',
+-  },
+-  priser: {
+-    title: 'Priser Kontrollansvarig & BAS 2026 | Ytterman',
+-    description: 'Paketpriser 2026 för kontrollansvarig. KA Bas från 29 500 kr inklusive moms och paket KA + BAS-P/U 46 500–52 500 kr.',
+-  },
+-  omraden: {
+-    title: 'Kontrollansvarig & Besiktningsman Sundsvall, Härnösand | Ytterman',
+-    description: 'Kontrollansvarig, BAS-P, BAS-U och andra byggtjänster i Västernorrland. Omfattning, resor och leveranstid framgår av offerten för varje projekt.',
+-  },
+-  kontrollansvarig: {
+-    title: 'Kontrollansvarig i Västernorrland - Certifierad & Erfaren | Ytterman',
+-    description: 'Certifierad kontrollansvarig enligt PBL med över 20 års erfarenhet i byggbranschen. Se 2026-priser och begär offert utifrån projektets omfattning.',
+-  },
+-  'bas-p': {
+-    title: 'BAS-P i Västernorrland | Ytterman',
+-    description: 'BAS-P under projektering med utbildning, kompetens och över 20 års erfarenhet i byggbranschen. Arbete utifrån AFS 2023:3.',
+-  },
+-  'bas-u': {
+-    title: 'BAS-U i Västernorrland | Ytterman',
+-    description: 'BAS-U under utförande med utbildning, kompetens och över 20 års erfarenhet i byggbranschen. Arbete utifrån AFS 2023:3.',
+-  },
+-  overlatelsebesiktning: {
+-    title: 'Överlåtelsebesiktning Sundsvall & Härnösand | Ytterman',
+-    description: 'Överlåtelsebesiktning med över 20 års erfarenhet i byggbranschen. Omfattning, pris och leveranstid bekräftas vid bokning.',
+-  },
+-  'energiberakning-online': {
+-    title: 'Energiberäkning online för bygglov | Ytterman',
+-    description: 'Digital energiberäkning för byggprojekt. Skicka en intresseanmälan för besked om underlag, pris och leverans innan beställning.',
+-  },
+-  bygglovshandlingar: {
+-    title: 'Bygglovshandlingar i Västernorrland | Ytterman',
+-    description: 'Bygglovshandlingar anpassade efter projektets och kommunens krav. Omfattning och pris bekräftas efter genomgång av underlaget.',
+-  },
+-  integritetspolicy: {
+-    title: 'Integritetspolicy | Ytterman',
+-    description: 'Läs hur Ytterman hanterar kontaktuppgifter och andra personuppgifter.',
+-  },
+-  tack: {
+-    title: 'Tack för din förfrågan | Ytterman',
+-    description: 'Tack för din förfrågan om kontrollansvarig, BAS-P eller BAS-U. Vi går igenom uppgifterna och återkommer med nästa steg.',
+-  },
+-  'kontrollansvarig-sundsvall': {
+-    title: 'Kontrollansvarig i Sundsvall | Ytterman',
+-    description: 'Certifierad kontrollansvarig i Sundsvall med över 20 års erfarenhet. Se 2026-priser och begär en offert anpassad till projektets omfattning.',
+-  },
+-  'kontrollansvarig-harnosand': {
+-    title: 'Kontrollansvarig i Härnösand | Ytterman',
+-    description: 'Certifierad kontrollansvarig i Härnösand med över 20 års erfarenhet. Omfattning, resor och pris specificeras i projektets offert.',
+-  },
+-  'kontrollansvarig-i-fjallen': {
+-    title: 'Kontrollansvarig i fjällen | Ytterman',
+-    description: 'Förfrågningar om kontrollansvarig för fjällhus och fritidshus bedöms utifrån plats, kontrollbehov, behörighet och kapacitet. Resor specificeras i offerten.',
+-  },
+-  'kontrollansvarig-timra': {
+-    title: 'Kontrollansvarig i Timrå – certifierad KA | Ytterman',
+-    description: 'Certifierad kontrollansvarig i Timrå med över 20 års erfarenhet. Omfattning, resor och pris specificeras i projektets offert.',
+-  },
+-  'kontrollansvarig-kramfors': {
+-    title: 'Kontrollansvarig i Kramfors | Ytterman',
+-    description: 'Certifierad kontrollansvarig i Kramfors med över 20 års erfarenhet. Omfattning, resor och pris specificeras i projektets offert.',
+-  },
+-  'kontrollansvarig-solleftea': {
+-    title: 'Kontrollansvarig i Sollefteå | Ytterman',
+-    description: 'Certifierad kontrollansvarig i Sollefteå med över 20 års erfarenhet. Omfattning, resor och pris specificeras i projektets offert.',
+-  },
+-  'overlatelsebesiktning-sundsvall': {
+-    title: 'Överlåtelsebesiktning i Sundsvall | Ytterman',
+-    description: 'Överlåtelsebesiktning i Sundsvall med över 20 års erfarenhet i byggbranschen. Omfattning och leveranstid bekräftas vid bokning.',
+-  },
+-  'overlatelsebesiktning-harnosand': {
+-    title: 'Överlåtelsebesiktning Härnösand - Erfaren Besiktningsman | Ytterman',
+-    description: 'Överlåtelsebesiktning i Härnösand med över 20 års erfarenhet i byggbranschen. Omfattning och leveranstid bekräftas vid bokning.',
+-  },
+-  'overlatelsebesiktning-timra': {
+-    title: 'Överlåtelsebesiktning Timrå | Ytterman',
+-    description: 'Överlåtelsebesiktning i Timrå med över 20 års erfarenhet i byggbranschen. Omfattning och leveranstid bekräftas vid bokning.',
+-  },
+-  'overlatelsebesiktning-kramfors': {
+-    title: 'Överlåtelsebesiktning i Kramfors | Ytterman',
+-    description: 'Överlåtelsebesiktning i Kramfors med över 20 års erfarenhet i byggbranschen. Omfattning och leveranstid bekräftas vid bokning.',
+-  },
+-  'overlatelsebesiktning-solleftea': {
+-    title: 'Överlåtelsebesiktning Sollefteå - Erfaren Besiktningsman | Ytterman',
+-    description: 'Överlåtelsebesiktning i Sollefteå med över 20 års erfarenhet i byggbranschen. Omfattning och leveranstid bekräftas vid bokning.',
+-  },
+-  'overlatelsebesiktning-ornskoldsvik': {
+-    title: 'Överlåtelsebesiktning i Örnsköldsvik | Ytterman',
+-    description: 'Överlåtelsebesiktning i Örnsköldsvik med över 20 års erfarenhet i byggbranschen. Omfattning och leveranstid bekräftas vid bokning.',
+-  },
+-  'overlatelsebesiktning-ange': {
+-    title: 'Överlåtelsebesiktning Ånge - Erfaren Besiktningsman | Ytterman',
+-    description: 'Överlåtelsebesiktning i Ånge med över 20 års erfarenhet i byggbranschen. Omfattning och leveranstid bekräftas vid bokning.',
+-  },
+-  'guider/kontrollansvarig': {
+-    title: 'Kontrollansvarigs roll i byggprocessen | Ytterman',
+-    description: 'Guide till kontrollansvarigs roll enligt PBL, kontrollplan, byggplatsbesök, avvikelser och utlåtande inför slutbesked.',
+-  },
+-  'guider/bas': {
+-    title: 'BAS-P och BAS-U Guide - Arbetsmiljösamordning 2026 | Ytterman',
+-    description: 'Guide om BAS-P och BAS-U, skillnader och aktuellt regelverk enligt AFS 2023:3. Praktiska råd från Tobias Ytterman i Västernorrland.',
+-  },
+-  'guider/bygglov': {
+-    title: 'Bygglovsprocessen – lov, startbesked och slutbesked | Ytterman',
+-    description: 'Praktisk guide till bygglovsprocessens beslut, handlingar, kontrollplan, tekniskt samråd, startbesked och slutbesked.',
+-  },
+-  'guider/kvalitetskontroll': {
+-    title: 'Kvalitetskontroll i byggprojekt – roller och dokumentation | Ytterman',
+-    description: 'Guide till projekteringskontroll, kontrollplan enligt PBL, entreprenörens egenkontroll, sakkunnigkontroll och separat besiktning.',
+-  },
+-  'guider/overlatelsebesiktning': {
+-    title: 'Överlåtelsebesiktning – omfattning och rapport | Ytterman',
+-    description: 'Guide till okulär överlåtelsebesiktning, åtkomlighet, begränsningar, rapport och fortsatt teknisk utredning.',
+-  },
+-  'guider/energi': {
+-    title: 'Energideklaration – certifierad energiexpert via partner | Ytterman',
+-    description: 'Guide till energideklaration, energiprestanda, underlag och partnerleverans. Ytterman samordnar; certifierad energiexpert utför och registrerar.',
+-  },
+-  'guider/miljo': {
+-    title: 'Miljöarbete i byggprojekt – mål och verifiering | Ytterman',
+-    description: 'Guide till strukturerat miljöarbete i byggprojekt: energi, material, återbruk, avfall, innemiljö och spårbar verifiering.',
+-  },
+-  'guider/digitala-verktyg': {
+-    title: 'Digitala verktyg för byggprojekt | Ytterman',
+-    description: 'Översikt över digitala verktyg för projekthantering, dokumentation och kommunikation i byggprojekt.',
+-  },
+-  'guider/kontrollansvarig-bygglov': {
+-    title: 'Kontrollansvarig och bygglov – roll och process | Ytterman',
+-    description: 'Guide till när kontrollansvarig kan krävas, förslag till kontrollplan, tekniskt samråd, uppföljning och underlag inför slutbesked.',
+-  },
+-  'guider/kontrollansvarig-certifiering': {
+-    title: 'Kontrollansvarig certifiering – verifiera KA | Ytterman',
+-    description: 'Guide till hur du verifierar en kontrollansvarigs certifikat, behörighet och giltighetstid. Tobias Ytterman: Kiwa KA11926, behörighet N.',
+-  },
+-  'guider/kontrollansvarig-ansvar': {
+-    title: 'Kontrollansvarigs roll enligt PBL – ansvar och avgränsning | Ytterman',
+-    description: 'Guide till kontrollansvarigs uppgifter: kontrollplan, uppföljning, avvikelser och utlåtande inför slutbesked.',
+-  },
+-  'guider/kontrollansvarig-timpris': {
+-    title: 'Kontrollansvarig pris 2026 – paket och villkor | Ytterman',
+-    description: 'Paketpriser 2026 för kontrollansvarig: tillbyggnad, ombyggnation, fritidshus och paket med BAS-P/U. Alla belopp inklusive moms.',
+-  },
+-  'guider/bas-p-guide': {
+-    title: 'BAS-P Guide 2026 - Arbetsmiljösamordnare Projektering | Västernorrland',
+-    description: 'BAS-P-guide om riskarbete, projekteringssamordning, arbetsmiljöplan och överlämning enligt AFS 2023:3.',
+-  },
+-  'guider/bas-u-guide': {
+-    title: 'BAS-U Guide 2026 - Arbetsmiljösamordnare Utförande | Västernorrland',
+-    description: 'BAS-U-guide om samordning, arbetsmiljöplan, riskuppföljning och ansvarsfördelning enligt AFS 2023:3.',
+-  },
+-  'guider/vad-ar-bas': {
+-    title: 'Vad är BAS? - Förklaring av BAS-P och BAS-U 2026 | Västernorrland',
+-    description: 'Guide till BAS-P och BAS-U, rollernas skeden, ansvarsfördelning och aktuellt regelverk AFS 2023:3.',
+-  },
+-  'guider/tekniskt-samrad': {
+-    title: 'Tekniskt samråd – syfte och process enligt PBL | Ytterman',
+-    description: 'Guide till när tekniskt samråd hålls, vilka som deltar och vad byggnadsnämnden går igenom inför beslut om startbesked.',
+-  },
+-  'guider/kontrollplan': {
+-    title: 'Kontrollplan Bygglov - Guide till PBL Kontrollplan 2026',
+-    description: 'Detaljerad guide om kontrollplan i byggprojekt. Vad kontrollplanen ska innehålla, kontrollpunkter och hur den används. Från erfaren kontrollansvarig.',
+-  },
+-  'guider/slutbesked': {
+-    title: 'Slutbesked Bygglov - Guide till Process & Krav 2026',
+-    description: 'Guide till underlag inför slutbesked, byggherrens begäran, kontrollansvarigs utlåtande och byggnadsnämndens beslut.',
+-  },
+-  'guider/vasternorrland': {
+-    title: 'Byggprojekt i Västernorrland – kontrollansvarig och kommun',
+-    description: 'Guide till kontrollansvarig, kommunala beslut och projektunderlag i Västernorrland. Aktuella krav och handläggningstider kontrolleras alltid med kommunen.',
+-  },
+-  'guider/bygglovsguide-vanliga-misstag-husbygge': {
+-    title: 'Bygglovsguide – vanliga misstag och rollfördelning | Ytterman',
+-    description: 'Undvik missförstånd om lov, startbesked, kontrollansvarig, BAS, kontrollplan, ändringar och slutbesked.',
+-  },
+-  produkter: {
+-    title: 'Digitala verktyg – intresseanmälan | Ytterman',
+-    description: 'Ytterman utvecklar digitala planeringsverktyg för byggprojekt. För närvarande visas de som intresseanmälan tills betalning och automatisk leverans är verifierade.',
+-  },
+-  'byggstart-planerare': {
+-    title: 'Byggstart-planerare – intresseanmälan | Ytterman',
+-    description: 'Anmäl intresse för ett digitalt planeringsverktyg för byggstart. Pris, villkor och leverans bekräftas före beställning.',
+-  },
+-  blogg: {
+-    title: 'Blogg – Byggkunskap & Tips | Ytterman',
+-    description: 'Guider och kunskap om kontrollansvarig, BAS-P, BAS-U, bygglov och byggprocessen i Västernorrland.',
+-  },
+-};
+-
+-let created = 0;
+-const baseHtml = readFileSync(indexPath, 'utf-8');
+-
+-const getRouteUrl = (route) => `${DOMAIN}/${route}/`;
++const baseHtml = readFileSync(indexPath, 'utf8');
++if (!headBlockPattern.test(baseHtml) || !baseHtml.includes(rootPlaceholder)) {
++  throw new Error('index.html saknar app-head-markörer eller tom #root-behållare.');
++}
+ 
+-const escapeHtml = (value) => value
+-  .replaceAll('&', '&amp;')
+-  .replaceAll('"', '&quot;')
+-  .replaceAll("'", '&#39;')
+-  .replaceAll('<', '&lt;')
+-  .replaceAll('>', '&gt;');
++const extractStaticRoutes = () => {
++  const source = readFileSync(appSourcePath, 'utf8');
++  const routePattern = /<Route\s+path="([^"]+)"/g;
++  const routes = new Set();
+ 
+-const upsertTag = (html, pattern, replacement, anchor) => {
+-  if (pattern.test(html)) {
+-    return html.replace(pattern, replacement);
++  for (const match of source.matchAll(routePattern)) {
++    const route = match[1];
++    if (route !== '*' && !route.includes(':')) {
++      routes.add(route);
++    }
+   }
+ 
+-  return html.replace(anchor, `${anchor}\n    ${replacement}`);
++  return [...routes].sort((left, right) => {
++    if (left === '/') return -1;
++    if (right === '/') return 1;
++    return left.localeCompare(right, 'sv');
++  });
+ };
+ 
+-const updateTitleTag = (html, title) => {
+-  const escapedTitle = escapeHtml(title);
+-
+-  if (/<title>[^<]*<\/title>/.test(html)) {
+-    return html.replace(/<title>[^<]*<\/title>/, `<title>${escapedTitle}</title>`);
+-  }
+-
+-  return html.replace('<head>', `<head>\n    <title>${escapedTitle}</title>`);
++const toCanonicalPath = (route) => route === '/' ? '/' : `${route.replace(/\/+$/, '')}/`;
++
++const toOutputPath = (route) => route === '/'
++  ? indexPath
++  : join(distPath, route.replace(/^\/+|\/+$/g, ''), 'index.html');
++
++const buildDocument = (rendered, { spaFallback = false } = {}) => {
++  const headHtml = rendered.headHtml
++    // Viewport is static in index.html and should only occur once.
++    .replace(/<meta[^>]+name="viewport"[^>]*>\n?\s*/g, '');
++
++  return baseHtml
++    .replace(
++      headBlockPattern,
++      `<!-- app-head-start -->\n    ${headHtml}\n    <!-- app-head-end -->`,
++    )
++    .replace(
++      rootPlaceholder,
++      `<div id="root"${spaFallback ? ' data-spa-fallback="true"' : ''}>${rendered.appHtml}</div>`,
++    );
+ };
+ 
+-for (const route of routes) {
+-  const routeDir = join(distPath, route);
+-  const dest = join(routeDir, 'index.html');
+-  mkdirSync(routeDir, { recursive: true });
+-  const routeUrl = getRouteUrl(route);
+-  const seoData = routeSeoData[route];
+-  let routeHtml = baseHtml;
++const prerender = async (route, destination, options) => {
++  const canonicalPath = toCanonicalPath(route);
++  const rendered = await render(canonicalPath);
+ 
+-  if (!seoData) {
+-    console.warn(`⚠️  Missing SEO metadata for route: ${route}`);
++  if (!rendered.appHtml.includes('<main')) {
++    throw new Error(`${route} saknar <main> i den för-renderade appen.`);
+   }
+ 
+-  const rawPageTitle = seoData?.title ?? DEFAULT_TITLE;
+-  const rawPageDescription = seoData?.description ?? DEFAULT_DESCRIPTION;
+-  const pageTitle = escapeHtml(rawPageTitle);
+-  const pageDescription = escapeHtml(rawPageDescription);
+-
+-  routeHtml = upsertTag(
+-    routeHtml,
+-    /<link rel="canonical" href="[^"]*" \/>/,
+-    `<link rel="canonical" href="${routeUrl}" />`,
+-    '<meta name="robots" content="index, follow" />'
+-  );
+-
+-  routeHtml = upsertTag(
+-    routeHtml,
+-    /<meta property="og:url" content="[^"]*" \/>/,
+-    `<meta property="og:url" content="${routeUrl}" />`,
+-    `<meta property="og:description" content="${DEFAULT_DESCRIPTION}" />`
+-  );
+-
+-  routeHtml = updateTitleTag(routeHtml, rawPageTitle);
+-
+-  routeHtml = upsertTag(
+-    routeHtml,
+-    /<meta name="description" content="[^"]*" \/>/,
+-    `<meta name="description" content="${pageDescription}" />`,
+-    '<meta name="author" content="Tobias Ytterman" />'
+-  );
+-
+-  routeHtml = upsertTag(
+-    routeHtml,
+-    /<meta property="og:title" content="[^"]*" \/>/,
+-    `<meta property="og:title" content="${pageTitle}" />`,
+-    '<meta property="og:type" content="website" />'
+-  );
+-
+-  routeHtml = upsertTag(
+-    routeHtml,
+-    /<meta property="og:description" content="[^"]*" \/>/,
+-    `<meta property="og:description" content="${pageDescription}" />`,
+-    `<meta property="og:title" content="${pageTitle}" />`
+-  );
+-
+-  routeHtml = upsertTag(
+-    routeHtml,
+-    /<meta name="twitter:title" content="[^"]*" \/>/,
+-    `<meta name="twitter:title" content="${pageTitle}" />`,
+-    '<meta name="twitter:card" content="summary_large_image" />'
+-  );
+-
+-  routeHtml = upsertTag(
+-    routeHtml,
+-    /<meta name="twitter:description" content="[^"]*" \/>/,
+-    `<meta name="twitter:description" content="${pageDescription}" />`,
+-    `<meta name="twitter:title" content="${pageTitle}" />`
+-  );
++  mkdirSync(dirname(destination), { recursive: true });
++  writeFileSync(destination, buildDocument(rendered, options), 'utf8');
++};
+ 
+-  writeFileSync(dest, routeHtml, 'utf-8');
+-  console.log(`  ✓ ${route}/index.html`);
+-  created++;
++const routes = extractStaticRoutes();
++for (const route of routes) {
++  await prerender(route, toOutputPath(route));
++  console.log(`  ✓ ${toCanonicalPath(route)}`);
+ }
+ 
+-console.log(`\n✅ Created ${created} route directories for GitHub Pages SPA routing`);
++// GitHub Pages returns 404.html for unknown paths while preserving the URL.
++// The marker lets the client mount from scratch, so dynamic routes such as
++// /blogg/:slug still work without trying to hydrate the prerendered 404 page.
++await prerender('/404', join(distPath, '404.html'), { spaFallback: true });
++
++console.log(`\n✅ För-renderade ${routes.length} routes samt 404-sidan med verkligt React-innehåll.`);
+diff --git a/src/App.tsx b/src/App.tsx
+index 4b47c03..171f35e 100644
+--- a/src/App.tsx
++++ b/src/App.tsx
+@@ -1,10 +1,10 @@
+-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
++import { BrowserRouter, Routes, Route } from 'react-router-dom';
++import { QueryClientProvider } from '@tanstack/react-query';
+ import { HelmetProvider } from 'react-helmet-async';
+ import { Toaster } from '@/components/ui/sonner';
+ import { ScrollToTop } from '@/components/ScrollToTop';
+-import { GoogleSearchConsole } from '@/components/GoogleSearchConsole';
+ import { UrlCanonicalizer } from '@/components/UrlCanonicalizer';
++import { createAppQueryClient } from '@/lib/queryClient';
+ import { lazy, Suspense } from 'react';
+ 
+ // Critical Pages (eager load for fast initial render)
+@@ -80,22 +80,10 @@ const BlogPostPage = lazy(() => import('@/pages/BlogPostPage'));
+ const ByggstartPlanerare = lazy(() => import('@/pages/ByggstartPlanerare'));
+ const ProdukterPage = lazy(() => import('@/pages/ProdukterPage'));
+ 
+-const queryClient = new QueryClient({
+-    defaultOptions: {
+-        queries: {
+-            staleTime: 1000 * 60 * 5,
+-            retry: 1,
+-        },
+-    },
+-});
+-
+-function App() {
++export function AppRoutes() {
+     return (
+-        <HelmetProvider>
+-            <QueryClientProvider client={queryClient}>
+-                <Router>
++        <>
+                     <UrlCanonicalizer />
+-                    <GoogleSearchConsole />
+                     <ScrollToTop />
+                     <div className="min-h-screen">
+                         <Suspense fallback={
+@@ -181,7 +169,19 @@ function App() {
+                         </Suspense>
+                         <Toaster />
+                     </div>
+-                </Router>
++        </>
++    );
++}
++
++const queryClient = createAppQueryClient();
++
++function App() {
++    return (
++        <HelmetProvider>
++            <QueryClientProvider client={queryClient}>
++                <BrowserRouter>
++                    <AppRoutes />
++                </BrowserRouter>
+             </QueryClientProvider>
+         </HelmetProvider>
+     );
+diff --git a/src/components/AdvancedSEO.tsx b/src/components/AdvancedSEO.tsx
+index 1e787fa..3cd7422 100644
+--- a/src/components/AdvancedSEO.tsx
++++ b/src/components/AdvancedSEO.tsx
+@@ -241,8 +241,12 @@ export const AdvancedSEO = ({
+       {/* Article specific Open Graph */}
+       {article && (
+         <>
+-          <meta property="article:published_time" content={article.publishedTime} />
+-          <meta property="article:modified_time" content={article.modifiedTime || article.publishedTime} />
++          {article.publishedTime && (
++            <meta property="article:published_time" content={article.publishedTime} />
++          )}
++          {(article.modifiedTime || article.publishedTime) && (
++            <meta property="article:modified_time" content={article.modifiedTime || article.publishedTime} />
++          )}
+           <meta property="article:author" content={article.author || COMPANY.publicName} />
+           <meta property="article:section" content={article.section} />
+           {article.tags?.map((tag, index) => (
+diff --git a/src/components/GuideLayout.tsx b/src/components/GuideLayout.tsx
+index 1d19c04..b519afa 100644
+--- a/src/components/GuideLayout.tsx
++++ b/src/components/GuideLayout.tsx
+@@ -51,7 +51,6 @@ export const GuideLayout = ({
+         organization={true}
+         breadcrumbs={breadcrumbs}
+         article={{
+-          publishedTime: new Date().toISOString(),
+           author: 'Tobias Ytterman',
+           section: 'Guider',
+           tags: keywords.split(', ')
+diff --git a/src/components/OptimizedImage.tsx b/src/components/OptimizedImage.tsx
+index d375e52..ed29cbe 100644
+--- a/src/components/OptimizedImage.tsx
++++ b/src/components/OptimizedImage.tsx
+@@ -53,9 +53,13 @@ export const OptimizedImage = ({
+ }: OptimizedImageProps) => {
+   const [isLoaded, setIsLoaded] = useState(false);
+   const optimizedSrc = optimizeImageSrc(src, width);
++  const fetchPriorityAttribute = {
++    fetchpriority: priority ? 'high' : 'auto',
++  };
+ 
+   return (
+     <img
++      {...fetchPriorityAttribute}
+       src={optimizedSrc}
+       alt={alt}
+       srcSet={srcSet}
+@@ -63,7 +67,6 @@ export const OptimizedImage = ({
+       height={height}
+       sizes={sizes}
+       loading={priority ? 'eager' : 'lazy'}
+-      fetchPriority={priority ? 'high' : 'auto'}
+       decoding="async"
+       onLoad={() => setIsLoaded(true)}
+       className={cn(
+diff --git a/src/entry-server.tsx b/src/entry-server.tsx
+new file mode 100644
+index 0000000..3c7559e
+--- /dev/null
++++ b/src/entry-server.tsx
+@@ -0,0 +1,108 @@
++import { PassThrough } from 'node:stream';
++import { QueryClientProvider } from '@tanstack/react-query';
++import { renderToPipeableStream } from 'react-dom/server';
++import { HelmetProvider, type HelmetServerState } from 'react-helmet-async';
++import { StaticRouter } from 'react-router-dom/server';
++import { AppRoutes } from './App';
++import { createAppQueryClient } from './lib/queryClient';
++
++interface HelmetContext {
++  helmet?: HelmetServerState;
++}
++
++export interface RenderedRoute {
++  appHtml: string;
++  headHtml: string;
++  htmlAttributes: string;
++  bodyAttributes: string;
++}
++
++const renderHelmetHead = (helmet: HelmetServerState) => [
++  helmet.title.toString(),
++  helmet.priority.toString(),
++  helmet.meta.toString(),
++  helmet.link.toString(),
++  helmet.style.toString(),
++  helmet.script.toString(),
++  helmet.noscript.toString(),
++].filter(Boolean).join('\n    ');
++
++export const render = (url: string): Promise<RenderedRoute> => {
++  const helmetContext: HelmetContext = {};
++  const queryClient = createAppQueryClient();
++
++  return new Promise((resolve, reject) => {
++    let renderError: unknown;
++    let settled = false;
++    const renderState: { timeout?: ReturnType<typeof setTimeout> } = {};
++
++    const finishWithError = (error: unknown) => {
++      if (settled) {
++        return;
++      }
++
++      settled = true;
++      if (renderState.timeout) {
++        clearTimeout(renderState.timeout);
++      }
++      reject(error instanceof Error ? error : new Error(String(error)));
++    };
++
++    const { pipe, abort } = renderToPipeableStream(
++      <HelmetProvider context={helmetContext}>
++        <QueryClientProvider client={queryClient}>
++          <StaticRouter location={url}>
++            <AppRoutes />
++          </StaticRouter>
++        </QueryClientProvider>
++      </HelmetProvider>,
++      {
++        onAllReady() {
++          if (renderError) {
++            finishWithError(renderError);
++            return;
++          }
++
++          const output = new PassThrough();
++          const chunks: Buffer[] = [];
++
++          output.on('data', (chunk) => chunks.push(Buffer.from(chunk)));
++          output.on('error', finishWithError);
++          output.on('end', () => {
++            if (settled) {
++              return;
++            }
++
++            const helmet = helmetContext.helmet;
++            if (!helmet) {
++              finishWithError(new Error(`Helmet-data saknas för ${url}`));
++              return;
++            }
++
++            settled = true;
++            if (renderState.timeout) {
++              clearTimeout(renderState.timeout);
++            }
++            resolve({
++              appHtml: Buffer.concat(chunks).toString('utf8'),
++              headHtml: renderHelmetHead(helmet),
++              htmlAttributes: helmet.htmlAttributes.toString(),
++              bodyAttributes: helmet.bodyAttributes.toString(),
++            });
++          });
++
++          pipe(output);
++        },
++        onShellError: finishWithError,
++        onError(error) {
++          renderError ??= error;
++        },
++      },
++    );
++
++    renderState.timeout = setTimeout(() => {
++      abort();
++      finishWithError(new Error(`För-renderingen av ${url} tog för lång tid`));
++    }, 15_000);
++  });
++};
+diff --git a/src/lib/queryClient.ts b/src/lib/queryClient.ts
+new file mode 100644
+index 0000000..d5d8111
+--- /dev/null
++++ b/src/lib/queryClient.ts
+@@ -0,0 +1,10 @@
++import { QueryClient } from '@tanstack/react-query';
++
++export const createAppQueryClient = () => new QueryClient({
++  defaultOptions: {
++    queries: {
++      staleTime: 1000 * 60 * 5,
++      retry: 1,
++    },
++  },
++});
+diff --git a/src/main.tsx b/src/main.tsx
+index 5a72f3a..0d54f7b 100644
+--- a/src/main.tsx
++++ b/src/main.tsx
+@@ -1,6 +1,16 @@
+-import { createRoot } from "react-dom/client";
++import { createRoot, hydrateRoot } from "react-dom/client";
+ import App from "./App.tsx";
+ import "./index.css";
+ import "@/lib/superdev/client";
+ 
+-createRoot(document.getElementById("root")!).render(<App />);
++const rootElement = document.getElementById("root")!;
++const isSpaFallback = rootElement.dataset.spaFallback === "true";
++
++if (rootElement.hasChildNodes() && !isSpaFallback) {
++  hydrateRoot(rootElement, <App />);
++} else {
++  if (isSpaFallback) {
++    rootElement.replaceChildren();
++  }
++  createRoot(rootElement).render(<App />);
++}
+diff --git a/src/pages/BasPPage.tsx b/src/pages/BasPPage.tsx
+index 9346302..01064ea 100644
+--- a/src/pages/BasPPage.tsx
++++ b/src/pages/BasPPage.tsx
+@@ -103,7 +103,8 @@ const BasPPage = () => {
+             <Breadcrumbs items={[{ label: 'BAS-P', href: '/bas-p' }]} />
+           </div>
+         </section>
+-        
++
++        <main id="main-content">
+         <ServiceHero
+           badge="BAS-P – utbildad och erfaren"
+           title="BAS-P i Västernorrland"
+@@ -313,6 +314,7 @@ const BasPPage = () => {
+         </section>
+ 
+         </div> {/* Close bg-gradient div */}
++        </main>
+ 
+         <Footer />
+       </div>
+diff --git a/src/pages/BasUPage.tsx b/src/pages/BasUPage.tsx
+index 899c39f..964f182 100644
+--- a/src/pages/BasUPage.tsx
++++ b/src/pages/BasUPage.tsx
+@@ -103,7 +103,8 @@ const BasUPage = () => {
+             <Breadcrumbs items={[{ label: 'BAS-U', href: '/bas-u' }]} />
+           </div>
+         </section>
+-        
++
++        <main id="main-content">
+         <ServiceHero
+           badge="BAS-U – utbildad och erfaren"
+           title="BAS-U i Västernorrland"
+@@ -311,6 +312,7 @@ const BasUPage = () => {
+         </section>
+ 
+         </div> {/* Close bg-gradient div */}
++        </main>
+ 
+         <Footer />
+       </div>
+diff --git a/src/pages/BygglovshandlingarPage.tsx b/src/pages/BygglovshandlingarPage.tsx
+index a195ee7..bad8693 100644
+--- a/src/pages/BygglovshandlingarPage.tsx
++++ b/src/pages/BygglovshandlingarPage.tsx
+@@ -117,7 +117,8 @@ const BygglovshandlingarPage = () => {
+             <Breadcrumbs items={[{ label: 'Bygglovshandlingar', href: '/bygglovshandlingar' }]} />
+           </div>
+         </section>
+-        
++
++        <main id="main-content">
+         <ServiceHero
+           badge="Professionella Handlingar"
+           title="Bygglovshandlingar i Västernorrland"
+@@ -308,6 +309,7 @@ const BygglovshandlingarPage = () => {
+         </section>
+ 
+         </div> {/* Close bg-gradient div */}
++        </main>
+ 
+         <Footer />
+       </div>
+diff --git a/src/pages/EnergiDeklarationPage.tsx b/src/pages/EnergiDeklarationPage.tsx
+index 27882c2..e108f2b 100644
+--- a/src/pages/EnergiDeklarationPage.tsx
++++ b/src/pages/EnergiDeklarationPage.tsx
+@@ -104,7 +104,8 @@ const EnergiDeklarationPage = () => {
+             <Breadcrumbs items={[{ label: 'Energideklaration', href: '/energideklaration' }]} />
+           </div>
+         </section>
+-        
++
++        <main id="main-content">
+         <ServiceHero
+           badge="Partnertjänst"
+           title="Energideklaration i Västernorrland"
+@@ -332,6 +333,7 @@ const EnergiDeklarationPage = () => {
+         </section>
+ 
+         </div> {/* Close bg-gradient div */}
++        </main>
+ 
+         <Footer />
+       </div>
+diff --git a/src/pages/KontrollansvarigCityPage.tsx b/src/pages/KontrollansvarigCityPage.tsx
+index c7b681f..f7e2feb 100644
+--- a/src/pages/KontrollansvarigCityPage.tsx
++++ b/src/pages/KontrollansvarigCityPage.tsx
+@@ -104,7 +104,8 @@ const KontrollansvarigCityPage = ({ cityData: city }: KontrollansvarigCityPagePr
+             ]} />
+           </div>
+         </section>
+-        
++
++        <main id="main-content">
+         <ServiceHero
+           badge="Certifierad Kontrollansvarig"
+           title={city.heroTitle}
+@@ -318,6 +319,7 @@ const KontrollansvarigCityPage = ({ cityData: city }: KontrollansvarigCityPagePr
+             </div>
+           </section>
+         </div>
++        </main>
+ 
+         <Footer />
+       </div>
+diff --git a/src/pages/KontrollansvarigFjallPage.tsx b/src/pages/KontrollansvarigFjallPage.tsx
+index 9c23d6a..cca8149 100644
+--- a/src/pages/KontrollansvarigFjallPage.tsx
++++ b/src/pages/KontrollansvarigFjallPage.tsx
+@@ -113,6 +113,7 @@ const KontrollansvarigFjallPage = () => {
+           </div>
+         </section>
+ 
++        <main id="main-content">
+         <ServiceHero
+           badge="Förfrågan för fjällprojekt"
+           title="Kontrollansvarig för fjällhus och fritidshus"
+@@ -322,6 +323,7 @@ const KontrollansvarigFjallPage = () => {
+           </section>
+ 
+         </div>
++        </main>
+ 
+         <Footer />
+       </div>
+diff --git a/src/pages/KontrollansvarigPage.tsx b/src/pages/KontrollansvarigPage.tsx
+index a22f3d4..d7a3529 100644
+--- a/src/pages/KontrollansvarigPage.tsx
++++ b/src/pages/KontrollansvarigPage.tsx
+@@ -107,7 +107,8 @@ const KontrollansvarigPage = () => {
+             <Breadcrumbs items={[{ label: 'Kontrollansvarig', href: '/kontrollansvarig' }]} />
+           </div>
+         </section>
+-        
++
++        <main id="main-content">
+         <ServiceHero
+           badge="Certifierad Kontrollansvarig"
+           title="Kontrollansvarig i Västernorrland"
+@@ -298,6 +299,7 @@ const KontrollansvarigPage = () => {
+         </section>
+ 
+         </div> {/* Close bg-gradient div */}
++        </main>
+ 
+         <Footer />
+       </div>
+diff --git a/src/pages/OverlatelsebesiktningCityPage.tsx b/src/pages/OverlatelsebesiktningCityPage.tsx
+index f765269..9b49bc3 100644
+--- a/src/pages/OverlatelsebesiktningCityPage.tsx
++++ b/src/pages/OverlatelsebesiktningCityPage.tsx
+@@ -97,7 +97,8 @@ const OverlatelsebesiktningCityPage = ({ cityData: city }: Overlatelsebesiktning
+             ]} />
+           </div>
+         </section>
+-        
++
++        <main id="main-content">
+         <ServiceHero
+           badge="Överlåtelsebesiktning"
+           title={city.heroTitle}
+@@ -313,6 +314,7 @@ const OverlatelsebesiktningCityPage = ({ cityData: city }: Overlatelsebesiktning
+             </div>
+           </section>
+         </div>
++        </main>
+ 
+         <Footer />
+       </div>
+diff --git a/src/pages/OverlatelsebesiktningPage.tsx b/src/pages/OverlatelsebesiktningPage.tsx
+index bc72f26..300676f 100644
+--- a/src/pages/OverlatelsebesiktningPage.tsx
++++ b/src/pages/OverlatelsebesiktningPage.tsx
+@@ -111,6 +111,7 @@ const OverlatelsebesiktningPage = () => {
+       </section>
+       
+       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-amber-50/30 to-slate-50">
++        <main id="main-content">
+         <ServiceHero
+           badge="Överlåtelsebesiktning"
+           title="Överlåtelsebesiktning i Västernorrland"
+@@ -482,6 +483,7 @@ const OverlatelsebesiktningPage = () => {
+           </div>
+         </section>
+ 
++        </main>
+         <Footer />
+       </div>
+     </>
+diff --git a/vite.config.ts b/vite.config.ts
+index 9714c85..2fbca6d 100644
+--- a/vite.config.ts
++++ b/vite.config.ts
+@@ -2,7 +2,7 @@ import { defineConfig } from "vite"
+ import react from "@vitejs/plugin-react-swc"
+ import path from "path"
+ 
+-export default defineConfig({
++export default defineConfig(({ isSsrBuild }) => ({
+   base: "/",
+   plugins: [react()],
+   resolve: {
+@@ -11,9 +11,17 @@ export default defineConfig({
+     },
+   },
+ 
++  ssr: {
++    noExternal: ["react-helmet-async"],
++  },
++
+   build: {
+     rollupOptions: {
+-      output: {
++      output: isSsrBuild ? {
++        entryFileNames: 'entry-server.js',
++        chunkFileNames: 'chunks/[name]-[hash].js',
++        assetFileNames: 'assets/[name]-[hash][extname]',
++      } : {
+         manualChunks: {
+           // Separate vendor libraries for better caching
+           "react-vendor": ["react", "react-dom"],
+@@ -69,4 +77,4 @@ export default defineConfig({
+       "react-helmet-async",
+     ],
+   },
+-})
+\ No newline at end of file
++}))
+-- 
+2.51.1
+

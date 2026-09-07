@@ -14,7 +14,7 @@ export const AdminActions = () => {
 
     setIsDeleting(true);
     try {
-      const result = await deleteBlogPosts({});
+      const result = await deleteBlogPosts();
       
       if (result.success) {
         toast({
@@ -22,12 +22,13 @@ export const AdminActions = () => {
           description: result.message,
         });
       } else {
-        throw new Error(result.error);
+        throw new Error('message' in result ? result.message : 'Okänt fel');
       }
     } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
       toast({
         title: "Fel",
-        description: `Kunde inte ta bort blogginlägg: ${error.message}`,
+        description: `Kunde inte ta bort blogginlägg: ${message}`,
         variant: "destructive",
       });
     } finally {

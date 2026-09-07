@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { BlogPost } from '@/entities';
 import { Button } from '@/components/ui/button';
 import { Trash2 } from 'lucide-react';
@@ -9,7 +9,7 @@ export const BlogPostManager = () => {
   const [loading, setLoading] = useState(true);
   const { toast } = useToast();
 
-  const fetchPosts = async () => {
+  const fetchPosts = useCallback(async () => {
     setLoading(true);
     try {
       const allPosts = await BlogPost.list();
@@ -24,11 +24,11 @@ export const BlogPostManager = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [toast]);
 
   useEffect(() => {
     fetchPosts();
-  }, []);
+  }, [fetchPosts]);
 
   const deletePost = async (id) => {
     try {
