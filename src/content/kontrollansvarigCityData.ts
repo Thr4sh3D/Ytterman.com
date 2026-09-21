@@ -54,7 +54,7 @@ const cityEntries: CityData[] = [
     municipality: 'Sundsvalls kommun',
     heroTitle: 'Kontrollansvarig för byggprojekt i Sundsvall',
     heroDescription: 'Ytterman betjänar Sundsvall med certifierad kontrollansvarig för projekt av normal art. Skicka projektets grunduppgifter för bedömning och tydlig offert.',
-    intro: 'För ett projekt i Sundsvall är den bästa starten att skilja på byggnadsnämndens beslut, byggherrens ansvar och kontrollansvarigs uppdrag. Den här sidan hjälper privatpersoner, företag och bostadsrättsföreningar att samla rätt offertunderlag utan att föregripa kommunens bedömning.',
+    intro: 'Ska du bygga till, bygga om eller uppföra ett fritidshus i Sundsvall? Ytterman hjälper dig med kontrollplan, uppföljning och KA-utlåtande inför slutbesked. Beskriv vad du planerar och hur långt du har kommit, så får du ett förslag på upplägg och pris.',
     focusTitle: 'Få ordning på roller och underlag tidigt',
     focusIntro: 'En tidig underlagskontroll gör det lättare att avgränsa KA-uppdraget och jämföra offerter på samma grund.',
     focusPoints: [
@@ -84,9 +84,9 @@ const cityEntries: CityData[] = [
     name: 'Härnösand',
     slug: 'kontrollansvarig-harnosand',
     municipality: 'Härnösands kommun',
-    heroTitle: 'Kontrollansvarig i Härnösand med tydlig rollfördelning',
-    heroDescription: 'Ytterman betjänar Härnösand med KA-tjänster för projekt av normal art. Uppdraget avgränsas mot projektering, byggledning och entreprenadbesiktning.',
-    intro: 'När du söker kontrollansvarig i Härnösand är det viktigt att veta vad KA faktiskt ansvarar för – och vad som ligger kvar hos byggherre, projektörer och entreprenörer. Här får du en rak avgränsning och en offertväg för det aktuella projektet.',
+    heroTitle: 'Kontrollansvarig i Härnösand för ditt byggprojekt',
+    heroDescription: 'Planerar du en tillbyggnad, ombyggnad eller ett nytt fritidshus i Härnösand? Få hjälp med kontrollplan, uppföljning och underlag inför slutbesked av en Kiwa-certifierad kontrollansvarig.',
+    intro: 'Skicka en kort beskrivning av ditt byggprojekt i Härnösand och de handlingar du har. Du får ett förslag på KA-uppdragets omfattning, planerade platsbesök och pris. Behöver du även BAS-P eller BAS-U kan det tas med i offerten.',
     focusTitle: 'Skilj KA från byggledning och besiktning',
     focusIntro: 'Kontrollansvarig följer kontrollplanen enligt PBL men tar inte automatiskt över andra aktörers ansvar.',
     focusPoints: [

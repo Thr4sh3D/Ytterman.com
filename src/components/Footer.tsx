@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Mail, MapPin } from 'lucide-react';
 import { ExternalSiteLink } from '@/components/ExternalSiteLink';
 import { BAS, COMPANY, KA_CERT } from '@/config/company';
@@ -113,7 +114,13 @@ export const Footer = () => {
               Verksamhetsområden
             </p>
             <ul className="space-y-2 text-gray-300">
-              {COMPANY.areaServed.slice(0, 5).map((area) => <li key={area}>{area}</li>)}
+              {COMPANY.areaServed.map((area) => <li key={area}>{area}</li>)}
+              {[
+                ['Sundsvall', 'sundsvall'], ['Härnösand', 'harnosand'], ['Timrå', 'timra'],
+                ['Kramfors', 'kramfors'], ['Sollefteå', 'solleftea'],
+              ].map(([city, slug]) => (
+                <li key={slug}><Link to={`/kontrollansvarig-${slug}/`} className="hover:text-white transition-colors">Kontrollansvarig i {city}</Link></li>
+              ))}
             </ul>
           </section>
         </div>
