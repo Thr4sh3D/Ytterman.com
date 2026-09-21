@@ -67,6 +67,21 @@ for (const route of routes) {
   checkPage(route, outputPath(route));
 }
 
+// Answers and guide links must be usable in the delivered document, before interaction.
+for (const route of ['/', '/faq', '/priser', '/tjanster', '/overlatelsebesiktning', '/kontrollansvarig-harnosand']) {
+  const html = readFileSync(outputPath(route), 'utf8');
+  const disclosures = [...html.matchAll(/<details\b[^>]*>([\s\S]*?)<\/details>/gi)];
+  if (!disclosures.length) failures.push(`${route}: FAQ-svar saknas i HTML utan JavaScript`);
+  for (const [, disclosure] of disclosures) {
+    const answer = disclosure.replace(/<summary\b[\s\S]*?<\/summary>/i, '').replace(/<[^>]+>/g, '').trim();
+    if (answer.length < 20) failures.push(`${route}: FAQ-svar saknas efter frågerubriken`);
+  }
+}
+const guideIndex = readFileSync(outputPath('/guider'), 'utf8');
+for (const route of routes.filter((path) => path.startsWith('/guider/'))) {
+  if (!guideIndex.includes(`href="${route}/"`)) failures.push(`/guider: saknar riktig HTML-länk till ${route}`);
+}
+
 const notFoundPath = join(distPath, '404.html');
 if (!existsSync(notFoundPath)) {
   failures.push('/404: dist/404.html saknas');

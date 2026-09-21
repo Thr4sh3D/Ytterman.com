@@ -157,8 +157,8 @@ const serviceRoutes = [
 ];
 
 const kaCities = [
-  ['Sundsvall', 'KA för normal art, tydlig rollfördelning och offertunderlag för projekt i Sundsvall.'],
-  ['Härnösand', 'KA för normal art i Härnösand med tydlig avgränsning mot byggledning, projektering och besiktning.'],
+  ['Sundsvall', 'Kiwa-certifierad kontrollansvarig i Sundsvall. Hjälp med kontrollplan, samråd och uppföljning. Se paketpriser och begär offert för ditt byggprojekt.'],
+  ['Härnösand', 'Kontrollansvarig i Härnösand för tillbyggnad, ombyggnad och fritidshus. Kiwa-certifierad KA med över 20 års byggerfarenhet. Se priser och begär offert.'],
   ['Timrå', 'Kontrollansvarig i Timrå med en spårbar process från offert och kontrollplan till utlåtande.'],
   ['Kramfors', 'Kontrollansvarig i Kramfors med planerade platsbesök, tydliga resevillkor och projektspecifik offert.'],
   ['Sollefteå', 'Kontrollansvarig i Sollefteå med fokus på komplett underlag, ändringshantering och tydlig offert.'],

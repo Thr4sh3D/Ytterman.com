@@ -25,6 +25,7 @@ interface ContactFormProps {
 }
 
 const QUERY_SERVICE_MAP: Record<string, QuoteServiceId> = {
+  ka: 'ka',
   kontrollansvarig: 'ka',
   'kontrollansvarig-service': 'ka',
   'bas-p': 'bas-p',
@@ -370,7 +371,7 @@ const ContactForm = ({ className = '', initialService = '' }: ContactFormProps) 
 
               <div>
                 <label htmlFor="quote-message" className="mb-1 block text-sm font-medium text-slate-700">
-                  Något mer jag bör veta?
+                  {formData.service === 'overlatelsebesiktning' ? 'Fastighet och önskat besiktningsdatum' : 'Något mer jag bör veta?'}
                 </label>
                 <Textarea
                   id="quote-message"
@@ -379,7 +380,7 @@ const ContactForm = ({ className = '', initialService = '' }: ContactFormProps) 
                   maxLength={4_000}
                   rows={4}
                   placeholder={formData.service === 'overlatelsebesiktning'
-                    ? 'Till exempel fastighetsbeteckning, byggnadstyp, ungefärligt byggår och önskat datum.'
+                    ? 'Ange adress eller fastighetsbeteckning, byggår, önskat datum och gärna länk till annonsen. Beskriv om du är särskilt orolig för någon del av huset.'
                     : 'Till exempel befintliga handlingar, beslut eller särskilda förutsättningar.'}
                 />
               </div>

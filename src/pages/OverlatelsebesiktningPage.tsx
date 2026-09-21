@@ -334,11 +334,11 @@ const OverlatelsebesiktningPage = () => {
                 <p className="text-xs text-gray-500 mt-3 italic">Endast visuell kontroll, inte funktionsprovning</p>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-sm border">
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Miljö & Säkerhet</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">Tecken på behov av vidare utredning</h3>
                 <ul className="space-y-2 text-gray-600">
-                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Fuktmätning</li>
-                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Brandskydd</li>
-                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Radon</li>
+                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Synliga fukttecken</li>
+                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Synliga brister</li>
+                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Behov av specialistkontroll</li>
                 </ul>
               </div>
             </div>
@@ -388,6 +388,26 @@ const OverlatelsebesiktningPage = () => {
                   <p className="text-gray-600">Vi går igenom rapporten med dig och svarar på eventuella frågor.</p>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold text-gray-900 mb-6">Husbesiktning i Västernorrland</h2>
+            <p className="text-gray-700 leading-relaxed mb-5">
+              Ytterman tar emot förfrågningar om överlåtelsebesiktning i {COMPANY.localPageAreas.join(', ')}.
+              Ange var huset ligger och när du önskar besiktning. Tillgänglighet, resor och slutligt pris bekräftas före bokning.
+            </p>
+            <h3 className="text-xl font-semibold text-gray-900 mb-3">Ska du köpa ett äldre hus eller fritidshus?</h3>
+            <p className="text-gray-700 leading-relaxed mb-5">
+              Skicka gärna en länk till annonsen tillsammans med byggår och de frågor du vill få belysta.
+              Berätta om du är särskilt orolig för tak, vind, krypgrund eller källare, så kan vi gå igenom
+              åtkomlighet och lämplig omfattning innan besiktningen bokas.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link to={BOOKING_OVL_URL} className="font-semibold text-primary underline underline-offset-4">Fråga om besiktning av huset</Link>
+              <Link to="/guider/overlatelsebesiktning/" className="font-semibold text-primary underline underline-offset-4">Läs vad en överlåtelsebesiktning omfattar</Link>
             </div>
           </div>
         </section>

@@ -33,7 +33,7 @@ const guideLinks = [
 
 const KontrollansvarigCityPage = ({ cityData: city }: KontrollansvarigCityPageProps) => {
   const otherCities = getOtherCities(city.id);
-  const contactPath = `/kontakt/?service=ka&municipality=${encodeURIComponent(city.name)}&utm_source=ytterman&utm_medium=internal&utm_campaign=ka-${city.id}`;
+  const contactPath = `/kontakt/?service=ka&municipality=${encodeURIComponent(city.name)}`;
   const breadcrumbs = [
     { name: 'Hem', url: COMPANY.siteUrl },
     { name: 'Kontrollansvarig', url: `${COMPANY.siteUrl}/kontrollansvarig/` },
@@ -67,7 +67,7 @@ const KontrollansvarigCityPage = ({ cityData: city }: KontrollansvarigCityPagePr
           <section className="bg-gradient-to-br from-slate-900 via-blue-950 to-primary py-16 text-white sm:py-20">
             <div className="container mx-auto max-w-5xl px-4">
               <p className="mb-3 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.16em] text-blue-200">
-                <MapPin className="h-4 w-4" /> Betjänar {city.name} – inget lokalkontor påstås
+                <MapPin className="h-4 w-4" /> Kontrollansvarig i {city.name}
               </p>
               <h1 className="max-w-4xl text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">{city.heroTitle}</h1>
               <p className="mt-6 max-w-3xl text-xl leading-relaxed text-blue-100">{city.heroDescription}</p>
@@ -86,9 +86,8 @@ const KontrollansvarigCityPage = ({ cityData: city }: KontrollansvarigCityPagePr
             <div className="container mx-auto max-w-5xl px-4">
               <p className="text-xl leading-relaxed text-slate-700">{city.intro}</p>
               <div className="mt-8 rounded-xl border border-blue-200 bg-blue-50 p-6 text-sm leading-relaxed text-blue-950">
-                Ytterman har verksamhetsområde i {COMPANY.region} och tar emot förfrågningar från {city.municipality}.
-                Sidan innebär inte att Ytterman har kontor eller besöksadress i {city.name}. Tillgänglighet,
-                resor och eventuella resekostnader bekräftas för varje projekt.
+                Du får hjälp av Tobias Ytterman, Kiwa-certifierad kontrollansvarig med över 20 års erfarenhet i byggbranschen.
+                Uppdrag i {city.municipality} planeras utifrån ditt projekt. Platsbesök, resor och pris framgår av offerten.
               </div>
             </div>
           </section>

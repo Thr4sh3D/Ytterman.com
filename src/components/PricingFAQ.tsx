@@ -1,32 +1,7 @@
-import { useState } from 'react';
-import { ChevronDown, ChevronUp, HelpCircle } from 'lucide-react';
+import { ChevronDown, HelpCircle } from 'lucide-react';
 import { pricingFAQ } from '@/content/pricingPackages';
 
 export const PricingFAQ = () => {
-  const [openItems, setOpenItems] = useState<number[]>([0]); // First item open by default
-
-  const toggleItem = (index: number) => {
-    setOpenItems(prev => 
-      prev.includes(index) 
-        ? prev.filter(i => i !== index)
-        : [...prev, index]
-    );
-  };
-
-  // Generate FAQPage Schema for SEO
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": pricingFAQ.map(item => ({
-      "@type": "Question",
-      "name": item.question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": item.answer
-      }
-    }))
-  };
-
   return (
     <>
       <section className="py-16 bg-white">
@@ -50,38 +25,23 @@ export const PricingFAQ = () => {
             {/* FAQ Items */}
             <div className="space-y-4">
               {pricingFAQ.map((item, index) => (
-                <div 
+                <details
+                  open={index === 0}
                   key={index}
-                  className="bg-slate-50 rounded-lg border-2 border-slate-200 overflow-hidden hover:border-primary/50 transition-colors"
+                  className="group bg-slate-50 rounded-lg border-2 border-slate-200 overflow-hidden hover:border-primary/50 transition-colors"
                 >
-                  <button
-                    onClick={() => toggleItem(index)}
-                    className="w-full px-6 py-5 text-left flex items-center justify-between hover:bg-slate-100 transition-colors"
-                    aria-expanded={openItems.includes(index)}
-                    aria-controls={`faq-answer-${index}`}
-                  >
+                  <summary className="w-full cursor-pointer list-none px-6 py-5 text-left flex items-center justify-between hover:bg-slate-100 transition-colors focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary [&::-webkit-details-marker]:hidden">
                     <h3 className="font-bold text-lg text-slate-900 pr-4">
                       {item.question}
                     </h3>
-                    <div className="flex-shrink-0">
-                      {openItems.includes(index) ? (
-                        <ChevronUp className="w-6 h-6 text-primary" />
-                      ) : (
-                        <ChevronDown className="w-6 h-6 text-slate-500" />
-                      )}
-                    </div>
-                  </button>
-                  {openItems.includes(index) && (
-                    <div 
-                      id={`faq-answer-${index}`}
-                      className="px-6 pb-5 pt-2"
-                    >
+                    <ChevronDown className="w-6 h-6 text-slate-500 shrink-0 group-open:rotate-180" aria-hidden="true" />
+                  </summary>
+                  <div className="px-6 pb-5 pt-2">
                       <p className="text-slate-700 leading-relaxed">
                         {item.answer}
                       </p>
                     </div>
-                  )}
-                </div>
+                </details>
               ))}
             </div>
           </div>

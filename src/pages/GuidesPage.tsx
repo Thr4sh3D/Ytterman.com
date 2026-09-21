@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { AdvancedSEO } from '@/components/AdvancedSEO';
@@ -120,14 +121,11 @@ const GuidesPage = () => {
               <div className="max-w-6xl mx-auto">
                 <h2 className="sr-only">Guider om byggprocessen</h2>
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {guides.map((guide, index) => {
+                  {guides.map((guide) => {
                     const IconComponent = guide.icon;
                     return (
-                      <Card 
-                        key={index}
-                        className="hover:shadow-lg transition-shadow cursor-pointer"
-                        onClick={() => window.location.href = guide.link}
-                      >
+                      <Link key={guide.slug} to={guide.link} className="block rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4">
+                      <Card className="h-full hover:shadow-lg transition-shadow">
                         <CardHeader>
                           <div className="w-12 h-12 earth-gradient rounded-lg flex items-center justify-center mb-4">
                             <IconComponent className="w-6 h-6 text-white" />
@@ -148,6 +146,7 @@ const GuidesPage = () => {
                           </CardDescription>
                         </CardContent>
                       </Card>
+                      </Link>
                     );
                   })}
                 </div>
