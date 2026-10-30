@@ -1,0 +1,3161 @@
+diff --git a/src/config/company.ts b/src/config/company.ts
+--- a/src/config/company.ts
++++ b/src/config/company.ts
+@@ -1,276 +1,278 @@
+-export type DeliveryModel = 'tobias' | 'partner' | 'digital';
+-export type PublicationStatus = 'active' | 'interest-only';
+-
+-export interface ServiceConfig {
+-  id: string;
+-  name: string;
+-  shortDescription: string;
+-  deliveryModel: DeliveryModel;
+-  publicationStatus: PublicationStatus;
+-  priceLabel: string;
+-  features: readonly string[];
+-  path: string;
+-  requiresCertifiedPerformer?: boolean;
+-  externalUrl?: string;
+-  affiliateDisclosure?: string;
+-}
+-
+-export const formatSek = (amount: number) => `${amount.toLocaleString('sv-SE')} kr`;
+-
+-export const COMPANY = {
+-  brandName: 'Ytterman',
+-  publicName: 'Tobias Ytterman',
+-  siteUrl: 'https://ytterman.com',
+-  email: 'tobias@ytterman.com',
+-  emailHref: 'mailto:tobias@ytterman.com',
+-  contactPath: '/kontakt/',
+-  experienceYears: 20,
+-  experienceLabel: 'Över 20 års erfarenhet',
+-  region: 'Västernorrland',
+-  countryCode: 'SE',
+-  areaServed: ['Västernorrland'],
+-  localPageAreas: [
+-    'Sundsvall',
+-    'Härnösand',
+-    'Timrå',
+-    'Kramfors',
+-    'Sollefteå',
+-    'Örnsköldsvik',
+-    'Ånge',
+-  ],
+-  affiliation: {
+-    shortName: 'SBR',
+-    name: 'Svenska Byggingenjörers Riksförbund',
+-    label: 'Ansluten till SBR',
+-  },
+-  // Juridiskt namn, organisationsnummer och fullständig adress publiceras först
+-  // efter ägarverifiering. Se docs/external-profile-corrections.md.
+-  legalIdentityVerified: false,
+-} as const;
+-
+-export const KA_CERT = {
+-  title: 'Certifierad kontrollansvarig enligt PBL',
+-  issuer: 'Kiwa Certification AB',
+-  certificateNumber: 'KA11926',
+-  authorization: 'N',
+-  authorizationLabel: 'Behörighet N – projekt av normal art',
+-  validUntil: '2030-07-02',
+-  verificationUrl: 'https://idun.kiwa.se/certificates/25642',
+-} as const;
+-
+-export const BAS = {
+-  rolesLabel: 'BAS-P och BAS-U',
+-  qualificationLabel: 'Utbildad för uppdrag som BAS-P och BAS-U',
+-  trainingProvider: 'UtbildningsKraft',
+-  completedOn: '2025-06-25',
+-  validUntil: '2030-06-24',
+-  regulation: 'AFS 2023:3',
+-  description:
+-    'Tobias erbjuder uppdrag som byggarbetsmiljösamordnare under projektering och utförande, med utbildning, kompetens och erfarenhet för rollerna.',
+-  credentialRule:
+-    'BAS-P och BAS-U ska beskrivas som roller och kompetens, inte som en myndighetscertifiering.',
+-} as const;
+-
+-export const PRICING = {
+-  year: 2026,
+-  includesVat: true,
+-  ka: {
+-    extension: {
+-      label: 'Tillbyggnad',
+-      bas: 29_500,
+-      plus: 34_500,
+-      description: 'Till exempel uterum, garage, förråd eller utökad bostadsyta.',
+-    },
+-    renovation: {
+-      label: 'Ombyggnation',
+-      bas: 32_500,
+-      plus: 38_500,
+-      description: 'Till exempel planlösningsändring eller en mer omfattande renovering.',
+-    },
+-    newVacationHome: {
+-      label: 'Nyproduktion fritidshus',
+-      bas: 34_500,
+-      plus: 39_500,
+-      description: 'Nyproduktion av fritidshus av normal art.',
+-    },
+-  },
+-  kaBasPackage: {
+-    from: 46_500,
+-    to: 52_500,
+-  },
+-  inspection: {
+-    from: 9_900,
+-  },
+-  includedSupplementRounds: 1,
+-  supplementRule:
+-    'En normal kompletteringsvända ingår. Upprepade kompletteringar på grund av ändringar eller bristande underlag debiteras separat.',
+-} as const;
+-
+-export const PRICE_LABELS = {
+-  kaBasFrom: `Från ${formatSek(PRICING.ka.extension.bas)}`,
+-  kaPlusFrom: `Från ${formatSek(PRICING.ka.extension.plus)}`,
+-  kaBasPackage: `${PRICING.kaBasPackage.from.toLocaleString('sv-SE')}–${formatSek(PRICING.kaBasPackage.to)}`,
+-  inspectionFrom: `Från ${formatSek(PRICING.inspection.from)}`,
+-  schemaRange: `${PRICING.inspection.from.toLocaleString('sv-SE')}–${PRICING.kaBasPackage.to.toLocaleString('sv-SE')} SEK`,
+-  quote: 'Pris lämnas efter genomgång av underlaget',
+-  interest: 'Intresseanmälan',
+-} as const;
+-
+-export const BUSINESS_COPY = {
+-  defaultResponse:
+-    'Skicka din förfrågan via formuläret eller e-post så återkommer jag med nästa steg utifrån projektets omfattning och aktuell kapacitet.',
+-  preferredContact:
+-    'E-post och formuläret är de snabbaste kontaktvägarna eftersom jag ofta är ute i projekt under dagtid.',
+-  kaScope:
+-    'Kontrollansvarig biträder byggherren med att upprätta förslag till kontrollplan, följer upp att kontrollplanen och gällande villkor följs samt lämnar eget utlåtande som underlag inför slutbesked. Byggnadsnämnden beslutar om slutbesked.',
+-  energyPartner:
+-    'Ytterman erbjuder och samordnar energideklaration. Själva deklarationen utförs via behörig partner av en certifierad energiexpert.',
+-  energyPartnerShort: 'Samordnas av Ytterman och utförs av certifierad energiexpert hos behörig partner.',
+-  digitalInterest:
+-    'Tjänsten visas som intresseanmälan tills betalning och automatisk leverans är verifierade.',
+-  energyCalculationPartner:
+-    'Gör energiberäkningen online hos vår samarbetspartner. Där ser du aktuellt pris, villkor och leverans innan du beställer.',
+-  energyCalculationAffiliate:
+-    'Ytterman får provision på försäljning som sker via partnerlänken.',
+-} as const;
+-
+-export const PARTNER_LINKS = {
+-  energyCalculation: 'https://energi.holidaygroup.se/?utm_source=ytterman&pr=2999',
+-} as const;
+-
+-export const SERVICES = {
+-  kontrollansvarig: {
+-    id: 'kontrollansvarig-service',
+-    name: 'Kontrollansvarig (KA)',
+-    shortDescription: KA_CERT.title,
+-    deliveryModel: 'tobias',
+-    publicationStatus: 'active',
+-    priceLabel: PRICE_LABELS.kaBasFrom,
+-    features: [
+-      'Förslag till kontrollplan och uppföljning enligt PBL',
+-      'Medverkan vid tekniskt samråd och arbetsplatsbesök',
+-      'Dokumentation och utlåtande inför slutbesked',
+-      KA_CERT.authorizationLabel,
+-    ],
+-    path: '/kontrollansvarig/',
+-  },
+-  basP: {
+-    id: 'bas-p-service',
+-    name: 'BAS-P (Projektering)',
+-    shortDescription: 'Byggarbetsmiljösamordning under projekteringen.',
+-    deliveryModel: 'tobias',
+-    publicationStatus: 'active',
+-    priceLabel: PRICE_LABELS.quote,
+-    features: [
+-      'Arbetsmiljöplan när det krävs',
+-      'Riskbedömning och säkerhetsanalys',
+-      'Samordning mellan projektörer',
+-      `Arbete utifrån ${BAS.regulation}`,
+-    ],
+-    path: '/bas-p/',
+-  },
+-  basU: {
+-    id: 'bas-u-service',
+-    name: 'BAS-U (Utförande)',
+-    shortDescription: 'Byggarbetsmiljösamordning under utförandet.',
+-    deliveryModel: 'tobias',
+-    publicationStatus: 'active',
+-    priceLabel: PRICE_LABELS.quote,
+-    features: [
+-      'Samordning mellan entreprenörer',
+-      'Uppföljning av arbetsmiljöplanen',
+-      'Säkerhetsronder utifrån projektets riskbild',
+-      `Arbete utifrån ${BAS.regulation}`,
+-    ],
+-    path: '/bas-u/',
+-  },
+-  energyDeclaration: {
+-    id: 'energideklaration-service',
+-    name: 'Energideklaration',
+-    shortDescription: BUSINESS_COPY.energyPartnerShort,
+-    deliveryModel: 'partner',
+-    publicationStatus: 'active',
+-    priceLabel: PRICE_LABELS.quote,
+-    features: [
+-      'Ytterman är din kontakt och samordnare',
+-      'Utförs av certifierad energiexpert hos behörig partner',
+-      'Energiprestanda, energiklass och åtgärdsförslag',
+-      'Partnerns giltiga behörighet kontrolleras inför uppdraget',
+-    ],
+-    path: '/energideklaration/',
+-    requiresCertifiedPerformer: true,
+-  },
+-  energyCalculation: {
+-    id: 'energiberakning-online-service',
+-    name: 'Energiberäkning online',
+-    shortDescription: BUSINESS_COPY.energyCalculationPartner,
+-    deliveryModel: 'partner',
+-    publicationStatus: 'active',
+-    priceLabel: 'Pris och villkor hos partnern',
+-    features: [
+-      'Starta och genomför beräkningen online',
+-      'Beräkning för småhus, flerbostadshus och lokaler',
+-      'Pris, villkor och leverans visas av partnern',
+-      BUSINESS_COPY.energyCalculationAffiliate,
+-    ],
+-    path: '/energiberakning-online/',
+-    externalUrl: PARTNER_LINKS.energyCalculation,
+-    affiliateDisclosure: BUSINESS_COPY.energyCalculationAffiliate,
+-  },
+-  buildingPermitDocuments: {
+-    id: 'bygglovshandlingar',
+-    name: 'Bygglovshandlingar',
+-    shortDescription: 'Handlingar anpassade efter projektets och kommunens krav.',
+-    deliveryModel: 'tobias',
+-    publicationStatus: 'active',
+-    priceLabel: PRICE_LABELS.quote,
+-    features: [
+-      'Planritningar och sektioner efter behov',
+-      'Situationsplan och teknisk beskrivning efter behov',
+-      'Omfattning och pris bekräftas efter underlagsgranskning',
+-    ],
+-    path: '/bygglovshandlingar/',
+-  },
+-  inspection: {
+-    id: 'overlatelsebesiktning-service',
+-    name: 'Överlåtelsebesiktning',
+-    shortDescription: 'Okulär besiktning inför en fastighetsöverlåtelse.',
+-    deliveryModel: 'tobias',
+-    publicationStatus: 'active',
+-    priceLabel: PRICE_LABELS.inspectionFrom,
+-    features: [
+-      'Okulär kontroll av åtkomliga delar',
+-      'Dokumentation av synliga iakttagelser',
+-      'Omfattning och leveranstid bekräftas vid bokning',
+-    ],
+-    path: '/overlatelsebesiktning/',
+-  },
+-  buildingStartPlanner: {
+-    id: 'byggstart-planerare',
+-    name: 'Byggstart-planerare',
+-    shortDescription: 'Digitalt planeringsverktyg som för närvarande tar emot intresseanmälningar.',
+-    deliveryModel: 'digital',
+-    publicationStatus: 'interest-only',
+-    priceLabel: PRICE_LABELS.interest,
+-    features: [
+-      'Planeringsstöd i webbläsaren',
+-      'Pris och leverans bekräftas innan beställning',
+-    ],
+-    path: '/byggstart-planerare/',
+-  },
+-} as const satisfies Record<string, ServiceConfig>;
+-
+-export const ACTIVE_SERVICE_NAMES = Object.values(SERVICES)
+-  .filter((service) => service.publicationStatus === 'active')
+-  .map((service) => service.name);
+-
+-export const KA_CREDENTIAL_SCHEMA = {
+-  '@type': 'EducationalOccupationalCredential',
+-  credentialCategory: 'Certifiering',
+-  name: KA_CERT.title,
+-  recognizedBy: {
+-    '@type': 'Organization',
+-    name: KA_CERT.issuer,
+-  },
+-  identifier: KA_CERT.certificateNumber,
+-} as const;
++export type DeliveryModel = 'tobias' | 'partner' | 'digital';
++export type PublicationStatus = 'active' | 'interest-only';
++
++export interface ServiceConfig {
++  id: string;
++  name: string;
++  shortDescription: string;
++  deliveryModel: DeliveryModel;
++  publicationStatus: PublicationStatus;
++  priceLabel: string;
++  features: readonly string[];
++  path: string;
++  requiresCertifiedPerformer?: boolean;
++  externalUrl?: string;
++  affiliateDisclosure?: string;
++}
++
++export const formatSek = (amount: number) => `${amount.toLocaleString('sv-SE')} kr`;
++
++export const COMPANY = {
++  brandName: 'Ytterman',
++  legalName: 'MTY Konsult AB',
++  organizationNumber: '559513-6358',
++  publicName: 'Tobias Ytterman',
++  siteUrl: 'https://ytterman.com',
++  email: 'tobias@ytterman.com',
++  emailHref: 'mailto:tobias@ytterman.com',
++  contactPath: '/kontakt/',
++  experienceYears: 20,
++  experienceLabel: 'Över 20 års erfarenhet',
++  region: 'Västernorrland',
++  countryCode: 'SE',
++  areaServed: ['Västernorrland'],
++  localPageAreas: [
++    'Sundsvall',
++    'Härnösand',
++    'Timrå',
++    'Kramfors',
++    'Sollefteå',
++    'Örnsköldsvik',
++    'Ånge',
++  ],
++  affiliation: {
++    shortName: 'SBR',
++    name: 'Svenska Byggingenjörers Riksförbund',
++    label: 'Ansluten till SBR',
++  },
++  // Bolagsnamn och organisationsnummer bekräftade av Tobias Ytterman 2026-10-30.
++  // Befintliga adress- och kontaktuppgifter behålls.
++  legalIdentityVerified: true,
++} as const;
++
++export const KA_CERT = {
++  title: 'Certifierad kontrollansvarig enligt PBL',
++  issuer: 'Kiwa Certification AB',
++  certificateNumber: 'KA11926',
++  authorization: 'N',
++  authorizationLabel: 'Behörighet N – projekt av normal art',
++  validUntil: '2030-07-02',
++  verificationUrl: 'https://idun.kiwa.se/certificates/25642',
++} as const;
++
++export const BAS = {
++  rolesLabel: 'BAS-P och BAS-U',
++  qualificationLabel: 'Utbildad för uppdrag som BAS-P och BAS-U',
++  trainingProvider: 'UtbildningsKraft',
++  completedOn: '2025-06-25',
++  validUntil: '2030-06-24',
++  regulation: 'AFS 2023:3',
++  description:
++    'Tobias erbjuder uppdrag som byggarbetsmiljösamordnare under projektering och utförande, med utbildning, kompetens och erfarenhet för rollerna.',
++  credentialRule:
++    'BAS-P och BAS-U ska beskrivas som roller och kompetens, inte som en myndighetscertifiering.',
++} as const;
++
++export const PRICING = {
++  year: 2026,
++  includesVat: true,
++  ka: {
++    extension: {
++      label: 'Tillbyggnad',
++      bas: 29_500,
++      plus: 34_500,
++      description: 'Till exempel uterum, garage, förråd eller utökad bostadsyta.',
++    },
++    renovation: {
++      label: 'Ombyggnation',
++      bas: 32_500,
++      plus: 38_500,
++      description: 'Till exempel planlösningsändring eller en mer omfattande renovering.',
++    },
++    newVacationHome: {
++      label: 'Nyproduktion fritidshus',
++      bas: 34_500,
++      plus: 39_500,
++      description: 'Nyproduktion av fritidshus av normal art.',
++    },
++  },
++  kaBasPackage: {
++    from: 46_500,
++    to: 52_500,
++  },
++  inspection: {
++    from: 9_900,
++  },
++  includedSupplementRounds: 1,
++  supplementRule:
++    'En normal kompletteringsvända ingår. Upprepade kompletteringar på grund av ändringar eller bristande underlag debiteras separat.',
++} as const;
++
++export const PRICE_LABELS = {
++  kaBasFrom: `Från ${formatSek(PRICING.ka.extension.bas)}`,
++  kaPlusFrom: `Från ${formatSek(PRICING.ka.extension.plus)}`,
++  kaBasPackage: `${PRICING.kaBasPackage.from.toLocaleString('sv-SE')}–${formatSek(PRICING.kaBasPackage.to)}`,
++  inspectionFrom: `Från ${formatSek(PRICING.inspection.from)}`,
++  schemaRange: `${PRICING.inspection.from.toLocaleString('sv-SE')}–${PRICING.kaBasPackage.to.toLocaleString('sv-SE')} SEK`,
++  quote: 'Pris lämnas efter genomgång av underlaget',
++  interest: 'Intresseanmälan',
++} as const;
++
++export const BUSINESS_COPY = {
++  defaultResponse:
++    'Skicka din förfrågan via formuläret eller e-post så återkommer jag med nästa steg utifrån projektets omfattning och aktuell kapacitet.',
++  preferredContact:
++    'E-post och formuläret är de snabbaste kontaktvägarna eftersom jag ofta är ute i projekt under dagtid.',
++  kaScope:
++    'Kontrollansvarig biträder byggherren med att upprätta förslag till kontrollplan, följer upp att kontrollplanen och gällande villkor följs samt lämnar eget utlåtande som underlag inför slutbesked. Byggnadsnämnden beslutar om slutbesked.',
++  energyPartner:
++    'Ytterman erbjuder och samordnar energideklaration. Själva deklarationen utförs via behörig partner av en certifierad energiexpert.',
++  energyPartnerShort: 'Samordnas av Ytterman och utförs av certifierad energiexpert hos behörig partner.',
++  digitalInterest:
++    'Tjänsten visas som intresseanmälan tills betalning och automatisk leverans är verifierade.',
++  energyCalculationPartner:
++    'Gör energiberäkningen online hos vår samarbetspartner. Där ser du aktuellt pris, villkor och leverans innan du beställer.',
++  energyCalculationAffiliate:
++    'Ytterman får provision på försäljning som sker via partnerlänken.',
++} as const;
++
++export const PARTNER_LINKS = {
++  energyCalculation: 'https://energi.holidaygroup.se/?utm_source=ytterman&pr=2999',
++} as const;
++
++export const SERVICES = {
++  kontrollansvarig: {
++    id: 'kontrollansvarig-service',
++    name: 'Kontrollansvarig (KA)',
++    shortDescription: KA_CERT.title,
++    deliveryModel: 'tobias',
++    publicationStatus: 'active',
++    priceLabel: PRICE_LABELS.kaBasFrom,
++    features: [
++      'Förslag till kontrollplan och uppföljning enligt PBL',
++      'Medverkan vid tekniskt samråd och arbetsplatsbesök',
++      'Dokumentation och utlåtande inför slutbesked',
++      KA_CERT.authorizationLabel,
++    ],
++    path: '/kontrollansvarig/',
++  },
++  basP: {
++    id: 'bas-p-service',
++    name: 'BAS-P (Projektering)',
++    shortDescription: 'Byggarbetsmiljösamordning under projekteringen.',
++    deliveryModel: 'tobias',
++    publicationStatus: 'active',
++    priceLabel: PRICE_LABELS.quote,
++    features: [
++      'Arbetsmiljöplan när det krävs',
++      'Riskbedömning och säkerhetsanalys',
++      'Samordning mellan projektörer',
++      `Arbete utifrån ${BAS.regulation}`,
++    ],
++    path: '/bas-p/',
++  },
++  basU: {
++    id: 'bas-u-service',
++    name: 'BAS-U (Utförande)',
++    shortDescription: 'Byggarbetsmiljösamordning under utförandet.',
++    deliveryModel: 'tobias',
++    publicationStatus: 'active',
++    priceLabel: PRICE_LABELS.quote,
++    features: [
++      'Samordning mellan entreprenörer',
++      'Uppföljning av arbetsmiljöplanen',
++      'Säkerhetsronder utifrån projektets riskbild',
++      `Arbete utifrån ${BAS.regulation}`,
++    ],
++    path: '/bas-u/',
++  },
++  energyDeclaration: {
++    id: 'energideklaration-service',
++    name: 'Energideklaration',
++    shortDescription: BUSINESS_COPY.energyPartnerShort,
++    deliveryModel: 'partner',
++    publicationStatus: 'active',
++    priceLabel: PRICE_LABELS.quote,
++    features: [
++      'Ytterman är din kontakt och samordnare',
++      'Utförs av certifierad energiexpert hos behörig partner',
++      'Energiprestanda, energiklass och åtgärdsförslag',
++      'Partnerns giltiga behörighet kontrolleras inför uppdraget',
++    ],
++    path: '/energideklaration/',
++    requiresCertifiedPerformer: true,
++  },
++  energyCalculation: {
++    id: 'energiberakning-online-service',
++    name: 'Energiberäkning online',
++    shortDescription: BUSINESS_COPY.energyCalculationPartner,
++    deliveryModel: 'partner',
++    publicationStatus: 'active',
++    priceLabel: 'Pris och villkor hos partnern',
++    features: [
++      'Starta och genomför beräkningen online',
++      'Beräkning för småhus, flerbostadshus och lokaler',
++      'Pris, villkor och leverans visas av partnern',
++      BUSINESS_COPY.energyCalculationAffiliate,
++    ],
++    path: '/energiberakning-online/',
++    externalUrl: PARTNER_LINKS.energyCalculation,
++    affiliateDisclosure: BUSINESS_COPY.energyCalculationAffiliate,
++  },
++  buildingPermitDocuments: {
++    id: 'bygglovshandlingar',
++    name: 'Bygglovshandlingar',
++    shortDescription: 'Handlingar anpassade efter projektets och kommunens krav.',
++    deliveryModel: 'tobias',
++    publicationStatus: 'active',
++    priceLabel: PRICE_LABELS.quote,
++    features: [
++      'Planritningar och sektioner efter behov',
++      'Situationsplan och teknisk beskrivning efter behov',
++      'Omfattning och pris bekräftas efter underlagsgranskning',
++    ],
++    path: '/bygglovshandlingar/',
++  },
++  inspection: {
++    id: 'overlatelsebesiktning-service',
++    name: 'Överlåtelsebesiktning',
++    shortDescription: 'Okulär besiktning inför en fastighetsöverlåtelse.',
++    deliveryModel: 'tobias',
++    publicationStatus: 'active',
++    priceLabel: PRICE_LABELS.inspectionFrom,
++    features: [
++      'Okulär kontroll av åtkomliga delar',
++      'Dokumentation av synliga iakttagelser',
++      'Omfattning och leveranstid bekräftas vid bokning',
++    ],
++    path: '/overlatelsebesiktning/',
++  },
++  buildingStartPlanner: {
++    id: 'byggstart-planerare',
++    name: 'Byggstart-planerare',
++    shortDescription: 'Digitalt planeringsverktyg som för närvarande tar emot intresseanmälningar.',
++    deliveryModel: 'digital',
++    publicationStatus: 'interest-only',
++    priceLabel: PRICE_LABELS.interest,
++    features: [
++      'Planeringsstöd i webbläsaren',
++      'Pris och leverans bekräftas innan beställning',
++    ],
++    path: '/byggstart-planerare/',
++  },
++} as const satisfies Record<string, ServiceConfig>;
++
++export const ACTIVE_SERVICE_NAMES = Object.values(SERVICES)
++  .filter((service) => service.publicationStatus === 'active')
++  .map((service) => service.name);
++
++export const KA_CREDENTIAL_SCHEMA = {
++  '@type': 'EducationalOccupationalCredential',
++  credentialCategory: 'Certifiering',
++  name: KA_CERT.title,
++  recognizedBy: {
++    '@type': 'Organization',
++    name: KA_CERT.issuer,
++  },
++  identifier: KA_CERT.certificateNumber,
++} as const;
+diff --git a/src/pages/Integritetspolicy.tsx b/src/pages/Integritetspolicy.tsx
+--- a/src/pages/Integritetspolicy.tsx
++++ b/src/pages/Integritetspolicy.tsx
+@@ -1,197 +1,200 @@
+-import { Header } from '@/components/Header';
+-import { Footer } from '@/components/Footer';
+-import { COMPANY } from '@/config/company';
+-import { openConsentSettings } from '@/lib/consent';
+-
+-const Integritetspolicy = () => {
+-  return (
+-    <>
+-      <div className="min-h-screen">
+-        <Header />
+-        <main className="pt-20">
+-          <div className="container mx-auto px-4 py-12">
+-            <div className="max-w-4xl mx-auto">
+-              <h1 className="text-4xl font-bold text-slate-900 mb-8">
+-                Integritetspolicy – {COMPANY.brandName}
+-              </h1>
+-              
+-              <div className="prose prose-lg max-w-none text-slate-700 space-y-8">
+-                <section>
+-                  <h2 className="text-2xl font-semibold text-slate-900 mb-4">1. Inledning</h2>
+-                  <p>
+-                    Denna integritetspolicy beskriver hur verksamheten under varumärket {COMPANY.brandName}
+-                    samlar in, använder och skyddar dina personuppgifter när du besöker vår webbplats 
+-                    eller använder våra tjänster.
+-                  </p>
+-                </section>
+-
+-                <section>
+-                  <h2 className="text-2xl font-semibold text-slate-900 mb-4">2. Personuppgiftsansvarig</h2>
+-                  <div className="bg-stone-50 p-6 rounded-lg">
+-                    <p><strong>{COMPANY.brandName}</strong></p>
+-                    <p>E-post: {COMPANY.email}</p>
+-                  </div>
+-                </section>
+-
+-                <section>
+-                  <h2 className="text-2xl font-semibold text-slate-900 mb-4">3. Vilka personuppgifter samlar vi in?</h2>
+-                  <p>Vi kan samla in följande typer av personuppgifter:</p>
+-                  <ul className="list-disc pl-6 space-y-2">
+-                    <li><strong>Kontaktuppgifter:</strong> Namn, e-postadress, telefonnummer</li>
+-                    <li><strong>Projektinformation:</strong> Tjänst, projekttyp, kommun, ungefärlig storlek, lovstatus, önskad start och ditt meddelande</li>
+-                    <li><strong>Teknisk information:</strong> Begränsad besöksdata när du har samtyckt till analys eller marknadsföring</li>
+-                    <li><strong>Kommunikation:</strong> Meddelanden och korrespondens med oss</li>
+-                  </ul>
+-                </section>
+-
+-                <section>
+-                  <h2 className="text-2xl font-semibold text-slate-900 mb-4">4. Hur använder vi dina personuppgifter?</h2>
+-                  <p>Vi använder dina personuppgifter för att:</p>
+-                  <ul className="list-disc pl-6 space-y-2">
+-                    <li>Tillhandahålla tjänster som kontrollansvarig, överlåtelsebesiktning och BAS</li>
+-                    <li>Kommunicera med dig om ditt projekt</li>
+-                    <li>Skicka offerter och projektdokumentation</li>
+-                    <li>Hantera och bedöma din förfrågan</li>
+-                    <li>Förbättra vår webbplats och våra tjänster</li>
+-                    <li>Uppfylla juridiska förpliktelser</li>
+-                  </ul>
+-                </section>
+-
+-                <section>
+-                  <h2 className="text-2xl font-semibold text-slate-900 mb-4">5. Rättslig grund för behandling</h2>
+-                  <p>Vi behandlar dina personuppgifter baserat på:</p>
+-                  <ul className="list-disc pl-6 space-y-2">
+-                    <li><strong>Avtal och åtgärder inför avtal:</strong> För att hantera din förfrågan, bedöma uppdraget och lämna offert</li>
+-                    <li><strong>Berättigat intresse:</strong> För säker drift, missbruksskydd och utveckling av våra tjänster</li>
+-                    <li><strong>Samtycke:</strong> För valfri analys och marknadsföring när du aktivt har valt detta</li>
+-                    <li><strong>Juridisk förpliktelse:</strong> För att uppfylla krav enligt PBL och andra lagar</li>
+-                  </ul>
+-                </section>
+-
+-                <section>
+-                  <h2 className="text-2xl font-semibold text-slate-900 mb-4">6. Delning av personuppgifter</h2>
+-                  <p>
+-                    Personuppgifter lämnas bara till mottagare som behövs för att hantera förfrågan,
+-                    tillhandahålla en avtalad tjänst eller uppfylla lagkrav. Detta kan inkludera:
+-                  </p>
+-                  <ul className="list-disc pl-6 space-y-2">
+-                    <li>Byggnadsnämnder och myndigheter (enligt PBL)</li>
+-                    <li>Tekniska leverantörer för serverdrift, automatisering och e-post</li>
+-                    <li>Behörig partner när en partnerlevererad tjänst, exempelvis energideklaration, ska offereras eller utföras</li>
+-                    <li>Juridiska rådgivare vid behov</li>
+-                  </ul>
+-                </section>
+-
+-                <section>
+-                  <h2 className="text-2xl font-semibold text-slate-900 mb-4">7. Hantering av förfrågningar</h2>
+-                  <p>
+-                    Offertformuläret skickar uppgifterna säkert och skapar ett ärende som bedöms manuellt.
+-                    Automatiseringen fattar inte beslut om att acceptera ett uppdrag eller ingå avtal.
+-                  </p>
+-                  <p className="mt-4">
+-                    Vid en förfrågan om energideklaration kontrollerar vi att partnerns energiexpert har
+-                    giltig certifiering innan en utförare bekräftas för uppdraget.
+-                  </p>
+-                </section>
+-
+-                <section>
+-                  <h2 className="text-2xl font-semibold text-slate-900 mb-4">8. Lagring av personuppgifter</h2>
+-                  <p>
+-                    Vi lagrar personuppgifter så länge de behövs för det aktuella ändamålet och därefter
+-                    så länge som krävs för avtal, rättsliga skyldigheter eller för att hantera rättsliga anspråk.
+-                    Lagringstiden bedöms utifrån uppgiftstyp och relation.
+-                  </p>
+-                </section>
+-
+-                <section>
+-                  <h2 className="text-2xl font-semibold text-slate-900 mb-4">9. Dina rättigheter</h2>
+-                  <p>Enligt GDPR har du rätt att:</p>
+-                  <ul className="list-disc pl-6 space-y-2">
+-                    <li><strong>Få tillgång</strong> till dina personuppgifter</li>
+-                    <li><strong>Rätta</strong> felaktiga uppgifter</li>
+-                    <li><strong>Radera</strong> dina uppgifter under vissa omständigheter</li>
+-                    <li><strong>Begränsa</strong> behandlingen av dina uppgifter</li>
+-                    <li><strong>Invända</strong> mot behandling baserad på berättigat intresse</li>
+-                    <li><strong>Dataportabilitet</strong> - få ut dina uppgifter i strukturerat format</li>
+-                  </ul>
+-                  <p className="mt-4">
+-                    För att utöva dina rättigheter, kontakta oss på {COMPANY.email}.
+-                  </p>
+-                </section>
+-
+-                <section>
+-                  <h2 className="text-2xl font-semibold text-slate-900 mb-4">10. Säkerhet</h2>
+-                  <p>
+-                    Vi arbetar med tekniska och organisatoriska skyddsåtgärder som anpassas efter
+-                    uppgifternas art, behandlingens omfattning och aktuell risk.
+-                  </p>
+-                </section>
+-
+-                <section>
+-                  <h2 className="text-2xl font-semibold text-slate-900 mb-4">11. Cookies</h2>
+-                  <p>
+-                    Nödvändig lagring används för webbplatsens funktioner och för att komma ihåg ditt val.
+-                    Google Analytics och Google Ads laddas endast om motsvarande ändamål är konfigurerat
+-                    och du aktivt har samtyckt till analys respektive marknadsföring. Innan dess görs inga
+-                    anrop till Googles taggtjänst från vår mätkod.
+-                  </p>
+-                  <p className="mt-4">
+-                    Analysdata begränsas till tillåtna händelser, sidans sökväg och icke-personliga val såsom
+-                    projekttyp. Namn, e-postadress, telefonnummer och meddelandetext skickas inte som
+-                    analyshändelser. Kampanjparametrar och första landningssida följer i stället med den
+-                    projektförfrågan som du själv skickar, så att vi kan förstå förfrågans källa utan att
+-                    skicka uppgifterna vidare till annonssystem i onödan.
+-                  </p>
+-                  <p className="mt-4">
+-                    Du kan acceptera, avvisa, anpassa eller återkalla valfria cookies via
+-                    <button
+-                      type="button"
+-                      onClick={openConsentSettings}
+-                      className="ml-1 font-semibold text-primary underline"
+-                    >
+-                      Cookie-inställningar
+-                    </button>.
+-                  </p>
+-                </section>
+-
+-                <section>
+-                  <h2 className="text-2xl font-semibold text-slate-900 mb-4">12. Ändringar av integritetspolicyn</h2>
+-                  <p>
+-                    Vi kan uppdatera denna integritetspolicy från tid till annan. Väsentliga ändringar 
+-                    kommer att meddelas på vår webbplats eller via e-post. Vi rekommenderar att du 
+-                    regelbundet läser igenom denna policy.
+-                  </p>
+-                </section>
+-
+-                <section>
+-                  <h2 className="text-2xl font-semibold text-slate-900 mb-4">13. Kontakt</h2>
+-                  <p>
+-                    Om du har frågor om denna integritetspolicy eller hur vi behandlar dina 
+-                    personuppgifter, kontakta oss:
+-                  </p>
+-                  <div className="bg-stone-50 p-6 rounded-lg mt-4">
+-                    <p><strong>{COMPANY.brandName}</strong></p>
+-                    <p>E-post: {COMPANY.email}</p>
+-                    <p className="mt-4">
+-                      Du har också rätt att lämna klagomål till Integritetsskyddsmyndigheten (IMY) 
+-                      om du anser att vi behandlar dina personuppgifter på ett felaktigt sätt.
+-                    </p>
+-                  </div>
+-                </section>
+-
+-                <section className="border-t pt-8 mt-12">
+-                  <p className="text-sm text-slate-600">
+-                    <strong>Senast uppdaterad:</strong> 18 augusti 2026
+-                  </p>
+-                </section>
+-              </div>
+-            </div>
+-          </div>
+-        </main>
+-        <Footer />
+-      </div>
+-    </>
+-  );
+-};
+-
+-export default Integritetspolicy;
++import { Header } from '@/components/Header';
++import { Footer } from '@/components/Footer';
++import { COMPANY } from '@/config/company';
++import { openConsentSettings } from '@/lib/consent';
++
++const Integritetspolicy = () => {
++  return (
++    <>
++      <div className="min-h-screen">
++        <Header />
++        <main className="pt-20">
++          <div className="container mx-auto px-4 py-12">
++            <div className="max-w-4xl mx-auto">
++              <h1 className="text-4xl font-bold text-slate-900 mb-8">
++                Integritetspolicy – {COMPANY.brandName}
++              </h1>
++              
++              <div className="prose prose-lg max-w-none text-slate-700 space-y-8">
++                <section>
++                  <h2 className="text-2xl font-semibold text-slate-900 mb-4">1. Inledning</h2>
++                  <p>
++                    Denna integritetspolicy beskriver hur {COMPANY.legalName}, organisationsnummer{' '}
++                    {COMPANY.organizationNumber}, samlar in, använder och skyddar dina personuppgifter när du besöker vår webbplats 
++                    eller använder våra tjänster. Ytterman.com är ett varumärke som ägs och drivs av{' '}
++                    {COMPANY.legalName}.
++                  </p>
++                </section>
++
++                <section>
++                  <h2 className="text-2xl font-semibold text-slate-900 mb-4">2. Personuppgiftsansvarig</h2>
++                  <div className="bg-stone-50 p-6 rounded-lg">
++                    <p><strong>{COMPANY.legalName}</strong></p>
++                    <p>Organisationsnummer: {COMPANY.organizationNumber}</p>
++                    <p>E-post: {COMPANY.email}</p>
++                  </div>
++                </section>
++
++                <section>
++                  <h2 className="text-2xl font-semibold text-slate-900 mb-4">3. Vilka personuppgifter samlar vi in?</h2>
++                  <p>Vi kan samla in följande typer av personuppgifter:</p>
++                  <ul className="list-disc pl-6 space-y-2">
++                    <li><strong>Kontaktuppgifter:</strong> Namn, e-postadress, telefonnummer</li>
++                    <li><strong>Projektinformation:</strong> Tjänst, projekttyp, kommun, ungefärlig storlek, lovstatus, önskad start och ditt meddelande</li>
++                    <li><strong>Teknisk information:</strong> Begränsad besöksdata när du har samtyckt till analys eller marknadsföring</li>
++                    <li><strong>Kommunikation:</strong> Meddelanden och korrespondens med oss</li>
++                  </ul>
++                </section>
++
++                <section>
++                  <h2 className="text-2xl font-semibold text-slate-900 mb-4">4. Hur använder vi dina personuppgifter?</h2>
++                  <p>Vi använder dina personuppgifter för att:</p>
++                  <ul className="list-disc pl-6 space-y-2">
++                    <li>Tillhandahålla tjänster som kontrollansvarig, överlåtelsebesiktning och BAS</li>
++                    <li>Kommunicera med dig om ditt projekt</li>
++                    <li>Skicka offerter och projektdokumentation</li>
++                    <li>Hantera och bedöma din förfrågan</li>
++                    <li>Förbättra vår webbplats och våra tjänster</li>
++                    <li>Uppfylla juridiska förpliktelser</li>
++                  </ul>
++                </section>
++
++                <section>
++                  <h2 className="text-2xl font-semibold text-slate-900 mb-4">5. Rättslig grund för behandling</h2>
++                  <p>Vi behandlar dina personuppgifter baserat på:</p>
++                  <ul className="list-disc pl-6 space-y-2">
++                    <li><strong>Avtal och åtgärder inför avtal:</strong> För att hantera din förfrågan, bedöma uppdraget och lämna offert</li>
++                    <li><strong>Berättigat intresse:</strong> För säker drift, missbruksskydd och utveckling av våra tjänster</li>
++                    <li><strong>Samtycke:</strong> För valfri analys och marknadsföring när du aktivt har valt detta</li>
++                    <li><strong>Juridisk förpliktelse:</strong> För att uppfylla krav enligt PBL och andra lagar</li>
++                  </ul>
++                </section>
++
++                <section>
++                  <h2 className="text-2xl font-semibold text-slate-900 mb-4">6. Delning av personuppgifter</h2>
++                  <p>
++                    Personuppgifter lämnas bara till mottagare som behövs för att hantera förfrågan,
++                    tillhandahålla en avtalad tjänst eller uppfylla lagkrav. Detta kan inkludera:
++                  </p>
++                  <ul className="list-disc pl-6 space-y-2">
++                    <li>Byggnadsnämnder och myndigheter (enligt PBL)</li>
++                    <li>Tekniska leverantörer för serverdrift, automatisering och e-post</li>
++                    <li>Behörig partner när en partnerlevererad tjänst, exempelvis energideklaration, ska offereras eller utföras</li>
++                    <li>Juridiska rådgivare vid behov</li>
++                  </ul>
++                </section>
++
++                <section>
++                  <h2 className="text-2xl font-semibold text-slate-900 mb-4">7. Hantering av förfrågningar</h2>
++                  <p>
++                    Offertformuläret skickar uppgifterna säkert och skapar ett ärende som bedöms manuellt.
++                    Automatiseringen fattar inte beslut om att acceptera ett uppdrag eller ingå avtal.
++                  </p>
++                  <p className="mt-4">
++                    Vid en förfrågan om energideklaration kontrollerar vi att partnerns energiexpert har
++                    giltig certifiering innan en utförare bekräftas för uppdraget.
++                  </p>
++                </section>
++
++                <section>
++                  <h2 className="text-2xl font-semibold text-slate-900 mb-4">8. Lagring av personuppgifter</h2>
++                  <p>
++                    Vi lagrar personuppgifter så länge de behövs för det aktuella ändamålet och därefter
++                    så länge som krävs för avtal, rättsliga skyldigheter eller för att hantera rättsliga anspråk.
++                    Lagringstiden bedöms utifrån uppgiftstyp och relation.
++                  </p>
++                </section>
++
++                <section>
++                  <h2 className="text-2xl font-semibold text-slate-900 mb-4">9. Dina rättigheter</h2>
++                  <p>Enligt GDPR har du rätt att:</p>
++                  <ul className="list-disc pl-6 space-y-2">
++                    <li><strong>Få tillgång</strong> till dina personuppgifter</li>
++                    <li><strong>Rätta</strong> felaktiga uppgifter</li>
++                    <li><strong>Radera</strong> dina uppgifter under vissa omständigheter</li>
++                    <li><strong>Begränsa</strong> behandlingen av dina uppgifter</li>
++                    <li><strong>Invända</strong> mot behandling baserad på berättigat intresse</li>
++                    <li><strong>Dataportabilitet</strong> - få ut dina uppgifter i strukturerat format</li>
++                  </ul>
++                  <p className="mt-4">
++                    För att utöva dina rättigheter, kontakta oss på {COMPANY.email}.
++                  </p>
++                </section>
++
++                <section>
++                  <h2 className="text-2xl font-semibold text-slate-900 mb-4">10. Säkerhet</h2>
++                  <p>
++                    Vi arbetar med tekniska och organisatoriska skyddsåtgärder som anpassas efter
++                    uppgifternas art, behandlingens omfattning och aktuell risk.
++                  </p>
++                </section>
++
++                <section>
++                  <h2 className="text-2xl font-semibold text-slate-900 mb-4">11. Cookies</h2>
++                  <p>
++                    Nödvändig lagring används för webbplatsens funktioner och för att komma ihåg ditt val.
++                    Google Analytics och Google Ads laddas endast om motsvarande ändamål är konfigurerat
++                    och du aktivt har samtyckt till analys respektive marknadsföring. Innan dess görs inga
++                    anrop till Googles taggtjänst från vår mätkod.
++                  </p>
++                  <p className="mt-4">
++                    Analysdata begränsas till tillåtna händelser, sidans sökväg och icke-personliga val såsom
++                    projekttyp. Namn, e-postadress, telefonnummer och meddelandetext skickas inte som
++                    analyshändelser. Kampanjparametrar och första landningssida följer i stället med den
++                    projektförfrågan som du själv skickar, så att vi kan förstå förfrågans källa utan att
++                    skicka uppgifterna vidare till annonssystem i onödan.
++                  </p>
++                  <p className="mt-4">
++                    Du kan acceptera, avvisa, anpassa eller återkalla valfria cookies via
++                    <button
++                      type="button"
++                      onClick={openConsentSettings}
++                      className="ml-1 font-semibold text-primary underline"
++                    >
++                      Cookie-inställningar
++                    </button>.
++                  </p>
++                </section>
++
++                <section>
++                  <h2 className="text-2xl font-semibold text-slate-900 mb-4">12. Ändringar av integritetspolicyn</h2>
++                  <p>
++                    Vi kan uppdatera denna integritetspolicy från tid till annan. Väsentliga ändringar 
++                    kommer att meddelas på vår webbplats eller via e-post. Vi rekommenderar att du 
++                    regelbundet läser igenom denna policy.
++                  </p>
++                </section>
++
++                <section>
++                  <h2 className="text-2xl font-semibold text-slate-900 mb-4">13. Kontakt</h2>
++                  <p>
++                    Om du har frågor om denna integritetspolicy eller hur vi behandlar dina 
++                    personuppgifter, kontakta oss:
++                  </p>
++                  <div className="bg-stone-50 p-6 rounded-lg mt-4">
++                    <p><strong>{COMPANY.legalName}</strong></p>
++                    <p>Organisationsnummer: {COMPANY.organizationNumber}</p>
++                    <p>E-post: {COMPANY.email}</p>
++                    <p className="mt-4">
++                      Du har också rätt att lämna klagomål till Integritetsskyddsmyndigheten (IMY) 
++                      om du anser att vi behandlar dina personuppgifter på ett felaktigt sätt.
++                    </p>
++                  </div>
++                </section>
++
++                <section className="border-t pt-8 mt-12">
++                  <p className="text-sm text-slate-600">
++                    <strong>Senast uppdaterad:</strong> 30 oktober 2026
++                  </p>
++                </section>
++              </div>
++            </div>
++          </div>
++        </main>
++        <Footer />
++      </div>
++    </>
++  );
++};
++
++export default Integritetspolicy;
+diff --git a/src/components/Footer.tsx b/src/components/Footer.tsx
+--- a/src/components/Footer.tsx
++++ b/src/components/Footer.tsx
+@@ -1,160 +1,164 @@
+-import { Link } from 'react-router-dom';
+-import { Mail, MapPin } from 'lucide-react';
+-import { ExternalSiteLink } from '@/components/ExternalSiteLink';
+-import { BAS, COMPANY, KA_CERT } from '@/config/company';
+-import { openConsentSettings } from '@/lib/consent';
+-
+-export const Footer = () => {
+-  const currentYear = new Date().getFullYear();
+-
+-  return (
+-    <footer className="bg-slate-900 text-white">
+-      <div className="container mx-auto px-4 py-12">
+-        <div className="grid md:grid-cols-4 gap-8">
+-          {/* Company Info */}
+-          <section className="md:col-span-2" aria-label="Ytterman">
+-            <p className="text-2xl font-bold earth-gradient bg-clip-text text-transparent mb-4">
+-              {COMPANY.brandName}
+-            </p>
+-            <p className="text-gray-300 mb-6">
+-              {KA_CERT.title} och utbildad för uppdrag som {BAS.rolesLabel}.{' '}
+-              {COMPANY.experienceLabel} i byggbranschen.
+-            </p>
+-            <div className="space-y-3">
+-              <div className="flex items-center space-x-3">
+-                <Mail className="w-5 h-5 text-orange-300" aria-hidden="true" />
+-                <a href={COMPANY.emailHref} className="hover:text-orange-200 transition-colors">
+-                  {COMPANY.email}
+-                </a>
+-              </div>
+-              <div className="flex items-center space-x-3">
+-                <MapPin className="w-5 h-5 text-orange-300" aria-hidden="true" />
+-                <span>{COMPANY.region}, Sverige</span>
+-              </div>
+-            </div>
+-
+-            {/* Bygglov.se Kvalitetsbadge */}
+-            <div className="mt-6">
+-              <div id="bygglov-badge-container" className="w-40">
+-                <ExternalSiteLink
+-                  href="https://bygglov.se/"
+-                  ariaLabel="Bygglov.se verifierad ansluten sedan 2025 – extern länk"
+-                  underline={false}
+-                  className="block"
+-                >
+-                  <img
+-                    src="https://github.com/user-attachments/assets/ccf961d8-a3a5-47fe-bc0b-c2c5b912ece9"
+-                    alt="Bygglov.se verifierad ansluten sedan 2025"
+-                    className="block h-auto w-full"
+-                    loading="lazy"
+-                    decoding="async"
+-                  />
+-                </ExternalSiteLink>
+-              </div>
+-            </div>
+-          </section>
+-
+-          {/* Services */}
+-          <nav aria-label="Tjänster">
+-            <p className="text-lg font-semibold mb-4">
+-              Tjänster
+-            </p>
+-            <ul className="space-y-2">
+-              <li>
+-                <a href="/kontrollansvarig-i-fjallen/" className="text-gray-300 hover:text-white transition-colors">
+-                  KA i fjällvärlden
+-                </a>
+-              </li>
+-              <li>
+-                <a href="/kontrollansvarig/" className="text-gray-300 hover:text-white transition-colors">
+-                  Kontrollansvarig
+-                </a>
+-              </li>
+-              <li>
+-                <a href="/overlatelsebesiktning/" className="text-gray-300 hover:text-white transition-colors">
+-                  Överlåtelsebesiktning
+-                </a>
+-              </li>
+-              <li>
+-                <a href="/bas-p/" className="text-gray-300 hover:text-white transition-colors">
+-                  BAS-P
+-                </a>
+-              </li>
+-              <li>
+-                <a href="/bas-u/" className="text-gray-300 hover:text-white transition-colors">
+-                  BAS-U
+-                </a>
+-              </li>
+-              <li>
+-                <a href="/energideklaration/" className="text-gray-300 hover:text-white transition-colors">
+-                  Energideklaration
+-                </a>
+-              </li>
+-              <li>
+-                <a href="/bygglovshandlingar/" className="text-gray-300 hover:text-white transition-colors">
+-                  Bygglovshandlingar
+-                </a>
+-              </li>
+-              <li>
+-                <a href="/byggstart-planerare/" className="text-gray-300 hover:text-white transition-colors">
+-                  Byggstart-planerare
+-                </a>
+-              </li>
+-              <li>
+-                <a href="/foretag/" className="text-gray-300 hover:text-white transition-colors">
+-                  Företag och portfölj
+-                </a>
+-              </li>
+-            </ul>
+-          </nav>
+-
+-          {/* Areas */}
+-          <section aria-label="Verksamhetsområden">
+-            <p className="text-lg font-semibold mb-4">
+-              Verksamhetsområden
+-            </p>
+-            <ul className="space-y-2 text-gray-300">
+-              {COMPANY.areaServed.map((area) => <li key={area}>{area}</li>)}
+-              {[
+-                ['Sundsvall', 'sundsvall'], ['Härnösand', 'harnosand'], ['Timrå', 'timra'],
+-                ['Kramfors', 'kramfors'], ['Sollefteå', 'solleftea'],
+-              ].map(([city, slug]) => (
+-                <li key={slug}><Link to={`/kontrollansvarig-${slug}/`} className="hover:text-white transition-colors">Kontrollansvarig i {city}</Link></li>
+-              ))}
+-            </ul>
+-          </section>
+-        </div>
+-
+-        <div className="border-t border-slate-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center gap-3">
+-          <p className="text-gray-400 text-sm text-center md:text-left">
+-            © {currentYear} {COMPANY.brandName}. Alla rättigheter förbehållna.
+-          </p>
+-          <div className="mt-4 flex flex-wrap justify-center gap-x-6 gap-y-3 md:mt-0">
+-            <a href="/priser/" className="text-gray-400 hover:text-white transition-colors text-sm">
+-              Paket och priser
+-            </a>
+-            <a href="/samarbeta/" className="text-gray-400 hover:text-white transition-colors text-sm">
+-              Samarbeta
+-            </a>
+-            <a href="/guider/" className="text-gray-400 hover:text-white transition-colors text-sm">
+-              Guider
+-            </a>
+-            <a href="/integritetspolicy/" className="text-gray-400 hover:text-white transition-colors text-sm">
+-              Integritetspolicy
+-            </a>
+-            <button
+-              type="button"
+-              onClick={openConsentSettings}
+-              className="text-gray-400 hover:text-white transition-colors text-sm"
+-            >
+-              Cookie-inställningar
+-            </button>
+-            <a href="/#kontakt" className="text-gray-400 hover:text-white transition-colors text-sm">
+-              Kontakt
+-            </a>
+-          </div>
+-        </div>
+-      </div>
+-    </footer>
+-  );
+-};
++import { Link } from 'react-router-dom';
++import { Mail, MapPin } from 'lucide-react';
++import { ExternalSiteLink } from '@/components/ExternalSiteLink';
++import { BAS, COMPANY, KA_CERT } from '@/config/company';
++import { openConsentSettings } from '@/lib/consent';
++
++export const Footer = () => {
++  const currentYear = new Date().getFullYear();
++
++  return (
++    <footer className="bg-slate-900 text-white">
++      <div className="container mx-auto px-4 py-12">
++        <div className="grid md:grid-cols-4 gap-8">
++          {/* Company Info */}
++          <section className="md:col-span-2" aria-label="Ytterman">
++            <p className="text-2xl font-bold earth-gradient bg-clip-text text-transparent mb-4">
++              {COMPANY.brandName}
++            </p>
++            <p className="text-gray-300 mb-6">
++              {KA_CERT.title} och utbildad för uppdrag som {BAS.rolesLabel}.{' '}
++              {COMPANY.experienceLabel} i byggbranschen.
++            </p>
++            <p className="text-gray-300 mb-6">
++              Ytterman.com är ett varumärke som ägs och drivs av {COMPANY.legalName}.{' '}
++              Organisationsnummer: {COMPANY.organizationNumber}.
++            </p>
++            <div className="space-y-3">
++              <div className="flex items-center space-x-3">
++                <Mail className="w-5 h-5 text-orange-300" aria-hidden="true" />
++                <a href={COMPANY.emailHref} className="hover:text-orange-200 transition-colors">
++                  {COMPANY.email}
++                </a>
++              </div>
++              <div className="flex items-center space-x-3">
++                <MapPin className="w-5 h-5 text-orange-300" aria-hidden="true" />
++                <span>{COMPANY.region}, Sverige</span>
++              </div>
++            </div>
++
++            {/* Bygglov.se Kvalitetsbadge */}
++            <div className="mt-6">
++              <div id="bygglov-badge-container" className="w-40">
++                <ExternalSiteLink
++                  href="https://bygglov.se/"
++                  ariaLabel="Bygglov.se verifierad ansluten sedan 2025 – extern länk"
++                  underline={false}
++                  className="block"
++                >
++                  <img
++                    src="https://github.com/user-attachments/assets/ccf961d8-a3a5-47fe-bc0b-c2c5b912ece9"
++                    alt="Bygglov.se verifierad ansluten sedan 2025"
++                    className="block h-auto w-full"
++                    loading="lazy"
++                    decoding="async"
++                  />
++                </ExternalSiteLink>
++              </div>
++            </div>
++          </section>
++
++          {/* Services */}
++          <nav aria-label="Tjänster">
++            <p className="text-lg font-semibold mb-4">
++              Tjänster
++            </p>
++            <ul className="space-y-2">
++              <li>
++                <a href="/kontrollansvarig-i-fjallen/" className="text-gray-300 hover:text-white transition-colors">
++                  KA i fjällvärlden
++                </a>
++              </li>
++              <li>
++                <a href="/kontrollansvarig/" className="text-gray-300 hover:text-white transition-colors">
++                  Kontrollansvarig
++                </a>
++              </li>
++              <li>
++                <a href="/overlatelsebesiktning/" className="text-gray-300 hover:text-white transition-colors">
++                  Överlåtelsebesiktning
++                </a>
++              </li>
++              <li>
++                <a href="/bas-p/" className="text-gray-300 hover:text-white transition-colors">
++                  BAS-P
++                </a>
++              </li>
++              <li>
++                <a href="/bas-u/" className="text-gray-300 hover:text-white transition-colors">
++                  BAS-U
++                </a>
++              </li>
++              <li>
++                <a href="/energideklaration/" className="text-gray-300 hover:text-white transition-colors">
++                  Energideklaration
++                </a>
++              </li>
++              <li>
++                <a href="/bygglovshandlingar/" className="text-gray-300 hover:text-white transition-colors">
++                  Bygglovshandlingar
++                </a>
++              </li>
++              <li>
++                <a href="/byggstart-planerare/" className="text-gray-300 hover:text-white transition-colors">
++                  Byggstart-planerare
++                </a>
++              </li>
++              <li>
++                <a href="/foretag/" className="text-gray-300 hover:text-white transition-colors">
++                  Företag och portfölj
++                </a>
++              </li>
++            </ul>
++          </nav>
++
++          {/* Areas */}
++          <section aria-label="Verksamhetsområden">
++            <p className="text-lg font-semibold mb-4">
++              Verksamhetsområden
++            </p>
++            <ul className="space-y-2 text-gray-300">
++              {COMPANY.areaServed.map((area) => <li key={area}>{area}</li>)}
++              {[
++                ['Sundsvall', 'sundsvall'], ['Härnösand', 'harnosand'], ['Timrå', 'timra'],
++                ['Kramfors', 'kramfors'], ['Sollefteå', 'solleftea'],
++              ].map(([city, slug]) => (
++                <li key={slug}><Link to={`/kontrollansvarig-${slug}/`} className="hover:text-white transition-colors">Kontrollansvarig i {city}</Link></li>
++              ))}
++            </ul>
++          </section>
++        </div>
++
++        <div className="border-t border-slate-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center gap-3">
++          <p className="text-gray-400 text-sm text-center md:text-left">
++            © {currentYear} {COMPANY.legalName}. Alla rättigheter förbehållna.
++          </p>
++          <div className="mt-4 flex flex-wrap justify-center gap-x-6 gap-y-3 md:mt-0">
++            <a href="/priser/" className="text-gray-400 hover:text-white transition-colors text-sm">
++              Paket och priser
++            </a>
++            <a href="/samarbeta/" className="text-gray-400 hover:text-white transition-colors text-sm">
++              Samarbeta
++            </a>
++            <a href="/guider/" className="text-gray-400 hover:text-white transition-colors text-sm">
++              Guider
++            </a>
++            <a href="/integritetspolicy/" className="text-gray-400 hover:text-white transition-colors text-sm">
++              Integritetspolicy
++            </a>
++            <button
++              type="button"
++              onClick={openConsentSettings}
++              className="text-gray-400 hover:text-white transition-colors text-sm"
++            >
++              Cookie-inställningar
++            </button>
++            <a href="/#kontakt" className="text-gray-400 hover:text-white transition-colors text-sm">
++              Kontakt
++            </a>
++          </div>
++        </div>
++      </div>
++    </footer>
++  );
++};
+diff --git a/src/components/ContactInfo.tsx b/src/components/ContactInfo.tsx
+--- a/src/components/ContactInfo.tsx
++++ b/src/components/ContactInfo.tsx
+@@ -1,101 +1,106 @@
+-import { Mail, MapPin, Clock, CheckCircle } from 'lucide-react';
+-import { BUSINESS_COPY, COMPANY } from '@/config/company';
+-
+-interface ContactInfoProps {
+-  className?: string;
+-}
+-
+-export const ContactInfo = ({ className = '' }: ContactInfoProps) => {
+-  const contactInfo = [
+-    {
+-      icon: Mail,
+-      title: "E-post",
+-      value: COMPANY.email,
+-      link: COMPANY.emailHref,
+-      description: BUSINESS_COPY.preferredContact
+-    },
+-    {
+-      icon: MapPin,
+-      title: "Område",
+-      value: COMPANY.region,
+-      description: "Tillgänglighet och resor bekräftas per projekt"
+-    },
+-    {
+-      icon: Clock,
+-      title: "Återkoppling",
+-      value: "Utifrån projekt och kapacitet",
+-      description: BUSINESS_COPY.defaultResponse
+-    }
+-  ];
+-
+-  const services = [
+-    "Kontrollansvarig (KA) enligt PBL",
+-    "BAS-P - Byggarbetsmiljösamordnare Projektering",
+-    "BAS-U - Byggarbetsmiljösamordnare Utförande",
+-    "Bygglovshandlingar och ritningar",
+-    "Energideklaration via behörig partner",
+-    "Konsultation och rådgivning"
+-  ];
+-
+-  return (
+-    <div className={className}>
+-      <h2 className="text-3xl font-bold text-slate-900 mb-8">
+-        Kontaktinformation
+-      </h2>
+-      
+-      <section aria-labelledby="contact-details">
+-        <h3 id="contact-details" className="sr-only">Kontaktuppgifter</h3>
+-        <div className="space-y-6 mb-12">
+-          {contactInfo.map((info, index) => {
+-            const IconComponent = info.icon;
+-            return (
+-              <div key={index} className="flex items-start space-x-4">
+-                <div 
+-                  className="w-12 h-12 earth-gradient rounded-lg flex items-center justify-center flex-shrink-0"
+-                  aria-hidden="true"
+-                >
+-                  <IconComponent className="w-6 h-6 text-white" />
+-                </div>
+-                <div>
+-                  <h4 className="font-bold text-slate-900 mb-1">
+-                    {info.title}
+-                  </h4>
+-                  {info.link ? (
+-                    <a 
+-                      href={info.link}
+-                      className="text-primary hover:underline font-semibold focus:ring-2 focus:ring-primary/20 focus:outline-none rounded"
+-                      aria-label={`${info.title}: ${info.value}`}
+-                    >
+-                      {info.value}
+-                    </a>
+-                  ) : (
+-                    <p className="font-semibold text-slate-900">
+-                      {info.value}
+-                    </p>
+-                  )}
+-                  <p className="text-slate-600 text-sm">
+-                    {info.description}
+-                  </p>
+-                </div>
+-              </div>
+-            );
+-          })}
+-        </div>
+-      </section>
+-
+-      <section aria-labelledby="services-list" className="bg-slate-50 rounded-xl p-6">
+-        <h3 id="services-list" className="font-bold text-slate-900 mb-4">
+-          Våra tjänster
+-        </h3>
+-        <ul className="space-y-2" role="list">
+-          {services.map((service, index) => (
+-            <li key={index} className="flex items-center space-x-2">
+-              <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" aria-hidden="true" />
+-              <span className="text-slate-700">{service}</span>
+-            </li>
+-          ))}
+-        </ul>
+-      </section>
+-    </div>
+-  );
+-};
++import { Mail, MapPin, Clock, CheckCircle } from 'lucide-react';
++import { BUSINESS_COPY, COMPANY } from '@/config/company';
++
++interface ContactInfoProps {
++  className?: string;
++}
++
++export const ContactInfo = ({ className = '' }: ContactInfoProps) => {
++  const contactInfo = [
++    {
++      icon: Mail,
++      title: "E-post",
++      value: COMPANY.email,
++      link: COMPANY.emailHref,
++      description: BUSINESS_COPY.preferredContact
++    },
++    {
++      icon: MapPin,
++      title: "Område",
++      value: COMPANY.region,
++      description: "Tillgänglighet och resor bekräftas per projekt"
++    },
++    {
++      icon: Clock,
++      title: "Återkoppling",
++      value: "Utifrån projekt och kapacitet",
++      description: BUSINESS_COPY.defaultResponse
++    }
++  ];
++
++  const services = [
++    "Kontrollansvarig (KA) enligt PBL",
++    "BAS-P - Byggarbetsmiljösamordnare Projektering",
++    "BAS-U - Byggarbetsmiljösamordnare Utförande",
++    "Bygglovshandlingar och ritningar",
++    "Energideklaration via behörig partner",
++    "Konsultation och rådgivning"
++  ];
++
++  return (
++    <div className={className}>
++      <h2 className="text-3xl font-bold text-slate-900 mb-8">
++        Kontaktinformation
++      </h2>
++      
++      <div className="text-slate-600 mb-8">
++        <p>Ytterman.com är ett varumärke som ägs och drivs av {COMPANY.legalName}.</p>
++        <p>Organisationsnummer: {COMPANY.organizationNumber}</p>
++      </div>
++
++      <section aria-labelledby="contact-details">
++        <h3 id="contact-details" className="sr-only">Kontaktuppgifter</h3>
++        <div className="space-y-6 mb-12">
++          {contactInfo.map((info, index) => {
++            const IconComponent = info.icon;
++            return (
++              <div key={index} className="flex items-start space-x-4">
++                <div 
++                  className="w-12 h-12 earth-gradient rounded-lg flex items-center justify-center flex-shrink-0"
++                  aria-hidden="true"
++                >
++                  <IconComponent className="w-6 h-6 text-white" />
++                </div>
++                <div>
++                  <h4 className="font-bold text-slate-900 mb-1">
++                    {info.title}
++                  </h4>
++                  {info.link ? (
++                    <a 
++                      href={info.link}
++                      className="text-primary hover:underline font-semibold focus:ring-2 focus:ring-primary/20 focus:outline-none rounded"
++                      aria-label={`${info.title}: ${info.value}`}
++                    >
++                      {info.value}
++                    </a>
++                  ) : (
++                    <p className="font-semibold text-slate-900">
++                      {info.value}
++                    </p>
++                  )}
++                  <p className="text-slate-600 text-sm">
++                    {info.description}
++                  </p>
++                </div>
++              </div>
++            );
++          })}
++        </div>
++      </section>
++
++      <section aria-labelledby="services-list" className="bg-slate-50 rounded-xl p-6">
++        <h3 id="services-list" className="font-bold text-slate-900 mb-4">
++          Våra tjänster
++        </h3>
++        <ul className="space-y-2" role="list">
++          {services.map((service, index) => (
++            <li key={index} className="flex items-center space-x-2">
++              <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" aria-hidden="true" />
++              <span className="text-slate-700">{service}</span>
++            </li>
++          ))}
++        </ul>
++      </section>
++    </div>
++  );
++};
+diff --git a/src/pages/About.tsx b/src/pages/About.tsx
+--- a/src/pages/About.tsx
++++ b/src/pages/About.tsx
+@@ -1,128 +1,133 @@
+-import { Header } from '@/components/Header';
+-import { Footer } from '@/components/Footer';
+-import { AdvancedSEO } from '@/components/AdvancedSEO';
+-import { CanonicalUrl } from '@/components/CanonicalUrl';
+-import { BAS, COMPANY, KA_CERT } from '@/config/company';
+-import { VerifiedProof } from '@/components/VerifiedProof';
+-import { ReviewRequestCta } from '@/components/ReviewRequestCta';
+-
+-const About = () => {
+-  return (
+-    <>
+-      <AdvancedSEO 
+-        title="Om Ytterman – kontrollansvarig och BAS i Västernorrland"
+-        description={`Lär känna ${COMPANY.publicName} – ${KA_CERT.title.toLowerCase()}, utbildad för ${BAS.rolesLabel} och med ${COMPANY.experienceLabel.toLowerCase()} i byggbranschen.`}
+-        keywords="om ytterman, tobias ytterman, kontrollansvarig västernorrland, BAS-P, BAS-U, byggkontroll erfarenhet"
+-        url="https://ytterman.com/om"
+-      />
+-      
+-      <CanonicalUrl path="/om" />
+-      
+-      <div className="min-h-screen flex flex-col">
+-        <Header />
+-        <main className="flex-grow">
+-          <div className="container mx-auto px-4 py-16">
+-            <div className="max-w-4xl mx-auto">
+-              <h1 className="text-4xl font-bold text-slate-900 mb-8 text-center">
+-                Om Ytterman
+-              </h1>
+-              
+-              <div className="prose prose-lg mx-auto">
+-                <p className="text-xl text-slate-600 mb-8 text-center">
+-                  {COMPANY.experienceLabel} i byggbranschen
+-                </p>
+-                
+-                <div className="bg-white rounded-lg shadow-sm border p-8 mb-8">
+-                  <h2 className="text-2xl font-semibold text-slate-900 mb-4">
+-                    Tobias Ytterman
+-                  </h2>
+-                  <p className="text-slate-600 mb-4">
+-                    Med {COMPANY.experienceLabel.toLowerCase()} inom byggbranschen erbjuder jag
+-                    uppdrag som kontrollansvarig och byggarbetsmiljösamordnare ({BAS.rolesLabel})
+-                    i {COMPANY.region}.
+-                  </p>
+-                  <p className="text-slate-600 mb-4">
+-                    Jag är {KA_CERT.title.toLowerCase()}, med {KA_CERT.authorizationLabel.toLowerCase()}.
+-                    Uppdraget avgränsas utifrån projektets art, kommunens beslut och de handlingar
+-                    som finns tillgängliga.
+-                  </p>
+-                </div>
+-                
+-                <div className="grid md:grid-cols-2 gap-8 mb-8">
+-                  <div className="bg-amber-50 rounded-lg p-6">
+-                    <h3 className="text-xl font-semibold text-amber-900 mb-3">
+-                      Vårt uppdrag
+-                    </h3>
+-                    <p className="text-amber-800">
+-                      Att skapa tydlig rollfördelning, praktisk struktur och användbar dokumentation
+-                      inom det uppdrag som har avtalats.
+-                    </p>
+-                  </div>
+-                  
+-                  <div className="bg-stone-50 rounded-lg p-6">
+-                    <h3 className="text-xl font-semibold text-stone-900 mb-3">
+-                      Våra värderingar
+-                    </h3>
+-                    <p className="text-stone-800">
+-                      Transparens, tydliga avgränsningar och begriplig kommunikation. Prisform och
+-                      villkor ska framgå innan uppdraget startar.
+-                    </p>
+-                  </div>
+-                </div>
+-
+-                <div className="bg-slate-50 rounded-lg p-8 mb-8">
+-                  <h2 className="text-2xl font-semibold text-slate-900 mb-4">
+-                    Så arbetar jag i byggprojekt
+-                  </h2>
+-                  <p className="text-slate-600 mb-4">
+-                    Mitt arbetssätt bygger på att skapa struktur tidigt. Oavsett om uppdraget gäller
+-                    kontrollansvarig, BAS-P, BAS-U, energideklaration eller rådgivning börjar jag med
+-                    att förstå projektets förutsättningar, tidplan, aktörer och vilka beslut som måste
+-                    fattas för att processen ska flyta vidare utan onödiga hinder.
+-                  </p>
+-                  <p className="text-slate-600">
+-                    Jag lägger stor vikt vid tydlig kommunikation, praktiska rekommendationer och att
+-                    dokumentation ska vara användbar i verkligheten. För dig som kund betyder det
+-                    tydligare återkoppling, bättre överblick och en mer förutsägbar byggprocess från start till
+-                    avslut.
+-                  </p>
+-                </div>
+-
+-                <div className="bg-white rounded-lg shadow-sm border p-8 mb-8">
+-                  <h2 className="text-2xl font-semibold text-slate-900 mb-4">
+-                    Varför kunder anlitar Ytterman
+-                  </h2>
+-                  <p className="text-slate-600 mb-4">
+-                    Kunder anlitar mig när de vill ha en erfaren kontaktperson som kan kombinera
+-                    regelkunskap med praktisk förståelse för hur byggprojekt faktiskt fungerar på plats.
+-                    Det gäller både privatpersoner som bygger nytt och företag som behöver stöd i större
+-                    eller mer samordningskrävande uppdrag.
+-                  </p>
+-                  <p className="text-slate-600">
+-                    Basen i erbjudandet är förfrågningar från {COMPANY.region}, lång erfarenhet och ett
+-                    fokus på tydliga besked. Tillgänglighet, resor, resurser och tidplan bekräftas
+-                    efter genomgång av det aktuella projektet.
+-                  </p>
+-                </div>
+-                
+-                <div className="text-center">
+-                  <a 
+-                    href="/kontakt/" 
+-                    className="inline-flex items-center px-6 py-3 earth-gradient text-white font-medium rounded-lg hover:opacity-90 transition-colors"
+-                  >
+-                    Kontakta oss
+-                  </a>
+-                </div>
+-                <VerifiedProof />
+-              </div>
+-            </div>
+-          </div>
+-          <ReviewRequestCta />
+-        </main>
+-        <Footer />
+-      </div>
+-    </>
+-  );
+-};
+-
+-export default About;
++import { Header } from '@/components/Header';
++import { Footer } from '@/components/Footer';
++import { AdvancedSEO } from '@/components/AdvancedSEO';
++import { CanonicalUrl } from '@/components/CanonicalUrl';
++import { BAS, COMPANY, KA_CERT } from '@/config/company';
++import { VerifiedProof } from '@/components/VerifiedProof';
++import { ReviewRequestCta } from '@/components/ReviewRequestCta';
++
++const About = () => {
++  return (
++    <>
++      <AdvancedSEO 
++        title="Om Ytterman – kontrollansvarig och BAS i Västernorrland"
++        description={`Lär känna ${COMPANY.publicName} – ${KA_CERT.title.toLowerCase()}, utbildad för ${BAS.rolesLabel} och med ${COMPANY.experienceLabel.toLowerCase()} i byggbranschen.`}
++        keywords="om ytterman, tobias ytterman, kontrollansvarig västernorrland, BAS-P, BAS-U, byggkontroll erfarenhet"
++        url="https://ytterman.com/om"
++      />
++      
++      <CanonicalUrl path="/om" />
++      
++      <div className="min-h-screen flex flex-col">
++        <Header />
++        <main className="flex-grow">
++          <div className="container mx-auto px-4 py-16">
++            <div className="max-w-4xl mx-auto">
++              <h1 className="text-4xl font-bold text-slate-900 mb-8 text-center">
++                Om Ytterman
++              </h1>
++              
++              <div className="prose prose-lg mx-auto">
++                <p className="text-xl text-slate-600 mb-8 text-center">
++                  {COMPANY.experienceLabel} i byggbranschen
++                </p>
++                
++                <p className="text-slate-600 mb-8">
++                  Ytterman.com är ett varumärke som ägs och drivs av {COMPANY.legalName},
++                  organisationsnummer {COMPANY.organizationNumber}.
++                </p>
++
++                <div className="bg-white rounded-lg shadow-sm border p-8 mb-8">
++                  <h2 className="text-2xl font-semibold text-slate-900 mb-4">
++                    Tobias Ytterman
++                  </h2>
++                  <p className="text-slate-600 mb-4">
++                    Med {COMPANY.experienceLabel.toLowerCase()} inom byggbranschen erbjuder jag
++                    uppdrag som kontrollansvarig och byggarbetsmiljösamordnare ({BAS.rolesLabel})
++                    i {COMPANY.region}.
++                  </p>
++                  <p className="text-slate-600 mb-4">
++                    Jag är {KA_CERT.title.toLowerCase()}, med {KA_CERT.authorizationLabel.toLowerCase()}.
++                    Uppdraget avgränsas utifrån projektets art, kommunens beslut och de handlingar
++                    som finns tillgängliga.
++                  </p>
++                </div>
++                
++                <div className="grid md:grid-cols-2 gap-8 mb-8">
++                  <div className="bg-amber-50 rounded-lg p-6">
++                    <h3 className="text-xl font-semibold text-amber-900 mb-3">
++                      Vårt uppdrag
++                    </h3>
++                    <p className="text-amber-800">
++                      Att skapa tydlig rollfördelning, praktisk struktur och användbar dokumentation
++                      inom det uppdrag som har avtalats.
++                    </p>
++                  </div>
++                  
++                  <div className="bg-stone-50 rounded-lg p-6">
++                    <h3 className="text-xl font-semibold text-stone-900 mb-3">
++                      Våra värderingar
++                    </h3>
++                    <p className="text-stone-800">
++                      Transparens, tydliga avgränsningar och begriplig kommunikation. Prisform och
++                      villkor ska framgå innan uppdraget startar.
++                    </p>
++                  </div>
++                </div>
++
++                <div className="bg-slate-50 rounded-lg p-8 mb-8">
++                  <h2 className="text-2xl font-semibold text-slate-900 mb-4">
++                    Så arbetar jag i byggprojekt
++                  </h2>
++                  <p className="text-slate-600 mb-4">
++                    Mitt arbetssätt bygger på att skapa struktur tidigt. Oavsett om uppdraget gäller
++                    kontrollansvarig, BAS-P, BAS-U, energideklaration eller rådgivning börjar jag med
++                    att förstå projektets förutsättningar, tidplan, aktörer och vilka beslut som måste
++                    fattas för att processen ska flyta vidare utan onödiga hinder.
++                  </p>
++                  <p className="text-slate-600">
++                    Jag lägger stor vikt vid tydlig kommunikation, praktiska rekommendationer och att
++                    dokumentation ska vara användbar i verkligheten. För dig som kund betyder det
++                    tydligare återkoppling, bättre överblick och en mer förutsägbar byggprocess från start till
++                    avslut.
++                  </p>
++                </div>
++
++                <div className="bg-white rounded-lg shadow-sm border p-8 mb-8">
++                  <h2 className="text-2xl font-semibold text-slate-900 mb-4">
++                    Varför kunder anlitar Ytterman
++                  </h2>
++                  <p className="text-slate-600 mb-4">
++                    Kunder anlitar mig när de vill ha en erfaren kontaktperson som kan kombinera
++                    regelkunskap med praktisk förståelse för hur byggprojekt faktiskt fungerar på plats.
++                    Det gäller både privatpersoner som bygger nytt och företag som behöver stöd i större
++                    eller mer samordningskrävande uppdrag.
++                  </p>
++                  <p className="text-slate-600">
++                    Basen i erbjudandet är förfrågningar från {COMPANY.region}, lång erfarenhet och ett
++                    fokus på tydliga besked. Tillgänglighet, resor, resurser och tidplan bekräftas
++                    efter genomgång av det aktuella projektet.
++                  </p>
++                </div>
++                
++                <div className="text-center">
++                  <a 
++                    href="/kontakt/" 
++                    className="inline-flex items-center px-6 py-3 earth-gradient text-white font-medium rounded-lg hover:opacity-90 transition-colors"
++                  >
++                    Kontakta oss
++                  </a>
++                </div>
++                <VerifiedProof />
++              </div>
++            </div>
++          </div>
++          <ReviewRequestCta />
++        </main>
++        <Footer />
++      </div>
++    </>
++  );
++};
++
++export default About;
+diff --git a/src/seo/schema.ts b/src/seo/schema.ts
+--- a/src/seo/schema.ts
++++ b/src/seo/schema.ts
+@@ -1,229 +1,235 @@
+-import {
+-  ACTIVE_SERVICE_NAMES,
+-  BAS,
+-  BUSINESS_COPY,
+-  COMPANY,
+-  KA_CREDENTIAL_SCHEMA,
+-  KA_CERT,
+-  PRICE_LABELS,
+-  PARTNER_LINKS,
+-  SERVICES,
+-} from '@/config/company';
+-import type { RouteDefinition } from '@/config/routeRegistry.mjs';
+-import { toCanonicalUrl } from '@/config/routeRegistry.mjs';
+-
+-type SchemaNode = Record<string, unknown>;
+-
+-const IDS = {
+-  website: `${COMPANY.siteUrl}/#website`,
+-  business: `${COMPANY.siteUrl}/#professional-service`,
+-  person: `${COMPANY.siteUrl}/#tobias-ytterman`,
+-  energyPartner: `${COMPANY.siteUrl}/#energy-declaration-partner`,
+-  energyCalculationPartner: `${COMPANY.siteUrl}/#energy-calculation-partner`,
+-} as const;
+-
+-const serviceId = (key: string) => `${COMPANY.siteUrl}/#service-${key}`;
+-
+-const buildServiceNode = (key: string): SchemaNode | null => {
+-  const service = SERVICES[key as keyof typeof SERVICES];
+-  if (!service) return null;
+-
+-  const partnerDelivered = service.deliveryModel === 'partner';
+-  const energyCalculationPartner = key === 'energyCalculation';
+-  const partnerId = energyCalculationPartner ? IDS.energyCalculationPartner : IDS.energyPartner;
+-  return {
+-    '@type': 'Service',
+-    '@id': serviceId(key),
+-    name: service.name,
+-    description: service.shortDescription,
+-    url: `${COMPANY.siteUrl}${service.path}`,
+-    serviceType: service.name,
+-    areaServed: COMPANY.areaServed.map((name) => ({ '@type': 'AdministrativeArea', name })),
+-    provider: partnerDelivered
+-      ? { '@id': partnerId }
+-      : { '@id': IDS.business },
+-    ...(partnerDelivered
+-      ? {
+-          broker: { '@id': IDS.business },
+-          disambiguatingDescription: energyCalculationPartner
+-            ? `${BUSINESS_COPY.energyCalculationPartner} ${BUSINESS_COPY.energyCalculationAffiliate}`
+-            : BUSINESS_COPY.energyPartner,
+-        }
+-      : {}),
+-  };
+-};
+-
+-const buildCoreGraph = (): SchemaNode[] => {
+-  const activeServiceEntries = Object.entries(SERVICES)
+-    .filter(([, service]) => service.publicationStatus === 'active');
+-
+-  return [
+-    {
+-      '@type': 'WebSite',
+-      '@id': IDS.website,
+-      url: `${COMPANY.siteUrl}/`,
+-      name: COMPANY.brandName,
+-      inLanguage: 'sv-SE',
+-      publisher: { '@id': IDS.business },
+-    },
+-    {
+-      '@type': 'ProfessionalService',
+-      '@id': IDS.business,
+-      name: COMPANY.brandName,
+-      alternateName: COMPANY.publicName,
+-      url: `${COMPANY.siteUrl}/`,
+-      email: COMPANY.email,
+-      description: `${KA_CERT.title}, ${BAS.rolesLabel} och byggrelaterade tjänster i ${COMPANY.region}. ${BUSINESS_COPY.energyPartner}`,
+-      areaServed: COMPANY.areaServed.map((name) => ({ '@type': 'AdministrativeArea', name })),
+-      serviceType: ACTIVE_SERVICE_NAMES,
+-      priceRange: PRICE_LABELS.schemaRange,
+-      affiliation: { '@type': 'Organization', name: COMPANY.affiliation.name },
+-      employee: { '@id': IDS.person },
+-      hasOfferCatalog: {
+-        '@type': 'OfferCatalog',
+-        name: 'Aktiva tjänster',
+-        itemListElement: activeServiceEntries.map(([key]) => ({
+-          '@type': 'Offer',
+-          itemOffered: { '@id': serviceId(key) },
+-        })),
+-      },
+-    },
+-    {
+-      '@type': 'Person',
+-      '@id': IDS.person,
+-      name: COMPANY.publicName,
+-      jobTitle: 'Kontrollansvarig och byggarbetsmiljösamordnare',
+-      worksFor: { '@id': IDS.business },
+-      hasCredential: [KA_CREDENTIAL_SCHEMA],
+-      knowsAbout: [KA_CERT.title, BAS.rolesLabel, BAS.regulation],
+-    },
+-    {
+-      '@type': 'Organization',
+-      '@id': IDS.energyPartner,
+-      name: 'Behörig partner för energideklaration',
+-      description: 'Partnerorganisation där deklarationen utförs av certifierad energiexpert. Partner och behörighet verifieras inför uppdraget.',
+-    },
+-    {
+-      '@type': 'Organization',
+-      '@id': IDS.energyCalculationPartner,
+-      name: 'Partner för Energiberäkning online',
+-      url: PARTNER_LINKS.energyCalculation,
+-      description: BUSINESS_COPY.energyCalculationPartner,
+-    },
+-    ...activeServiceEntries
+-      .map(([key]) => buildServiceNode(key))
+-      .filter((node): node is SchemaNode => Boolean(node)),
+-  ];
+-};
+-
+-const pageNode = (
+-  canonicalUrl: string,
+-  title: string,
+-  description: string,
+-  pageType: string,
+-  serviceKey?: string,
+-  dateModified?: string,
+-): SchemaNode => ({
+-  '@type': pageType,
+-  '@id': `${canonicalUrl}#webpage`,
+-  url: canonicalUrl,
+-  name: title,
+-  description,
+-  inLanguage: 'sv-SE',
+-  isPartOf: { '@id': IDS.website },
+-  about: serviceKey ? { '@id': serviceId(serviceKey) } : { '@id': IDS.business },
+-  ...(pageType === 'TechArticle'
+-    ? {
+-        author: { '@id': IDS.person },
+-        publisher: { '@id': IDS.business },
+-        ...(dateModified ? { dateModified } : {}),
+-      }
+-    : {}),
+-  ...(pageType === 'ServicePage' && serviceKey
+-    ? { mainEntity: { '@id': serviceId(serviceKey) } }
+-    : {}),
+-});
+-
+-export const buildRouteSchema = (route: RouteDefinition) => {
+-  const canonicalUrl = toCanonicalUrl(route.path);
+-  return {
+-    '@context': 'https://schema.org',
+-    '@graph': [
+-      ...buildCoreGraph(),
+-      pageNode(
+-        canonicalUrl,
+-        route.meta.title,
+-        route.meta.description,
+-        route.schema.pageType,
+-        route.schema.serviceKey,
+-        route.schema.dateModified,
+-      ),
+-    ],
+-  };
+-};
+-
+-interface DynamicSchemaInput {
+-  canonicalUrl: string;
+-  title: string;
+-  description: string;
+-  article?: {
+-    publishedTime?: string;
+-    modifiedTime?: string;
+-    author?: string;
+-    section?: string;
+-    tags?: string[];
+-  };
+-  breadcrumbs?: Array<{ name: string; url: string }>;
+-  faq?: Array<{ question: string; answer: string }>;
+-}
+-
+-export const buildDynamicSchema = ({
+-  canonicalUrl,
+-  title,
+-  description,
+-  article,
+-  breadcrumbs = [],
+-  faq = [],
+-}: DynamicSchemaInput) => {
+-  const graph: SchemaNode[] = [
+-    ...buildCoreGraph(),
+-    {
+-      ...pageNode(canonicalUrl, title, description, article ? 'Article' : 'WebPage'),
+-      ...(article
+-        ? {
+-            datePublished: article.publishedTime,
+-            dateModified: article.modifiedTime || article.publishedTime,
+-            articleSection: article.section,
+-            keywords: article.tags?.join(', '),
+-          }
+-        : {}),
+-    },
+-  ];
+-
+-  if (breadcrumbs.length) {
+-    graph.push({
+-      '@type': 'BreadcrumbList',
+-      '@id': `${canonicalUrl}#breadcrumbs`,
+-      itemListElement: breadcrumbs.map((crumb, index) => ({
+-        '@type': 'ListItem',
+-        position: index + 1,
+-        name: crumb.name,
+-        item: crumb.url,
+-      })),
+-    });
+-  }
+-
+-  if (faq.length) {
+-    graph.push({
+-      '@type': 'FAQPage',
+-      '@id': `${canonicalUrl}#faq`,
+-      mainEntity: faq.map((item) => ({
+-        '@type': 'Question',
+-        name: item.question,
+-        acceptedAnswer: { '@type': 'Answer', text: item.answer },
+-      })),
+-    });
+-  }
+-
+-  return { '@context': 'https://schema.org', '@graph': graph };
+-};
++import {
++  ACTIVE_SERVICE_NAMES,
++  BAS,
++  BUSINESS_COPY,
++  COMPANY,
++  KA_CREDENTIAL_SCHEMA,
++  KA_CERT,
++  PRICE_LABELS,
++  PARTNER_LINKS,
++  SERVICES,
++} from '@/config/company';
++import type { RouteDefinition } from '@/config/routeRegistry.mjs';
++import { toCanonicalUrl } from '@/config/routeRegistry.mjs';
++
++type SchemaNode = Record<string, unknown>;
++
++const IDS = {
++  website: `${COMPANY.siteUrl}/#website`,
++  business: `${COMPANY.siteUrl}/#professional-service`,
++  person: `${COMPANY.siteUrl}/#tobias-ytterman`,
++  energyPartner: `${COMPANY.siteUrl}/#energy-declaration-partner`,
++  energyCalculationPartner: `${COMPANY.siteUrl}/#energy-calculation-partner`,
++} as const;
++
++const serviceId = (key: string) => `${COMPANY.siteUrl}/#service-${key}`;
++
++const buildServiceNode = (key: string): SchemaNode | null => {
++  const service = SERVICES[key as keyof typeof SERVICES];
++  if (!service) return null;
++
++  const partnerDelivered = service.deliveryModel === 'partner';
++  const energyCalculationPartner = key === 'energyCalculation';
++  const partnerId = energyCalculationPartner ? IDS.energyCalculationPartner : IDS.energyPartner;
++  return {
++    '@type': 'Service',
++    '@id': serviceId(key),
++    name: service.name,
++    description: service.shortDescription,
++    url: `${COMPANY.siteUrl}${service.path}`,
++    serviceType: service.name,
++    areaServed: COMPANY.areaServed.map((name) => ({ '@type': 'AdministrativeArea', name })),
++    provider: partnerDelivered
++      ? { '@id': partnerId }
++      : { '@id': IDS.business },
++    ...(partnerDelivered
++      ? {
++          broker: { '@id': IDS.business },
++          disambiguatingDescription: energyCalculationPartner
++            ? `${BUSINESS_COPY.energyCalculationPartner} ${BUSINESS_COPY.energyCalculationAffiliate}`
++            : BUSINESS_COPY.energyPartner,
++        }
++      : {}),
++  };
++};
++
++const buildCoreGraph = (): SchemaNode[] => {
++  const activeServiceEntries = Object.entries(SERVICES)
++    .filter(([, service]) => service.publicationStatus === 'active');
++
++  return [
++    {
++      '@type': 'WebSite',
++      '@id': IDS.website,
++      url: `${COMPANY.siteUrl}/`,
++      name: COMPANY.brandName,
++      inLanguage: 'sv-SE',
++      publisher: { '@id': IDS.business },
++    },
++    {
++      '@type': 'ProfessionalService',
++      '@id': IDS.business,
++      name: COMPANY.brandName,
++      alternateName: COMPANY.publicName,
++      legalName: COMPANY.legalName,
++      identifier: {
++        '@type': 'PropertyValue',
++        propertyID: 'Organisationsnummer',
++        value: COMPANY.organizationNumber,
++      },
++      url: `${COMPANY.siteUrl}/`,
++      email: COMPANY.email,
++      description: `${KA_CERT.title}, ${BAS.rolesLabel} och byggrelaterade tjänster i ${COMPANY.region}. ${BUSINESS_COPY.energyPartner}`,
++      areaServed: COMPANY.areaServed.map((name) => ({ '@type': 'AdministrativeArea', name })),
++      serviceType: ACTIVE_SERVICE_NAMES,
++      priceRange: PRICE_LABELS.schemaRange,
++      affiliation: { '@type': 'Organization', name: COMPANY.affiliation.name },
++      employee: { '@id': IDS.person },
++      hasOfferCatalog: {
++        '@type': 'OfferCatalog',
++        name: 'Aktiva tjänster',
++        itemListElement: activeServiceEntries.map(([key]) => ({
++          '@type': 'Offer',
++          itemOffered: { '@id': serviceId(key) },
++        })),
++      },
++    },
++    {
++      '@type': 'Person',
++      '@id': IDS.person,
++      name: COMPANY.publicName,
++      jobTitle: 'Kontrollansvarig och byggarbetsmiljösamordnare',
++      worksFor: { '@id': IDS.business },
++      hasCredential: [KA_CREDENTIAL_SCHEMA],
++      knowsAbout: [KA_CERT.title, BAS.rolesLabel, BAS.regulation],
++    },
++    {
++      '@type': 'Organization',
++      '@id': IDS.energyPartner,
++      name: 'Behörig partner för energideklaration',
++      description: 'Partnerorganisation där deklarationen utförs av certifierad energiexpert. Partner och behörighet verifieras inför uppdraget.',
++    },
++    {
++      '@type': 'Organization',
++      '@id': IDS.energyCalculationPartner,
++      name: 'Partner för Energiberäkning online',
++      url: PARTNER_LINKS.energyCalculation,
++      description: BUSINESS_COPY.energyCalculationPartner,
++    },
++    ...activeServiceEntries
++      .map(([key]) => buildServiceNode(key))
++      .filter((node): node is SchemaNode => Boolean(node)),
++  ];
++};
++
++const pageNode = (
++  canonicalUrl: string,
++  title: string,
++  description: string,
++  pageType: string,
++  serviceKey?: string,
++  dateModified?: string,
++): SchemaNode => ({
++  '@type': pageType,
++  '@id': `${canonicalUrl}#webpage`,
++  url: canonicalUrl,
++  name: title,
++  description,
++  inLanguage: 'sv-SE',
++  isPartOf: { '@id': IDS.website },
++  about: serviceKey ? { '@id': serviceId(serviceKey) } : { '@id': IDS.business },
++  ...(pageType === 'TechArticle'
++    ? {
++        author: { '@id': IDS.person },
++        publisher: { '@id': IDS.business },
++        ...(dateModified ? { dateModified } : {}),
++      }
++    : {}),
++  ...(pageType === 'ServicePage' && serviceKey
++    ? { mainEntity: { '@id': serviceId(serviceKey) } }
++    : {}),
++});
++
++export const buildRouteSchema = (route: RouteDefinition) => {
++  const canonicalUrl = toCanonicalUrl(route.path);
++  return {
++    '@context': 'https://schema.org',
++    '@graph': [
++      ...buildCoreGraph(),
++      pageNode(
++        canonicalUrl,
++        route.meta.title,
++        route.meta.description,
++        route.schema.pageType,
++        route.schema.serviceKey,
++        route.schema.dateModified,
++      ),
++    ],
++  };
++};
++
++interface DynamicSchemaInput {
++  canonicalUrl: string;
++  title: string;
++  description: string;
++  article?: {
++    publishedTime?: string;
++    modifiedTime?: string;
++    author?: string;
++    section?: string;
++    tags?: string[];
++  };
++  breadcrumbs?: Array<{ name: string; url: string }>;
++  faq?: Array<{ question: string; answer: string }>;
++}
++
++export const buildDynamicSchema = ({
++  canonicalUrl,
++  title,
++  description,
++  article,
++  breadcrumbs = [],
++  faq = [],
++}: DynamicSchemaInput) => {
++  const graph: SchemaNode[] = [
++    ...buildCoreGraph(),
++    {
++      ...pageNode(canonicalUrl, title, description, article ? 'Article' : 'WebPage'),
++      ...(article
++        ? {
++            datePublished: article.publishedTime,
++            dateModified: article.modifiedTime || article.publishedTime,
++            articleSection: article.section,
++            keywords: article.tags?.join(', '),
++          }
++        : {}),
++    },
++  ];
++
++  if (breadcrumbs.length) {
++    graph.push({
++      '@type': 'BreadcrumbList',
++      '@id': `${canonicalUrl}#breadcrumbs`,
++      itemListElement: breadcrumbs.map((crumb, index) => ({
++        '@type': 'ListItem',
++        position: index + 1,
++        name: crumb.name,
++        item: crumb.url,
++      })),
++    });
++  }
++
++  if (faq.length) {
++    graph.push({
++      '@type': 'FAQPage',
++      '@id': `${canonicalUrl}#faq`,
++      mainEntity: faq.map((item) => ({
++        '@type': 'Question',
++        name: item.question,
++        acceptedAnswer: { '@type': 'Answer', text: item.answer },
++      })),
++    });
++  }
++
++  return { '@context': 'https://schema.org', '@graph': graph };
++};
+diff --git a/scripts/check-business-facts.mjs b/scripts/check-business-facts.mjs
+--- a/scripts/check-business-facts.mjs
++++ b/scripts/check-business-facts.mjs
+@@ -1,398 +1,400 @@
+-import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
+-import { extname, join, relative, resolve } from 'node:path';
+-import { fileURLToPath } from 'node:url';
+-
+-const projectRoot = resolve(fileURLToPath(new URL('..', import.meta.url)));
+-const searchableExtensions = new Set(['.html', '.js', '.json', '.mjs', '.ts', '.tsx']);
+-const searchableRoots = ['src', 'public'];
+-const searchableFiles = [
+-  ...searchableRoots.flatMap((directory) => walk(join(projectRoot, directory))),
+-  join(projectRoot, 'index.html'),
+-  join(projectRoot, 'scripts/create-github-pages-routes.mjs'),
+-].filter((file) => searchableExtensions.has(extname(file)));
+-const publicContactDocs = [
+-  'FULL_TECHNICAL_SEO_AUDIT.md',
+-  'SEO_IMPLEMENTATION.md',
+-  'OPEN-GRAPH-TWITTER.md',
+-  'UI_SAFE_REPORT.md',
+-].map((file) => join(projectRoot, file));
+-
+-function walk(directory) {
+-  return readdirSync(directory)
+-    .flatMap((entry) => {
+-      const path = join(directory, entry);
+-      return statSync(path).isDirectory() ? walk(path) : [path];
+-    });
+-}
+-
+-function sourceName(file) {
+-  return relative(projectRoot, file);
+-}
+-
+-function lineNumber(text, index) {
+-  return text.slice(0, index).split('\n').length;
+-}
+-
+-const forbiddenRules = [
+-  ['inaktuellt BAS-regelverk', /AFS\s*1999:3/gi],
+-  ['BAS beskrivet som certifiering', /\b(?:certifierad|certifierade)\s+(?:som\s+)?BAS[-\s]?[PU]\b/gi],
+-  ['BAS beskrivet som certifiering', /\bBAS[-\s]?[PU]\s*(?:-|–|—|,|:)?\s*certifierad\b/gi],
+-  ['obekräftad titel', /\bcertifierad byggkonsult\b/gi],
+-  ['felaktigt SBR-medlemskap', /\b(?:medlem(?:skap(?:et)?)?\s+i\s+(?:Svenska Byggingenjörers Riksförbund|SBR)|SBR[-\s]?medlem)\b/gi],
+-  ['felaktigt påstående om energiexpert', /\b(?:Tobias(?:\s+Ytterman)?|Ytterman)\s+(?:är|som)\s+(?:en\s+)?certifierad energiexpert\b/gi],
+-  ['fel utförare av energideklaration', /\b(?:Tobias(?:\s+Ytterman)?|Ytterman)\s+(?:utför|registrerar)\s+energideklaration(?:en)?\b/gi],
+-  ['felaktig KA-behörighet', /fullständig behörighet/gi],
+-  ['KA utfärdar eller begär slutbesked', /\b(?:KA|kontrollansvarig(?:e|a)?)\s+(?:utfärdar|utfärda|beslutar om|ansöker om|begär)\s+slutbesked\b/gi],
+-  ['KA kallar till eller leder tekniskt samråd', /\b(?:KA|kontrollansvarig(?:e|a)?)\s+(?:kallar(?:\s+till)?|leder)\s+(?:det\s+)?teknisk(?:t|a)\s+samråd(?:et)?\b/gi],
+-  ['KA upprättar kontrollplan självständigt', /\b(?:KA|kontrollansvarig(?:e|a)?)\s+upprättar\s+(?:en\s+|ett\s+)?(?:förslag\s+till\s+)?kontrollplan(?:en)?\b/gi],
+-  ['fel BAS-tröskel om flera företag', /\bBAS[-\s]?[PU]?\s+(?:krävs|behövs)\s+(?:bara|endast)\s+(?:om|när)\s+(?:flera|minst\s+två|två\s+eller\s+fler)\s+(?:företag|entreprenörer)\b/gi],
+-  ['fel BAS-tröskel från förhandsanmälan', /\bBAS[-\s]?[PU]?\s+(?:krävs|behövs)[^.\n]{0,80}\b(?:30\s+dagar|500\s+persondagar)\b/gi],
+-  ['obekräftat svarslöfte', /\b(?:svar|återkoppling|återkommer|rapport)\w*\s+(?:alltid\s+)?inom\s+(?:24|48)\s*timmar\b/gi],
+-  ['obekräftat startlöfte', /\bstart\w*\s+inom\s+1\s*(?:-|–|—)\s*2\s+veckor\b/gi],
+-  ['obekräftat minutlöfte', /\b(?:svar|resultat|rapport)\w*\s+inom\s+(?:några\s+)?minuter\b/gi],
+-  ['obekräftat hastighetslöfte', /\bsnabb(?:are)?\s+(?:handläggning|återkoppling)\b/gi],
+-  ['obekräftad kostnadsfri resa', /\b(?:utan|inga)\s+resekostnader\b|\bkostnadsfri(?:a)?\s+res(?:a|or)\b/gi],
+-  ['obekräftad lokal restid', /\bbara\s+\d+\s+min(?:ut(?:er)?)?\s+(?:bort|restid)\b|\b\d+\s+minuters\s+restid\b/gi],
+-  ['obekräftat fast reseupplägg', /\bfast resepåslag\b/gi],
+-  ['overifierad juridisk identitet', /\b(?:MTY Konsult|8809134672)\b/gi],
+-  ['obekräftat partnernätverk', /\b(?:vårt|Yttermans|befintligt|etablerat)\s+partnernätverk\b/gi],
+-  ['inaktuellt pris 14 900', /\b14(?:\s|\.)?900\s*(?:kr|kronor)\b/gi],
+-  ['inaktuellt pris 19 900', /\b19(?:\s|\.)?900\s*(?:kr|kronor)\b/gi],
+-  ['inaktuellt pris 24 900', /\b24(?:\s|\.)?900\s*(?:kr|kronor)\b/gi],
+-  ['inaktuellt pris 27 900', /\b27(?:\s|\.)?900\s*(?:kr|kronor)\b/gi],
+-  ['inaktuellt pris 34 900', /\b34(?:\s|\.)?900\s*(?:kr|kronor)\b/gi],
+-  ['inaktuellt pris 39 900', /\b39(?:\s|\.)?900\s*(?:kr|kronor)\b/gi],
+-  ['inaktuellt pris 49 900', /\b49(?:\s|\.)?900\s*(?:kr|kronor)\b/gi],
+-];
+-
+-const violations = [];
+-
+-for (const file of searchableFiles) {
+-  const text = readFileSync(file, 'utf8');
+-  for (const [label, pattern] of forbiddenRules) {
+-    pattern.lastIndex = 0;
+-    for (const match of text.matchAll(pattern)) {
+-      violations.push(`${sourceName(file)}:${lineNumber(text, match.index)} – ${label}: “${match[0]}”`);
+-    }
+-  }
+-}
+-
+-const forbiddenPublicPhoneRules = [
+-  ['borttaget publikt telefonnummer', /076[\s-]*111[\s-]*84[\s-]*47/gi],
+-  ['borttaget publikt telefonnummer', /(?:\+|00)?46[\s-]*76[\s-]*111[\s-]*84[\s-]*47/gi],
+-];
+-
+-for (const file of [...searchableFiles, ...publicContactDocs]) {
+-  const source = readFileSync(file, 'utf8');
+-  for (const [label, pattern] of forbiddenPublicPhoneRules) {
+-    pattern.lastIndex = 0;
+-    for (const match of source.matchAll(pattern)) {
+-      violations.push(`${sourceName(file)}:${lineNumber(source, match.index)} – ${label}: “${match[0]}”`);
+-    }
+-  }
+-}
+-
+-const digitalPages = [
+-  'src/pages/ByggstartPlanerare.tsx',
+-];
+-
+-for (const path of digitalPages) {
+-  const text = readFileSync(join(projectRoot, path), 'utf8');
+-  if (!/intresseanmälan/i.test(text)) {
+-    violations.push(`${path} – digital tjänst saknar tydlig intresseanmälan`);
+-  }
+-  const purchaseClaim = /\b(?:köp nu|betala nu|direkt nedladdning|ladda ner direkt|omedelbar leverans)\b/gi;
+-  for (const match of text.matchAll(purchaseClaim)) {
+-    violations.push(`${path}:${lineNumber(text, match.index)} – obekräftat digitalt köp-/leveranslöfte: “${match[0]}”`);
+-  }
+-}
+-
+-const companyConfigPath = join(projectRoot, 'src/config/company.ts');
+-const companyConfig = readFileSync(companyConfigPath, 'utf8');
+-const requiredConfigFragments = [
+-  "certificateNumber: 'KA11926'",
+-  "authorization: 'N'",
+-  "validUntil: '2030-07-02'",
+-  "regulation: 'AFS 2023:3'",
+-  'extension: {',
+-  'bas: 29_500',
+-  'plus: 34_500',
+-  'bas: 32_500',
+-  'plus: 38_500',
+-  'bas: 34_500',
+-  'plus: 39_500',
+-  'from: 46_500',
+-  'to: 52_500',
+-  'inspection: {',
+-  'from: 9_900',
+-  'inspectionFrom:',
+-  "deliveryModel: 'partner'",
+-  "publicationStatus: 'interest-only'",
+-  "affiliation: {",
+-  "label: 'Ansluten till SBR'",
+-  'legalIdentityVerified: false',
+-];
+-
+-for (const fragment of requiredConfigFragments) {
+-  if (!companyConfig.includes(fragment)) {
+-    violations.push(`src/config/company.ts – obligatorisk verifierad uppgift saknas: ${fragment}`);
+-  }
+-}
+-
+-const contactValues = [
+-  companyConfig.match(/email:\s*'([^']+)'/)?.[1],
+-].filter(Boolean);
+-const sourceFilesOutsideCompanyConfig = walk(join(projectRoot, 'src'))
+-  .filter((file) => searchableExtensions.has(extname(file)) && file !== companyConfigPath);
+-
+-for (const file of sourceFilesOutsideCompanyConfig) {
+-  const source = readFileSync(file, 'utf8');
+-  for (const value of contactValues) {
+-    const index = source.indexOf(value);
+-    if (index !== -1) {
+-      violations.push(`${sourceName(file)}:${lineNumber(source, index)} – kontaktuppgift ska hämtas från src/config/company.ts: “${value}”`);
+-    }
+-  }
+-}
+-
+-const energyConfigSection = companyConfig.slice(
+-  companyConfig.indexOf('  energyDeclaration: {'),
+-  companyConfig.indexOf('  energyCalculation: {'),
+-);
+-for (const phrase of [
+-  "deliveryModel: 'partner'",
+-  "publicationStatus: 'active'",
+-  'behörig partner',
+-  'certifierad energiexpert',
+-]) {
+-  if (!energyConfigSection.includes(phrase)) {
+-    violations.push(`src/config/company.ts – energideklaration saknar formuleringen “${phrase}”`);
+-  }
+-}
+-
+-const energyCalculationConfigSection = companyConfig.slice(
+-  companyConfig.indexOf('  energyCalculation: {'),
+-  companyConfig.indexOf('  buildingPermitDocuments: {'),
+-);
+-for (const phrase of [
+-  "deliveryModel: 'partner'",
+-  "publicationStatus: 'active'",
+-  'externalUrl: PARTNER_LINKS.energyCalculation',
+-  'BUSINESS_COPY.energyCalculationAffiliate',
+-]) {
+-  if (!energyCalculationConfigSection.includes(phrase)) {
+-    violations.push(`src/config/company.ts – energiberäkning online saknar formuleringen “${phrase}”`);
+-  }
+-}
+-
+-if (!companyConfig.includes("energyCalculationAffiliate:\n    'Ytterman får provision på försäljning som sker via partnerlänken.'")) {
+-  violations.push('src/config/company.ts – energiberäkning online saknar tydlig provisionsupplysning');
+-}
+-
+-const pricingContent = readFileSync(join(projectRoot, 'src/content/pricingPackages.ts'), 'utf8');
+-if (!pricingContent.includes("from '@/config/company'")) {
+-  violations.push('src/content/pricingPackages.ts – prisinnehållet använder inte den centrala konfigurationen');
+-}
+-
+-const commercialOffersPath = join(projectRoot, 'src/config/commercialOffers.ts');
+-const commercialOffers = readFileSync(commercialOffersPath, 'utf8');
+-const pricingComponent = readFileSync(join(projectRoot, 'src/components/PricingPackages.tsx'), 'utf8');
+-const productAction = readFileSync(join(projectRoot, 'src/components/ProductAction.tsx'), 'utf8');
+-const routeRegistry = readFileSync(join(projectRoot, 'src/config/routeRegistry.mjs'), 'utf8');
+-const homeHero = readFileSync(join(projectRoot, 'src/components/Hero.tsx'), 'utf8');
+-const homeServices = readFileSync(join(projectRoot, 'src/components/Services.tsx'), 'utf8');
+-const serviceAreas = readFileSync(join(projectRoot, 'src/components/ServiceAreas.tsx'), 'utf8');
+-const faqPage = readFileSync(join(projectRoot, 'src/pages/FAQPage.tsx'), 'utf8');
+-const servicesPage = readFileSync(join(projectRoot, 'src/pages/TjansterPage.tsx'), 'utf8');
+-const siteHeader = readFileSync(join(projectRoot, 'src/components/Header.tsx'), 'utf8');
+-const siteFooter = readFileSync(join(projectRoot, 'src/components/Footer.tsx'), 'utf8');
+-
+-for (const fragment of [
+-  "import { PARTNER_LINKS, PRICING, SERVICES, formatSek } from '@/config/company'",
+-  'KA_PACKAGE_LEVELS',
+-  'KA_PROJECT_OFFERS',
+-  'KA_BAS_PACKAGE',
+-  'OFFER_EXCLUSIONS',
+-  'OFFER_TERMS',
+-  "publicationStatus: 'hidden'",
+-  'contentReady: false',
+-  'automaticDelivery: false',
+-  'VITE_PAYMENT_LINK_PROJECT_REVIEW',
+-  'PARTNER_LINKS.energyCalculation',
+-  "publicationStatus: 'purchasable'",
+-  'contentReady: true',
+-  'automaticDelivery: true',
+-]) {
+-  if (!commercialOffers.includes(fragment)) {
+-    violations.push(`src/config/commercialOffers.ts – erbjudandekonfiguration saknar: ${fragment}`);
+-  }
+-}
+-
+-const energyCalculationPage = readFileSync(join(projectRoot, 'src/pages/EnergiberakningOnlinePage.tsx'), 'utf8');
+-for (const fragment of [
+-  'ProductAction productKey="energyCalculation"',
+-  'BUSINESS_COPY.energyCalculationAffiliate',
+-  'service.shortDescription',
+-]) {
+-  if (!energyCalculationPage.includes(fragment)) {
+-    violations.push(`src/pages/EnergiberakningOnlinePage.tsx – aktiv partnertjänst saknar: ${fragment}`);
+-  }
+-}
+-
+-if (/intresseanmälan/i.test(energyCalculationPage)) {
+-  violations.push('src/pages/EnergiberakningOnlinePage.tsx – aktiv energiberäkning får inte beskrivas som intresseanmälan');
+-}
+-
+-for (const [path, source, fragments] of [
+-  ['src/components/Hero.tsx', homeHero, [
+-    '/kontakt/?service=kontrollansvarig',
+-    '/kontakt/?service=overlatelsebesiktning',
+-  ]],
+-  ['src/components/Services.tsx', homeServices, [
+-    'const priorityServices',
+-    'SERVICES.kontrollansvarig',
+-    'SERVICES.inspection',
+-    'featured',
+-    'aria-label={`Läs mer om ${config.name}`}',
+-    'absolute inset-0',
+-  ]],
+-  ['src/components/ServiceAreas.tsx', serviceAreas, [
+-    "from '@/content/kontrollansvarigCityData'",
+-    '/overlatelsebesiktning/',
+-    'Se regionalt KA-upplägg',
+-    'absolute inset-0',
+-  ]],
+-  ['src/pages/FAQPage.tsx', faqPage, [
+-    'border-white bg-transparent text-white',
+-  ]],
+-  ['src/pages/TjansterPage.tsx', servicesPage, [
+-    'service.priority',
+-    'aria-label={`Läs mer om ${service.title}`}',
+-    'absolute inset-0',
+-  ]],
+-  ['src/components/Header.tsx', siteHeader, [
+-    "{ name: 'Kontrollansvarig', href: '/kontrollansvarig/' }",
+-    "{ name: 'Besiktning', href: '/overlatelsebesiktning/' }",
+-  ]],
+-]) {
+-  for (const fragment of fragments) {
+-    if (!source.includes(fragment)) {
+-      violations.push(`${path} – prioriterad kundväg saknar: ${fragment}`);
+-    }
+-  }
+-}
+-
+-if (siteFooter.includes('Build:')) {
+-  violations.push('src/components/Footer.tsx – publik build-version ska vara dold');
+-}
+-
+-if (homeServices.indexOf('SERVICES.kontrollansvarig') > homeServices.indexOf('SERVICES.inspection')) {
+-  violations.push('src/components/Services.tsx – kontrollansvarig ska visas före överlåtelsebesiktning');
+-}
+-
+-if (!pricingComponent.includes("from '@/config/commercialOffers'")) {
+-  violations.push('src/components/PricingPackages.tsx – erbjudandekomponenten använder inte central erbjudandekonfiguration');
+-}
+-
+-for (const forbiddenPrice of ['29 500', '34 500', '32 500', '38 500', '39 500', '46 500', '52 500']) {
+-  if (pricingComponent.includes(forbiddenPrice)) {
+-    violations.push(`src/components/PricingPackages.tsx – priset ${forbiddenPrice} är duplicerat utanför central konfiguration`);
+-  }
+-}
+-
+-for (const fragment of [
+-  "product.publicationStatus === 'purchasable'",
+-  'product.contentReady',
+-  'product.automaticDelivery',
+-  'Boolean(product.paymentLink)',
+-]) {
+-  if (!commercialOffers.includes(fragment)) {
+-    violations.push(`src/config/commercialOffers.ts – beställningsspärr saknar: ${fragment}`);
+-  }
+-}
+-
+-for (const fragment of ['Beställ', 'Begär information', 'isDigitalProductOrderable']) {
+-  if (!productAction.includes(fragment)) {
+-    violations.push(`src/components/ProductAction.tsx – produktåtgärd saknar: ${fragment}`);
+-  }
+-}
+-
+-for (const [path, requiredFragments] of Object.entries({
+-  'src/pages/ForetagPage.tsx': ['Byggföretag', 'Arkitekter', 'Fastighetsägare', 'Bostadsrättsföreningar', 'Projektförfrågan', 'Portföljförfrågan'],
+-  'src/pages/SamarbetaPage.tsx': ['Certifierad kontrollansvarig N eller K', 'Certifierad energiexpert', 'intresseanmälan', 'inte ett erbjudande om uppdrag'],
+-})) {
+-  const source = readFileSync(join(projectRoot, path), 'utf8');
+-  for (const fragment of requiredFragments) {
+-    if (!source.toLocaleLowerCase('sv-SE').includes(fragment.toLocaleLowerCase('sv-SE'))) {
+-      violations.push(`${path} – obligatoriskt innehåll saknas: ${fragment}`);
+-    }
+-  }
+-}
+-
+-for (const routeFragment of ["id: 'business', path: '/foretag'", "id: 'collaboration', path: '/samarbeta'"]) {
+-  if (!routeRegistry.includes(routeFragment)) {
+-    violations.push(`src/config/routeRegistry.mjs – ny kommersiell rutt saknas: ${routeFragment}`);
+-  }
+-}
+-
+-for (const manifestName of ['public/manifest.json', 'public/site.webmanifest']) {
+-  try {
+-    JSON.parse(readFileSync(join(projectRoot, manifestName), 'utf8'));
+-  } catch (error) {
+-    violations.push(`${manifestName} – ogiltig JSON: ${error.message}`);
+-  }
+-}
+-
+-const indexHtml = readFileSync(join(projectRoot, 'index.html'), 'utf8');
+-for (const match of indexHtml.matchAll(/<script\b[^>]*\btype=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)) {
+-  try {
+-    JSON.parse(match[1]);
+-  } catch (error) {
+-    violations.push(`index.html – ogiltig JSON-LD: ${error.message}`);
+-  }
+-}
+-
+-const assetReferences = new Set();
+-for (const match of indexHtml.matchAll(/["'](\/(?:[^"'?#]+\.)[a-z0-9]{2,8})(?:[?#][^"']*)?["']/gi)) {
+-  assetReferences.add(match[1]);
+-}
+-for (const manifestName of ['public/manifest.json', 'public/site.webmanifest']) {
+-  const manifest = JSON.parse(readFileSync(join(projectRoot, manifestName), 'utf8'));
+-  for (const icon of manifest.icons ?? []) {
+-    assetReferences.add(icon.src.startsWith('/') ? icon.src : `/${icon.src}`);
+-  }
+-}
+-
+-for (const assetPath of assetReferences) {
+-  const localPath = assetPath.startsWith('/src/')
+-    ? join(projectRoot, assetPath.slice(1))
+-    : join(projectRoot, 'public', assetPath.slice(1));
+-  if (!existsSync(localPath)) {
+-    violations.push(`saknad lokal resurs: ${assetPath} (förväntad fil ${sourceName(localPath)})`);
+-  }
+-}
+-
+-const distPath = join(projectRoot, 'dist');
+-let checkedDistAssets = 0;
+-if (existsSync(distPath)) {
+-  const distHtmlFiles = walk(distPath).filter((file) => extname(file) === '.html');
+-  for (const file of distHtmlFiles) {
+-    const html = readFileSync(file, 'utf8');
+-    for (const match of html.matchAll(/["'](\/(?:[^"'?#]+\.)[a-z0-9]{2,8})(?:[?#][^"']*)?["']/gi)) {
+-      const assetPath = match[1];
+-      const localPath = join(distPath, assetPath.slice(1));
+-      checkedDistAssets += 1;
+-      if (!existsSync(localPath)) {
+-        violations.push(`${sourceName(file)}:${lineNumber(html, match.index)} – byggd sida refererar till saknad resurs: ${assetPath}`);
+-      }
+-    }
+-  }
+-}
+-
+-if (violations.length > 0) {
+-  console.error(`Affärsfaktakontrollen hittade ${violations.length} fel:\n`);
+-  console.error(violations.map((violation) => `- ${violation}`).join('\n'));
+-  process.exit(1);
+-}
+-
+-console.log(`Affärsfaktakontrollen är grön (${searchableFiles.length} källfiler, ${assetReferences.size} källresurser, ${checkedDistAssets} byggda resursreferenser).`);
++import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
++import { extname, join, relative, resolve } from 'node:path';
++import { fileURLToPath } from 'node:url';
++
++const projectRoot = resolve(fileURLToPath(new URL('..', import.meta.url)));
++const searchableExtensions = new Set(['.html', '.js', '.json', '.mjs', '.ts', '.tsx']);
++const searchableRoots = ['src', 'public'];
++const searchableFiles = [
++  ...searchableRoots.flatMap((directory) => walk(join(projectRoot, directory))),
++  join(projectRoot, 'index.html'),
++  join(projectRoot, 'scripts/create-github-pages-routes.mjs'),
++].filter((file) => searchableExtensions.has(extname(file)));
++const publicContactDocs = [
++  'FULL_TECHNICAL_SEO_AUDIT.md',
++  'SEO_IMPLEMENTATION.md',
++  'OPEN-GRAPH-TWITTER.md',
++  'UI_SAFE_REPORT.md',
++].map((file) => join(projectRoot, file));
++
++function walk(directory) {
++  return readdirSync(directory)
++    .flatMap((entry) => {
++      const path = join(directory, entry);
++      return statSync(path).isDirectory() ? walk(path) : [path];
++    });
++}
++
++function sourceName(file) {
++  return relative(projectRoot, file);
++}
++
++function lineNumber(text, index) {
++  return text.slice(0, index).split('\n').length;
++}
++
++const forbiddenRules = [
++  ['inaktuellt BAS-regelverk', /AFS\s*1999:3/gi],
++  ['BAS beskrivet som certifiering', /\b(?:certifierad|certifierade)\s+(?:som\s+)?BAS[-\s]?[PU]\b/gi],
++  ['BAS beskrivet som certifiering', /\bBAS[-\s]?[PU]\s*(?:-|–|—|,|:)?\s*certifierad\b/gi],
++  ['obekräftad titel', /\bcertifierad byggkonsult\b/gi],
++  ['felaktigt SBR-medlemskap', /\b(?:medlem(?:skap(?:et)?)?\s+i\s+(?:Svenska Byggingenjörers Riksförbund|SBR)|SBR[-\s]?medlem)\b/gi],
++  ['felaktigt påstående om energiexpert', /\b(?:Tobias(?:\s+Ytterman)?|Ytterman)\s+(?:är|som)\s+(?:en\s+)?certifierad energiexpert\b/gi],
++  ['fel utförare av energideklaration', /\b(?:Tobias(?:\s+Ytterman)?|Ytterman)\s+(?:utför|registrerar)\s+energideklaration(?:en)?\b/gi],
++  ['felaktig KA-behörighet', /fullständig behörighet/gi],
++  ['KA utfärdar eller begär slutbesked', /\b(?:KA|kontrollansvarig(?:e|a)?)\s+(?:utfärdar|utfärda|beslutar om|ansöker om|begär)\s+slutbesked\b/gi],
++  ['KA kallar till eller leder tekniskt samråd', /\b(?:KA|kontrollansvarig(?:e|a)?)\s+(?:kallar(?:\s+till)?|leder)\s+(?:det\s+)?teknisk(?:t|a)\s+samråd(?:et)?\b/gi],
++  ['KA upprättar kontrollplan självständigt', /\b(?:KA|kontrollansvarig(?:e|a)?)\s+upprättar\s+(?:en\s+|ett\s+)?(?:förslag\s+till\s+)?kontrollplan(?:en)?\b/gi],
++  ['fel BAS-tröskel om flera företag', /\bBAS[-\s]?[PU]?\s+(?:krävs|behövs)\s+(?:bara|endast)\s+(?:om|när)\s+(?:flera|minst\s+två|två\s+eller\s+fler)\s+(?:företag|entreprenörer)\b/gi],
++  ['fel BAS-tröskel från förhandsanmälan', /\bBAS[-\s]?[PU]?\s+(?:krävs|behövs)[^.\n]{0,80}\b(?:30\s+dagar|500\s+persondagar)\b/gi],
++  ['obekräftat svarslöfte', /\b(?:svar|återkoppling|återkommer|rapport)\w*\s+(?:alltid\s+)?inom\s+(?:24|48)\s*timmar\b/gi],
++  ['obekräftat startlöfte', /\bstart\w*\s+inom\s+1\s*(?:-|–|—)\s*2\s+veckor\b/gi],
++  ['obekräftat minutlöfte', /\b(?:svar|resultat|rapport)\w*\s+inom\s+(?:några\s+)?minuter\b/gi],
++  ['obekräftat hastighetslöfte', /\bsnabb(?:are)?\s+(?:handläggning|återkoppling)\b/gi],
++  ['obekräftad kostnadsfri resa', /\b(?:utan|inga)\s+resekostnader\b|\bkostnadsfri(?:a)?\s+res(?:a|or)\b/gi],
++  ['obekräftad lokal restid', /\bbara\s+\d+\s+min(?:ut(?:er)?)?\s+(?:bort|restid)\b|\b\d+\s+minuters\s+restid\b/gi],
++  ['obekräftat fast reseupplägg', /\bfast resepåslag\b/gi],
++  ['inaktuell juridisk identitet', /\b(?:MTY[- ]Konsult(?! AB\b)|880913[- ]?4672)\b/gi],
++  ['obekräftat partnernätverk', /\b(?:vårt|Yttermans|befintligt|etablerat)\s+partnernätverk\b/gi],
++  ['inaktuellt pris 14 900', /\b14(?:\s|\.)?900\s*(?:kr|kronor)\b/gi],
++  ['inaktuellt pris 19 900', /\b19(?:\s|\.)?900\s*(?:kr|kronor)\b/gi],
++  ['inaktuellt pris 24 900', /\b24(?:\s|\.)?900\s*(?:kr|kronor)\b/gi],
++  ['inaktuellt pris 27 900', /\b27(?:\s|\.)?900\s*(?:kr|kronor)\b/gi],
++  ['inaktuellt pris 34 900', /\b34(?:\s|\.)?900\s*(?:kr|kronor)\b/gi],
++  ['inaktuellt pris 39 900', /\b39(?:\s|\.)?900\s*(?:kr|kronor)\b/gi],
++  ['inaktuellt pris 49 900', /\b49(?:\s|\.)?900\s*(?:kr|kronor)\b/gi],
++];
++
++const violations = [];
++
++for (const file of searchableFiles) {
++  const text = readFileSync(file, 'utf8');
++  for (const [label, pattern] of forbiddenRules) {
++    pattern.lastIndex = 0;
++    for (const match of text.matchAll(pattern)) {
++      violations.push(`${sourceName(file)}:${lineNumber(text, match.index)} – ${label}: “${match[0]}”`);
++    }
++  }
++}
++
++const forbiddenPublicPhoneRules = [
++  ['borttaget publikt telefonnummer', /076[\s-]*111[\s-]*84[\s-]*47/gi],
++  ['borttaget publikt telefonnummer', /(?:\+|00)?46[\s-]*76[\s-]*111[\s-]*84[\s-]*47/gi],
++];
++
++for (const file of [...searchableFiles, ...publicContactDocs]) {
++  const source = readFileSync(file, 'utf8');
++  for (const [label, pattern] of forbiddenPublicPhoneRules) {
++    pattern.lastIndex = 0;
++    for (const match of source.matchAll(pattern)) {
++      violations.push(`${sourceName(file)}:${lineNumber(source, match.index)} – ${label}: “${match[0]}”`);
++    }
++  }
++}
++
++const digitalPages = [
++  'src/pages/ByggstartPlanerare.tsx',
++];
++
++for (const path of digitalPages) {
++  const text = readFileSync(join(projectRoot, path), 'utf8');
++  if (!/intresseanmälan/i.test(text)) {
++    violations.push(`${path} – digital tjänst saknar tydlig intresseanmälan`);
++  }
++  const purchaseClaim = /\b(?:köp nu|betala nu|direkt nedladdning|ladda ner direkt|omedelbar leverans)\b/gi;
++  for (const match of text.matchAll(purchaseClaim)) {
++    violations.push(`${path}:${lineNumber(text, match.index)} – obekräftat digitalt köp-/leveranslöfte: “${match[0]}”`);
++  }
++}
++
++const companyConfigPath = join(projectRoot, 'src/config/company.ts');
++const companyConfig = readFileSync(companyConfigPath, 'utf8');
++const requiredConfigFragments = [
++  "certificateNumber: 'KA11926'",
++  "authorization: 'N'",
++  "validUntil: '2030-07-02'",
++  "regulation: 'AFS 2023:3'",
++  'extension: {',
++  'bas: 29_500',
++  'plus: 34_500',
++  'bas: 32_500',
++  'plus: 38_500',
++  'bas: 34_500',
++  'plus: 39_500',
++  'from: 46_500',
++  'to: 52_500',
++  'inspection: {',
++  'from: 9_900',
++  'inspectionFrom:',
++  "deliveryModel: 'partner'",
++  "publicationStatus: 'interest-only'",
++  "affiliation: {",
++  "label: 'Ansluten till SBR'",
++  "legalName: 'MTY Konsult AB'",
++  "organizationNumber: '559513-6358'",
++  'legalIdentityVerified: true',
++];
++
++for (const fragment of requiredConfigFragments) {
++  if (!companyConfig.includes(fragment)) {
++    violations.push(`src/config/company.ts – obligatorisk verifierad uppgift saknas: ${fragment}`);
++  }
++}
++
++const contactValues = [
++  companyConfig.match(/email:\s*'([^']+)'/)?.[1],
++].filter(Boolean);
++const sourceFilesOutsideCompanyConfig = walk(join(projectRoot, 'src'))
++  .filter((file) => searchableExtensions.has(extname(file)) && file !== companyConfigPath);
++
++for (const file of sourceFilesOutsideCompanyConfig) {
++  const source = readFileSync(file, 'utf8');
++  for (const value of contactValues) {
++    const index = source.indexOf(value);
++    if (index !== -1) {
++      violations.push(`${sourceName(file)}:${lineNumber(source, index)} – kontaktuppgift ska hämtas från src/config/company.ts: “${value}”`);
++    }
++  }
++}
++
++const energyConfigSection = companyConfig.slice(
++  companyConfig.indexOf('  energyDeclaration: {'),
++  companyConfig.indexOf('  energyCalculation: {'),
++);
++for (const phrase of [
++  "deliveryModel: 'partner'",
++  "publicationStatus: 'active'",
++  'behörig partner',
++  'certifierad energiexpert',
++]) {
++  if (!energyConfigSection.includes(phrase)) {
++    violations.push(`src/config/company.ts – energideklaration saknar formuleringen “${phrase}”`);
++  }
++}
++
++const energyCalculationConfigSection = companyConfig.slice(
++  companyConfig.indexOf('  energyCalculation: {'),
++  companyConfig.indexOf('  buildingPermitDocuments: {'),
++);
++for (const phrase of [
++  "deliveryModel: 'partner'",
++  "publicationStatus: 'active'",
++  'externalUrl: PARTNER_LINKS.energyCalculation',
++  'BUSINESS_COPY.energyCalculationAffiliate',
++]) {
++  if (!energyCalculationConfigSection.includes(phrase)) {
++    violations.push(`src/config/company.ts – energiberäkning online saknar formuleringen “${phrase}”`);
++  }
++}
++
++if (!companyConfig.includes("energyCalculationAffiliate:\n    'Ytterman får provision på försäljning som sker via partnerlänken.'")) {
++  violations.push('src/config/company.ts – energiberäkning online saknar tydlig provisionsupplysning');
++}
++
++const pricingContent = readFileSync(join(projectRoot, 'src/content/pricingPackages.ts'), 'utf8');
++if (!pricingContent.includes("from '@/config/company'")) {
++  violations.push('src/content/pricingPackages.ts – prisinnehållet använder inte den centrala konfigurationen');
++}
++
++const commercialOffersPath = join(projectRoot, 'src/config/commercialOffers.ts');
++const commercialOffers = readFileSync(commercialOffersPath, 'utf8');
++const pricingComponent = readFileSync(join(projectRoot, 'src/components/PricingPackages.tsx'), 'utf8');
++const productAction = readFileSync(join(projectRoot, 'src/components/ProductAction.tsx'), 'utf8');
++const routeRegistry = readFileSync(join(projectRoot, 'src/config/routeRegistry.mjs'), 'utf8');
++const homeHero = readFileSync(join(projectRoot, 'src/components/Hero.tsx'), 'utf8');
++const homeServices = readFileSync(join(projectRoot, 'src/components/Services.tsx'), 'utf8');
++const serviceAreas = readFileSync(join(projectRoot, 'src/components/ServiceAreas.tsx'), 'utf8');
++const faqPage = readFileSync(join(projectRoot, 'src/pages/FAQPage.tsx'), 'utf8');
++const servicesPage = readFileSync(join(projectRoot, 'src/pages/TjansterPage.tsx'), 'utf8');
++const siteHeader = readFileSync(join(projectRoot, 'src/components/Header.tsx'), 'utf8');
++const siteFooter = readFileSync(join(projectRoot, 'src/components/Footer.tsx'), 'utf8');
++
++for (const fragment of [
++  "import { PARTNER_LINKS, PRICING, SERVICES, formatSek } from '@/config/company'",
++  'KA_PACKAGE_LEVELS',
++  'KA_PROJECT_OFFERS',
++  'KA_BAS_PACKAGE',
++  'OFFER_EXCLUSIONS',
++  'OFFER_TERMS',
++  "publicationStatus: 'hidden'",
++  'contentReady: false',
++  'automaticDelivery: false',
++  'VITE_PAYMENT_LINK_PROJECT_REVIEW',
++  'PARTNER_LINKS.energyCalculation',
++  "publicationStatus: 'purchasable'",
++  'contentReady: true',
++  'automaticDelivery: true',
++]) {
++  if (!commercialOffers.includes(fragment)) {
++    violations.push(`src/config/commercialOffers.ts – erbjudandekonfiguration saknar: ${fragment}`);
++  }
++}
++
++const energyCalculationPage = readFileSync(join(projectRoot, 'src/pages/EnergiberakningOnlinePage.tsx'), 'utf8');
++for (const fragment of [
++  'ProductAction productKey="energyCalculation"',
++  'BUSINESS_COPY.energyCalculationAffiliate',
++  'service.shortDescription',
++]) {
++  if (!energyCalculationPage.includes(fragment)) {
++    violations.push(`src/pages/EnergiberakningOnlinePage.tsx – aktiv partnertjänst saknar: ${fragment}`);
++  }
++}
++
++if (/intresseanmälan/i.test(energyCalculationPage)) {
++  violations.push('src/pages/EnergiberakningOnlinePage.tsx – aktiv energiberäkning får inte beskrivas som intresseanmälan');
++}
++
++for (const [path, source, fragments] of [
++  ['src/components/Hero.tsx', homeHero, [
++    '/kontakt/?service=kontrollansvarig',
++    '/kontakt/?service=overlatelsebesiktning',
++  ]],
++  ['src/components/Services.tsx', homeServices, [
++    'const priorityServices',
++    'SERVICES.kontrollansvarig',
++    'SERVICES.inspection',
++    'featured',
++    'aria-label={`Läs mer om ${config.name}`}',
++    'absolute inset-0',
++  ]],
++  ['src/components/ServiceAreas.tsx', serviceAreas, [
++    "from '@/content/kontrollansvarigCityData'",
++    '/overlatelsebesiktning/',
++    'Se regionalt KA-upplägg',
++    'absolute inset-0',
++  ]],
++  ['src/pages/FAQPage.tsx', faqPage, [
++    'border-white bg-transparent text-white',
++  ]],
++  ['src/pages/TjansterPage.tsx', servicesPage, [
++    'service.priority',
++    'aria-label={`Läs mer om ${service.title}`}',
++    'absolute inset-0',
++  ]],
++  ['src/components/Header.tsx', siteHeader, [
++    "{ name: 'Kontrollansvarig', href: '/kontrollansvarig/' }",
++    "{ name: 'Besiktning', href: '/overlatelsebesiktning/' }",
++  ]],
++]) {
++  for (const fragment of fragments) {
++    if (!source.includes(fragment)) {
++      violations.push(`${path} – prioriterad kundväg saknar: ${fragment}`);
++    }
++  }
++}
++
++if (siteFooter.includes('Build:')) {
++  violations.push('src/components/Footer.tsx – publik build-version ska vara dold');
++}
++
++if (homeServices.indexOf('SERVICES.kontrollansvarig') > homeServices.indexOf('SERVICES.inspection')) {
++  violations.push('src/components/Services.tsx – kontrollansvarig ska visas före överlåtelsebesiktning');
++}
++
++if (!pricingComponent.includes("from '@/config/commercialOffers'")) {
++  violations.push('src/components/PricingPackages.tsx – erbjudandekomponenten använder inte central erbjudandekonfiguration');
++}
++
++for (const forbiddenPrice of ['29 500', '34 500', '32 500', '38 500', '39 500', '46 500', '52 500']) {
++  if (pricingComponent.includes(forbiddenPrice)) {
++    violations.push(`src/components/PricingPackages.tsx – priset ${forbiddenPrice} är duplicerat utanför central konfiguration`);
++  }
++}
++
++for (const fragment of [
++  "product.publicationStatus === 'purchasable'",
++  'product.contentReady',
++  'product.automaticDelivery',
++  'Boolean(product.paymentLink)',
++]) {
++  if (!commercialOffers.includes(fragment)) {
++    violations.push(`src/config/commercialOffers.ts – beställningsspärr saknar: ${fragment}`);
++  }
++}
++
++for (const fragment of ['Beställ', 'Begär information', 'isDigitalProductOrderable']) {
++  if (!productAction.includes(fragment)) {
++    violations.push(`src/components/ProductAction.tsx – produktåtgärd saknar: ${fragment}`);
++  }
++}
++
++for (const [path, requiredFragments] of Object.entries({
++  'src/pages/ForetagPage.tsx': ['Byggföretag', 'Arkitekter', 'Fastighetsägare', 'Bostadsrättsföreningar', 'Projektförfrågan', 'Portföljförfrågan'],
++  'src/pages/SamarbetaPage.tsx': ['Certifierad kontrollansvarig N eller K', 'Certifierad energiexpert', 'intresseanmälan', 'inte ett erbjudande om uppdrag'],
++})) {
++  const source = readFileSync(join(projectRoot, path), 'utf8');
++  for (const fragment of requiredFragments) {
++    if (!source.toLocaleLowerCase('sv-SE').includes(fragment.toLocaleLowerCase('sv-SE'))) {
++      violations.push(`${path} – obligatoriskt innehåll saknas: ${fragment}`);
++    }
++  }
++}
++
++for (const routeFragment of ["id: 'business', path: '/foretag'", "id: 'collaboration', path: '/samarbeta'"]) {
++  if (!routeRegistry.includes(routeFragment)) {
++    violations.push(`src/config/routeRegistry.mjs – ny kommersiell rutt saknas: ${routeFragment}`);
++  }
++}
++
++for (const manifestName of ['public/manifest.json', 'public/site.webmanifest']) {
++  try {
++    JSON.parse(readFileSync(join(projectRoot, manifestName), 'utf8'));
++  } catch (error) {
++    violations.push(`${manifestName} – ogiltig JSON: ${error.message}`);
++  }
++}
++
++const indexHtml = readFileSync(join(projectRoot, 'index.html'), 'utf8');
++for (const match of indexHtml.matchAll(/<script\b[^>]*\btype=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)) {
++  try {
++    JSON.parse(match[1]);
++  } catch (error) {
++    violations.push(`index.html – ogiltig JSON-LD: ${error.message}`);
++  }
++}
++
++const assetReferences = new Set();
++for (const match of indexHtml.matchAll(/["'](\/(?:[^"'?#]+\.)[a-z0-9]{2,8})(?:[?#][^"']*)?["']/gi)) {
++  assetReferences.add(match[1]);
++}
++for (const manifestName of ['public/manifest.json', 'public/site.webmanifest']) {
++  const manifest = JSON.parse(readFileSync(join(projectRoot, manifestName), 'utf8'));
++  for (const icon of manifest.icons ?? []) {
++    assetReferences.add(icon.src.startsWith('/') ? icon.src : `/${icon.src}`);
++  }
++}
++
++for (const assetPath of assetReferences) {
++  const localPath = assetPath.startsWith('/src/')
++    ? join(projectRoot, assetPath.slice(1))
++    : join(projectRoot, 'public', assetPath.slice(1));
++  if (!existsSync(localPath)) {
++    violations.push(`saknad lokal resurs: ${assetPath} (förväntad fil ${sourceName(localPath)})`);
++  }
++}
++
++const distPath = join(projectRoot, 'dist');
++let checkedDistAssets = 0;
++if (existsSync(distPath)) {
++  const distHtmlFiles = walk(distPath).filter((file) => extname(file) === '.html');
++  for (const file of distHtmlFiles) {
++    const html = readFileSync(file, 'utf8');
++    for (const match of html.matchAll(/["'](\/(?:[^"'?#]+\.)[a-z0-9]{2,8})(?:[?#][^"']*)?["']/gi)) {
++      const assetPath = match[1];
++      const localPath = join(distPath, assetPath.slice(1));
++      checkedDistAssets += 1;
++      if (!existsSync(localPath)) {
++        violations.push(`${sourceName(file)}:${lineNumber(html, match.index)} – byggd sida refererar till saknad resurs: ${assetPath}`);
++      }
++    }
++  }
++}
++
++if (violations.length > 0) {
++  console.error(`Affärsfaktakontrollen hittade ${violations.length} fel:\n`);
++  console.error(violations.map((violation) => `- ${violation}`).join('\n'));
++  process.exit(1);
++}
++
++console.log(`Affärsfaktakontrollen är grön (${searchableFiles.length} källfiler, ${assetReferences.size} källresurser, ${checkedDistAssets} byggda resursreferenser).`);
+diff --git a/docs/external-profile-corrections.md b/docs/external-profile-corrections.md
+--- a/docs/external-profile-corrections.md
++++ b/docs/external-profile-corrections.md
+@@ -1,62 +1,62 @@
+-# Ytterman – ägarchecklista för webb och externa profiler
+-
+-**Status:** uppgifter i den här listan ska kontrolleras av ägaren innan de läggs in på webbplatsen, Google Business Profile, katalogtjänster eller avtalsunderlag.
+-
+-## 1. Företagsidentitet och NAP
+-
+-- [ ] Verifiera juridiskt företagsnamn exakt som det är registrerat.
+-- [ ] Verifiera organisationsnummer.
+-- [ ] Verifiera postadress och eventuell separat besöks-/verksamhetsadress.
+-- [ ] Ta bort det publika telefonnumret från webbplatsen, Google Business Profile, katalogtjänster och sociala profiler.
+-- [ ] Använd `tobias@ytterman.com` och kontaktformuläret på `https://ytterman.com/kontakt/` som primära kontaktvägar.
+-- [ ] Använd samma verifierade namn- och adressuppgifter överallt där de publiceras.
+-- [ ] Bekräfta om en fysisk adress ska visas offentligt eller om profilen ska vara ett serviceområde utan synlig adress.
+-
+-Publicera inte adress, organisationsnummer eller juridiskt namn i schema, sidfot eller externa profiler förrän punkterna ovan är klara.
+-
+-## 2. Tjänster och behörigheter
+-
+-- [ ] Kontrollera Kiwa-certifikatet `KA11926`, behörighet N, mot Kiwas register vid varje större webbuppdatering.
+-- [ ] Beskriv BAS-P/BAS-U som roller som bygger på utbildning, kompetens och erfarenhet – inte som en myndighetscertifiering.
+-- [ ] Bekräfta vilka uppdrag inom överlåtelsebesiktning och bygglovshandlingar som ska marknadsföras aktivt.
+-- [ ] Dokumentera hur behörigheten hos varje energipartner kontrolleras före uppdrag.
+-- [ ] Namnge energipartner på webbplatsen först efter avtal och godkännande från partnern.
+-
+-Godkänd energiformulering: “Ytterman erbjuder och samordnar energideklaration. Själva deklarationen utförs via behörig partner av en certifierad energiexpert.”
+-
+-## 3. Priser, resor och leverans
+-
+-- [ ] Bekräfta att 2026 års KA-paket och momsstatus fortfarande gäller före varje prisuppdatering.
+-- [ ] Fastställ en dokumenterad resepolicy: serviceområde, milersättning, restid, eventuella zoner och undantag.
+-- [ ] Fastställ realistiska svarstider, starttider och leveranstider som kan hållas även vid hög belastning.
+-- [ ] Ange projektspecifika resor, platsbesök, tillägg och leveranstid i varje offert.
+-- [ ] Bestäm när priser ska märkas “från”, “fast pris” respektive “pris efter underlag”.
+-
+-## 4. Digitala produkter
+-
+-- Energiberäkning online är en aktiv extern partnertjänst. Partnern hanterar beställning, villkor och leverans; Ytterman får provision via partnerlänken.
+-- Kontrollerna nedan gäller Yttermans egna digitala produkter innan de öppnas för köp.
+-- [ ] Verifiera fungerande betalning i produktion.
+-- [ ] Verifiera automatisk leverans och kvitto från början till slut.
+-- [ ] Publicera köpvillkor, integritetstext, ångerrätt/undantag och återbetalningsprocess.
+-- [ ] Testa misslyckad betalning, dubbelbetalning och utebliven leverans.
+-- [ ] Ändra Yttermans egna produkter från “intresseanmälan” till köp först när hela flödet ovan är verifierat.
+-
+-## 5. Bevis och externa profiler
+-
+-- [ ] Samla godkända kundcase med projekt, ort, omfattning och uttryckligt publiceringsmedgivande.
+-- [ ] Publicera endast verifierade recensioner; spara källa och datum.
+-- [ ] Gå igenom Google Business Profile, Bygglov.se, SBR-profil, sociala profiler och relevanta kataloger.
+-- [ ] Bekräfta relationen till TY Safety och önskad korslänkning innan verksamheten beskrivs som systerföretag.
+-- [ ] Synka kontaktvägar, tjänstelista, KA-behörighet, BAS-formulering, energipartner-modell, priser och serviceområde.
+-- [ ] Kontrollera att inga externa profiler eller äldre kampanjer visar det borttagna telefonnumret eller en WhatsApp-länk till det.
+-- [ ] Ta bort gamla löften om svar inom 24/48 timmar, minuter, kort restid eller kostnadsfria resor.
+-- [ ] Kontrollera att ingen profil beskriver Tobias som certifierad energiexpert.
+-
+-## 6. Ändringsrutin
+-
+-1. Uppdatera verifierade grunddata i `src/config/company.ts`.
+-2. Kör `npm run test:content`, `npm run build` och `npm run lint`.
+-3. Granska synlig text, metadata och strukturerad data i deploy-preview.
+-4. Synka samma godkända uppgifter till externa profiler.
+-5. Anteckna datum, källa och ansvarig för verifieringen i ändringsärendet.
++# Ytterman – ägarchecklista för webb och externa profiler
++
++**Status:** Tobias Ytterman bekräftade 2026-10-30 att Ytterman.com är ett varumärke som ägs och drivs av MTY Konsult AB, organisationsnummer 559513-6358. Adress och kontaktuppgifter ska vara oförändrade. Övriga öppna punkter nedan kvarstår.
++
++## 1. Företagsidentitet och NAP
++
++- [x] Juridiskt företagsnamn: MTY Konsult AB (ägarbekräftat 2026-10-30).
++- [x] Organisationsnummer: 559513-6358 (ägarbekräftat 2026-10-30).
++- [ ] Verifiera postadress och eventuell separat besöks-/verksamhetsadress.
++- [ ] Ta bort det publika telefonnumret från webbplatsen, Google Business Profile, katalogtjänster och sociala profiler.
++- [ ] Använd `tobias@ytterman.com` och kontaktformuläret på `https://ytterman.com/kontakt/` som primära kontaktvägar.
++- [ ] Använd samma verifierade namn- och adressuppgifter överallt där de publiceras.
++- [ ] Bekräfta om en fysisk adress ska visas offentligt eller om profilen ska vara ett serviceområde utan synlig adress.
++
++Bolagsnamn och organisationsnummer kan publiceras enligt ägarens bekräftelse. Befintlig adressvisning och befintliga kontaktvägar behålls. Uppdatering av externa profiler hanteras separat.
++
++## 2. Tjänster och behörigheter
++
++- [ ] Kontrollera Kiwa-certifikatet `KA11926`, behörighet N, mot Kiwas register vid varje större webbuppdatering.
++- [ ] Beskriv BAS-P/BAS-U som roller som bygger på utbildning, kompetens och erfarenhet – inte som en myndighetscertifiering.
++- [ ] Bekräfta vilka uppdrag inom överlåtelsebesiktning och bygglovshandlingar som ska marknadsföras aktivt.
++- [ ] Dokumentera hur behörigheten hos varje energipartner kontrolleras före uppdrag.
++- [ ] Namnge energipartner på webbplatsen först efter avtal och godkännande från partnern.
++
++Godkänd energiformulering: “Ytterman erbjuder och samordnar energideklaration. Själva deklarationen utförs via behörig partner av en certifierad energiexpert.”
++
++## 3. Priser, resor och leverans
++
++- [ ] Bekräfta att 2026 års KA-paket och momsstatus fortfarande gäller före varje prisuppdatering.
++- [ ] Fastställ en dokumenterad resepolicy: serviceområde, milersättning, restid, eventuella zoner och undantag.
++- [ ] Fastställ realistiska svarstider, starttider och leveranstider som kan hållas även vid hög belastning.
++- [ ] Ange projektspecifika resor, platsbesök, tillägg och leveranstid i varje offert.
++- [ ] Bestäm när priser ska märkas “från”, “fast pris” respektive “pris efter underlag”.
++
++## 4. Digitala produkter
++
++- Energiberäkning online är en aktiv extern partnertjänst. Partnern hanterar beställning, villkor och leverans; Ytterman får provision via partnerlänken.
++- Kontrollerna nedan gäller Yttermans egna digitala produkter innan de öppnas för köp.
++- [ ] Verifiera fungerande betalning i produktion.
++- [ ] Verifiera automatisk leverans och kvitto från början till slut.
++- [ ] Publicera köpvillkor, integritetstext, ångerrätt/undantag och återbetalningsprocess.
++- [ ] Testa misslyckad betalning, dubbelbetalning och utebliven leverans.
++- [ ] Ändra Yttermans egna produkter från “intresseanmälan” till köp först när hela flödet ovan är verifierat.
++
++## 5. Bevis och externa profiler
++
++- [ ] Samla godkända kundcase med projekt, ort, omfattning och uttryckligt publiceringsmedgivande.
++- [ ] Publicera endast verifierade recensioner; spara källa och datum.
++- [ ] Gå igenom Google Business Profile, Bygglov.se, SBR-profil, sociala profiler och relevanta kataloger.
++- [ ] Bekräfta relationen till TY Safety och önskad korslänkning innan verksamheten beskrivs som systerföretag.
++- [ ] Synka kontaktvägar, tjänstelista, KA-behörighet, BAS-formulering, energipartner-modell, priser och serviceområde.
++- [ ] Kontrollera att inga externa profiler eller äldre kampanjer visar det borttagna telefonnumret eller en WhatsApp-länk till det.
++- [ ] Ta bort gamla löften om svar inom 24/48 timmar, minuter, kort restid eller kostnadsfria resor.
++- [ ] Kontrollera att ingen profil beskriver Tobias som certifierad energiexpert.
++
++## 6. Ändringsrutin
++
++1. Uppdatera verifierade grunddata i `src/config/company.ts`.
++2. Kör `npm run test:content`, `npm run build` och `npm run lint`.
++3. Granska synlig text, metadata och strukturerad data i deploy-preview.
++4. Synka samma godkända uppgifter till externa profiler.
++5. Anteckna datum, källa och ansvarig för verifieringen i ändringsärendet.
