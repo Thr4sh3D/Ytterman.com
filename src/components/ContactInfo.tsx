@@ -43,6 +43,11 @@ export const ContactInfo = ({ className = '' }: ContactInfoProps) => {
         Kontaktinformation
       </h2>
       
+      <div className="text-slate-600 mb-8">
+        <p>Ytterman.com är ett varumärke som ägs och drivs av {COMPANY.legalName}.</p>
+        <p>Organisationsnummer: {COMPANY.organizationNumber}</p>
+      </div>
+
       <section aria-labelledby="contact-details">
         <h3 id="contact-details" className="sr-only">Kontaktuppgifter</h3>
         <div className="space-y-6 mb-12">

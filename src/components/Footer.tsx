@@ -20,6 +20,10 @@ export const Footer = () => {
               {KA_CERT.title} och utbildad för uppdrag som {BAS.rolesLabel}.{' '}
               {COMPANY.experienceLabel} i byggbranschen.
             </p>
+            <p className="text-gray-300 mb-6">
+              Ytterman.com är ett varumärke som ägs och drivs av {COMPANY.legalName}.{' '}
+              Organisationsnummer: {COMPANY.organizationNumber}.
+            </p>
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <Mail className="w-5 h-5 text-orange-300" aria-hidden="true" />
@@ -127,7 +131,7 @@ export const Footer = () => {
 
         <div className="border-t border-slate-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center gap-3">
           <p className="text-gray-400 text-sm text-center md:text-left">
-            © {currentYear} {COMPANY.brandName}. Alla rättigheter förbehållna.
+            © {currentYear} {COMPANY.legalName}. Alla rättigheter förbehållna.
           </p>
           <div className="mt-4 flex flex-wrap justify-center gap-x-6 gap-y-3 md:mt-0">
             <a href="/priser/" className="text-gray-400 hover:text-white transition-colors text-sm">

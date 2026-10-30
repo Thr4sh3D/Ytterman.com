@@ -1,18 +1,18 @@
 # Ytterman – ägarchecklista för webb och externa profiler
 
-**Status:** uppgifter i den här listan ska kontrolleras av ägaren innan de läggs in på webbplatsen, Google Business Profile, katalogtjänster eller avtalsunderlag.
+**Status:** Tobias Ytterman bekräftade 2026-10-30 att Ytterman.com är ett varumärke som ägs och drivs av MTY Konsult AB, organisationsnummer 559513-6358. Adress och kontaktuppgifter ska vara oförändrade. Övriga öppna punkter nedan kvarstår.
 
 ## 1. Företagsidentitet och NAP
 
-- [ ] Verifiera juridiskt företagsnamn exakt som det är registrerat.
-- [ ] Verifiera organisationsnummer.
+- [x] Juridiskt företagsnamn: MTY Konsult AB (ägarbekräftat 2026-10-30).
+- [x] Organisationsnummer: 559513-6358 (ägarbekräftat 2026-10-30).
 - [ ] Verifiera postadress och eventuell separat besöks-/verksamhetsadress.
 - [ ] Ta bort det publika telefonnumret från webbplatsen, Google Business Profile, katalogtjänster och sociala profiler.
 - [ ] Använd `tobias@ytterman.com` och kontaktformuläret på `https://ytterman.com/kontakt/` som primära kontaktvägar.
 - [ ] Använd samma verifierade namn- och adressuppgifter överallt där de publiceras.
 - [ ] Bekräfta om en fysisk adress ska visas offentligt eller om profilen ska vara ett serviceområde utan synlig adress.
 
-Publicera inte adress, organisationsnummer eller juridiskt namn i schema, sidfot eller externa profiler förrän punkterna ovan är klara.
+Bolagsnamn och organisationsnummer kan publiceras enligt ägarens bekräftelse. Befintlig adressvisning och befintliga kontaktvägar behålls. Uppdatering av externa profiler hanteras separat.
 
 ## 2. Tjänster och behörigheter
 

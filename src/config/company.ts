@@ -19,6 +19,8 @@ export const formatSek = (amount: number) => `${amount.toLocaleString('sv-SE')} 
 
 export const COMPANY = {
   brandName: 'Ytterman',
+  legalName: 'MTY Konsult AB',
+  organizationNumber: '559513-6358',
   publicName: 'Tobias Ytterman',
   siteUrl: 'https://ytterman.com',
   email: 'tobias@ytterman.com',
@@ -43,9 +45,9 @@ export const COMPANY = {
     name: 'Svenska Byggingenjörers Riksförbund',
     label: 'Ansluten till SBR',
   },
-  // Juridiskt namn, organisationsnummer och fullständig adress publiceras först
-  // efter ägarverifiering. Se docs/external-profile-corrections.md.
-  legalIdentityVerified: false,
+  // Bolagsnamn och organisationsnummer bekräftade av Tobias Ytterman 2026-10-30.
+  // Befintliga adress- och kontaktuppgifter behålls.
+  legalIdentityVerified: true,
 } as const;
 
 export const KA_CERT = {

@@ -19,16 +19,18 @@ const Integritetspolicy = () => {
                 <section>
                   <h2 className="text-2xl font-semibold text-slate-900 mb-4">1. Inledning</h2>
                   <p>
-                    Denna integritetspolicy beskriver hur verksamheten under varumärket {COMPANY.brandName}
-                    samlar in, använder och skyddar dina personuppgifter när du besöker vår webbplats 
-                    eller använder våra tjänster.
+                    Denna integritetspolicy beskriver hur {COMPANY.legalName}, organisationsnummer{' '}
+                    {COMPANY.organizationNumber}, samlar in, använder och skyddar dina personuppgifter när du besöker vår webbplats 
+                    eller använder våra tjänster. Ytterman.com är ett varumärke som ägs och drivs av{' '}
+                    {COMPANY.legalName}.
                   </p>
                 </section>
 
                 <section>
                   <h2 className="text-2xl font-semibold text-slate-900 mb-4">2. Personuppgiftsansvarig</h2>
                   <div className="bg-stone-50 p-6 rounded-lg">
-                    <p><strong>{COMPANY.brandName}</strong></p>
+                    <p><strong>{COMPANY.legalName}</strong></p>
+                    <p>Organisationsnummer: {COMPANY.organizationNumber}</p>
                     <p>E-post: {COMPANY.email}</p>
                   </div>
                 </section>
@@ -170,7 +172,8 @@ const Integritetspolicy = () => {
                     personuppgifter, kontakta oss:
                   </p>
                   <div className="bg-stone-50 p-6 rounded-lg mt-4">
-                    <p><strong>{COMPANY.brandName}</strong></p>
+                    <p><strong>{COMPANY.legalName}</strong></p>
+                    <p>Organisationsnummer: {COMPANY.organizationNumber}</p>
                     <p>E-post: {COMPANY.email}</p>
                     <p className="mt-4">
                       Du har också rätt att lämna klagomål till Integritetsskyddsmyndigheten (IMY) 
@@ -181,7 +184,7 @@ const Integritetspolicy = () => {
 
                 <section className="border-t pt-8 mt-12">
                   <p className="text-sm text-slate-600">
-                    <strong>Senast uppdaterad:</strong> 18 augusti 2026
+                    <strong>Senast uppdaterad:</strong> 30 oktober 2026
                   </p>
                 </section>
               </div>

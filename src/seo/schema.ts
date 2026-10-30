@@ -71,6 +71,12 @@ const buildCoreGraph = (): SchemaNode[] => {
       '@id': IDS.business,
       name: COMPANY.brandName,
       alternateName: COMPANY.publicName,
+      legalName: COMPANY.legalName,
+      identifier: {
+        '@type': 'PropertyValue',
+        propertyID: 'Organisationsnummer',
+        value: COMPANY.organizationNumber,
+      },
       url: `${COMPANY.siteUrl}/`,
       email: COMPANY.email,
       description: `${KA_CERT.title}, ${BAS.rolesLabel} och byggrelaterade tjänster i ${COMPANY.region}. ${BUSINESS_COPY.energyPartner}`,

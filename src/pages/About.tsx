@@ -32,6 +32,11 @@ const About = () => {
                   {COMPANY.experienceLabel} i byggbranschen
                 </p>
                 
+                <p className="text-slate-600 mb-8">
+                  Ytterman.com är ett varumärke som ägs och drivs av {COMPANY.legalName},
+                  organisationsnummer {COMPANY.organizationNumber}.
+                </p>
+
                 <div className="bg-white rounded-lg shadow-sm border p-8 mb-8">
                   <h2 className="text-2xl font-semibold text-slate-900 mb-4">
                     Tobias Ytterman

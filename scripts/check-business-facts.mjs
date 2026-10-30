@@ -54,7 +54,7 @@ const forbiddenRules = [
   ['obekräftad kostnadsfri resa', /\b(?:utan|inga)\s+resekostnader\b|\bkostnadsfri(?:a)?\s+res(?:a|or)\b/gi],
   ['obekräftad lokal restid', /\bbara\s+\d+\s+min(?:ut(?:er)?)?\s+(?:bort|restid)\b|\b\d+\s+minuters\s+restid\b/gi],
   ['obekräftat fast reseupplägg', /\bfast resepåslag\b/gi],
-  ['overifierad juridisk identitet', /\b(?:MTY Konsult|8809134672)\b/gi],
+  ['inaktuell juridisk identitet', /\b(?:MTY Konsult(?! AB\b)|880913[- ]?4672)\b/gi],
   ['obekräftat partnernätverk', /\b(?:vårt|Yttermans|befintligt|etablerat)\s+partnernätverk\b/gi],
   ['inaktuellt pris 14 900', /\b14(?:\s|\.)?900\s*(?:kr|kronor)\b/gi],
   ['inaktuellt pris 19 900', /\b19(?:\s|\.)?900\s*(?:kr|kronor)\b/gi],
@@ -130,7 +130,9 @@ const requiredConfigFragments = [
   "publicationStatus: 'interest-only'",
   "affiliation: {",
   "label: 'Ansluten till SBR'",
-  'legalIdentityVerified: false',
+  "legalName: 'MTY Konsult AB'",
+  "organizationNumber: '559513-6358'",
+  'legalIdentityVerified: true',
 ];
 
 for (const fragment of requiredConfigFragments) {
